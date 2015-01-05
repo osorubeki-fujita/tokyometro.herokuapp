@@ -1,0 +1,9 @@
+#-------- 【銀座線】
+
+custom.TrainType:TokyoMetro.Ginza.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Ginza: custom.StoppingPattern:TokyoMetro.Ginza.Local
+  note: 銀座線
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Ginza

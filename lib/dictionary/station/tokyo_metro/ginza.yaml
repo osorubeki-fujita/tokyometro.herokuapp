@@ -1,0 +1,191 @@
+odpt.Station:TokyoMetro.Ginza.Shibuya:
+  station_facility: odpt.StationFacility:TokyoMetro.Shibuya
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Shibuya.Ginza
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Shibuya
+  name_ja: 渋谷
+  name_hira: しぶや
+  name_in_system: Shibuya
+  name_en: Shibuya
+  station_code: G-01
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.OmoteSando:
+  station_facility: odpt.StationFacility:TokyoMetro.OmoteSando
+  name_ja: 表参道
+  name_hira: おもてさんどう
+  name_in_system: OmoteSando
+  name_en: Omote-sando
+  station_code: G-02
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Gaiemmae:
+  station_facility: odpt.StationFacility:TokyoMetro.Gaiemmae
+  name_ja: 外苑前
+  name_hira: がいえんまえ
+  name_in_system: Gaiemmae
+  name_en: Gaiemmae
+  station_code: G-03
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.AoyamaItchome:
+  station_facility: odpt.StationFacility:TokyoMetro.AoyamaItchome
+  name_ja: 青山一丁目
+  name_hira: あおやまいっちょうめ
+  name_in_system: AoyamaItchome
+  name_en: Aoyama-itchome
+  station_code: G-04
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke:
+  station_facility: odpt.StationFacility:TokyoMetro.AkasakaMitsuke
+  name_ja: 赤坂見附
+  name_hira: あかさかみつけ
+  name_in_system: AkasakaMitsuke
+  name_en: Akasaka-mitsuke
+  station_code: G-05
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.TameikeSanno:
+  station_facility: odpt.StationFacility:TokyoMetro.TameikeSanno
+  name_ja: 溜池山王
+  name_hira: ためいけさんのう
+  name_in_system: TameikeSanno
+  name_en: Tameike-sanno
+  station_code: G-06
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Toranomon:
+  station_facility: odpt.StationFacility:TokyoMetro.Toranomon
+  name_ja: 虎ノ門
+  name_hira: とらのもん
+  name_in_system: Toranomon
+  name_en: Toranomon
+  station_code: G-07
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Shimbashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Shimbashi
+  name_ja: 新橋
+  name_hira: しんばし
+  name_in_system: Shimbashi
+  name_en: Shimbashi
+  station_code: G-08
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Ginza:
+  station_facility: odpt.StationFacility:TokyoMetro.Ginza
+  name_ja: 銀座
+  name_hira: ぎんざ
+  name_in_system: Ginza
+  name_en: Ginza
+  station_code: G-09
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Kyobashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Kyobashi
+  name_ja: 京橋
+  name_hira: きょうばし
+  name_in_system: Kyobashi
+  name_en: Kyobashi
+  station_code: G-10
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Nihombashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Nihombashi
+  name_ja: 日本橋
+  name_hira: にほんばし
+  name_in_system: Nihombashi
+  name_en: Nihombashi
+  station_code: G-11
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Mitsukoshimae:
+  station_facility: odpt.StationFacility:TokyoMetro.Mitsukoshimae
+  name_ja: 三越前
+  name_hira: みつこしまえ
+  name_in_system: Mitsukoshimae
+  name_en: Mitsukoshimae
+  station_code: G-12
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Kanda:
+  station_facility: odpt.StationFacility:TokyoMetro.Kanda
+  name_ja: 神田
+  name_hira: かんだ
+  name_in_system: Kanda
+  name_en: Kanda
+  station_code: G-13
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Suehirocho:
+  station_facility: odpt.StationFacility:TokyoMetro.Suehirocho
+  name_ja: 末広町
+  name_hira: すえひろちょう
+  name_in_system: Suehirocho
+  name_en: Suehirocho
+  station_code: G-14
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.UenoHirokoji:
+  station_facility: odpt.StationFacility:TokyoMetro.UenoHirokoji
+  name_ja: 上野広小路
+  name_hira: うえのひろこうじ
+  name_in_system: UenoHirokoji
+  name_en: Ueno-hirokoji
+  station_code: G-15
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Ueno:
+  station_facility: odpt.StationFacility:TokyoMetro.Ueno
+  name_ja: 上野
+  name_hira: うえの
+  name_in_system: Ueno
+  name_en: Ueno
+  station_code: G-16
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Inaricho:
+  station_facility: odpt.StationFacility:TokyoMetro.Inaricho
+  name_ja: 稲荷町
+  name_hira: いなりちょう
+  name_in_system: Inaricho
+  name_en: Inaricho
+  station_code: G-17
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Tawaramachi:
+  station_facility: odpt.StationFacility:TokyoMetro.Tawaramachi
+  name_ja: 田原町
+  name_hira: たわらまち
+  name_in_system: Tawaramachi
+  name_en: Tawaramachi
+  station_code: G-18
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local
+
+odpt.Station:TokyoMetro.Ginza.Asakusa:
+  station_facility: odpt.StationFacility:TokyoMetro.Asakusa
+  name_ja: 浅草
+  name_hira: あさくさ
+  name_in_system: Asakusa
+  name_en: Asakusa
+  station_code: G-19
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Ginza.Local

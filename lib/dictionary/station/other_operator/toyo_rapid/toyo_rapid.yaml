@@ -1,0 +1,99 @@
+odpt.Station:ToyoRapidRailway.ToyoRapid.NishiFunabashi:
+  station_alias:
+    - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+    - odpt.Station:JR-East.ChuoChikatetsuTozai.NishiFunabashi
+  station_facility: odpt.StationFacility:ToyoRapidRailway.ToyoRapid.NishiFunabashi
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.NishiFunabashi
+    - odpt.StationFacility:JR-East.NishiFunabashiTokyoMetro
+  name_ja: 西船橋
+  name_hira: にしふなばし
+  name_in_system: NishiFunabashi
+  name_en: Nishi-funabashi
+  station_code: TR01
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.ToyoRapid
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.HigashiKaijin:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.HigashiKaijin
+  name_ja: 東海神
+  name_hira: ひがしかいじん
+  name_in_system: HigashiKaijin
+  name_en: Higashi-kaijin
+  station_code: TR02
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.Hasama:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.Hasama
+  name_ja: 飯山満
+  name_hira: はさま
+  name_in_system: Hasama
+  name_en: Hasama
+  station_code: TR03
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.KitaNarashino:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.KitaNarashino
+  name_ja: 北習志野
+  name_hira: きたならしの
+  name_in_system: KitaNarashino
+  name_en: Kita-narashino
+  station_code: TR04
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.ToyoRapid
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.FunabashiNichidaiMae:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.FunabashiNichidaiMae
+  name_ja: 船橋日大前
+  name_hira: ふなばしにちだいまえ
+  name_in_system: FunabashiNichidaiMae
+  name_en: Funabashi-nichidai-mae
+  station_code: TR05
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.YachiyoMidorigaoka:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.YachiyoMidorigaoka
+  name_ja: 八千代緑が丘
+  name_hira: やちよみどりがおか
+  name_in_system: YachiyoMidorigaoka
+  name_en: Yachiyo-midorigaoka
+  station_code: TR06
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.ToyoRapid
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.YachiyoChuo:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.YachiyoChuo
+  name_ja: 八千代中央
+  name_hira: やちよちゅうおう
+  name_in_system: YachiyoChuo
+  name_en: Yachiyo-chuo
+  station_code: TR07
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.Murakami:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.Murakami
+  name_ja: 村上
+  name_hira: むらかみ
+  name_in_system: Murakami
+  name_en: Murakami
+  station_code: TR08
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+
+odpt.Station:ToyoRapidRailway.ToyoRapid.ToyoKatsutadai:
+  station_facility: odpt.StationFacility:ToyoRapidRailway.ToyoKatsutadai
+  name_ja: 東葉勝田台
+  name_hira: とうようかつただい
+  name_in_system: ToyoKatsutadai
+  name_en: Toyo-katsutadai
+  station_code: TR09
+  stop:
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+    - custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.ToyoRapid

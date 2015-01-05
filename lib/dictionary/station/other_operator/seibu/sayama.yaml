@@ -1,0 +1,30 @@
+odpt.Station:Seibu.Yamaguchi.NishiTokorozawa:
+  station_alias: odpt.Station:Seibu.Ikebukuro.NishiTokorozawa
+  station_facility: odpt.StationFacility:Seibu.NishiTokorozawa
+  name_ja: 西所沢
+  name_hira: にしところざわ
+  name_in_system: NishiTokorozawa
+  name_en: Nishi-tokorozawa
+  station_code: SI18
+  stop:
+    - custom.StoppingPattern:Seibu.Sayama.Local
+
+odpt.Station:Seibu.Yamaguchi.ShimoYamaguchi:
+  station_facility: odpt.StationFacility:Seibu.ShimoYamaguchi
+  name_ja: 下山口
+  name_hira: しもやまぐち
+  name_in_system: ShimoYamaguchi
+  name_en: Shimo-yamaguchi
+  station_code: SI40
+  stop:
+    - custom.StoppingPattern:Seibu.Sayama.Local
+
+odpt.Station:Seibu.Yamaguchi.SeibuKyujoMae:
+  station_facility: odpt.StationFacility:Seibu.SeibuKyujoMae
+  name_ja: 西武球場前
+  name_hira: せいぶきゅうじょうまえ
+  name_in_system: SeibuKyujoMae
+  name_en: Seibu-kyujo-mae
+  station_code: SI41
+  stop:
+    - custom.StoppingPattern:Seibu.Sayama.Local

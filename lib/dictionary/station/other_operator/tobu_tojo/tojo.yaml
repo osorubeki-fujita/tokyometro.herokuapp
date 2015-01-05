@@ -1,0 +1,486 @@
+odpt.Station:Tobu.Tojo.Ikebukuro:
+  station_facility: odpt.StationFacility:Tobu.Ikebukuro
+  name_ja: 池袋
+  name_hira: いけぶくろ
+  name_in_system: Ikebukuro
+  name_en: Ikebukuro
+  station_code: TJ-01
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.KitaIkebukuro:
+  station_facility: odpt.StationFacility:Tobu.KitaIkebukuro
+  name_ja: 北池袋
+  name_hira: きたいけぶくろ
+  name_in_system: KitaIkebukuro
+  name_en: Kita-ikebukuro
+  station_code: TJ-02
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.ShimoItabashi:
+  station_facility: odpt.StationFacility:Tobu.ShimoItabashi
+  name_ja: 下板橋
+  name_hira: しもいたばし
+  name_in_system: ShimoItabashi
+  name_en: Shimo-itabashi
+  station_code: TJ-03
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Ooyama:
+  station_facility: odpt.StationFacility:Tobu.Ooyama
+  name_ja: 大山
+  name_hira: おおやま
+  name_in_system: Ooyama
+  name_en: Ooyama
+  station_code: TJ-04
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.NakaItabashi:
+  station_facility: odpt.StationFacility:Tobu.NakaItabashi
+  name_ja: 中板橋
+  name_hira: なかいたばし
+  name_in_system: NakaItabashi
+  name_en: Naka-itabashi
+  station_code: TJ-05
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Tokiwadai:
+  station_facility: odpt.StationFacility:Tobu.Tokiwadai
+  name_ja: ときわ台
+  name_hira: ときわだい
+  name_in_system: Tokiwadai
+  name_en: Tokiwadai
+  station_code: TJ-06
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.KamiItabashi:
+  station_facility: odpt.StationFacility:Tobu.KamiItabashi
+  name_ja: 上板橋
+  name_hira: かみいたばし
+  name_in_system: KamiItabashi
+  name_en: Kami-itabashi
+  station_code: TJ-07
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.TobuNerima:
+  station_facility: odpt.StationFacility:Tobu.TobuNerima
+  name_ja: 東武練馬
+  name_hira: とうぶねりま
+  name_in_system: TobuNerima
+  name_en: Tobu-nerima
+  station_code: TJ-08
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.ShimoAkatsuka:
+  station_facility: odpt.StationFacility:Tobu.ShimoAkatsuka
+  name_ja: 下赤塚
+  name_hira: しもあかつか
+  name_in_system: ShimoAkatsuka
+  name_en: Shimo-akatsuka
+  station_code: TJ-09
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Narimasu:
+  station_facility: odpt.StationFacility:Tobu.Narimasu
+  name_ja: 成増
+  name_hira: なります
+  name_in_system: Narimasu
+  name_en: Narimasu
+  station_code: TJ-10
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+
+odpt.Station:Tobu.Tojo.Wakoshi:
+  station_alias:
+    - odpt.Station:TokyoMetro.Yurakucho.Wakoshi
+    - odpt.Station:TokyoMetro.Fukutoshin.Wakoshi
+  station_facility: odpt.StationFacility:Tobu.Wakoshi
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Wakoshi
+  name_ja: 和光市
+  name_hira: わこうし
+  name_in_system: Wakoshi
+  name_en: Wakoshi
+  station_code: TJ-11
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+
+odpt.Station:Tobu.Tojo.Asaka:
+  station_facility: odpt.StationFacility:Tobu.Asaka
+  name_ja: 朝霞
+  name_hira: あさか
+  name_in_system: Asaka
+  name_en: Asaka
+  station_code: TJ-12
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+
+odpt.Station:Tobu.Tojo.Asakadai:
+  station_facility: odpt.StationFacility:Tobu.Asakadai
+  name_ja: 朝霞台
+  name_hira: あさかだい
+  name_in_system: Asakadai
+  name_en: Asakadai
+  station_code: TJ-13
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+
+odpt.Station:Tobu.Tojo.Shiki:
+  station_facility: odpt.StationFacility:Tobu.Shiki
+  name_ja: 志木
+  name_hira: しき
+  name_in_system: Shiki
+  name_en: Shiki
+  station_code: TJ-14
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+
+odpt.Station:Tobu.Tojo.Yanasegawa:
+  station_facility: odpt.StationFacility:Tobu.Yanasegawa
+  name_ja: 柳瀬川
+  name_hira: やなせがわ
+  name_in_system: Yanasegawa
+  name_en: Yanasegawa
+  station_code: TJ-15
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+
+odpt.Station:Tobu.Tojo.Mizuhodai:
+  station_facility: odpt.StationFacility:Tobu.Mizuhodai
+  name_ja: みずほ台
+  name_hira: みずほだい
+  name_in_system: Mizuhodai
+  name_en: Mizuhodai
+  station_code: TJ-16
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+
+odpt.Station:Tobu.Tojo.Tsuruse:
+  station_facility: odpt.StationFacility:Tobu.Tsuruse
+  name_ja: 鶴瀬
+  name_hira: つるせ
+  name_in_system: Tsuruse
+  name_en: Tsuruse
+  station_code: TJ-17
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+
+odpt.Station:Tobu.Tojo.Fujimino:
+  station_facility: odpt.StationFacility:Tobu.Fujimino
+  name_ja: ふじみ野
+  name_hira: ふじみの
+  name_in_system: Fujimino
+  name_en: Fujimino
+  station_code: TJ-18
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.KamiFukuoka:
+  station_facility: odpt.StationFacility:Tobu.KamiFukuoka
+  name_ja: 上福岡
+  name_hira: かみふくおか
+  name_in_system: KamiFukuoka
+  name_en: Kami-fukuoka
+  station_code: TJ-19
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+
+odpt.Station:Tobu.Tojo.Shingashi:
+  station_facility: odpt.StationFacility:Tobu.Shingashi
+  name_ja: 新河岸
+  name_hira: しんがし
+  name_in_system: Shingashi
+  name_en: Shingashi
+  station_code: TJ-20
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+
+odpt.Station:Tobu.Tojo.Kawagoe:
+  station_facility: odpt.StationFacility:Tobu.Kawagoe
+  name_ja: 川越
+  name_hira: かわごえ
+  name_in_system: Kawagoe
+  name_en: Kawagoe
+  station_code: TJ-21
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.Kawagoeshi:
+  station_facility: odpt.StationFacility:Tobu.Kawagoeshi
+  name_ja: 川越市
+  name_hira: かわごえし
+  name_in_system: Kawagoeshi
+  name_en: Kawagoeshi
+  station_code: TJ-22
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.Kasumigaseki:
+  station_facility: odpt.StationFacility:Tobu.Kasumigaseki
+  name_ja: 霞ヶ関
+  name_hira: かすみがせき
+  name_in_system: Kasumigaseki
+  name_en: Kasumigaseki
+  station_code: TJ-23
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+
+odpt.Station:Tobu.Tojo.Tsurugashima:
+  station_facility: odpt.StationFacility:Tobu.Tsurugashima
+  name_ja: 鶴ヶ島
+  name_hira: つるがしま
+  name_in_system: Tsurugashima
+  name_en: Tsurugashima
+  station_code: TJ-24
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+
+odpt.Station:Tobu.Tojo.Wakaba:
+  station_facility: odpt.StationFacility:Tobu.Wakaba
+  name_ja: 若葉
+  name_hira: わかば
+  name_in_system: Wakaba
+  name_en: Wakaba
+  station_code: TJ-25
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+
+odpt.Station:Tobu.Tojo.Sakado:
+  station_facility: odpt.StationFacility:Tobu.Sakado
+  name_ja: 坂戸
+  name_hira: さかど
+  name_in_system: Sakado
+  name_en: Sakado
+  station_code: TJ-26
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.KitaSakado:
+  station_facility: odpt.StationFacility:Tobu.KitaSakado
+  name_ja: 北坂戸
+  name_hira: きたさかど
+  name_in_system: KitaSakado
+  name_en: Kita-sakado
+  station_code: TJ-27
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+
+odpt.Station:Tobu.Tojo.Takasaka:
+  station_facility: odpt.StationFacility:Tobu.Takasaka
+  name_ja: 高坂
+  name_hira: たかさか
+  name_in_system: Takasaka
+  name_en: Takasaka
+  station_code: TJ-28
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+
+odpt.Station:Tobu.Tojo.HigashiMatsuyama:
+  station_facility: odpt.StationFacility:Tobu.HigashiMatsuyama
+  name_ja: 東松山
+  name_hira: ひがしまつやま
+  name_in_system: HigashiMatsuyama
+  name_en: Higashi-matsuyama
+  station_code: TJ-29
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.ShinrinKoen:
+  station_facility: odpt.StationFacility:Tobu.ShinrinKoen
+  name_ja: 森林公園
+  name_hira: しんりんこうえん
+  name_in_system: ShinrinKoen
+  name_en: Shinrin-koen
+  station_code: TJ-30
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.Tsukinowa:
+  station_facility: odpt.StationFacility:Tobu.Tsukinowa
+  name_ja: つきのわ
+  name_hira: つきのわ
+  name_in_system: Tsukinowa
+  name_en: Tsukinowa
+  station_code: TJ-31
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.MusashiRanzan:
+  station_facility: odpt.StationFacility:Tobu.MusashiRanzan
+  name_ja: 武蔵嵐山
+  name_hira: むさしらんざん
+  name_in_system: MusashiRanzan
+  name_en: Musashi-ranzan
+  station_code: TJ-32
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.Ogawamachi:
+  station_facility: odpt.StationFacility:Tobu.Ogawamachi
+  name_ja: 小川町
+  name_hira: おがわまち
+  name_in_system: Ogawamachi
+  name_en: Ogawamachi
+  station_code: TJ-33
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+    - custom.StoppingPattern:Tobu.Tojo.SemiExpress
+    - custom.StoppingPattern:Tobu.Tojo.CommuterExpress
+    - custom.StoppingPattern:Tobu.Tojo.Express
+    - custom.StoppingPattern:Tobu.Tojo.Rapid
+    - custom.StoppingPattern:Tobu.Tojo.RapidExpress
+    - custom.StoppingPattern:Tobu.Tojo.TjLiner
+
+odpt.Station:Tobu.Tojo.TobuTakezawa:
+  station_facility: odpt.StationFacility:Tobu.TobuTakezawa
+  name_ja: 東武竹沢
+  name_hira: とうぶたけざわ
+  name_in_system: TobuTakezawa
+  name_en: Tobu-takezawa
+  station_code: TJ-34
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Obusuma:
+  station_facility: odpt.StationFacility:Tobu.Obusuma
+  name_ja: 男衾
+  name_hira: おぶすま
+  name_in_system: Obusuma
+  name_en: Obusuma
+  station_code: TJ-35
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Hachigata:
+  station_facility: odpt.StationFacility:Tobu.Hachigata
+  name_ja: 鉢形
+  name_hira: はちがた
+  name_in_system: Hachigata
+  name_en: Hachigata
+  station_code: TJ-36
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Tamayodo:
+  station_facility: odpt.StationFacility:Tobu.Tamayodo
+  name_ja: 玉淀
+  name_hira: たまよど
+  name_in_system: Tamayodo
+  name_en: Tamayodo
+  station_code: TJ-37
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local
+
+odpt.Station:Tobu.Tojo.Yorii:
+  station_facility: odpt.StationFacility:Tobu.Yorii
+  name_ja: 寄居
+  name_hira: よりい
+  name_in_system: Yorii
+  name_en: Yorii
+  station_code: TJ-38
+  stop:
+    - custom.StoppingPattern:Tobu.Tojo.Local

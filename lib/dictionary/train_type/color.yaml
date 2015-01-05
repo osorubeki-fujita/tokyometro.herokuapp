@@ -1,0 +1,29 @@
+#---- 【色】
+
+custom.TrainTypeColor:White:
+  note: 一般 標準色 白
+  web: "#ffffff"
+  red: 255
+  green: 255
+  blue: 255
+
+custom.TrainTypeColor:DarkGray:
+  note: 一般 標準色 グレー
+  web: "#666666"
+  red: 102
+  green: 102
+  blue: 102
+
+custom.TrainTypeColor:Black:
+  note: 一般 標準色 黒
+  web: "#333333"
+  red: 51
+  green: 51
+  blue: 51
+
+custom.TrainTypeColor:HolidayExpress:
+  note: 土休急行 標準色（ピンク）
+  web: "#ff3399"
+  red: 255
+  green: 51
+  blue: 153

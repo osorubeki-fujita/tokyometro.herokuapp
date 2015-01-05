@@ -1,0 +1,39 @@
+odpt.Station:TokyoMetro.MarunouchiBranch.Honancho:
+  station_facility: odpt.StationFacility:TokyoMetro.Honancho
+  name_ja: 方南町
+  name_hira: ほうなんちょう
+  name_in_system: Honancho
+  name_en: Honancho
+  station_code: m-03
+  stop:
+    - custom.StoppingPattern:TokyoMetro.MarunouchiBranch.Local
+
+odpt.Station:TokyoMetro.MarunouchiBranch.NakanoFujimicho:
+  station_facility: odpt.StationFacility:TokyoMetro.NakanoFujimicho
+  name_ja: 中野富士見町
+  name_hira: なかのふじみちょう
+  name_in_system: NakanoFujimicho
+  name_en: Nakano-fujimicho
+  station_code: m-04
+  stop:
+    - custom.StoppingPattern:TokyoMetro.MarunouchiBranch.Local
+
+odpt.Station:TokyoMetro.MarunouchiBranch.NakanoShimbashi:
+  station_facility: odpt.StationFacility:TokyoMetro.NakanoShimbashi
+  name_ja: 中野新橋
+  name_hira: なかのしんばし
+  name_in_system: NakanoShimbashi
+  name_en: Nakano-shimbashi
+  station_code: m-05
+  stop:
+    - custom.StoppingPattern:TokyoMetro.MarunouchiBranch.Local
+
+odpt.Station:TokyoMetro.MarunouchiBranch.NakanoSakaue:
+  station_facility: odpt.StationFacility:TokyoMetro.NakanoSakaue
+  name_ja: 中野坂上
+  name_hira: なかのさかうえ
+  name_in_system: NakanoSakaue
+  name_en: Nakano-sakaue
+  station_code: m-06
+  stop:
+    - custom.StoppingPattern:TokyoMetro.MarunouchiBranch.Local

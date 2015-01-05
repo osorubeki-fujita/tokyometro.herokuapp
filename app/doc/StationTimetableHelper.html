@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: StationTimetableHelper
+  
+    &mdash; Ruby for Rails - [app] (as of 2014.12.28 00:49)
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!StationTimetableHelper.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">StationTimetableHelper</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: StationTimetableHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">helpers/station_timetable_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#make_timetables-instance_method" title="#make_timetables (instance method)">- (Object) <strong>make_timetables</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_in_station_timetable_top-instance_method" title="#title_in_station_timetable_top (instance method)">- (Object) <strong>title_in_station_timetable_top</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_of_station_timetable_in_each_line-instance_method" title="#title_of_station_timetable_in_each_line (instance method)">- (Object) <strong>title_of_station_timetable_in_each_line</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_of_station_timetable_in_each_station-instance_method" title="#title_of_station_timetable_in_each_station (instance method)">- (Object) <strong>title_of_station_timetable_in_each_station</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="make_timetables-instance_method">
+  
+    - (<tt>Object</tt>) <strong>make_timetables</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_timetable_helper.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_make_timetables'>make_timetables</span>
+  <span class='id identifier rubyid_timetables_grouped_by_railway_line'>timetables_grouped_by_railway_line</span> <span class='op'>=</span> <span class='ivar'>@timetables</span><span class='period'>.</span><span class='id identifier rubyid_group_by'>group_by</span> <span class='lbrace'>{</span> <span class='op'>|</span> <span class='id identifier rubyid_timetable'>timetable</span> <span class='op'>|</span> <span class='id identifier rubyid_timetable'>timetable</span><span class='period'>.</span><span class='id identifier rubyid_railway_line_id'>railway_line_id</span> <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_h_locals'>h_locals</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>timetables_grouped_by_railway_line:</span> <span class='id identifier rubyid_timetables_grouped_by_railway_line'>timetables_grouped_by_railway_line</span> <span class='comma'>,</span>
+    <span class='label'>station:</span> <span class='ivar'>@station</span>
+  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='id identifier rubyid_h_locals'>h_locals</span>
+<span class='tstring_content'>- timetables_grouped_by_railway_line.keys.sort.each do | railway_line_id |
+- # 路線別の時刻表（複数）を取得
+- timetables_of_a_railway_line = timetables_grouped_by_railway_line[ railway_line_id ]
+- #
+- railway_line = ::RailwayLine.find_by( id: railway_line_id )
+- timetables_grouped_by_direction = timetables_of_a_railway_line.group_by { | timetable | timetable.railway_direction_id }
+- timetable_railway_direction_ids = timetables_grouped_by_direction.keys.sort_by { | direction_id | ::RailwayDirection.find_by( id: direction_id ).station_id }
+- timetable_railway_direction_ids.each do | direction_id |
+  - # 方面別の時刻表（1つ）を取得
+  - timetables_of_a_direction = timetables_grouped_by_direction[ direction_id ]
+  - # 【注意】timetables_of_a_direction は配列
+  - unless timetables_of_a_direction.length == 1
+    - raise &quot;Error&quot;
+  - timetable_of_a_direction = timetables_of_a_direction.first
+  - # RailwayDirection のインスタンスを取得
+  - direction = timetable_of_a_direction.railway_direction # ::RailwayDirection.find_by( id: direction_id )
+  - # 方面ごとの各列車の時刻を取得
+  - train_times_in_a_timetable_of_a_direction = timetable_of_a_direction.train_times.includes( :to_station , :train_type , :operation_day )
+  - # 曜日ごとに仕分け
+  - train_times_in_a_timetable_of_a_direction_grouped_by_operation_days = train_times_in_a_timetable_of_a_direction.group_by { | train_time | train_time.operation_day_id }
+  - operation_day_ids = train_times_in_a_timetable_of_a_direction_grouped_by_operation_days.keys.sort
+  - operation_day_ids.each do | operation_day_id |
+    - train_times_of_a_direction_and_an_operation_day = train_times_in_a_timetable_of_a_direction_grouped_by_operation_days[ operation_day_id ]
+    - operation_day = ::OperationDay.find_by( id: operation_day_id )
+    = make_timetable( train_times_of_a_direction_and_an_operation_day , railway_line , direction , operation_day , station )
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="title_in_station_timetable_top-instance_method">
+  
+    - (<tt>Object</tt>) <strong>title_in_station_timetable_top</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_timetable_helper.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title_in_station_timetable_top'>title_in_station_timetable_top</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span>
+<span class='tstring_content'>%div{ id: :station_timetable_title }
+= common_title_of_station_timetable
+= application_common_top_title
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="title_of_station_timetable_in_each_line-instance_method">
+  
+    - (<tt>Object</tt>) <strong>title_of_station_timetable_in_each_line</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13
+14
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_timetable_helper.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title_of_station_timetable_in_each_line'>title_of_station_timetable_in_each_line</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='lbrace'>{</span> <span class='label'>railway_lines:</span> <span class='ivar'>@railway_lines</span> <span class='rbrace'>}</span>
+<span class='tstring_content'>%div{ id: :station_timetable_title }
+= common_title_of_station_timetable
+= railway_line_name_main( railway_lines )
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="title_of_station_timetable_in_each_station-instance_method">
+  
+    - (<tt>Object</tt>) <strong>title_of_station_timetable_in_each_station</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_timetable_helper.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title_of_station_timetable_in_each_station'>title_of_station_timetable_in_each_station</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='lbrace'>{</span> <span class='label'>station:</span> <span class='ivar'>@station</span> <span class='rbrace'>}</span>
+<span class='tstring_content'>%div{ id: :station_facility_title }
+= common_title_of_station_timetable
+= station_name_main( station , station_code: true , all_station_codes: true )
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sun Dec 28 00:50:07 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

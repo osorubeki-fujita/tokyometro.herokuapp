@@ -1,0 +1,281 @@
+odpt.Station:TokyoMetro.Tozai.Nakano:
+  station_alias: odpt.StationFacility:JR-East.Nakano
+  station_facility: odpt.StationFacility:TokyoMetro.Nakano
+  station_facility_custom: odpt.StationFacility:JR-East.Nakano
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Nakano
+  name_ja: 中野
+  name_hira: なかの
+  name_in_system: Nakano
+  name_en: Nakano
+  administrator: odpt.Operator:JR-East
+  other_operator: odpt.Operator:TokyoMetro
+  station_code: T-01
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Ochiai:
+  station_facility: odpt.StationFacility:TokyoMetro.Ochiai
+  name_ja: 落合
+  name_hira: おちあい
+  name_in_system: Ochiai
+  name_en: Ochiai
+  station_code: T-02
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Takadanobaba:
+  station_facility: odpt.StationFacility:TokyoMetro.Takadanobaba
+  name_ja: 高田馬場
+  name_hira: たかだのばば
+  name_in_system: Takadanobaba
+  name_en: Takadanobaba
+  station_code: T-03
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Waseda:
+  station_facility: odpt.StationFacility:TokyoMetro.Waseda
+  name_ja: 早稲田
+  name_hira: わせだ
+  name_in_system: Waseda
+  name_en: Waseda
+  station_code: T-04
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Kagurazaka:
+  station_facility: odpt.StationFacility:TokyoMetro.Kagurazaka
+  name_ja: 神楽坂
+  name_hira: かぐらざか
+  name_in_system: Kagurazaka
+  name_en: Kagurazaka
+  station_code: T-05
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Iidabashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Iidabashi
+  name_ja: 飯田橋
+  name_hira: いいだばし
+  name_in_system: Iidabashi
+  name_en: Iidabashi
+  station_code: T-06
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Kudanshita:
+  station_facility: odpt.StationFacility:TokyoMetro.Kudanshita
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Kudanshita.Tozai
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Kudanshita
+  name_ja: 九段下
+  name_hira: くだんした
+  name_in_system: Kudanshita
+  name_en: Kudanshita
+  station_code: T-07
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Takebashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Takebashi
+  name_ja: 竹橋
+  name_hira: たけばし
+  name_in_system: Takebashi
+  name_en: Takebashi
+  station_code: T-08
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Otemachi:
+  station_facility: odpt.StationFacility:TokyoMetro.Otemachi
+  name_ja: 大手町
+  name_hira: おおてまち
+  name_in_system: Otemachi
+  name_en: Otemachi
+  station_code: T-09
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Nihombashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Nihombashi
+  name_ja: 日本橋
+  name_hira: にほんばし
+  name_in_system: Nihombashi
+  name_en: Nihombashi
+  station_code: T-10
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Kayabacho:
+  station_facility: odpt.StationFacility:TokyoMetro.Kayabacho
+  name_ja: 茅場町
+  name_hira: かやばちょう
+  name_in_system: Kayabacho
+  name_en: Kayabacho
+  station_code: T-11
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.MonzenNakacho:
+  station_facility: odpt.StationFacility:TokyoMetro.MonzenNakacho
+  name_ja: 門前仲町
+  name_hira: もんぜんなかちょう
+  name_in_system: MonzenNakacho
+  name_en: Monzen-nakacho
+  station_code: T-12
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Kiba:
+  station_facility: odpt.StationFacility:TokyoMetro.Kiba
+  name_ja: 木場
+  name_hira: きば
+  name_in_system: Kiba
+  name_en: Kiba
+  station_code: T-13
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.Toyocho:
+  station_facility: odpt.StationFacility:TokyoMetro.Toyocho
+  name_ja: 東陽町
+  name_hira: とうようちょう
+  name_in_system: Toyocho
+  name_en: Toyocho
+  station_code: T-14
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.MinamiSunamachi:
+  station_facility: odpt.StationFacility:TokyoMetro.MinamiSunamachi
+  name_ja: 南砂町
+  name_hira: みなみすなまち
+  name_in_system: MinamiSunamachi
+  name_en: Minami-sunamachi
+  station_code: T-15
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+
+odpt.Station:TokyoMetro.Tozai.NishiKasai:
+  station_facility: odpt.StationFacility:TokyoMetro.NishiKasai
+  name_ja: 西葛西
+  name_hira: にしかさい
+  name_in_system: NishiKasai
+  name_en: Nishi-kasai
+  station_code: T-16
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+
+odpt.Station:TokyoMetro.Tozai.Kasai:
+  station_facility: odpt.StationFacility:TokyoMetro.Kasai
+  name_ja: 葛西
+  name_hira: かさい
+  name_in_system: Kasai
+  name_en: Kasai
+  station_code: T-17
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+
+odpt.Station:TokyoMetro.Tozai.Urayasu:
+  station_facility: odpt.StationFacility:TokyoMetro.Urayasu
+  name_ja: 浦安
+  name_hira: うらやす
+  name_in_system: Urayasu
+  name_en: Urayasu
+  station_code: T-18
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+
+odpt.Station:TokyoMetro.Tozai.MinamiGyotoku:
+  station_facility: odpt.StationFacility:TokyoMetro.MinamiGyotoku
+  name_ja: 南行徳
+  name_hira: みなみぎょうとく
+  name_in_system: MinamiGyotoku
+  name_en: Minami-gyotoku
+  station_code: T-19
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+
+odpt.Station:TokyoMetro.Tozai.Gyotoku:
+  station_facility: odpt.StationFacility:TokyoMetro.Gyotoku
+  name_ja: 行徳
+  name_hira: ぎょうとく
+  name_in_system: Gyotoku
+  name_en: Gyotoku
+  station_code: T-20
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+
+odpt.Station:TokyoMetro.Tozai.Myoden:
+  station_facility: odpt.StationFacility:TokyoMetro.Myoden
+  name_ja: 妙典
+  name_hira: みょうでん
+  name_in_system: Myoden
+  name_en: Myoden
+  station_code: T-21
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+
+odpt.Station:TokyoMetro.Tozai.BarakiNakayama:
+  station_facility: odpt.StationFacility:TokyoMetro.BarakiNakayama
+  name_ja: 原木中山
+  name_hira: ばらきなかやま
+  name_in_system: BarakiNakayama
+  name_en: Baraki-nakayama
+  station_code: T-22
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+
+odpt.Station:TokyoMetro.Tozai.NishiFunabashi:
+  station_alias:
+    - odpt.Station:JR-East.ChuoChikatetsuTozai.NishiFunabashi
+    - odpt.Station:ToyoRapidRailway.ToyoRapid.NishiFunabashi
+  station_facility: odpt.StationFacility:TokyoMetro.NishiFunabashi
+  station_facility_custom_alias:
+    - odpt.StationFacility:JR-East.NishiFunabashi.DirectOperationToTokyoMetro
+    - odpt.StationFacility:ToyoRapidRailway.ToyoRapid.NishiFunabashi
+  name_ja: 西船橋
+  name_hira: にしふなばし
+  name_in_system: NishiFunabashi
+  name_en: Nishi-funabashi
+  administrator: odpt.Operator:TokyoMetro
+  other_operator:
+    - odpt.Operator:ToyoRapidRailway
+    - odpt.Operator:JR-East.DirectOperationToTokyoMetro
+  station_code: T-23
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Tozai.Local
+    - custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    - custom.StoppingPattern:TokyoMetro.Tozai.Rapid

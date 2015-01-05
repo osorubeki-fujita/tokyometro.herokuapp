@@ -1,0 +1,5 @@
+module TokyoMetro::ApiModules::Customize::StationFacility::ProcessPlatformTransferInfo
+end
+
+# process_platform_transfer_info/convert_railway_line_name.rb
+# process_platform_transfer_info/process_invalid_railway_direction.rb

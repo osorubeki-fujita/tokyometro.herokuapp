@@ -1,0 +1,12 @@
+%body
+  %div{ id: :header , class: "col-md-12" }<
+    = yield( :header )
+  %div{ id: :header_sub , class: "col-md-12" }<
+    = yield( :header_sub )
+  %div{ id: :contents , class: :container }
+    %div{ id: :left_contents , class: "col-md-3" }
+      = yield( :top_content )
+      = yield( :side_menu )
+      = yield( :bottom_content )
+    %div{ id: :main_content_wide , class: "col-md-9" }
+      = yield

@@ -1,0 +1,148 @@
+odpt.Station:Tokyu.Meguro.Meguro:
+  station_alias:
+    - odpt.Station:TokyoMetro.Namboku.Meguro
+    - odpt.Station:Toei.Mita.Meguro
+  station_facility: odpt.StationFacility:Tokyu.Meguro
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Meguro
+    - odpt.StationFacility:Toei.Meguro
+  name_ja: 目黒
+  name_hira: めぐろ
+  name_in_system: Meguro
+  name_en: Meguro
+  station_code: MG01
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express
+
+odpt.Station:Tokyu.Meguro.Fudomae:
+  station_facility: odpt.StationFacility:Tokyu.Fudomae
+  name_ja: 不動前
+  name_hira: ふどうまえ
+  name_in_system: Fudomae
+  name_en: Fudomae
+  station_code: MG02
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+
+odpt.Station:Tokyu.Meguro.MusashiKoyama:
+  station_facility: odpt.StationFacility:Tokyu.MusashiKoyama
+  name_ja: 武蔵小山
+  name_hira: むさしこやま
+  name_in_system: MusashiKoyama
+  name_en: Musashi-koyama
+  station_code: MG03
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express
+
+odpt.Station:Tokyu.Meguro.NishiKoyama:
+  station_facility: odpt.StationFacility:Tokyu.NishiKoyama
+  name_ja: 西小山
+  name_hira: にしこやま
+  name_in_system: NishiKoyama
+  name_en: Nishi-koyama
+  station_code: MG04
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+
+odpt.Station:Tokyu.Meguro.Senzoku:
+  station_facility: odpt.StationFacility:Tokyu.Senzoku
+  name_ja: 洗足
+  name_hira: せんぞく
+  name_in_system: Senzoku
+  name_en: Senzoku
+  station_code: MG05
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+
+odpt.Station:Tokyu.Meguro.Oookayama:
+  station_facility: odpt.StationFacility:Tokyu.Oookayama
+  name_ja: 大岡山
+  name_hira: おおおかやま
+  name_in_system: Oookayama
+  name_en: Oookayama
+  station_code: MG06
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express
+
+odpt.Station:Tokyu.Meguro.Okusawa:
+  station_facility: odpt.StationFacility:Tokyu.Okusawa
+  name_ja: 奥沢
+  name_hira: おくさわ
+  name_in_system: Okusawa
+  name_en: Okusawa
+  station_code: MG07
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+
+odpt.Station:Tokyu.Meguro.DenEnChofu:
+  station_alias: odpt.Station:Tokyu.Toyoko.DenEnChofu
+  station_facility: odpt.StationFacility:Tokyu.DenEnChofu
+  name_ja: 田園調布
+  name_hira: でんえんちょうふ
+  name_in_system: DenEnChofu
+  name_en: Den-en-chofu
+  station_code: MG08
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express
+
+odpt.Station:Tokyu.Meguro.Tamagawa:
+  station_alias: odpt.Station:Tokyu.Toyoko.Tamagawa
+  station_facility: odpt.StationFacility:Tokyu.Tamagawa
+  name_ja: 多摩川
+  name_hira: たまがわ
+  name_in_system: Tamagawa
+  name_en: Tamagawa
+  station_code: MG09
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express
+
+odpt.Station:Tokyu.Meguro.ShinMaruko:
+  station_alias: odpt.Station:Tokyu.Toyoko.ShinMaruko
+  station_facility: odpt.StationFacility:Tokyu.ShinMaruko
+  name_ja: 新丸子
+  name_hira: しんまるこ
+  name_in_system: ShinMaruko
+  name_en: Shin-maruko
+  station_code: MG10
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+
+odpt.Station:Tokyu.Meguro.MusashiKosugi:
+  station_alias: odpt.Station:Tokyu.Toyoko.MusashiKosugi
+  station_facility: odpt.StationFacility:Tokyu.MusashiKosugi
+  name_ja: 武蔵小杉
+  name_hira: むさしこすぎ
+  name_in_system: MusashiKosugi
+  name_en: Musashi-kosugi
+  station_code: MG11
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express
+
+odpt.Station:Tokyu.Meguro.Motosumiyoshi:
+  station_alias: odpt.Station:Tokyu.Toyoko.Motosumiyoshi
+  station_facility: odpt.StationFacility:Tokyu.Motosumiyoshi
+  name_ja: 元住吉
+  name_hira: もとすみよし
+  name_in_system: Motosumiyoshi
+  name_en: Motosumiyoshi
+  station_code: MG12
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+
+odpt.Station:Tokyu.Meguro.Hiyoshi:
+  station_alias: odpt.Station:Tokyu.Toyoko.Hiyoshi
+  station_facility: odpt.StationFacility:Tokyu.Hiyoshi
+  name_ja: 日吉
+  name_hira: ひよし
+  name_in_system: Hiyoshi
+  name_en: Hiyoshi
+  station_code: MG13
+  stop:
+    - custom.StoppingPattern:Tokyu.Meguro.Local
+    - custom.StoppingPattern:Tokyu.Meguro.Express

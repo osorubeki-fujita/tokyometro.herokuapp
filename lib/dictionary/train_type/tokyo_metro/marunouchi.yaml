@@ -1,0 +1,21 @@
+#-------- 【丸ノ内線】
+
+custom.TrainType:TokyoMetro.Marunouchi.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Marunouchi: custom.StoppingPattern:TokyoMetro.Marunouchi.Local
+    odpt.Railway:TokyoMetro.MarunouchiBranch: custom.StoppingPattern:TokyoMetro.MarunouchiBranch.Local
+  note: 丸ノ内線
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Marunouchi
+
+#-------- 【丸ノ内線】
+
+custom.TrainType:TokyoMetro.MarunouchiBranch.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Marunouchi: custom.StoppingPattern:TokyoMetro.Marunouchi.Local
+    odpt.Railway:TokyoMetro.MarunouchiBranch: custom.StoppingPattern:TokyoMetro.MarunouchiBranch.Local
+  note: 丸ノ内線（中野坂上 - 方南町 折り返し運転）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.MarunouchiBranch

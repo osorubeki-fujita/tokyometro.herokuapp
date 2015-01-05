@@ -1,0 +1,246 @@
+odpt.Station:Tokyu.Toyoko.Shibuya:
+  station_alias: odpt.Station:TokyoMetro.Fukutoshin.Shibuya
+  station_facility: odpt.StationFacility:Tokyu.Shibuya
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Shibuya.HanzomonFukutoshin
+    - odpt.StationFacility:TokyoMetro.Shibiya
+  name_ja: 渋谷
+  name_hira: しぶや
+  name_in_system: Shibuya
+  name_en: Shibuya
+  station_code: TY01
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    - custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress
+
+odpt.Station:Tokyu.Toyoko.DaikanYama:
+  station_facility: odpt.StationFacility:Tokyu.DaikanYama
+  name_ja: 代官山
+  name_hira: だいかんやま
+  name_in_system: DaikanYama
+  name_en: Daikan-yama
+  station_code: TY02
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.NakaMeguro:
+  station_facility: odpt.StationFacility:Tokyu.NakaMeguro
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.NakaMeguro
+  name_ja: 中目黒
+  name_hira: なかめぐろ
+  name_in_system: NakaMeguro
+  name_en: Naka-meguro
+  station_code: TY03
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    - custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress
+
+odpt.Station:Tokyu.Toyoko.Yutenji:
+  station_facility: odpt.StationFacility:Tokyu.Yutenji
+  name_ja: 祐天寺
+  name_hira: ゆうてんじ
+  name_in_system: Yutenji
+  name_en: Yutenji
+  station_code: TY04
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.GakugeiDaigaku:
+  station_facility: odpt.StationFacility:Tokyu.GakugeiDaigaku
+  name_ja: 学芸大学
+  name_hira: がくげいだいがく
+  name_in_system: GakugeiDaigaku
+  name_en: Gakugei-daigaku
+  station_code: TY05
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+
+odpt.Station:Tokyu.Toyoko.ToritsuDaigaku:
+  station_facility: odpt.StationFacility:Tokyu.ToritsuDaigaku
+  name_ja: 都立大学
+  name_hira: とりつだいがく
+  name_in_system: ToritsuDaigaku
+  name_en: Toritsu-daigaku
+  station_code: TY06
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.Jiyuugaoka:
+  station_facility: odpt.StationFacility:Tokyu.Jiyuugaoka
+  name_ja: 自由が丘
+  name_hira: じゆうがおか
+  name_in_system: Jiyuugaoka
+  name_en: Jiyuugaoka
+  station_code: TY07
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    - custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress
+
+odpt.Station:Tokyu.Toyoko.DenEnChofu:
+  station_alias: odpt.Station:Tokyu.Meguro.DenEnChofu
+  station_facility: odpt.StationFacility:Tokyu.DenEnChofu
+  name_ja: 田園調布
+  name_hira: でんえんちょうふ
+  name_in_system: DenEnChofu
+  name_en: Den-en-chofu
+  station_code: TY08
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+
+odpt.Station:Tokyu.Toyoko.Tamagawa:
+  station_alias: odpt.Station:Tokyu.Meguro.Tamagawa
+  station_facility: odpt.StationFacility:Tokyu.Tamagawa
+  name_ja: 多摩川
+  name_hira: たまがわ
+  name_in_system: Tamagawa
+  name_en: Tamagawa
+  station_code: TY09
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+
+odpt.Station:Tokyu.Toyoko.ShinMaruko:
+  station_alias: odpt.Station:Tokyu.Meguro.ShinMaruko
+  station_facility: odpt.StationFacility:Tokyu.ShinMaruko
+  name_ja: 新丸子
+  name_hira: しんまるこ
+  name_in_system: ShinMaruko
+  name_en: Shin-maruko
+  station_code: TY10
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.MusashiKosugi:
+  station_alias: odpt.Station:Tokyu.Meguro.MusashiKosugi
+  station_facility: odpt.StationFacility:Tokyu.MusashiKosugi
+  name_ja: 武蔵小杉
+  name_hira: むさしこすぎ
+  name_in_system: MusashiKosugi
+  name_en: Musashi-kosugi
+  station_code: TY11
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    - custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress
+
+odpt.Station:Tokyu.Toyoko.Motosumiyoshi:
+  station_alias: odpt.Station:Tokyu.Meguro.Motosumiyoshi
+  station_facility: odpt.StationFacility:Tokyu.Motosumiyoshi
+  name_ja: 元住吉
+  name_hira: もとすみよし
+  name_in_system: Motosumiyoshi
+  name_en: Motosumiyoshi
+  station_code: TY12
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.Hiyoshi:
+  station_alias: odpt.Station:Tokyu.Meguro.Hiyoshi
+  station_facility: odpt.StationFacility:Tokyu.Hiyoshi
+  name_ja: 日吉
+  name_hira: ひよし
+  name_in_system: Hiyoshi
+  name_en: Hiyoshi
+  station_code: TY13
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+
+odpt.Station:Tokyu.Toyoko.Tsunashima:
+  station_facility: odpt.StationFacility:Tokyu.Tsunashima
+  name_ja: 綱島
+  name_hira: つなしま
+  name_in_system: Tsunashima
+  name_en: Tsunashima
+  station_code: TY14
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+
+odpt.Station:Tokyu.Toyoko.Ookurayama:
+  station_facility: odpt.StationFacility:Tokyu.Ookurayama
+  name_ja: 大倉山
+  name_hira: おおくらやま
+  name_in_system: Ookurayama
+  name_en: Ookurayama
+  station_code: TY15
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.Kikuna:
+  station_facility: odpt.StationFacility:Tokyu.Kikuna
+  name_ja: 菊名
+  name_hira: きくな
+  name_in_system: Kikuna
+  name_en: Kikuna
+  station_code: TY16
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    - custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress
+
+odpt.Station:Tokyu.Toyoko.Myorenji:
+  station_facility: odpt.StationFacility:Tokyu.Myorenji
+  name_ja: 妙蓮寺
+  name_hira: みょうれんじ
+  name_in_system: Myorenji
+  name_en: Myorenji
+  station_code: TY17
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.Hakuraku:
+  station_facility: odpt.StationFacility:Tokyu.Hakuraku
+  name_ja: 白楽
+  name_hira: はくらく
+  name_in_system: Hakuraku
+  name_en: Hakuraku
+  station_code: TY18
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.HigashiHakuraku:
+  station_facility: odpt.StationFacility:Tokyu.HigashiHakuraku
+  name_ja: 東白楽
+  name_hira: ひがしはくらく
+  name_in_system: HigashiHakuraku
+  name_en: Higashi-hakuraku
+  station_code: TY19
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.Tanmachi:
+  station_facility: odpt.StationFacility:Tokyu.Tanmachi
+  name_ja: 反町
+  name_hira: たんまち
+  name_in_system: Tanmachi
+  name_en: Tanmachi
+  station_code: TY20
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+
+odpt.Station:Tokyu.Toyoko.Yokohama:
+  station_alias: odpt.Station:Minatomirai.Minatomirai.Yokohama
+  station_facility: odpt.StationFacility:Tokyu.Yokohama
+  station_facility_custom_alias: odpt.StationFacility:Minatomirai.Yokohama
+  name_ja: 横浜
+  name_hira: よこはま
+  name_in_system: Yokohama
+  name_en: Yokohama
+  station_code: TY21
+  stop:
+    - custom.StoppingPattern:Tokyu.Toyoko.Local
+    - custom.StoppingPattern:Tokyu.Toyoko.Express
+    - custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    - custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress

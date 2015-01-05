@@ -1,0 +1,29 @@
+-
+    stations:
+        - odpt.Station:TokyoMetro.Ginza.Ueno
+        - odpt.Station:TokyoMetro.Hibiya.Ueno
+    railway_lines:
+        - odpt.Railway:JR-East.Shinkansen
+-
+    stations:
+        - odpt.Station:TokyoMetro.Marunouchi.Tokyo
+    railway_lines:
+        - odpt.Railway:JR-East.Musashino
+        - odpt.Railway:JR-East.Shinkansen
+        - odpt.Railway:JR-Central.Shinkansen
+-
+    stations:
+        - odpt.Station:TokyoMetro.Hibiya.Akihabara
+    railway_lines:
+        - odpt.Railway:Toei.Shinjuku
+-
+    stations:
+        - odpt.Station:TokyoMetro.Yurakucho.KotakeMukaihara
+    railway_lines:
+        - odpt.Railway:TokyoMetro.Fukutoshin
+-
+    stations:
+        - odpt.Station:TokyoMetro.Namboku.TameikeSanno
+    railway_lines:
+        - odpt.Railway:TokyoMetro.Chiyoda
+        - odpt.Railway:TokyoMetro.Marunouchi

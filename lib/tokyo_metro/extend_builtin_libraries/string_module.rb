@@ -1,0 +1,2 @@
+module TokyoMetro::ExtendBuiltinLibraries::StringModule
+end

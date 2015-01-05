@@ -1,0 +1,190 @@
+#-------- 【東西線】
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.Tozai.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Local
+  note: 東西線 各駅停車
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+
+#---- 各駅停車（JR中央・総武線 三鷹まで直通）
+
+custom.TrainType:TokyoMetro.Tozai.Local.ForMitaka:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:JR-East.ChuoSobu
+  color:
+    ref: custom.TrainTypeColor:Black
+    # ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Local
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 各駅停車（JR中央・総武線 三鷹まで直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+
+#---- 各駅停車（JR中央・総武線 津田沼まで直通）
+
+custom.TrainType:TokyoMetro.Tozai.Local.ForTsudanuma:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:JR-East.ChuoSobu
+  color:
+    ref: custom.TrainTypeColor:Black
+    # ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Local
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+  note: 東西線 各駅停車（JR中央・総武線 津田沼まで直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+
+#---- 各駅停車（東葉高速鉄道 直通）
+
+custom.TrainType:TokyoMetro.Tozai.Local.ForToyoRapidRailway:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Local
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 各駅停車（東葉高速鉄道 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 通勤快速
+
+custom.TrainType:TokyoMetro.Tozai.CommuterRapid.Normal:
+  train_type: odpt.TrainType:TokyoMetro.CommuterRapid
+  bgcolor:
+    web: "#cc6699"
+    red: 204
+    green: 102
+    blue: 153
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 通勤快速
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 通勤快速（JR中央・総武線 三鷹まで直通）
+
+custom.TrainType:TokyoMetro.Tozai.CommuterRapid.ForMitaka:
+  train_type: odpt.TrainType:TokyoMetro.CommuterRapid
+  bgcolor:
+    web: "#cc6699"
+    red: 204
+    green: 102
+    blue: 153
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.CommuterRapid
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 通勤快速（JR中央・総武線 三鷹まで直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 快速
+
+custom.TrainType:TokyoMetro.Tozai.Rapid.Normal:
+  train_type: odpt.TrainType:TokyoMetro.Rapid
+  bgcolor:
+    web: "#6699ff"
+    red: 102
+    green: 153
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 快速
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 快速（JR中央・総武線 三鷹まで直通）
+
+custom.TrainType:TokyoMetro.Tozai.Rapid.ForMitaka:
+  train_type: odpt.TrainType:TokyoMetro.Rapid
+  bgcolor:
+    web: "#6699ff"
+    red: 102
+    green: 153
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 快速（JR中央・総武線 三鷹まで直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 快速（JR中央・総武線 津田沼まで直通）
+
+custom.TrainType:TokyoMetro.Tozai.Rapid.ForTsudanuma:
+  train_type: odpt.TrainType:TokyoMetro.Rapid
+  bgcolor:
+    web: "#6699ff"
+    red: 102
+    green: 153
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:JR-East.SobuTozai: custom.StoppingPattern:JR-East.SobuTozai.Local
+  note: 東西線 快速（JR中央・総武線 津田沼まで直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 快速（東葉高速鉄道 直通）
+
+custom.TrainType:TokyoMetro.Tozai.Rapid.ForToyoRapidRailway:
+  train_type: odpt.TrainType:TokyoMetro.Rapid
+  bgcolor:
+    web: "#6699ff"
+    red: 102
+    green: 153
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.Local
+  note: 東西線 快速（東葉高速鉄道 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+
+#---- 東葉快速（東葉高速鉄道 直通）
+
+custom.TrainType:TokyoMetro.Tozai.ToyoRapid.ForToyoRapidRailway:
+  ref: custom.TrainTypeOtherOperator:ToyoRapidRailway.ToyoRapid
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Tozai: custom.StoppingPattern:TokyoMetro.Tozai.Rapid
+    odpt.Railway:JR-East.ChuoTozai: custom.StoppingPattern:JR-East.ChuoTozai.Local
+    odpt.Railway:ToyoRapidRailway.ToyoRapidRailway: custom.StoppingPattern:ToyoRapidRailway.ToyoRapidRailway.ToyoRapid
+  note: 東西線 東葉快速（東葉高速鉄道 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Tozai

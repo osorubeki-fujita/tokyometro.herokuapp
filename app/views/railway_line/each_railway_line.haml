@@ -1,0 +1,16 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = twitter_railway_line_info
+
+= railway_line_title_of_each_line
+%div{ id: :railway_line_contents }
+  %div{ id: :train_info }
+    = title_of_each_content( "運行情報" , "Train Info" )
+  %div{ id: :top_links }
+    %p<
+      = "路線時刻表 (Timetable of this line)"
+    %p<
+      = "リアルタイム運行情報 (Current train position)"
+  = travel_time_info
+  = women_only_car_infos

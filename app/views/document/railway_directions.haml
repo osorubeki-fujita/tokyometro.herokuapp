@@ -1,0 +1,29 @@
+= render "common_content"
+
+= document_title_of_each_content( @title_ja , @title_en )
+%div{ id: :railway_directions }
+  - railway_directions_grouped_by_operator = @railway_directions.group_by { | railway_direction | railway_direction.railway_line.operator.id }
+  - raise "Error" if railway_directions_grouped_by_operator.nil?
+  - railway_directions_grouped_by_operator.keys.sort.each do | operator_id |
+    - railway_directions_in_an_operator = railway_directions_grouped_by_operator[ operator_id ]
+    - raise "Error" if railway_directions_in_an_operator.nil?
+    - operator_instance = ::Operator.find_by( id: operator_id )
+    - raise "Error" if operator_instance.nil?
+    %div{ class: [ :operator , operator_instance.css_class_name ] }
+      %div{ class: :operator_name }
+        %h3{ class: :text_ja }<
+          = operator_instance.name_ja
+        %h4{ class: :text_en }<
+          = operator_instance.name_en
+      - railway_directions_grouped_by_railway_line = railway_directions_in_an_operator.group_by { | railway_direction | railway_direction.railway_line.id }
+      - railway_directions_grouped_by_railway_line.keys.sort.each do | railway_line_id |
+        - railway_directions_in_a_railway_line = railway_directions_grouped_by_railway_line[ railway_line_id ]
+        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
+        %div{ class: [ :railway_line , railway_line_instance.css_class_name ] }
+          %div{ class: :railway_line_name }
+            %h4{ class: :text_ja }<
+              = railway_line_instance.name_ja
+            %h5{ class: :text_en }<
+              = railway_line_instance.name_en
+          - railway_directions_in_a_railway_line.each do | railway_direction |
+            = render( "railway_direction_info" , railway_direction: railway_direction )

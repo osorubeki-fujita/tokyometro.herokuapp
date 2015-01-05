@@ -1,0 +1,41 @@
+odpt.Station:JR-East.SobuTozai.NishiFunabashi:
+  station_alias:
+    - odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+    - odpt.Station:ToyoRapidRailway.ToyoRapid.NishiFunabashi
+  station_facility: odpt.StationFacility:JR-East.NishiFunabashiTokyoMetro
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.NishiFunabashi
+    - odpt.StationFacility:ToyoRapidRailway.ToyoRapid.NishiFunabashi
+  name_ja: 西船橋
+  name_hira: にしふなばし
+  name_in_system: NishiFunabashi
+  name_en: Nishi-funabashi
+  stop:
+    - custom.StoppingPattern:JR-East.SobuTozai.Local
+
+odpt.Station:JR-East.SobuTozai.Funabashi:
+  station_facility: odpt.StationFacility:JR-East.Funabashi
+  name_ja: 船橋
+  name_hira: ふなばし
+  name_in_system: Funabashi
+  name_en: Funabashi
+  stop:
+    - custom.StoppingPattern:JR-East.SobuTozai.Local
+
+odpt.Station:JR-East.SobuTozai.HigashiFunabashi:
+  station_facility: odpt.StationFacility:JR-East.HigashiFunabashi
+  name_ja: 東船橋
+  name_hira: ひがしふなばし
+  name_in_system: HigashiFunabashi
+  name_en: Higashi-funabashi
+  stop:
+    - custom.StoppingPattern:JR-East.SobuTozai.Local
+
+odpt.Station:JR-East.SobuTozai.Tsudanuma:
+  station_facility: odpt.StationFacility:JR-East.Tsudanuma
+  name_ja: 津田沼
+  name_hira: つだぬま
+  name_in_system: Tsudanuma
+  name_en: Tsudanuma
+  stop:
+    - custom.StoppingPattern:JR-East.SobuTozai.Local

@@ -1,0 +1,130 @@
+@charset "utf-8" ;
+@import '../../../fundamental_settings.scss' ;
+
+%operatorHeaderInDocumentCommonSettings {
+    margin: {
+        bottom: 32px ;
+    }
+    clear: both ;
+    .operator_name {
+        .text_ja {
+            font: {
+                size: 16pt ;
+            }
+            line-height: 1.1em ;
+            margin: {
+                bottom: 4px ;
+            }
+        }
+        .text_en {
+            font: {
+                size: 10pt ;
+                weight: normal ;
+            }
+            line-height: 1.1em ;
+            margin: {
+                top: 0px ;
+                bottom: 0px ;
+            }
+        }
+        margin :{
+            bottom: 16px ;
+        }
+        border: {
+            left: {
+                style: solid ;
+            }
+        }
+    }
+}
+
+@mixin borderAndPaddingWidthOfOperatorHeaderInDocument( $border_left_width , $padding_left_width ) {
+  .operator_name {
+    border: {
+      left: {
+        width: $border_left_width ;
+      }
+    }
+    padding: {
+      left: $padding_left_width ;
+    }
+  }
+}
+
+@mixin borderColorOfEachOperatorHeaderInDocument( $color ) {
+    .operator_name {
+        border: {
+            left: {
+                color: $color ;
+            }
+        }
+    }
+}
+
+@mixin borderColorOfOperatorHeaderInDocument {
+    .tokyo_metro {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_tokyo_metro_bgcolor ) ;
+    }
+    .toei_subway {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_toei_subway_bgcolor ) ;
+    }
+    .toei {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_toei_bgcolor ) ;
+    }
+    .toden {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_toden_bgcolor ) ;
+    }
+    .jr_east {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_jr_east_bgcolor ) ;
+    }
+    .jr_central {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_jr_central_bgcolor ) ;
+    }
+    .tokyu {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_tokyu_bgcolor ) ;
+    }
+    .yokohama_minatomirai {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_yokohama_minatomirai_bgcolor ) ;
+    }
+    .odakyu {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_odakyu_bgcolor ) ;
+    }
+    .hakone_tozan {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_hakone_tozan_bgcolor ) ;
+    }
+    .seibu {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_seibu_bgcolor ) ;
+    }
+    .tobu {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_tobu_bgcolor ) ;
+    }
+    .saitama {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_saitama_bgcolor ) ;
+    }
+    .toyo_rapid {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_toyo_rapid_bgcolor ) ;
+    }
+    .keio {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_keio_bgcolor ) ;
+    }
+    .keisei {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_keisei_bgcolor ) ;
+    }
+    .tsukuba_exp {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_tsukuba_exp_bgcolor ) ;
+    }
+    .yurikamome {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_yurikamome_bgcolor ) ;
+    }
+    .rinkai {
+        @include borderColorOfEachOperatorHeaderInDocument( $operator_rinkai_bgcolor ) ;
+    }
+}
+
+.operator {
+    $border_left_width: 8px ;
+    $padding_left_width: 8px ;
+    @extend %operatorHeaderInDocumentCommonSettings ;
+    @include borderAndPaddingWidthOfOperatorHeaderInDocument( $border_left_width , $padding_left_width ) ;
+}
+@include borderColorOfOperatorHeaderInDocument ;

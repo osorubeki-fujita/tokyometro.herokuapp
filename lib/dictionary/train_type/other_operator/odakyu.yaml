@@ -1,0 +1,54 @@
+#-------- 小田急
+
+#---- 各駅停車
+
+custom.TrainTypeOtherOperator:Odakyu.Local:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    web: "#0c449b"
+    red: 12
+    green: 68
+    blue: 155
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Odakyu
+
+#---- 準急
+
+custom.TrainTypeOtherOperator:Odakyu.SemiExpress:
+  train_type: odpt.TrainType:TokyoMetro.SemiExpress
+  bgcolor:
+    web: "#319f2d"
+    red: 49
+    green: 159
+    blue: 45
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Odakyu
+
+#---- 多摩急行
+
+custom.TrainTypeOtherOperator:Odakyu.TamaExpress:
+  train_type: odpt.TrainType:TokyoMetro.TamaExpress
+  bgcolor:
+    web: "#f13b9b"
+    red: 241
+    green: 59
+    blue: 155
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Odakyu
+
+#---- 特急ロマンスカー
+
+custom.TrainTypeOtherOperator:Odakyu.RomanceCar:
+  # train_type: odpt.TrainType:TokyoMetro.RomanceCar
+  train_type: odpt.TrainType:TokyoMetro.LimitedExpress
+  bgcolor:
+    web: "#ff0000"
+    red: 255
+    green: 0
+    blue: 0
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Odakyu

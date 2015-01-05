@@ -1,0 +1,315 @@
+odpt.Station:Tobu.Nikko.TobuDobutsuKoen:
+  station_alias: odpt.Station:Tobu.Isesaki.TobuDoubutsuKoen
+  station_facility: odpt.StationFacility:Tobu.TobuDobutsuKoen
+  # station_alias: odpt.Station:Tobu.Isesaki.TobuDoubutuKouen
+  # station_facility: odpt.StationFacility:Tobu.TobuDoubutuKouen
+  name_ja: 東武動物公園
+  name_hira: とうぶどうぶつこうえん
+  name_in_system: TobuDobutsuKoen
+  # name_in_system: TobuDoubutuKouen
+  name_en: Tobu-dobutsu-koen
+  station_code: TS-30
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.Express
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.SugitoTakanodai:
+  station_facility: odpt.StationFacility:Tobu.SugitoTakanodai
+  name_ja: 杉戸高野台
+  name_hira: すぎとたかのだい
+  name_in_system: SugitoTakanodai
+  name_en: Sugito-takanodai
+  station_code: TN-01
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.Express
+
+odpt.Station:Tobu.Nikko.Satte:
+  station_facility: odpt.StationFacility:Tobu.Satte
+  name_ja: 幸手
+  name_hira: さって
+  name_in_system: Satte
+  name_en: Satte
+  station_code: TN-02
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.Express
+
+odpt.Station:Tobu.Nikko.MinamiKurihashi:
+  station_facility: odpt.StationFacility:Tobu.MinamiKurihashi
+  name_ja: 南栗橋
+  name_hira: みなみくりはし
+  name_in_system: MinamiKurihashi
+  name_en: Minami-kurihashi
+  station_code: TN-03
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SemiExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.Express
+
+odpt.Station:Tobu.Nikko.Kurihashi:
+  station_facility: odpt.StationFacility:Tobu.Kurihashi
+  name_ja: 栗橋
+  name_hira: くりはし
+  name_in_system: Kurihashi
+  name_en: Kurihashi
+  station_code: TN-04
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+
+odpt.Station:Tobu.Nikko.ShinKoga:
+  station_facility: odpt.StationFacility:Tobu.ShinKoga
+  name_ja: 新古河
+  name_hira: しんこが
+  name_in_system: ShinKoga
+  name_en: Shin-koga
+  station_code: TN-05
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+
+odpt.Station:Tobu.Nikko.Yagyu:
+  station_facility: odpt.StationFacility:Tobu.Yagyu
+  name_ja: 柳生
+  name_hira: やぎゅう
+  name_in_system: Yagyu
+  name_en: Yagyu
+  station_code: TN-06
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+
+odpt.Station:Tobu.Nikko.ItakuraToyodaiMae:
+  station_facility: odpt.StationFacility:Tobu.ItakuraToyodaiMae
+  name_ja: 板倉東洋大前
+  name_hira: いたくらとうようだいまえ
+  name_in_system: ItakuraToyodaiMae
+  name_en: Itakura-toyodai-mae
+  station_code: TN-07
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.Fujioka:
+  station_facility: odpt.StationFacility:Tobu.Fujioka
+  name_ja: 藤岡
+  name_hira: ふじおか
+  name_in_system: Fujioka
+  name_en: Fujioka
+  station_code: TN-08
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+
+odpt.Station:Tobu.Nikko.Shizuwa:
+  station_facility: odpt.StationFacility:Tobu.Shizuwa
+  name_ja: 静和
+  name_hira: しずわ
+  name_in_system: Shizuwa
+  name_en: Shizuwa
+  station_code: TN-09
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+
+odpt.Station:Tobu.Nikko.ShinOhirashita:
+  station_facility: odpt.StationFacility:Tobu.ShinOhirashita
+  name_ja: 新大平下
+  name_hira: しんおおひらした
+  name_in_system: ShinOhirashita
+  name_en: Shin-ohirashita
+  station_code: TN-10
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.Tochigi:
+  station_facility: odpt.StationFacility:Tobu.Tochigi
+  name_ja: 栃木
+  name_hira: とちぎ
+  name_in_system: Tochigi
+  name_en: Tochigi
+  station_code: TN-11
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.ShinTochigi:
+  station_facility: odpt.StationFacility:Tobu.ShinTochigi
+  name_ja: 新栃木
+  name_hira: しんとちぎ
+  name_in_system: ShinTochigi
+  name_en: Shin-tochigi
+  station_code: TN-12
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionExpress
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.Kassemba:
+  station_facility: odpt.StationFacility:Tobu.Kassemba
+  name_ja: 合戦場
+  name_hira: かっせんば
+  name_in_system: Kassemba
+  name_en: Kassemba
+  station_code: TN-13
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.Ienaka:
+  station_facility: odpt.StationFacility:Tobu.Ienaka
+  name_ja: 家中
+  name_hira: いえなか
+  name_in_system: Ienaka
+  name_en: Ienaka
+  station_code: TN-14
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.TobuKanasaki:
+  station_facility: odpt.StationFacility:Tobu.TobuKanasaki
+  name_ja: 東武金崎
+  name_hira: とうぶかなさき
+  name_in_system: TobuKanasaki
+  name_en: Tobu-kanasaki
+  station_code: TN-15
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.Niregi:
+  station_facility: odpt.StationFacility:Tobu.Niregi
+  name_ja: 楡木
+  name_hira: にれぎ
+  name_in_system: Niregi
+  name_en: Niregi
+  station_code: TN-16
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.Momiyama:
+  station_facility: odpt.StationFacility:Tobu.Momiyama
+  name_ja: 樅山
+  name_hira: もみやま
+  name_in_system: Momiyama
+  name_en: Momiyama
+  station_code: TN-17
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.ShinKanuma:
+  station_facility: odpt.StationFacility:Tobu.ShinKanuma
+  name_ja: 新鹿沼
+  name_hira: しんかぬま
+  name_in_system: ShinKanuma
+  name_en: Shin-kanuma
+  station_code: TN-18
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.KitaKanuma:
+  station_facility: odpt.StationFacility:Tobu.KitaKanuma
+  name_ja: 北鹿沼
+  name_hira: きたかぬま
+  name_in_system: KitaKanuma
+  name_en: Kita-kanuma
+  station_code: TN-19
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.Itaga:
+  station_facility: odpt.StationFacility:Tobu.Itaga
+  name_ja: 板荷
+  name_hira: いたが
+  name_in_system: Itaga
+  name_en: Itaga
+  station_code: TN-20
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.Shimogoshiro:
+  station_facility: odpt.StationFacility:Tobu.Shimogoshiro
+  name_ja: 下小代
+  name_hira: しもごしろ
+  name_in_system: Shimogoshiro
+  name_en: Shimogoshiro
+  station_code: TN-21
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.Myojin:
+  station_facility: odpt.StationFacility:Tobu.Myojin
+  name_ja: 明神
+  name_hira: みょうじん
+  name_in_system: Myojin
+  name_en: Myojin
+  station_code: TN-22
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.ShimoImaichi:
+  station_alias: odpt.Station:Tobu.Kinugawa.ShimoImaichi
+  station_facility: odpt.StationFacility:Tobu.ShimoImaichi
+  name_ja: 下今市
+  name_hira: しもいまいち
+  name_in_system: ShimoImaichi
+  name_en: Shimo-imaichi
+  station_code: TN-23
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid
+
+odpt.Station:Tobu.Nikko.KamiImaichi:
+  station_facility: odpt.StationFacility:Tobu.KamiImaichi
+  name_ja: 上今市
+  name_hira: かみいまいち
+  name_in_system: KamiImaichi
+  name_en: Kami-imaichi
+  station_code: TN-24
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+
+odpt.Station:Tobu.Nikko.TobuNikko:
+  station_facility: odpt.StationFacility:Tobu.TobuNikko
+  name_ja: 東武日光
+  name_hira: とうぶにっこう
+  name_in_system: TobuNikko
+  name_en: Tobu-nikko
+  station_code: TN-25
+  stop:
+    - custom.StoppingPattern:Tobu.Nikko.Local
+    - custom.StoppingPattern:Tobu.Nikko.SectionRapid
+    - custom.StoppingPattern:Tobu.Nikko.Rapid

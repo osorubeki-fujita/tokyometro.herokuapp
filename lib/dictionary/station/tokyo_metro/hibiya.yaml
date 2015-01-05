@@ -1,0 +1,219 @@
+odpt.Station:TokyoMetro.Hibiya.NakaMeguro:
+  station_alias: odpt.Station:Tokyu.Toyoko.NakaMeguro
+  station_facility: odpt.StationFacility:TokyoMetro.NakaMeguro
+  station_facility_custom: odpt.StationFacility:Tokyu.NakaMeguro
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.NakaMeguro
+  name_ja: 中目黒
+  name_hira: なかめぐろ
+  name_in_system: NakaMeguro
+  name_en: Naka-meguro
+  administrator: odpt.Operator:Tokyu
+  other_operator: odpt.Operator:TokyoMetro
+  station_code: H-01
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Ebisu:
+  station_facility: odpt.StationFacility:TokyoMetro.Ebisu
+  name_ja: 恵比寿
+  name_hira: えびす
+  name_in_system: Ebisu
+  name_en: Ebisu
+  station_code: H-02
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.HiroO:
+  station_facility: odpt.StationFacility:TokyoMetro.HiroO
+  name_ja: 広尾
+  name_hira: ひろお
+  name_in_system: HiroO
+  name_en: Hiro-o
+  station_code: H-03
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Roppongi:
+  station_facility: odpt.StationFacility:TokyoMetro.Roppongi
+  name_ja: 六本木
+  name_hira: ろっぽんぎ
+  name_in_system: Roppongi
+  name_en: Roppongi
+  station_code: H-04
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Kamiyacho:
+  station_facility: odpt.StationFacility:TokyoMetro.Kamiyacho
+  name_ja: 神谷町
+  name_hira: かみやちょう
+  name_in_system: Kamiyacho
+  name_en: Kamiyacho
+  station_code: H-05
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Kasumigaseki:
+  station_facility: odpt.StationFacility:TokyoMetro.Kasumigaseki
+  name_ja: 霞ケ関
+  name_hira: かすみがせき
+  name_in_system: Kasumigaseki
+  name_en: Kasumigaseki
+  station_code: H-06
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Hibiya:
+  station_facility: odpt.StationFacility:TokyoMetro.Hibiya
+  name_ja: 日比谷
+  name_hira: ひびや
+  name_in_system: Hibiya
+  name_en: Hibiya
+  station_code: H-07
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Ginza:
+  station_facility: odpt.StationFacility:TokyoMetro.Ginza
+  name_ja: 銀座
+  name_hira: ぎんざ
+  name_in_system: Ginza
+  name_en: Ginza
+  station_code: H-08
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.HigashiGinza:
+  station_facility: odpt.StationFacility:TokyoMetro.HigashiGinza
+  name_ja: 東銀座
+  name_hira: ひがしぎんざ
+  name_in_system: HigashiGinza
+  name_en: Higashi-ginza
+  station_code: H-09
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Tsukiji:
+  station_facility: odpt.StationFacility:TokyoMetro.Tsukiji
+  name_ja: 築地
+  name_hira: つきじ
+  name_in_system: Tsukiji
+  name_en: Tsukiji
+  station_code: H-10
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Hatchobori:
+  station_facility: odpt.StationFacility:TokyoMetro.Hatchobori
+  name_ja: 八丁堀
+  name_hira: はっちょうぼり
+  name_in_system: Hatchobori
+  name_en: Hatchobori
+  station_code: H-11
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Kayabacho:
+  station_facility: odpt.StationFacility:TokyoMetro.Kayabacho
+  name_ja: 茅場町
+  name_hira: かやばちょう
+  name_in_system: Kayabacho
+  name_en: Kayabacho
+  station_code: H-12
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Ningyocho:
+  station_facility: odpt.StationFacility:TokyoMetro.Ningyocho
+  name_ja: 人形町
+  name_hira: にんぎょうちょう
+  name_in_system: Ningyocho
+  name_en: Ningyocho
+  station_code: H-13
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Kodemmacho:
+  station_facility: odpt.StationFacility:TokyoMetro.Kodemmacho
+  name_ja: 小伝馬町
+  name_hira: こでんまちょう
+  name_in_system: Kodemmacho
+  name_en: Kodemmacho
+  station_code: H-14
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Akihabara:
+  station_facility: odpt.StationFacility:TokyoMetro.Akihabara
+  name_ja: 秋葉原
+  name_hira: あきはばら
+  name_in_system: Akihabara
+  name_en: Akihabara
+  station_code: H-15
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.NakaOkachimachi:
+  station_facility: odpt.StationFacility:TokyoMetro.NakaOkachimachi
+  name_ja: 仲御徒町
+  name_hira: なかおかちまち
+  name_in_system: NakaOkachimachi
+  name_en: Naka-okachimachi
+  station_code: H-16
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Ueno:
+  station_facility: odpt.StationFacility:TokyoMetro.Ueno
+  name_ja: 上野
+  name_hira: うえの
+  name_in_system: Ueno
+  name_en: Ueno
+  station_code: H-17
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Iriya:
+  station_facility: odpt.StationFacility:TokyoMetro.Iriya
+  name_ja: 入谷
+  name_hira: いりや
+  name_in_system: Iriya
+  name_en: Iriya
+  station_code: H-18
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.Minowa:
+  station_facility: odpt.StationFacility:TokyoMetro.Minowa
+  name_ja: 三ノ輪
+  name_hira: みのわ
+  name_in_system: Minowa
+  name_en: Minowa
+  station_code: H-19
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.MinamiSenju:
+  station_facility: odpt.StationFacility:TokyoMetro.MinamiSenju
+  name_ja: 南千住
+  name_hira: みなみせんじゅ
+  name_in_system: MinamiSenju
+  name_en: Minami-senju
+  station_code: H-20
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local
+
+odpt.Station:TokyoMetro.Hibiya.KitaSenju:
+  station_alias: odpt.Station:Tobu.Isesaki.KitaSenju
+  station_facility: odpt.StationFacility:TokyoMetro.KitaSenju
+  station_facility_custom: odpt.StationFacility:Tobu.KitaSenju
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.KitaSenju.Hibiya
+  name_ja: 北千住
+  name_hira: きたせんじゅ
+  name_in_system: KitaSenju
+  name_en: Kita-senju
+  administrator: odpt.Operator:Tobu
+  other_operator: odpt.Operator:TokyoMetro
+  station_code: H-21
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Hibiya.Local

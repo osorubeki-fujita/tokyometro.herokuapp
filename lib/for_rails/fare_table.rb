@@ -1,0 +1,2 @@
+module ForRails::FareTable
+end

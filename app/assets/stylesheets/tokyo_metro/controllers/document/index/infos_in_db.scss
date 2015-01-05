@@ -1,0 +1,45 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%infos_in_db_textAlignRight {
+    text-align: right ;
+}
+
+#infos_in_db {
+    table {
+        border: solid 1px #333;
+        margin: {
+            top: 16px ;
+        }
+        padding: 2em ;
+        border-collapse: collapse ;
+        @include cycle_of_row_color ;
+        thead {
+            background-color: rgba( $jp_traditional_ameiro , 0.6 ) ;
+            td {
+                padding: {
+                    top: 4px ;
+                    bottom: 4px ;
+                }
+            }
+        }
+        td {
+            padding: {
+                left: 8px ;
+                right: 8px ;
+            }
+        }
+        tr {
+            td.index {
+                @extend %infos_in_db_textAlignRight ;
+            }
+            td.model_name {
+                text-align: left ;
+            }
+            td.length_of_model {
+                @extend %infos_in_db_textAlignRight ;
+            }
+        }
+    }
+}

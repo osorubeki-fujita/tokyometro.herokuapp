@@ -1,0 +1,36 @@
+= render "common_content"
+
+= document_top_title
+%div{ id: :links_to_datas }
+  = link_to_each_document_page( "鉄道事業者" , "Operators" , "operators" , "Operator" )
+  = link_to_each_document_page( "車両所有事業者" , "Train owners" , "train_owners" , "TrainOwner" )
+  = link_to_each_document_page( "路線" , "Railway lines" , "railway_lines" , "RailwayLine" )
+  = link_to_each_document_page( "路線の行先（方面）" , "Railway directions" , "railway_directions" , "RailwayDirection" )
+  = link_to_each_document_page( "列車種別" , "Train types" , "train_types" , "TrainType" )
+%div{ id: :infos_in_db }
+  %table{ class: :text_en }
+    %thead
+      %td<
+        = "Number"
+      %td<
+        = "Category"
+      %td<
+        = "Model"
+      %td<
+        = "Length"
+    %tbody
+      - @models.each.with_index(1) do | array , i |
+        - category , model = array
+        - raise "Error: #{i}" if model.nil?
+        %tr{ class: cycle( :odd_row , :even_row , name: :row_color ) }<
+          %td{ class: :index }<
+            = i
+          %td{ class: :category_name }<
+            - if category.present?
+              = category
+            - else
+              = " "
+          %td{ class: :model_name }<
+            = model
+          %td{ class: :length_of_model }<
+            = number_separated_by_comma( eval( "::#{model}.all.count" ) )

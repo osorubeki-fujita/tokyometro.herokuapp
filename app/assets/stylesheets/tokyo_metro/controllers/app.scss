@@ -1,0 +1,59 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'app/sub_content_settings.scss' ;
+
+body {
+    border-collapse: collapse ;
+    background-color: rgba( $operator_color , 0.1 ) ;
+    margin: {
+        left: 16px ;
+        right: 16px ;
+        top: 0px ;
+        bottom: 0px ;
+    }
+}
+
+//-------- text
+
+.text_ja {
+    @include text_ja ;
+}
+
+.text_en {
+    @include text_en ;
+}
+
+//-------- link
+
+@include common_link_settings( $link_normal_base_color ,
+  $link_visited_color ,
+  $link_hover_color ,
+  $link_active_color
+) ;
+
+
+//-------- contents
+
+#contents {
+    %mainContent {
+		@extend %floatLeft ;
+        height: auto ;
+    }
+    #main_content_center {
+        width: $width_main_content_center ;
+        @extend %mainContent ;
+    }
+    #main_content_wide {
+        width: $width_main_content_wide ;
+        @extend %mainContent ;
+    }
+    @include subContentSettings ;
+    padding: {
+        top: 8px ;
+        bottom: 8px ;
+        left: 8px ;
+        right: 8px ;
+    }
+    background-color: #fff ;
+}

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station_facility_platform_id: 1
+  barrier_free_facility_id: 1
+
+two:
+  station_facility_platform_id: 1
+  barrier_free_facility_id: 1

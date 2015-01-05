@@ -1,0 +1,1238 @@
+﻿☆ Begin: 2014-11-09 21:08:50 +0900
+
+● TokyoMetro::StaticDatas::Operator::Hash
+    3.45 sec
+
+● TokyoMetro::StaticDatas::TrainOwner::Hash
+    1.72 sec
+
+● TokyoMetro::StaticDatas::Railway::Hash
+   13.53 sec
+
+● TokyoMetro::Api::StationFacility::Array
+   20.45 sec
+
+● TokyoMetro::Api::Station::Array
+  128.06 sec
+
+    ○ TokyoMetro::StaticDatas::Station::Railways#seed
+        ※ odpt.Railway:TokyoMetro.Ginza
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        6.77 sec
+
+        ※ odpt.Railway:TokyoMetro.Marunouchi
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        9.14 sec
+
+        ※ odpt.Railway:TokyoMetro.MarunouchiBranch
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                         1.9 sec
+
+        ※ odpt.Railway:TokyoMetro.Hibiya
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        9.16 sec
+
+        ※ odpt.Railway:TokyoMetro.Tozai
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       12.78 sec
+
+        ※ odpt.Railway:TokyoMetro.Chiyoda
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        7.94 sec
+
+        ※ odpt.Railway:TokyoMetro.Yurakucho
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       12.09 sec
+
+        ※ odpt.Railway:TokyoMetro.Hanzomon
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        5.65 sec
+
+        ※ odpt.Railway:TokyoMetro.Namboku
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        7.41 sec
+
+        ※ odpt.Railway:TokyoMetro.Fukutoshin
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       11.26 sec
+
+        ※ odpt.Railway:JR-East.ChuoTozai
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        3.59 sec
+
+        ※ odpt.Railway:JR-East.SobuTozai
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        3.04 sec
+
+        ※ odpt.Railway:ToyoRapidRailway.ToyoRapidRailway
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                         4.7 sec
+
+        ※ odpt.Railway:JR-East.Joban
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                         9.3 sec
+
+        ※ odpt.Railway:Odakyu.Odawara
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       42.68 sec
+
+        ※ odpt.Railway:Odakyu.Tama
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       12.29 sec
+
+        ※ odpt.Railway:Odakyu.Enoshima
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       15.88 sec
+
+        ※ odpt.Railway:HakoneTozan.Rail.OdawaraSide
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        5.18 sec
+
+        ※ odpt.Railway:Tokyu.DenEnToshi
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       23.13 sec
+
+        ※ odpt.Railway:Tobu.SkyTreeOshiage
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        1.45 sec
+
+        ※ odpt.Railway:Tobu.SkyTree
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        24.7 sec
+
+        ※ odpt.Railway:Tobu.Isesaki
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       18.53 sec
+
+        ※ odpt.Railway:Tobu.Nikko
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       18.91 sec
+
+        ※ odpt.Railway:Tobu.Kinugawa
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        3.42 sec
+
+        ※ odpt.Railway:Tokyu.Meguro
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        7.82 sec
+
+        ※ odpt.Railway:SaitamaRailway.SaitamaRailway
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        3.56 sec
+
+        ※ odpt.Railway:Toei.Mita
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       13.39 sec
+
+        ※ odpt.Railway:Seibu.SeibuYurakucho
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        2.09 sec
+
+        ※ odpt.Railway:Seibu.Ikebukuro
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       51.85 sec
+
+        ※ odpt.Railway:Seibu.Toshima
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        1.01 sec
+
+        ※ odpt.Railway:Seibu.Sayama
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        1.56 sec
+
+        ※ odpt.Railway:Seibu.SeibuChichibu
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                        3.73 sec
+
+        ※ odpt.Railway:Tobu.Tojo
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       37.07 sec
+
+        ※ odpt.Railway:Tokyu.Toyoko
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                       13.32 sec
+
+        ※ odpt.Railway:YokohamaMinatomiraiRailway.Minatomirai
+
+                ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
+                         4.9 sec
+
+  411.62 sec
+
+● TokyoMetro::StaticDatas::RailwayDirection::Hash
+    5.04 sec
+
+● TokyoMetro::StaticDatas::TrainType::InApi::Hash
+    2.48 sec
+
+● TokyoMetro::StaticDatas::TrainType::Custom::Main::Hash
+    8.89 sec
+
+● TokyoMetro::Api::Point::Array
+  166.06 sec
+
+○ TokyoMetro::Api::Station::Array#seed_exit_array
+  301.71 sec
+
+○ TokyoMetro::Api::Railway::Array#seed_index_of_stations
+   24.55 sec
+
+○ TokyoMetro::Api::Railway::Array#seed_travel_time_infos
+   69.67 sec
+
+○ TokyoMetro::Api::Railway::Array#seed_women_only_car_infos
+    4.13 sec
+
+● TokyoMetro::Api::PassengerSurvey::Array
+   67.51 sec
+
+● TokyoMetro::Api::Fare::Array
+ 6767.76 sec
+
+○ TokyoMetro::Api::StationFacility::Array#seed_barrier_free_infos
+    odpt.StationFacility:TokyoMetro.AkabaneIwabuchi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.76 sec
+
+    odpt.StationFacility:TokyoMetro.Akasaka
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         2.0 sec
+
+    odpt.StationFacility:TokyoMetro.AkasakaMitsuke
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        4.31 sec
+
+    odpt.StationFacility:TokyoMetro.Akihabara
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         0.8 sec
+
+    odpt.StationFacility:TokyoMetro.AoyamaItchome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.76 sec
+
+    odpt.StationFacility:TokyoMetro.Asakusa
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         0.8 sec
+
+    odpt.StationFacility:TokyoMetro.Awajicho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.42 sec
+
+    odpt.StationFacility:TokyoMetro.Ayase
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.29 sec
+
+    odpt.StationFacility:TokyoMetro.AzabuJuban
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.59 sec
+
+    odpt.StationFacility:TokyoMetro.BarakiNakayama
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.81 sec
+
+    odpt.StationFacility:TokyoMetro.ChikatetsuAkatsuka
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         2.5 sec
+
+    odpt.StationFacility:TokyoMetro.ChikatetsuNarimasu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.15 sec
+
+    odpt.StationFacility:TokyoMetro.Ebisu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.62 sec
+
+    odpt.StationFacility:TokyoMetro.Edogawabashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.61 sec
+
+    odpt.StationFacility:TokyoMetro.Gaiemmae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.01 sec
+
+    odpt.StationFacility:TokyoMetro.Ginza
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.29 sec
+
+    odpt.StationFacility:TokyoMetro.GinzaItchome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.61 sec
+
+    odpt.StationFacility:TokyoMetro.Gokokuji
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.53 sec
+
+    odpt.StationFacility:TokyoMetro.Gyotoku
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.11 sec
+
+    odpt.StationFacility:TokyoMetro.Hanzomon
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.7 sec
+
+    odpt.StationFacility:TokyoMetro.Hatchobori
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.76 sec
+
+    odpt.StationFacility:TokyoMetro.Heiwadai
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.92 sec
+
+    odpt.StationFacility:TokyoMetro.Hibiya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.56 sec
+
+    odpt.StationFacility:TokyoMetro.HigashiGinza
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.17 sec
+
+    odpt.StationFacility:TokyoMetro.HigashiIkebukuro
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.0 sec
+
+    odpt.StationFacility:TokyoMetro.HigashiKoenji
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.48 sec
+
+    odpt.StationFacility:TokyoMetro.HigashiShinjuku
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.9 sec
+
+    odpt.StationFacility:TokyoMetro.Hikawadai
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.78 sec
+
+    odpt.StationFacility:TokyoMetro.HiroO
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.39 sec
+
+    odpt.StationFacility:TokyoMetro.Honancho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.11 sec
+
+    odpt.StationFacility:TokyoMetro.HongoSanchome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.83 sec
+
+    odpt.StationFacility:TokyoMetro.HonKomagome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.14 sec
+
+    odpt.StationFacility:TokyoMetro.Ichigaya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.76 sec
+
+    odpt.StationFacility:TokyoMetro.Iidabashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        4.51 sec
+
+    odpt.StationFacility:TokyoMetro.Ikebukuro
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.81 sec
+
+    odpt.StationFacility:TokyoMetro.Inaricho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.58 sec
+
+    odpt.StationFacility:TokyoMetro.Iriya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.48 sec
+
+    odpt.StationFacility:TokyoMetro.Jimbocho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.28 sec
+
+    odpt.StationFacility:TokyoMetro.Kagurazaka
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.44 sec
+
+    odpt.StationFacility:TokyoMetro.Kamiyacho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.26 sec
+
+    odpt.StationFacility:TokyoMetro.Kanamecho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.76 sec
+
+    odpt.StationFacility:TokyoMetro.Kanda
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.23 sec
+
+    odpt.StationFacility:TokyoMetro.Kasai
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.11 sec
+
+    odpt.StationFacility:TokyoMetro.Kasumigaseki
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        4.35 sec
+
+    odpt.StationFacility:TokyoMetro.Kayabacho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.23 sec
+
+    odpt.StationFacility:TokyoMetro.Kiba
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.23 sec
+
+    odpt.StationFacility:TokyoMetro.Kinshicho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.72 sec
+
+    odpt.StationFacility:TokyoMetro.KitaAyase
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.51 sec
+
+    odpt.StationFacility:TokyoMetro.KitaSando
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.83 sec
+
+    odpt.StationFacility:TokyoMetro.KitaSenju
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.29 sec
+
+    odpt.StationFacility:TokyoMetro.KiyosumiShirakawa
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.12 sec
+
+    odpt.StationFacility:TokyoMetro.Kodemmacho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.53 sec
+
+    odpt.StationFacility:TokyoMetro.Kojimachi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.25 sec
+
+    odpt.StationFacility:TokyoMetro.KokkaiGijidomae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         2.2 sec
+
+    odpt.StationFacility:TokyoMetro.Komagome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.17 sec
+
+    odpt.StationFacility:TokyoMetro.Korakuen
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         2.5 sec
+
+    odpt.StationFacility:TokyoMetro.KotakeMukaihara
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.87 sec
+
+    odpt.StationFacility:TokyoMetro.Kudanshita
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.09 sec
+
+    odpt.StationFacility:TokyoMetro.Kyobashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.61 sec
+
+    odpt.StationFacility:TokyoMetro.Machiya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.06 sec
+
+    odpt.StationFacility:TokyoMetro.Meguro
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.97 sec
+
+    odpt.StationFacility:TokyoMetro.MeijiJingumae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.06 sec
+
+    odpt.StationFacility:TokyoMetro.MinamiAsagaya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.61 sec
+
+    odpt.StationFacility:TokyoMetro.MinamiGyotoku
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.54 sec
+
+    odpt.StationFacility:TokyoMetro.MinamiSenju
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.01 sec
+
+    odpt.StationFacility:TokyoMetro.MinamiSunamachi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.11 sec
+
+    odpt.StationFacility:TokyoMetro.Minowa
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.17 sec
+
+    odpt.StationFacility:TokyoMetro.Mitsukoshimae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.75 sec
+
+    odpt.StationFacility:TokyoMetro.MonzenNakacho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.2 sec
+
+    odpt.StationFacility:TokyoMetro.Myoden
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.11 sec
+
+    odpt.StationFacility:TokyoMetro.Myogadani
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.01 sec
+
+    odpt.StationFacility:TokyoMetro.Nagatacho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.87 sec
+
+    odpt.StationFacility:TokyoMetro.NakaMeguro
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.09 sec
+
+    odpt.StationFacility:TokyoMetro.Nakano
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.42 sec
+
+    odpt.StationFacility:TokyoMetro.NakanoFujimicho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.64 sec
+
+    odpt.StationFacility:TokyoMetro.NakanoSakaue
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.01 sec
+
+    odpt.StationFacility:TokyoMetro.NakanoShimbashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.42 sec
+
+    odpt.StationFacility:TokyoMetro.NakaOkachimachi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.06 sec
+
+    odpt.StationFacility:TokyoMetro.Nezu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.11 sec
+
+    odpt.StationFacility:TokyoMetro.Nihombashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        3.01 sec
+
+    odpt.StationFacility:TokyoMetro.Nijubashimae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.7 sec
+
+    odpt.StationFacility:TokyoMetro.Ningyocho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.86 sec
+
+    odpt.StationFacility:TokyoMetro.NishiFunabashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.7 sec
+
+    odpt.StationFacility:TokyoMetro.Nishigahara
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.06 sec
+
+    odpt.StationFacility:TokyoMetro.NishiKasai
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.56 sec
+
+    odpt.StationFacility:TokyoMetro.NishiNippori
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.44 sec
+
+    odpt.StationFacility:TokyoMetro.NishiShinjuku
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.26 sec
+
+    odpt.StationFacility:TokyoMetro.NishiWaseda
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.87 sec
+
+    odpt.StationFacility:TokyoMetro.Nogizaka
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.22 sec
+
+    odpt.StationFacility:TokyoMetro.Ochanomizu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.58 sec
+
+    odpt.StationFacility:TokyoMetro.Ochiai
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.62 sec
+
+    odpt.StationFacility:TokyoMetro.Ogikubo
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.87 sec
+
+    odpt.StationFacility:TokyoMetro.Oji
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.22 sec
+
+    odpt.StationFacility:TokyoMetro.OjiKamiya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.53 sec
+
+    odpt.StationFacility:TokyoMetro.OmoteSando
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         4.9 sec
+
+    odpt.StationFacility:TokyoMetro.Oshiage
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.32 sec
+
+    odpt.StationFacility:TokyoMetro.Otemachi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        6.43 sec
+
+    odpt.StationFacility:TokyoMetro.Roppongi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.8 sec
+
+    odpt.StationFacility:TokyoMetro.RoppongiItchome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.41 sec
+
+    odpt.StationFacility:TokyoMetro.Sakuradamon
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.22 sec
+
+    odpt.StationFacility:TokyoMetro.Sendagi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.93 sec
+
+    odpt.StationFacility:TokyoMetro.Senkawa
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.95 sec
+
+    odpt.StationFacility:TokyoMetro.Shibuya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        5.41 sec
+
+    odpt.StationFacility:TokyoMetro.Shimbashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.76 sec
+
+    odpt.StationFacility:TokyoMetro.Shimo
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.0 sec
+
+    odpt.StationFacility:TokyoMetro.Shinjuku
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         0.6 sec
+
+    odpt.StationFacility:TokyoMetro.ShinjukuGyoemmae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.39 sec
+
+    odpt.StationFacility:TokyoMetro.ShinjukuSanchome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.99 sec
+
+    odpt.StationFacility:TokyoMetro.ShinKiba
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.91 sec
+
+    odpt.StationFacility:TokyoMetro.ShinKoenji
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.67 sec
+
+    odpt.StationFacility:TokyoMetro.ShinNakano
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.65 sec
+
+    odpt.StationFacility:TokyoMetro.ShinOchanomizu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.54 sec
+
+    odpt.StationFacility:TokyoMetro.ShinOtsuka
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.72 sec
+
+    odpt.StationFacility:TokyoMetro.Shintomicho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.37 sec
+
+    odpt.StationFacility:TokyoMetro.Shirokanedai
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.5 sec
+
+    odpt.StationFacility:TokyoMetro.ShirokaneTakanawa
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.76 sec
+
+    odpt.StationFacility:TokyoMetro.Suehirocho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.33 sec
+
+    odpt.StationFacility:TokyoMetro.Suitengumae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.17 sec
+
+    odpt.StationFacility:TokyoMetro.Sumiyoshi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.78 sec
+
+    odpt.StationFacility:TokyoMetro.Takadanobaba
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.0 sec
+
+    odpt.StationFacility:TokyoMetro.Takebashi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.67 sec
+
+    odpt.StationFacility:TokyoMetro.TameikeSanno
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.45 sec
+
+    odpt.StationFacility:TokyoMetro.Tatsumi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.22 sec
+
+    odpt.StationFacility:TokyoMetro.Tawaramachi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.67 sec
+
+    odpt.StationFacility:TokyoMetro.Todaimae
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.0 sec
+
+    odpt.StationFacility:TokyoMetro.Tokyo
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.86 sec
+
+    odpt.StationFacility:TokyoMetro.Toranomon
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.73 sec
+
+    odpt.StationFacility:TokyoMetro.Toyocho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.36 sec
+
+    odpt.StationFacility:TokyoMetro.Toyosu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        2.46 sec
+
+    odpt.StationFacility:TokyoMetro.Tsukiji
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.59 sec
+
+    odpt.StationFacility:TokyoMetro.Tsukishima
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.19 sec
+
+    odpt.StationFacility:TokyoMetro.Ueno
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.92 sec
+
+    odpt.StationFacility:TokyoMetro.UenoHirokoji
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.48 sec
+
+    odpt.StationFacility:TokyoMetro.Urayasu
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.98 sec
+
+    odpt.StationFacility:TokyoMetro.Wakoshi
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.5 sec
+
+    odpt.StationFacility:TokyoMetro.Waseda
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.33 sec
+
+    odpt.StationFacility:TokyoMetro.Yotsuya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         1.0 sec
+
+    odpt.StationFacility:TokyoMetro.YotsuyaSanchome
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.45 sec
+
+    odpt.StationFacility:TokyoMetro.YoyogiKoen
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.89 sec
+
+    odpt.StationFacility:TokyoMetro.YoyogiUehara
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.86 sec
+
+    odpt.StationFacility:TokyoMetro.Yurakucho
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        0.81 sec
+
+    odpt.StationFacility:TokyoMetro.Yushima
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+         0.7 sec
+
+    odpt.StationFacility:TokyoMetro.Zoshigaya
+    ○ TokyoMetro::Api::StationFacility::Info::BarrierFree::Array#seed
+        1.51 sec
+
+  212.45 sec
+
+○ TokyoMetro::Api::StationFacility::Array#seed_platform_infos
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (1/143)
+        5.23 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (2/143)
+        7.36 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (3/143)
+       13.18 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (4/143)
+        6.62 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (5/143)
+        12.4 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (6/143)
+         5.1 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (7/143)
+        4.17 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (8/143)
+       11.61 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (9/143)
+        8.22 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (10/143)
+        4.54 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (11/143)
+       13.42 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (12/143)
+       12.12 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (13/143)
+        4.07 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (14/143)
+        3.96 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (15/143)
+        3.65 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (16/143)
+       21.66 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (17/143)
+        4.81 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (18/143)
+         7.0 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (19/143)
+        5.91 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (20/143)
+        5.96 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (21/143)
+        4.17 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (22/143)
+       12.29 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (23/143)
+       13.65 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (24/143)
+        6.77 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (25/143)
+        7.37 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (26/143)
+        2.89 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (27/143)
+        7.02 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (28/143)
+       16.16 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (29/143)
+        4.96 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (30/143)
+        2.62 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (31/143)
+        5.83 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (32/143)
+        5.71 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (33/143)
+       21.81 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (34/143)
+       29.73 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (35/143)
+       26.84 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (36/143)
+        2.67 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (37/143)
+        3.79 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (38/143)
+        7.77 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (39/143)
+         4.1 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (40/143)
+        4.52 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (41/143)
+       13.32 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (42/143)
+        2.68 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (43/143)
+        6.02 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (44/143)
+        20.8 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (45/143)
+Error: The barrier free facility "odpt.StationFacility:TokyoMetro.Hibiya.Kayabacho.Inside.Escalator.2" does not exist in the database.
+Error: The barrier free facility "odpt.StationFacility:TokyoMetro.Hibiya.Kayabacho.Inside.Stairlift.1" does not exist in the database.
+        9.72 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (46/143)
+        4.77 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (47/143)
+        7.57 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (48/143)
+        2.75 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (49/143)
+        5.26 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (50/143)
+       20.37 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (51/143)
+        5.91 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (52/143)
+        2.82 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (53/143)
+         5.8 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (54/143)
+       10.08 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (55/143)
+        5.93 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (56/143)
+       14.63 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (57/143)
+       14.13 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (58/143)
+       15.99 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (59/143)
+        3.82 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (60/143)
+        4.26 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (61/143)
+        4.46 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (62/143)
+       14.87 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (63/143)
+        2.93 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (64/143)
+        6.71 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (65/143)
+        5.12 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (66/143)
+        4.01 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (67/143)
+        4.54 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (68/143)
+        9.31 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (69/143)
+        6.16 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (70/143)
+        5.93 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (71/143)
+        3.78 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (72/143)
+       19.09 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (73/143)
+        4.93 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (74/143)
+        3.82 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (75/143)
+        1.93 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (76/143)
+        7.39 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (77/143)
+        2.15 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (78/143)
+       10.87 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (79/143)
+        8.13 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (80/143)
+       20.99 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (81/143)
+        7.41 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (82/143)
+        4.35 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (83/143)
+        6.74 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (84/143)
+        5.44 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (85/143)
+        6.72 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (86/143)
+        5.99 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (87/143)
+        5.74 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (88/143)
+        6.12 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (89/143)
+         6.5 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (90/143)
+        3.54 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (91/143)
+        4.52 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (92/143)
+        3.85 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (93/143)
+        5.46 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (94/143)
+        5.19 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (95/143)
+       27.18 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (96/143)
+       12.41 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (97/143)
+       47.63 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (98/143)
+        5.57 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (99/143)
+        6.41 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (100/143)
+        7.02 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (101/143)
+        5.74 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (102/143)
+       14.84 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (103/143)
+       31.35 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (104/143)
+         7.0 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (105/143)
+        5.83 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (106/143)
+        6.19 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (107/143)
+        3.76 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (108/143)
+        18.7 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (109/143)
+       12.76 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (110/143)
+        4.95 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (111/143)
+        5.57 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (112/143)
+        8.99 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (113/143)
+         2.9 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (114/143)
+        6.41 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (115/143)
+         4.1 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (116/143)
+        6.57 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (117/143)
+        2.42 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (118/143)
+        6.68 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (119/143)
+        6.99 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (120/143)
+        6.58 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (121/143)
+        5.02 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (122/143)
+       11.86 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (123/143)
+        6.29 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (124/143)
+        3.49 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (125/143)
+        6.54 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (126/143)
+        8.55 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (127/143)
+        3.73 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (128/143)
+        6.07 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (129/143)
+       11.73 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (130/143)
+         4.4 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (131/143)
+       10.56 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (132/143)
+       12.31 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (133/143)
+        3.31 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (134/143)
+        6.96 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (135/143)
+       13.45 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (136/143)
+        4.94 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (137/143)
+        8.64 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (138/143)
+        2.57 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (139/143)
+        7.18 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (140/143)
+        6.75 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (141/143)
+       11.56 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (142/143)
+        6.55 sec
+
+    ○ TokyoMetro::Api::StationFacility::Info::Platform::Array#seed  (143/143)
+       10.41 sec
+
+ 1213.22 sec
+
+☆ End: 2014-11-09 23:47:43 +0900
+※ 9532.753088 sec
+
+** Execute db:setup

@@ -1,0 +1,2 @@
+class TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::Train::Seed::PatternB::TrainTypeFactoryInEachStation::Pattern < ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::Train::Seed::PatternA::TrainTypeFactory::Pattern
+end

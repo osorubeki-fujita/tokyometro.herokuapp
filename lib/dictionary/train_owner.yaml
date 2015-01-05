@@ -1,0 +1,35 @@
+#---- 東京メトロ
+odpt.TrainOwner:TokyoMetro:
+  odpt.Operator:TokyoMetro
+
+#---- 都営地下鉄
+odpt.TrainOwner:Toei:
+  odpt.Operator:Toei
+
+#---- JR東日本
+odpt.TrainOwner:JR-East:
+  odpt.Operator:JR-East
+
+#---- 東急電鉄
+odpt.TrainOwner:Tokyu:
+  odpt.Operator:Tokyu
+
+#---- 小田急電鉄
+odpt.TrainOwner:Odakyu:
+  odpt.Operator:Odakyu
+
+#---- 西武鉄道
+odpt.TrainOwner:Seibu:
+  odpt.Operator:Seibu
+
+#---- 東武鉄道
+odpt.TrainOwner:Tobu:
+  odpt.Operator:Tobu
+
+#---- 埼玉高速鉄道
+odpt.TrainOwner:SaitamaRailway:
+  odpt.Operator:SaitamaRailway
+
+#---- 東葉高速鉄道
+odpt.TrainOwner:ToyoRapidRailway:
+  odpt.Operator:ToyoRapidRailway

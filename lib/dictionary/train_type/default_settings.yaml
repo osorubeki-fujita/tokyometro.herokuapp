@@ -1,0 +1,64 @@
+#-------- 【Default】
+
+#---- 各駅停車
+
+custom.TrainTypeDefault:TokyoMetro.Local.Normal:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    ref: custom.TrainTypeColor:DarkGray
+  color:
+    ref: custom.TrainTypeColor:White
+
+
+#---- 各駅停車（東急直通）
+
+custom.TrainTypeDefault:TokyoMetro.Local.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.Local
+
+
+#---- 急行（東急直通）
+
+custom.TrainTypeDefault:TokyoMetro.Express.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.Express
+
+
+#---- 通勤急行 - 副都心線で使用
+
+custom.TrainTypeDefault:TokyoMetro.CommuterExpress:
+  train_type: odpt.TrainType:TokyoMetro.CommuterExpress
+  bgcolor:
+    web: "#ff66cc"
+    red: 255
+    green: 102
+    blue: 204
+  color:
+    ref: custom.TrainTypeColor:White
+
+
+#---- 急行（土休） - 副都心線・半蔵門線（田園都市線直通）で使用
+custom.TrainTypeDefault:TokyoMetro.HolidayExpress:
+  train_type: odpt.TrainType:TokyoMetro.HolidayExpress
+  bgcolor:
+    ref: custom.TrainTypeColor:HolidayExpress
+  color:
+    # ref: custom.TrainTypeColor:White
+    ref: custom.TrainTypeColor:Black
+
+
+#---- 急行（平日） - 副都心線で使用
+
+custom.TrainTypeDefault:TokyoMetro.Express:
+  train_type: odpt.TrainType:TokyoMetro.Express
+  bgcolor:
+    web: "#ff0066"
+    red: 255
+    green: 0
+    blue: 102
+  color:
+    ref: custom.TrainTypeColor:White
+
+
+#---- 特急ロマンスカーで使用
+
+custom.TrainTypeDefault:TokyoMetro.RomanceCar:
+  ref: custom.TrainTypeOtherOperator:Odakyu.RomanceCar

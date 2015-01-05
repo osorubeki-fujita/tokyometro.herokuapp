@@ -1,0 +1,27 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = passenger_survey_right_contents
+
+= passenger_survey_title_in_top
+%div{ id: "years" }
+  %h3<
+    = "全線 年度別"
+  - [ 2011 , 2012 , 2013 ].each do | year |
+    %div
+      = link_to( "#{year}年度" , "in_#{year}" )
+%div{ id: "ranking" }
+  %h3<
+    = "乗降客数ランキング"
+  - [ "乗降客数が多い駅" , "乗降客数が少ない駅" , "乗降客数の増加率が高い駅" ].each do | title |
+    %div #{title}
+- # %div{ id: :lines }
+-   #%div{ id: :railway_line_matrixes }
+-     #= make_railway_line_matrixes_whole( with_yf: false )
+%h3<
+  = "各路線・各駅の乗降客数"
+%p<
+  = "路線名をクリックすると、各路線のすべての駅の乗降客数をご覧いただけます。"
+%p<
+  = "駅名をクリックすると、各駅の乗降客数の推移（2011年 - 2013年）をご覧いただけます。"
+= station_link_matrix_and_lists( make_link_to_line: false )

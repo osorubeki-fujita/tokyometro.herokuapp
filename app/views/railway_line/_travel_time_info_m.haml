@@ -1,0 +1,16 @@
+- # 丸ノ内線の所要時間情報
+- # @note 部分テンプレート travel_time_info_common を内部で呼び出す。
+- # @version 2014.11.27.13.42
+%div{ class: [ :railway_lines , railway_lines.first.css_class_name + "_travel_time" ] }
+  - railway_lines.each.with_index(1) do | railway_line , i |
+    - # stations = railway_line.stations.sort_by { | station | station.index_in_railway_line }
+    - stations = railway_line.stations.sort_by { | station | station.station_code }
+    - sections = stations.each_cons(2).to_a
+    - travel_time_infos = railway_line.travel_time_infos.includes( :from_station , :to_station )
+    - case i
+    - when 1
+      - class_name = :travel_time_info_main
+    - when 2
+      - class_name = :travel_time_info_branch
+    %table{ class: class_name }
+      = render( "travel_time_info_common" , stations: stations , sections: sections , travel_time_infos: travel_time_infos , special_proc_of_station: special_proc_of_station , special_proc_of_section: special_proc_of_section )

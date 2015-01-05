@@ -1,0 +1,215 @@
+odpt.Station:TokyoMetro.Namboku.Meguro:
+  station_alias:
+    - odpt.Station:Toei.Mita.Meguro
+    - odpt.Station:Tokyu.Meguro.Meguro
+  station_facility: odpt.StationFacility:TokyoMetro.Meguro
+  station_facility_custom: odpt.StationFacility:Tokyu.Meguro
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Meguro
+    - odpt.StationFacility:Toei.Meguro
+  name_ja: 目黒
+  name_hira: めぐろ
+  name_in_system: Meguro
+  name_en: Meguro
+  administrator: odpt.Operator:Tokyu
+  other_operator:
+    - odpt.Operator:TokyoMetro
+    - odpt.Operator:Toei
+  station_code: N-01
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+    - custom.StoppingPattern:Toei.Mita.Local
+
+odpt.Station:TokyoMetro.Namboku.Shirokanedai:
+  station_alias: odpt.Station:Toei.Mita.Shirokanedai
+  station_facility: odpt.StationFacility:TokyoMetro.Shirokanedai
+  station_facility_custom_alias: odpt.StationFacility:Toei.Shirokanedai
+  name_ja: 白金台
+  name_hira: しろかねだい
+  name_in_system: Shirokanedai
+  name_en: Shirokanedai
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:Toei
+  station_code: N-02
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+    - custom.StoppingPattern:Toei.Mita.Local
+
+odpt.Station:TokyoMetro.Namboku.ShirokaneTakanawa:
+  station_alias: odpt.Station:Toei.Mita.ShirokaneTakanawa
+  station_facility: odpt.StationFacility:TokyoMetro.ShirokaneTakanawa
+  station_facility_custom_alias: odpt.StationFacility:Toei.ShirokaneTakanawa
+  name_ja: 白金高輪
+  name_hira: しろかねたかなわ
+  name_in_system: ShirokaneTakanawa
+  name_en: Shirokane-takanawa
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:Toei
+  station_code: N-03
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+    - custom.StoppingPattern:Toei.Mita.Local
+
+odpt.Station:TokyoMetro.Namboku.AzabuJuban:
+  station_facility: odpt.StationFacility:TokyoMetro.AzabuJuban
+  name_ja: 麻布十番
+  name_hira: あざぶじゅうばん
+  name_in_system: AzabuJuban
+  name_en: Azabu-juban
+  station_code: N-04
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.RoppongiItchome:
+  station_facility: odpt.StationFacility:TokyoMetro.RoppongiItchome
+  name_ja: 六本木一丁目
+  name_hira: ろっぽんぎいっちょうめ
+  name_in_system: RoppongiItchome
+  name_en: Roppongi-itchome
+  station_code: N-05
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.TameikeSanno:
+  station_facility: odpt.StationFacility:TokyoMetro.TameikeSanno
+  name_ja: 溜池山王
+  name_hira: ためいけさんのう
+  name_in_system: TameikeSanno
+  name_en: Tameike-sanno
+  station_code: N-06
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Nagatacho:
+  station_facility: odpt.StationFacility:TokyoMetro.Nagatacho
+  name_ja: 永田町
+  name_hira: ながたちょう
+  name_in_system: Nagatacho
+  name_en: Nagatacho
+  station_code: N-07
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Yotsuya:
+  station_facility: odpt.StationFacility:TokyoMetro.Yotsuya
+  name_ja: 四ツ谷
+  name_hira: よつや
+  name_in_system: Yotsuya
+  name_en: Yotsuya
+  station_code: N-08
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Ichigaya:
+  station_facility: odpt.StationFacility:TokyoMetro.Ichigaya
+  name_ja: 市ケ谷
+  name_hira: いちがや
+  name_in_system: Ichigaya
+  name_en: Ichigaya
+  station_code: N-09
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Iidabashi:
+  station_facility: odpt.StationFacility:TokyoMetro.Iidabashi
+  name_ja: 飯田橋
+  name_hira: いいだばし
+  name_in_system: Iidabashi
+  name_en: Iidabashi
+  station_code: N-10
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Korakuen:
+  station_facility: odpt.StationFacility:TokyoMetro.Korakuen
+  name_ja: 後楽園
+  name_hira: こうらくえん
+  name_in_system: Korakuen
+  name_en: Korakuen
+  station_code: N-11
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Todaimae:
+  station_facility: odpt.StationFacility:TokyoMetro.Todaimae
+  name_ja: 東大前
+  name_hira: とうだいまえ
+  name_in_system: Todaimae
+  name_en: Todaimae
+  station_code: N-12
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.HonKomagome:
+  station_facility: odpt.StationFacility:TokyoMetro.HonKomagome
+  name_ja: 本駒込
+  name_hira: ほんこまごめ
+  name_in_system: HonKomagome
+  name_en: Hon-komagome
+  station_code: N-13
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Komagome:
+  station_facility: odpt.StationFacility:TokyoMetro.Komagome
+  name_ja: 駒込
+  name_hira: こまごめ
+  name_in_system: Komagome
+  name_en: Komagome
+  station_code: N-14
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Nishigahara:
+  station_facility: odpt.StationFacility:TokyoMetro.Nishigahara
+  name_ja: 西ケ原
+  name_hira: にしがはら
+  name_in_system: Nishigahara
+  name_en: Nishigahara
+  station_code: N-15
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Oji:
+  station_facility: odpt.StationFacility:TokyoMetro.Oji
+  name_ja: 王子
+  name_hira: おうじ
+  name_in_system: Oji
+  name_en: Oji
+  station_code: N-16
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.OjiKamiya:
+  station_facility: odpt.StationFacility:TokyoMetro.OjiKamiya
+  name_ja: 王子神谷
+  name_hira: おうじかみや
+  name_in_system: OjiKamiya
+  name_en: Oji-kamiya
+  station_code: N-17
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.Shimo:
+  station_facility: odpt.StationFacility:TokyoMetro.Shimo
+  name_ja: 志茂
+  name_hira: しも
+  name_in_system: Shimo
+  name_en: Shimo
+  station_code: N-18
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local
+
+odpt.Station:TokyoMetro.Namboku.AkabaneIwabuchi:
+  station_alias: odpt.Station:SaitamaRailway.SaitamaRailway.AkabaneIwabuchi
+  station_facility: odpt.StationFacility:TokyoMetro.AkabaneIwabuchi
+  station_facility_custom_alias: odpt.StationFacility:SaitamaRailway.AkabaneIwabuchi
+  name_ja: 赤羽岩淵
+  name_hira: あかばねいわぶち
+  name_in_system: AkabaneIwabuchi
+  name_en: Akabane-iwabuchi
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:SaitamaRailway
+  station_code: N-19
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Namboku.Local

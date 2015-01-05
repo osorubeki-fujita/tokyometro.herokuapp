@@ -1,0 +1,9 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = passenger_survey_right_contents
+
+= passenger_survey_title_grouped_by_year
+%div{ id: :passenger_survey_contents }
+  = passenger_survey_table
+  %div{ id: :passenge_survey_graph }

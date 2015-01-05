@@ -1,0 +1,52 @@
+@charset "utf-8" ;
+
+@import 'travel_time_infos/common_settings.scss' ;
+
+td.transfer {
+    @extend %connectingRailwayLineInfo ;
+    %anotherStation {
+        .another_station {
+            float:left ;
+            @include border_radius( 2px ) ;
+            background-color: #eee ;
+            padding: 2px ;
+            margin: {
+                left: 4px ;
+            }
+            $font_size_ja: 8pt ;
+            .text_ja {
+                font-size: $font_size_ja ;
+            }
+            .text_en {
+                font-size: $font_size_ja * 0.6 ;
+            }
+        }
+    }
+    .tokyo_metro {
+        border: {
+            color: #ccc ;
+        }
+        &:hover {
+            background-color: $jp_traditional_aijiro ;
+        }
+        @extend %link_in_div ;
+        a {
+            background-color: transparent ;
+        }
+        @extend %anotherStation ;
+    }
+    .other_operators {
+        border: {
+            color: #ddd ;
+        }
+        @extend %anotherStation ;
+    }
+    .clear {
+        clear: both ;
+    }
+    .not_recommend {
+        border: {
+            style: dotted ;
+        }
+    }
+}

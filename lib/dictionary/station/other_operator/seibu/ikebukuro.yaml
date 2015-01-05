@@ -1,0 +1,448 @@
+odpt.Station:Seibu.Ikebukuro.Ikebukuro:
+  station_facility: odpt.StationFacility:Seibu.Ikebukuro
+  name_ja: 池袋
+  name_hira: いけぶくろ
+  name_in_system: Ikebukuro
+  name_en: Ikebukuro
+  station_code: SI01
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.Shiinamachi:
+  station_facility: odpt.StationFacility:Seibu.Shiinamachi
+  name_ja: 椎名町
+  name_hira: しいなまち
+  name_in_system: Shiinamachi
+  name_en: Shiinamachi
+  station_code: SI02
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.HigashiNagasaki:
+  station_facility: odpt.StationFacility:Seibu.HigashiNagasaki
+  name_ja: 東長崎
+  name_hira: ひがしながさき
+  name_in_system: HigashiNagasaki
+  name_en: Higashi-nagasaki
+  station_code: SI03
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.Ekoda:
+  station_facility: odpt.StationFacility:Seibu.Ekoda
+  name_ja: 江古田
+  name_hira: えこだ
+  name_in_system: Ekoda
+  name_en: Ekoda
+  station_code: SI04
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.Sakuradai:
+  station_facility: odpt.StationFacility:Seibu.Sakuradai
+  name_ja: 桜台
+  name_hira: さくらだい
+  name_in_system: Sakuradai
+  name_en: Sakuradai
+  station_code: SI05
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.Nerima:
+  station_alias:
+    - odpt.Station:Seibu.Yurakucho.Nerima
+    - odpt.Seibu.Toshima.Nerima
+  station_facility: odpt.StationFacility:Seibu.Nerima
+  name_ja: 練馬
+  name_hira: ねりま
+  name_in_system: Nerima
+  name_en: Nerima
+  station_code: SI06
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+
+odpt.Station:Seibu.Ikebukuro.Nakamurabashi:
+  station_facility: odpt.StationFacility:Seibu.Nakamurabashi
+  name_ja: 中村橋
+  name_hira: なかむらばし
+  name_in_system: Nakamurabashi
+  name_en: Nakamurabashi
+  station_code: SI07
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.Fujimidai:
+  station_facility: odpt.StationFacility:Seibu.Fujimidai
+  name_ja: 富士見台
+  name_hira: ふじみだい
+  name_in_system: Fujimidai
+  name_en: Fujimidai
+  station_code: SI08
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.NerimaTakanodai:
+  station_facility: odpt.StationFacility:Seibu.NerimaTakanodai
+  name_ja: 練馬高野台
+  name_hira: ねりまたかのだい
+  name_in_system: NerimaTakanodai
+  name_en: Nerima-takanodai
+  station_code: SI09
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+
+odpt.Station:Seibu.Ikebukuro.ShakujiiKoen:
+  station_facility: odpt.StationFacility:Seibu.ShakujiiKoen
+  name_ja: 石神井公園
+  name_hira: しゃくじいこうえん
+  name_in_system: ShakujiiKoen
+  name_en: Shakujii-koen
+  station_code: SI10
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.OizumiGakuen:
+  station_facility: odpt.StationFacility:Seibu.OizumiGakuen
+  name_ja: 大泉学園
+  name_hira: おおいずみがくえん
+  name_in_system: OizumiGakuen
+  name_en: Oizumi-gakuen
+  station_code: SI11
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+
+odpt.Station:Seibu.Ikebukuro.Hoya:
+  station_facility: odpt.StationFacility:Seibu.Hoya
+  name_ja: 保谷
+  name_hira: ほうや
+  name_in_system: Hoya
+  name_en: Hoya
+  station_code: SI12
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+
+odpt.Station:Seibu.Ikebukuro.Hibarigaoka:
+  station_facility: odpt.StationFacility:Seibu.Hibarigaoka
+  name_ja: ひばりヶ丘
+  name_hira: ひばりがおか
+  name_in_system: Hibarigaoka
+  name_en: Hibarigaoka
+  station_code: SI13
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.HigashiKurume:
+  station_facility: odpt.StationFacility:Seibu.HigashiKurume
+  name_ja: 東久留米
+  name_hira: ひがしくるめ
+  name_in_system: HigashiKurume
+  name_en: Higashi-kurume
+  station_code: SI14
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+
+odpt.Station:Seibu.Ikebukuro.Kiyose:
+  station_facility: odpt.StationFacility:Seibu.Kiyose
+  name_ja: 清瀬
+  name_hira: きよせ
+  name_in_system: Kiyose
+  name_en: Kiyose
+  station_code: SI15
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+
+odpt.Station:Seibu.Ikebukuro.Akitsu:
+  station_facility: odpt.StationFacility:Seibu.Akitsu
+  name_ja: 秋津
+  name_hira: あきつ
+  name_in_system: Akitsu
+  name_en: Akitsu
+  station_code: SI16
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+
+odpt.Station:Seibu.Ikebukuro.Tokorozawa:
+  station_facility: odpt.StationFacility:Seibu.Tokorozawa
+  name_ja: 所沢
+  name_hira: ところざわ
+  name_in_system: Tokorozawa
+  name_en: Tokorozawa
+  station_code: SI17
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.NishiTokorozawa:
+  station_facility: odpt.StationFacility:Seibu.NishiTokorozawa
+  name_ja: 西所沢
+  name_hira: にしところざわ
+  name_in_system: NishiTokorozawa
+  name_en: Nishi-tokorozawa
+  station_code: SI18
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+
+odpt.Station:Seibu.Ikebukuro.Kotesashi:
+  station_facility: odpt.StationFacility:Seibu.Kotesashi
+  name_ja: 小手指
+  name_hira: こてさし
+  name_in_system: Kotesashi
+  name_en: Kotesashi
+  station_code: SI19
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterSemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.Sayamagaoka:
+  station_facility: odpt.StationFacility:Seibu.Sayamagaoka
+  name_ja: 狭山ヶ丘
+  name_hira: さやまがおか
+  name_in_system: Sayamagaoka
+  name_en: Sayamagaoka
+  station_code: SI20
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+
+odpt.Station:Seibu.Ikebukuro.MusashiFujisawa:
+  station_facility: odpt.StationFacility:Seibu.MusashiFujisawa
+  name_ja: 武蔵藤沢
+  name_hira: むさしふじさわ
+  name_in_system: MusashiFujisawa
+  name_en: Musashi-fujisawa
+  station_code: SI21
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+
+odpt.Station:Seibu.Ikebukuro.InariyamaKoen:
+  station_facility: odpt.StationFacility:Seibu.InariyamaKoen
+  name_ja: 稲荷山公園
+  name_hira: いなりやまこうえん
+  name_in_system: InariyamaKoen
+  name_en: Inariyama-koen
+  station_code: SI22
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+
+odpt.Station:Seibu.Ikebukuro.Irumashi:
+  station_facility: odpt.StationFacility:Seibu.Irumashi
+  name_ja: 入間市
+  name_hira: いるまし
+  name_in_system: Irumashi
+  name_en: Irumashi
+  station_code: SI23
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.Bushi:
+  station_facility: odpt.StationFacility:Seibu.Bushi
+  name_ja: 仏子
+  name_hira: ぶし
+  name_in_system: Bushi
+  name_en: Bushi
+  station_code: SI24
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+
+odpt.Station:Seibu.Ikebukuro.Motokaji:
+  station_facility: odpt.StationFacility:Seibu.Motokaji
+  name_ja: 元加治
+  name_hira: もとかじ
+  name_in_system: Motokaji
+  name_en: Motokaji
+  station_code: SI25
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+
+odpt.Station:Seibu.Ikebukuro.Hanno:
+  station_alias: odpt.Station:Seibu.Chichibu.Hanno
+  station_facility: odpt.StationFacility:Seibu.Hanno
+  name_ja: 飯能
+  name_hira: はんのう
+  name_in_system: Hanno
+  name_en: Hanno
+  station_code: SI26
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    - custom.StoppingPattern:Seibu.Ikebukuro.CommuterExpress
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+
+odpt.Station:Seibu.Ikebukuro.HigashiHanno:
+  station_alias: odpt.Station:Seibu.Chichibu.HigashiHanno
+  station_facility: odpt.StationFacility:Seibu.HigashiHanno
+  name_ja: 東飯能
+  name_hira: ひがしはんのう
+  name_in_system: HigashiHanno
+  name_en: Higashi-hanno
+  station_code: SI27
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+      - 臨時列車のみ停車します。
+
+odpt.Station:Seibu.Ikebukuro.Koma:
+  station_alias: odpt.Station:Seibu.Chichibu.Koma
+  station_facility: odpt.StationFacility:Seibu.Koma
+  name_ja: 高麗
+  name_hira: こま
+  name_in_system: Koma
+  name_en: Koma
+  station_code: SI28
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+      - 臨時列車のみ停車します。
+
+odpt.Station:Seibu.Ikebukuro.MusashiYokote:
+  station_alias: odpt.Station:Seibu.Chichibu.MusashiYokote
+  station_facility: odpt.StationFacility:Seibu.MusashiYokote
+  name_ja: 武蔵横手
+  name_hira: むさしよこて
+  name_in_system: MusashiYokote
+  name_en: Musashi-yokote
+  station_code: SI29
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+      - 臨時列車のみ停車します。
+
+odpt.Station:Seibu.Ikebukuro.HigashiAgano:
+  station_alias: odpt.Station:Seibu.Chichibu.HigashiAgano
+  station_facility: odpt.StationFacility:Seibu.HigashiAgano
+  name_ja: 東吾野
+  name_hira: ひがしあがの
+  name_in_system: HigashiAgano
+  name_en: Higashi-agano
+  station_code: SI30
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+      - 臨時列車のみ停車します。
+
+odpt.Station:Seibu.Ikebukuro.Agano:
+  station_alias: odpt.Station:Seibu.Chichibu.Agano
+  station_facility: odpt.StationFacility:Seibu.Agano
+  name_ja: 吾野
+  name_hira: あがの
+  name_in_system: Agano
+  name_en: Agano
+  station_code: SI31
+  stop:
+    - custom.StoppingPattern:Seibu.Ikebukuro.Local
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+    - custom.StoppingPattern:Seibu.Ikebukuro.Express
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    - custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Ikebukuro
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+      - 臨時列車のみ停車します。

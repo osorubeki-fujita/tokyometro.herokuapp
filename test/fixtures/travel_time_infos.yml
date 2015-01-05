@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  railway_id: 1
+  to_station_id: 1
+  from_station_id: 1
+  train_type_id: 1
+  necessary_time: 1
+
+two:
+  railway_id: 1
+  to_station_id: 1
+  from_station_id: 1
+  train_type_id: 1
+  necessary_time: 1

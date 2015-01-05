@@ -1,0 +1,24 @@
+#---- 準急
+
+custom.TrainTypeOtherOperator:Tobu.SemiExpress:
+  train_type: odpt.TrainType:TokyoMetro.SemiExpress
+  bgcolor:
+    web: "#009900"
+    red: 0
+    green: 153
+    blue: 0
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tobu
+#---- 急行
+
+custom.TrainTypeOtherOperator:Tobu.Express:
+  train_type: odpt.TrainType:TokyoMetro.Express
+  bgcolor:
+    web: "#ff0000" # red
+    red: 255
+    green: 0
+    blue: 0
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tobu

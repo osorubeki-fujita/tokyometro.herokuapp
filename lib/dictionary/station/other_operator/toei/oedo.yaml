@@ -1,0 +1,386 @@
+# 都営大江戸線
+
+odpt.Station:Toei.Oedo.ShinjukuNishiguchi:
+  station_facility: odpt.StationFacility:Toei.ShinjukuNishiguchi
+  name_ja: 新宿西口
+  name_hira: しんじゅくにしぐち
+  name_in_system: ShinjukuNishiguchi
+  name_en: Shinjuku-nishiguchi
+  station_code: E-01
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.HigashiShinjuku:
+  station_facility: odpt.StationFacility:Toei.HigashiShinjuku
+  name_ja: 東新宿
+  name_hira: ひがししんじゅく
+  name_in_system: HigashiShinjuku
+  name_en: Higashi-shinjuku
+  station_code: E-02
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.WakamatsuKawada:
+  station_facility: odpt.StationFacility:Toei.WakamatsuKawada
+  name_ja: 若松河田
+  name_hira: わかまつかわだ
+  name_in_system: WakamatsuKawada
+  name_en: Wakamatsu-kawada
+  station_code: E-03
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.UshigomeYanagicho:
+  station_facility: odpt.StationFacility:Toei.UshigomeYanagicho
+  name_ja: 牛込柳町
+  name_hira: うしごめやなぎちょう
+  name_in_system: UshigomeYanagicho
+  name_en: Ushigome-yanagicho
+  station_code: E-04
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.UshigomeKagurazaka:
+  station_facility: odpt.StationFacility:Toei.UshigomeKagurazaka
+  name_ja: 牛込神楽坂
+  name_hira: うしごめかぐらざか
+  name_in_system: UshigomeKagurazaka
+  name_en: Ushigome-kagurazaka
+  station_code: E-05
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Iidabashi:
+  station_facility: odpt.StationFacility:Toei.Iidabashi
+  name_ja: 飯田橋
+  name_hira: いいだばし
+  name_in_system: Iidabashi
+  name_en: Iidabashi
+  station_code: E-06
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Kasuga:
+  station_facility: odpt.StationFacility:Toei.Kasuga
+  name_ja: 春日
+  name_hira: かすが
+  name_in_system: Kasuga
+  name_en: Kasuga
+  station_code: E-07
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.HongoSanchome:
+  station_facility: odpt.StationFacility:Toei.HongoSanchome
+  name_ja: 本郷三丁目
+  name_hira: ほんごうさんちょうめ
+  name_in_system: HongoSanchome
+  name_en: Hongo-sanchome
+  station_code: E-08
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.UenoOkachimachi:
+  station_facility: odpt.StationFacility:Toei.UenoOkachimachi
+  name_ja: 上野御徒町
+  name_hira: うえのおかちまち
+  name_in_system: UenoOkachimachi
+  name_en: Ueno-okachimachi
+  station_code: E-09
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.ShinOkachimachi:
+  station_facility: odpt.StationFacility:Toei.ShinOkachimachi
+  name_ja: 新御徒町
+  name_hira: しんおかちまち
+  name_in_system: ShinOkachimachi
+  name_en: Shin-okachimachi
+  station_code: E-10
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Kuramae:
+  station_facility: odpt.StationFacility:Toei.Kuramae
+  name_ja: 蔵前
+  name_hira: くらまえ
+  name_in_system: Kuramae
+  name_en: Kuramae
+  station_code: E-11
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Ryogoku:
+  station_facility: odpt.StationFacility:Toei.Ryogoku
+  name_ja: 両国
+  name_hira: りょうごく
+  name_in_system: Ryogoku
+  name_en: Ryogoku
+  station_code: E-12
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Morishita:
+  station_facility: odpt.StationFacility:Toei.Morishita
+  name_ja: 森下
+  name_hira: もりした
+  name_in_system: Morishita
+  name_en: Morishita
+  station_code: E-13
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.KiyosumiShirakawa:
+  station_facility: odpt.StationFacility:Toei.KiyosumiShirakawa
+  name_ja: 清澄白河
+  name_hira: きよすみしらかわ
+  name_in_system: KiyosumiShirakawa
+  name_en: Kiyosumi-shirakawa
+  station_code: E-14
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.MonzenNakacho:
+  station_facility: odpt.StationFacility:Toei.MonzenNakacho
+  name_ja: 門前仲町
+  name_hira: もんぜんなかちょう
+  name_in_system: MonzenNakacho
+  name_en: Monzen-nakacho
+  station_code: E-15
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Tsukishima:
+  station_facility: odpt.StationFacility:Toei.Tsukishima
+  name_ja: 月島
+  name_hira: つきしま
+  name_in_system: Tsukishima
+  name_en: Tsukishima
+  station_code: E-16
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Kachidoki:
+  station_facility: odpt.StationFacility:Toei.Kachidoki
+  name_ja: 勝どき
+  name_hira: かちどき
+  name_in_system: Kachidoki
+  name_en: Kachidoki
+  station_code: E-17
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.TsukijiShijo:
+  station_facility: odpt.StationFacility:Toei.TsukijiShijo
+  name_ja: 築地市場
+  name_hira: つきじしじょう
+  name_in_system: TsukijiShijo
+  name_en: Tsukiji-shijo
+  station_code: E-18
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Shiodome:
+  station_facility: odpt.StationFacility:Toei.Shiodome
+  name_ja: 汐留
+  name_hira: しおどめ
+  name_in_system: Shiodome
+  name_en: Shiodome
+  station_code: E-19
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Daimon:
+  station_facility: odpt.StationFacility:Toei.Daimon
+  name_ja: 大門
+  name_hira: だいもん
+  name_in_system: Daimon
+  name_en: Daimon
+  station_code: E-20
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Akabanebashi:
+  station_facility: odpt.StationFacility:Toei.Akabanebashi
+  name_ja: 赤羽橋
+  name_hira: あかばねばし
+  name_in_system: Akabanebashi
+  name_en: Akabanebashi
+  station_code: E-21
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.AzabuJuban:
+  station_facility: odpt.StationFacility:Toei.AzabuJuban
+  name_ja: 麻布十番
+  name_hira: あざぶじゅうばん
+  name_in_system: AzabuJuban
+  name_en: Azabu-juban
+  station_code: E-22
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Roppongi:
+  station_facility: odpt.StationFacility:Toei.Roppongi
+  name_ja: 六本木
+  name_hira: ろっぽんぎ
+  name_in_system: Roppongi
+  name_en: Roppongi
+  station_code: E-23
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.AoyamaItchome:
+  station_facility: odpt.StationFacility:Toei.AoyamaItchome
+  name_ja: 青山一丁目
+  name_hira: あおやまいっちょうめ
+  name_in_system: AoyamaItchome
+  name_en: Aoyama-itchome
+  station_code: E-24
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.KokuritsuKyogijo:
+  station_facility: odpt.StationFacility:Toei.KokuritsuKyogijo
+  name_ja: 国立競技場
+  name_hira: こくりつきょうぎじょう
+  name_in_system: KokuritsuKyogijo
+  name_en: Kokuritsu-kyogijo
+  station_code: E-25
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Yoyogi:
+  station_facility: odpt.StationFacility:Toei.Yoyogi
+  name_ja: 代々木
+  name_hira: よよぎ
+  name_in_system: Yoyogi
+  name_en: Yoyogi
+  station_code: E-26
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Shinjuku:
+  station_alias:
+    - odpt.Railway:Keio.New.Shinjuku
+  station_facility: odpt.StationFacility:Toei.Shinjuku
+  station_facility_custom: odpt.StationFacility:Toei.Shinjuku
+  station_facility_custom_alias:
+    - odpt.StationFacility:Keio.Shinjuku.New
+  name_ja: 新宿
+  name_hira: しんじゅく
+  name_in_system: Shinjuku
+  name_en: Shinjuku
+  station_code: E-27
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Tochomae:
+  station_facility: odpt.StationFacility:Toei.Tochomae
+  name_ja: 都庁前
+  name_hira: とちょうまえ
+  name_in_system: Tochomae
+  name_en: Tochomae
+  station_code: E-28
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.NishiShinjukuGochome:
+  station_facility: odpt.StationFacility:Toei.NishiShinjukuGochome
+  name_ja: 西新宿五丁目
+  name_hira: にししんじゅくごちょうめ
+  name_in_system: NishiShinjukuGochome
+  name_en: Nishi-shinjuku-gochome
+  station_code: E-29
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.NakanoSakaue:
+  station_facility: odpt.StationFacility:Toei.NakanoSakaue
+  name_ja: 中野坂上
+  name_hira: なかのさかうえ
+  name_in_system: NakanoSakaue
+  name_en: Nakano-sakaue
+  station_code: E-30
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.HigashiNakano:
+  station_facility: odpt.StationFacility:Toei.HigashiNakano
+  name_ja: 東中野
+  name_hira: ひがしなかの
+  name_in_system: HigashiNakano
+  name_en: Higashi-nakano
+  station_code: E-31
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Nakai:
+  station_facility: odpt.StationFacility:Toei.Nakai
+  name_ja: 中井
+  name_hira: なかい
+  name_in_system: Nakai
+  name_en: Nakai
+  station_code: E-32
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.OchiaiMinamiNagasaki:
+  station_facility: odpt.StationFacility:Toei.OchiaiMinamiNagasaki
+  name_ja: 落合南長崎
+  name_hira: おちあいみなみながさき
+  name_in_system: OchiaiMinamiNagasaki
+  name_en: Ochiai-minami-nagasaki
+  station_code: E-33
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.ShinEgota:
+  station_facility: odpt.StationFacility:Toei.ShinEgota
+  name_ja: 新江古田
+  name_hira: しんえごた
+  name_in_system: ShinEgota
+  name_en: Shin-egota
+  station_code: E-34
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Nerima:
+  station_facility: odpt.StationFacility:Toei.Nerima
+  name_ja: 練馬
+  name_hira: ねりま
+  name_in_system: Nerima
+  name_en: Nerima
+  station_code: E-35
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Toshimaen:
+  station_facility: odpt.StationFacility:Toei.Toshimaen
+  name_ja: 豊島園
+  name_hira: としまえん
+  name_in_system: Toshimaen
+  name_en: Toshimaen
+  station_code: E-36
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.NerimaKasugacho:
+  station_facility: odpt.StationFacility:Toei.NerimaKasugacho
+  name_ja: 練馬春日町
+  name_hira: ねりまかすがちょう
+  name_in_system: NerimaKasugacho
+  name_en: Nerima-kasugacho
+  station_code: E-37
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local
+
+odpt.Station:Toei.Oedo.Hikarigaoka:
+  station_facility: odpt.StationFacility:Toei.Hikarigaoka
+  name_ja: 光が丘
+  name_hira: ひかりがおか
+  name_in_system: Hikarigaoka
+  name_en: Hikarigaoka
+  station_code: E-38
+  stop:
+    - custom.StoppingPattern:Toei.Oedo.Local

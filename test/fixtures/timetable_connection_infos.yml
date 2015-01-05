@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station_id: 1
+  note: MyString
+  remark_of_delay: false
+
+two:
+  station_id: 1
+  note: MyString
+  remark_of_delay: false

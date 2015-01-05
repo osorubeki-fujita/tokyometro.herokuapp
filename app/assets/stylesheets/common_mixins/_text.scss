@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+@mixin text_ja {
+    font: {
+        family: "HiraKakuProN-W3" , "ヒラギノ" , "メイリオ" , "MS Gothic" ;
+    }
+}
+
+@mixin text_en {
+    font: {
+        family: 'helvetica', 'verdana', 'arial' , 'sans-serif' , "HiraKakuProN-W3" , "ヒラギノ" , "メイリオ" ;
+    }
+}

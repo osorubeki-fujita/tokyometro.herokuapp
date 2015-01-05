@@ -1,0 +1,80 @@
+odpt.Station:Tobu.Kinugawa.ShimoImaichi:
+  station_alias: odpt.Station:Tobu.Nikko.ShimoImaichi
+  station_facility: odpt.StationFacility:Tobu.Shimo-imaichi
+  name_ja: 下今市
+  name_hira: しもいまいち
+  name_in_system: ShimoImaichi
+  name_en: Shimo-imaichi
+  station_code: TN-23
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.Daiyamuko:
+  station_facility: odpt.StationFacility:Tobu.Daiyamuko
+  name_ja: 大谷向
+  name_hira: だいやむこう
+  name_in_system: Daiyamuko
+  name_en: Daiyamuko
+  station_code: TN-51
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.Okuwa:
+  station_facility: odpt.StationFacility:Tobu.Okuwa
+  name_ja: 大桑
+  name_hira: おおくわ
+  name_in_system: Okuwa
+  name_en: Okuwa
+  station_code: TN-52
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.ShinTakatoku:
+  station_facility: odpt.StationFacility:Tobu.Shin-takatoku
+  name_ja: 新高徳
+  name_hira: しんたかとく
+  name_in_system: ShinTakatoku
+  name_en: Shin-takatoku
+  station_code: TN-53
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.Kosagoe:
+  station_facility: odpt.StationFacility:Tobu.Kosagoe
+  name_ja: 小佐越
+  name_hira: こさごえ
+  name_in_system: Kosagoe
+  name_en: Kosagoe
+  station_code: TN-54
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.KinugawaOnsen:
+  station_facility: odpt.StationFacility:Tobu.Kinugawa-onsen
+  name_ja: 鬼怒川温泉
+  name_hira: きぬがわおんせん
+  name_in_system: KinugawaOnsen
+  name_en: Kinugawa-onsen
+  station_code: TN-55
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.KinugawaKoen:
+  station_facility: odpt.StationFacility:Tobu.Kinugawa-koen
+  name_ja: 鬼怒川公園
+  name_hira: きぬがわこうえん
+  name_in_system: KinugawaKoen
+  name_en: Kinugawa-koen
+  station_code: TN-56
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local
+
+odpt.Station:Tobu.Kinugawa.ShinFujiwara:
+  station_facility: odpt.StationFacility:Tobu.Shin-fujiwara
+  name_ja: 新藤原
+  name_hira: しんふじわら
+  name_in_system: ShinFujiwara
+  name_en: Shin-fujiwara
+  station_code: TN-57
+  stop:
+    - custom.StoppingPattern:Tobu.Kinugawa.Local

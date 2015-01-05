@@ -1,0 +1,12 @@
+- # http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
+- url = "https://www.google.com/maps/embed/v1/search"
+- url += "?key=AIzaSyBszacA0SfENmaT-fonU0cGK-tWyScUFV4"
+- url += "&q="
+- url += ::ERB::Util.url_encode( @station.name_ja )
+- url += "&center="
+- url += ( @station.latitude.to_s + "," + @station.longitude.to_s )
+- url += "&zoom=16"
+- url += "&maptype=roadmap"
+- url += "&language=ja"
+
+%iframe{ :src => url , :width => "100%" , :height => "480px" , :frameborder => 0 }

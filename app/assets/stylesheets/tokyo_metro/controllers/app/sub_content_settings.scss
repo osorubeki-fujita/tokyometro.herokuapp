@@ -1,0 +1,191 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+$background_base_color_of_top_content: #333 ;
+
+%fontSize9 {
+    font: {
+        size: 9pt;
+    }
+}
+
+%fontSize12 {
+    font: {
+        size: 12pt;
+    }
+}
+
+%smallLink {
+    a.small {
+        font: {
+            size: 6.75pt ;
+        }
+    }
+}
+
+%spaceSettingOfListOfContents {
+    padding: {
+        left: 8px ;
+    }
+    margin: {
+        top: 0px ;
+        bottom: 0px ;
+    }
+}
+
+@mixin listOfContentsBase( $width_base , $li_height , $list_border_color ) {
+    width: $width_base ;
+    height: auto ;
+    margin: {
+        top: 0px ;
+        bottom: 16px ;
+    }
+    padding: {
+        left: 0px ;
+    }
+    li {
+        list-style: none ;
+        @include text_ja ;
+        @extend %spaceSettingOfListOfContents ;
+        $width_of_border : 1px ;
+        border: {
+            top: {
+                style: solid ;
+                width: $width_of_border ;
+                color: $list_border_color ;
+            }
+            bottom: {
+                style: solid ;
+                width: $width_of_border ;
+                color: $list_border_color ;
+            }
+        }
+        margin: {
+            bottom: -1 * $width_of_border ;
+        }
+        $link_width : $width_base * 0.75 ;
+        width: $link_width ;
+        height: $li_height ;
+        vertical-align: middle ;
+		@extend %link_in_div ;
+        a {
+            top: 0;
+            left: 0px;
+            color: #333 ;
+            text-decoration: none ;
+            vartical-align: middle ;
+        }
+        &:hover {
+            $border_width: 8px ;
+            padding: {
+                left: $border_width ;
+            }
+            border: {
+                left: solid $border_width $operator_color ;
+            }
+            background: {
+                color: $jp_traditional_aijiro ;
+            }
+        }
+    }
+}
+
+%sideMenu {
+    clear: both ;
+    $list_border_color: #eee ;
+	@extend %floatLeft ;
+    width: $width_list_of_contents ;
+    %mainContents {
+        $li_height : 32px ;
+        @include listOfContentsBase( $width_list_of_contents , $li_height , $list_border_color ) ;
+        li {
+            @extend %fontSize12 ;
+        }
+    }
+    %subContents {
+        $li_height : 24px ;
+        @include listOfContentsBase( $width_list_of_contents , $li_height , $list_border_color ) ;
+        li {
+            @extend %fontSize9 ;
+        }
+    }
+    ul#list_of_main_contents {
+        @extend %mainContents ;
+    }
+    ul#list_of_official_links {
+        @extend %subContents ;
+        li {
+            @extend %smallLink ;
+        }
+    }
+    ul#list_of_documents {
+        @extend %subContents ;
+    }
+}
+
+%bottom_content {
+    %white {
+        color: #fff;
+    }
+    height: 24px;
+    @extend %fontSize9 ;
+    .links {
+        line-height: 1em;
+        height: 18px;
+        vertical-align: middle;
+        float: right;
+        margin: {
+            right: 8px;
+        }
+        @extend %white ;
+        a.link {
+            @extend %white ;
+            text-decoration: underline;
+            &:link{
+                color: lighten( $operator_color , 100% );
+            }
+            &:visited{
+                color: lighten( $operator_color , 40% );
+            }
+            &:hover{
+                color: lighten( $operator_color , 60% );
+                background-color: lighten( $operator_color , 40% );
+            }
+            &:active{
+                color: lighten( $operator_color , 40% );
+                background-color: lighten( $operator_color , 60% );
+            }
+        }
+    }
+    background-color: darken( $operator_color , 10% );
+}
+
+@mixin subContentSettings {
+    %sizeSettings {
+        width: $width_list_of_contents ;
+    }
+    #left_contents {
+        @extend %sizeSettings ;
+		@extend %floatLeft ;
+        margin: {
+            right: 8px ;
+        }
+        // #top_content {
+            // @extend %sizeSettings ;
+            // @include topContent ;
+        // }
+        #side_menu {
+            float: none ;
+            @extend %sideMenu ;
+        }
+        #bottom_content {
+            @extend %sizeSettings ;
+            // @extend %bottom_content ;
+        }
+    }
+    #right_contents {
+		@extend %floatLeft ;
+        width: $width_list_of_contents - 10px ;
+    }
+}

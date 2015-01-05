@@ -1,0 +1,7 @@
+%div{ id: "update" }
+  = form_tag( { action: :update_info } , remote: true ) do
+    / 進捗状況を表示
+    %div{ id: "progress" }
+      = time_infos( time_now , last_update , next_update )
+    = submit_tag( '更新' )
+    -# link_to( "更新" , { action: :update_info } , remote: true )

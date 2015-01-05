@@ -1,0 +1,115 @@
+@charset "utf-8" ;
+
+@import 'color_settings.scss' ;
+// '../../fundamental_settings.scss' は、
+// 'color_settings.scss' の内部で import している。
+
+%timetableHeaderOperationDay {
+    @extend %floatLeft ;
+    text-align: center ;
+    @include border_radius( 4px ) ;
+    color: #fff ;
+    .text_ja {
+        font: {
+            size: 16pt ;
+            weight: bold ;
+        }
+    }
+    .text_en {
+        font: {
+            size: 12pt ;
+        }
+    }
+    border: {
+        style: solid ;
+        width: 1px ;
+    }
+    padding: 8px ;
+    @extend %marginRight8 ;
+}
+
+%commonSettingsOfStationTimetableHeader {
+    thead {
+        td {
+            .railway_line {
+                padding: {
+                    left: 8px ;
+                    right: 4px ;
+                    top: 4px ;
+                    bottom: 4px ;
+                }
+                $font_size_ja: 12pt ;
+                $font_size_en: $font_size_ja * 0.75 ;
+                font: {
+                    size: $font_size_ja ;
+                }
+                .text_en {
+                    font: {
+                        size: $font_size_en ;
+                        weight: bold ;
+                    }
+                }
+            }
+            .main {
+                padding: 8px ;
+                .operation_day {
+                    @extend %timetableHeaderOperationDay ;
+                }
+                .direction {
+					@extend %floatLeft ;
+                    // background-color: #f6f6f6 ;
+                    margin: {
+                        left: 4px ;
+                    }
+                    font: {
+                        size: 18pt ;
+                        weight: bold ;
+                    }
+                    .text_en {
+                        font: {
+                            size: 13.5pt ;
+                            weight: normal ;
+                        }
+                    }
+                }
+            }
+            .additional_infos {
+                float: right ;
+                .station_codes {
+					@extend %floatLeft ;
+                    @extend %marginRight4 ;
+                    img {
+                        width: 24px ;
+                        height: 24px ;
+                    }
+                }
+                .station_name {
+					@extend %floatLeft ;
+                    @extend %marginRight4 ;
+                    .text_ja {
+                        font: {
+                            size: 10pt ;
+                        }
+                    }
+                    .text_en {
+                        font: {
+                            size: 7.5pt ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+table.timetable.weekday {
+    .operation_day {
+        @include timetableHeaderOperationDayBackgroundColor( $background_color_of_weekday ) ;
+    }
+}
+
+table.timetable.holiday {
+    .operation_day {
+        @include timetableHeaderOperationDayBackgroundColor( $background_color_of_holiday ) ;
+    }
+}

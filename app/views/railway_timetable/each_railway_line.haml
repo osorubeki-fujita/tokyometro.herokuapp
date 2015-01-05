@@ -1,0 +1,7 @@
+= render "common_content"
+
+= railway_timetable_title_of_each_line
+%div{ id: :railway_timetable_contents }
+  = select_station_from_railway_line
+  %div{ id: :railway_line_matrixes }
+    = make_railway_line_matrixes_whole( with_yf: false )

@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: FareTableHeaderHelper
+  
+    &mdash; Ruby for Rails - [app] (as of 2014.12.28 00:49)
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!FareTableHeaderHelper.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (F)</a> &raquo;
+    
+    
+    <span class="title">FareTableHeaderHelper</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: FareTableHeaderHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">helpers/fare_table_header_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fare_table_header-instance_method" title="#fare_table_header (instance method)">- (Object) <strong>fare_table_header</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fare_table_header_adult_and_child-instance_method" title="#fare_table_header_adult_and_child (instance method)">- (Object) <strong>fare_table_header_adult_and_child</strong>(additional_class) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="fare_table_header-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fare_table_header</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/fare_table_header_helper.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fare_table_header'>fare_table_header</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span>
+<span class='tstring_content'>%tr{ class: :header }
+%td{ rowspan: 3 , class: [ :station_name_top , :header_bottom ] }&lt;
+  = &quot;駅名&quot;
+%td{ colspan: 4 , class: :normal_fare }&lt;
+  = &quot;普通運賃&quot;
+%tr{ class: [ :header , :fare_type ] }
+%td{ colspan: 2 , class: :ic_card }&lt;
+  = &quot;ICカード利用&quot;
+%td{ colspan: 2 , class: :ticket }&lt;
+  = &quot;切符&quot;
+%tr{ class: :header , class: :fares }
+= fare_table_header_adult_and_child( :ic_card )
+= fare_table_header_adult_and_child( :ticket )
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fare_table_header_adult_and_child-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fare_table_header_adult_and_child</strong>(additional_class) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/fare_table_header_helper.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fare_table_header_adult_and_child'>fare_table_header_adult_and_child</span><span class='lparen'>(</span> <span class='id identifier rubyid_additional_class'>additional_class</span> <span class='rparen'>)</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='lbrace'>{</span> <span class='label'>additional_class:</span> <span class='id identifier rubyid_additional_class'>additional_class</span> <span class='rbrace'>}</span>
+<span class='tstring_content'>%td{ class: [ additional_class , :adult , :header_bottom ] }&lt;
+= &quot;大人&quot;
+%td{ class: [ additional_class , :child , :header_bottom ] }&lt;
+= &quot;小児&quot;
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sun Dec 28 00:50:07 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

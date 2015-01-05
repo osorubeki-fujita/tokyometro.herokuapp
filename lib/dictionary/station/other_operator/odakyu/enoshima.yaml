@@ -1,0 +1,192 @@
+odpt.Station:Odakyu.Enoshima.SagamiOono:
+  station_alias: odpt.Station:Odakyu.Odawara.SagamiOono
+  station_facility: odpt.StationFacility:Odakyu.SagamiOono
+  name_ja: 相模大野
+  name_hira: さがみおおの
+  name_in_system: SagamiOono
+  name_en: Sagami-oono
+  station_code: OH28
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+    - custom.StoppingPattern:Odakyu.Enoshima.RapidExpress
+
+odpt.Station:Odakyu.Enoshima.HigashiRinkan:
+  station_facility: odpt.StationFacility:Odakyu.HigashiRinkan
+  name_ja: 東林間
+  name_hira: ひがしりんかん
+  name_in_system: HigashiRinkan
+  name_en: Higashi-rinkan
+  station_code: OE01
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.ChuoRinkan:
+  station_facility: odpt.StationFacility:Odakyu.ChuoRinkan
+  name_ja: 中央林間
+  name_hira: ちゅうおうりんかん
+  name_in_system: ChuoRinkan
+  name_en: Chuo-rinkan
+  station_code: OE02
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+    - custom.StoppingPattern:Odakyu.Enoshima.RapidExpress
+
+odpt.Station:Odakyu.Enoshima.MinamiRinkan:
+  station_facility: odpt.StationFacility:Odakyu.MinamiRinkan
+  name_ja: 南林間
+  name_hira: みなみりんかん
+  name_in_system: MinamiRinkan
+  name_en: Minami-rinkan
+  station_code: OE03
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+
+odpt.Station:Odakyu.Enoshima.Tsuruma:
+  station_facility: odpt.StationFacility:Odakyu.Tsuruma
+  name_ja: 鶴間
+  name_hira: つるま
+  name_in_system: Tsuruma
+  name_en: Tsuruma
+  station_code: OE04
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.Yamato:
+  station_facility: odpt.StationFacility:Odakyu.Yamato
+  name_ja: 大和
+  name_hira: やまと
+  name_in_system: Yamato
+  name_en: Yamato
+  station_code: OE05
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+    - custom.StoppingPattern:Odakyu.Enoshima.RapidExpress
+
+odpt.Station:Odakyu.Enoshima.Sakuragaoka:
+  station_facility: odpt.StationFacility:Odakyu.Sakuragaoka
+  name_ja: 桜ヶ丘
+  name_hira: さくらがおか
+  name_in_system: Sakuragaoka
+  name_en: Sakuragaoka
+  station_code: OE06
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.KozaShibuya:
+  station_facility: odpt.StationFacility:Odakyu.KozaShibuya
+  name_ja: 高座渋谷
+  name_hira: こうざしぶや
+  name_in_system: KozaShibuya
+  name_en: Koza-shibuya
+  station_code: OE07
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.Chogo:
+  station_facility: odpt.StationFacility:Odakyu.Chogo
+  name_ja: 長後
+  name_hira: ちょうご
+  name_in_system: Chogo
+  name_en: Chogo
+  station_code: OE08
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+
+odpt.Station:Odakyu.Enoshima.Shonandai:
+  station_facility: odpt.StationFacility:Odakyu.Shonandai
+  name_ja: 湘南台
+  name_hira: しょうなんだい
+  name_in_system: Shonandai
+  name_en: Shonandai
+  station_code: OE09
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+    - custom.StoppingPattern:Odakyu.Enoshima.RapidExpress
+
+odpt.Station:Odakyu.Enoshima.MutsuaiNichidaiMae:
+  station_facility: odpt.StationFacility:Odakyu.MutsuaiNichidaiMae
+  name_ja: 六会日大前
+  name_hira: むつあいにちだいまえ
+  name_in_system: MutsuaiNichidaiMae
+  name_en: Mutsuai-nichidai-mae
+  station_code: OE10
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.Zengyo:
+  station_facility: odpt.StationFacility:Odakyu.Zengyo
+  name_ja: 善行
+  name_hira: ぜんぎょう
+  name_in_system: Zengyo
+  name_en: Zengyo
+  station_code: OE11
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.FujisawaHommachi:
+  station_facility: odpt.StationFacility:Odakyu.FujisawaHommachi
+  name_ja: 藤沢本町
+  name_hira: ふじさわほんまち
+  name_in_system: FujisawaHommachi
+  name_en: Fujisawa-hommachi
+  station_code: OE12
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+
+odpt.Station:Odakyu.Enoshima.Fujisawa:
+  station_facility: odpt.StationFacility:Odakyu.Fujisawa
+  name_ja: 藤沢
+  name_hira: ふじさわ
+  name_in_system: Fujisawa
+  name_en: Fujisawa
+  station_code: OE13
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+    - custom.StoppingPattern:Odakyu.Enoshima.RapidExpress
+
+odpt.Station:Odakyu.Enoshima.HonKugenuma:
+  station_facility: odpt.StationFacility:Odakyu.HonKugenuma
+  name_ja: 本鵠沼
+  name_hira: ほんくげぬま
+  name_in_system: HonKugenuma
+  name_en: Hon-kugenuma
+  station_code: OE14
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Enoshima.Express
+      - 停車しない列車があります。
+
+odpt.Station:Odakyu.Enoshima.KugenumaKaigan:
+  station_facility: odpt.StationFacility:Odakyu.KugenumaKaigan
+  name_ja: 鵠沼海岸
+  name_hira: くげぬまかいがん
+  name_in_system: KugenumaKaigan
+  name_en: Kugenuma-kaigan
+  station_code: OE15
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Enoshima.Express
+      - 停車しない列車があります。
+
+odpt.Station:Odakyu.Enoshima.KataseEnoshima:
+  station_facility: odpt.StationFacility:Odakyu.KataseEnoshima
+  name_ja: 片瀬江ノ島
+  name_hira: かたせえのしま
+  name_in_system: KataseEnoshima
+  name_en: Katase-enoshima
+  station_code: OE16
+  stop:
+    - custom.StoppingPattern:Odakyu.Enoshima.Local
+    - custom.StoppingPattern:Odakyu.Enoshima.Express
+    - custom.StoppingPattern:Odakyu.Enoshima.RapidExpress

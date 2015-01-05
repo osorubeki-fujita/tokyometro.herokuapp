@@ -1,0 +1,194 @@
+#-------- 【有楽町線・副都心線】
+
+#-------- 東京メトロ
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.Yurakucho.Local.Colored:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:TokyoMetro.Yurakucho
+  color:
+    ref: custom.TrainTypeColor:Black
+    # ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Yurakucho: custom.StoppingPattern:TokyoMetro.Yurakucho.Local
+    odpt.Railway:TokyoMetro.Fukutoshin: custom.StoppingPattern:TokyoMetro.Fukutoshin.Local
+  note: 有楽町線 各駅停車（和光市→氷川台で使用）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Yurakucho
+
+custom.TrainType:TokyoMetro.Fukutoshin.Local.Colored:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:TokyoMetro.Fukutoshin
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Yurakucho: custom.StoppingPattern:TokyoMetro.Yurakucho.Local
+    odpt.Railway:TokyoMetro.Fukutoshin: custom.StoppingPattern:TokyoMetro.Fukutoshin.Local
+  note: 副都心線 各駅停車（和光市→氷川台で使用）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+
+custom.TrainType:TokyoMetro.Yurakucho.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Yurakucho: custom.StoppingPattern:TokyoMetro.Yurakucho.Local
+  note: 有楽町線 各駅停車（有楽町線・副都心線 共通／和光市方面行と新木場方面の小竹向原以南で使用）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Yurakucho
+
+custom.TrainType:TokyoMetro.Fukutoshin.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Fukutoshin: custom.StoppingPattern:TokyoMetro.Fukutoshin.Local
+  note: 副都心線 各駅停車（有楽町線・副都心線 共通／和光市方面行と渋谷方面の小竹向原以南で使用）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+
+#---- 通勤急行
+
+custom.TrainType:TokyoMetro.Fukutoshin.CommuterExpress.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.CommuterExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Yurakucho: custom.StoppingPattern:TokyoMetro.Yurakucho.Local
+    odpt.Railway:TokyoMetro.Fukutoshin: custom.StoppingPattern:TokyoMetro.Fukutoshin.CommuterExpress
+  note: 副都心線 通勤急行
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+
+#---- 急行（土休日運行／明治神宮前に停車）
+
+custom.TrainType:TokyoMetro.Fukutoshin.HolidayExpress.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.HolidayExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Yurakucho: custom.StoppingPattern:TokyoMetro.Fukutoshin.Express
+    odpt.Railway:TokyoMetro.Fukutoshin: custom.StoppingPattern:TokyoMetro.Fukutoshin.HolidayExpress
+  note: 副都心線 急行【土休日運行／明治神宮前に停車】
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+
+#---- 急行
+
+custom.TrainType:TokyoMetro.Fukutoshin.Express.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Express
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Yurakucho: custom.StoppingPattern:TokyoMetro.Fukutoshin.Express
+    odpt.Railway:TokyoMetro.Fukutoshin: custom.StoppingPattern:TokyoMetro.Fukutoshin.Express
+  note: 副都心線 急行
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+
+#-------- 西武池袋線内
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.Local.ToSeibu:
+  ref: custom.TrainTypeOtherOperator:Seibu.Local
+  stopping_pattern:
+    odpt.Railway:Seibu.Ikebukuro: custom.StoppingPattern:Seibu.Ikebukuro.Local
+    odpt.Railway:Seibu.Yurakucho: custom.StoppingPattern:Seibu.Yurakucho.Local
+    odpt.Railway:Seibu.Sayama: custom.StoppingPattern:Seibu.Sayama.Local
+    odpt.Railway:Seibu.Chichibu: custom.StoppingPattern:Seibu.Chichibu.Local
+  note: 西武池袋線 各駅停車（有楽町線・副都心線 共通／小竹向原方面行で使用）
+  operator: odpt.Operator:Seibu
+  railway_line: odpt.Railway:Seibu.Ikebukuro
+
+#---- 準急
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.SemiExpress.ToSeibu:
+  ref: custom.TrainTypeOtherOperator:Seibu.SemiExpress
+  stopping_pattern:
+    odpt.Railway:Seibu.Ikebukuro: custom.StoppingPattern:Seibu.Ikebukuro.SemiExpress
+    odpt.Railway:Seibu.Yurakucho: custom.StoppingPattern:Seibu.Yurakucho.Local
+    odpt.Railway:Seibu.Sayama: custom.StoppingPattern:Seibu.Sayama.Local
+    odpt.Railway:Seibu.Chichibu: custom.StoppingPattern:Seibu.Chichibu.Local
+  note: 西武池袋線 準急（有楽町線・副都心線 共通／小竹向原方面行で使用）
+  operator: odpt.Operator:Seibu
+  railway_line: odpt.Railway:Seibu.Ikebukuro
+
+#---- 快速
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.Rapid.ToSeibu:
+  ref: custom.TrainTypeOtherOperator:Seibu.Rapid
+  stopping_pattern:
+    odpt.Railway:Seibu.Ikebukuro: custom.StoppingPattern:Seibu.Ikebukuro.Rapid
+    odpt.Railway:Seibu.Yurakucho: custom.StoppingPattern:Seibu.Yurakucho.Local
+    odpt.Railway:Seibu.Sayama: custom.StoppingPattern:Seibu.Sayama.Local
+    odpt.Railway:Seibu.Chichibu: custom.StoppingPattern:Seibu.Chichibu.Local
+  note: 西武池袋線 快速（有楽町線・副都心線 共通／小竹向原方面行で使用）
+  operator: odpt.Operator:Seibu
+  railway_line: odpt.Railway:Seibu.Ikebukuro
+
+#---- 快速急行
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.RapidExpress.ToSeibu:
+  ref: custom.TrainTypeOtherOperator:Seibu.RapidExpress
+  stopping_pattern:
+    odpt.Railway:Seibu.Ikebukuro: custom.StoppingPattern:Seibu.Ikebukuro.RapidExpress.Subway
+    odpt.Railway:Seibu.Yurakucho: custom.StoppingPattern:Seibu.Yurakucho.Local
+    odpt.Railway:Seibu.Sayama: custom.StoppingPattern:Seibu.Sayama.Local
+    odpt.Railway:Seibu.Chichibu: custom.StoppingPattern:Seibu.Chichibu.Local
+  note: 西武池袋線 快速急行（有楽町線・副都心線 共通／小竹向原方面行で使用）
+  operator: odpt.Operator:Seibu
+  railway_line: odpt.Railway:Seibu.Ikebukuro
+
+
+#-------- 東武東上線
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.Local.ToTobuTojo:
+  ref: custom.TrainTypeOtherOperator:TobuTojo.Local
+  stopping_pattern:
+    odpt.Railway:Tobu.Tojo: custom.StoppingPattern:Tobu.Tojo.Local
+  note: 東武東上線 各駅停車（有楽町線・副都心線 共通／和光市方面行で使用）
+  operator: odpt.Operator:Tobu
+  railway_line: odpt.Railway:Tobu.Tojo
+
+#-------- 東急東横線
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.Local.ToTokyu:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.ToTokyu
+  stopping_pattern:
+    odpt.Railway:Tokyu.Toyoko: custom.StoppingPattern:Tokyu.Toyoko.Local
+    odpt.Railway:YokohamaMinatomiraiRailway.Minatomirai: custom.StoppingPattern:YokohamaMinatomiraiRailway.Minatomirai.Local
+  note: 東急東横線 各駅停車（和光市→氷川台では有楽町線の時刻表にも表示）
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Toyoko
+
+#---- 急行
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.Express.ToTokyu:
+  ref: custom.TrainTypeDefault:TokyoMetro.Express.ToTokyu
+  stopping_pattern:
+    odpt.Railway:Tokyu.Toyoko: custom.StoppingPattern:Tokyu.Toyoko.Express
+    odpt.Railway:YokohamaMinatomiraiRailway.Minatomirai: custom.StoppingPattern:YokohamaMinatomiraiRailway.Minatomirai.Express
+  note: 東急東横線 急行（和光市→氷川台では有楽町線の時刻表にも表示）
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Toyoko
+
+#---- 通勤特急
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.CommuterLimitedExpress.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.CommuterLimitedExpress
+  stopping_pattern:
+    odpt.Railway:Tokyu.Toyoko: custom.StoppingPattern:Tokyu.Toyoko.CommuterLimitedExpress
+    odpt.Railway:YokohamaMinatomiraiRailway.Minatomirai: custom.StoppingPattern:YokohamaMinatomiraiRailway.Minatomirai.Express
+  note: 東急東横線 通勤特急（和光市→氷川台では有楽町線の時刻表にも表示）
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Toyoko
+
+#---- 特急
+
+custom.TrainType:TokyoMetro.YurakuchoFukutoshin.LimitedExpress.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.LimitedExpress
+  stopping_pattern:
+    odpt.Railway:Tokyu.Toyoko: custom.StoppingPattern:Tokyu.Toyoko.LimitedExpress
+    odpt.Railway:YokohamaMinatomiraiRailway.Minatomirai: custom.StoppingPattern:YokohamaMinatomiraiRailway.Minatomirai.LimitedExpress
+  note: 東急東横線 特急（和光市→氷川台では有楽町線の時刻表にも表示）
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Toyoko

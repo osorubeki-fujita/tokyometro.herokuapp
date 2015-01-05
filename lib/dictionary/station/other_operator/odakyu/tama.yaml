@@ -1,0 +1,110 @@
+odpt.Station:Odakyu.Tama.ShinYurigaoka:
+  station_alias: odpt.Station:Odakyu.Odawara.ShinYurigaoka
+  station_facility: odpt.StationFacility:Odakyu.ShinYurigaoka
+  name_ja: 新百合ヶ丘
+  name_hira: しんゆりがおか
+  name_in_system: ShinYurigaoka
+  name_en: Shin-yurigaoka
+  station_code: OH23
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.TamaExpress
+    - custom.StoppingPattern:Odakyu.Tama.Express
+    - custom.StoppingPattern:Odakyu.Tama.RomanceCar
+
+odpt.Station:Odakyu.Tama.Satsukidai:
+  station_facility: odpt.StationFacility:Odakyu.Satsukidai
+  name_ja: 五月台
+  name_hira: さつきだい
+  name_in_system: Satsukidai
+  name_en: Satsukidai
+  station_code: OT01
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+
+odpt.Station:Odakyu.Tama.Kurihira:
+  station_facility: odpt.StationFacility:Odakyu.Kurihira
+  name_ja: 栗平
+  name_hira: くりひら
+  name_in_system: Kurihira
+  name_en: Kurihira
+  station_code: OT02
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.TamaExpress
+    - custom.StoppingPattern:Odakyu.Tama.Express
+
+odpt.Station:Odakyu.Tama.Kurokawa:
+  station_facility: odpt.StationFacility:Odakyu.Kurokawa
+  name_ja: 黒川
+  name_hira: くろかわ
+  name_in_system: Kurokawa
+  name_en: Kurokawa
+  station_code: OT03
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+
+odpt.Station:Odakyu.Tama.Haruhino:
+  station_facility: odpt.StationFacility:Odakyu.Haruhino
+  name_ja: はるひ野
+  name_hira: はるひの
+  name_in_system: Haruhino
+  name_en: Haruhino
+  station_code: OT04
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+
+odpt.Station:Odakyu.Tama.OdakyuNagayama:
+  station_facility: odpt.StationFacility:Odakyu.OdakyuNagayama
+  name_ja: 小田急永山
+  name_hira: おだきゅうながやま
+  name_in_system: OdakyuNagayama
+  name_en: Odakyu-nagayama
+  station_code: OT05
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.TamaExpress
+    - custom.StoppingPattern:Odakyu.Tama.Express
+    - custom.StoppingPattern:Odakyu.Tama.RomanceCar
+
+odpt.Station:Odakyu.Tama.OdakyuTamaCenter:
+  station_facility: odpt.StationFacility:Odakyu.OdakyuTamaCenter
+  name_ja: 小田急多摩センター
+  name_hira: おだきゅうたませんたー
+  name_in_system: OdakyuTamaCenter
+  name_en: Odakyu Tama Center
+  station_code: OT06
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.TamaExpress
+    - custom.StoppingPattern:Odakyu.Tama.Express
+    - custom.StoppingPattern:Odakyu.Tama.RomanceCar
+
+odpt.Station:Odakyu.Tama.Karakida:
+  station_facility: odpt.StationFacility:Odakyu.Karakida
+  name_ja: 唐木田
+  name_hira: からきだ
+  name_in_system: Karakida
+  name_en: Karakida
+  station_code: OT07
+  stop:
+    - custom.StoppingPattern:Odakyu.Tama.Local
+    - custom.StoppingPattern:Odakyu.Tama.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.SemiExpress
+    - custom.StoppingPattern:Odakyu.Tama.TamaExpress
+    - custom.StoppingPattern:Odakyu.Tama.Express
+    - custom.StoppingPattern:Odakyu.Tama.RomanceCar

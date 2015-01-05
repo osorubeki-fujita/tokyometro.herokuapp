@@ -1,0 +1,83 @@
+#-------- 【半蔵門線】
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.Hanzomon.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+  note: 半蔵門線 各駅停車
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+
+#---- 各駅停車（東急田園都市線 直通）
+
+custom.TrainType:TokyoMetro.Hanzomon.Local.ToTokyu:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.ToTokyu
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+    odpt.Railway:Tokyu.DenEnToshi: custom.StoppingPattern:Tokyu.DenEnToshi.Local
+  note: 半蔵門線 各駅停車（東急田園都市線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+
+#---- 準急（東急田園都市線 直通）
+
+custom.TrainType:TokyoMetro.Hanzomon.SemiExpress.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.SemiExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+    odpt.Railway:Tokyu.DenEnToshi: custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+  note: 半蔵門線 準急（東急田園都市線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+
+#---- 急行（東急田園都市線 直通／土休日運行／南町田に停車）
+
+custom.TrainType:TokyoMetro.Hanzomon.HolidayExpress.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.HolidayExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+    odpt.Railway:Tokyu.DenEnToshi: custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+  note: 半蔵門線 急行（東急田園都市線 直通／土休日運行／南町田に停車）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+
+#---- 急行（東急田園都市線 直通）
+
+custom.TrainType:TokyoMetro.Hanzomon.Express.ToTokyu:
+  ref: custom.TrainTypeDefault:TokyoMetro.Express.ToTokyu
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+    odpt.Railway:Tokyu.DenEnToshi: custom.StoppingPattern:Tokyu.DenEnToshi.Express
+  note: 半蔵門線 急行（東急田園都市線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+
+#---- 準急（東武線 直通）
+
+custom.TrainType:TokyoMetro.Hanzomon.SemiExpress.ToTobu:
+  ref: custom.TrainTypeOtherOperator:Tobu.SemiExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+    odpt.Railway:Tobu.SkyTreeOshiage: custom.StoppingPattern:Tobu.SkyTreeOshiage.Subway
+    odpt.Railway:Tobu.SkyTree: custom.StoppingPattern:Tobu.SkyTree.SemiExpress
+    odpt.Railway:Tobu.Isesaki: custom.StoppingPattern:Tobu.Isesaki.SemiExpress
+    odpt.Railway:Tobu.Nikko: custom.StoppingPattern:Tobu.Nikko.SemiExpress
+  note: 半蔵門線 準急（東武線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+
+#---- 急行（東武方面）
+
+custom.TrainType:TokyoMetro.Hanzomon.Express.ToTobu:
+  ref: custom.TrainTypeOtherOperator:Tobu.Express
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hanzomon: custom.StoppingPattern:TokyoMetro.Hanzomon.Local
+    odpt.Railway:Tobu.SkyTreeOshiage: custom.StoppingPattern:Tobu.SkyTreeOshiage.Subway
+    odpt.Railway:Tobu.SkyTree: custom.StoppingPattern:Tobu.SkyTree.Express
+    odpt.Railway:Tobu.Isesaki: custom.StoppingPattern:Tobu.Isesaki.Express
+    odpt.Railway:Tobu.Nikko: custom.StoppingPattern:Tobu.Nikko.Express
+  note: 半蔵門線 急行（東武線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon

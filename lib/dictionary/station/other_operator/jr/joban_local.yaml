@@ -1,0 +1,148 @@
+odpt.Station:JR-East.Joban.KitaSenju:
+  station_alias: odpt.Station:TokyoMetro.Chiyoda.KitaSenju
+  station_facility: odpt.StationFacility:JR-East.KitaSenju
+  station_facility_custom: odpt.StationFacility:TokyoMetro.KitaSenju.Chyoda
+  station_facility_custom_alias: odpt.StationFacility:JR-East.KitaSenju
+  name_ja: 北千住
+  name_hira: きたせんじゅ
+  name_in_system: KitaSenju
+  name_en: Kita-senju
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+    - custom.StoppingPattern:JR-East.Joban.Rapid
+
+odpt.Station:JR-East.Joban.Ayase:
+  station_alias: odpt.Station:TokyoMetro.Chiyoda.Ayase
+  station_facility: odpt.StationFacility:JR-East.Ayase
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Ayase
+  station_facility_custom_alias: odpt.StationFacility:JR-East.Ayase
+  name_ja: 綾瀬
+  name_hira: あやせ
+  name_in_system: Ayase
+  name_en: Ayase
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Kameari:
+  station_facility: odpt.StationFacility:JR-East.Kameari
+  name_ja: 亀有
+  name_hira: かめあり
+  name_in_system: Kameari
+  name_en: Kameari
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Kanamachi:
+  station_facility: odpt.StationFacility:JR-East.Kanamachi
+  name_ja: 金町
+  name_hira: かなまち
+  name_in_system: Kanamachi
+  name_en: Kanamachi
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Matsudo:
+  station_facility: odpt.StationFacility:JR-East.Matsudo
+  name_ja: 松戸
+  name_hira: まつど
+  name_in_system: Matsudo
+  name_en: Matsudo
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+    - custom.StoppingPattern:JR-East.Joban.Rapid
+    - custom.StoppingPattern:JR-East.Joban.SpecialRapid
+
+odpt.Station:JR-East.Joban.KitaMatsudo:
+  station_facility: odpt.StationFacility:JR-East.KitaMatsudo
+  name_ja: 北松戸
+  name_hira: きたまつど
+  name_in_system: KitaMatsudo
+  name_en: Kita-matsudo
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Mabashi:
+  station_facility: odpt.StationFacility:JR-East.Mabashi
+  name_ja: 馬橋
+  name_hira: まばし
+  name_in_system: Mabashi
+  name_en: Mabashi
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.ShinMatsudo:
+  station_facility: odpt.StationFacility:JR-East.ShinMatsudo
+  name_ja: 新松戸
+  name_hira: しんまつど
+  name_in_system: ShinMatsudo
+  name_en: Shin-matsudo
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.KitaKogane:
+  station_facility: odpt.StationFacility:JR-East.KitaKogane
+  name_ja: 北小金
+  name_hira: きたこがね
+  name_in_system: KitaKogane
+  name_en: Kita-kogane
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.MinamiKashiwa:
+  station_facility: odpt.StationFacility:JR-East.MinamiKashiwa
+  name_ja: 南柏
+  name_hira: みなみかしわ
+  name_in_system: MinamiKashiwa
+  name_en: Minami-kashiwa
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Kashiwa:
+  station_facility: odpt.StationFacility:JR-East.Kashiwa
+  name_ja: 柏
+  name_hira: かしわ
+  name_in_system: Kashiwa
+  name_en: Kashiwa
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+    - custom.StoppingPattern:JR-East.Joban.Rapid
+    - custom.StoppingPattern:JR-East.Joban.SpecialRapid
+
+odpt.Station:JR-East.Joban.KitaKashiwa:
+  station_facility: odpt.StationFacility:JR-East.KitaKashiwa
+  name_ja: 北柏
+  name_hira: きたかしわ
+  name_in_system: KitaKashiwa
+  name_en: Kita-kashiwa
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Abiko:
+  station_facility: odpt.StationFacility:JR-East.Abiko
+  name_ja: 我孫子
+  name_hira: あびこ
+  name_in_system: Abiko
+  name_en: Abiko
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+    - custom.StoppingPattern:JR-East.Joban.Rapid
+
+odpt.Station:JR-East.Joban.Tennodai:
+  station_facility: odpt.StationFacility:JR-East.Tennodai
+  name_ja: 天王台
+  name_hira: てんのうだい
+  name_in_system: Tennodai
+  name_en: Tennodai
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+
+odpt.Station:JR-East.Joban.Toride:
+  station_facility: odpt.StationFacility:JR-East.Toride
+  name_ja: 取手
+  name_hira: とりで
+  name_in_system: Toride
+  name_en: Toride
+  stop:
+    - custom.StoppingPattern:JR-East.Joban.Local
+    - custom.StoppingPattern:JR-East.Joban.Rapid
+    - custom.StoppingPattern:JR-East.Joban.SpecialRapid

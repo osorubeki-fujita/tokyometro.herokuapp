@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car_composition: 1
+  car_number: 1
+  rail_direction_id: 1
+
+two:
+  car_composition: 1
+  car_number: 1
+  rail_direction_id: 1

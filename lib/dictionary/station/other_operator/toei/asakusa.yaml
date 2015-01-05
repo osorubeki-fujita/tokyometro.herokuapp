@@ -1,0 +1,219 @@
+# 都営浅草線
+
+odpt.Station:Toei.Asakusa.NishiMagome:
+  station_facility: odpt.StationFacility:Toei.NishiMagome
+  name_ja: 西馬込
+  name_hira: にしまごめ
+  name_in_system: NishiMagome
+  name_en: Nishi-magome
+  station_code: A-01
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+
+odpt.Station:Toei.Asakusa.Magome:
+  station_facility: odpt.StationFacility:Toei.Magome
+  name_ja: 馬込
+  name_hira: まごめ
+  name_in_system: Magome
+  name_en: Magome
+  station_code: A-02
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+
+odpt.Station:Toei.Asakusa.Nakanobu:
+  station_facility: odpt.StationFacility:Toei.Nakanobu
+  name_ja: 中延
+  name_hira: なかのぶ
+  name_in_system: Nakanobu
+  name_en: Nakanobu
+  station_code: A-03
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+
+odpt.Station:Toei.Asakusa.Togoshi:
+  station_facility: odpt.StationFacility:Toei.Togoshi
+  name_ja: 戸越
+  name_hira: とごし
+  name_in_system: Togoshi
+  name_en: Togoshi
+  station_code: A-04
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+
+odpt.Station:Toei.Asakusa.Gotanda:
+  station_facility: odpt.StationFacility:Toei.Gotanda
+  name_ja: 五反田
+  name_hira: ごたんだ
+  name_in_system: Gotanda
+  name_en: Gotanda
+  station_code: A-05
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+
+odpt.Station:Toei.Asakusa.Takanawadai:
+  station_facility: odpt.StationFacility:Toei.Takanawadai
+  name_ja: 高輪台
+  name_hira: たかなわだい
+  name_in_system: Takanawadai
+  name_en: Takanawadai
+  station_code: A-06
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Sengakuji:
+  station_alias:
+    - odpt.Station:Keikyu.Main.Sengakuji
+  station_facility: odpt.StationFacility:Toei.Sengakuji
+  station_facility_custom: odpt.StationFacility:Keikyu.Sengakuji
+  station_facility_custom_alias:
+    - odpt.StationFacility:Toei.Sengakuji
+  name_ja: 泉岳寺
+  name_hira: せんがくじ
+  name_in_system: Sengakuji
+  name_en: Sengakuji
+  station_code: A-07
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Mita:
+  station_facility: odpt.StationFacility:Toei.Mita
+  name_ja: 三田
+  name_hira: みた
+  name_in_system: Mita
+  name_en: Mita
+  station_code: A-08
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Daimon:
+  station_facility: odpt.StationFacility:Toei.Mita
+  name_ja: 大門
+  name_hira: だいもん
+  name_in_system: Daimon
+  name_en: Daimon
+  station_code: A-09
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Shimbashi:
+  station_facility: odpt.StationFacility:Toei.Shimbashi
+  name_ja: 新橋
+  name_hira: しんばし
+  name_in_system: Shimbashi
+  name_en: Shimbashi
+  station_code: A-10
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.HigashiGinza:
+  station_facility: odpt.StationFacility:Toei.HigashiGinza
+  name_ja: 東銀座
+  name_hira: ひがしぎんざ
+  name_in_system: HigashiGinza
+  name_en: Higashi-ginza
+  station_code: A-11
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Takaracho:
+  station_facility: odpt.StationFacility:Toei.Takaracho
+  name_ja: 宝町
+  name_hira: たからちょう
+  name_in_system: Takaracho
+  name_en: Takaracho
+  station_code: A-12
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Nihombashi:
+  station_facility: odpt.StationFacility:Toei.Nihombashi
+  name_ja: 日本橋
+  name_hira: にほんばし
+  name_in_system: Nihombashi
+  name_en: Nihombashi
+  station_code: A-13
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Ningyocho:
+  station_facility: odpt.StationFacility:Toei.Ningyocho
+  name_ja: 人形町
+  name_hira: にんぎょうちょう
+  name_in_system: Ningyocho
+  name_en: Ningyocho
+  station_code: A-14
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.HigashiNihombashi:
+  station_facility: odpt.StationFacility:Toei.HigashiNihombashi
+  name_ja: 東日本橋
+  name_hira: ひがしにほんばし
+  name_in_system: HigashiNihombashi
+  name_en: Higashi-nihombashi
+  station_code: A-15
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Asakusabashi:
+  station_facility: odpt.StationFacility:Toei.Asakusabashi
+  name_ja: 浅草橋
+  name_hira: あさくさばし
+  name_in_system: Asakusabashi
+  name_en: Asakusabashi
+  station_code: A-16
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Kuramae:
+  station_facility: odpt.StationFacility:Toei.Kuramae
+  name_ja: 蔵前
+  name_hira: くらまえ
+  name_in_system: Kuramae
+  name_en: Kuramae
+  station_code: A-17
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Asakusa:
+  station_facility: odpt.StationFacility:Toei.Asakusa
+  name_ja: 浅草
+  name_hira: あさくさ
+  name_in_system: Asakusa
+  name_en: Asakusa
+  station_code: A-18
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.HonjoAzumabashi:
+  station_facility: odpt.StationFacility:Toei.HonjoAzumabashi
+  name_ja: 本所吾妻橋
+  name_hira: ほんじょあづまばし
+  name_in_system: HonjoAzumabashi
+  name_en: Honjo-azumabashi
+  station_code: A-19
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.Local
+    
+odpt.Station:Toei.Asakusa.Oshiage:
+  station_alias:
+    - odpt.Station:Keisei.KeiseiOshiage.Oshiage
+  station_facility: odpt.StationFacility:Toei.Oshiage
+  station_facility_custom: odpt.StationFacility:Keisei.Oshiage
+  station_facility_custom_alias:
+    - odpt.StationFacility:Toei.Oshiage
+  name_ja: 押上〈スカイツリー前〉
+  name_hira: おしあげ（すかいつりーまえ）
+  name_in_system: Oshiage
+  name_en: Oshiage 'Skytree'
+  station_code: A-20
+  stop:
+    - custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+    - custom.StoppingPattern:Toei.Mita.Local

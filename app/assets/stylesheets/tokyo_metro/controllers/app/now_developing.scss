@@ -1,0 +1,17 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+#now_developing {
+	@extend %floatLeft ;
+    @extend %marginBottom16 ;
+    @include border_radius( 4px ) ;
+    @include text_ja ;
+    padding: 4px ;
+    border: solid 1px $jp_traditional_akamurasaki ;
+    background-color: $jp_traditional_jinzamomi ;
+    color: #fff ;
+    font: {
+        size: 10pt;
+    }
+}

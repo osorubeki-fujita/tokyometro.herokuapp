@@ -1,0 +1,928 @@
+odpt.StationFacility:TokyoMetro.AoyamaItchome:
+  name_ja: 青山一丁目
+  name_hira: あおやまいっちょうめ
+  name_in_system: AoyamaItchome
+  name_en: Aoyama-itchome
+
+odpt.StationFacility:TokyoMetro.Akasaka:
+  name_ja: 赤坂
+  name_hira: あかさか
+  name_in_system: Akasaka
+  name_en: Akasaka
+
+odpt.StationFacility:TokyoMetro.AkasakaMitsuke:
+  name_ja: 赤坂見附
+  name_hira: あかさかみつけ
+  name_in_system: AkasakaMitsuke
+  name_en: Akasaka-mitsuke
+
+odpt.StationFacility:TokyoMetro.AkabaneIwabuchi:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.AkabaneIwabuchi
+  station_facility_custom_alias: odpt.StationFacility:SaitamaRailway.AkabaneIwabuchi
+  name_ja: 赤羽岩淵
+  name_hira: あかばねいわぶち
+  name_in_system: AkabaneIwabuchi
+  name_en: Akabane-iwabuchi
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:SaitamaRailway
+
+odpt.StationFacility:TokyoMetro.Akihabara:
+  name_ja: 秋葉原
+  name_hira: あきはばら
+  name_in_system: Akihabara
+  name_en: Akihabara
+
+odpt.StationFacility:TokyoMetro.Asakusa:
+  name_ja: 浅草
+  name_hira: あさくさ
+  name_in_system: Asakusa
+  name_en: Asakusa
+
+odpt.StationFacility:TokyoMetro.AzabuJuban:
+  name_ja: 麻布十番
+  name_hira: あざぶじゅうばん
+  name_in_system: AzabuJuban
+  name_en: Azabu-juban
+
+odpt.StationFacility:TokyoMetro.Ayase:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Ayase
+  station_facility_custom_alias: odpt.StationFacility:JR-East.Ayase
+  name_ja: 綾瀬
+  name_hira: あやせ
+  name_in_system: Ayase
+  name_en: Ayase
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:JR-East
+
+odpt.StationFacility:TokyoMetro.Awajicho:
+  name_ja: 淡路町
+  name_hira: あわじちょう
+  name_in_system: Awajicho
+  name_en: Awajicho
+
+odpt.StationFacility:TokyoMetro.Iidabashi:
+  name_ja: 飯田橋
+  name_hira: いいだばし
+  name_in_system: Iidabashi
+  name_en: Iidabashi
+
+odpt.StationFacility:TokyoMetro.Ikebukuro:
+  name_ja: 池袋
+  name_hira: いけぶくろ
+  name_in_system: Ikebukuro
+  name_en: Ikebukuro
+
+odpt.StationFacility:TokyoMetro.Ichigaya:
+  name_ja: 市ケ谷
+  name_hira: いちがや
+  name_in_system: Ichigaya
+  name_en: Ichigaya
+
+odpt.StationFacility:TokyoMetro.Inaricho:
+  name_ja: 稲荷町
+  name_hira: いなりちょう
+  name_in_system: Inaricho
+  name_en: Inaricho
+
+odpt.StationFacility:TokyoMetro.Iriya:
+  name_ja: 入谷
+  name_hira: いりや
+  name_in_system: Iriya
+  name_en: Iriya
+
+odpt.StationFacility:TokyoMetro.Ueno:
+  name_ja: 上野
+  name_hira: うえの
+  name_in_system: Ueno
+  name_en: Ueno
+
+odpt.StationFacility:TokyoMetro.UenoHirokoji:
+  name_ja: 上野広小路
+  name_hira: うえのひろこうじ
+  name_in_system: UenoHirokoji
+  name_en: Ueno-hirokoji
+
+odpt.StationFacility:TokyoMetro.Urayasu:
+  name_ja: 浦安
+  name_hira: うらやす
+  name_in_system: Urayasu
+  name_en: Urayasu
+
+odpt.StationFacility:TokyoMetro.Edogawabashi:
+  name_ja: 江戸川橋
+  name_hira: えどがわばし
+  name_in_system: Edogawabashi
+  name_en: Edogawabashi
+
+odpt.StationFacility:TokyoMetro.Ebisu:
+  name_ja: 恵比寿
+  name_hira: えびす
+  name_in_system: Ebisu
+  name_en: Ebisu
+
+odpt.StationFacility:TokyoMetro.Oji:
+  name_ja: 王子
+  name_hira: おうじ
+  name_in_system: Oji
+  name_en: Oji
+
+odpt.StationFacility:TokyoMetro.OjiKamiya:
+  name_ja: 王子神谷
+  name_hira: おうじかみや
+  name_in_system: OjiKamiya
+  name_en: Oji-kamiya
+
+odpt.StationFacility:TokyoMetro.Otemachi:
+  name_ja: 大手町
+  name_hira: おおてまち
+  name_in_system: Otemachi
+  name_en: Otemachi
+
+odpt.StationFacility:TokyoMetro.Ogikubo:
+  name_ja: 荻窪
+  name_hira: おぎくぼ
+  name_in_system: Ogikubo
+  name_en: Ogikubo
+
+odpt.StationFacility:TokyoMetro.Oshiage:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Oshiage
+  station_facility_custom_alias: odpt.StationFacility:Tobu.Oshiage
+  name_ja: 押上<スカイツリー前>
+  name_hira: おしあげすかいつりーまえ
+  name_in_system: Oshiage
+  name_en: Oshiage
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:Tobu
+
+odpt.StationFacility:TokyoMetro.Ochiai:
+  name_ja: 落合
+  name_hira: おちあい
+  name_in_system: Ochiai
+  name_en: Ochiai
+
+odpt.StationFacility:TokyoMetro.Ochanomizu:
+  name_ja: 御茶ノ水
+  name_hira: おちゃのみず
+  name_in_system: Ochanomizu
+  name_en: Ochanomizu
+
+odpt.StationFacility:TokyoMetro.OmoteSando:
+  name_ja: 表参道
+  name_hira: おもてさんどう
+  name_in_system: OmoteSando
+  name_en: Omote-sando
+
+odpt.StationFacility:TokyoMetro.Gaiemmae:
+  name_ja: 外苑前
+  name_hira: がいえんまえ
+  name_in_system: Gaiemmae
+  name_en: Gaiemmae
+
+odpt.StationFacility:TokyoMetro.Kagurazaka:
+  name_ja: 神楽坂
+  name_hira: かぐらざか
+  name_in_system: Kagurazaka
+  name_en: Kagurazaka
+
+odpt.StationFacility:TokyoMetro.Kasai:
+  name_ja: 葛西
+  name_hira: かさい
+  name_in_system: Kasai
+  name_en: Kasai
+
+odpt.StationFacility:TokyoMetro.Kasumigaseki:
+  name_ja: 霞ケ関
+  name_hira: かすみがせき
+  name_in_system: Kasumigaseki
+  name_en: Kasumigaseki
+
+odpt.StationFacility:TokyoMetro.Kanamecho:
+  name_ja: 要町
+  name_hira: かなめちょう
+  name_in_system: Kanamecho
+  name_en: Kanamecho
+
+odpt.StationFacility:TokyoMetro.Kamiyacho:
+  name_ja: 神谷町
+  name_hira: かみやちょう
+  name_in_system: Kamiyacho
+  name_en: Kamiyacho
+
+odpt.StationFacility:TokyoMetro.Kayabacho:
+  name_ja: 茅場町
+  name_hira: かやばちょう
+  name_in_system: Kayabacho
+  name_en: Kayabacho
+
+odpt.StationFacility:TokyoMetro.Kanda:
+  name_ja: 神田
+  name_hira: かんだ
+  name_in_system: Kanda
+  name_en: Kanda
+
+odpt.StationFacility:TokyoMetro.KitaAyase:
+  name_ja: 北綾瀬
+  name_hira: きたあやせ
+  name_in_system: KitaAyase
+  name_en: Kita-ayase
+
+odpt.StationFacility:TokyoMetro.KitaSando:
+  name_ja: 北参道
+  name_hira: きたさんどう
+  name_in_system: KitaSando
+  name_en: Kita-sando
+
+odpt.StationFacility:TokyoMetro.KitaSenju:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.KitaSenju.Chiyoda
+  station_facility_custom_alias: odpt.StationFacility:JR-East.KitaSenju
+  name_ja: 北千住
+  name_hira: きたせんじゅ
+  name_in_system: KitaSenju
+  name_en: Kita-senju
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:JR-East
+
+odpt.StationFacility:TokyoMetro.Kiba:
+  name_ja: 木場
+  name_hira: きば
+  name_in_system: Kiba
+  name_en: Kiba
+
+odpt.StationFacility:TokyoMetro.Gyotoku:
+  name_ja: 行徳
+  name_hira: ぎょうとく
+  name_in_system: Gyotoku
+  name_en: Gyotoku
+
+odpt.StationFacility:TokyoMetro.Kyobashi:
+  name_ja: 京橋
+  name_hira: きょうばし
+  name_in_system: Kyobashi
+  name_en: Kyobashi
+
+odpt.StationFacility:TokyoMetro.KiyosumiShirakawa:
+  name_ja: 清澄白河
+  name_hira: きよすみしらかわ
+  name_in_system: KiyosumiShirakawa
+  name_en: Kiyosumi-shirakawa
+
+odpt.StationFacility:TokyoMetro.Ginza:
+  name_ja: 銀座
+  name_hira: ぎんざ
+  name_in_system: Ginza
+  name_en: Ginza
+
+odpt.StationFacility:TokyoMetro.GinzaItchome:
+  name_ja: 銀座一丁目
+  name_hira: ぎんざいっちょうめ
+  name_in_system: GinzaItchome
+  name_en: Ginza-itchome
+
+odpt.StationFacility:TokyoMetro.Kinshicho:
+  name_ja: 錦糸町
+  name_hira: きんしちょう
+  name_in_system: Kinshicho
+  name_en: Kinshicho
+
+odpt.StationFacility:TokyoMetro.Kudanshita:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Kudanshita.Hanzomon
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Kudanshita
+  name_ja: 九段下
+  name_hira: くだんした
+  name_in_system: Kudanshita
+  name_en: Kudanshita
+  administrator:
+    - odpt.Operator:TokyoMetro
+    - odpt.Operator:Toei
+
+odpt.StationFacility:TokyoMetro.Kojimachi:
+  name_ja: ?町
+  name_hira: こうじまち
+  name_in_system: Kojimachi
+  name_en: Kojimachi
+
+odpt.StationFacility:TokyoMetro.Korakuen:
+  name_ja: 後楽園
+  name_hira: こうらくえん
+  name_in_system: Korakuen
+  name_en: Korakuen
+
+odpt.StationFacility:TokyoMetro.Gokokuji:
+  name_ja: 護国寺
+  name_hira: ごこくじ
+  name_in_system: Gokokuji
+  name_en: Gokokuji
+
+odpt.StationFacility:TokyoMetro.KotakeMukaihara:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.KotakeMukaihara
+  station_facility_custom_alias: odpt.StationFacility:Seibu.KotekeMukaihara
+  name_ja: 小竹向原
+  name_hira: こたけむかいはら
+  name_in_system: KotakeMukaihara
+  name_en: Kotake-mukaihara
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:Seibu
+
+odpt.StationFacility:TokyoMetro.KokkaiGijidomae:
+  name_ja: 国会議事堂前
+  name_hira: こっかいぎじどうまえ
+  name_in_system: KokkaiGijidomae
+  name_en: Kokkai-gijidomae
+
+odpt.StationFacility:TokyoMetro.Kodemmacho:
+  name_ja: 小伝馬町
+  name_hira: こでんまちょう
+  name_in_system: Kodemmacho
+  name_en: Kodemmacho
+
+odpt.StationFacility:TokyoMetro.Komagome:
+  name_ja: 駒込
+  name_hira: こまごめ
+  name_in_system: Komagome
+  name_en: Komagome
+
+odpt.StationFacility:TokyoMetro.Sakuradamon:
+  name_ja: 桜田門
+  name_hira: さくらだもん
+  name_in_system: Sakuradamon
+  name_en: Sakuradamon
+
+odpt.StationFacility:TokyoMetro.Shibuya:
+  station_facility_custom: odpt.StationFacility:Tokyu.Shibuya
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Shibuya.HanzomonFukutoshin
+    - odpt.StationFacility:TokyoMetro.Shibiya
+  name_ja: 渋谷
+  name_hira: しぶや
+  name_in_system: Shibuya
+  name_en: Shibuya
+  administrator: odpt.Operator:Tokyu
+  other_operator: odpt.Operator:TokyoMetro
+
+odpt.StationFacility:TokyoMetro.Shimo:
+  name_ja: 志茂
+  name_hira: しも
+  name_in_system: Shimo
+  name_en: Shimo
+
+odpt.StationFacility:TokyoMetro.Shirokanedai:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Shirokanedai
+  station_facility_custom_alias: odpt.StationFacility:Toei.Shirokanedai
+  name_ja: 白金台
+  name_hira: しろかねだい
+  name_in_system: Shirokanedai
+  name_en: Shirokanedai
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:Toei
+
+odpt.StationFacility:TokyoMetro.ShirokaneTakanawa:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.ShirokaneTakanawa
+  station_facility_custom_alias: odpt.StationFacility:Toei.ShirokaneTakanawa
+  name_ja: 白金高輪
+  name_hira: しろかねたかなわ
+  name_in_system: ShirokaneTakanawa
+  name_en: Shirokane-takanawa
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:Toei
+
+odpt.StationFacility:TokyoMetro.ShinOtsuka:
+  name_ja: 新大塚
+  name_hira: しんおおつか
+  name_in_system: ShinOtsuka
+  name_en: Shin-otsuka
+
+odpt.StationFacility:TokyoMetro.ShinOchanomizu:
+  name_ja: 新御茶ノ水
+  name_hira: しんおちゃのみず
+  name_in_system: ShinOchanomizu
+  name_en: Shin-ochanomizu
+
+odpt.StationFacility:TokyoMetro.ShinKiba:
+  name_ja: 新木場
+  name_hira: しんきば
+  name_in_system: ShinKiba
+  name_en: Shin-kiba
+
+odpt.StationFacility:TokyoMetro.ShinKoenji:
+  name_ja: 新高円寺
+  name_hira: しんこうえんじ
+  name_in_system: ShinKoenji
+  name_en: Shin-koenji
+
+odpt.StationFacility:TokyoMetro.Shinjuku:
+  name_ja: 新宿
+  name_hira: しんじゅく
+  name_in_system: Shinjuku
+  name_en: Shinjuku
+
+odpt.StationFacility:TokyoMetro.ShinjukuGyoemmae:
+  name_ja: 新宿御苑前
+  name_hira: しんじゅくぎょえんまえ
+  name_in_system: ShinjukuGyoemmae
+  name_en: Shinjuku-gyoemmae
+
+odpt.StationFacility:TokyoMetro.ShinjukuSanchome:
+  name_ja: 新宿三丁目
+  name_hira: しんじゅくさんちょうめ
+  name_in_system: ShinjukuSanchome
+  name_en: Shinjuku-sanchome
+
+odpt.StationFacility:TokyoMetro.Shintomicho:
+  name_ja: 新富町
+  name_hira: しんとみちょう
+  name_in_system: Shintomicho
+  name_en: Shintomicho
+
+odpt.StationFacility:TokyoMetro.ShinNakano:
+  name_ja: 新中野
+  name_hira: しんなかの
+  name_in_system: ShinNakano
+  name_en: Shin-nakano
+
+odpt.StationFacility:TokyoMetro.Shimbashi:
+  name_ja: 新橋
+  name_hira: しんばし
+  name_in_system: Shimbashi
+  name_en: Shimbashi
+
+odpt.StationFacility:TokyoMetro.Jimbocho:
+  name_ja: 神保町
+  name_hira: じんぼうちょう
+  name_in_system: Jimbocho
+  name_en: Jimbocho
+
+odpt.StationFacility:TokyoMetro.Suitengumae:
+  name_ja: 水天宮前
+  name_hira: すいてんぐうまえ
+  name_in_system: Suitengumae
+  name_en: Suitengumae
+
+odpt.StationFacility:TokyoMetro.Suehirocho:
+  name_ja: 末広町
+  name_hira: すえひろちょう
+  name_in_system: Suehirocho
+  name_en: Suehirocho
+
+odpt.StationFacility:TokyoMetro.Sumiyoshi:
+  name_ja: 住吉
+  name_hira: すみよし
+  name_in_system: Sumiyoshi
+  name_en: Sumiyoshi
+
+odpt.StationFacility:TokyoMetro.Senkawa:
+  name_ja: 千川
+  name_hira: せんかわ
+  name_in_system: Senkawa
+  name_en: Senkawa
+
+odpt.StationFacility:TokyoMetro.Sendagi:
+  name_ja: 千駄木
+  name_hira: せんだぎ
+  name_in_system: Sendagi
+  name_en: Sendagi
+
+odpt.StationFacility:TokyoMetro.Zoshigaya:
+  name_ja: 雑司ヶ谷
+  name_hira: ぞうしがや
+  name_in_system: Zoshigaya
+  name_en: Zoshigaya
+
+odpt.StationFacility:TokyoMetro.Takadanobaba:
+  name_ja: 高田馬場
+  name_hira: たかだのばば
+  name_in_system: Takadanobaba
+  name_en: Takadanobaba
+
+odpt.StationFacility:TokyoMetro.Takebashi:
+  name_ja: 竹橋
+  name_hira: たけばし
+  name_in_system: Takebashi
+  name_en: Takebashi
+
+odpt.StationFacility:TokyoMetro.Tatsumi:
+  name_ja: 辰巳
+  name_hira: たつみ
+  name_in_system: Tatsumi
+  name_en: Tatsumi
+
+odpt.StationFacility:TokyoMetro.TameikeSanno:
+  name_ja: 溜池山王
+  name_hira: ためいけさんのう
+  name_in_system: TameikeSanno
+  name_en: Tameike-sanno
+
+odpt.StationFacility:TokyoMetro.Tawaramachi:
+  name_ja: 田原町
+  name_hira: たわらまち
+  name_in_system: Tawaramachi
+  name_en: Tawaramachi
+
+odpt.StationFacility:TokyoMetro.ChikatetsuAkatsuka:
+  name_ja: 地下鉄赤塚
+  name_hira: ちかてつあかつか
+  name_in_system: ChikatetsuAkatsuka
+  name_en: Chikatetsu-akatsuka
+
+odpt.StationFacility:TokyoMetro.ChikatetsuNarimasu:
+  name_ja: 地下鉄成増
+  name_hira: ちかてつなります
+  name_in_system: ChikatetsuNarimasu
+  name_en: Chikatetsu-narimasu
+
+odpt.StationFacility:TokyoMetro.Tsukiji:
+  name_ja: 築地
+  name_hira: つきじ
+  name_in_system: Tsukiji
+  name_en: Tsukiji
+
+odpt.StationFacility:TokyoMetro.Tsukishima:
+  name_ja: 月島
+  name_hira: つきしま
+  name_in_system: Tsukishima
+  name_en: Tsukishima
+
+odpt.StationFacility:TokyoMetro.Tokyo:
+  name_ja: 東京
+  name_hira: とうきょう
+  name_in_system: Tokyo
+  name_en: Tokyo
+
+odpt.StationFacility:TokyoMetro.Todaimae:
+  name_ja: 東大前
+  name_hira: とうだいまえ
+  name_in_system: Todaimae
+  name_en: Todaimae
+
+odpt.StationFacility:TokyoMetro.Toyocho:
+  name_ja: 東陽町
+  name_hira: とうようちょう
+  name_in_system: Toyocho
+  name_en: Toyocho
+
+odpt.StationFacility:TokyoMetro.Toyosu:
+  name_ja: 豊洲
+  name_hira: とよす
+  name_in_system: Toyosu
+  name_en: Toyosu
+
+odpt.StationFacility:TokyoMetro.Toranomon:
+  name_ja: 虎ノ門
+  name_hira: とらのもん
+  name_in_system: Toranomon
+  name_en: Toranomon
+
+odpt.StationFacility:TokyoMetro.NakaOkachimachi:
+  name_ja: 仲御徒町
+  name_hira: なかおかちまち
+  name_in_system: NakaOkachimachi
+  name_en: Naka-okachimachi
+
+odpt.StationFacility:TokyoMetro.Nagatacho:
+  name_ja: 永田町
+  name_hira: ながたちょう
+  name_in_system: Nagatacho
+  name_en: Nagatacho
+
+odpt.StationFacility:TokyoMetro.Nakano:
+  station_facility_custom: odpt.StationFacility:JR-East.Nakano
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Nakano
+  name_ja: 中野
+  name_hira: なかの
+  name_in_system: Nakano
+  name_en: Nakano
+  administrator: odpt.Operator:JR-East
+  other_operator: odpt.Operator:TokyoMetro
+
+odpt.StationFacility:TokyoMetro.NakanoSakaue:
+  name_ja: 中野坂上
+  name_hira: なかのさかうえ
+  name_in_system: NakanoSakaue
+  name_en: Nakano-sakaue
+
+odpt.StationFacility:TokyoMetro.NakanoShimbashi:
+  name_ja: 中野新橋
+  name_hira: なかのしんばし
+  name_in_system: NakanoShimbashi
+  name_en: Nakano-shimbashi
+
+odpt.StationFacility:TokyoMetro.NakanoFujimicho:
+  name_ja: 中野富士見町
+  name_hira: なかのふじみちょう
+  name_in_system: NakanoFujimicho
+  name_en: Nakano-fujimicho
+
+odpt.StationFacility:TokyoMetro.NakaMeguro:
+  station_facility_custom: odpt.StationFacility:Tokyu.NakaMeguro
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.NakaMeguro
+  name_ja: 中目黒
+  name_hira: なかめぐろ
+  name_in_system: NakaMeguro
+  name_en: Naka-meguro
+  administrator: odpt.Operator:Tokyu
+  other_operator: odpt.Operator:TokyoMetro
+
+odpt.StationFacility:TokyoMetro.NishiKasai:
+  name_ja: 西葛西
+  name_hira: にしかさい
+  name_in_system: NishiKasai
+  name_en: Nishi-kasai
+
+odpt.StationFacility:TokyoMetro.Nishigahara:
+  name_ja: 西ケ原
+  name_hira: にしがはら
+  name_in_system: Nishigahara
+  name_en: Nishigahara
+
+odpt.StationFacility:TokyoMetro.NishiShinjuku:
+  name_ja: 西新宿
+  name_hira: にししんじゅく
+  name_in_system: NishiShinjuku
+  name_en: Nishi-shinjuku
+
+odpt.StationFacility:TokyoMetro.NishiNippori:
+  name_ja: 西日暮里
+  name_hira: にしにっぽり
+  name_in_system: NishiNippori
+  name_en: Nishi-nippori
+
+odpt.StationFacility:TokyoMetro.NishiFunabashi:
+  station_facility_custom: odpt.StationFacility:TokyoMetro.NishiFunabashi
+  station_facility_custom_alias:
+    - odpt.StationFacility:JR-East.NishiFunabashi.DirectOperationToTokyoMetro
+    - odpt.StationFacility:ToyoRapidRailway.ToyoRapid.NishiFunabashi
+  name_ja: 西船橋
+  name_hira: にしふなばし
+  name_in_system: NishiFunabashi
+  name_en: Nishi-funabashi
+  administrator: odpt.Operator:TokyoMetro
+  other_operator:
+    - odpt.Operator:ToyoRapidRailway
+    - odpt.Operator:JR-East.DirectOperationToTokyoMetro
+
+odpt.StationFacility:TokyoMetro.Nijubashimae:
+  name_ja: 二重橋前
+  name_hira: にじゅうばしまえ
+  name_in_system: Nijubashimae
+  name_en: Nijubashimae
+
+odpt.StationFacility:TokyoMetro.NishiWaseda:
+  name_ja: 西早稲田
+  name_hira: にしわせだ
+  name_in_system: NishiWaseda
+  name_en: Nishi-waseda
+
+odpt.StationFacility:TokyoMetro.Nihombashi:
+  name_ja: 日本橋
+  name_hira: にほんばし
+  name_in_system: Nihombashi
+  name_en: Nihombashi
+
+odpt.StationFacility:TokyoMetro.Ningyocho:
+  name_ja: 人形町
+  name_hira: にんぎょうちょう
+  name_in_system: Ningyocho
+  name_en: Ningyocho
+
+odpt.StationFacility:TokyoMetro.Nezu:
+  name_ja: 根津
+  name_hira: ねづ
+  name_in_system: Nezu
+  name_en: Nezu
+
+odpt.StationFacility:TokyoMetro.Nogizaka:
+  name_ja: 乃木坂
+  name_hira: のぎざか
+  name_in_system: Nogizaka
+  name_en: Nogizaka
+
+odpt.StationFacility:TokyoMetro.Hatchobori:
+  name_ja: 八丁堀
+  name_hira: はっちょうぼり
+  name_in_system: Hatchobori
+  name_en: Hatchobori
+
+odpt.StationFacility:TokyoMetro.BarakiNakayama:
+  name_ja: 原木中山
+  name_hira: ばらきなかやま
+  name_in_system: BarakiNakayama
+  name_en: Baraki-nakayama
+
+odpt.StationFacility:TokyoMetro.Hanzomon:
+  name_ja: 半蔵門
+  name_hira: はんぞうもん
+  name_in_system: Hanzomon
+  name_en: Hanzomon
+
+odpt.StationFacility:TokyoMetro.HigashiIkebukuro:
+  name_ja: 東池袋
+  name_hira: ひがしいけぶくろ
+  name_in_system: HigashiIkebukuro
+  name_en: Higashi-ikebukuro
+
+odpt.StationFacility:TokyoMetro.HigashiGinza:
+  name_ja: 東銀座
+  name_hira: ひがしぎんざ
+  name_in_system: HigashiGinza
+  name_en: Higashi-ginza
+
+odpt.StationFacility:TokyoMetro.HigashiKoenji:
+  name_ja: 東高円寺
+  name_hira: ひがしこうえんじ
+  name_in_system: HigashiKoenji
+  name_en: Higashi-koenji
+
+odpt.StationFacility:TokyoMetro.HigashiShinjuku:
+  name_ja: 東新宿
+  name_hira: ひがししんじゅく
+  name_in_system: HigashiShinjuku
+  name_en: Higashi-shinjuku
+
+odpt.StationFacility:TokyoMetro.Hikawadai:
+  name_ja: 氷川台
+  name_hira: ひかわだい
+  name_in_system: Hikawadai
+  name_en: Hikawadai
+
+odpt.StationFacility:TokyoMetro.Hibiya:
+  name_ja: 日比谷
+  name_hira: ひびや
+  name_in_system: Hibiya
+  name_en: Hibiya
+
+odpt.StationFacility:TokyoMetro.HiroO:
+  name_ja: 広尾
+  name_hira: ひろお
+  name_in_system: HiroO
+  name_en: Hiro-o
+
+odpt.StationFacility:TokyoMetro.Heiwadai:
+  name_ja: 平和台
+  name_hira: へいわだい
+  name_in_system: Heiwadai
+  name_en: Heiwadai
+
+odpt.StationFacility:TokyoMetro.Honancho:
+  name_ja: 方南町
+  name_hira: ほうなんちょう
+  name_in_system: Honancho
+  name_en: Honancho
+
+odpt.StationFacility:TokyoMetro.HongoSanchome:
+  name_ja: 本郷三丁目
+  name_hira: ほんごうさんちょうめ
+  name_in_system: HongoSanchome
+  name_en: Hongo-sanchome
+
+odpt.StationFacility:TokyoMetro.HonKomagome:
+  name_ja: 本駒込
+  name_hira: ほんこまごめ
+  name_in_system: HonKomagome
+  name_en: Hon-komagome
+
+odpt.StationFacility:TokyoMetro.Machiya:
+  name_ja: 町屋
+  name_hira: まちや
+  name_in_system: Machiya
+  name_en: Machiya
+
+odpt.StationFacility:TokyoMetro.Mitsukoshimae:
+  name_ja: 三越前
+  name_hira: みつこしまえ
+  name_in_system: Mitsukoshimae
+  name_en: Mitsukoshimae
+
+odpt.StationFacility:TokyoMetro.MinamiAsagaya:
+  name_ja: 南阿佐ケ谷
+  name_hira: みなみあさがや
+  name_in_system: MinamiAsagaya
+  name_en: Minami-asagaya
+
+odpt.StationFacility:TokyoMetro.MinamiGyotoku:
+  name_ja: 南行徳
+  name_hira: みなみぎょうとく
+  name_in_system: MinamiGyotoku
+  name_en: Minami-gyotoku
+
+odpt.StationFacility:TokyoMetro.MinamiSunamachi:
+  name_ja: 南砂町
+  name_hira: みなみすなまち
+  name_in_system: MinamiSunamachi
+  name_en: Minami-sunamachi
+
+odpt.StationFacility:TokyoMetro.MinamiSenju:
+  name_ja: 南千住
+  name_hira: みなみせんじゅ
+  name_in_system: MinamiSenju
+  name_en: Minami-senju
+
+odpt.StationFacility:TokyoMetro.Minowa:
+  name_ja: 三ノ輪
+  name_hira: みのわ
+  name_in_system: Minowa
+  name_en: Minowa
+
+odpt.StationFacility:TokyoMetro.Myogadani:
+  name_ja: 茗荷谷
+  name_hira: みょうがだに
+  name_in_system: Myogadani
+  name_en: Myogadani
+
+odpt.StationFacility:TokyoMetro.Myoden:
+  name_ja: 妙典
+  name_hira: みょうでん
+  name_in_system: Myoden
+  name_en: Myoden
+
+odpt.StationFacility:TokyoMetro.MeijiJingumae:
+  name_ja: 明治神宮前<原宿>
+  name_hira: めいじじんぐうまえはらじゅく
+  name_in_system: MeijiJingumae
+  name_en: Meiji-jingumae
+
+odpt.StationFacility:TokyoMetro.Meguro:
+  station_facility_custom: odpt.StationFacility:Tokyu.Meguro
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Meguro
+    - odpt.StationFacility:Toei.Meguro
+  name_ja: 目黒
+  name_hira: めぐろ
+  name_in_system: Meguro
+  name_en: Meguro
+  administrator: odpt.Operator:Tokyu
+  other_operator:
+    - odpt.Operator:TokyoMetro
+    - odpt.Operator:Toei
+
+odpt.StationFacility:TokyoMetro.MonzenNakacho:
+  name_ja: 門前仲町
+  name_hira: もんぜんなかちょう
+  name_in_system: MonzenNakacho
+  name_en: Monzen-nakacho
+
+odpt.StationFacility:TokyoMetro.Yurakucho:
+  name_ja: 有楽町
+  name_hira: ゆうらくちょう
+  name_in_system: Yurakucho
+  name_en: Yurakucho
+
+odpt.StationFacility:TokyoMetro.Yushima:
+  name_ja: 湯島
+  name_hira: ゆしま
+  name_in_system: Yushima
+  name_en: Yushima
+
+odpt.StationFacility:TokyoMetro.Yotsuya:
+  name_ja: 四ツ谷
+  name_hira: よつや
+  name_in_system: Yotsuya
+  name_en: Yotsuya
+
+odpt.StationFacility:TokyoMetro.YotsuyaSanchome:
+  name_ja: 四谷三丁目
+  name_hira: よつやさんちょうめ
+  name_in_system: YotsuyaSanchome
+  name_en: Yotsuya-sanchome
+
+odpt.StationFacility:TokyoMetro.YoyogiUehara:
+  station_facility_custom: odpt.StationFacility:Odakyu.YoyogiUehara
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.YoyogiUehara
+  name_ja: 代々木上原
+  name_hira: よよぎうえはら
+  name_in_system: YoyogiUehara
+  name_en: Yoyogi-uehara
+  administrator: odpt.Operator:Odakyu
+  other_operator: odpt.Operator:TokyoMetro
+
+odpt.StationFacility:TokyoMetro.YoyogiKoen:
+  name_ja: 代々木公園
+  name_hira: よよぎこうえん
+  name_in_system: YoyogiKoen
+  name_en: Yoyogi-koen
+
+odpt.StationFacility:TokyoMetro.Roppongi:
+  name_ja: 六本木
+  name_hira: ろっぽんぎ
+  name_in_system: Roppongi
+  name_en: Roppongi
+
+odpt.StationFacility:TokyoMetro.RoppongiItchome:
+  name_ja: 六本木一丁目
+  name_hira: ろっぽんぎいっちょうめ
+  name_in_system: RoppongiItchome
+  name_en: Roppongi-itchome
+
+odpt.StationFacility:TokyoMetro.Wakoshi:
+  station_facility_custom: odpt.StationFacility:Tobu.Wakoshi
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Wakoshi
+  name_ja: 和光市
+  name_hira: わこうし
+  name_in_system: Wakoshi
+  name_en: Wakoshi
+  administrator: odpt.Operator:Tobu
+  other_operator: odpt.Operator:TokyoMetro
+
+odpt.StationFacility:TokyoMetro.Waseda:
+  name_ja: 早稲田
+  name_hira: わせだ
+  name_in_system: Waseda
+  name_en: Waseda

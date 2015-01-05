@@ -1,0 +1,44 @@
+# 駅名を処理するメソッドを提供するモジュール
+module TokyoMetro::ApiModules::TimetableModules::Common::Station
+
+  include ::TokyoMetro::CommonModules::ConvertConstantToClassMethod
+
+  STATION_NAME_SAME_AS_IN_DB = ::YAML.load_file( "#{ ::TokyoMetro::DICTIONARY_DIR }/station/same_as_in_db.yaml" )
+
+  # @param title 現在不使用だが残しておく
+  def self.station_same_as_in_db( same_as , title = nil )
+    station_alias_from_hash = station_name_same_as_in_db[ same_as ]
+    if station_alias_from_hash.present?
+      station_alias_from_hash
+    else
+      same_as
+    end
+  end
+
+  class << self
+
+    private
+
+    def set_station_same_as_in_db__raise_error_when_nil( station_same_as , title )
+      if station_same_as.nil?
+        puts "★ #{ title } of \"#{ @train_number }\" is not defined."
+        puts "Please investigate #{ title.downcase } of this train and input."
+        station_same_as_new = gets.chomp
+        puts "#{ title } of \"#{ @train_number }\" is"
+        puts " " * 4 + station_same_as_new
+        puts "OK? \[Y/n\]"
+        yn = gets.chomp
+        case yn.downcase
+        when "y"
+          station_same_as_new
+        else
+          set_station_same_as_in_db__raise_error_when_nil( station_same_as , title )
+        end
+      else
+        station_same_as
+      end
+    end
+
+  end
+
+end

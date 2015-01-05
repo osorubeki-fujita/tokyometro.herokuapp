@@ -1,0 +1,22 @@
+- # 各線の所要時間情報
+- # @note 一般的な分岐などがない路線、分岐などがある路線のそれぞれで共通に使用する部分テンプレート
+- # @note 部分テンプレート travel_time_info_one_railway_line , travel_time_info_m , travel_time_info_yf から呼び出される。
+- # @version 2014.11.27.13.42
+- stations.each.with_index(1) do | station , i |
+  - station = station
+  %tr
+    - if special_proc_of_station.present?
+      = special_proc_of_station.call( station )
+    %td{ class: :line }<
+      %div{ class: :travel_time_info_square }<
+        = travel_time_info_square( station )
+    = travel_time_info_station_name( station )
+  - unless i == stations.length
+    - section = sections[ i - 1 ]
+    %tr
+      - if special_proc_of_section.present?
+        = special_proc_of_section.call( section )
+      %td{ class: :travel_time }
+        = travel_time_info_between_stations( travel_time_infos , section )
+      %td{ colspan: 2 }
+        = " "

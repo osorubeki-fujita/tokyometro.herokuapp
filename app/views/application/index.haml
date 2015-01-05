@@ -1,0 +1,8 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = twitter_official
+
+%div{ id: :top_title }<
+  = title_of_main_contents( "Tokyo Metro Open Data Contest" , "Ruby for Rails" )
+  = application_common_top_title

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_ja: 1
+  name_hira: 1
+  name_en: 1
+  operator_id: 1
+  id_urn: MyString
+  same_as: MyString
+  dc_date: 2014-10-20 16:35:51
+  geojson: MyString
+  line_code: MyString
+
+two:
+  name_ja: 1
+  name_hira: 1
+  name_en: 1
+  operator_id: 1
+  id_urn: MyString
+  same_as: MyString
+  dc_date: 2014-10-20 16:35:51
+  geojson: MyString
+  line_code: MyString

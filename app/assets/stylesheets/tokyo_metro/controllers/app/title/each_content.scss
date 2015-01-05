@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+@import '../../../fundamental_settings.scss' ;
+
+%title_of_each_content {
+    clear: both ;
+    padding: 4px ;
+    margin: {
+        top: 16px ;
+        bottom: 8px ;
+    }
+    h2 {
+        $font_base_size: 14pt ;
+        font: {
+            size: $font_base_size ;
+        }
+        .small {
+            font: {
+                size: $font_base_size * 0.75 ;
+            }
+        }
+    }
+    h3 {
+        font: {
+            size: 10pt ;
+            weight: normal ;
+        }
+    }
+}
+
+%title_of_each_content_background_color {
+	$bgcolor: rgba( $jp_traditional_yokan_iro , 0.2 ) ;
+	$color_stop_point_1_moz : 50% ;
+	$color_stop_point_1_webkit : 0.5 ;
+	$color_stop_point_2_moz : 80% ;
+	$color_stop_point_2_webkit : 0.8 ;
+	$color_1 : rgba( $bgcolor , 0.16 ) ;
+	$color_2 : rgba( $bgcolor , 0.12 ) ;
+	$color_3 : rgba( $bgcolor , 0.06 ) ;
+	//
+	background: $bgcolor ;
+	// Firefox
+	background: -moz-linear-gradient(top,
+		#{$bgcolor},
+		#{$color_1} #{$color_stop_point_1_moz},
+		#{$color_2} #{$color_stop_point_2_moz} ,
+		#{$color_3}
+	);
+	// Safari, Google Chrome
+	background: -webkit-gradient(linear, left top, left bottom,
+		from( #{$bgcolor} ),
+		color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+		color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+		to( #{$color_3} )
+	);
+}
+
+#station_facility_platform_infos {
+    .top_title {
+        @extend %title_of_each_content ;
+        @extend %title_of_each_content_background_color ;
+    }
+}
+
+#women_only_car {
+    .top_title {
+        @extend %title_of_each_content ;
+    }
+}
+
+#railway_line_contents {
+    #train_info {
+        .top_title {
+        	@extend %title_of_each_content ;
+            @extend %title_of_each_content_background_color ;
+        }
+    }
+    #travel_time {
+        .top_title {
+        	@extend %title_of_each_content ;
+            @extend %title_of_each_content_background_color ;
+        }
+    }
+}
+
+#station_facility_infos {
+    .top_title {
+        @extend %title_of_each_content ;
+        @extend %title_of_each_content_background_color ;
+    }
+}
+
+#station_info_links {
+    .station_name {
+        @extend %title_of_each_content ;
+        @extend %title_of_each_content_background_color ;
+    }
+}

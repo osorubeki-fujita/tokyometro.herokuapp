@@ -1,0 +1,577 @@
+@charset "utf-8" ;
+
+@import 'color_boxes_and_railway_line_codes/settings.scss' ;
+
+
+//---------------- 個々の路線の color_box + railway_line_code の設定
+
+// @mixin fundamentalSettingsOfColorBoxAndRailwayLineCode {
+
+    //-------- 東京メトロ
+
+    .tokyo_metro {
+      $color: $operator_tokyo_metro_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .ginza {
+      $color: $line_ginza_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .marunouchi , .marunouchi_branch {
+      $color: $line_marunouchi_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .hibiya {
+      $color: $line_hibiya_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tozai {
+      $color: $line_tozai_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .chiyoda , .chiyoda_branch {
+      $color: $line_chiyoda_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .yurakucho {
+      $color: $line_yurakucho_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .hanzomon {
+      $color: $line_hanzomon_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .namboku {
+      $color: $line_namboku_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .fukutoshin {
+      $color: $line_fukutoshin_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    //-------- 都営地下鉄
+
+    .toei_subway {
+      $color: $operator_toei_subway_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .toei_asakusa {
+      $color: $line_toei_asakusa_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfToeiSubway ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .toei_mita {
+      $color: $line_toei_mita_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .toei_shinjuku {
+      $color: $line_toei_shinjuku_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .toei_oedo {
+      $color: $line_toei_oedo_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyoMetro ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    //-------- 日暮里・舎人ライナー
+
+    .toei {
+      $color: $operator_toei_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .nippori_toneri {
+      $color: $line_nippori_toneri_bgcolor ;
+      @include colorBoxColorSettings( $color ) ;
+      @extend %colorBoxAndLineCodeSettingsOfNipporiToneriLiner ;
+    }
+
+    //-------- 都電荒川線
+
+    .toden {
+      $color: $operator_toden_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .toden_arakawa {
+      $color: $line_toden_arakawa_bgcolor ;
+      @include colorBoxColorSettings( $color ) ;
+      @extend %colorBoxAndLineCodeSettingsOfTodenArakawa ;
+    }
+
+    //-------- JR東日本
+
+    .jr_east {
+      $color: $operator_jr_east_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .jrs {
+      $color: $line_jrs_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_yamanote {
+      $color: $line_jr_yamanote_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_keihin_tohoku {
+      $color: $line_jr_keihin_tohoku_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_tokaido {
+      $color: $line_jr_tokaido_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_yokosuka {
+      $color: $line_jr_yokosuka_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_takasaki {
+      $color: $line_jr_takasaki_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_utsunomiya {
+      $color: $line_jr_utsunomiya_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_shonan_shinjuku {
+      $color: $line_jr_shonan_shinjuku_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_ueno_tokyo {
+      $color: $line_jr_ueno_tokyo_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_chuo_limited_exp {
+      $color: $line_jr_chuo_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_chuo_rapid {
+      $color: $line_jr_chuo_rapid_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_chuo_and_sobu_local {
+      $color: $line_jr_chuo_and_sobu_local_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_chuo_and_sobu_local_between_nakano_and_mitaka {
+      $color: $line_jr_chuo_and_sobu_local_between_nakano_and_mitaka_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_chuo_and_sobu_local_between_nishi_funabashi_and_tsudanuma {
+      $color: $line_jr_chuo_and_sobu_local_between_nishi_funabashi_and_tsudanuma_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_sobu_rapid {
+      $color: $line_jr_sobu_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_narita_exp {
+      $color: $line_jr_narita_exp_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_saikyo {
+      $color: $line_jr_saikyo_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_joban {
+      $color: $line_jr_joban_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_keiyo {
+      $color: $line_jr_keiyo_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .jr_musashino {
+      $color: $line_jr_musashino_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .shinkansen_e {
+      $color: $line_shinkansen_e_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrEast ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //-------- JR東海
+
+    .jr_central {
+      $color: $operator_jr_central_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .shinkansen_c {
+      $color: $line_tokaido_and_sanyo_shinkansen_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfJrCentral ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //-------- 東急
+
+    .tokyu {
+      $color: $operator_tokyu_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .tokyu_toyoko {
+      $color: $line_tokyu_toyoko_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .tokyu_meguro {
+      $color: $line_tokyu_meguro_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .tokyu_den_en_toshi {
+      $color: $line_tokyu_den_en_toshi_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTokyu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    //-------- 横浜高速鉄道
+
+    .yokohama_minatomirai {
+      $color: $operator_yokohama_minatomirai_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .yokohama_minatomirai_mm {
+      @extend %colorBoxAndLineCodeSettingsOfYokohamaMinatomirai ;
+    }
+
+    //-------- 小田急
+
+    .odakyu {
+      @extend %colorBoxSettingsOfOdakyu ;
+    }
+
+    //--------
+
+    .odakyu_odawara {
+      @extend %colorBoxAndLineCodeSettingsOfOdakyu ;
+    }
+
+    .odakyu_tama {
+      @extend %colorBoxAndLineCodeSettingsOfOdakyu ;
+    }
+
+    .odakyu_enoshima {
+      @extend %colorBoxAndLineCodeSettingsOfOdakyu ;
+    }
+
+    //-------- 箱根登山
+
+    .hakone_tozan {
+      @extend %colorBoxAndLineCodeSettingsOfHakoneTozan ;
+    }
+
+    //-------- 西武
+
+    .seibu {
+      $color: $operator_seibu_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .seibu_ikebukuro {
+      $color: $line_seibu_ikebukuro_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfSeibu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .seibu_chichibu {
+      $color: $line_seibu_chichibu_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfSeibu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .seibu_toshima {
+      $color: $line_seibu_toshima_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfSeibu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .seibu_yurakucho {
+      $color: $line_seibu_yurakucho_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfSeibu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .seibu_sayama {
+      $color: $line_seibu_sayama_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfSeibu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    .seibu_shinjuku {
+      $color: $line_seibu_shinjuku_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfSeibu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+    }
+
+    //-------- 東武
+
+    .tobu {
+      $color: $operator_tobu_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .tobu_sky_tree_and_isesaki {
+      $color: $line_tobu_sky_tree_and_isesaki_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_sky_tree_oshiage_hikifune {
+      $color: $line_tobu_sky_tree_oshiage_hikifune_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_sky_tree {
+      $color: $line_tobu_sky_tree_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_isesaki {
+      $color: $line_tobu_isesaki_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_nikko {
+      $color: $line_tobu_nikko_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_kinugawa {
+      $color: $line_tobu_kinugawa_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_tojo {
+      $color: $line_tobu_tojo_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    //-------- 埼玉高速
+
+    .saitama {
+      @extend %colorBoxAndLineCodeSettingsOfSaitama ;
+    }
+
+    //-------- 東葉高速
+
+    .toyo_rapid {
+      @extend %colorBoxAndLineCodeSettingsOfToyoRapid ;
+    }
+
+    //-------- 京王
+
+    .keio {
+      $color: $operator_keio_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .keio_line {
+      $color: $line_keio_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfKeio ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .keio_new {
+      $color: $line_keio_new_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfKeio ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .keio_inokashira {
+      $color: $line_keio_inokashira_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfKeio ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    //-------- 京成
+
+    .keisei {
+      $color: $operator_keisei_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    //--------
+
+    .keisei_main {
+      @extend %colorBoxAndLineCodeSettingsOfKeisei ;
+    }
+
+    .keisei_oshiage {
+      @extend %colorBoxAndLineCodeSettingsOfKeisei ;
+    }
+
+    //-------- TX
+
+    .tsukuba_exp {
+      @extend %colorBoxAndLineCodeSettingsOfTsukubaExp ;
+    }
+
+    //-------- ゆりかもめ
+
+    .yurikamome {
+      $color: $operator_yurikamome_bgcolor ;
+      @extend %colorBoxCommonSettings ;
+      @include colorBoxColorSettings( $color ) ;
+    }
+
+    .yurikamome_line {
+      $op_color: $operator_yurikamome_bgcolor ;
+      $color: $line_yurikamome_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfYurikamome ;
+      @include colorBoxColorSettings( $op_color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    //-------- りんかい線
+
+    .rinkai {
+      @extend %colorBoxAndLineCodeSettingsOfRinkai ;
+    }
+// }
+
+// @include fundamentalSettingsOfColorBoxAndRailwayLineCode ;

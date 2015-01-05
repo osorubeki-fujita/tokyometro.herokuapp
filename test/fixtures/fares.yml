@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  normal_fare_group_id: 1
+  from_station_id: 1
+  to_station_id: 1
+  id_urn: MyString
+  operator_id: 1
+  same_as: MyString
+  dc_date: 2014-10-20 16:47:45
+
+two:
+  normal_fare_group_id: 1
+  from_station_id: 1
+  to_station_id: 1
+  id_urn: MyString
+  operator_id: 1
+  same_as: MyString
+  dc_date: 2014-10-20 16:47:45

@@ -1,0 +1,22 @@
+odpt.Station:Seibu.Toshima.Nerima:
+  station_alias:
+    - odpt.Seibu.Ikebukuro.Nerima
+    - odpt.Station:Seibu.Yurakucho.Nerima
+  station_facility: odpt.StationFacility:Seibu.Nerima
+  name_ja: 練馬
+  name_hira: ねりま
+  name_in_system: Nerima
+  name_en: Nerima
+  station_code: SI06
+  stop:
+    - custom.StoppingPattern:Seibu.Toshima.Local
+
+odpt.Station:Seibu.Toshima.Toshimaen:
+  station_facility: odpt.StationFacility:Seibu.Toshimaen
+  name_ja: 豊島園
+  name_hira: としまえん
+  name_in_system: Toshimaen
+  name_en: Toshimaen
+  station_code: SI39
+  stop:
+    - custom.StoppingPattern:Seibu.Toshima.Local

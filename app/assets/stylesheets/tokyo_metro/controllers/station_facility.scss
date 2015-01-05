@@ -1,0 +1,324 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+
+%lineCodeAndColorBoxInStationFacilityRailwayLineInfo {
+    @extend %floatLeft ;
+    @extend %margin4 ;
+}
+
+%stationFacilityRailwayLineInfo {
+    clear: both ;
+    padding: {
+        bottom: 4px ;
+    }
+    .title {
+        $font_size_ja: 12pt ;
+        $font_size_en: $font_size_ja * 0.75 ;
+        padding: {
+            left: 4px ;
+            right: 16px ;
+        }
+        @extend %marginBottom8 ;
+        .text_ja {
+            font: {
+                size: $font_size_ja ;
+                weight: bold ;
+            }
+        }
+        .text_en {
+            font: {
+                size: $font_size_en ;
+            }
+        }
+    }
+    .railway_lines {
+        height: auto ;
+        @extend %marginBottom16 ;
+        .railway_line {
+            @extend %floatLeft ;
+            @extend %marginTop4 ;
+            @extend %marginBottom4 ;
+            @extend %marginRight16 ;
+            clear: inherit ;
+            border: {
+                style: solid ;
+                width: 1px ;
+            }
+            @include border_radius( 4px ) ;
+            .railway_line_code_32 {
+                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
+            }
+            .color_box_32 {
+                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
+            }
+            .railway_line_code_48 {
+                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
+            }
+            .color_box_48 {
+                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
+            }
+            .text {
+                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
+                $font_size_ja: 10pt ;
+                $font_size_en: $font_size_ja * 0.75 ;
+                .text_ja {
+                    font: {
+                        size: $font_size_ja ;
+                    }
+                }
+                .text_en {
+                    font: {
+                        size: $font_size_en ;
+                    }
+                }
+            }
+        }
+    }
+}
+
+%tokyoMetroRailwayLinesTitle {
+    .title {
+        $bgcolor: rgba( desaturate( $operator_color , 10% ) , 0.3 ) ;
+        $color_stop_point_1_moz : 50% ;
+        $color_stop_point_1_webkit : 0.5 ;
+        $color_stop_point_2_moz : 80% ;
+        $color_stop_point_2_webkit : 0.8 ;
+        $color_1 : rgba( $bgcolor , 0.24 ) ;
+        $color_2 : rgba( $bgcolor , 0.18 ) ;
+        $color_3 : rgba( $bgcolor , 0.09 ) ;
+        //
+        background: $bgcolor ;
+        // Firefox
+        background: -moz-linear-gradient(top,
+            #{$bgcolor},
+            #{$color_1} #{$color_stop_point_1_moz},
+            #{$color_2} #{$color_stop_point_2_moz} ,
+            #{$color_3}
+        );
+        // Safari, Google Chrome
+        background: -webkit-gradient(linear, left top, left bottom,
+            from( #{$bgcolor} ),
+            color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+            color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+            to( #{$color_3} )
+        );
+    }
+}
+
+%connectingRailwayLinesTitle {
+    .title {
+        $bgcolor: rgba( mix( $operator_color , $jp_traditional_yokan_iro , 60% ) , 0.2 ) ;
+        $color_stop_point_1_moz : 50% ;
+        $color_stop_point_1_webkit : 0.5 ;
+        $color_stop_point_2_moz : 80% ;
+        $color_stop_point_2_webkit : 0.8 ;
+        $color_1 : rgba( $bgcolor , 0.16 ) ;
+        $color_2 : rgba( $bgcolor , 0.12 ) ;
+        $color_3 : rgba( $bgcolor , 0.06 ) ;
+        //
+        background: $bgcolor ;
+        // Firefox
+        background: -moz-linear-gradient(top,
+            #{$bgcolor},
+            #{$color_1} #{$color_stop_point_1_moz},
+            #{$color_2} #{$color_stop_point_2_moz} ,
+            #{$color_3}
+        );
+        // Safari, Google Chrome
+        background: -webkit-gradient(linear, left top, left bottom,
+            from( #{$bgcolor} ),
+            color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+            color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+            to( #{$color_3} )
+        );
+    }
+}
+
+.tokyo_metro_railway_lines {
+    @extend %stationFacilityRailwayLineInfo ;
+    @extend %tokyoMetroRailwayLinesTitle ;
+    .railway_lines {
+        .railway_line {
+            border: {
+                color: #ddd ;
+            }
+            &:hover {
+                background-color: $jp_traditional_aijiro ;
+            }
+			@extend %link_in_div ;
+            a {
+                background-color: transparent ;
+            }
+        }
+    }
+}
+
+.connecting_railway_lines {
+    @extend %stationFacilityRailwayLineInfo ;
+    @extend %connectingRailwayLinesTitle ;
+    .railway_lines {
+        .railway_line {
+            border: {
+                color: #eee ;
+            }
+        }
+    }
+}
+
+%stationFacilityInsideAndOutside {
+    @extend %floatLeft ;
+    clear: both ;
+    // width: 360px ;
+    @extend %marginLeft16 ;
+    @extend %marginBottom8 ;
+    .title {
+        @extend %marginBottom8 ;
+        border: {
+            bottom: dotted 1px $operator_color ;
+        }
+        $font_size_ja: 12pt ;
+        $font_size_en: $font_size_ja * 0.75 ;
+        .text_ja {
+            @extend %floatLeft ;
+            font: {
+                size: $font_size_ja ;
+            }
+        }
+        .text_en {
+            // @extend %floatLeft ;
+            font: {
+                size: $font_size_en ;
+            }
+            margin: {
+                left: 6px ;
+            }
+        }
+    }
+}
+
+%commonSettingsOfServiceDetail {
+    border: {
+        left: {
+            style: solid ;
+            width: 4px ;
+        }
+    }
+    padding: 4px ;
+}
+
+@mixin colorSettingsOfServiceDetail( $border_color ) {
+    border: {
+        left: {
+            color: $border_color ;
+        }
+    }
+    background-color: mix( $border_color , #fff , 20% ) ;
+}
+
+#station_facility_infos {
+    %fontSize8 {
+        font: {
+            size: 8pt ;
+        }
+    }
+    .title {
+        clear: both ;
+        @extend %marginBottom8 ;
+        // @extend %marginRight8 ;
+        border: {
+            bottom: solid 1px $operator_color ;
+        }
+        $font_size_ja: 14pt ;
+        $font_size_en: $font_size_ja * 0.75 ;
+        .text_ja {
+            @extend %floatLeft ;
+            font: {
+                size: $font_size_ja ;
+            }
+        }
+        .text_en {
+            // @extend %floatLeft ;
+            font: {
+                size: $font_size_en ;
+            }
+            margin: {
+                left: 7px ;
+            }
+        }
+    }
+    .inside {
+        @extend %stationFacilityInsideAndOutside ;
+    }
+    .outside {
+        @extend %stationFacilityInsideAndOutside ;
+    }
+    .facility {
+        clear: both ;
+        .number {
+            @extend %floatLeft ;
+            color: #aaa ;
+            width: 32px ;
+        }
+        @extend %marginLeft16 ;
+        @extend %marginBottom8 ;
+        .info {
+            clear: none ;
+            @extend %floatLeft ;
+            // @extend %marginRight4 ;
+            font: {
+                size: 9pt ;
+            }
+            .place {
+                @extend %fontSize8 ;
+            }
+            .service_detail {
+                @extend %fontSize8 ;
+                .service_time {
+                    display: block ;
+                    @extend %commonSettingsOfServiceDetail ;
+                    @include colorSettingsOfServiceDetail( $jp_traditional_hiwa_iro ) ;
+                    margin: {
+                        bottom: 2px ;
+                    }
+                }
+            }
+            %barrierFreePreciseInfo {
+                @extend %floatLeft ;
+                @extend %marginRight8 ;
+                padding: {
+                    left: 8px ;
+                    right: 8px ;
+                    top: 4px ;
+                    bottom: 4px ;
+                }
+                @include border_radius( 4px ) ;
+            }
+            .toilet_assistants {
+                div.toilet_assistant {
+                    @extend %barrierFreePreciseInfo ;
+                    background-color: $jp_traditional_kamenozoki ;
+                }
+                img.toilet_assistant {
+                    $length: 24px ;
+                    width: $length ;
+                    height: $length ;
+                }
+                margin: {
+                    bottom: 2px ;
+                }
+            }
+            .wheel_chair {
+                display: block ;
+                @extend %barrierFreePreciseInfo ;
+                background-color: $jp_traditional_kompeki ;
+                color: #fff ;
+            }
+            .remark {
+                @extend %floatLeft ;
+                @extend %commonSettingsOfServiceDetail ;
+                @include colorSettingsOfServiceDetail( $jp_traditional_jinzamomi ) ;
+            }
+        }
+    }
+}

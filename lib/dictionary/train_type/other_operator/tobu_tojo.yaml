@@ -1,0 +1,9 @@
+#---- 各駅停車
+custom.TrainTypeOtherOperator:TobuTojo.Local:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    ref: custom.TrainTypeColor:DarkGray # "black"
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tobu
+  railway_line: odpt.Railway:Tobu.Tojo

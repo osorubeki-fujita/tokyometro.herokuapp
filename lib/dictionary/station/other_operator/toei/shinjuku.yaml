@@ -1,0 +1,233 @@
+# 都営新宿線
+
+odpt.Station:Toei.Shinjuku.Shinjuku:
+  station_alias:
+    - odpt.Railway:Keio.New.Shinjuku
+  station_facility: odpt.StationFacility:Toei.Shinjuku
+  station_facility_custom: odpt.StationFacility:Keio.Shinjuku.New
+  station_facility_custom_alias:
+    - odpt.StationFacility:Toei.Shinjuku
+  name_ja: 新宿
+  name_hira: しんじゅく
+  name_in_system: Shinjuku
+  name_en: Shinjuku
+  station_code: S-01
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.ShinjukuSanchome:
+  station_facility: odpt.StationFacility:Toei.ShinjukuSanchome
+  name_ja: 新宿三丁目
+  name_hira: しんじゅくさんちょうめ
+  name_in_system: ShinjukuSanchome
+  name_en: Shinjuku-sanchome
+  station_code: S-02
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Akebonobashi:
+  station_facility: odpt.StationFacility:Toei.Akebonobashi
+  name_ja: 曙橋
+  name_hira: あけぼのばし
+  name_in_system: Akebonobashi
+  name_en: Akebonobashi
+  station_code: S-03
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Ichigaya:
+  station_facility: odpt.StationFacility:Toei.Ichigaya
+  name_ja: 市ケ谷
+  name_hira: いちがや
+  name_in_system: Ichigaya
+  name_en: Ichigaya
+  station_code: S-04
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Kudanshita:
+  station_alias:
+    - odpt.Station:TokyoMetro.Hanzomon.Kudanshita
+  station_facility: odpt.StationFacility:Toei.Kudanshita
+  station_facility_custom: odpt.StationFacility:Toei.Kudanshita
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Kudanshita.Hanzomon
+    - odpt.StationFacility:TokyoMetro.Kudanshita
+  name_ja: 九段下
+  name_hira: くだんした
+  name_in_system: Kudanshita
+  name_en: Kudanshita
+  administrator:
+    - odpt.Operator:Toei
+    - odpt.Operator:TokyoMetro
+  station_code: S-05
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Jimbocho:
+  station_facility: odpt.StationFacility:Toei.Jimbocho
+  name_ja: 神保町
+  name_hira: じんぼうちょう
+  name_in_system: Jimbocho
+  name_en: Jimbocho
+  station_code: S-06
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Ogawamachi:
+  station_facility: odpt.StationFacility:Toei.Ogawamachi
+  name_ja: 小川町
+  name_hira: おがわまち
+  name_in_system: Ogawamachi
+  name_en: Ogawamachi
+  station_code: S-07
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Iwamotocho:
+  station_facility: odpt.StationFacility:Toei.Iwamotocho
+  name_ja: 岩本町
+  name_hira: いわもとちょう
+  name_in_system: Iwamotocho
+  name_en: Iwamotocho
+  station_code: S-08
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.BakuroYokoyama:
+  station_facility: odpt.StationFacility:Toei.BakuroYokoyama
+  name_ja: 馬喰横山
+  name_hira: ばくろよこやま
+  name_in_system: BakuroYokoyama
+  name_en: Bakuro-yokoyama
+  station_code: S-09
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Hamacho:
+  station_facility: odpt.StationFacility:Toei.Hamacho
+  name_ja: 浜町
+  name_hira: はまちょう
+  name_in_system: Hamacho
+  name_en: Hamacho
+  station_code: S-10
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Morishita:
+  station_facility: odpt.StationFacility:Toei.Morishita
+  name_ja: 森下
+  name_hira: もりした
+  name_in_system: Morishita
+  name_en: Morishita
+  station_code: S-11
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Kikukawa:
+  station_facility: odpt.StationFacility:Toei.Kikukawa
+  name_ja: 菊川
+  name_hira: きくかわ
+  name_in_system: Kikukawa
+  name_en: Kikukawa
+  station_code: S-12
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Sumiyoshi:
+  station_facility: odpt.StationFacility:Toei.Sumiyoshi
+  name_ja: 住吉
+  name_hira: すみよし
+  name_in_system: Sumiyoshi
+  name_en: Sumiyoshi
+  station_code: S-13
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.NishiOjima:
+  station_facility: odpt.StationFacility:Toei.NishiOjima
+  name_ja: 西大島
+  name_hira: にしおおじま
+  name_in_system: NishiOjima
+  name_en: Nishi-ojima
+  station_code: S-14
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Ojima:
+  station_facility: odpt.StationFacility:Toei.Ojima
+  name_ja: 大島
+  name_hira: おおじま
+  name_in_system: Ojima
+  name_en: Ojima
+  station_code: S-15
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.HigashiOjima:
+  station_facility: odpt.StationFacility:Toei.HigashiOjima
+  name_ja: 東大島
+  name_hira: ひがしおおじま
+  name_in_system: HigashiOjima
+  name_en: Higashi-ojima
+  station_code: S-16
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Funabori:
+  station_facility: odpt.StationFacility:Toei.Funabori
+  name_ja: 船堀
+  name_hira: ふなぼり
+  name_in_system: Funabori
+  name_en: Funabori
+  station_code: S-17
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Ichinoe:
+  station_facility: odpt.StationFacility:Toei.Ichinoe
+  name_ja: 一之江
+  name_hira: いちのえ
+  name_in_system: Ichinoe
+  name_en: Ichinoe
+  station_code: S-18
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Mizue:
+  station_facility: odpt.StationFacility:Toei.Mizue
+  name_ja: 瑞江
+  name_hira: みずえ
+  name_in_system: Mizue
+  name_en: Mizue
+  station_code: S-19
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Shinozaki:
+  station_facility: odpt.StationFacility:Toei.Shinozaki
+  name_ja: 篠崎
+  name_hira: しのざき
+  name_in_system: Shinozaki
+  name_en: Shinozaki
+  station_code: S-20
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Local
+
+odpt.Station:Toei.Shinjuku.Motoyawata:
+  station_facility: odpt.StationFacility:Toei.Motoyawata
+  name_ja: 本八幡
+  name_hira: もとやわた
+  name_in_system: Motoyawata
+  name_en: Motoyawata
+  station_code: S-21
+  stop:
+    - custom.StoppingPattern:Toei.Shinjuku.Express
+    - custom.StoppingPattern:Toei.Shinjuku.Local

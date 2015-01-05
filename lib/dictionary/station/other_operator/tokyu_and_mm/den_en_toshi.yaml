@@ -1,0 +1,309 @@
+odpt.Station:Tokyu.DenEnToshi.Shibuya:
+  station_alias: odpt.Station:TokyoMetro.Hanzomon.Shibuya
+  station_facility: odpt.StationFacility:Tokyu.Shibuya
+  station_facility_custom_alias:
+    - odpt.StationFacility:TokyoMetro.Shibuya.HanzomonFukutoshin
+    - odpt.StationFacility:TokyoMetro.Shibiya
+  name_ja: 渋谷
+  name_hira: しぶや
+  name_in_system: Shibuya
+  name_en: Shibuya
+  station_code: DT01
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.IkejiriOhashi:
+  station_facility: odpt.StationFacility:Tokyu.IkejiriOhashi
+  name_ja: 池尻大橋
+  name_hira: いけじりおおはし
+  name_in_system: IkejiriOhashi
+  name_en: Ikejiri-ohashi
+  station_code: DT02
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+
+odpt.Station:Tokyu.DenEnToshi.Sangendyaya:
+  station_facility: odpt.StationFacility:Tokyu.Sangendyaya
+  name_ja: 三軒茶屋
+  name_hira: さんげんぢゃや
+  name_in_system: Sangendyaya
+  name_en: Sangendyaya
+  station_code: DT03
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.KomazawaDaigaku:
+  station_facility: odpt.StationFacility:Tokyu.KomazawaDaigaku
+  name_ja: 駒沢大学
+  name_hira: こまざわだいがく
+  name_in_system: KomazawaDaigaku
+  name_en: Komazawa-daigaku
+  station_code: DT04
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+
+odpt.Station:Tokyu.DenEnToshi.SakuraShinmachi:
+  station_facility: odpt.StationFacility:Tokyu.SakuraShinmachi
+  name_ja: 桜新町
+  name_hira: さくらしんまち
+  name_in_system: SakuraShinmachi
+  name_en: Sakura-shinmachi
+  station_code: DT05
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+
+odpt.Station:Tokyu.DenEnToshi.Yoga:
+  station_facility: odpt.StationFacility:Tokyu.Yoga
+  name_ja: 用賀
+  name_hira: ようが
+  name_in_system: Yoga
+  name_en: Yoga
+  station_code: DT06
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+
+odpt.Station:Tokyu.DenEnToshi.FutakoTamagawa:
+  station_facility: odpt.StationFacility:Tokyu.FutakoTamagawa
+  name_ja: 二子玉川
+  name_hira: ふたこたまがわ
+  name_in_system: FutakoTamagawa
+  name_en: Futako-tamagawa
+  station_code: DT07
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.FutakoShinchi:
+  station_facility: odpt.StationFacility:Tokyu.FutakoShinchi
+  name_ja: 二子新地
+  name_hira: ふたこしんち
+  name_in_system: FutakoShinchi
+  name_en: Futako-shinchi
+  station_code: DT08
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Takatsu:
+  station_facility: odpt.StationFacility:Tokyu.Takatsu
+  name_ja: 高津
+  name_hira: たかつ
+  name_in_system: Takatsu
+  name_en: Takatsu
+  station_code: DT09
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Mizonokuchi:
+  station_facility: odpt.StationFacility:Tokyu.Mizonokuchi
+  name_ja: 溝の口
+  name_hira: みぞのくち
+  name_in_system: Mizonokuchi
+  name_en: Mizonokuchi
+  station_code: DT10
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.Kajigaya:
+  station_facility: odpt.StationFacility:Tokyu.Kajigaya
+  name_ja: 梶が谷
+  name_hira: かじがや
+  name_in_system: Kajigaya
+  name_en: Kajigaya
+  station_code: DT11
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Miyazakidai:
+  station_facility: odpt.StationFacility:Tokyu.Miyazakidai
+  name_ja: 宮崎台
+  name_hira: みやざきだい
+  name_in_system: Miyazakidai
+  name_en: Miyazakidai
+  station_code: DT12
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Miyamaedaira:
+  station_facility: odpt.StationFacility:Tokyu.Miyamaedaira
+  name_ja: 宮前平
+  name_hira: みやまえだいら
+  name_in_system: Miyamaedaira
+  name_en: Miyamaedaira
+  station_code: DT13
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Saginuma:
+  station_facility: odpt.StationFacility:Tokyu.Saginuma
+  name_ja: 鷺沼
+  name_hira: さぎぬま
+  name_in_system: Saginuma
+  name_en: Saginuma
+  station_code: DT14
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.TamaPlaza:
+  station_facility: odpt.StationFacility:Tokyu.TamaPlaza
+  name_ja: たまプラーザ
+  name_hira: たまぷらーざ
+  name_in_system: TamaPlaza
+  name_en: Tama plaza
+  station_code: DT15
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.Azamino:
+  station_facility: odpt.StationFacility:Tokyu.Azamino
+  name_ja: あざみ野
+  name_hira: あざみの
+  name_in_system: Azamino
+  name_en: Azamino
+  station_code: DT16
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.Eda:
+  station_facility: odpt.StationFacility:Tokyu.Eda
+  name_ja: 江田
+  name_hira: えだ
+  name_in_system: Eda
+  name_en: Eda
+  station_code: DT17
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Ichigao:
+  station_facility: odpt.StationFacility:Tokyu.Ichigao
+  name_ja: 市が尾
+  name_hira: いちがお
+  name_in_system: Ichigao
+  name_en: Ichigao
+  station_code: DT18
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Fujigaoka:
+  station_facility: odpt.StationFacility:Tokyu.Fujigaoka
+  name_ja: 藤が丘
+  name_hira: ふじがおか
+  name_in_system: Fujigaoka
+  name_en: Fujigaoka
+  station_code: DT19
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Aobadai:
+  station_facility: odpt.StationFacility:Tokyu.Aobadai
+  name_ja: 青葉台
+  name_hira: あおばだい
+  name_in_system: Aobadai
+  name_en: Aobadai
+  station_code: DT20
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.Tana:
+  station_facility: odpt.StationFacility:Tokyu.Tana
+  name_ja: 田奈
+  name_hira: たな
+  name_in_system: Tana
+  name_en: Tana
+  station_code: DT21
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Nagatsuta:
+  station_facility: odpt.StationFacility:Tokyu.Nagatsuta
+  name_ja: 長津田
+  name_hira: ながつた
+  name_in_system: Nagatsuta
+  name_en: Nagatsuta
+  station_code: DT22
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express
+
+odpt.Station:Tokyu.DenEnToshi.Tsukushino:
+  station_facility: odpt.StationFacility:Tokyu.Tsukushino
+  name_ja: つくし野
+  name_hira: つくしの
+  name_in_system: Tsukushino
+  name_en: Tsukushino
+  station_code: DT23
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.Suzukakedai:
+  station_facility: odpt.StationFacility:Tokyu.Suzukakedai
+  name_ja: すずかけ台
+  name_hira: すずかけだい
+  name_in_system: Suzukakedai
+  name_en: Suzukakedai
+  station_code: DT24
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.MinamiMachida:
+  station_facility: odpt.StationFacility:Tokyu.MinamiMachida
+  name_ja: 南町田
+  name_hira: みなみまちだ
+  name_in_system: MinamiMachida
+  name_en: Minami-machida
+  station_code: DT25
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+
+odpt.Station:Tokyu.DenEnToshi.Tsukimino:
+  station_facility: odpt.StationFacility:Tokyu.Tsukimino
+  name_ja: つきみ野
+  name_hira: つきみの
+  name_in_system: Tsukimino
+  name_en: Tsukimino
+  station_code: DT26
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+
+odpt.Station:Tokyu.DenEnToshi.ChuoRinkan:
+  station_facility: odpt.StationFacility:Tokyu.ChuoRinkan
+  name_ja: 中央林間
+  name_hira: ちゅうおうりんかん
+  name_in_system: ChuoRinkan
+  name_en: Chuo-rinkan
+  station_code: DT27
+  stop:
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Local
+    - custom.StoppingPattern:Tokyu.DenEnToshi.SemiExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.HolidayExpress
+    - custom.StoppingPattern:Tokyu.DenEnToshi.Express

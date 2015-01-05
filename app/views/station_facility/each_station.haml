@@ -1,0 +1,16 @@
+= render "common_content"
+
+- platform_infos = @station_facility.station_facility_platform_infos.includes( :railway_line , :railway_direction , :station_facility_platform_info_barrier_free_facilities , :station_facility_platform_info_transfer_infos , :station_facility_platform_info_surrounding_areas , :barrier_free_facilities , :surrounding_areas )
+- platform_infos_grouped_by_railway_line = platform_infos.group_by { | info | info.railway_line_id }
+
+= station_facility_title_of_each_station
+= station_info_links
+= render partial: "google_map"
+
+%div{ id: :station_facility_contents }
+  %div{ id: :station_facility_platform_infos }
+    = platform_infos_title_in_info_of_station_facility
+    = platform_infos_of_railway_lines( @station_facility , platform_infos_grouped_by_railway_line )
+  %div{ id: :station_facility_infos }
+    = barrier_free_infos_top_title
+    = barrier_free_facility_infos( @station_facility )

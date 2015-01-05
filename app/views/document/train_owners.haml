@@ -1,0 +1,6 @@
+= render "common_content"
+
+= document_title_of_each_content( @title_ja , @title_en )
+%div{ id: :train_owners }
+  - @train_owners.each do | train_owner |
+    = render( "operator_info" , operator: train_owner.operator )

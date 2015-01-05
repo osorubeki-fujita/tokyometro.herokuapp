@@ -1,0 +1,15 @@
+#-------- 【都営大江戸線】
+
+#---- 各駅停車
+
+custom.TrainType:Toei.Oedo.Local.Normal:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:Toei.Oedo
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:Toei.Oedo: custom.StoppingPattern:Toei.Oedo.Local
+  note: 都営大江戸線
+  operator: odpt.Operator:Toei
+  railway_line: odpt.Railway:Toei.Oedo

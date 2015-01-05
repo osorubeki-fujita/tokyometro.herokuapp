@@ -1,0 +1,111 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%baseOfLineCodeInPlatformInfoTab {
+	@extend %floatLeft ;
+    margin: {
+        right: 6px ;
+    }
+}
+
+%lineCodeInPlatformInfoTab {
+    .ginza {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .marunouchi {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .marunouchi_branch {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .hibiya {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .tozai {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .chiyoda {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .chiyoda_branch {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .yurakucho {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .hanzomon {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .namboku {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+    .fukutoshin {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
+}
+
+%textSettingsOfLineNameInPlatformInfoTab {
+    .railway_line_name {
+        @extend %lineCodeInPlatformInfoTab ;
+        .text {
+			@extend %floatLeft ;
+            .text_ja {
+                font: {
+                    size: 10pt ;
+                }
+            }
+            .text_en {
+                font: {
+                    size: 7.5pt ;
+                }
+            }
+        }
+    }
+}
+
+%platformInfoTabContent {
+    #platform_info_tab_menu {
+        #platform_info_tabs {
+            ul {
+                padding: 0px ;
+                li.platform_info_tab {
+                    display: block;
+					@extend %floatLeft ;
+                    list-style-type: none;
+					@extend %link_in_div ;
+                    border: solid 1px #ccc ;
+                    padding: {
+                        left: 8px ;
+                        right: 8px ;
+                        top: 4px ;
+                        bottom: 4px ;
+                    }
+                    margin: {
+                        right: -1px ;
+                    }
+                    &:hover {
+                        background-color: #eee ;
+                    }
+                    @extend %textSettingsOfLineNameInPlatformInfoTab ;
+                }
+            }
+        }
+        #platform_info_tab_contents {
+            clear: both ;
+            ul {
+                padding: 0px;
+                margin: 0px;
+                li.platform_info_tab_content {
+                    clear: left;
+                    display: block;
+                    list-style-type: none;
+                    height: 300px;
+                    padding: 30px ;
+                    border: solid 1px #eee ;
+                    overflow: auto;
+                }
+            }
+        }
+    }
+}

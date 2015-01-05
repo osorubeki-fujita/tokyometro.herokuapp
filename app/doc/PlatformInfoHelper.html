@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: PlatformInfoHelper
+  
+    &mdash; Ruby for Rails - [app] (as of 2014.12.28 00:49)
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!PlatformInfoHelper.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">PlatformInfoHelper</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: PlatformInfoHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">helpers/platform_info_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#platform_infos_of_railway_lines-instance_method" title="#platform_infos_of_railway_lines (instance method)">- (Object) <strong>platform_infos_of_railway_lines</strong>(facility, platform_infos_grouped_by_railway_line) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#platform_infos_title_in_info_of_station_facility-instance_method" title="#platform_infos_title_in_info_of_station_facility (instance method)">- (Object) <strong>platform_infos_title_in_info_of_station_facility</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="platform_infos_of_railway_lines-instance_method">
+  
+    - (<tt>Object</tt>) <strong>platform_infos_of_railway_lines</strong>(facility, platform_infos_grouped_by_railway_line) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/platform_info_helper.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_platform_infos_of_railway_lines'>platform_infos_of_railway_lines</span><span class='lparen'>(</span> <span class='id identifier rubyid_facility'>facility</span> <span class='comma'>,</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span> <span class='rparen'>)</span>
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span>
+    <span class='id identifier rubyid_include'>include</span> <span class='op'>::</span><span class='const'>ForRails</span><span class='op'>::</span><span class='const'>PlatformInfosOfMultipleLine</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 有楽町線・副都心線の共用区間の場合
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span><span class='period'>.</span><span class='id identifier rubyid_platform_infos_of_yurakucho_and_fukutoshin_line?'>platform_infos_of_yurakucho_and_fukutoshin_line?</span><span class='lparen'>(</span> <span class='id identifier rubyid_facility'>facility</span> <span class='rparen'>)</span>
+    <span class='id identifier rubyid_railway_line_ids'>railway_line_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+    <span class='id identifier rubyid_local_h'>local_h</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>railway_line_ids:</span> <span class='id identifier rubyid_railway_line_ids'>railway_line_ids</span> <span class='comma'>,</span> <span class='label'>platform_infos_grouped_by_railway_line:</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span> <span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='id identifier rubyid_local_h'>local_h</span>
+<span class='tstring_content'>%div{ id: :platform_info_tab_menu }
+= platform_infos_tabs( railway_line_ids , yf: true )
+%div{ id: :platform_info_tab_contents }
+  %ul
+    - railway_line_id = railway_line_ids.first
+    - platform_infos_of_this_line = platform_infos_grouped_by_railway_line[ railway_line_id ]
+    = platform_infos_of_each_railway_line( railway_line_id , platform_infos_of_this_line , yf: true )
+</span><span class='heredoc_end'>    HAML
+</span>
+  <span class='comment'># 南北線・三田線の共用区間の場合
+</span>  <span class='kw'>elsif</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span><span class='period'>.</span><span class='id identifier rubyid_platform_infos_of_namboku_and_toei_mita_line?'>platform_infos_of_namboku_and_toei_mita_line?</span><span class='lparen'>(</span> <span class='id identifier rubyid_facility'>facility</span> <span class='rparen'>)</span>
+    <span class='id identifier rubyid_railway_line_ids'>railway_line_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+    <span class='id identifier rubyid_local_h'>local_h</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>railway_line_ids:</span> <span class='id identifier rubyid_railway_line_ids'>railway_line_ids</span> <span class='comma'>,</span> <span class='label'>platform_infos_grouped_by_railway_line:</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span> <span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='id identifier rubyid_local_h'>local_h</span>
+<span class='tstring_content'>%div{ id: :platform_info_tab_menu }
+= platform_infos_tabs( railway_line_ids , ni: true )
+%div{ id: :platform_info_tab_contents }
+  %ul
+    - railway_line_id = railway_line_ids.first
+    - platform_infos_of_this_line = platform_infos_grouped_by_railway_line[ railway_line_id ]
+    = platform_infos_of_each_railway_line( railway_line_id , platform_infos_of_this_line , ni: true )
+</span><span class='heredoc_end'>    HAML
+</span>
+  <span class='comment'># 一般の場合
+</span>  <span class='kw'>else</span>
+    <span class='id identifier rubyid_railway_line_ids'>railway_line_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+    <span class='id identifier rubyid_local_h'>local_h</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>railway_line_ids:</span> <span class='id identifier rubyid_railway_line_ids'>railway_line_ids</span> <span class='comma'>,</span> <span class='label'>platform_infos_grouped_by_railway_line:</span> <span class='id identifier rubyid_platform_infos_grouped_by_railway_line'>platform_infos_grouped_by_railway_line</span> <span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='id identifier rubyid_local_h'>local_h</span>
+<span class='tstring_content'>%div{ id: :platform_info_tab_menu }
+= platform_infos_tabs( railway_line_ids )
+%div{ id: :platform_info_tab_contents }
+  %ul
+    - railway_line_ids.each do | railway_line_id |
+      - platform_infos_of_this_line = platform_infos_grouped_by_railway_line[ railway_line_id ]
+      = platform_infos_of_each_railway_line( railway_line_id , platform_infos_of_this_line )
+</span><span class='heredoc_end'>    HAML
+</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="platform_infos_title_in_info_of_station_facility-instance_method">
+  
+    - (<tt>Object</tt>) <strong>platform_infos_title_in_info_of_station_facility</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10
+11</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/platform_info_helper.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_platform_infos_title_in_info_of_station_facility'>platform_infos_title_in_info_of_station_facility</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span>
+<span class='tstring_content'>%div{ class: :top_title }
+%h2{ class: :text_ja }&lt;
+  = &quot;乗車・降車位置のご案内&quot;
+%h3{ class: :text_en }&lt;
+  = &quot;Information of transfer, barrier free facilities, surrounding areas on the platforms&quot;
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sun Dec 28 00:50:07 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

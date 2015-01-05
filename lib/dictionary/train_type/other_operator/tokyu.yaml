@@ -1,0 +1,98 @@
+#---- 各駅停車
+
+custom.TrainTypeOtherOperator:Tokyu.Local:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    web: "#0000ff"
+    red: 0
+    green: 0
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tokyu
+
+#---- 各駅停車（目黒線）
+
+custom.TrainTypeOtherOperator:Tokyu.Meguro.Local:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    web: "#00b379"
+    red: 0
+    green: 179
+    blue: 121
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Meguro
+
+
+#---- 準急
+
+custom.TrainTypeOtherOperator:Tokyu.SemiExpress:
+  train_type: odpt.TrainType:TokyoMetro.SemiExpress
+  bgcolor:
+    web: "#018d54"
+    red: 1
+    green: 141
+    blue: 84
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.DenEnToshi
+
+#---- 急行
+
+custom.TrainTypeOtherOperator:Tokyu.Express:
+  train_type: odpt.TrainType:TokyoMetro.Express
+  bgcolor :
+    web : "#ee0011"
+    red : 238
+    green : 0
+    blue : 17
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tokyu
+
+#---- 急行（土休）
+# 半蔵門線・東急田園都市線直通
+
+custom.TrainTypeOtherOperator:Tokyu.HolidayExpress:
+  train_type: odpt.TrainType:TokyoMetro.HolidayExpress
+  bgcolor:
+    ref: custom.TrainTypeColor:HolidayExpress
+  color:
+    ref: custom.TrainTypeColor:Black
+    # ref: custom.TrainTypeColor:White
+  operator : odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.DenEnToshi
+
+#---- 通勤特急
+
+custom.TrainTypeOtherOperator:Tokyu.CommuterLimitedExpress:
+  train_type: odpt.TrainType:TokyoMetro.CommuterLimitedExpress
+  bgcolor:
+    web: "#ffcc66"
+    red: 255
+    green: 204
+    blue: 102
+  color:
+    ref: custom.TrainTypeColor:Black
+    # ref: custom.TrainTypeColor:DarkGray
+    # ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Toyoko
+
+#---- 特急
+
+custom.TrainTypeOtherOperator:Tokyu.LimitedExpress:
+  train_type: odpt.TrainType:TokyoMetro.LimitedExpress
+  bgcolor:
+    web: "#fd9a3d"
+    red: 253
+    green: 154
+    blue: 61
+  color:
+    ref: custom.TrainTypeColor:Black
+    # ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Tokyu
+  railway_line: odpt.Railway:Tokyu.Toyoko

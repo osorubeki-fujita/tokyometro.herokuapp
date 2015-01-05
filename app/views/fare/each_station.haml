@@ -1,0 +1,7 @@
+= render "common_content"
+
+= fare_title_of_each_content
+%div{ id: :fare_contents }
+  %div{ id: :fare_info }
+    = title_of_each_content( "各駅から・各駅までの運賃" , "Fares between stations" )
+  = fare_tables

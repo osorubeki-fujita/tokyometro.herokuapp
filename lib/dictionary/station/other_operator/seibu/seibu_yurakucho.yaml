@@ -1,0 +1,37 @@
+odpt.Station:Seibu.Yurakucho.KotekeMukaihara:
+  station_alias:
+    - odpt.Station:TokyoMetro.Yurakucho.KotakeMukaihara
+    - odpt.Station:TokyoMetro.Fukutoshin.KotekeMukaihara
+  station_facility: odpt.StationFacility:Seibu.KotekeMukaihara
+  station_facility_custom: odpt.StationFacility:TokyoMetro.KotekeMukaihara
+  station_facility_custom_alias: odpt.StationFacility:Seibu.KotekeMukaihara
+  name_ja: 小竹向原
+  name_hira: こたけむかいはら
+  name_in_system: KotekeMukaihara
+  name_en: Koteke-mukaihara
+  station_code: SI37
+  stop:
+    - custom.StoppingPattern:Seibu.Yurakucho.Local
+
+odpt.Station:Seibu.Yurakucho.ShinSakuradai:
+  station_facility: odpt.StationFacility:Seibu.ShinSakuradai
+  name_ja: 新桜台
+  name_hira: しんさくらだい
+  name_in_system: ShinSakuradai
+  name_en: Shin-sakuradai
+  station_code: SI38
+  stop:
+    - custom.StoppingPattern:Seibu.Yurakucho.Local
+
+odpt.Station:Seibu.Yurakucho.Nerima:
+  station_alias:
+    - odpt.Seibu.Ikebukuro.Nerima
+    - odpt.Seibu.Toshima.Nerima
+  station_facility: odpt.StationFacility:Seibu.Nerima
+  name_ja: 練馬
+  name_hira: ねりま
+  name_in_system: Nerima
+  name_en: Nerima
+  station_code: SI06
+  stop:
+    - custom.StoppingPattern:Seibu.Yurakucho.Local

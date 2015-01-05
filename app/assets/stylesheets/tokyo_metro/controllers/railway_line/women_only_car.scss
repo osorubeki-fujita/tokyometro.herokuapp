@@ -1,0 +1,40 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+@mixin background_of_women_only_car {
+    $jp_sango: #f5b1aa ;
+    $base_color: $jp_sango ;
+    //
+    // 変数の定義
+    //
+    $color_top: rgba( $base_color , 0.7 ) ;
+    $color_bottom: rgba( $base_color , 0.2 );
+    //
+    // $color_stop_point_1_moz : 5% ;
+    // $color_stop_point_1_webkit : 0.05 ;
+    //
+    background: #{ $color_top } ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+        #{$color_top},
+        // #{$color_top} #{$color_stop_point_1_moz},
+        // #{$color_center} #{$color_stop_point_2_moz} ,
+        // #{$color_center} #{$color_stop_point_3_moz} ,
+        #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+        from( #{$color_top} ),
+        // color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+        // color-stop( #{$color_stop_point_2_webkit} , #{$color_center} ) ,
+        // color-stop( #{$color_stop_point_3_webkit} , #{$color_center} ) ,
+        to( #{$color_bottom} )
+    );
+}
+
+#women_only_car {
+    .main_text {
+        @include background_of_women_only_car ;
+    }
+}

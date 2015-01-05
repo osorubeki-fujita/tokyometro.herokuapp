@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  survey_year: 1
+  station_id: 1
+  operator_id: 1
+  passenger_journey: 1
+
+two:
+  survey_year: 1
+  station_id: 1
+  operator_id: 1
+  passenger_journey: 1

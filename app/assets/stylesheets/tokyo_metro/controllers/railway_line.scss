@@ -1,0 +1,15 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+
+td.transfer {
+    .connecting_railway_line {
+		@extend %floatLeft ;
+        margin: {
+            right: 8px ;
+        }
+        font: {
+            size: 9pt ;
+        }
+    }
+}

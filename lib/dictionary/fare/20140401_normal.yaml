@@ -1,0 +1,25 @@
+---
+- ticket_fare: 140
+  ic_card_fare: 133
+  child_ticket_fare: 70
+  child_ic_card_fare: 66
+- ticket_fare: 170
+  ic_card_fare: 165
+  child_ticket_fare: 90
+  child_ic_card_fare: 82
+- ticket_fare: 200
+  ic_card_fare: 195
+  child_ticket_fare: 100
+  child_ic_card_fare: 97
+- ticket_fare: 240
+  ic_card_fare: 237
+  child_ticket_fare: 120
+  child_ic_card_fare: 118
+- ticket_fare: 280
+  ic_card_fare: 278
+  child_ticket_fare: 140
+  child_ic_card_fare: 139
+- ticket_fare: 310
+  ic_card_fare: 308
+  child_ticket_fare: 160
+  child_ic_card_fare: 154

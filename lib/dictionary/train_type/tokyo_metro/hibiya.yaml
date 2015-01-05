@@ -1,0 +1,13 @@
+#-------- 【日比谷線】
+
+custom.TrainType:TokyoMetro.Hibiya.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Hibiya: custom.StoppingPattern:TokyoMetro.Hibiya.Local
+    odpt.Railway:Tobu.SkyTree: custom.StoppingPattern:Tobu.SkyTree.Local
+    # odpt.Railway:Tobu.Isesaki: custom.StoppingPattern:Tobu.SkyTree.Local
+    odpt.Railway:Tobu.Nikko: custom.StoppingPattern:Tobu.Nikko.Local
+    # odpt.Railway:Tokyu.Toyoko: custom.StoppingPattern:Tokyu.Toyoko.Local
+  note: 日比谷線
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Hibiya

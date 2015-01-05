@@ -1,0 +1,25 @@
+odpt.Station:Tobu.SkyTreeOshiage.Oshiage:
+  station_alias:
+    - odpt.Station:TokyoMetro.Hanzomon.Oshiage
+    - odpt.Station:Tobu.Isesaki.Oshiage
+  station_facility: odpt.StationFacility:Tobu.Oshiage
+  station_facility_custom: odpt.StationFacility:TokyoMetro.Oshiage
+  station_facility_custom_alias: odpt.StationFacility:Tobu.Oshiage
+  name_ja: 押上<スカイツリー前>
+  name_hira: おしあげ（すかいつりーまえ）
+  name_in_system: Oshiage
+  name_en: Oshiage 'Skytree'
+  station_code: TS-03
+  stop:
+    - custom.StoppingPattern:Tobu.SkyTreeOshiage.Subway
+
+odpt.Station:Tobu.SkyTreeOshiage.Hikifune:
+  station_alias: odpt.Station:Tobu.Isesaki.Hikifune
+  station_facility: odpt.StationFacility:Tobu.Hikifune
+  name_ja: 曳舟
+  name_hira: ひきふね
+  name_in_system: Hikifune
+  name_en: Hikifune
+  station_code: TS-04
+  stop:
+    - custom.StoppingPattern:Tobu.SkyTreeOshiage.Subway

@@ -1,0 +1,48 @@
+#---- 各駅停車
+
+custom.TrainTypeOtherOperator:Seibu.Local:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    ref: custom.TrainTypeColor:DarkGray # "#999999"
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Seibu
+
+#---- 準急
+
+custom.TrainTypeOtherOperator:Seibu.SemiExpress:
+  train_type: odpt.TrainType:TokyoMetro.SemiExpress
+  bgcolor:
+    web: "#00cc99"
+    red: 0
+    green: 204
+    blue: 153
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Seibu
+
+#---- 快速
+
+custom.TrainTypeOtherOperator:Seibu.Rapid:
+  train_type: odpt.TrainType:TokyoMetro.Rapid
+  bgcolor:
+    web: "#00ccff"
+    red: 0
+    green: 204
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Seibu
+
+#---- 快速急行
+
+custom.TrainTypeOtherOperator:Seibu.RapidExpress:
+  train_type: odpt.TrainType:TokyoMetro.RapidExpress
+  bgcolor:
+    web: "#cc6699"
+    red: 204
+    green: 102
+    blue: 153
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:Seibu

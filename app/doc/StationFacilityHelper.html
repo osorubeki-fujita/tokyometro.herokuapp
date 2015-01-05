@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: StationFacilityHelper
+  
+    &mdash; Ruby for Rails - [app] (as of 2014.12.28 00:49)
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!StationFacilityHelper.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">StationFacilityHelper</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: StationFacilityHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">helpers/station_facility_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#station_facility_title_of_each_line-instance_method" title="#station_facility_title_of_each_line (instance method)">- (Object) <strong>station_facility_title_of_each_line</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#station_facility_title_of_each_station-instance_method" title="#station_facility_title_of_each_station (instance method)">- (Object) <strong>station_facility_title_of_each_station</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#station_facility_top_title-instance_method" title="#station_facility_top_title (instance method)">- (Object) <strong>station_facility_top_title</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="station_facility_title_of_each_line-instance_method">
+  
+    - (<tt>Object</tt>) <strong>station_facility_title_of_each_line</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13
+14
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_facility_helper.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_station_facility_title_of_each_line'>station_facility_title_of_each_line</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='lbrace'>{</span> <span class='label'>railway_lines:</span> <span class='ivar'>@railway_lines</span> <span class='rbrace'>}</span>
+<span class='tstring_content'>%div{ id: :station_facility_title }
+= station_facility_common_title
+= railway_line_name_main( railway_lines )
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="station_facility_title_of_each_station-instance_method">
+  
+    - (<tt>Object</tt>) <strong>station_facility_title_of_each_station</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_facility_helper.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_station_facility_title_of_each_station'>station_facility_title_of_each_station</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span> <span class='comma'>,</span> <span class='label'>locals:</span> <span class='lbrace'>{</span> <span class='label'>station:</span> <span class='ivar'>@station</span> <span class='rbrace'>}</span>
+<span class='tstring_content'>%div{ id: :station_facility_title }
+= station_facility_common_title
+= station_name_main( station , station_code: true , all_station_codes: true )
+= passenger_survey_of_station
+= tokyo_metro_railway_lines_in_a_station( station )
+= connecting_railway_lines( station )
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="station_facility_top_title-instance_method">
+  
+    - (<tt>Object</tt>) <strong>station_facility_top_title</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'helpers/station_facility_helper.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_station_facility_top_title'>station_facility_top_title</span>
+  <span class='id identifier rubyid_render'>render</span> <span class='label'>inline:</span> <span class='heredoc_beg'>&lt;&lt;-HAML</span> <span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:haml</span>
+<span class='tstring_content'>%div{ id: :station_facility_title }
+= station_facility_common_title
+= application_common_top_title
+</span><span class='heredoc_end'>  HAML
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sun Dec 28 00:50:07 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

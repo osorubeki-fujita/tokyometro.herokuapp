@@ -1,0 +1,28 @@
+#-------- 【都営新宿線】
+
+#---- 各駅停車
+
+custom.TrainType:Toei.Asakusa.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:Toei.Asakusa: custom.StoppingPattern:Toei.Asakusa.Local
+  note: 都営浅草線 普通
+  operator: odpt.Operator:Toei
+  railway_line: odpt.Railway:Toei.Asakusa
+
+#---- エアポート快特
+
+custom.TrainType:Toei.Asakusa.AirportLimitedExpress.Normal:
+  train_type: odpt.TrainType:Toei.AirportLimitedExpress
+  bgcolor:
+    web: "#fd9a3d"
+    red: 253
+    green: 154
+    blue: 61
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:Toei.Asakusa: custom.StoppingPattern:Toei.Asakusa.AirportLimitedExpress
+  note: 都営浅草線 エアポート快特
+  operator: odpt.Operator:Toei
+  railway_line: odpt.Railway:Toei.Asakusa

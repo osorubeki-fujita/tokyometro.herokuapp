@@ -1,0 +1,13 @@
+#---- 東葉快速
+
+custom.TrainTypeOtherOperator:ToyoRapidRailway.ToyoRapid:
+  train_type: odpt.TrainType:TokyoMetro.ToyoRapid
+  bgcolor:
+    web: "#6699ff"
+    red: 102
+    green: 153
+    blue: 255
+  color:
+    ref: custom.TrainTypeColor:White
+  operator: odpt.Operator:ToyoRapidRailway
+  railway_line: odpt.Railway:ToyoRapidRailway.ToyoRapidRailway

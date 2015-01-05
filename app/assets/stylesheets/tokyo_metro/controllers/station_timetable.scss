@@ -1,0 +1,128 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'station_timetable/color_settings.scss' ;
+@import 'station_timetable/header.scss' ;
+
+%trainTimeAdditionalInfoCommonSettings {
+    float: left ;
+    clear: both ;
+    margin: {
+        top: 2px ;
+    }
+    padding: {
+        left: 4px ;
+        right: 4px ;
+        top: 2px ;
+        bottom: 2px ;
+    }
+    border: {
+        style: solid ;
+        width: 1px ;
+    }
+    @include border_radius( 2px ) ;
+    font: {
+        size: 8pt ;
+        weight: normal ;
+    }
+}
+
+%trainTimeAdditionalInfos {
+    margin: {
+        top: 2px ;
+    }
+    .last {
+        @extend %trainTimeAdditionalInfoCommonSettings ;
+        color: $text_black_base_color ;
+        $border_color: $jp_traditional_kompeki ;
+        background-color: rgba( $border_color , 0.2 ) ;
+        border: {
+            color: $border_color ;
+        }
+    }
+    .origin {
+        @extend %trainTimeAdditionalInfoCommonSettings ;
+        color: $text_black_base_color ;
+        $border_color: $jp_traditional_nijiiro ;
+        background-color: rgba( $border_color , 0.5 ) ;
+        border: {
+            color: $border_color ;
+        }
+    }
+    .starting_station {
+        @extend %trainTimeAdditionalInfoCommonSettings ;
+        $border_color: #ddd ;
+        color: $text_black_base_color ;
+        background-color: mix( $border_color , #fff ) ;
+        border: {
+            color: $border_color ;
+        }
+    }
+}
+
+table.timetable {
+    clear:both ;
+    border: solid 1px #999 ;
+    background-color: #fff ;
+    border-collapse: collapse ;
+    @extend %marginBottom32 ;
+    @extend %commonSettingsOfStationTimetableHeader ;
+    @extend %colorSettingsOfStationTimetableHeader ;
+    td {
+        border: solid 1px #999 ;
+    }
+    tr.hour_row {
+        td.hour {
+            @include text_en ;
+            height: auto ;
+            text-align: right ;
+            font: {
+                size: 24pt ;
+                weight: bold ;
+            }
+            color: $jp_traditional_sumi_iro ;
+            background-color: mix( $jp_traditional_urumi_iro , #fff , 30% ) ;
+        }
+        td.train_times {
+            background-color: #f9f9f9 ;
+            .train_time {
+                clear: right ;
+				@extend %floatLeft ;
+                @extend %margin4 ;
+                padding: 4px ;
+                border: solid 1px #eee ;
+                background-color: #fff ;
+                .min {
+					@extend %floatLeft ;
+                    @extend %marginRight4 ;
+                    text-align: right ;
+                    color: #333 ;
+                    @include text_en ;
+                    font: {
+                        size: 18pt ;
+                        weight: bold ;
+                    }
+                }
+                .precise {
+					@extend %floatLeft ;
+                    color: $jp_traditional_sumi_iro ;
+                    font: {
+                        size: 8pt ;
+                    }
+                    .destination {
+                        color: #000 ;
+                        .small {
+                            font: {
+                                size: 6pt ;
+                                color: $jp_traditional_sumi_iro ;
+                            }
+                        }
+                    }
+                    .additional_info {
+                        @extend %trainTimeAdditionalInfos ;
+                    }
+                }
+            }
+        }
+    }
+}

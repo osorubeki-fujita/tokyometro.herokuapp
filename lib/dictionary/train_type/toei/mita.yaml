@@ -1,0 +1,40 @@
+#-------- 【都営三田線】
+
+#---- 各駅停車
+
+custom.TrainType:Toei.Mita.Local.Normal:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:Toei.Mita
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:Toei.Mita: custom.StoppingPattern:Toei.Mita.Local
+    odpt.Railway:TokyoMetro.Namboku: custom.StoppingPattern:TokyoMetro.Namboku.Local
+  note: 都営三田線 各駅停車
+  operator: odpt.Operator:Toei
+  railway_line: odpt.Railway:Toei.Mita
+
+#---- 各駅停車（東急目黒線 直通）
+
+custom.TrainType:Toei.Mita.Local.ToTokyu:
+  ref: custom.TrainTypeOtherOperator:Tokyu.Meguro.Local
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Namboku: custom.StoppingPattern:TokyoMetro.Namboku.Local
+    odpt.Railway:Toei.Mita: custom.StoppingPattern:Toei.Mita.Local
+    odpt.Railway:Tokyu.Meguro: custom.StoppingPattern:Tokyu.Meguro.Local
+  note: 都営三田線 各駅停車（東急目黒線 直通）
+  operator: odpt.Operator:Toei
+  railway_line: odpt.Railway:Toei.Mita
+
+#---- 急行（東急目黒線 直通）
+
+custom.TrainType:Toei.Mita.Express.ToTokyu:
+  ref: custom.TrainTypeDefault:TokyoMetro.Express.ToTokyu
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Namboku: custom.StoppingPattern:TokyoMetro.Namboku.Local
+    odpt.Railway:Toei.Mita: custom.StoppingPattern:Toei.Mita.Local
+    odpt.Railway:Tokyu.Meguro: custom.StoppingPattern:Tokyu.Meguro.Express
+  note: 都営三田線 急行（東急目黒線 直通）
+  operator: odpt.Operator:Toei
+  railway_line: odpt.Railway:Toei.Mita

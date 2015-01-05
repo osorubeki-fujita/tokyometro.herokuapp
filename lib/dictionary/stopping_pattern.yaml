@@ -1,0 +1,6 @@
+# 千代田線 特急ロマンスカー メトロはこね
+
+custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone:
+    odpt.Railway:TokyoMetro.Chiyoda: custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    odpt.Railway:Odakyu.Odawara: custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHakone
+    odpt.Railway:HakoneTozan.OdawaraSide: custom.StoppingPattern:HakoneTozan.OdawaraSide.RomanceCar

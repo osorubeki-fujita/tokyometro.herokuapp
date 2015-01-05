@@ -1,0 +1,65 @@
+odpt.Station:Seibu.Chichibu.Agano:
+  station_alias: odpt.Station:Seibu.Ikebukuro.Agano
+  station_facility: odpt.StationFacility:Seibu.Agano
+  name_ja: 吾野
+  name_hira: あがの
+  name_in_system: Agano
+  name_en: Agano
+  station_code: SI31
+  stop:
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+
+odpt.Station:Seibu.Chichibu.NishiAgano:
+  station_alias: odpt.Station:Seibu.Ikebukuro.NishiAgano
+  station_facility: odpt.StationFacility:Seibu.NishiAgano
+  name_ja: 西吾野
+  name_hira: にしあがの
+  name_in_system: NishiAgano
+  name_en: Nishi-agano
+  station_code: SI32
+  stop:
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+
+odpt.Station:Seibu.Chichibu.Shomaru:
+  station_alias: odpt.Station:Seibu.Ikebukuro.Shomaru
+  station_facility: odpt.StationFacility:Seibu.Shomaru
+  name_ja: 正丸
+  name_hira: しょうまる
+  name_in_system: Shomaru
+  name_en: Shomaru
+  station_code: SI33
+  stop:
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+
+odpt.Station:Seibu.Chichibu.Ashigakubo:
+  station_alias: odpt.Station:Seibu.Ikebukuro.Ashigakubo
+  station_facility: odpt.StationFacility:Seibu.Ashigakubo
+  name_ja: 芦ヶ久保
+  name_hira: あしがくぼ
+  name_in_system: Ashigakubo
+  name_en: Ashigakubo
+  station_code: SI34
+  stop:
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+
+odpt.Station:Seibu.Chichibu.Yokoze:
+  station_alias: odpt.Station:Seibu.Ikebukuro.Yokoze
+  station_facility: odpt.StationFacility:Seibu.Yokoze
+  name_ja: 横瀬
+  name_hira: よこぜ
+  name_in_system: Yokoze
+  name_en: Yokoze
+  station_code: SI35
+  stop:
+    - custom.StoppingPattern:Seibu.Chichibu.Local
+
+odpt.Station:Seibu.Chichibu.SeibuChichibu:
+  station_alias: odpt.Station:Seibu.Ikebukuro.SeibuChichibu
+  station_facility: odpt.StationFacility:Seibu.SeibuChichibu
+  name_ja: 西武秩父
+  name_hira: せいぶちちぶ
+  name_in_system: SeibuChichibu
+  name_en: Seibu-chichibu
+  station_code: SI36
+  stop:
+    - custom.StoppingPattern:Seibu.Chichibu.Local

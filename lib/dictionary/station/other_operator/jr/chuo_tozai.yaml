@@ -1,0 +1,64 @@
+odpt.Station:JR-East.ChuoTozai.Nakano:
+  station_alias: odpt.Station:TokyoMetro.Tozai.Nakano
+  station_facility: odpt.StationFacility:JR-East.Nakano
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.Nakano
+  name_ja: 中野
+  name_hira: なかの
+  name_in_system: Nakano
+  name_en: Nakano
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local
+
+odpt.Station:JR-East.ChuoTozai.Koenji:
+  station_facility: odpt.StationFacility:JR-East.Koenji
+  name_ja: 高円寺
+  name_hira: こうえんじ
+  name_in_system: Koenji
+  name_en: Koenji
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local
+
+odpt.Station:JR-East.ChuoTozai.Asagaya:
+  station_facility: odpt.StationFacility:JR-East.Asagaya
+  name_ja: 阿佐ヶ谷
+  name_hira: あさがや
+  name_in_system: Asagaya
+  name_en: Asagaya
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local
+
+odpt.Station:JR-East.ChuoTozai.Ogikubo:
+  station_facility: odpt.StationFacility:JR-East.Ogikubo
+  name_ja: 荻窪
+  name_hira: おぎくぼ
+  name_in_system: Ogikubo
+  name_en: Ogikubo
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local
+
+odpt.Station:JR-East.ChuoTozai.NishiOgikubo:
+  station_facility: odpt.StationFacility:JR-East.NishiOgikubo
+  name_ja: 西荻窪
+  name_hira: にしおぎくぼ
+  name_in_system: NishiOgikubo
+  name_en: Nishi-ogikubo
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local
+
+odpt.Station:JR-East.ChuoTozai.Kichijoji:
+  station_facility: odpt.StationFacility:JR-East.Kichijoji
+  name_ja: 吉祥寺
+  name_hira: きちじょうじ
+  name_in_system: Kichijoji
+  name_en: Kichijoji
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local
+
+odpt.Station:JR-East.ChuoTozai.Mitaka:
+  station_facility: odpt.StationFacility:JR-East.Mitaka
+  name_ja: 三鷹
+  name_hira: みたか
+  name_in_system: Mitaka
+  name_en: Mitaka
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoTozai.Local

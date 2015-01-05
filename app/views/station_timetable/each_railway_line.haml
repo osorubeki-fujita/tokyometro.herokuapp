@@ -1,0 +1,7 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = twitter_railway_line_info
+
+= title_of_station_timetable_in_each_line
+%div{ id: :station_timetable_contents }

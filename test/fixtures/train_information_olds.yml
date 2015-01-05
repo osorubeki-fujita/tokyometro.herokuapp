@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_urn: MyString
+  dc_date: 2014-11-14 20:23:40
+  valid: 2014-11-14 20:23:40
+  operator_id: 1
+  time_of_origin: 2014-11-14 20:23:40
+  railway_id: 1
+  train_information_status_id: 1
+  train_information_text: MyString
+
+two:
+  id_urn: MyString
+  dc_date: 2014-11-14 20:23:40
+  valid: 2014-11-14 20:23:40
+  operator_id: 1
+  time_of_origin: 2014-11-14 20:23:40
+  railway_id: 1
+  train_information_status_id: 1
+  train_information_text: MyString

@@ -1,0 +1,305 @@
+odpt.Station:Tobu.Isesaki.TobuDoubutsuKoen:
+  station_facility: odpt.StationFacility:Tobu.TobuDobutsuKoen
+  # station_facility: odpt.StationFacility:Tobu.TobuDoubutuKouen
+  name_ja: 東武動物公園
+  name_hira: とうぶどうぶつこうえん
+  name_in_system: TobuDoubutsuKoen
+  # name_in_system: TobuDoubutuKouen
+  name_en: Tobu-doubutsu-koen
+  station_code: TS-30
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+    - custom.StoppingPattern:Tobu.Isesaki.Express
+
+odpt.Station:Tobu.Isesaki.Wado:
+  station_facility: odpt.StationFacility:Tobu.Wado
+  name_ja: 和戸
+  name_hira: わど
+  name_in_system: Wado
+  name_en: Wado
+  station_code: TI-01
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+    - custom.StoppingPattern:Tobu.Isesaki.Express
+
+odpt.Station:Tobu.Isesaki.Kuki:
+  station_facility: odpt.StationFacility:Tobu.Kuki
+  name_ja: 久喜
+  name_hira: くき
+  name_in_system: Kuki
+  name_en: Kuki
+  station_code: TI-02
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+    - custom.StoppingPattern:Tobu.Isesaki.Express
+
+odpt.Station:Tobu.Isesaki.Washinomiya:
+  station_facility: odpt.StationFacility:Tobu.Washinomiya
+  name_ja: 鷲宮
+  name_hira: わしのみや
+  name_in_system: Washinomiya
+  name_en: Washinomiya
+  station_code: TI-03
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Hanasaki:
+  station_facility: odpt.StationFacility:Tobu.Hanasaki
+  name_ja: 花崎
+  name_hira: はなさき
+  name_in_system: Hanasaki
+  name_en: Hanasaki
+  station_code: TI-04
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Kazo:
+  station_facility: odpt.StationFacility:Tobu.Kazo
+  name_ja: 加須
+  name_hira: かぞ
+  name_in_system: Kazo
+  name_en: Kazo
+  station_code: TI-05
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.MinamiHanyu:
+  station_facility: odpt.StationFacility:Tobu.MinamiHanyu
+  name_ja: 南羽生
+  name_hira: みなみはにゅう
+  name_in_system: MinamiHanyu
+  name_en: Minami-hanyu
+  station_code: TI-06
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Hanyu:
+  station_facility: odpt.StationFacility:Tobu.Hanyu
+  name_ja: 羽生
+  name_hira: はにゅう
+  name_in_system: Hanyu
+  name_en: Hanyu
+  station_code: TI-07
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Kawamata:
+  station_facility: odpt.StationFacility:Tobu.Kawamata
+  name_ja: 川俣
+  name_hira: かわまた
+  name_in_system: Kawamata
+  name_en: Kawamata
+  station_code: TI-08
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Morinjimae:
+  station_facility: odpt.StationFacility:Tobu.Morinjimae
+  name_ja: 茂林寺前
+  name_hira: もりんじまえ
+  name_in_system: Morinjimae
+  name_en: Morinjimae
+  station_code: TI-09
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Tatebayashi:
+  station_facility: odpt.StationFacility:Tobu.Tatebayashi
+  name_ja: 館林
+  name_hira: たてばやし
+  name_in_system: Tatebayashi
+  name_en: Tatebayashi
+  station_code: TI-10
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Tatara:
+  station_facility: odpt.StationFacility:Tobu.Tatara
+  name_ja: 多々良
+  name_hira: たたら
+  name_in_system: Tatara
+  name_en: Tatara
+  station_code: TI-11
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Agata:
+  station_facility: odpt.StationFacility:Tobu.Agata
+  name_ja: 県
+  name_hira: あがた
+  name_in_system: Agata
+  name_en: Agata
+  station_code: TI-12
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Fukui:
+  station_facility: odpt.StationFacility:Tobu.Fukui
+  name_ja: 福居
+  name_hira: ふくい
+  name_in_system: Fukui
+  name_en: Fukui
+  station_code: TI-13
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.TobuIzumi:
+  station_facility: odpt.StationFacility:Tobu.TobuIzumi
+  name_ja: 東武和泉
+  name_hira: とうぶいずみ
+  name_in_system: TobuIzumi
+  name_en: Tobu-izumi
+  station_code: TI-14
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Ashikagashi:
+  station_facility: odpt.StationFacility:Tobu.Ashikagashi
+  name_ja: 足利市
+  name_hira: あしかがし
+  name_in_system: Ashikagashi
+  name_en: Ashikagashi
+  station_code: TI-15
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.YashuYamabe:
+  station_facility: odpt.StationFacility:Tobu.YashuYamabe
+  name_ja: 野州山辺
+  name_hira: やしゅうやまべ
+  name_in_system: YashuYamabe
+  name_en: Yashu-yamabe
+  station_code: TI-16
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Niragawa:
+  station_facility: odpt.StationFacility:Tobu.Niragawa
+  name_ja: 韮川
+  name_hira: にらがわ
+  name_in_system: Niragawa
+  name_en: Niragawa
+  station_code: TI-17
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Ota:
+  station_facility: odpt.StationFacility:Tobu.Ota
+  name_ja: 太田
+  name_hira: おおた
+  name_in_system: Ota
+  name_en: Ota
+  station_code: TI-18
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+    - custom.StoppingPattern:Tobu.Isesaki.SectionSemiExpress
+    - custom.StoppingPattern:Tobu.Isesaki.SectionExpress
+
+odpt.Station:Tobu.Isesaki.Hosoya:
+  station_facility: odpt.StationFacility:Tobu.Hosoya
+  name_ja: 細谷
+  name_hira: ほそや
+  name_in_system: Hosoya
+  name_en: Hosoya
+  station_code: TI-19
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+
+odpt.Station:Tobu.Isesaki.Kizaki:
+  station_facility: odpt.StationFacility:Tobu.Kizaki
+  name_ja: 木崎
+  name_hira: きざき
+  name_in_system: Kizaki
+  name_en: Kizaki
+  station_code: TI-20
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+
+odpt.Station:Tobu.Isesaki.Serada:
+  station_facility: odpt.StationFacility:Tobu.Serada
+  name_ja: 世良田
+  name_hira: せらだ
+  name_in_system: Serada
+  name_en: Serada
+  station_code: TI-21
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+
+odpt.Station:Tobu.Isesaki.Sakaimachi:
+  station_facility: odpt.StationFacility:Tobu.Sakaimachi
+  name_ja: 境町
+  name_hira: さかいまち
+  name_in_system: Sakaimachi
+  name_en: Sakaimachi
+  station_code: TI-22
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+
+odpt.Station:Tobu.Isesaki.Goshi:
+  station_facility: odpt.StationFacility:Tobu.Goshi
+  name_ja: 剛志
+  name_hira: ごうし
+  name_in_system: Goshi
+  name_en: Goshi
+  station_code: TI-23
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+
+odpt.Station:Tobu.Isesaki.ShinIsesaki:
+  station_facility: odpt.StationFacility:Tobu.ShinIsesaki
+  name_ja: 新伊勢崎
+  name_hira: しんいせさき
+  name_in_system: ShinIsesaki
+  name_en: Shin-isesaki
+  station_code: TI-24
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local
+
+odpt.Station:Tobu.Isesaki.Isesaki:
+  station_facility: odpt.StationFacility:Tobu.Isesaki
+  name_ja: 伊勢崎
+  name_hira: いせさき
+  name_in_system: Isesaki
+  name_en: Isesaki
+  station_code: TI-25
+  stop:
+    - custom.StoppingPattern:Tobu.Isesaki.Local

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_ja: MyString
+  name_hira: MyString
+  name_en: MyString
+  index: 1.5
+  code: MyString
+  code_shape: MyString
+  same_as: MyString
+
+two:
+  name_ja: MyString
+  name_hira: MyString
+  name_en: MyString
+  index: 1.5
+  code: MyString
+  code_shape: MyString
+  same_as: MyString

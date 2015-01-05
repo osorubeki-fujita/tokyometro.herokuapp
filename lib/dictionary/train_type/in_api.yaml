@@ -1,0 +1,88 @@
+#---- 一般の種別
+
+odpt.TrainType:TokyoMetro.Local:
+  name_ja : 各停
+  name_en : Local
+
+odpt.TrainType:TokyoMetro.LimitedExpress:
+  name_ja : 特急
+  name_en : Limited Express
+
+odpt.TrainType:TokyoMetro.Express:
+  name_ja : 急行
+  name_en : Express
+
+odpt.TrainType:TokyoMetro.HolidayExpress:
+  name_ja : 土休急行
+  name_en : Express (Holiday)
+  name_ja_display : 急行
+  name_en_display : Express
+
+odpt.TrainType:TokyoMetro.SemiExpress:
+  name_ja : 準急
+  name_en : Semi Express
+
+odpt.TrainType:TokyoMetro.Rapid:
+  name_ja : 快速
+  name_en : Rapid
+
+
+#-------- 路線特有の種別
+
+#---- 東西線
+
+odpt.TrainType:TokyoMetro.CommuterRapid:
+  name_ja : 通勤快速
+  name_en : Commuter Rapid
+
+odpt.TrainType:TokyoMetro.ToyoRapid:
+  name_ja : 東葉快速
+  name_en : Toyo Rapid
+
+#---- 千代田線
+
+odpt.TrainType:TokyoMetro.TamaExpress:
+  name_ja : 多摩急行
+  name_en : Tama Express
+
+odpt.TrainType:TokyoMetro.RomanceCar:
+  name_ja : 特急ロマンスカー
+  name_en : Romance Car (Limited Express)
+  name_ja_display : 特急
+  name_en_display : Limited Express "Romance Car"
+
+#-------- 有楽町線・副都心線
+
+# 有楽町線・副都心線 → 西武
+odpt.TrainType:TokyoMetro.RapidExpress:
+  name_ja : 快速急行
+  name_en : Rapid Express
+
+#---- 「通勤」が付く種別
+
+odpt.TrainType:TokyoMetro.CommuterLimitedExpress:
+  name_ja : 通勤特急
+  # name_en : Commuter Limited Express
+  name_en : Commuter Ltd. Exp.
+
+odpt.TrainType:TokyoMetro.CommuterExpress:
+  name_ja : 通勤急行
+  name_en : Commuter Express
+
+#-------- その他
+
+odpt.TrainType:TokyoMetro.CommuterSemiExpress:
+  name_ja : 通勤準急
+  name_en : Commuter Semi Express
+
+odpt.TrainType:TokyoMetro.Unknown:
+  name_ja : 不明
+  name_en : Unknown
+  
+odpt.TrainType:TokyoMetro.Extra:
+  name_ja : 臨時
+  name_en : Extra
+  
+odpt.TrainType:Toei.AirportLimitedExpress:
+  name_ja : エアポート快特
+  name_en : Airport Limited Express

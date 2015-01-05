@@ -1,0 +1,50 @@
+@charset "utf-8" ;
+
+@mixin odakyu_romance_car_grad_color {
+    // 変数の定義
+    $color_stop_point_1_moz : 20% ;
+    $color_stop_point_1_webkit : 0.2 ;
+    $color_stop_point_2_moz : 50% ;
+    $color_stop_point_2_webkit : 0.5 ;
+    $color_stop_point_3_moz : 78% ;
+    $color_stop_point_3_webkit : 0.78 ;
+    $color_stop_point_4_moz : 80% ;
+    $color_stop_point_4_webkit : 0.8 ;
+    $chiyoda_color_a : $line_chiyoda_bgcolor ;
+    $chiyoda_color_b : lighten( $chiyoda_color_a , 30% ) ;
+    $odakyu_color : lighten( $operator_odakyu_bgcolor , 10% ) ;
+    $limited_express_color : #ff0000 ;
+    //
+    background: #{ $limited_express_color } ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+        #{$chiyoda_color_b},
+        #{$chiyoda_color_b} #{$color_stop_point_1_moz},
+        #{$odakyu_color} #{$color_stop_point_2_moz} ,
+        #fff #{$color_stop_point_3_moz} ,
+        #fff #{$color_stop_point_4_moz} ,
+        #{$limited_express_color}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+        from( #{$chiyoda_color_b} ),
+        color-stop( #{$color_stop_point_1_webkit} , #{$chiyoda_color_b} ) ,
+        color-stop( #{$color_stop_point_2_webkit} , #{$odakyu_color} ) ,
+        color-stop( #{$color_stop_point_3_webkit} , #fff ) ,
+        color-stop( #{$color_stop_point_4_webkit} , #fff ) ,
+        to( #{$limited_express_color} )
+    );
+}
+
+@mixin odakyu_romance_car( $square_width: $width_of_rounded_square ) {
+    @extend %colorBoxCommonBase ;
+    @include rounded_square_base ;
+    @include rounded_square_border_radius ;
+    //---- サイズの定義
+    $border_width : 1px ;
+    @include rounded_square_size( $width_of_rounded_square_wide , $height_of_rounded_square , $border_width ) ;
+    //---- ボーダーの定義
+	border: solid #{$border_width} #999 ;
+    
+    @include odakyu_romance_car_grad_color ;
+}
