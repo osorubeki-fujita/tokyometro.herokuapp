@@ -1,7 +1,0 @@
-module TokyoMetro::ApiModules::Customize::StationTimetable::ConvertTerminalStation
-end
-
-# convert_terminal_station/fundamental.rb
-# convert_terminal_station/marunouchi_branch_line_for_nakano_sakaue.rb
-# convert_terminal_station/namboku_line_for_musashi_kosugi.rb
-# convert_terminal_station/fukutoshin_line_for_wakoshi.rb

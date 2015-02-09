@@ -1,4 +1,3 @@
-# データ検索 API を利用するクラス、地理情報 API を利用するクラスに共通するクラスメソッドを集めたモジュール
-# @note ActiveSupport::Concern を利用するので、TokyoMetro::ApiModules::Fundamental の各サブクラスに 【include】すればよい。
+# 各クラスの属性を定義するメソッドなどを集めたモジュールを格納する名前空間
 module TokyoMetro::ApiModules::Common
 end

@@ -2,10 +2,12 @@
 class TokyoMetro::Api::TrainTimetable::Info::StationTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainTimetable
-  include ::TokyoMetro::ApiModules::ToFactoryClass::GenerateFromHash
-  include ::TokyoMetro::ApiModules::InstanceMethods::SeedCompleted
-  
-  include ::TokyoMetro::ApiModules::Decision::ArrivalStation
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+
+  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::ApiModules::Info::SeedCompleted
+
+  include ::TokyoMetro::ApiModules::Info::Decision::ArrivalStation
 
   def initialize( arrival_time , arrival_station , departure_time , departure_station )
     @arrival_time = arrival_time
@@ -22,13 +24,19 @@ class TokyoMetro::Api::TrainTimetable::Info::StationTime::Info
   attr_reader :departure_station
 
   def station
-    if @departure_station.present?
-      @departure_station
-    elsif @arrival_station.present?
-      @arrival_station
+    h = ::Hash.new
+    if @arrival_station.present?
+      h[ :arrival ] = @arrival_station
+    elsif @departure_station.present?
+      h[ :departure ] = @departure_station
     else
       raise "Error"
     end
+    h
+  end
+
+  def is_at?( station_same_as )
+    station.values.include?( station_same_as )
   end
 
   def time
@@ -65,12 +73,32 @@ class TokyoMetro::Api::TrainTimetable::Info::StationTime::Info
     @arrival_time.present? and @departure_time.nil?
   end
 
-  def self.generate_from_hash(h)
-    super( h , factory_name: :factory_for_generating_station_time_from_hash )
+  def self.factory_for_this_class
+    factory_for_generating_station_time_from_hash
   end
 
-  def station_id_in_db
-    ::Station.find_by_same_as( self.station ).id
+  def station_ids
+    h = ::Hash.new
+    self.station.each do | k , v |
+      h[k] = ::Station.find_by_same_as( v ).id
+    end
+    h
   end
 
 end
+
+__END__
+
+
+
+  def seed_each_train_relation_info( relation )
+    another_train_name = self.send( relation )
+    if another_train_name.present?
+      this_train_in_db = ::TrainTimetable.find_by_same_as( @same_as )
+      another_train_in_db = ::TrainTimetable.find_by_same_as( another_train_name )
+      unless another_train_in_db.present?
+        raise "Error: \"#{ another_train_name }\" does not exist in db."
+      end
+      this_train_in_db.update( { "#{type}_id".intern => another_train_in_db.id } )
+    end
+  end

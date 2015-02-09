@@ -66,7 +66,7 @@ class TokyoMetro::Api::RailwayLine < TokyoMetro::Api::MetaClass::Hybrid
   end
 
   def self.get_test_for_each_line( http_client )
-    ::TokyoMetro::StaticDatas.railway_lines_operated_by_tokyo_metro.each do | line |
+    ::TokyoMetro::Static.railway_lines_operated_by_tokyo_metro.each do | line |
       self.get_test( http_client , line )
       sleep( 2 )
     end
@@ -99,7 +99,7 @@ class TokyoMetro::Api::RailwayLine < TokyoMetro::Api::MetaClass::Hybrid
     puts "● #{get_test_title} (geo)"
     result = get_geo( http_client , geo_long , geo_lat , radius , to_inspect: true , perse_json: true , generate_instance: true )
     puts "(#{result.length})"
-    result.sort_by { | rail | rail.operator }.each do | rail |
+    result.sort_by( &:operator ).each do | rail |
       puts rail.to_strf
       puts "" * 2
     end

@@ -85,6 +85,8 @@ gem 'gmaps4rails'
 
 gem 'whenever', :require => false
 
+gem 'draper'
+
 # gem 'feedjira'
 # gem 'geocoder'
 

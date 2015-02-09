@@ -1,15 +1,19 @@
 # 個別の駅施設情報を扱うクラス
 class TokyoMetro::Api::StationFacility::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringWithArray
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+
+  include ::TokyoMetro::ApiModules::Info::ToStringWithArray
 
   # Constructor
   def initialize( id_urn , same_as , barrier_free_facilities , platform_infos , dc_date )
     @id_urn = id_urn
     @same_as = same_as
+
     @barrier_free_facilities = barrier_free_facilities
     @platform_infos = platform_infos
+
     @dc_date = dc_date
   end
 
@@ -23,7 +27,7 @@ class TokyoMetro::Api::StationFacility::Info < TokyoMetro::Api::MetaClass::NotRe
   attr_reader :barrier_free_facilities
 
   # プラットフォームに車両が停車している時の、車両毎の最寄りの施設・出口等の情報 - Array (ug:SpatialThing) odpt:platformInformation
-  # @return [PlatformInfo::List]
+  # @return [Platform::List]
   attr_reader :platform_infos
 
   # @todo 定義されているのか？
@@ -50,29 +54,21 @@ class TokyoMetro::Api::StationFacility::Info < TokyoMetro::Api::MetaClass::NotRe
     to_s_with_array( [ "odpt:barrierfreeFacility" ,  "odpt:platformInformation" ] , indent )
   end
 
-  def seed
-    seed_h = {
-      id_urn: @id_urn ,
-      same_as: @same_as ,
-      dc_date: @dc_date
-    }
-    ::StationFacility.create( seed_h )
+  def seed_barrier_free_facilities( indent )
+    seed_barrier_free_facilities_or_platform_infos( @barrier_free_facilities , indent )
   end
 
-  def seed_barrier_free_facility_infos
-    puts " " * 4 + @same_as
-
-    station_facility_id = instance_in_db.id
-    @barrier_free_facilities.seed( station_facility_id , indent: 1 )
+  def seed_platform_infos( indent )
+    seed_barrier_free_facilities_or_platform_infos( @platform_infos , indent )
   end
 
-  def seed_platform_infos( whole: nil , now_at: nil )
+  def seed_barrier_free_facilities_or_platform_infos( info , indent )
     station_facility_id = instance_in_db.id
-    @platform_infos.seed( station_facility_id , whole: whole , now_at: now_at )
+    info.try( :seed , station_facility_id , indent )
   end
 
   def instance_in_db
-    ::StationFacility.find_by( same_as: @same_as )
+    ::StationFacility.find_by_same_as( @same_as )
   end
 
   # @!endgroup

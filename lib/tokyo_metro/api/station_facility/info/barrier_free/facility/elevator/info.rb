@@ -3,8 +3,8 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Elevator::I
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Elevator
 
-  def self.generate_from_hash( facility_hash )
-    super( facility_hash )
+  def self.factory_for_this_class
+    factory_for_generating_barrier_free_elevator_info_from_hash
   end
 
 end

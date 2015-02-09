@@ -1,7 +1,5 @@
 # 各駅の情報を扱うクラス
-class TokyoMetro::Api::RailwayLine::Info::StationOrder::Info
-
-  include ::TokyoMetro::ApiModules::ToFactoryClass::GenerateFromHash
+class TokyoMetro::Api::RailwayLine::Info::StationOrder::Info < TokyoMetro::Api::RailwayLine::Info::MetaClass::Info
 
   # Constructor
   def initialize( index , station )
@@ -31,17 +29,19 @@ class TokyoMetro::Api::RailwayLine::Info::StationOrder::Info
     { "odpt:index" => @index , "odpt:station" => @station }
   end
 
-=begin
-  # @note 使用停止中
+  # @note 使用停止中 - {TokyoMetro::Static::Station::InEachRailwayLine::Info#seed}を参照
   def seed
     ::Station.find_by( same_as: @station ).update( index_in_railway_line: @index )
   end
-=end
 
   alias :to_strf :to_s
 
   def self.factory_for_generating_from_hash
-    ::TokyoMetro::Factories::Api::GenerateFromHash::RailwayLine::Info::StationOrder
+    factory_for_generating_station_order_info_from_hash
   end
+
+  # def self.factory_for_seeding_this_class
+    # factory_for_seeding_station_order_infos
+  # end
 
 end

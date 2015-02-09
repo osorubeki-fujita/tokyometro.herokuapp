@@ -3,16 +3,22 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationTimetable
 
-  include ::TokyoMetro::ApiModules::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Decision::CurrentStation
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::ApiModules::Info::Decision::CurrentStation
 
   # Constructor
-  def initialize( id_urn , same_as , dc_date , station , railway_line , operator , railway_direction , 
+  def initialize( id_urn , same_as , dc_date , station_timetable_fundamental_infos ,
     weekdays , saturdays , holidays )
+
     @id_urn = id_urn
     @same_as = same_as
-    @date = dc_date
-    @station , @railway_line , @operator , @railway_direction = station , railway_line , operator , railway_direction
+    @dc_date = dc_date
+
+    @fundamental_infos = station_timetable_fundamental_infos
+
     @weekdays = weekdays
     @saturdays = saturdays
     @holidays = holidays
@@ -31,25 +37,27 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
   # @return [DateTime]
   # @example
   #  2013–01–13T15:10:00+09:00
-  attr_reader :date
+  attr_reader :dc_date
 
   # @!group 時刻表のメタデータ (For users)
 
   # 駅 - odpt:Station
   # @return [String]
-  attr_reader :station
+  # attr_reader :station
 
   # 路線 - odpt:Railway
   # @return [String]
-  attr_reader :railway_line
+  # attr_reader :railway_line
 
   # 運行会社 - odpt:Operator
   # @return [String]
-  attr_reader :operator
+  # attr_reader :operator
 
   # 方面 - odpt:RailDirection
   # @return [String]
-  attr_reader :railway_direction
+  # attr_reader :railway_direction
+
+  attr_reader :fundamental_infos
 
   # @!group 時刻表データ（配列）
 
@@ -75,14 +83,29 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
   # @return [Info::Train::List <Info::Train::Info (odpt:StationTimetableObject)>]
   alias :sundays :holidays
 
+  [ :weekdays , :saturdays , :holidays , :fridays , :sundays ].each do | method_name |
+    eval <<-DEF
+      alias :#{ method_name.to_s.singularize } :#{ method_name }
+    DEF
+  end
+
   def timetables
     [ @weekdays , @saturdays , @holidays ]
   end
 
+  def terminal_stations( *days )
+    if days.present?
+      t = days.map { | day_type | self.send( day_type ) }
+    else
+      t = timetables
+    end
+    t.map( &:terminal_stations ).flatten.sort.uniq
+  end
+
   def combination_of_timetable_types_and_operation_days
     [
-      [ @weekdays , ::TokyoMetro::ApiModules::TimetableModules.weekday ] ,
-      [ @holidays , ::TokyoMetro::ApiModules::TimetableModules.saturday_and_holiday ]
+      [ @weekdays , ::OperationDay.find_by_name_en( ::TokyoMetro::Static.operation_days.weekday.en ) ] ,
+      [ @holidays , ::OperationDay.find_by_name_en( ::TokyoMetro::Static.operation_days.saturday_and_holiday.en ) ]
     ]
   end
 
@@ -95,7 +118,7 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
 
     set_data_to_hash( h , "\@id" , @id_urn )
     set_data_to_hash( h , "owl:sameAs" , @same_as )
-    set_data_to_hash( h , "dc:date" , @date )
+    set_data_to_hash( h , "dc:date" , @dc_date )
 
     set_data_to_hash( h , "odpt:operator" , @operator )
     set_data_to_hash( h , "odpt:railway" , @railway_line )
@@ -222,8 +245,11 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
   # @note 取りうる値は、原則として :weekdays（平日）, :satudays（土曜）, :holidays（休日）である。
   # @note 特殊なダイヤや他の鉄道・バスへの拡張性を考慮し、:fridays, :sundays（日曜…休日ダイヤと日曜ダイヤが異なる場合を考慮）, :no_school_days（学休日）, :new_year（年末年始）, :all_night（終夜運転）, :extra_operation（臨時ダイヤ）, :business_use（業務用） , :maintainance（線路保守・システム保守・テスト用）, :emergency（災害時・緊急時用）も認める設定とする。
   def self.type_of_timetables
-    [ :weekdays , :satudays , :holidays ,
-      :fridays , :sundays , :no_school_days , :new_year , :all_night , :extra_operation , :business_use , :maintainance , :emergency ]
+    [
+      :weekdays , :satudays , :holidays ,
+      :fridays , :sundays ,
+      :no_school_days , :new_year , :all_night , :extra_operation , :business_use , :maintainance , :emergency
+    ]
   end
 
   # @!group その他
@@ -235,7 +261,27 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
   end
 
   def instance_in_db
-    ::Timetable.find_by_same_as( @same_as )
+    ::StationTimetable.find_by_same_as( @same_as )
+  end
+
+  [ :stations , :railway_lines , :operators , :railway_directions ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        @fundamental_infos.#{ method_name }
+      end
+    DEF
+  end
+
+  # @param train_timetables [::TokyoMetro::Api::TrainTimetable::List <::TokyoMetro::Api::TrainTimetable::Info>]
+  def seed_train_times( train_timetables )
+    station_timetable_info = ::TokyoMetro::Factories::Seed::Api::StationTrainTime::TrainInStationTimetable::StationTimetableInfo.new( self )
+
+    # 各曜日の時刻の処理〈ここから〉
+    combination_of_timetable_types_and_operation_days.each do | station_timetable_in_a_day , operation_day_in_db |
+      station_timetable_in_a_day.seed( station_timetable_info , operation_day_in_db , train_timetables )
+    end
+    # 各曜日の時刻の処理〈ここまで〉
+    return nil
   end
 
   private
@@ -345,5 +391,15 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
       h
     end
   end
+
+  def station_same_as__is_in?( *variables )
+    super( *variables , compared: self.stations )
+  end
+
+  def on_the_railway_line_of?( *variables )
+    super( *variables , compared: self.railway_lines )
+  end
+
+  alias :is_on_the_railway_line_of? :on_the_railway_line_of?
 
 end

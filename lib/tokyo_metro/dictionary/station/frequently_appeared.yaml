@@ -1,0 +1,40 @@
+#---- 丸ノ内線
+honancho: odpt.Station:TokyoMetro.MarunouchiBranch.Honancho
+nakano_fujimicho: odpt.Station:TokyoMetro.MarunouchiBranch.NakanoFujimicho
+nakano_shimbashi: odpt.Station:TokyoMetro.MarunouchiBranch.NakanoShimbashi
+
+nakano_sakaue_on_marunouchi_line: odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue
+nakano_sakaue_on_marunouchi_branch_line: odpt.Station:TokyoMetro.MarunouchiBranch.NakanoSakaue
+
+ogikubo: odpt.Station:TokyoMetro.Marunouchi.Ogikubo
+
+#---- 丸ノ内線（不正な値）
+honancho_invalid: odpt.Station:TokyoMetro.Marunouchi.Honancho
+nakano_fujimicho_invalid: odpt.Station:TokyoMetro.Marunouchi.NakanoFujimicho
+nakano_shimbashi_invalid: odpt.Station:TokyoMetro.Marunouchi.NakanoShimbashi
+
+#---- 東西線
+mitaka: odpt.Station:JR-East.ChuoTozai.Mitaka
+tsudanuma: odpt.Station:JR-East.SobuTozai.Tsudanuma
+
+#---- 千代田線
+yoyogi_uehara: odpt.Station:TokyoMetro.Chiyoda.YoyogiUehara
+ayase_on_chiyoda_main_line: odpt.Station:TokyoMetro.Chiyoda.Ayase
+
+ayase_on_chiyoda_branch_line: odpt.Station:TokyoMetro.ChiyodaBranch.Ayase
+kita_ayase_on_chiyoda_branch_line: odpt.Station:TokyoMetro.ChiyodaBranch.KitaAyase
+
+#---- 千代田線（不正な値）
+kita_ayase_on_chiyoda_main_line: odpt.Station:TokyoMetro.Chiyoda.KitaAyase
+
+#---- 南北線
+shirokane_takanawa: odpt.Station:TokyoMetro.Namboku.ShirokaneTakanawa
+
+#---- 有楽町線・副都心線
+wakoshi_on_yurakucho_line: odpt.Station:TokyoMetro.Yurakucho.Wakoshi
+wakoshi_on_fukutoshin_line: odpt.Station:TokyoMetro.Fukutoshin.Wakoshi
+kotake_mukaihara_on_yurakucho_line: odpt.Station:TokyoMetro.Yurakucho.KotakeMukaihara
+kotake_mukaihara_on_fukutoshin_line: odpt.Station:TokyoMetro.Fukutoshin.KotakeMukaihara
+ikebukuro_on_yurakucho_line: odpt.Station:TokyoMetro.Yurakucho.Ikebukuro
+ikebukuro_on_fukutoshin_line: odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro
+motomachi_chukagai: odpt:Station.YokohamaMinatomiraiRailway.Minatomirai.MotomachiChukagai

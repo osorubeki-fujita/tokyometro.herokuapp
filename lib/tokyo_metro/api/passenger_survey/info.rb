@@ -2,7 +2,9 @@
 class TokyoMetro::Api::PassengerSurvey::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::PassengerSurvey
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
 
   # Constructor
   def initialize( id_urn , same_as , operator , survey_year , passenger_journeys )
@@ -62,15 +64,5 @@ class TokyoMetro::Api::PassengerSurvey::Info < TokyoMetro::Api::MetaClass::NotRe
   end
 
   alias :to_strf :to_s
-
-  def seed( operators_in_db )
-    ::PassengerSurvey.create(
-      id_urn: @id_urn ,
-      same_as: @same_as ,
-      operator_id: operators_in_db.find_by( same_as: @operator ).id ,
-      survey_year: @survey_year ,
-      passenger_journey: @passenger_journeys
-    )
-  end
 
 end

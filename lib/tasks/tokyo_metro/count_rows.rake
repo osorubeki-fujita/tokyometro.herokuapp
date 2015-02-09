@@ -15,6 +15,7 @@ namespace :tokyo_metro do
       "#{ ::Rails.root }/lib/**/**.rb" ,
       "#{ ::Rails.root }/lib/**/**.yaml" ,
       "#{ ::Rails.root }/lib/**/**.rake" ,
+      "#{ ::Rails.root }/test/tokyo_metro/**/**.rb" ,
       "#{ ::Rails.root }/config/application.rb" ,
       "#{ ::Rails.root }/Rakefile"
     ].map { | str | Dir.glob( str ) }.flatten.sort

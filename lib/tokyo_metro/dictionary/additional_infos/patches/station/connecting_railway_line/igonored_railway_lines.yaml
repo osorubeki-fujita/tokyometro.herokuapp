@@ -1,0 +1,67 @@
+#-------- 【都営浅草線】（銀座線）京橋
+-
+    stations:
+        - odpt.Station:TokyoMetro.Ginza.Kyobashi
+    railway_lines:
+        - odpt.Railway:Toei.Asakusa
+
+#-------- 【千代田線】（丸ノ内線）御茶ノ水
+-
+    stations:
+        - odpt.Station:TokyoMetro.Marunouchi.Ochanomizu
+    railway_lines:
+        - odpt.Railway:TokyoMetro.Chiyoda
+        
+        
+#-------- 【中央線快速】飯田橋・市ケ谷
+-
+    stations:
+        - odpt.Station:TokyoMetro.Tozai.Iidabashi
+        - odpt.Station:TokyoMetro.Yurakucho.Iidabashi
+        - odpt.Station:TokyoMetro.Namboku.Iidabashi
+        - odpt.Station:TokyoMetro.Yurakucho.Ichigaya
+        - odpt.Station:TokyoMetro.Namboku.Ichigaya
+    railway_lines:
+        - odpt.Railway:JR-East.ChuoKaisoku
+
+#-------- 【都営三田線】目黒・白金台
+-
+    stations:
+        - odpt.Station:TokyoMetro.Namboku.Meguro
+        - odpt.Station:TokyoMetro.Namboku.Shirokanedai
+    railway_lines:
+        - odpt.Railway:Toei.Mita
+
+#-------- 【小田急小田原線】代々木公園
+-
+    stations:
+        - odpt.Station:TokyoMetro.Chiyoda.YoyogiKoen
+    railway_lines:
+        - odpt.Railway:Odakyu.Odawara
+
+#-------- 【東武東上線】地下鉄成増・地下鉄赤塚
+-
+    stations:
+        - odpt.Station:TokyoMetro.Yurakucho.ChikatetsuNarimasu
+        - odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuNarimasu
+        - odpt.Station:TokyoMetro.Yurakucho.ChikatetsuAkatsuka
+        - odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuAkatsuka
+    railway_lines:
+        - odpt.Railway:Tobu.Tojo
+
+#-------- 【有楽町線・副都心線】和光市・地下鉄成増・地下鉄赤塚・平和台・氷川台
+-
+    stations:
+        - odpt.Station:TokyoMetro.Yurakucho.Wakoshi
+        - odpt.Station:TokyoMetro.Fukutoshin.Wakoshi
+        - odpt.Station:TokyoMetro.Yurakucho.ChikatetsuNarimasu
+        - odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuNarimasu
+        - odpt.Station:TokyoMetro.Yurakucho.ChikatetsuAkatsuka
+        - odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuAkatsuka
+        - odpt.Station:TokyoMetro.Yurakucho.Heiwadai
+        - odpt.Station:TokyoMetro.Fukutoshin.Heiwadai
+        - odpt.Station:TokyoMetro.Yurakucho.Hikawadai
+        - odpt.Station:TokyoMetro.Fukutoshin.Hikawadai
+    railway_lines:
+        - odpt.Railway:TokyoMetro.Yurakucho
+        - odpt.Railway:TokyoMetro.Fukutoshin

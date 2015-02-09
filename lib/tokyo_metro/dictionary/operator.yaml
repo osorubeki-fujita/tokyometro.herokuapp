@@ -1,0 +1,290 @@
+odpt.Operator:TokyoMetro:
+  name_ja :
+    - 東京メトロ
+    - 東京地下鉄
+  name_en : Tokyo Metro
+  index : 1
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#109ed4"
+    red : 16
+    green : 158
+    blue : 212
+
+odpt.Operator:Toei:
+  name_ja :
+    - 都営地下鉄
+    - 東京都交通局
+  name_ja_display: 都営
+  name_en :
+    - Toei Subway
+    - Bureau of Transportation Tokyo Metropolitan Government
+  name_en_display : Toei
+  index : 2
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#009f40"
+    red : 0
+    green : 159
+    blue : 64
+
+odpt.Operator:ToeiNipporiToneri:
+  name_ja :
+    - 都営
+    - 東京都交通局 # 日暮里・舎人ライナー
+  name_ja_display : ""
+  name_en :
+    - Toei
+    - Bureau of Transportation Tokyo Metropolitan Government
+  name_en_display : ""
+  index : 3
+  numbering : true
+  station_code_shape : none
+  color :
+    web : "#009f40"
+    red : 0
+    green : 159
+    blue : 64
+
+odpt.Operator:Toden:
+  name_ja :
+    - 都電
+    - 東京都交通局
+  name_en :
+    - Toden
+    - Bureau of Transportation Tokyo Metropolitan Government
+  index : 4
+  color :
+    web : "#009f40"
+    red : 0
+    green : 159
+    blue : 64
+
+odpt.Operator:JR-East:
+  name_ja :
+    - JR東日本
+    - 東日本旅客鉄道
+  name_ja_display : JR
+  name_en :
+    - JR East
+    - East Japan Railway Company
+  name_en_display : JR
+  index : 5
+  color :
+    web : "#008000"
+    red : 0
+    green : 128
+    blue : 0
+  
+odpt.Operator:JR-Central:
+  name_ja :
+    - JR東海
+    - 東海旅客鉄道
+  name_ja_display : JR
+  name_en :
+    - JR Central
+    - Central Japan Railway Company
+  name_en_display : JR
+  index : 6
+  color :
+    web : "#f77321"
+    red : 247
+    green : 115
+    blue : 33
+
+odpt.Operator:Tokyu:
+  name_ja :
+    - 東急電鉄
+    - 東京急行電鉄
+  name_ja_display : 東急
+  name_en : Tokyu Corporation
+  name_en_display : Tokyu
+  index : 7
+  numbering : true
+  railway_line_code_shape : filled_rounded_square
+  station_code_shape : stroked_rounded_square
+  color :
+    web : "#ee0011"
+    red : 238
+    green : 0
+    blue : 17
+
+odpt.Operator:YokohamaMinatomiraiRailway:
+  name_ja : 横浜高速鉄道
+  name_ja_display : ""
+  name_en : Yokohama Minatomirai Railway Company
+  name_en_display : ""
+  index : 7.1
+  numbering : true
+  railway_line_code_shape : filled_rounded_square
+  station_code_shape : stroked_rounded_square
+  color :
+    web : "#09357f"
+    red : 9
+    green : 53
+    blue : 127
+
+odpt.Operator:Odakyu:
+  name_ja : 小田急電鉄
+  name_ja_display : 小田急
+  name_en : Odakyu Electric Railway
+  name_en_display : Odakyu
+  index : 8
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#2288cc"
+    red : 34
+    green : 136
+    blue : 204
+
+odpt.Operator:HakoneTozan :
+  name_ja : 箱根登山鉄道
+  name_ja_display : 箱根登山
+  name_en : Hakone Tozan Railway
+  name_en_display : Hakone Tozan
+  index : 8.1
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#2288cc"
+    red : 34
+    green : 136
+    blue : 204
+
+odpt.Operator:Seibu:
+  name_ja : 西武鉄道
+  name_ja_display : 西武
+  name_en : Seibu Railway
+  name_en_display : Seibu
+  index : 9
+  numbering : true
+  railway_line_code_shape : filled_rounded_square
+  station_code_shape : seibu_rounded_square
+  color :
+    web : "#87ceed"
+    red : 135
+    green : 206
+    blue : 237
+
+odpt.Operator:Tobu:
+  name_ja : 東武鉄道
+  name_ja_display : 東武
+  name_en : Tobu Railway
+  name_en_display : Tobu
+  index : 10
+  numbering : true
+  railway_line_code_shape : stroked_rounded_square
+  station_code_shape : stroked_rounded_square
+  color :
+    web : "#005bac"
+    red : 0
+    green : 91
+    blue : 172
+
+odpt.Operator:SaitamaRailway:
+  name_ja : 埼玉高速鉄道
+  name_en : Saitama Railway
+  index : 11
+  color :
+    web : "#6699ff"
+    red : 102
+    green : 153
+    blue : 255
+
+odpt.Operator:ToyoRapidRailway:
+  name_ja : 東葉高速鉄道
+  name_en : Toyo Rapid Railway
+  operator_code : TR
+  index : 12
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#3fb036"
+    red : 63
+    green : 176
+    blue : 54
+
+odpt.Operator:Keio:
+  name_ja : 京王電鉄
+  name_ja_display : 京王
+  name_en : Keio Corporation
+  name_en_display : Keio
+  index : 13
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#dd0077"
+    red : 221
+    green : 0
+    blue : 119
+
+odpt.Operator:Keisei:
+  name_ja : 京成電鉄
+  name_ja_display : 京成
+  name_en : Keisei Electric Railway
+  name_en_display : Keisei
+  operator_code : KS
+  index : 14
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#005aaa"
+    red : 0
+    green : 90
+    blue : 170
+
+odpt.Operator:MIR:
+  name_ja :
+    - つくばエクスプレス
+    - 首都圏新都市鉄道
+  name_en :
+    - Tsukuba Express
+    - MIR
+    - Metropolitan Intercity Railway
+  index : 15
+  numbering : true
+  station_code_shape : none
+  color :
+    web : "#000084"
+    red : 0
+    green : 0
+    blue : 132
+
+odpt.Operator:Yurikamome:
+  name_ja : ゆりかもめ
+  name_en : Yurikamome
+  index : 16
+  numbering : true
+  railway_line_code_shape : stroked_circle
+  station_code_shape : stroked_circle
+  color :
+    web : "#00418e"
+    red : 0
+    green : 65
+    blue : 142
+
+odpt.Operator:TWR:
+  name_ja :
+    - りんかい線
+    - 東京臨海高速鉄道
+  name_en :
+    - Rinkai Line
+    - TWR
+    - Tokyo Waterfront Area Rapid Transit
+  index : 17
+  numbering : false
+  color :
+    web : "#00418e"
+    red : 0
+    green : 65
+    blue : 142

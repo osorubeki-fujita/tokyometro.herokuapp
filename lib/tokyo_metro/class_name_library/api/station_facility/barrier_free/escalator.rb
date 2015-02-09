@@ -5,42 +5,12 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Escalato
 
   module ClassMethods
 
-    def info_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::Info
-    end
-
-    def service_detail_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::ServiceDetail::Info
-    end
-
-    def service_detail_list_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::ServiceDetail::List
-    end
-
-    def service_detail_direction_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::ServiceDetail::Direction
-    end
-
-    def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree::Facility::Escalator
-    end
-
-    def factory_of_service_detail
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree::Facility::Escalator::ServiceDetail
-    end
-
     # @!group クラスメソッド (1) - メタデータ
 
     # クラス指定 - ug:Escalator
     # @return [String]
-    def rdf_type
+    def rdf_type_of_facility
       "ug:Escalator"
-    end
-
-    # 利用可能な車いすの情報
-    # @return [String]
-    def spac__is_available_to
-      "spac:Wheelchair"
     end
 
     # カテゴリの名称
@@ -51,6 +21,12 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Escalato
 
     def category_name_en
       "Escalator"
+    end
+
+    # 利用可能な車いすの情報
+    # @return [String]
+    def spac__is_available_to
+      "spac:Wheelchair"
     end
 
     # @!endgroup

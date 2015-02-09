@@ -1,0 +1,125 @@
+#---------------- 【ロマンスカー】
+
+#-------- 【小田急線へ】
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+  note: 千代田線 特急ロマンスカー（小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#-------- 平日
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHakone.Weekdays.21":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    ref: custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone
+  note: 千代田線 特急ロマンスカー メトロはこね 21号（平日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHomeWay.Weekdays.71":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    "odpt.Railway:Odakyu.Odawara": custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.71
+    "odpt.Railway:Odakyu.Tama": custom.StoppingPattern:Odakyu.Tama.RomanceCar
+  note: 千代田線 特急ロマンスカー メトロホームウェイ 71号（平日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHomeWay.Weekdays.41":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    "odpt.Railway:Odakyu.Odawara": custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.41
+  note: 千代田線 特急ロマンスカー メトロホームウェイ 41号（平日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHomeWay.Weekdays.43":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    "odpt.Railway:Odakyu.Odawara": custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.43
+  note: 千代田線 特急ロマンスカー メトロホームウェイ 43号（平日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#-------- 土休日
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHakone.SaturdaysHolidays.21":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    ref: custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone
+  note: 千代田線 特急ロマンスカー メトロはこね 21号（土休日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHakone.SaturdaysHolidays.23":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    ref: custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone
+  note: 千代田線 特急ロマンスカー メトロはこね 23号（土休日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHomeWay.SaturdaysHolidays.43":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    "odpt.Railway:Odakyu.Odawara": custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.SaturdaysHolidays.43
+  note: 千代田線 特急ロマンスカー メトロホームウェイ 43号（土休日／小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+
+#-------- 【小田急線から】
+
+#-------- 平日
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroSagami.Weekdays.70":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    "odpt.Railway:Odakyu.Odawara": custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.Weekdays.70
+  note: 千代田線 特急ロマンスカー メトロさがみ 70号（平日／小田急線から 千代田線内からの乗車は不可）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHakone.Weekdays.22":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    ref: custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone
+  note: 千代田線 特急ロマンスカー メトロはこね 22号（平日／小田急線から 千代田線内からの乗車は不可）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#-------- 土休日
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroSagami.SaturdaysHolidays.80":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    "odpt.Railway:TokyoMetro.Chiyoda": custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+    "odpt.Railway:Odakyu.Odawara": custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.SaturdaysHolidays.80
+  note: 千代田線 特急ロマンスカー メトロさがみ 80号（土休日／小田急線から 千代田線内からの乗車は不可）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHakone.SaturdaysHolidays.22":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    ref: custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone
+  note: 千代田線 特急ロマンスカー メトロはこね 22号（土休日／小田急線から 千代田線内からの乗車は不可）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.MetroHakone.SaturdaysHolidays.24":
+  ref: custom.TrainTypeDefault:TokyoMetro.RomanceCar
+  stopping_pattern:
+    ref: custom.StoppingPattern.TokyoMetro.Chiyoda.RommanceCar.MetroHakone
+  note: 千代田線 特急ロマンスカー メトロはこね 24号（土休日／小田急線から 千代田線内からの乗車は不可）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda

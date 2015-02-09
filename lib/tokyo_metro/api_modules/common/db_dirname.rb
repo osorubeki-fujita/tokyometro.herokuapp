@@ -1,4 +1,7 @@
 # データを保存するディレクトリの情報に関するメソッドを組み込むためのモジュール
+# @note データ検索 API を利用するクラス、地理情報 API を利用するクラスに共通するクラスメソッド
+# @note {TokyoMetro::Api::MetaClass::Fundamental} に include する。
+# @note ActiveSupport::Concern を利用している。
 module TokyoMetro::ApiModules::Common::DbDirname
 
   extend ::ActiveSupport::Concern
@@ -10,7 +13,7 @@ module TokyoMetro::ApiModules::Common::DbDirname
     # データを保存するディレクトリ
     # @return [String]
     def db_dirname
-      "#{::TokyoMetro::DB_DIR}/#{db_dirname_sub}"
+      "#{::TokyoMetro.db_dir}/#{db_dirname_sub}"
     end
 
   end

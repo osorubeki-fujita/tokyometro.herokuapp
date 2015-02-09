@@ -1,0 +1,15 @@
+# 副都心線 和光市 → 氷川台
+
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.Wakoshi.Shibuya
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.ChikatetsuNarimasu.Shibuya
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.ChikatetsuAkatsuka.Shibuya
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.Heiwadai.Shibuya
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.Hikawadai.Shibuya
+
+# 副都心線 小竹向原 → 地下鉄成増
+
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.KotakeMukaihara.Wakoshi
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.Hikawadai.Wakoshi
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.Heiwadai.Wakoshi
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.ChikatetsuAkatsuka.Wakoshi
+- odpt.StationTimetable:TokyoMetro.Fukutoshin.ChikatetsuNarimasu.Wakoshi

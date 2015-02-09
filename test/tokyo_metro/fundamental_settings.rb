@@ -3,7 +3,7 @@ require 'active_support/concern'
 require 'moji'
 
 open( "#{ ::File.dirname( __FILE__ ) }/../../required_files.txt" , "r:utf-8" ).read.split( /\n/ ).each do |f|
-  require f
+  require "#{ ::File.dirname( __FILE__ ) }/../../#{f}"
 end
 
 #---------------- 標準添付ライブラリの拡張

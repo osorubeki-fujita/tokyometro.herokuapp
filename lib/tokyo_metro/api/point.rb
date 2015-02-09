@@ -56,14 +56,14 @@ class TokyoMetro::Api::Point < TokyoMetro::Api::MetaClass::Hybrid
     puts ""
     puts "#{ary.length} datas"
     puts ""
-=begin
-    h = ary.group_by { | point | point.title.station_name }
+
+    h = ary.group_by( &:station_name_in_title )
     h.keys.sort.each do | station |
-      h[ station ].sort_by { | point | point.title.code }.each do | point |
+      h[ station ].sort_by( &:code_in_title ).each do | point |
         puts "(#{ point.floor.to_s.rjust(2) }) #{point.category_name} #{point.title.to_s}"
       end
     end
-=end
+
     ary.each do | point |
       puts point.to_strf
       puts "\n" * 2

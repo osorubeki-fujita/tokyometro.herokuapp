@@ -1,0 +1,629 @@
+odpt.Station:Odakyu.Odawara.Shinjuku:
+  station_facility: odpt.StationFacility:Odakyu.Shinjuku
+  name_ja: 新宿
+  name_hira: しんじゅく
+  name_in_system: Shinjuku
+  name_en: Shinjuku
+  station_code: OH01
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.MinamiShinjuku:
+  station_facility: odpt.StationFacility:Odakyu.MinamiShinjuku
+  name_ja: 南新宿
+  name_hira: みなみしんじゅく
+  name_in_system: MinamiShinjuku
+  name_en: Minami-shinjuku
+  station_code: OH02
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+
+odpt.Station:Odakyu.Odawara.Sangubashi:
+  station_facility: odpt.StationFacility:Odakyu.Sangubashi
+  name_ja: 参宮橋
+  name_hira: さんぐうばし
+  name_in_system: Sangubashi
+  name_en: Sangubashi
+  station_code: OH03
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+
+odpt.Station:Odakyu.Odawara.YoyogiHachiman:
+  station_facility: odpt.StationFacility:Odakyu.YoyogiHachiman
+  name_ja: 代々木八幡
+  name_hira: よよぎはちまん
+  name_in_system: YoyogiHachiman
+  name_en: Yoyogi-hachiman
+  station_code: OH04
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+
+odpt.Station:Odakyu.Odawara.YoyogiUehara:
+  station_alias: odpt.Station:TokyoMetro.Chiyoda.YoyogiUehara
+  station_facility: odpt.StationFacility:Odakyu.YoyogiUehara
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.YoyogiUehara
+  name_ja: 代々木上原
+  name_hira: よよぎうえはら
+  name_in_system: YoyogiUehara
+  name_en: Yoyogi-uehara
+  station_code: OH05
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+  stop_for_drivers:
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHakone
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.71
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.41
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.SaturdaysHolidays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.Weekdays.70
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.SaturdaysHolidays.80
+
+odpt.Station:Odakyu.Odawara.HigashiKitazawa:
+  station_facility: odpt.StationFacility:Odakyu.HigashiKitazawa
+  name_ja: 東北沢
+  name_hira: ひがしきたざわ
+  name_in_system: HigashiKitazawa
+  name_en: Higashi-kitazawa
+  station_code: OH06
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+
+odpt.Station:Odakyu.Odawara.ShimoKitazawa:
+  station_facility: odpt.StationFacility:Odakyu.ShimoKitazawa
+  name_ja: 下北沢
+  name_hira: しもきたざわ
+  name_in_system: ShimoKitazawa
+  name_en: Shimo-kitazawa
+  station_code: OH07
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.SetagayaDaita:
+  station_facility: odpt.StationFacility:Odakyu.SetagayaDaita
+  name_ja: 世田谷代田
+  name_hira: せたがやだいた
+  name_in_system: SetagayaDaita
+  name_en: Setagaya-daita
+  station_code: OH08
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+
+odpt.Station:Odakyu.Odawara.Umegaoka:
+  station_facility: odpt.StationFacility:Odakyu.Umegaoka
+  name_ja: 梅ヶ丘
+  name_hira: うめがおか
+  name_in_system: Umegaoka
+  name_en: Umegaoka
+  station_code: OH09
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.Gotokuji:
+  station_facility: odpt.StationFacility:Odakyu.Gotokuji
+  name_ja: 豪徳寺
+  name_hira: ごうとくじ
+  name_in_system: Gotokuji
+  name_en: Gotokuji
+  station_code: OH10
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.Kyodo:
+  station_facility: odpt.StationFacility:Odakyu.Kyodo
+  name_ja: 経堂
+  name_hira: きょうどう
+  name_in_system: Kyodo
+  name_en: Kyodo
+  station_code: OH11
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+      - 平日朝ラッシュ時の新宿・千代田線方面の準急列車は通過します。
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.Express
+      - 平日は日中のみ停車します。土休日はすべての急行列車が停車します。
+
+odpt.Station:Odakyu.Odawara.ChitoseFunabashi:
+  station_facility: odpt.StationFacility:Odakyu.ChitoseFunabashi
+  name_ja: 千歳船橋
+  name_hira: ちとせふなばし
+  name_in_system: ChitoseFunabashi
+  name_en: Chitose-funabashi
+  station_code: OH12
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.SoshigayaOkura:
+  station_facility: odpt.StationFacility:Odakyu.SoshigayaOkura
+  name_ja: 祖師ヶ谷大蔵
+  name_hira: そしがやおおくら
+  name_in_system: SoshigayaOkura
+  name_en: Soshigaya-okura
+  station_code: OH13
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.SeijoGakuenMae:
+  station_facility: odpt.StationFacility:Odakyu.SeijoGakuenMae
+  name_ja: 成城学園前
+  name_hira: せいじょうがくえんまえ
+  name_in_system: SeijoGakuenMae
+  name_en: Seijo-gakuen-mae
+  station_code: OH14
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHakone
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.71
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.SaturdaysHolidays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.SaturdaysHolidays.80
+
+odpt.Station:Odakyu.Odawara.Kitami:
+  station_facility: odpt.StationFacility:Odakyu.Kitami
+  name_ja: 喜多見
+  name_hira: きたみ
+  name_in_system: Kitami
+  name_en: Kitami
+  station_code: OH15
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.Komae:
+  station_facility: odpt.StationFacility:Odakyu.Komae
+  name_ja: 狛江
+  name_hira: こまえ
+  name_in_system: Komae
+  name_en: Komae
+  station_code: OH16
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.IzumiTamagawa:
+  station_facility: odpt.StationFacility:Odakyu.IzumiTamagawa
+  name_ja: 和泉多摩川
+  name_hira: いずみたまがわ
+  name_in_system: IzumiTamagawa
+  name_en: Izumi-tamagawa
+  station_code: OH17
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+
+odpt.Station:Odakyu.Odawara.Noborito:
+  station_facility: odpt.StationFacility:Odakyu.Noborito
+  name_ja: 登戸
+  name_hira: のぼりと
+  name_in_system: Noborito
+  name_en: Noborito
+  station_code: OH18
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+
+odpt.Station:Odakyu.Odawara.MukogaokaYuen:
+  station_facility: odpt.StationFacility:Odakyu.MukogaokaYuen
+  name_ja: 向ヶ丘遊園
+  name_hira: むこうがおかゆうえん
+  name_in_system: MukogaokaYuen
+  name_en: Mukogaoka-yuen
+  station_code: OH19
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+
+odpt.Station:Odakyu.Odawara.Ikuta:
+  station_facility: odpt.StationFacility:Odakyu.Ikuta
+  name_ja: 生田
+  name_hira: いくた
+  name_in_system: Ikuta
+  name_en: Ikuta
+  station_code: OH20
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.YomiuriLandMae:
+  station_facility: odpt.StationFacility:Odakyu.YomiuriLandMae
+  name_ja: 読売ランド前
+  name_hira: よみうりらんどまえ
+  name_in_system: YomiuriLandMae
+  name_en: Yomiuri-land-mae
+  station_code: OH21
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.Yurigaoka:
+  station_facility: odpt.StationFacility:Odakyu.Yurigaoka
+  name_ja: 百合ヶ丘
+  name_hira: ゆりがおか
+  name_in_system: Yurigaoka
+  name_en: Yurigaoka
+  station_code: OH22
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.ShinYurigaoka:
+  station_facility: odpt.StationFacility:Odakyu.ShinYurigaoka
+  name_ja: 新百合ヶ丘
+  name_hira: しんゆりがおか
+  name_in_system: ShinYurigaoka
+  name_en: Shin-yurigaoka
+  station_code: OH23
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.71
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.41
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.SaturdaysHolidays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.SaturdaysHolidays.80
+
+odpt.Station:Odakyu.Odawara.Kakio:
+  station_facility: odpt.StationFacility:Odakyu.Kakio
+  name_ja: 柿生
+  name_hira: かきお
+  name_in_system: Kakio
+  name_en: Kakio
+  station_code: OH24
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.Tsurukawa:
+  station_facility: odpt.StationFacility:Odakyu.Tsurukawa
+  name_ja: 鶴川
+  name_hira: つるかわ
+  name_in_system: Tsurukawa
+  name_en: Tsurukawa
+  station_code: OH25
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.TamagawaGakuenMae:
+  station_facility: odpt.StationFacility:Odakyu.TamagawaGakuenMae
+  name_ja: 玉川学園前
+  name_hira: たまがわがくえんまえ
+  name_in_system: TamagawaGakuenMae
+  name_en: Tamagawa-gakuen-mae
+  station_code: OH26
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.Machida:
+  station_facility: odpt.StationFacility:Odakyu.Machida
+  name_ja: 町田
+  name_hira: まちだ
+  name_in_system: Machida
+  name_en: Machida
+  station_code: OH27
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHakone
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.41
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.SaturdaysHolidays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.Weekdays.70
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.SaturdaysHolidays.80
+
+odpt.Station:Odakyu.Odawara.SagamiOono:
+  station_facility: odpt.StationFacility:Odakyu.SagamiOono
+  name_ja: 相模大野
+  name_hira: さがみおおの
+  name_in_system: SagamiOono
+  name_en: Sagami-oono
+  station_code: OH28
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.OdakyuSagamihara:
+  station_facility: odpt.StationFacility:Odakyu.OdakyuSagamihara
+  name_ja: 小田急相模原
+  name_hira: おだきゅうさがみはら
+  name_in_system: OdakyuSagamihara
+  name_en: Odakyu-sagamihara
+  station_code: OH29
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.SobudaiMae:
+  station_facility: odpt.StationFacility:Odakyu.SobudaiMae
+  name_ja: 相武台前
+  name_hira: そうぶだいまえ
+  name_in_system: SobudaiMae
+  name_en: Sobudai-mae
+  station_code: OH30
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.Zama:
+  station_facility: odpt.StationFacility:Odakyu.Zama
+  name_ja: 座間
+  name_hira: ざま
+  name_in_system: Zama
+  name_en: Zama
+  station_code: OH31
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.Ebina:
+  station_facility: odpt.StationFacility:Odakyu.Ebina
+  name_ja: 海老名
+  name_hira: えびな
+  name_in_system: Ebina
+  name_en: Ebina
+  station_code: OH32
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.Atsugi:
+  station_facility: odpt.StationFacility:Odakyu.Atsugi
+  name_ja: 厚木
+  name_hira: あつぎ
+  name_in_system: Atsugi
+  name_en: Atsugi
+  station_code: OH33
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+
+odpt.Station:Odakyu.Odawara.HonAtsugi:
+  station_facility: odpt.StationFacility:Odakyu.HonAtsugi
+  name_ja: 本厚木
+  name_hira: ほんあつぎ
+  name_in_system: HonAtsugi
+  name_en: Hon-atsugi
+  station_code: OH34
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.41
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.Weekdays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHomeWay.SaturdaysHolidays.43
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.Weekdays.70
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroSagami.SaturdaysHolidays.80
+
+odpt.Station:Odakyu.Odawara.AikoIshida:
+  station_facility: odpt.StationFacility:Odakyu.AikoIshida
+  name_ja: 愛甲石田
+  name_hira: あいこういしだ
+  name_in_system: AikoIshida
+  name_en: Aiko-ishida
+  station_code: OH35
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.Isehara:
+  station_facility: odpt.StationFacility:Odakyu.Isehara
+  name_ja: 伊勢原
+  name_hira: いせはら
+  name_in_system: Isehara
+  name_en: Isehara
+  station_code: OH36
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SectionSemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.TsurumakiOnsen:
+  station_facility: odpt.StationFacility:Odakyu.TsurumakiOnsen
+  name_ja: 鶴巻温泉
+  name_hira: つるまきおんせん
+  name_in_system: TsurumakiOnsen
+  name_en: Tsurumaki-onsen
+  station_code: OH37
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.TokaiDaigakuMae:
+  station_facility: odpt.StationFacility:Odakyu.TokaiDaigakuMae
+  name_ja: 東海大学前
+  name_hira: とうかいだいがくまえ
+  name_in_system: TokaiDaigakuMae
+  name_en: Tokai-daigaku-mae
+  station_code: OH38
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.Hadano:
+  station_facility: odpt.StationFacility:Odakyu.Hadano
+  name_ja: 秦野
+  name_hira: はだの
+  name_in_system: Hadano
+  name_en: Hadano
+  station_code: OH39
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.Shibusawa:
+  station_facility: odpt.StationFacility:Odakyu.Shibusawa
+  name_ja: 渋沢
+  name_hira: しぶさわ
+  name_in_system: Shibusawa
+  name_en: Shibusawa
+  station_code: OH40
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.ShinMatsuda:
+  station_facility: odpt.StationFacility:Odakyu.ShinMatsuda
+  name_ja: 新松田
+  name_hira: しんまつだ
+  name_in_system: ShinMatsuda
+  name_en: Shin-matsuda
+  station_code: OH41
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+
+odpt.Station:Odakyu.Odawara.Kaisei:
+  station_facility: odpt.StationFacility:Odakyu.Kaisei
+  name_ja: 開成
+  name_hira: かいせい
+  name_in_system: Kaisei
+  name_en: Kaisei
+  station_code: OH42
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.Express
+      - 停車しない急行列車があります。
+
+odpt.Station:Odakyu.Odawara.Kayama:
+  station_facility: odpt.StationFacility:Odakyu.Kayama
+  name_ja: 栢山
+  name_hira: かやま
+  name_in_system: Kayama
+  name_en: Kayama
+  station_code: OH43
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.Express
+      - 停車しない急行列車があります。
+
+odpt.Station:Odakyu.Odawara.Tomizu:
+  station_facility: odpt.StationFacility:Odakyu.Tomizu
+  name_ja: 富水
+  name_hira: とみず
+  name_in_system: Tomizu
+  name_en: Tomizu
+  station_code: OH44
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.Express
+      - 停車しない急行列車があります。
+
+odpt.Station:Odakyu.Odawara.Hotaruda:
+  station_facility: odpt.StationFacility:Odakyu.Hotaruda
+  name_ja: 蛍田
+  name_hira: ほたるだ
+  name_in_system: Hotaruda
+  name_en: Hotaruda
+  station_code: OH45
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.Express
+      - 停車しない急行列車があります。
+
+odpt.Station:Odakyu.Odawara.Ashigara:
+  station_facility: odpt.StationFacility:Odakyu.Ashigara
+  name_ja: 足柄
+  name_hira: あしがら
+  name_in_system: Ashigara
+  name_en: Ashigara
+  station_code: OH46
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+  some_trains_stop:
+    -
+      - custom.StoppingPattern:Odakyu.Odawara.Express
+      - 停車しない急行列車があります。
+
+odpt.Station:Odakyu.Odawara.Odawara:
+  station_alias: odpt.Station:HakoneTozan.Rail.Odawara
+  station_facility: odpt.StationFacility:Odakyu.Odawara
+  station_facility_custom_alias: odpt.StationFacility:HakoneTozan.Odawara
+  name_ja: 小田原
+  name_hira: おだわら
+  name_in_system: Odawara
+  name_en: Odawara
+  station_code: OH47
+  stop:
+    - custom.StoppingPattern:Odakyu.Odawara.Local
+    - custom.StoppingPattern:Odakyu.Odawara.Express
+    - custom.StoppingPattern:Odakyu.Odawara.RapidExpress
+    - custom.StoppingPattern:Odakyu.Odawara.RomanceCar.MetroHakone

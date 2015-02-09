@@ -2,13 +2,14 @@
 class TokyoMetro::Api::Fare::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::Fare
-  include ::TokyoMetro::ClassNameLibrary::StaticDatas::Fare
+  include ::TokyoMetro::ClassNameLibrary::Static::Fare
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
 
   # Constructor
-  def initialize( id_urn , same_as , date , operator , from_station , to_station , normal_fare )
+  def initialize( id_urn , same_as , dc_date , operator , from_station , to_station , normal_fare )
     @id_urn = id_urn
     @same_as = same_as
-    @date = date
+    @dc_date = dc_date
     @operator = operator
     @from_station = from_station
     @to_station = to_station
@@ -22,7 +23,7 @@ class TokyoMetro::Api::Fare::Info < TokyoMetro::Api::MetaClass::NotRealTime::Inf
 
   # データ生成日時（ISO8601 日付時刻形式）
   # @return [String]
-  attr_reader :date
+  attr_reader :dc_date
 
   # 運行会社
   # @return [String]
@@ -37,24 +38,25 @@ class TokyoMetro::Api::Fare::Info < TokyoMetro::Api::MetaClass::NotRealTime::Inf
   attr_reader :to_station
 
   # 運賃の情報を扱うインスタンス
-  # @return [::TokyoMetro::StaticDatas::Fare::Normal::Pattern]
+  # @return [::TokyoMetro::Static::Fare::Normal::Pattern]
   attr_reader :normal_fare
-  
+
   def from?( *stations )
     stations.flatten.include?( @from_station )
   end
-  
+
   def to?( *stations )
     stations.flatten.include?( @to_station )
   end
-  
+
   def from_or_to?( *stations )
     from?( *stations ) or to?( *stations )
   end
 
   alias :to :to_station
-  alias :to_sta :to_station
   alias :from :from_station
+
+  alias :to_sta :to_station
   alias :from_sta :from_station
 
   alias :is_from? :from?
@@ -70,7 +72,7 @@ class TokyoMetro::Api::Fare::Info < TokyoMetro::Api::MetaClass::NotRealTime::Inf
 
     set_data_to_hash( h , "\@id" , @id_urn )
     set_data_to_hash( h , "owl:sameAs" , @same_as )
-    set_data_to_hash( h , "dc:date" , @date.to_s )
+    set_data_to_hash( h , "dc:date" , @dc_date.to_s )
     set_data_to_hash( h , "odpt:operator" , @operator )
     set_data_to_hash( h , "odpt:fromStation" , @from_station )
     set_data_to_hash( h , "odpt:toStation" , @to_station )
@@ -188,26 +190,5 @@ class TokyoMetro::Api::Fare::Info < TokyoMetro::Api::MetaClass::NotRealTime::Inf
   end
 
   # @!endgroup
-
-  def seed( normal_fares )
-    normal_fare_group = normal_fares.find_by(
-      ticket_fare: @normal_fare.ticket_fare #,
-      # child_ticket_fare: @normal_fare.child_ticket_fare ,
-      # ic_card_fare: @normal_fare.ic_card_fare ,
-      # child_ic_card_fare: @normal_fare.child_ic_card_fare
-    )
-
-    date = Time.new( @date.year , @date.month , @date.day , @date.hour , @date.min , @date.sec , @date.zone )
-
-    ::Fare.create(
-      same_as: @same_as ,
-      id_urn: @id_urn ,
-      dc_date: date ,
-      operator_id: ::Operator.find_by_same_as( @operator ).id ,
-      from_station_id: ::Station.find_by_same_as( @from_station ).id ,
-      to_station_id: ::Station.find_by_same_as( @to_station ).id ,
-      normal_fare_group_id: normal_fare_group.id
-    )
-  end
 
 end

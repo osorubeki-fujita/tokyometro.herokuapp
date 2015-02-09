@@ -2,7 +2,6 @@
 class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::ServiceDetail::Info < TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Escalator
-  include ::TokyoMetro::ApiModules::ToFactoryClass::GenerateFromHash
 
   def initialize( service_start_time , service_end_time , operation_day , direction )
     super( service_start_time , service_end_time , operation_day )
@@ -30,8 +29,8 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::
     @direction.to_a
   end
 
-  private
-
-  alias :seed__escalator_directions :escalator_directions
+  def self.factory_for_this_class
+    factory_for_generating_barrier_free_escalator_service_detail_from_hash
+  end
 
 end

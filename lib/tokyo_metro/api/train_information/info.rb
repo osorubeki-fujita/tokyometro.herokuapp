@@ -2,9 +2,11 @@
 class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::RealTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainInformation
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
-  
-  include ::TokyoMetro::ApiModules::Decision::RailwayLine
+
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
 
   # Constructor
   # @param id_urn [String] 固有識別子 (ucode) <id - URN>
@@ -16,9 +18,9 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
   # @param train_information_status [String] 運行ステータス <odpt:trainInformationStatus - xsd:string>
   # @param train_information_text [String] 運行情報テキスト <odpt:trainInformationText - xsd:string>
   # @note 運行ステータスは、平常時は省略。運行情報が存在する場合は「運行情報あり」を格納。遅延などの情報を取得可能な場合は、「遅延」等のテキストを格納。
-  def initialize( id_urn , date , valid , operator , time_of_origin , railway_line , train_information_status , train_information_text )
+  def initialize( id_urn , dc_date , valid , operator , time_of_origin , railway_line , train_information_status , train_information_text )
     @id_urn = id_urn
-    @date , @valid = date , valid
+    @dc_date , @valid = dc_date , valid
     @operator , @time_of_origin , @railway_line , @status , @text = operator , time_of_origin , railway_line , train_information_status , train_information_text 
   end
 
@@ -28,7 +30,7 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
   # @return [DateTime]
   # @example
   #  2013–01–13T15:10:00+09:00
-  attr_reader :date
+  attr_reader :dc_date
 
   # 有効期限（ISO8601 日付時刻形式をもとに生成した DateTime のインスタンス） - xsd:dateTime
   # @return [DateTime]
@@ -51,14 +53,12 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
   # 運行情報の文字列 - xsd:string
   # @return [String]
   # @note 平常時は省略する。運行情報が存在する場合は「運行情報あり」を格納し、遅延などの情報を取得可能な場合は、「遅延」等のテキストを格納する。
-  attr_reader :train_information_status
+  attr_reader :status
 
   # 運行情報テキスト - xsd:string
   # @return [String]
-  attr_reader :train_information_text
+  attr_reader :text
 
-  alias :status :train_information_status
-  alias :text :train_information_text
   alias :to_strf :to_s
 
   # インスタンスの情報をハッシュにして返すメソッド
@@ -70,7 +70,7 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
     set_data_to_hash( h , "odpt:railway" , @railway_line )
 
     set_data_to_hash( h , "\@id" , @id_urn )
-    set_data_to_hash( h , "dc:date" , @date.to_s )
+    set_data_to_hash( h , "dc:date" , @dc_date.to_s )
     set_data_to_hash( h , "dct:valid" , @valid.to_s )
 
     set_data_to_hash( h , "odpt:timeOfOrigin" , @time_of_origin.to_s )
@@ -82,11 +82,11 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
 
   # 運行障害が発生した場所を取得するメソッド
   # @return [String]
-  def where?
-    if self.text.string?
-      if /(.+)駅?\s*[-ー－~～―‐]\s*(.+)駅?間?で発生/ === self.text
+  def place
+    if @text.string?
+      if /(.+)駅?\s*[-ー－~～―‐・･]\s*(.+)駅?間?で発生/ === @text
         "#{$1} - #{$2}"
-      elsif /(.+)駅?(?:構内)?で発生/ === self.text
+      elsif /(.+)駅?(?:構内)?で発生/ === @text
         "#{$1}"
       else
         nil

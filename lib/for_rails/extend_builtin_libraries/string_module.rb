@@ -23,7 +23,7 @@ module ForRails::ExtendBuiltinLibraries::StringModule
   end
 
   def convert_comma_between_number
-    self.gsub( /(\d)、(\d)/ ) { $1 + "・" + $2 }
+    gsub( /(\d)、(\d)/ ) { $1 + "・" + $2 }
   end
 
   # 16進数の文字列か否かを判定するメソッド
@@ -37,7 +37,7 @@ module ForRails::ExtendBuiltinLibraries::StringModule
   # WebColorの文字列（"#"なし）であるか否かを判定するメソッド
   # @return [Boolean]
   def is_web_color?
-    self.hex_string? and self.length == 6
+    hex_string? and length == 6
   end
 
   # WebColor の文字列（"#"あり）であるか否かを判定するメソッド
@@ -53,16 +53,16 @@ module ForRails::ExtendBuiltinLibraries::StringModule
   # WebColor の文字列であるか否かを判定するメソッド
   # @return [Boolean]
   def is_improper_web_color?
-    self.is_web_color? or self.is_web_color_with_sharp?
+    is_web_color? or is_web_color_with_sharp?
   end
 
   # WebColor を RgbColor に変換するメソッド
   # @return [::Array <Integer (natural number)>]
   def to_rgb_color
-    unless self.is_improper_web_color?
+    unless is_improper_web_color?
       raise "Error"
     end
-    self.gsub( /\#/ , "" ).each_char.each_slice(2).map{ | ary | ary.join.hex }
+    gsub( /\#/ , "" ).each_char.each_slice(2).map{ | ary | ary.join.hex }
   end
 
   # @!endgroup
@@ -96,25 +96,38 @@ module ForRails::ExtendBuiltinLibraries::StringModule
       "ぽ" => "ほ"
     }
 
-    self.gsub( /[#{h.keys.join}]/ , h )
+    gsub( /[#{h.keys.join}]/ , h )
   end
 
   def delete_station_subname
     regexp = ::ApplicationHelper.regexp_for_parentheses_ja
-    self.gsub( regexp , "" )
+    gsub( regexp , "" )
   end
 
   def process_kouji
     kouji_regexp = ::ApplicationHelper.regexp_for_kouji
-    self.gsub( kouji_regexp , "麴町" )
+    gsub( kouji_regexp , "麴町" )
   end
 
   def process_specific_letter
-    self.process_kouji
+    process_kouji
   end
 
   def station_name_in_title
-    self.delete_station_subname.process_specific_letter
+    delete_station_subname.process_specific_letter
+  end
+
+  def to_time_hm_array
+    if /\A\d{1,2}\:\d{1,2}\Z/ === self
+      split( /\:/ ).map( &:to_i )
+    else
+      raise "Error: #{ self } (#{self.class.name}) is not valid."
+    end
+  end
+
+  # ファイル名を処理するメソッド
+  def convert_yen_to_slash
+    gsub( /\// , "\\" )
   end
 
 end

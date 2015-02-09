@@ -24,7 +24,7 @@ module ForRails::PlatformInfosOfMultipleLine
   end
 
   def between_meguro_and_shirokane_takanawa?( station_facility )
-    ary = ::TokyoMetro::CommonModules::Dictionary::Station::StringList.namboku_and_toei_mita_common_stations_in_system
+    ary = ::TokyoMetro::CommonModules::Dictionary::Station::StringList.namboku_and_toei_mita_line_common_stations_in_system
     between_specific_stations?( station_facility , ary )
   end
 

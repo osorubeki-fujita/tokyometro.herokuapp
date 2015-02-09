@@ -25,7 +25,7 @@ module TokyoMetro
   DB_DIR = ::File.expand_path( "#{TOP_DIR}/../rails_tokyo_metro_db" )
 
   # 辞書ファイルのディレクトリ
-  DICTIONARY_DIR = ::File.expand_path( "#{ PRODUCTION_DIR }/lib/dictionary" )
+  DICTIONARY_DIR = ::File.expand_path( "#{ PRODUCTION_DIR }/lib/tokyo_metro/dictionary" )
 
   # @!group API へのアクセス
 
@@ -67,6 +67,12 @@ module TokyoMetro
 
   STATION_DICTIONARY = "#{ DICTIONARY_DIR }/station/tokyo_metro.yaml"
 
+  def self.reload_all_files!
+    open( "#{ TOP_DIR }/required_files.txt" , "r:utf-8" ).read.split( /\n/ ).each do |f|
+      load "#{ ::Rails.root }/#{ f }"
+    end
+  end
+
   def self.station_dictionary_including_main_info( stations_of_railway_lines = nil )
     if stations_of_railway_lines.nil?
       stations_of_railway_lines = ::Station.where( operator_id: ::Operator.id_of_tokyo_metro )
@@ -75,13 +81,13 @@ module TokyoMetro
     h = ::Hash.new
 
     station_dictionary.each do | name_in_system , name_ja |
-      station_instances = stations_of_railway_lines.where( name_in_system: name_in_system )
+      stations_in_db = stations_of_railway_lines.where( name_in_system: name_in_system )
       name_h = {
-        :name_ja => station_instances.first.name_ja ,
-        :name_hira => station_instances.first.name_hira ,
-        :name_en => station_instances.first.name_en ,
+        :name_ja => stations_in_db.first.name_ja ,
+        :name_hira => stations_in_db.first.name_hira ,
+        :name_en => stations_in_db.first.name_en ,
         :name_in_system => name_in_system ,
-        :station_codes => station_instances.pluck( :station_code )
+        :station_codes => stations_in_db.pluck( :station_code )
       }
       h[ name_in_system ] = name_h
     end
@@ -106,7 +112,7 @@ module TokyoMetro
 
   # 標準添付ライブラリの拡張
   def self.extend_builtin_libraries
-    [ "String" , "Object" , "DateTime" , "Integer" , "Symbol" ].each do | class_name |
+    [ "String" , "Object" , "DateTime" , "Integer" , "Symbol" , "Time" ].each do | class_name |
       eval( "::#{ class_name }" ).class_eval do
         include eval( "::ForRails::ExtendBuiltinLibraries::#{ class_name }Module" )
       end
@@ -121,36 +127,17 @@ module TokyoMetro
   def self.set_modules
     # TokyoMetro::CommonModules::ConvertConstantToClassMethod の TokyoMetro への include は、
     # tokyo_metro/common_modules/convert_constant_to_class_method.rb で行う。
-    
-    #-------- Error などの処理 (1) StationFacility
 
-    ::TokyoMetro::ApiModules::Customize::StationFacility::ProcessInfo.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationFacility::ProcessPlatformTransferInfo::ConvertRailwayLineName.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationFacility::ProcessPlatformTransferInfo::ProcessInvalidRailwayDirection.set_modules
+    module_library.each do | module_type , categories |
+      categories.each do | category , namespaces |
+        [ namespaces ].flatten.each do | namespace |
+          eval <<-SET
+            ::TokyoMetro::ApiModules::Convert::#{module_type}::#{category}::#{namespace}.set_modules
+          SET
+        end
+      end
+    end
 
-    #-------- Error などの処理 (2) StationTimetable
-
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ConvertTerminalStation::Fundamental.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ConvertTerminalStation::MarunouchiBranchLineForNakanoSakaue.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ConvertTerminalStation::NambokuLineForMusashiKosugi.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ConvertTerminalStation::FukutoshinLineForWakoshi.set_modules
-
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ConvertInfosRelatedToMarunouchiBranchLine.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ProcessInfoOfStartingStation.set_modules
-    ::TokyoMetro::ApiModules::Customize::StationTimetable::ProcessInfoOfTerminalStation.set_modules
-
-    #-------- Error などの処理 (3) TrainTimetable
-
-    ::TokyoMetro::ApiModules::Customize::TrainTimetable::ConvertStations::Fundamental.set_modules
-    ::TokyoMetro::ApiModules::Customize::TrainTimetable::ConvertStations::NambokuLineForMusashiKosugi.set_modules
-
-    ::TokyoMetro::ApiModules::Customize::TrainTimetable::SetValidInfosToInvalidTrainsInYurakuchoLine.set_modules
-    ::TokyoMetro::ApiModules::Customize::TrainTimetable::SetStationName.set_modules
-    ::TokyoMetro::ApiModules::Customize::TrainTimetable::TrainType.set_modules
-
-    #---------------- モジュールの include
-
-    ::TokyoMetro::ApiModules::TimetableModules.include_pattern_b
   end
 
   # @!group 定数
@@ -162,7 +149,7 @@ module TokyoMetro
   end
 
   def self.set_fundamental_constants
-    ::TokyoMetro::StaticDatas::set_constants
+    ::TokyoMetro::Static::set_constants
     ::TokyoMetro::Api.set_constants_for_timetable
   end
 
@@ -180,7 +167,120 @@ module TokyoMetro
 
   class << self
 
+    alias :set_api_consts :set_api_constants
+    alias :set_all_api_consts :set_all_api_constants
+    alias :set_all_api_consts_without_fare :set_all_api_constants_without_fare
+
     private
+
+    def module_library
+      h = ::Hash.new
+
+      #---------------- StationTimetable, TrainTimetable ... Patches と Customize で共通して用いるモジュール
+
+      set_namespaces_to_module_library( h , :Common , :Station ,
+        :ConnectingRailwayLine
+      )
+
+      set_namespaces_to_module_library( h , :Common , :TrainInfos ,
+        :ConvertStation ,
+        :ConvertTerminalStation ,
+        :ConvertStartingStation
+      )
+
+      set_namespaces_to_module_library( h , :Common , :StationTimetable ,
+        :ConvertTerminalStations
+      )
+
+      #---------------- Patches
+
+      set_namespaces_to_module_library( h , :Patches , :Station ,
+        :ConnectingRailwayLine
+      )
+
+      set_namespaces_to_module_library( h , :Patches , :StationFacility ,
+        :EscalatorDirection ,
+        :RailwayDirectionInPlatformTransferInfo ,
+        :BarrierFreeFacilityLocatedArea
+      )
+
+      set_namespaces_to_module_library( h , :Patches , :TrainInfos ,
+        :MusashiKosugiInNambokuLine
+      )
+
+      set_namespaces_to_module_library( h , :Patches , :StationTimetable ,
+        :MusashiKosugiInNambokuLine ,
+        :NakanoSakaueOnMarunouchiBranchLine ,
+        :Origin ,
+        :FukutoshinLineForWakoshi ,
+        :MarunouchiBranchLineForNakanoSakaue
+      )
+
+      set_namespaces_to_module_library( h , :Patches , :TrainTimetable ,
+        :YurakuchoLine
+      )
+
+      #---------------- Customize
+
+      set_namespaces_to_module_library( h , :Customize , :Fare ,
+        :ChiyodaBranchLine
+      )
+
+      set_namespaces_to_module_library( h , :Customize , :RailwayLine ,
+        :ChiyodaBranchLine
+      )
+
+      set_namespaces_to_module_library( h , :Customize , :Station ,
+        :ChiyodaBranchLine ,
+        :StationCodeOfNakanoSakaueOnMarunouchiBranchLine ,
+        :ConnectingRailwayLine
+      )
+
+      set_namespaces_to_module_library( h , :Customize , :StationFacility ,
+        :RailwayLineNameInPlatformTransferInfo ,
+        :MarunouchiBranchLine ,
+        :ChiyodaBranchLine
+      )
+
+      set_namespaces_to_module_library( h , :Customize , :TrainTimetable ,
+        :StartingStation ,
+        :ReplaceStationName ,
+        # :MarunouchiBranchLine ,
+        :ChiyodaBranchLine ,
+        :ToeiMitaLine ,
+        :TrainRelationsOnMarunouchiBranchLine
+      )
+
+      set_namespaces_to_module_library( h , :Customize , :StationTimetable ,
+        # :MarunouchiBranchLine ,
+        :ChiyodaBranchLine ,
+        :AdditionalInfos
+      )
+
+      set_namespaces_to_module_library( h , :Customize , :TrainInfos ,
+        :ConvertStation ,
+        :ConvertTerminalStation ,
+        :ConvertStartingStation ,
+        :MarunouchiBranchLine ,
+        :ChiyodaBranchLine ,
+        :ToeiMitaLine ,
+        :RomanceCar
+      )
+
+      h
+    end
+
+    def set_namespaces_to_module_library( h , module_type , category , *namespaces )
+      if h[ module_type ].nil?
+        h[ module_type ] = ::Hash.new
+      end
+      if h[ module_type ][ category ].nil?
+        h[ module_type ][ category ] = ::Array.new
+      end
+      namespaces.flatten.each do | namespace |
+        h[ module_type ][ category ] << namespace
+      end
+    end
 
     def config_of_api_constants_when_load_all
       h = ::Hash.new
@@ -207,3 +307,45 @@ module TokyoMetro
   # @!endgroup
 
 end
+
+__END__
+
+::TokyoMetro.set_api_consts
+
+#--------
+
+::TokyoMetro::Static.operators.seed
+::TokyoMetro::Static.train_owners.seed
+::TokyoMetro::Static::Fare::Normal.seed
+::TokyoMetro::Static.operation_days.seed
+::TokyoMetro::Static.train_information_statuses.seed
+::TokyoMetro::Static.railway_lines.seed
+::TokyoMetro::Api.station_facilities.seed
+
+::TokyoMetro::Api.stations.seed
+::TokyoMetro::Static.stations.seed
+::TokyoMetro::Api.stations.seed_connecting_railway_lines
+
+::TokyoMetro::Static.railway_directions.seed
+::TokyoMetro::Static.train_types_in_api.seed
+::TokyoMetro::Static.train_types.seed
+::TokyoMetro::Api.points.seed
+::TokyoMetro::Api.stations.seed_exits
+::TokyoMetro::Api.railway_lines.seed_travel_time_infos
+::TokyoMetro::Api.railway_lines.seed_women_only_car_infos
+::TokyoMetro::Api.passenger_surveys.seed
+::TokyoMetro::Api.stations.seed_link_to_passenger_surveys
+
+::TokyoMetro::Api.station_facilities.seed_barrier_free_facilities
+
+::TokyoMetro::Api.station_facilities.seed_platform_infos
+
+#--------
+
+::TokyoMetro.set_api_consts
+
+::TokyoMetro::Api.fares.seed
+
+#--------
+
+Refinement

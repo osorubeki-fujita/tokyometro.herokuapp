@@ -1,0 +1,26 @@
+odpt.Station:TokyoMetro.ChiyodaBranch.Ayase:
+  station_alias:
+    - odpt.Station:TokyoMetro.Chiyoda.Ayase
+    - odpt.Station:JR-East.Ayase
+  station_facility: odpt.StationFacility:TokyoMetro.Ayase
+  station_facility_custom_alias: odpt.StationFacility:JR-East.Ayase
+  name_ja: 綾瀬
+  name_hira: あやせ
+  name_in_system: Ayase
+  name_en: Ayase
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:JR-East
+  station_code: C-19
+  stop:
+    - custom.StoppingPattern:TokyoMetro.ChiyodaBranch.Local
+
+odpt.Station:TokyoMetro.ChiyodaBranch.KitaAyase:
+  station_alias: odpt.Station:TokyoMetro.Chiyoda.KitaAyase
+  station_facility: odpt.StationFacility:TokyoMetro.KitaAyase
+  name_ja: 北綾瀬
+  name_hira: きたあやせ
+  name_in_system: KitaAyase
+  name_en: Kita-ayase
+  station_code: C-20
+  stop:
+    - custom.StoppingPattern:TokyoMetro.ChiyodaBranch.Local

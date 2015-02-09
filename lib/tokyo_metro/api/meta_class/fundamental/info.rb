@@ -2,18 +2,14 @@
 class TokyoMetro::Api::MetaClass::Fundamental::Info
 
   # クラスメソッドの追加
-  include ::TokyoMetro::ApiModules::ClassAttr::NotRealTime
-  include ::TokyoMetro::ApiModules::ToFactoryClass::GenerateFromHash
+  include ::TokyoMetro::ApiModules::Common::NotRealTime
+  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
 
   # インスタンスメソッドの追加
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToJson
-  include ::TokyoMetro::ApiModules::InstanceMethods::SetDataToHash
+  include ::TokyoMetro::ApiModules::Info::ToJson
+  include ::TokyoMetro::ApiModules::Info::SetDataToHash
 
   # @return [String] 固有識別子 (ucode) - URN
   attr_reader :id_urn
-
-  class << self
-    alias :generate_from_json :generate_from_hash
-  end
 
 end

@@ -12,7 +12,7 @@ namespace :tokyo_metro do
     end
 
     desc "YARD によるドキュメント生成"
-    task :document => :load_document_scripts do
+    task :document => :load_scripts_related_to_document do
       ::TokyoMetro::Document.yard( verbose: true )
     end
 
@@ -35,30 +35,35 @@ namespace :tokyo_metro do
 
     namespace :examples do
       desc "ドキュメント内で使用する例の作成"
-      task :static_datas => :load do
+      task :static => :load do
         ::TokyoMetro.set_fundamental_constants
-        ::TokyoMetro::Document::MakeExamples::StaticDatas.process
+        ::TokyoMetro::Document::MakeExamples::Static.process
       end
     end
 
     namespace :scss do
       desc "SCSSファイルの生成 - 鉄道事業者の色"
       task :operators => :load do
-        ::TokyoMetro::StaticDatas.operators.make_scss_color_file
+        ::TokyoMetro::Static.operators.make_scss_color_file
       end
       desc "SCSSファイルの生成 - 路線の色"
       task :railway_lines => :load do
-        ::TokyoMetro::StaticDatas.railway_lines.make_scss_color_file
+        ::TokyoMetro::Static.railway_lines.make_scss_color_file
       end
       desc "SCSSファイルの生成 - 列車種別の色"
       task :train_types => :load do
-        ::TokyoMetro::StaticDatas.train_types.make_scss_color_file
+        ::TokyoMetro::Static.train_types.make_scss_color_file
       end
     end
 
     desc "駅名辞書の生成 (YAML <- CSV)"
     task :yaml_station_list => :load do
       ::TokyoMetro::Factories::YamlStationList.process
+    end
+    
+    desc "Static Example の作成"
+    task :static_examples => :load do
+      ::TokyoMetro::Document::MakeExamples::Static.process
     end
 
   end

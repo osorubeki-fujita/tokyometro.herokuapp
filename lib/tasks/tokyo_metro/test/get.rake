@@ -75,8 +75,8 @@ namespace :tokyo_metro do
         end
 
         desc "取得テスト - 普通運賃表"
-        task :static_datas => :load do
-          ::TokyoMetro::StaticDatas::Fare::Normal.test
+        task :static => :load do
+          ::TokyoMetro::Static::Fare::Normal.test
         end
       end
       

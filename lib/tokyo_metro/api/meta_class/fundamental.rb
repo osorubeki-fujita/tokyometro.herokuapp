@@ -1,7 +1,7 @@
 # API から提供されるデータのメタクラス
 class TokyoMetro::Api::MetaClass::Fundamental
 
-  include ::TokyoMetro::ApiModules::ClassAttr::NotRealTime
+  include ::TokyoMetro::ApiModules::Common::NotRealTime
   include ::TokyoMetro::ApiModules::Common::DbDirname
 
   # @!group Factory Pattern のクラスの情報
@@ -16,6 +16,3 @@ class TokyoMetro::Api::MetaClass::Fundamental
   # @!endgroup
 
 end
-
-# fundamental/info.rb
-# fundamental/list.rb

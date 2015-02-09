@@ -2,13 +2,16 @@
 class TokyoMetro::Api::Station::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
   # インスタンスメソッドの追加
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToJson
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringWithArray
+  include ::TokyoMetro::ApiModules::Info::ToJson
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::ApiModules::Info::ToStringWithArray
 
   include ::TokyoMetro::ClassNameLibrary::Api::Station
-  include ::TokyoMetro::ApiModules::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Decision::CurrentStation
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::ApiModules::Info::Decision::CurrentStation
+
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
 
   # Constructor
   def initialize( id_urn , same_as , title , dc_date , geo_long , geo_lat , region ,
@@ -97,6 +100,10 @@ class TokyoMetro::Api::Station::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
   alias :station :title
 
+  alias :longitude :geo_long
+  alias :latitude :geo_lat
+  alias :geo_json :region
+
   # @!group 駅情報の取得
 
   # インスタンスの情報を文字列にして返すメソッド
@@ -144,61 +151,36 @@ class TokyoMetro::Api::Station::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
   end
 
   def title_shift_jis
-    if @title == "麴町"
+    case @title
+    when "麴町"
       "麹町"
     else
       @title
     end
   end
 
-  def seed( operators , railway_lines , station_facilities )
-    operator_in_db = operators.find_by( same_as: @operator )
-    railway_line_in_db = railway_lines.find_by( same_as: @railway_line )
-    station_facility_in_db = station_facilities.find_by( same_as: @facility )
+  alias :name_ja :title_shift_jis
 
-    raise "Error: \"#{@operator}\" does not exist in database." if operator_in_db.nil?
-    raise "Error: \"#{@railway_line}\" does not exist in database." if railway_line_in_db.nil?
-    raise "Error: \"#{@facility}\" does not exist in database." if station_facility_in_db.nil?
-
-    ::Station.create(
-      id_urn: @id_urn ,
-      same_as: @same_as ,
-      name_ja: self.title_shift_jis ,
-      dc_date: @dc_date ,
-      operator_id: operator_in_db.id ,
-      railway_line_id: railway_line_in_db.id ,
-      station_facility_id: station_facility_in_db.id ,
-      station_code: @station_code ,
-      longitude: @geo_long ,
-      latitude: @geo_lat ,
-      geo_json: @region
-    )
-    # sleep(0.3)
-
-    _station_id = station_id
-    seed_connecting_railway_lines( _station_id )
+  def seed_connecting_railway_lines( indent )
+    @connecting_railway_lines.try( :seed , station_id , indent )
   end
 
-  def seed_exit_list
-    @exit_list.seed( station_id )
+  def seed_exits( indent )
+    @exit_list.try( :seed , station_id , indent )
   end
 
-  def seed_optional_infos_of_connecting_railway_lines
-    @connecting_railway_lines.seed_optional_infos( station_id , @same_as )
+  def seed_link_to_passenger_surveys( indent )
+    @passenger_survey.try( :seed , station_id , indent )
   end
 
   private
-
-  def seed_connecting_railway_lines( _station_id )
-    @connecting_railway_lines.seed( _station_id , @same_as )
-  end
 
   def station_id
     instance_in_db.id
   end
 
   def instance_in_db
-    ::Station.find_by( same_as: @same_as )
+    ::Station.find_by_same_as( @same_as )
   end
 
   def station_same_as__is_in?( *variables )

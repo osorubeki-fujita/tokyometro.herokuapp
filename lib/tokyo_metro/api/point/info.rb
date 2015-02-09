@@ -1,12 +1,13 @@
 # 個別の地物情報 ug:Poi のクラス
 class TokyoMetro::Api::Point::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
-  # インスタンスメソッドの追加
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToJson
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringWithArray
-
   include ::TokyoMetro::ClassNameLibrary::Api::Point
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+
+  # インスタンスメソッドの追加
+  include ::TokyoMetro::ApiModules::Info::ToJson
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::ApiModules::Info::ToStringWithArray
 
   # Constructor
   def initialize( id_urn , title , geo_long , geo_lat , region , ug_floor , category_name )
@@ -51,6 +52,10 @@ class TokyoMetro::Api::Point::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
   # @note エレベータには「エレベータ」という文字列を含む。「出入口」の文字列の後に出口番号が続く。
   attr_reader :title
 
+  alias :longitude :geo_long
+  alias :latitude :geo_lat
+  alias :geo_json :region
+
   # @!group 駅情報の取得
 
   # インスタンスの情報を文字列にして返すメソッド
@@ -82,24 +87,39 @@ class TokyoMetro::Api::Point::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
   # @!endgroup
 
-  def has_elevator?
-    @title.has_elevator?
+  def additional_info
+    _additional_info = @title.additional_info
+    if _additional_info.blank?
+      nil
+    else
+      _additional_info
+    end
   end
 
-  def closed?
-    @title.closed?
+  [ :code , :has_elevator? , :closed? ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        @title.#{ method_name }
+      end
+    DEF
+  end
+
+  [ :station_name , :code ].each do | method_base_name |
+    eval <<-DEF
+      def #{ method_base_name }_in_title
+        @title.#{ method_base_name }
+      end
+    DEF
   end
 
   def station
     station_facility_key = nil
     ::TokyoMetro::Api::stations.each do | sta |
-
-      if sta.exit_lidt.include?( @id_urn )
-        station_facility = sta.facility
-        if station_facility.string?
-          station_facility_key = station_facility
+      if sta.exit_list.include?( @id_urn )
+        if sta.facility.string?
+          station_facility_key = sta.facility
         else
-          station_facility_key = station_facility.same_as
+          station_facility_key = sta.facility.same_as
         end
         break
       end
@@ -112,38 +132,14 @@ class TokyoMetro::Api::Point::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
     end
   end
 
-  def seed( stations )
-    h = { name_ja: @category_name }
-    point_category = ::PointCategory.find_or_create_by(h)
-
-    additional_info = @title.additional_info
-    if additional_info.blank?
-      additional_info = nil
+  def station_name_for_shift_jis
+    station_name = station_name_in_title
+    case station_name
+    when "麴町"
+      "麹町"
+    else
+      station_name
     end
-
-    station_name = @title.station_name
-    if station_name == "麴町"
-      station_name = "麹町"
-    end
-
-    station = stations.find_by( name_ja: station_name )
-
-    raise "Error: \"#{@category_name}\" , \"#{@title.station_name}\"" if [ point_category , station ].any?{ |i| i.nil? }
-    station_facility_id = station.station_facility_id
-
-    ::Point.create(
-      id_urn: @id_urn ,
-      station_facility_id: station_facility_id ,
-      code: @title.code ,
-      additional_info: additional_info ,
-      elevator: @title.has_elevator? ,
-      closed: @title.closed? ,
-      latitude: @geo_lat ,
-      longitude: @geo_lat ,
-      geo_json: @region ,
-      floor: @floor ,
-      point_category_id: point_category.id
-    )
   end
 
 end

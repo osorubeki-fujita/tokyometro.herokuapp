@@ -1,17 +1,11 @@
 # 地物情報 ug:Poi の配列のクラス
 class TokyoMetro::Api::Point::List < TokyoMetro::Api::MetaClass::Hybrid::List
 
-  include TokyoMetro::ApiModules::List::Seed
-
-  alias :__seed__ :seed
+  include ::TokyoMetro::ClassNameLibrary::Api::Point
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
 
   def seed
-    stations = ::Station.all
-    __seed__ do
-      self.each do |v|
-        v.seed( stations )
-      end
-    end
+    super( ::Station.all , display_number: true )
   end
 
   # インスタンスの情報を整形した文字列にして返すメソッド

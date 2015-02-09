@@ -9,7 +9,9 @@ class RailwayLine < ActiveRecord::Base
   has_many :connecting_railway_lines
   # has_many :station_facilities , through: :connecting_railway_lines
 
-  has_many :timetables
+  has_many :station_timetable_fundamental_infos
+  has_many :station_timetables , through: :station_timetable_fundamental_infos
+
   has_many :train_timetables
   has_many :train_types
 

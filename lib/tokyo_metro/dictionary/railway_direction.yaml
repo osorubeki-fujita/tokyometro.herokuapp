@@ -1,0 +1,288 @@
+#---- G
+
+# 渋谷方面
+odpt.RailwayDirection:TokyoMetro.Ginza.Shibuya:
+  in_api: odpt.RailDirection:TokyoMetro.Shibuya
+  railway_line: odpt.Railway:TokyoMetro.Ginza
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Ginza.Shibuya
+
+# 浅草方面
+odpt.RailwayDirection:TokyoMetro.Ginza.Asakusa:
+  in_api: odpt.RailDirection:TokyoMetro.Asakusa
+  railway_line: odpt.Railway:TokyoMetro.Ginza
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Ginza.Asakusa
+
+#---- M
+
+# 荻窪方面
+odpt.RailwayDirection:TokyoMetro.Marunouchi.Ogikubo:
+  in_api: odpt.RailDirection:TokyoMetro.Ogikubo
+  railway_line: odpt.Railway:TokyoMetro.Marunouchi
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Marunouchi.Ogikubo
+
+# 池袋方面
+odpt.RailwayDirection:TokyoMetro.Marunouchi.Ikebukuro:
+  in_api: odpt.RailDirection:TokyoMetro.Ikebukuro
+  railway_line: odpt.Railway:TokyoMetro.Marunouchi
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Marunouchi.Ikebukuro
+
+# 方南町方面（荻窪・池袋方面発の中野富士見町行きを想定）
+odpt.RailwayDirection:TokyoMetro.Marunouchi.Honancho:
+  in_api: odpt.RailDirection:TokyoMetro.Honancho
+  railway_line: odpt.Railway:TokyoMetro.Marunouchi
+  station: odpt.Station:TokyoMetro.MarunouchiBranch.Honancho
+
+# 中野坂上方面
+odpt.RailwayDirection:TokyoMetro.Marunouchi.NakanoSakaue:
+  in_api: odpt.RailDirection:TokyoMetro.NakanoSakaue
+  railway_line: odpt.Railway:TokyoMetro.Marunouchi
+  station: odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue
+
+# 方南町方面【支線】（中野坂上→方南町を走行する列車に対し、支線内で使用）
+odpt.RailwayDirection:TokyoMetro.MarunouchiBranch.Honancho:
+  in_api: odpt.RailDirection:TokyoMetro.Honancho
+  railway_line: odpt.Railway:TokyoMetro.MarunouchiBranch
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.MarunouchiBranch.Honancho
+
+# 中野坂上方面【支線】（方南町→中野坂上の区間列車に対し、支線内で使用）
+odpt.RailwayDirection:TokyoMetro.MarunouchiBranch.NakanoSakaue:
+  in_api: odpt.RailDirection:TokyoMetro.NakanoSakaue
+  railway_line: odpt.Railway:TokyoMetro.MarunouchiBranch
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.MarunouchiBranch.NakanoSakaue
+
+# 荻窪方面【支線】（中野富士見町発の荻窪方面行きを想定、支線内で使用）
+odpt.RailwayDirection:TokyoMetro.MarunouchiBranch.Ogikubo:
+  in_api: odpt.RailDirection:TokyoMetro.Ogikubo
+  railway_line: odpt.Railway:TokyoMetro.MarunouchiBranch
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Marunouchi.Ogikubo
+
+# 池袋方面【支線】（中野富士見町発の池袋方面行きを想定、支線内で使用）
+odpt.RailwayDirection:TokyoMetro.MarunouchiBranch.Ikebukuro:
+  in_api: odpt.RailDirection:TokyoMetro.Ikebukuro
+  railway_line: odpt.Railway:TokyoMetro.MarunouchiBranch
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Marunouchi.Ikebukuro
+
+#---- H
+
+# 中目黒方面
+odpt.RailwayDirection:TokyoMetro.Hibiya.NakaMeguro:
+  in_api: odpt.RailDirection:TokyoMetro.NakaMeguro
+  railway_line: odpt.Railway:TokyoMetro.Hibiya
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Hibiya.NakaMeguro
+
+# 北千住方面
+odpt.RailwayDirection:TokyoMetro.Hibiya.KitaSenju:
+  in_api: odpt.RailDirection:TokyoMetro.KitaSenju
+  railway_line: odpt.Railway:TokyoMetro.Hibiya
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Hibiya.KitaSenju
+
+#---- T
+
+# 西船橋方面
+odpt.RailwayDirection:TokyoMetro.Tozai.NishiFunabashi:
+  in_api: odpt.RailDirection:TokyoMetro.NishiFunabashi
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Tozai.NishiFunabashi
+
+# 中野方面
+odpt.RailwayDirection:TokyoMetro.Tozai.Nakano:
+  in_api: odpt.RailDirection:TokyoMetro.Nakano
+  railway_line: odpt.Railway:TokyoMetro.Tozai
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Tozai.Nakano
+
+#---- C
+
+# 代々木上原方面
+odpt.RailwayDirection:TokyoMetro.Chiyoda.YoyogiUehara:
+  in_api: odpt.RailDirection:TokyoMetro.YoyogiUehara
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Chiyoda.YoyogiUehara
+
+# 綾瀬方面
+odpt.RailwayDirection:TokyoMetro.Chiyoda.Ayase:
+  in_api: odpt.RailDirection:TokyoMetro.Ayase
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Chiyoda.Ayase
+
+# 北綾瀬方面
+odpt.RailwayDirection:TokyoMetro.Chiyoda.KitaAyase:
+  in_api: odpt.RailDirection:TokyoMetro.KitaAyase
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.ChiyodaBranch.KitaAyase
+
+#---- c （綾瀬 - 北綾瀬）
+
+# 代々木上原方面
+odpt.RailwayDirection:TokyoMetro.ChiyodaBranch.YoyogiUehara:
+  in_api: odpt.RailDirection:TokyoMetro.YoyogiUehara
+  railway_line: odpt.Railway:TokyoMetro.ChiyodaBranch
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Chiyoda.YoyogiUehara
+
+# 綾瀬方面
+odpt.RailwayDirection:TokyoMetro.ChiyodaBranch.Ayase:
+  in_api: odpt.RailDirection:TokyoMetro.Ayase
+  railway_line: odpt.Railway:TokyoMetro.ChiyodaBranch
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.ChiyodaBranch.Ayase
+
+# 北綾瀬方面
+odpt.RailwayDirection:TokyoMetro.ChiyodaBranch.KitaAyase:
+  in_api: odpt.RailDirection:TokyoMetro.KitaAyase
+  railway_line: odpt.Railway:TokyoMetro.ChiyodaBranch
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.ChiyodaBranch.KitaAyase
+
+#---- Z
+
+# 押上方面
+odpt.RailwayDirection:TokyoMetro.Hanzomon.Oshiage:
+  in_api: odpt.RailDirection:TokyoMetro.Oshiage
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Hanzomon.Oshiage
+
+# 渋谷方面
+odpt.RailwayDirection:TokyoMetro.Hanzomon.Shibuya:
+  in_api: odpt.RailDirection:TokyoMetro.Shibuya
+  railway_line: odpt.Railway:TokyoMetro.Hanzomon
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Hanzomon.Shibuya
+
+#---- N, I
+
+# 赤羽岩淵方面
+odpt.RailwayDirection:TokyoMetro.Namboku.AkabaneIwabuchi:
+  in_api: odpt.RailDirection:TokyoMetro.AkabaneIwabuchi
+  railway_line: odpt.Railway:TokyoMetro.Namboku
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Namboku.AkabaneIwabuchi
+
+# 目黒方面
+odpt.RailwayDirection:TokyoMetro.Namboku.Meguro:
+  in_api: odpt.RailDirection:TokyoMetro.Meguro
+  railway_line: odpt.Railway:TokyoMetro.Namboku
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Namboku.Meguro
+
+odpt.RailwayDirection:Toei.Mita.Meguro:
+  in_api: odpt.RailDirection:Toei.Meguro
+  railway_line: odpt.Railway:Toei.Mita
+  railway_direction_code: B
+  station: odpt.Station:Toei.Mita.Meguro
+
+# 白金高輪方面
+odpt.RailwayDirection:TokyoMetro.Namboku.ShirokaneTakanawa:
+  in_api: odpt.RailDirection:TokyoMetro.ShirokaneTakanawa
+  railway_line: odpt.Railway:TokyoMetro.Namboku
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Namboku.ShirokaneTakanawa
+
+odpt.RailwayDirection:Toei.Mita.ShirokaneTakanawa:
+  in_api: odpt.RailDirection:TokyoMetro.ShirokaneTakanawa
+  railway_line: odpt.Railway:Toei.Mita
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Namboku.ShirokaneTakanawa
+
+# 西高島平方面
+odpt.RailwayDirection:Toei.Mita.NishiTakashimadaira:
+  in_api: odpt.RailDirection:Toei.NishiTakashimadaira
+  railway_line: odpt.Railway:Toei.Mita
+  railway_direction_code: A
+  station: odpt.Station:Toei.Mita.NishiTakashimadaira
+
+#---- Y, F
+
+# 和光市方面
+odpt.RailwayDirection:TokyoMetro.Yurakucho.Wakoshi:
+  in_api: odpt.RailDirection:TokyoMetro.Wakoshi
+  railway_line: odpt.Railway:TokyoMetro.Yurakucho
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Yurakucho.Wakoshi
+
+odpt.RailwayDirection:TokyoMetro.Fukutoshin.Wakoshi:
+  in_api: odpt.RailDirection:TokyoMetro.Wakoshi
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Fukutoshin.Wakoshi
+
+# 小竹向原方面
+odpt.RailwayDirection:TokyoMetro.Yurakucho.KotakeMukaihara:
+  in_api: odpt.RailDirection:TokyoMetro.KotakeMukaihara
+  railway_line: odpt.Railway:TokyoMetro.Yurakucho
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Yurakucho.KotakeMukaihara
+
+odpt.RailwayDirection:TokyoMetro.Fukutoshin.KotakeMukaihara:
+  in_api: odpt.RailDirection:TokyoMetro.KotakeMukaihara
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+  railway_direction_code: B
+  station: odpt.Station:TokyoMetro.Fukutoshin.KotakeMukaihara
+
+# 池袋方面
+odpt.RailwayDirection:TokyoMetro.Yurakucho.Ikebukuro:
+  in_api: odpt.RailDirection:TokyoMetro.Ikebukuro
+  railway_line: odpt.Railway:TokyoMetro.Yurakucho
+  station: odpt.Station:TokyoMetro.Yurakucho.Ikebukuro
+
+odpt.RailwayDirection:TokyoMetro.Fukutoshin.Ikebukuro:
+  in_api: odpt.RailDirection:TokyoMetro.Ikebukuro
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+  station: odpt.Station:TokyoMetro.Fukutoshin.Ikebukuro
+
+# 新木場方面
+odpt.RailwayDirection:TokyoMetro.Yurakucho.ShinKiba:
+  in_api: odpt.RailDirection:TokyoMetro.ShinKiba
+  railway_line: odpt.Railway:TokyoMetro.Yurakucho
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Yurakucho.ShinKiba
+
+# 渋谷方面
+odpt.RailwayDirection:TokyoMetro.Fukutoshin.Shibuya:
+  in_api: odpt.RailDirection:TokyoMetro.Shibuya
+  railway_line: odpt.Railway:TokyoMetro.Fukutoshin
+  railway_direction_code: A
+  station: odpt.Station:TokyoMetro.Fukutoshin.Shibuya
+
+#---- A
+
+# 西馬込方面
+odpt.RailwayDirection:Toei.Asakusa.NishiMagome:
+  in_api: odpt.RailDirection:Toei.NishiMagome
+  railway_line: odpt.Railway:Toei.Asakusa
+  station: odpt.Station:Toei.Asakusa.NishiMagome
+
+# 押上方面
+odpt.RailwayDirection:Toei.Asakusa.Oshiage:
+  in_api: odpt.RailDirection:Toei.Oshiage
+  railway_line: odpt.Railway:Toei.Asakusa
+  station: odpt.Station:Toei.Asakusa.Oshiage
+
+#---- S
+
+# 本八幡方面
+odpt.RailwayDirection:Toei.Shinjuku.Motoyawata:
+  in_api: odpt.RailDirection:Toei.Motoyawata
+  railway_line: odpt.Railway:Toei.Shinjuku
+  station: odpt.Station:Toei.Shinjuku.Motoyawata
+
+# 新宿方面
+odpt.RailwayDirection:Toei.Shinjuku.Shinjuku:
+  in_api: odpt.RailDirection:Toei.Shinjuku
+  railway_line: odpt.Railway:Toei.Shinjuku
+  station: odpt.Station:Toei.Shinjuku.Shinjuku

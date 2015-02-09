@@ -1,0 +1,8 @@
+"odpt.Railway:Tobu.Isesaki":
+  stations:
+    - odpt.Station:TokyoMetro.Ginza.Asakusa
+    - odpt.Station:TokyoMetro.Hanzomon.Oshiage
+    - odpt.Station:TokyoMetro.Hibiya.KitaSenju
+    - odpt.Station:TokyoMetro.Chiyoda.KitaSenju
+  replacing_railway_line_names:
+    - odpt.Railway:Tobu.SkyTreeIsesaki

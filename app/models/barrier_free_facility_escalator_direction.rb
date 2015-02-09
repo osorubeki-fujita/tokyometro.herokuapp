@@ -1,0 +1,3 @@
+class BarrierFreeFacilityEscalatorDirection < ActiveRecord::Base
+  belongs_to :barrier_free_facility_service_detail
+end

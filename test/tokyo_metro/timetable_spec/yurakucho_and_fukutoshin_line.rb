@@ -1,0 +1,3 @@
+require_relative 'yurakucho_and_fukutoshin_line/wakoshi_on_yurakucho_line.rb'
+require_relative 'yurakucho_and_fukutoshin_line/wakoshi_on_fukutoshin_line.rb'
+require_relative 'yurakucho_and_fukutoshin_line/invalid_trains_in_yurakucho_line.rb'

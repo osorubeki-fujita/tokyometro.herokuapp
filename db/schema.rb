@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231223501) do
+ActiveRecord::Schema.define(version: 20150203021309) do
+
   create_table "air_conditioner_answers", force: true do |t|
     t.string   "name_ja"
     t.string   "name_en"
@@ -37,6 +38,14 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.integer  "barrier_free_facility_located_area_id"
     t.string   "remark"
     t.boolean  "is_available_to_wheel_chair"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "barrier_free_facility_escalator_directions", force: true do |t|
+    t.integer  "barrier_free_facility_service_detail_id"
+    t.boolean  "up"
+    t.boolean  "down"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,8 +79,6 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.integer  "service_end_time_hour"
     t.integer  "service_end_time_min"
     t.boolean  "service_end_after_last_train"
-    t.boolean  "escalator_direction_up"
-    t.boolean  "escalator_direction_down"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -115,11 +122,12 @@ ActiveRecord::Schema.define(version: 20141231223501) do
 
   create_table "connecting_railway_lines", force: true do |t|
     t.integer  "station_id"
-    t.integer  "railway_line_id"
     t.integer  "index_in_station"
-    t.boolean  "clear"
-    t.boolean  "not_recommend"
-    t.integer  "another_station_id"
+    t.integer  "railway_line_id"
+    t.integer  "connecting_station_id"
+    t.boolean  "connecting_to_another_station"
+    t.boolean  "cleared"
+    t.boolean  "not_recommended"
     t.integer  "connecting_railway_line_note_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -161,7 +169,7 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.string   "name_hira"
     t.string   "name_en"
     t.float    "index"
-    t.string   "line_code_shape"
+    t.string   "railway_line_code_shape"
     t.string   "same_as"
     t.string   "name_ja_display"
     t.string   "name_en_display"
@@ -186,7 +194,7 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.integer  "survey_year"
     t.integer  "station_id"
     t.integer  "operator_id"
-    t.integer  "passenger_journey"
+    t.integer  "passenger_journeys"
     t.string   "same_as"
     t.string   "id_urn"
     t.datetime "created_at"
@@ -222,6 +230,7 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.integer  "station_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "railway_direction_code"
   end
 
   create_table "railway_lines", force: true do |t|
@@ -351,23 +360,57 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.datetime "updated_at"
   end
 
+  create_table "station_timetable_connection_infos", force: true do |t|
+    t.integer  "station_id"
+    t.string   "note"
+    t.boolean  "connection"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_timetable_fundamental_infos", force: true do |t|
+    t.integer  "station_timetable_id", null: false
+    t.integer  "station_id",           null: false
+    t.integer  "operator_id",          null: false
+    t.integer  "railway_line_id",      null: false
+    t.integer  "railway_direction_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_timetable_starting_station_infos", force: true do |t|
+    t.integer  "station_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_timetables", force: true do |t|
+    t.string   "id_urn",     null: false
+    t.string   "same_as",    null: false
+    t.datetime "dc_date",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "station_train_times", force: true do |t|
-    t.integer  "timetable_id"
+    t.integer  "station_timetable_id"
     t.integer  "train_timetable_id"
+    t.integer  "departure_station_id"
     t.integer  "departure_time_hour"
     t.integer  "departure_time_min"
+    t.integer  "arrival_station_id"
     t.integer  "arrival_time_hour"
     t.integer  "arrival_time_min"
     t.boolean  "is_last"
     t.boolean  "is_origin"
-    t.integer  "depart_from"
-    t.integer  "timetable_starting_station_info_id"
+    t.integer  "platform_number"
+    t.integer  "station_timetable_starting_station_info_id"
     t.integer  "train_type_in_this_station_id"
-    t.boolean  "arrival_info_of_last_station_in_tokyo_metro"
-    t.integer  "last_station_in_tokyo_metro_id"
+    t.boolean  "stop_for_drivers"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "stop_for_drivers"
+    t.integer  "station_timetable_connection_info_id"
+    t.integer  "index_in_train_timetable"
   end
 
   create_table "stations", force: true do |t|
@@ -401,48 +444,6 @@ ActiveRecord::Schema.define(version: 20141231223501) do
 
   create_table "surrounding_areas", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "timetable_arrival_infos", force: true do |t|
-    t.integer  "station_id"
-    t.integer  "platform_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "timetable_connection_infos", force: true do |t|
-    t.integer  "station_id"
-    t.string   "note"
-    t.boolean  "connection"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "timetable_starting_station_infos", force: true do |t|
-    t.integer  "station_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "timetable_train_type_in_other_operators", force: true do |t|
-    t.integer  "from_station_id"
-    t.integer  "railway_line_id"
-    t.integer  "train_type_id"
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "timetables", force: true do |t|
-    t.string   "id_urn",               null: false
-    t.string   "same_as",              null: false
-    t.datetime "dc_date",              null: false
-    t.integer  "station_id",           null: false
-    t.integer  "railway_line_id",      null: false
-    t.integer  "operator_id",          null: false
-    t.integer  "railway_direction_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -530,21 +531,27 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.datetime "updated_at"
   end
 
-  create_table "train_times", force: true do |t|
-    t.integer  "timetable_id"
-    t.integer  "operation_day_id"
-    t.integer  "departure_time_hour"
-    t.integer  "departure_time_min"
-    t.integer  "to_station_id"
+  create_table "train_relations", force: true do |t|
+    t.integer  "previous_train_timetable_id"
+    t.integer  "previous_station_train_time_id"
+    t.integer  "following_station_train_time_id"
+    t.integer  "following_train_timetable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "train_timetable_arrival_infos", force: true do |t|
+    t.integer  "station_id"
+    t.integer  "platform_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "train_timetable_train_type_in_other_operators", force: true do |t|
+    t.integer  "from_station_id"
+    t.integer  "railway_line_id"
     t.integer  "train_type_id"
-    t.boolean  "is_last"
-    t.boolean  "is_origin"
-    t.integer  "car_composition"
-    t.integer  "depart_from"
-    t.integer  "timetable_starting_station_info_id"
-    t.integer  "timetable_arrival_info_id"
-    t.integer  "timetable_connection_info_id"
-    t.integer  "timetable_train_type_in_other_operator_id"
+    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -557,15 +564,15 @@ ActiveRecord::Schema.define(version: 20141231223501) do
     t.integer  "railway_line_id"
     t.integer  "operator_id"
     t.integer  "train_type_id"
+    t.integer  "train_name_id"
     t.integer  "railway_direction_id"
     t.integer  "train_owner_id"
     t.integer  "operation_day_id"
     t.integer  "starting_station_id"
     t.integer  "terminal_station_id"
     t.integer  "car_composition"
-    t.integer  "timetable_arrival_info_id"
-    t.integer  "timetable_connection_info_id"
-    t.integer  "timetable_train_type_in_other_operator_id"
+    t.integer  "train_timetable_arrival_info_id"
+    t.integer  "train_timetable_train_type_in_other_operator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

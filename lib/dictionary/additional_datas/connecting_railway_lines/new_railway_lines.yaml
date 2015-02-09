@@ -1,7 +1,0 @@
--
-    railway_line: odpt.Railway:JR-East.UenoTokyo
-    stations:
-        - odpt.Station:TokyoMetro.Ginza.Ueno
-        - odpt.Station:TokyoMetro.Hibiya.Ueno
-        - odpt.Station:TokyoMetro.Marunouchi.Tokyo
-        - odpt.Station:TokyoMetro.Ginza.Shimbashi

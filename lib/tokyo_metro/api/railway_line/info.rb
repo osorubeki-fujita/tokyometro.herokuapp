@@ -1,9 +1,17 @@
 # 個別の路線情報を扱うクラス
+# @note
+#   DB への流し込みは、{TokyoMetro::Static::RailwayLine::Info}#seed （{TokyoMetro::CommonModules::ToFactory::Seed::Info} で定義）で行う。
+#   関連： {TokyoMetro::Factories::Seed::Static::RailwayLine::Info}
 class TokyoMetro::Api::RailwayLine::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringWithArray
   include ::TokyoMetro::ClassNameLibrary::Api::RailwayLine
-  include ::TokyoMetro::ApiModules::Decision::RailwayLine
+
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
+  include ::TokyoMetro::CommonModules::Info::Decision::Operator
+
+  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::ApiModules::Info::ToStringWithArray
 
   # @!group Constructor
 
@@ -70,6 +78,8 @@ class TokyoMetro::Api::RailwayLine::Info < TokyoMetro::Api::MetaClass::Hybrid::I
 
   attr_reader :dc_date
 
+  alias :geo_json :region
+
   # @!group 路線情報の取得
 
   # ファイル名に使用する路線名
@@ -110,26 +120,18 @@ class TokyoMetro::Api::RailwayLine::Info < TokyoMetro::Api::MetaClass::Hybrid::I
     h
   end
 
-=begin
-  # @note {TokyoMetro::StaticDatas::RailwayLine::Info#seed} を参照
-  def seed
-  end
-=end
-
-  # @note {TokyoMetro::Api::RailwayLine::Info::StationOrder::List#seed} を実行。
-  # @note 使用停止中。、{TokyoMetro::StaticDatas::Station::InEachRailwayLine::Info#seed}を参照
-  def seed_index_of_station
+  # @note {TokyoMetro::Api::RailwayLine::Info::StationOrder::List#seed} を実行
+  # @note 使用停止中 - {TokyoMetro::Static::Station::InEachRailwayLine::Info#seed}を参照
+  def seed_station_order_infos
     @station_order.seed
   end
 
-  def seed_travel_time_info
-    railway_line_id = self.railway_line_id
-    @travel_time.seed( railway_line_id )
+  def seed_travel_time_infos
+    @travel_time.try( :seed , railway_line_id )
   end
 
-  def seed_women_only_car_info
-    railway_line_id = self.railway_line_id
-    @women_only_car.seed( railway_line_id )
+  def seed_women_only_car_infos
+    @women_only_car.try( :seed , railway_line_id )
   end
 
   def railway_line_id
@@ -140,8 +142,10 @@ class TokyoMetro::Api::RailwayLine::Info < TokyoMetro::Api::MetaClass::Hybrid::I
 
   private
 
-  def is_on_the_railway_line_of?( *variables )
+  def on_the_railway_line_of?( *variables )
     super( *variables , @same_as )
   end
+
+  alias :is_on_the_railway_line_of? :on_the_railway_line_of?
 
 end

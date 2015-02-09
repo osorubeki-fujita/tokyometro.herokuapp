@@ -1,21 +1,26 @@
 # 個別の列車のロケーション情報を扱うクラス
 class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTime::Info
 
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
   include ::TokyoMetro::ClassNameLibrary::Api::TrainLocation
 
-  include ::TokyoMetro::ApiModules::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Decision::TrainType
-  include ::TokyoMetro::ApiModules::Decision::TrainDirection
-  include ::TokyoMetro::ApiModules::Decision::StartingStation
-  include ::TokyoMetro::ApiModules::Decision::TerminalStation
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::CommonModules::Info::Decision::ToeiMitaLine
+
+  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::ApiModules::Info::Decision::TrainType
+  include ::TokyoMetro::ApiModules::Info::Decision::TrainDirection
+  include ::TokyoMetro::ApiModules::Info::Decision::StartingStation
+  include ::TokyoMetro::ApiModules::Info::Decision::TerminalStation
+  include ::TokyoMetro::ApiModules::Info::Decision::OperatedSection
 
   # Constructor
-  def initialize( id_urn , same_as , train_number , train_type , date , valid , frequency ,
+  def initialize( id_urn , same_as , train_number , train_type , dc_date , valid , frequency ,
     railway_line , train_owner , railway_direction , delay , starting_station , terminal_station , from_station , to_station )
     @id_urn = id_urn
     @same_as = same_as
-    @date , @valid , @frequency = date , valid , frequency
+    @dc_date , @valid , @frequency = dc_date , valid , frequency
     @train_number , @train_type = train_number , train_type
     @railway_line , @train_owner , @railway_direction = railway_line , train_owner , railway_direction
     @delay = delay
@@ -34,7 +39,7 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
   # @return [DateTime]
   # @example
   #  2013–01–13T15:10:00+09:00
-  attr_reader :date
+  attr_reader :dc_date
 
   # データ保証期限 - xsd:dateTime（ISO8601 日付時刻形式をもとに生成した DateTime のインスタンス）
   # @return [DateTime]
@@ -100,15 +105,19 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 
   # @!endgroup
 
-  alias :to :to_station
-  alias :to_sta :to_station
-  alias :from :from_station
-  alias :from_sta :from_station
-
-  alias :starting :starting_station
-  alias :starting_sta :starting_station
-  alias :terminal :terminal_station
-  alias :terminal_sta :terminal_station
+  # 定義されるメソッド
+  #
+  # to , to_sta
+  # from , from_sta
+  # starting , starting_sta
+  # terminal , terminal_sta
+  #
+  [ :to , :from , :starting , :terminal ].each do | prefix |
+    eval <<-ALIAS
+      alias :#{prefix} :#{prefix}_station
+      alias :#{prefix}_sta :#{prefix}_station
+    ALIAS
+  end
 
   alias :to_strf :to_s
 
@@ -120,7 +129,7 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
     set_data_to_hash( h , "\@id" , @id_urn )
     set_data_to_hash( h , "owl:sameAs" , @same_as )
 
-    set_data_to_hash( h , "dc:date" , @date.to_s )
+    set_data_to_hash( h , "dc:date" , @dc_date.to_s )
     set_data_to_hash( h , "dct:valid" , @valid.to_s )
     set_data_to_hash( h , "odpt:frequency" , @frequency )
 
@@ -184,9 +193,5 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 =end
 
   # @!endgroup
-
-  # class BetweenStation < Struct.new...
-
-  # end
 
 end

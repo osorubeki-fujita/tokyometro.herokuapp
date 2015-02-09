@@ -1,7 +1,5 @@
 # 各駅間の標準所要時間を扱うクラス
-class TokyoMetro::Api::RailwayLine::Info::TravelTime::Info
-
-  include ::TokyoMetro::ApiModules::ToFactoryClass::GenerateFromHash
+class TokyoMetro::Api::RailwayLine::Info::TravelTime::Info < TokyoMetro::Api::RailwayLine::Info::MetaClass::Info
 
   # Constructor
   def initialize( from_station , to_station , necessary_time )
@@ -50,17 +48,16 @@ class TokyoMetro::Api::RailwayLine::Info::TravelTime::Info
     h
   end
 
-  def seed( railway_line_id )
-    ::TravelTimeInfo.create(
-      railway_line_id: railway_line_id ,
-      from_station_id: ::Station.find_by_same_as( @from_station ).id ,
-      to_station_id: ::Station.find_by_same_as( @to_station ).id ,
-      necessary_time: @necessary_time
-    )
+  def between?( station_a , station_b )
+    [ @from_station , @to_station ] == [ station_a , station_b ] or [ @from_station , @to_station ] == [ station_b , station_a ]
   end
 
   def self.factory_for_generating_from_hash
-    ::TokyoMetro::Factories::Api::GenerateFromHash::RailwayLine::Info::TravelTime
+    factory_for_generating_travel_time_info_from_hash
+  end
+
+  def self.factory_for_seeding_this_class
+    factory_for_seeding_travel_time_infos
   end
 
 end

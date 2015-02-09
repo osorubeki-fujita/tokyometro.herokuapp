@@ -4,9 +4,9 @@ class TokyoMetro::Api::MlitRailwayLine::Info < TokyoMetro::Api::MetaClass::Geo::
   include ::TokyoMetro::ClassNameLibrary::Api::MlitRailwayLine
 
   # インスタンスメソッドの追加
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToJson
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringWithArray
+  include ::TokyoMetro::ApiModules::Info::ToJson
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::ApiModules::Info::ToStringWithArray
 
   # Constructor
   def initialize( id_urn , geo_long , geo_lat , region , mlit_operator_name , mlit_railway_line_name )

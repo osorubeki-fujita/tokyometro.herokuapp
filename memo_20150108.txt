@@ -1,0 +1,43 @@
+TokyoMetro::Api::StationTimetable::Info
+	@station ... 配列に変更
+	@railway_line ... 削除
+	1つの時刻表に複数の路線の時刻表が載っていてもよいこととする。（有楽町線・副都心線共用区間、南北線・都営三田線共用区間）
+	駅時刻表の情報は駅の情報（複数）のみを持つ。
+	駅時刻表の情報は路線の情報を直接保持せず、駅の情報（路線の情報を1つだけもつ）を経由して取得するものとする。
+
+seed 方法の変更
+	StationTimetable 流し込みの際に StationStationTimetable を update
+
+有楽町線・副都心線共用区間（小竹向原の和光市方面、和光市～氷川台）の変更
+	同一内容の時刻表の重複を解消
+		有楽町線の時刻表は、StationTimetable の same_as を YurakuchoFukutoshin.XXX の形に変更
+		副都心線の時刻表は削除
+	和光市行きに注意（どちらの路線から来るかによって異なるものとする）
+
+#--------
+
+TokyoMetro::Api::TrainTimetable::Info
+	中野坂上を越えて運行する列車は情報を2分割
+
+previous_train, following_train は複数可とする（増解結を考慮）
+	新しい table を作る？
+
+#--------
+
+platform 路線名
+
+
+35947
+
+
+def examples( namespace )
+  ( namespace.constants - [ :ClassMethods ] ).each do | const_name |
+    # puts "\#" + " " * 3 + "#{namespace}.#{const_name.downcase}".ljust(96) + " => " + namespace.const_get( const_name ).inspect
+    puts "\#" + " " * 3 + "#{namespace}.#{const_name.downcase}".ljust(96) + " => " + namespace.const_get( const_name ).to_s
+  end
+  return nil
+end
+
+examples TokyoMetro::CommonModules::Dictionary::RailwayLine::StringInfo
+
+puts TokyoMetro::CommonModules::Decision::CurrentStation.instance_methods

@@ -5,19 +5,11 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Elevator
 
   module ClassMethods
 
-    def info_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Elevator::Info
-    end
-
-    def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree::Facility::Elevator
-    end
-
     # @!group クラスメソッド (1) - メタデータ
 
     # クラス指定 - ug:Elevator
     # @return [String]
-    def rdf_type
+    def rdf_type_of_facility
       "ug:Elevator"
     end
 

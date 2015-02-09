@@ -5,23 +5,11 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Toilet
 
   module ClassMethods
 
-    def info_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Toilet::Info
-    end
-
-    def assinstant_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Toilet::Assistant
-    end
-
-    def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree::Facility::Toilet
-    end
-
     # @!group クラスメソッド (1) - メタデータ
 
     # クラス指定 - ug:Toilet
     # @return [String]
-    def rdf_type
+    def rdf_type_of_facility
       "ug:Toilet"
     end
 

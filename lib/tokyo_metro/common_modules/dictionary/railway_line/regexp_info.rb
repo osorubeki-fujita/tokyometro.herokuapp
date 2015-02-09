@@ -1,3 +1,31 @@
+# 路線名の正規表現を定数・モジュール関数として提供する名前空間
+# @example
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.ginza_line                        => (?-mix:TokyoMetro\.Ginza)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.marunouchi_line                   => (?-mix:TokyoMetro\.Marunouchi)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.marunouchi_branch_line            => (?-mix:TokyoMetro\.MarunouchiBranch)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.hibiya_line                       => (?-mix:TokyoMetro\.Hibiya)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.tozai_line                        => (?-mix:TokyoMetro\.Tozai)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.chiyoda_line                      => (?-mix:TokyoMetro\.Chiyoda)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.chiyoda_branch_line               => (?-mix:TokyoMetro\.ChiyodaBranch)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.yurakucho_line                    => (?-mix:TokyoMetro\.Yurakucho)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.hanzomon_line                     => (?-mix:TokyoMetro\.Hanzomon)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.namboku_line                      => (?-mix:TokyoMetro\.Namboku)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.fukutoshin_line                   => (?-mix:TokyoMetro\.Fukutoshin)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.marunouchi_line_including_branch  => (?-mix:TokyoMetro\.Marunouchi(?:Branch)?\.)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.tobu_main_line                    => (?-mix:Tobu\.(?:SkyTree|Isesaki|SkyTreeOshiage|Nikko))
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.tokyu_den_en_toshi_line           => (?-mix:Tokyu\.DenEnToshi)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.toyo_rapid_line                   => (?-mix:ToyoRapidRailway\.ToyoRapid)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.odakyu_line                       => (?-mix:Odakyu\.(?:Odawara|Tama|Enoshima))
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.odakyu_tama_line                  => (?-mix:Odakyu\.Tama)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.hakone_tozan_line                 => (?-mix:HakoneTozan\.Rail)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.jr_joban_line                     => (?-mix:JR\-East\.Joban)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.toei_mita_line                    => (?-mix:Toei\.Mita)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.tokyu_meguro_line                 => (?-mix:Tokyu\.Meguro)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.saitama_railway_line              => (?-mix:SaitamaRailway\.SaitamaRailway)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.seibu_line                        => (?-mix:Seibu\.Ikebukuro)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.tobu_tojo_line                    => (?-mix:Tobu\.Tojo)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.tokyu_toyoko_line                 => (?-mix:Tokyu\.Toyoko)
+#   TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo.minatomirai_line                  => (?-mix:YokohamaMinatomiraiRailway\.Minatomirai)
 module TokyoMetro::CommonModules::Dictionary::RailwayLine::RegexpInfo
 
   include ::TokyoMetro::CommonModules::ConvertConstantToClassMethod

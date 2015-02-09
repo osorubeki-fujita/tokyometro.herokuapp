@@ -1,0 +1,241 @@
+#-------- 【東京メトロ】
+
+odpt.Railway:TokyoMetro.Ginza:
+  - tokyo_metro
+  - ginza
+
+odpt.Railway:TokyoMetro.Marunouchi:
+  - tokyo_metro
+  - marunouchi
+  
+odpt.Railway:TokyoMetro.MarunouchiBranch:
+  - tokyo_metro
+  - marunouchi_branch
+  
+odpt.Railway:TokyoMetro.Hibiya:
+  - tokyo_metro
+  - hibiya
+  
+odpt.Railway:TokyoMetro.Tozai:
+  - tokyo_metro
+  - tozai
+  
+odpt.Railway:TokyoMetro.Chiyoda:
+  - tokyo_metro
+  - chiyoda
+  
+odpt.Railway:TokyoMetro.ChiyodaBranch:
+  - tokyo_metro
+  - chiyoda_branch
+  
+odpt.Railway:TokyoMetro.Yurakucho:
+  - tokyo_metro
+  - yurakucho
+  
+odpt.Railway:TokyoMetro.Hanzomon:
+  - tokyo_metro
+  - hanzomon
+  
+odpt.Railway:TokyoMetro.Namboku:
+  - tokyo_metro
+  - namboku
+  
+odpt.Railway:TokyoMetro.Fukutoshin:
+  - tokyo_metro
+  - fukutoshin
+
+#-------- 【乗り入れ先】
+
+#---- 東西線
+  
+odpt.Railway:JR-East.ChuoTozai:
+  - other_operator
+  - jr
+  - chuo_tozai
+  
+odpt.Railway:JR-East.SobuTozai:
+  - other_operator
+  - jr
+  - sobu_tozai
+  
+odpt.Railway:ToyoRapidRailway.ToyoRapidRailway:
+  - other_operator
+  - toyo_rapid
+  - toyo_rapid
+
+#---- 千代田線
+
+odpt.Railway:JR-East.Joban:
+  - other_operator
+  - jr
+  - joban_local
+
+odpt.Railway:Odakyu.Odawara:
+  - other_operator
+  - odakyu
+  - odawara
+
+odpt.Railway:Odakyu.Tama:
+  - other_operator
+  - odakyu
+  - tama
+
+odpt.Railway:Odakyu.Enoshima:
+  - other_operator
+  - odakyu
+  - enoshima
+
+odpt.Railway:HakoneTozan.Rail.OdawaraSide:
+  - other_operator
+  - odakyu
+  - hakone_tozan
+
+#---- 日比谷線・半蔵門線
+
+odpt.Railway:Tokyu.DenEnToshi:
+  - other_operator
+  - tokyu_and_mm
+  - den_en_toshi
+
+odpt.Railway:Tobu.SkyTreeOshiage:
+  - other_operator
+  - tobu
+  - skytree_oshiage
+
+odpt.Railway:Tobu.SkyTree:
+  - other_operator
+  - tobu
+  - skytree
+
+odpt.Railway:Tobu.Isesaki:
+  - other_operator
+  - tobu
+  - isesaki
+
+odpt.Railway:Tobu.Nikko:
+  - other_operator
+  - tobu
+  - nikko
+
+odpt.Railway:Tobu.Kinugawa:
+  - other_operator
+  - tobu
+  - kinugawa
+
+#---- 南北線
+
+odpt.Railway:Tokyu.Meguro:
+  - other_operator
+  - tokyu_and_mm
+  - meguro
+
+odpt.Railway:SaitamaRailway.SaitamaRailway:
+  - other_operator
+  - saitama_railway
+  - saitama_railway
+
+#---- 有楽町線・副都心線
+
+odpt.Railway:Seibu.SeibuYurakucho:
+  - other_operator
+  - seibu
+  - seibu_yurakucho
+
+odpt.Railway:Seibu.Ikebukuro:
+  - other_operator
+  - seibu
+  - ikebukuro
+
+odpt.Railway:Seibu.Toshima:
+  - other_operator
+  - seibu
+  - toshima
+
+odpt.Railway:Seibu.Sayama:
+  - other_operator
+  - seibu
+  - sayama
+
+odpt.Railway:Seibu.SeibuChichibu:
+  - other_operator
+  - seibu
+  - seibu_chichibu
+
+odpt.Railway:Tobu.Tojo:
+  - other_operator
+  - tobu_tojo
+  - tojo
+
+odpt.Railway:Tokyu.Toyoko:
+  - other_operator
+  - tokyu_and_mm
+  - toyoko
+
+odpt.Railway:YokohamaMinatomiraiRailway.Minatomirai:
+  - other_operator
+  - tokyu_and_mm
+  - minatomirai
+
+#---- 【東京都交通局】
+
+odpt.Railway:Toei.Asakusa:
+  - other_operator
+  - toei
+  - asakusa
+
+odpt.Railway:Toei.Mita:
+  - other_operator
+  - toei
+  - mita
+
+odpt.Railway:Toei.Shinjuku:
+  - other_operator
+  - toei
+  - shinjuku
+
+odpt.Railway:Toei.Oedo:
+  - other_operator
+  - toei
+  - oedo
+
+odpt.Railway:Toei.TodenArakawa:
+  - other_operator
+  - toei
+  - toden_arakawa
+
+#---- 【JR】
+
+# 山手線
+
+odpt.Railway:JR-East.Yamanote:
+  - appeared_in_connecting_railway_line_info
+  - jr
+  - yamanote
+
+# 京浜東北線
+
+odpt.Railway:JR-East.KeihinTohoku:
+  - appeared_in_connecting_railway_line_info
+  - jr
+  - keihin_tohoku
+
+# 中央線快速
+
+odpt.Railway:JR-East.ChuoKaisoku:
+  - appeared_in_connecting_railway_line_info
+  - jr
+  - chuo_kaisoku
+
+# 中央・総武線
+
+odpt.Railway:JR-East.ChuoSobu:
+  - appeared_in_connecting_railway_line_info
+  - jr
+  - chuo_sobu
+
+# 総武線快速
+
+odpt.Railway:JR-East.Sobu:
+  - appeared_in_connecting_railway_line_info
+  - jr
+  - sobu

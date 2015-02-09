@@ -35,6 +35,7 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree
       raise "Error"
     end
   end
+
   private_class_method :class_name
 
 end

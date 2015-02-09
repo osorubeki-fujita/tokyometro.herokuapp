@@ -1,21 +1,26 @@
 # 個別の列車時刻表のクラス
 class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
-  include ::TokyoMetro::ClassNameLibrary::Api::TrainTimetable
+  include ::TokyoMetro::ClassNameLibrary::Api::TrainTimetable  
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
 
-  include ::TokyoMetro::ApiModules::Decision::StartingStation
-  include ::TokyoMetro::ApiModules::Decision::TerminalStation
+  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
 
-  include ::TokyoMetro::ApiModules::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Decision::TrainType
-  include ::TokyoMetro::ApiModules::Decision::OperatedSection
-  include ::TokyoMetro::ApiModules::Decision::TrainDirection
-  include ::TokyoMetro::ApiModules::Decision::TrainOperationDay
+  include ::TokyoMetro::CommonModules::Info::Decision::RomanceCar
+  include ::TokyoMetro::CommonModules::Info::Decision::ToeiMitaLine
+  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
 
-  include ::TokyoMetro::CommonModules::Decision::RomanceCar
+  include ::TokyoMetro::ApiModules::Info::Decision::StartingStation
+  include ::TokyoMetro::ApiModules::Info::Decision::TerminalStation
+
+  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::ApiModules::Info::Decision::TrainType
+  include ::TokyoMetro::ApiModules::Info::Decision::OperatedSection
+  include ::TokyoMetro::ApiModules::Info::Decision::TrainDirection
+  include ::TokyoMetro::ApiModules::Info::Decision::TrainOperationDay
 
   # Constructor
-  def initialize( id_urn , same_as , dc_date , train_number , railway_line , operator ,
+  def initialize( id_urn , same_as , dc_date , train_number , railway_line , train_name , operator ,
   train_type , railway_direction , starting_station , terminal_station , train_owner ,
   weekdays , saturdays , holidays )
     @id_urn = id_urn
@@ -23,6 +28,7 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
     @dc_date = dc_date
     @train_number = train_number
     @railway_line = railway_line
+    @train_name = train_name
     @operator = operator
     @train_type = train_type
     @railway_direction = railway_direction
@@ -34,10 +40,6 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
     @weekdays = weekdays
     @saturdays = saturdays
     @holidays = holidays
-
-    if @starting_station.nil?
-      @starting_station = valid_list.first.station
-    end
   end
 
   # @!group 列車時刻表のメタデータ (For developers)
@@ -62,6 +64,8 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
   # 路線 - odpt:Railway
   # @return [String]
   attr_reader :railway_line
+
+  attr_reader :train_name
 
   # 運行会社 - odpt:Operator
   # @return [String]
@@ -109,6 +113,9 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
   # 車両数
   attr_reader :car_composition
 
+  attr_reader :previous_train
+  attr_reader :following_train
+
   # @!endgroup
 
   def set_car_number( car_composition )
@@ -121,6 +128,10 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
 
   # @!group 列車時刻
 
+  def timetables
+    [ @weekdays , @saturdays , @holidays ]
+  end
+
   # 運行日の列車時刻
   # @return [::TokyoMetro::Api::TrainTimetable::Info::StationTime::List <::TokyoMetro::Api::TrainTimetable::Info::StationTime::Info>]
   # @note 平日運行の場合は @weekdays , 土休日運行の場合は @holidays を返す。
@@ -132,31 +143,87 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
     end
   end
 
+  # @!endgroup
+
   # @!group 停車駅に関するメソッド
 
   def stops_at?( station_same_as )
-    valid_list.any? { | station_time | station_time.station == station_same_as }
+    valid_list.stops_at?( station_same_as )
   end
+
   alias :stop_at? :stops_at?
   alias :goes_to? :stops_at?
   alias :go_to? :stops_at?
-  
-  # @!endgroup
 
-  def info_of( station_same_as )
-    valid_list.find { | station_time | station_time.station == station_same_as }
+  def stops_at_both?( *stations_same_as )
+    stations_same_as.flatten.all?( &proc_for_deciding_whether_stops_or_not )
   end
 
-  def time_of( station_same_as )
-    if stops_at?( station_same_as )
-      info_of( station_same_as ).time
-    else
+  def stops_at_either?( *stations_same_as )
+    stations_same_as.flatten.any?( &proc_for_deciding_whether_stops_or_not )
+  end
+
+  # @!endgroup
+
+  [ :station_time_info_of , :index_of , :station_time_info_and_index_of ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }( station_same_as )
+        valid_list.#{ method_name }( station_same_as )
+      end
+    DEF
+  end
+
+  def time_of( *stations_same_as )
+    stations_same_as = stations_same_as.flatten
+    ary_of_station_same_as = stations_same_as.select( &proc_for_deciding_whether_stops_or_not )
+
+    case ary_of_station_same_as.length
+    when 0
       nil
+    when 1
+      station_same_as = ary_of_station_same_as.first
+      station_time_info_of( station_same_as ).time
+    else
+      error_msg_ary = ::Array.new
+      error_msg_ary << "Error:"
+      error_msg_ary += [
+        "Train is same as ... #{ @same_as }" ,
+        "Stations are same as ... #{ stations_same_as.to_s }" ,
+        "Considered stations ... #{ ary_of_station_same_as.to_s }"
+      ].map { | str | " " * 4 + str }
+      
+      error_msg_ary << " " * 4 + "Stations where this train stops ... "
+      error_msg_ary += stations.map { | str | " " * 8 + str }
+      raise error_msg_ary.join( "\n" )
     end
   end
 
   def stopping_stations
     valid_list.stopping_stations
+  end
+
+  def stations
+    valid_list.stations
+  end
+
+  def number_of_station_times
+    valid_list.length
+  end
+
+  private
+
+  def proc_for_deciding_whether_stops_or_not
+    ::Proc.new { | station_same_as | stops_at?( station_same_as ) }
+  end
+
+  # @!group DBへの流し込みに関するメソッド
+
+  def seed_arrival_times_of_romance_car
+    self.class.factory_for_seeding_each_arrival_time_of_romance_car.process( self )
+  end
+
+  def seed_arrival_time_of_last_station_in_tokyo_metro
+    self.class.factory_for_seeding_each_arrival_time_of_last_station_in_tokyo_metro.process( self )
   end
 
 end

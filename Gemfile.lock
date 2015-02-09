@@ -44,6 +44,11 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     diff-lcs (1.2.5)
+    draper (1.4.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.2.2)
     gmaps4rails (2.1.2)
@@ -113,6 +118,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    request_store (1.1.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (3.1.0)
@@ -194,6 +200,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   bullet
   coffee-rails (>= 4.0.1)
+  draper
   gmaps4rails
   haml-rails
   httpclient

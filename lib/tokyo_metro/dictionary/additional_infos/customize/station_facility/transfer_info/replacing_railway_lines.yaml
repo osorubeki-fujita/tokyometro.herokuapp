@@ -1,0 +1,7 @@
+"odpt.Railway:Tobu.Isesaki":
+  stations:
+    - odpt.StationFacility:TokyoMetro.Asakusa
+    - odpt.StationFacility:TokyoMetro.Oshiage
+    - odpt.StationFacility:TokyoMetro.KitaSenju
+  replacing_railway_line_names:
+    - odpt.Railway:Tobu.SkyTreeIsesaki

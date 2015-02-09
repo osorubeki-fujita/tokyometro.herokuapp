@@ -1,2 +1,2 @@
-class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail
+module TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail
 end

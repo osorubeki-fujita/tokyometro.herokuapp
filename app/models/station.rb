@@ -4,14 +4,9 @@ class Station < ActiveRecord::Base
   belongs_to :station_facility
   belongs_to :railway_line
 
-  # has_one :from_station
-  # has_one :to_station
-
   has_many :connecting_railway_lines
   has_many :railway_lines , through: :connecting_railway_lines
   has_many :operators , through: :railway_lines
-
-  has_many :timetables
 
   has_many :station_points
   has_many :points , through: :station_points
@@ -20,6 +15,9 @@ class Station < ActiveRecord::Base
   has_many :stopping_patterns , through: :station_stopping_patterns
 
   has_many :station_aliases
+  
+  has_many :station_timetable_fundamental_infos
+  has_many :station_timetables , through: :station_timetable_fundamental_infos
 
   # geocoded_by :name_ja
   # after_validation :geocode

@@ -5,19 +5,11 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Stairlif
 
   module ClassMethods
 
-    def info_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Stairlift::Info
-    end
-
-    def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree::Facility::Stairlift
-    end
-
     # @!group クラスメソッド (1) - メタデータ
 
     # クラス指定 - ug:Link
     # @return [String]
-    def rdf_type
+    def rdf_type_of_facility
       "spac:Stairlift"
     end
 

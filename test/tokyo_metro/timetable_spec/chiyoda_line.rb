@@ -1,0 +1,3 @@
+require_relative 'chiyoda_line/station_timetable_on_chiyoda_branch_line.rb'
+require_relative 'chiyoda_line/train_timetable_on_chiyoda_branch_line.rb'
+require_relative 'chiyoda_line/romance_car_train.rb'

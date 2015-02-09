@@ -1,0 +1,26 @@
+odpt.Station:JR-East.Yamanote.Yurakucho:
+  station_facility: odpt.StationFacility:JR-East.Yurakucho
+  name_ja: 有楽町
+  name_hira: ゆうらくちょう
+  name_in_system: Yurakucho
+  name_en: Yurakucho
+  stop:
+    - custom.StoppingPattern:JR-East.Yamanote.Local
+
+odpt.Station:JR-East.Yamanote.Harajuku:
+  station_facility: odpt.StationFacility:JR-East.Harajuku
+  name_ja: 原宿
+  name_hira: はらじゅく
+  name_in_system: Harajuku
+  name_en: Harajuku
+  stop:
+    - custom.StoppingPattern:JR-East.Yamanote.Local
+
+odpt.Station:JR-East.Yamanote.Okachimachi:
+  station_facility: odpt.StationFacility:JR-East.Okachimachi
+  name_ja: 御徒町
+  name_hira: おかちまち
+  name_in_system: Okachimachi
+  name_en: Okachimachi
+  stop:
+    - custom.StoppingPattern:JR-East.Yamanote.Local

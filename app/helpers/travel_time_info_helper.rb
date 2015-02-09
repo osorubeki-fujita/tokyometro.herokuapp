@@ -144,11 +144,11 @@ module TravelTimeInfoHelper
     else
       css_class_name << :other_operators
     end
-    if connecting_railway_line.not_recommend
-      css_class_name << :not_recommend
+    if connecting_railway_line.not_recommended
+      css_class_name << :not_recommended
     end
-    if connecting_railway_line.clear
-      css_class_name << :clear
+    if connecting_railway_line.cleared
+      css_class_name << :cleared
     end
 
     h_locals = {

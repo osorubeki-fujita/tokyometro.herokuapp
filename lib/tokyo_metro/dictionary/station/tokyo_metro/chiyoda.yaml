@@ -1,0 +1,210 @@
+odpt.Station:TokyoMetro.Chiyoda.YoyogiUehara:
+  station_alias: odpt.Station:Odakyu.Odawara.YoyogiUehara
+  station_facility: odpt.StationFacility:TokyoMetro.YoyogiUehara
+  station_facility_custom: odpt.StationFacility:Odakyu.YoyogiUehara
+  station_facility_custom_alias: odpt.StationFacility:TokyoMetro.YoyogiUehara
+  name_ja: 代々木上原
+  name_hira: よよぎうえはら
+  name_in_system: YoyogiUehara
+  name_en: Yoyogi-uehara
+  administrator: odpt.Operator:Odakyu
+  other_operator: odpt.Operator:TokyoMetro
+  station_code: C-01
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+  stop_for_drivers:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+
+odpt.Station:TokyoMetro.Chiyoda.YoyogiKoen:
+  station_facility: odpt.StationFacility:TokyoMetro.YoyogiKoen
+  name_ja: 代々木公園
+  name_hira: よよぎこうえん
+  name_in_system: YoyogiKoen
+  name_en: Yoyogi-koen
+  station_code: C-02
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.MeijiJingumae:
+  station_facility: odpt.StationFacility:TokyoMetro.MeijiJingumae
+  name_ja: 明治神宮前<原宿>
+  name_hira: めいじじんぐうまえ（はらじゅく）
+  name_in_system: MeijiJingumae
+  name_en: Meiji-jingumae 'Harajuku'
+  station_code: C-03
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.OmoteSando:
+  station_facility: odpt.StationFacility:TokyoMetro.OmoteSando
+  name_ja: 表参道
+  name_hira: おもてさんどう
+  name_in_system: OmoteSando
+  name_en: Omote-sando
+  station_code: C-04
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+
+odpt.Station:TokyoMetro.Chiyoda.Nogizaka:
+  station_facility: odpt.StationFacility:TokyoMetro.Nogizaka
+  name_ja: 乃木坂
+  name_hira: のぎざか
+  name_in_system: Nogizaka
+  name_en: Nogizaka
+  station_code: C-05
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Akasaka:
+  station_facility: odpt.StationFacility:TokyoMetro.Akasaka
+  name_ja: 赤坂
+  name_hira: あかさか
+  name_in_system: Akasaka
+  name_en: Akasaka
+  station_code: C-06
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.KokkaiGijidomae:
+  station_facility: odpt.StationFacility:TokyoMetro.KokkaiGijidomae
+  name_ja: 国会議事堂前
+  name_hira: こっかいぎじどうまえ
+  name_in_system: KokkaiGijidomae
+  name_en: Kokkai-gijidomae
+  station_code: C-07
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Kasumigaseki:
+  station_facility: odpt.StationFacility:TokyoMetro.Kasumigaseki
+  name_ja: 霞ケ関
+  name_hira: かすみがせき
+  name_in_system: Kasumigaseki
+  name_en: Kasumigaseki
+  station_code: C-08
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+
+odpt.Station:TokyoMetro.Chiyoda.Hibiya:
+  station_facility: odpt.StationFacility:TokyoMetro.Hibiya
+  name_ja: 日比谷
+  name_hira: ひびや
+  name_in_system: Hibiya
+  name_en: Hibiya
+  station_code: C-09
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Nijubashimae:
+  station_facility: odpt.StationFacility:TokyoMetro.Nijubashimae
+  name_ja: 二重橋前
+  name_hira: にじゅうばしまえ
+  name_in_system: Nijubashimae
+  name_en: Nijubashimae
+  station_code: C-10
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Otemachi:
+  station_facility: odpt.StationFacility:TokyoMetro.Otemachi
+  name_ja: 大手町
+  name_hira: おおてまち
+  name_in_system: Otemachi
+  name_en: Otemachi
+  station_code: C-11
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+
+odpt.Station:TokyoMetro.Chiyoda.ShinOchanomizu:
+  station_facility: odpt.StationFacility:TokyoMetro.ShinOchanomizu
+  name_ja: 新御茶ノ水
+  name_hira: しんおちゃのみず
+  name_in_system: ShinOchanomizu
+  name_en: Shin-ochanomizu
+  station_code: C-12
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Yushima:
+  station_facility: odpt.StationFacility:TokyoMetro.Yushima
+  name_ja: 湯島
+  name_hira: ゆしま
+  name_in_system: Yushima
+  name_en: Yushima
+  station_code: C-13
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Nezu:
+  station_facility: odpt.StationFacility:TokyoMetro.Nezu
+  name_ja: 根津
+  name_hira: ねづ
+  name_in_system: Nezu
+  name_en: Nezu
+  station_code: C-14
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Sendagi:
+  station_facility: odpt.StationFacility:TokyoMetro.Sendagi
+  name_ja: 千駄木
+  name_hira: せんだぎ
+  name_in_system: Sendagi
+  name_en: Sendagi
+  station_code: C-15
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.NishiNippori:
+  station_facility: odpt.StationFacility:TokyoMetro.NishiNippori
+  name_ja: 西日暮里
+  name_hira: にしにっぽり
+  name_in_system: NishiNippori
+  name_en: Nishi-nippori
+  station_code: C-16
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.Machiya:
+  station_facility: odpt.StationFacility:TokyoMetro.Machiya
+  name_ja: 町屋
+  name_hira: まちや
+  name_in_system: Machiya
+  name_en: Machiya
+  station_code: C-17
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+
+odpt.Station:TokyoMetro.Chiyoda.KitaSenju:
+  station_alias: odpt.Station:JR-East.KitaSenju
+  station_facility: odpt.StationFacility:TokyoMetro.KitaSenju
+  station_facility_custom: odpt.StationFacility:TokyoMetro.KitaSenju.Chiyoda
+  station_facility_custom_alias: odpt.StationFacility:JR-East.KitaSenju
+  name_ja: 北千住
+  name_hira: きたせんじゅ
+  name_in_system: KitaSenju
+  name_en: Kita-senju
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:JR-East
+  station_code: C-18
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.RomanceCar
+
+odpt.Station:TokyoMetro.Chiyoda.Ayase:
+  station_alias:
+    - odpt.Station:JR-East.Ayase
+  station_facility: odpt.StationFacility:TokyoMetro.Ayase
+  station_facility_custom_alias: odpt.StationFacility:JR-East.Ayase
+  name_ja: 綾瀬
+  name_hira: あやせ
+  name_in_system: Ayase
+  name_en: Ayase
+  administrator: odpt.Operator:TokyoMetro
+  other_operator: odpt.Operator:JR-East
+  station_code: C-19
+  stop:
+    - custom.StoppingPattern:TokyoMetro.Chiyoda.Local

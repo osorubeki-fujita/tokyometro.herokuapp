@@ -1,0 +1,74 @@
+#-------- 【千代田線】
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.Chiyoda.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Chiyoda: custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+  note: 千代田線 各駅停車
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#---- 各駅停車
+
+custom.TrainType:TokyoMetro.ChiyodaBranch.Local.Normal:
+  ref: custom.TrainTypeDefault:TokyoMetro.Local.Normal
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.ChiyodaBranch: custom.StoppingPattern:TokyoMetro.ChiyodaBranch.Local
+  note: 千代田線 各駅停車（綾瀬 - 北綾瀬）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.ChiyodaBranch
+
+#---- 各駅停車（JR常磐線 直通）
+
+custom.TrainType:TokyoMetro.Chiyoda.Local.ForJR:
+  train_type: odpt.TrainType:TokyoMetro.Local
+  bgcolor:
+    line_color: odpt.Railway:JR-East.Joban.1
+  color:
+    ref: custom.TrainTypeColor:White
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Chiyoda: custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    odpt.Railway:JR-East.Joban: custom.StoppingPattern:JR-East.Joban.Local
+  note: 千代田線 各駅停車（JR常磐線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#---- 各駅停車（小田急線 直通）
+
+custom.TrainType:TokyoMetro.Chiyoda.Local.ForOdakyu:
+  ref: custom.TrainTypeOtherOperator:Odakyu.Local
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Chiyoda: custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    odpt.Railway:Odakyu.Odawara: custom.StoppingPattern:Odakyu.Odawara.Local
+    odpt.Railway:Odakyu.Tama: custom.StoppingPattern:Odakyu.Tama.Local
+    odpt.Railway:Odakyu.Enoshima: custom.StoppingPattern:Odakyu.Enoshima.Local
+  note: 千代田線 各駅停車（小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#---- 準急（小田急線 直通）
+
+custom.TrainType:TokyoMetro.Chiyoda.SemiExpress.ForOdakyu:
+  ref: custom.TrainTypeOtherOperator:Odakyu.SemiExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Chiyoda: custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    odpt.Railway:Odakyu.Odawara: custom.StoppingPattern:Odakyu.Odawara.SemiExpress
+    odpt.Railway:Odakyu.Tama: custom.StoppingPattern:Odakyu.Tama.SemiExpress
+    odpt.Railway:Odakyu.Enoshima: custom.StoppingPattern:Odakyu.Enoshima.SemiExpress
+  note: 千代田線 準急（小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda
+
+#---- 多摩急行（小田急線 直通）
+
+custom.TrainType:TokyoMetro.Chiyoda.TamaExpress.ForOdakyu:
+  ref: custom.TrainTypeOtherOperator:Odakyu.TamaExpress
+  stopping_pattern:
+    odpt.Railway:TokyoMetro.Chiyoda: custom.StoppingPattern:TokyoMetro.Chiyoda.Local
+    odpt.Railway:Odakyu.Odawara: custom.StoppingPattern:Odakyu.Odawara.TamaExpress
+    odpt.Railway:Odakyu.Tama: custom.StoppingPattern:Odakyu.Tama.TamaExpress
+  note: 千代田線 多摩急行（小田急線 直通）
+  operator: odpt.Operator:TokyoMetro
+  railway_line: odpt.Railway:TokyoMetro.Chiyoda

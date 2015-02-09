@@ -24,4 +24,8 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Link::Info 
 
   # @!endgroup
 
+  def self.factory_for_this_class
+    factory_for_generating_barrier_free_link_info_from_hash
+  end
+
 end

@@ -1,6 +1,10 @@
 # 各駅の情報を格納する配列
 class TokyoMetro::Api::Station::List < TokyoMetro::Api::MetaClass::Hybrid::List
 
+  include ::TokyoMetro::ClassNameLibrary::Api::Station
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::ApiModules::List::Selection::RailwayLines
+
   # インスタンスの情報を整形した文字列にして返すメソッド
   # @param indent [Integer (>=0)] インデントの幅
   # @return [String]
@@ -8,89 +12,55 @@ class TokyoMetro::Api::Station::List < TokyoMetro::Api::MetaClass::Hybrid::List
     super( indent , 2 )
   end
 
-  include ::TokyoMetro::ApiModules::List::Seed
-  include ::TokyoMetro::ClassNameLibrary::Api::Station
-  include ::TokyoMetro::ApiModules::Selection::RailwayLines
-
   # @return [::Array]
   def connecting_railway_lines
-    list_sub( Proc.new { | station | station.connecting_railway_lines } )
+    list_up( :connecting_railway_lines )
   end
 
   def basenames
-    list_sub( Proc.new { | station | station.basename } )
+    list_up( :basename )
   end
 
   def basenames_to_display
-    list_sub( Proc.new { | station | station.basename_to_display } )
+    list_up( :basename_to_display )
   end
-
-  alias :__seed__ :seed
 
   # 配列の各要素のインスタンスの情報をDBに流し込むメソッド
   # @return [nil]
-  # @note Seed#process_stations では、この処理の実行後に{TokyoMetro::StaticDatas::Station::RailwayLines.seed}が呼び出される。
-  def seed( indent: 0 )
-    operators = ::Operator.all
-    railway_lines = ::RailwayLine.all
-    station_facilities = ::StationFacility.all
-    __seed__( indent: indent + 1 , method_name: __method__ ) do
-      array_for_seed.each do |v|
-        v.seed( operators , railway_lines , station_facilities )
-      end
-    end
+  # @note {TokyoMetro::Static::Station::RailwayLines.seed} を呼び出している。
+  def seed
+    super( ::Operator.all , ::RailwayLine.all , ::StationFacility.all , display_number: true )
   end
 
-  def seed_optional_infos_of_connecting_railway_lines
-    __seed__( method_name: __method__ ) do
-      array_for_seed.each do |v|
-        v.seed_optional_infos_of_connecting_railway_lines
-      end
-    end
+  # 配列に含まれる {TokyoMetro::Api::Station::Info} の各インスタンスの乗換路線情報を DB に流し込むメソッド
+  # @note 各駅の基本情報をすべて流し込んでから、乗換路線情報のみを流し込む。（乗換駅の情報を流し込む際に ::Station.find_by を利用しており、既知のすべての駅の流し込みが済んでいなければならないため）
+  # @example
+  #   TokyoMetro::Api::Station::List.factory_for_seeding_connecting_railway_lines
+  #     => TokyoMetro::Factories::Seed::Api::Station::List::ConnectingRailwayLine
+  def seed_connecting_railway_lines
+    seed_sub_infos( :factory_for_seeding_connecting_railway_lines , __method__ )
   end
 
   # 出入口の情報をDBに流し込むメソッド
   # @return [nil]
-  def seed_exit_list
-    __seed__( method_name: __method__ ) do
-      self.each do | station |
-        station.seed_exit_list
-      end
-    end
-    return nil
+  def seed_exits
+    seed_sub_infos( :factory_for_seeding_exits , __method__ )
   end
 
   # 乗降客数の情報をDBに流し込むメソッド
   # @return [nil]
-  def seed_station_passenger_survey
-    __seed__( method_name: __method__ ) do
-      self.each do | station |
-        station_id = ::Station.find_by( same_as: station.same_as ).id
-        list_of_passenger_survey = station.passenger_survey
-        list_of_passenger_survey.each do | data |
-          passenger_survey_id = ::PassengerSurvey.find_by( same_as: data ).id
-          ::StationPassengerSurvey.create( station_id: station_id , passenger_survey_id: passenger_survey_id )
-        end
-      end
-    end
-    return nil
-  end
-
-  private
-
-  def list_sub( procedure )
-    ary = self.map( &procedure ).flatten.uniq.sort
-    ::Array.new( ary )
+  def seed_link_to_passenger_surveys
+    seed_sub_infos( :factory_for_seeding_link_to_passenger_surveys , __method__ )
   end
 
   # データベースへの流し込みの際に使用する配列（路線・駅のID順に整列している）
   # @return [::TokyoMetro::Api::Station::List]
-  def array_for_seed
+  def to_seed
+    railway_lines = ::RailwayLine.all
     stations_in_each_line = self.group_by { | station |
-      railway_line_name = station.railway_line
-      railway_line = ::RailwayLine.find_by( same_as: railway_line_name )
+      railway_line = railway_lines.find_by( same_as: station.railway_line )
       if railway_line.nil?
-        raise "Error: data of the railway_line same as \"#{railway_name}\" does not exist."
+        raise "Error: data of the railway_line same as \"#{ station.railway_line }\" does not exist."
       end
       railway_line.id
     }
@@ -98,10 +68,27 @@ class TokyoMetro::Api::Station::List < TokyoMetro::Api::MetaClass::Hybrid::List
     ary = ::Array.new
 
     stations_in_each_line.keys.sort.each do | line |
-      ary += stations_in_each_line[ line ].sort_by { | station | station.station_code }
+      ary += stations_in_each_line[ line ].sort_by( &:station_code )
     end
 
     self.class.new( ary )
+  end
+
+  private
+
+  def list_up( procedure )
+    ary = self.map( &procedure ).flatten.uniq.sort
+    ::Array.new( ary )
+  end
+
+  def seed_sub_infos( factory_name , method_name )
+    __seed__(
+      factory_name: factory_name ,
+      method_name: method_name ,
+      indent: 0 ,
+      not_on_the_top_layer: false ,
+      display_number: true
+    )
   end
 
 end

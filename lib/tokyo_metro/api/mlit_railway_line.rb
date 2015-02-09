@@ -14,7 +14,7 @@ class TokyoMetro::Api::MlitRailwayLine < TokyoMetro::Api::MetaClass::Geo
     puts "● #{ get_test_title } (geo)"
     result = get_geo( http_client , geo_long , geo_lat , radius , to_inspect: true , perse_json: true , generate_instance: true )
     puts "(#{ result.length })"
-    result.sort_by { | item | item.mlit_operator_name }.each do | item |
+    result.sort_by( &:mlit_operator_name ).each do | item |
       puts item.to_strf
       puts "" * 2
     end

@@ -3,27 +3,52 @@ module TokyoMetro::Api
 
   include ::TokyoMetro::CommonModules::ConvertConstantToClassMethod
 
+  def self.station_train_time
+    ::TokyoMetro::Api::StationTrainTime
+  end
+
+  def self.list_of_constants
+    [ :station_facility , :passenger_survey , :station , :railway_line , :point , :fare , :station_timetable , :train_timetable ]
+  end
+
   # 東京メトロ オープンデータに関する定数を定義するメソッド (2) - API から取得し保存したデータからインスタンスを作成し、定数とする
   # @return [nil]
   def self.set_constants( config_of_api_constants )
-    unless config_of_api_constants.nil?
-      [ :station_facility , :passenger_survey , :station , :railway_line , :point , :fare , :station_timetable , :train_timetable ].each do | symbol |
-        if config_of_api_constants[ symbol ]
-          set_constant( symbol )
-        end
+    if config_of_api_constants.nil?
+      ary_for_display = ::Array.new
+      ary_for_display << :none
+      list_of_constants.each do | constant |
+        ary_for_display << constant
+      end
+
+      numbers = numbers_of_constants( ary_for_display )
+
+      if numbers.include?(0)
+        return nil
+      end
+
+      config_of_api_constants = ::Hash.new
+      numbers.each do | i |
+        config_of_api_constants[ ary_for_display[i] ] = true
       end
     end
+
+    list_of_constants.each do | symbol |
+      if config_of_api_constants[ symbol ]
+        set_constant( symbol )
+      end
+    end
+
     return nil
   end
 
   class << self
 
-    def method_missing( method_name )
-      called_method_name = method_name.singularize.upcase
-      if costants_converted_by_method_missing.include?( called_method_name )
-        const_get( called_method_name )
+    def method_missing( method_name , *args )
+      if costants_converted_by_method_missing.include?( method_name.singularize.upcase )
+        return const_get( method_name.singularize.upcase )
       else
-        super
+        super( method_name , *args )
       end
     end
 
@@ -37,24 +62,53 @@ module TokyoMetro::Api
       const_set( const_name , eval( class_name ).generate_from_saved_json )
     end
 
+    def numbers_of_constants( ary_for_display )
+      puts "Set api constants"
+      puts "  - Please select constant number(s)."
+      puts "  - If you want to set multiple constants, please input the number of each constant and input a space between them."
+      puts ""
+
+      ary_for_display.each_with_index do | constant , i |
+        puts ( constant.to_s.ljust(24) + " : " + i.to_s.rjust(2) )
+        if i == 0
+          puts ""
+        end
+      end
+
+      puts ""
+
+      numbers = gets.chomp
+      unless /\A\d+(?: \d+)*\Z/ === numbers
+        return numbers_of_constants( ary_for_display )
+      end
+
+      ary = numbers.split( / / ).map( &:to_i ).sort
+      if ary.include?(0) and ary.length > 1
+        puts "Do you want to set no constant? Multiple numbers are input."
+        numbers_of_constants( ary_for_display )
+      end
+
+      ary
+    end
+
   end
 
   # 東京メトロ オープンデータに関する定数を定義するメソッド (1) - 時刻表の列車の補足情報に関する定数
   # @return [nil]
   def self.set_constants_for_timetable
     #---- 時刻表 到着ホーム
-    ::TokyoMetro::Api::StationTimetable::Info::Train::Info::Note::ArriveAt::set_constants
+    ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info::Note::ArriveAt::set_constants
 
     #---- 時刻表 出発ホーム
-    ::TokyoMetro::Api::StationTimetable::Info::Train::Info::Note::DepartFrom::set_constant
+    ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info::Note::PlatformNumber::set_constant
   end
 
   def self.timetable_notes_of_arrival_at_asakusa
-    ::TokyoMetro::Api::StationTimetable::Info::Train::Info::Note::ArriveAt::ASAKUSA
+    ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info::Note::ArriveAt::ASAKUSA
   end
 
   def self.timetable_notes_of_departure
-    ::TokyoMetro::Api::StationTimetable::Info::Train::Info::Note::DepartFrom::LIST
+    ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info::Note::PlatformNumber::LIST
   end
 
 end

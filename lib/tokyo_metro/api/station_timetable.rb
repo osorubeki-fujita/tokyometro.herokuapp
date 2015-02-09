@@ -89,7 +89,7 @@ class TokyoMetro::Api::StationTimetable < TokyoMetro::Api::MetaClass::NotRealTim
 
   # 補足情報についてのテスト
   # @return [nil]
-  def self.inspect_notes( timetables = self.generate_all_timetables_from_json )
+  def self.inspect_notes( timetables = self.generate_from_saved_json )
     ary = ::Array.new
     # puts timetables.class.name
     timetables.each do | timetable_for_a_direction |

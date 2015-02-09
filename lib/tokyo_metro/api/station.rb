@@ -71,7 +71,7 @@ class TokyoMetro::Api::Station < TokyoMetro::Api::MetaClass::Hybrid
     puts "● #{get_test_title} (geo)"
     result = get_geo( http_client , geo_long , geo_lat , radius , to_inspect: true , perse_json: true , generate_instance: true )
     puts "(#{result.length})"
-    result.sort_by { | rail | rail.same_as }.each do | rail |
+    result.sort_by( &:same_as ).each do | rail |
       puts rail.to_strf
       puts "" * 2
     end

@@ -121,7 +121,7 @@ module StationTimetableHelper
     - train_time_hours = train_time_hours - [ midnight_hour ]
     - train_time_hours = train_time_hours + [ midnight_hour ]
 
-%table{ class: [ :timetable , operation_day.name_en.downcase ] }
+%table{ class: [ :station_timetable , operation_day.name_en.downcase ] }
   = timetable_header( railway_line , operation_day , direction , station , only_one_train_type , train_types , only_one_to_station , to_stations , major_to_station_id )
   %tbody
     - train_time_hours.each do | train_time_hour |
@@ -155,8 +155,8 @@ module StationTimetableHelper
 - is_last = train_time.is_last
 - is_origin = train_time.is_origin
 - depart_from = train_time.depart_from
-- starting_station_info_id = train_time.timetable_starting_station_info_id
-- arrival_info_id = train_time.timetable_arrival_info_id
+- starting_station_info_id = train_time.station_timetable_starting_station_info_id
+- train_timetable_arrival_info_id = train_time.train_timetable_arrival_info_id
 - additional_info_exists = train_time.has_additional_info?
 - #
 %div{ class: :train_time }
@@ -182,12 +182,10 @@ module StationTimetableHelper
               = depart_from.to_s + "番線発"
           - if starting_station_info_id.meaningful?
             %div{ class: :starting_station }<>
-              = starting_station = train_time.timetable_starting_station_info.to_s
-          - if arrival_info_id.meaningful?
+              = starting_station = train_time.station_timetable_starting_station_info.to_s
+          - if train_timetable_arrival_info_id.meaningful?
             %div{ class: [ :arrival_info , :text_en ] }<>
-              = train_time.timetable_arrival_info.platform_number_with_parentheses
-              - # arrival_info = train_time.timetable_arrival_info
-              - # = arrival_info.station.name_ja + "駅 " + arrival_info.platform_number.to_s + "番線着"
+              = train_time.train_timetable_arrival_info.platform_number_with_parentheses
     HAML
   end
 

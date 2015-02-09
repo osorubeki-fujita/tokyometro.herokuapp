@@ -1,0 +1,7 @@
+"odpt.Railway:JR-East.UenoTokyo":
+  start_on: 2015.03.14
+  stations:
+    - odpt.Station:TokyoMetro.Ginza.Ueno
+    - odpt.Station:TokyoMetro.Hibiya.Ueno
+    - odpt.Station:TokyoMetro.Marunouchi.Tokyo
+    - odpt.Station:TokyoMetro.Ginza.Shimbashi

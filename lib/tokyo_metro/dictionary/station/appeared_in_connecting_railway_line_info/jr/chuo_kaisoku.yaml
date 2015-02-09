@@ -1,0 +1,12 @@
+odpt.Station:JR-East.ChuoKaisoku.Ochanomizu:
+  station_facility: odpt.StationFacility:JR-East.Ochanomizu
+  name_ja: 御茶ノ水
+  name_hira: おちゃのみず
+  name_in_system: Ochanomizu
+  name_en: Ochanomizu
+  stop:
+    - custom.StoppingPattern:JR-East.ChuoKaisoku.Rapid
+    - custom.StoppingPattern:JR-East.ChuoKaisoku.CommuterRapid
+    - custom.StoppingPattern:JR-East.ChuoKaisoku.SpecialRapid
+    - custom.StoppingPattern:JR-East.ChuoKaisoku.OmeSpecialRapid
+    - custom.StoppingPattern:JR-East.ChuoKaisoku.CommuterSpecialRapid

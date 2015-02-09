@@ -1,0 +1,37 @@
+# 中野富士見町→中野坂上（→荻窪）
+
+-
+  trains:
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.B05531.Weekdays"
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.B05371.SaturdaysHolidays"
+  starting_station: "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoFujimicho"
+  terminal_station: "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoSakaue"
+
+# （中野富士見町→）中野坂上→荻窪
+
+-
+  trains:
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.A0553.Weekdays"
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.A0537.SaturdaysHolidays"
+  starting_station: "odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue"
+  terminal_station: "odpt.Station:TokyoMetro.Marunouchi.Ogikubo"
+
+# 荻窪→中野坂上（→中野富士見町）
+
+-
+  trains:
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.B2405.Weekdays"
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.B2475.Weekdays"
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.B2429.Weekdays"
+  starting_station: "odpt.Station:TokyoMetro.Marunouchi.Ogikubo"
+  terminal_station: "odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue"
+
+# （荻窪→中野坂上）→中野富士見町
+
+-
+  trains:
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.A2405.Weekdays"
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.A2475.Weekdays"
+    - "odpt.TrainTimetable:TokyoMetro.Marunouchi.A2429.Weekdays"
+  starting_station: "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoSakaue"
+  terminal_station: "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoFujimicho"

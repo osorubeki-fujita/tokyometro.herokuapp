@@ -9,7 +9,7 @@ module ForRails::RailwayLineArrayModule
     elsif chiyoda_line?
       self.find { | railway_line | railway_line.same_as == "odpt.Railway:TokyoMetro.Chiyoda" }.name_ja
     elsif yurakucho_and_fukutoshin_line?
-      self.map { | railway_line | railway_line.name_ja }.join( "・" )
+      self.map( &:name_ja ).join( "・" )
     else
       raise "Error"
     end
@@ -35,7 +35,7 @@ module ForRails::RailwayLineArrayModule
     elsif normal_line? or marunouchi_line_including_branch? or chiyoda_line?
       self.first.css_class_name
     else
-      self.map { | railway_line | railway_line.css_class_name }.join( "_" )
+      self.map( &:css_class_name ).join( "_" )
     end
   end
 
@@ -46,15 +46,15 @@ module ForRails::RailwayLineArrayModule
   end
 
   def marunouchi_line_including_branch?
-    self.map { | railway_line | railway_line.same_as } == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.marunouchi_main_and_branch_line_same_as
+    self.map( &:same_as ) == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.marunouchi_main_and_branch_line_same_as
   end
 
   def chiyoda_line?
-    self.map { | railway_line | railway_line.same_as } == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.chiyoda_main_and_branch_line_same_as
+    self.map( &:same_as ) == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.chiyoda_main_and_branch_line_same_as
   end
 
   def yurakucho_and_fukutoshin_line?
-    self.map { | railway_line | railway_line.same_as } == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.yurakucho_and_fukutoshin_line_same_as
+    self.map( &:same_as ) == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.yurakucho_and_fukutoshin_line_same_as
   end
 
 end

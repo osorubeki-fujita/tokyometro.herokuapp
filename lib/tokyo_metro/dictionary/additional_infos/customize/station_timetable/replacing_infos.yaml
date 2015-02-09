@@ -1,0 +1,435 @@
+#-------- 有楽町線 和光市 → 氷川台
+
+# 和光市
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.Wakoshi.ShinKiba":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.Wakoshi.ShinKiba.TokyoMetro.Fukutoshin.Wakoshi.Shibuya"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.Wakoshi"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.ShinKiba"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.Wakoshi"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Shibuya"
+
+# 地下鉄成増
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuNarimasu.ShinKiba":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuNarimasu.ShinKiba.TokyoMetro.Fukutoshin.ChikatetsuNarimasu.Shibuya"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.ChikatetsuNarimasu"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.ShinKiba"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuNarimasu"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Shibuya"
+
+# 地下鉄赤塚
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuAkatsuka.ShinKiba":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuAkatsuka.ShinKiba.TokyoMetro.Fukutoshin.ChikatetsuAkatsuka.Shibuya"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.ChikatetsuAkatsuka"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.ShinKiba"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuAkatsuka"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Shibuya"
+
+# 平和台
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.Heiwadai.ShinKiba":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.Heiwadai.ShinKiba.TokyoMetro.Fukutoshin.Heiwadai.Shibuya"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.Heiwadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.ShinKiba"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.Heiwadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Shibuya"
+
+# 氷川台
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.Hikawadai.ShinKiba":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.Hikawadai.ShinKiba.TokyoMetro.Fukutoshin.Hikawadai.Shibuya"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.Hikawadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.ShinKiba"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.Hikawadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Shibuya"
+
+#-------- 有楽町線 小竹向原 → 地下鉄成増
+
+# 小竹向原
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.KotakeMukaihara.Wakoshi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.KotakeMukaihara.Wakoshi.TokyoMetro.Fukutoshin.KotakeMukaihara.Wakoshi"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.KotakeMukaihara"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.KotakeMukaihara"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+
+# 氷川台
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.Hikawadai.Wakoshi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.Hikawadai.Wakoshi.TokyoMetro.Fukutoshin.Hikawadai.Wakoshi"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.Hikawadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.Hikawadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+
+# 平和台
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.Heiwadai.Wakoshi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.Heiwadai.Wakoshi.TokyoMetro.Fukutoshin.Heiwadai.Wakoshi"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.Heiwadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.Heiwadai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+
+# 地下鉄赤塚
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuAkatsuka.Wakoshi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuAkatsuka.Wakoshi.TokyoMetro.Fukutoshin.ChikatetsuAkatsuka.Wakoshi"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.ChikatetsuAkatsuka"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuAkatsuka"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+
+# 地下鉄成増
+
+"odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuNarimasu.Wakoshi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Yurakucho.ChikatetsuNarimasu.Wakoshi.TokyoMetro.Fukutoshin.ChikatetsuNarimasu.Wakoshi"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Yurakucho.ChikatetsuNarimasu"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Yurakucho"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Fukutoshin.ChikatetsuNarimasu"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Fukutoshin"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Wakoshi"
+
+#-------- 丸ノ内線（支線） 中野坂上 → 中野富士見町
+
+# 中野坂上
+
+"odpt.StationTimetable:TokyoMetro.MarunouchiBranch.NakanoSakaue.Honancho":
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoSakaue"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.MarunouchiBranch"
+        - "odpt.Railway:TokyoMetro.Marunouchi"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Honancho"
+
+# 中野新橋
+
+"odpt.StationTimetable:TokyoMetro.MarunouchiBranch.NakanoShimbashi.Honancho":
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoShimbashi"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.MarunouchiBranch"
+        - "odpt.Railway:TokyoMetro.Marunouchi"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Honancho"
+
+# 中野富士見町
+
+"odpt.StationTimetable:TokyoMetro.MarunouchiBranch.NakanoFujimicho.Honancho":
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoFujimicho"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.MarunouchiBranch"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Honancho"
+
+#-------- 丸ノ内線（支線） 方南町 → 中野新橋
+
+# 方南町
+
+"odpt.StationTimetable:TokyoMetro.MarunouchiBranch.Honancho.NakanoSakaue":
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.MarunouchiBranch.Honancho"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.MarunouchiBranch"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.NakanoSakaue"
+
+# 中野富士見町
+
+"odpt.StationTimetable:TokyoMetro.MarunouchiBranch.NakanoFujimicho.NakanoSakaue":
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoFujimicho"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.MarunouchiBranch"
+        - "odpt.Railway:TokyoMetro.Marunouchi"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.NakanoSakaue"
+
+# 中野新橋
+
+"odpt.StationTimetable:TokyoMetro.MarunouchiBranch.NakanoShimbashi.NakanoSakaue":
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoShimbashi"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.MarunouchiBranch"
+        - "odpt.Railway:TokyoMetro.Marunouchi"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.NakanoSakaue"
+
+#-------- 南北線 白金高輪 → 白金台
+
+# 白金高輪
+
+"odpt.StationTimetable:TokyoMetro.Namboku.ShirokaneTakanawa.Meguro":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Namboku.ShirokaneTakanawa.Meguro.Toei.Mita.ShirokaneTakanawa.Meguro"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Namboku.ShirokaneTakanawa"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Namboku"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Meguro"
+    -
+      stations:
+        - "odpt.Station:Toei.Mita.ShirokaneTakanawa"
+      railway_lines:
+        - "odpt.Railway:Toei.Mita"
+      operators:
+        - "odpt.Operator:Toei"
+      railway_directions:
+        - "odpt.RailDirection:Toei.Meguro"
+
+# 白金台
+
+"odpt.StationTimetable:TokyoMetro.Namboku.Shirokanedai.Meguro":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Namboku.Shirokanedai.Meguro.Toei.Mita.Shirokanedai.Meguro"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Namboku.Shirokanedai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Namboku"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.Meguro"
+    -
+      stations:
+        - "odpt.Station:Toei.Mita.Shirokanedai"
+      railway_lines:
+        - "odpt.Railway:Toei.Mita"
+      operators:
+        - "odpt.Operator:Toei"
+      railway_directions:
+        - "odpt.RailDirection:Toei.Meguro"
+
+#-------- 南北線 目黒 → 白金台
+
+# 目黒
+
+"odpt.StationTimetable:TokyoMetro.Namboku.Meguro.AkabaneIwabuchi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Namboku.Meguro.AkabaneIwabuchi.Toei.Mita.Meguro.NishiTakashimadaira"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Namboku.Meguro"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Namboku"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.AkabaneIwabuchi"
+    -
+      stations:
+        - "odpt.Station:Toei.Mita.Meguro"
+      railway_lines:
+        - "odpt.Railway:Toei.Mita"
+      operators:
+        - "odpt.Operator:Toei"
+      railway_directions:
+        - "odpt.RailDirection:Toei.NishiTakashimadaira"
+
+# 白金台
+
+"odpt.StationTimetable:TokyoMetro.Namboku.Shirokanedai.AkabaneIwabuchi":
+  replacing_name: "odpt.StationTimetable:TokyoMetro.Namboku.Shirokanedai.AkabaneIwabuchi.Toei.Mita.Shirokanedai.NishiTakashimadaira"
+  replacing_fundamental_infos:
+    -
+      stations:
+        - "odpt.Station:TokyoMetro.Namboku.Shirokanedai"
+      railway_lines:
+        - "odpt.Railway:TokyoMetro.Namboku"
+      operators:
+        - "odpt.Operator:TokyoMetro"
+      railway_directions:
+        - "odpt.RailDirection:TokyoMetro.AkabaneIwabuchi"
+    -
+      stations:
+        - "odpt.Station:Toei.Mita.Shirokanedai"
+      railway_lines:
+        - "odpt.Railway:Toei.Mita"
+      operators:
+        - "odpt.Operator:Toei"
+      railway_directions:
+        - "odpt.RailDirection:Toei.NishiTakashimadaira"

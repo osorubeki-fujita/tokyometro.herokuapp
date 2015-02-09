@@ -1,10 +1,14 @@
 # 各種施設のメタクラス
-class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info
+class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
-  include ::TokyoMetro::ApiModules::ToFactoryClass::GenerateFromHash
-  include ::TokyoMetro::ApiModules::InstanceMethods::ToStringGeneral
-  include ::TokyoMetro::ApiModules::InstanceMethods::SetDataToHash
+  include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::MetaClass
+
+  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+
+  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::ApiModules::Info::SetDataToHash
 
   # Constructor
   def initialize( id_urn , same_as , service_detail , place_name , located_area_name , remark )
@@ -64,68 +68,21 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info
   end
 
   def instance_in_db
-    ::BarrierFreeFacility.find_by( same_as: @same_as )
+    ::BarrierFreeFacility.find_by_same_as( @same_as )
   end
 
-  def seed( facility_id )
-    located_area_id = located_area_for_seeding
-    type_id = type_for_seeding
-
-    ::BarrierFreeFacility.create(
-      station_facility_id: facility_id ,
-      id_urn: @id_urn ,
-      same_as: @same_as ,
-      remark: @remark ,
-      barrier_free_facility_located_area_id: located_area_id ,
-      barrier_free_facility_type_id: type_id
-    )
+  def self.factory_for_this_class
+    factory_for_generating_barrier_free_info_from_hash
   end
 
-  def seed_place_name_info( facility_id )
-    if @place_name.present?
-      ary = @place_name.split( "～" )
-      case ary.length
-      when 1
-        place_name = ary.first
-        seed_root_info( facility_id , place_name , 0 )
-      else
-        ary.each.with_index(1) do | place_name , i |
-          seed_root_info( facility_id , place_name , i )
-        end
-      end
-    end
-  end
-
-  # 補足情報 (service_detail) の流し込み
-  # @param barrier_free_facility_id このインスタンスのDB内でのID
-  def seed_additional_info( barrier_free_facility_id )
-    @service_detail.seed( barrier_free_facility_id )
+  def self.factory_for_seeding_this_class
+    factory_for_seeding_barrier_free_facility_info
   end
 
   private
 
-  def seed_root_info( facility_id , place_name , i )
-    place_name_id = create_barrier_free_facility_place_name_and_get_id( place_name )
-    ::BarrierFreeFacilityRootInfo.create(
-      barrier_free_facility_id: facility_id ,
-      barrier_free_facility_place_name_id: place_name_id ,
-      index_in_root: i
-    )
-  end
-
-  def create_barrier_free_facility_place_name_and_get_id( place_name )
-    place_name_converted = place_name.zen_num_to_han
-    h = { name_ja: place_name_converted }
-    ::BarrierFreeFacilityPlaceName.find_or_create_by(h).id
-  end
-
-  def located_area_for_seeding
-    ::BarrierFreeFacilityLocatedArea.find_or_create_by( { name_ja: @located_area_name } ).id
-  end
-
-  def type_for_seeding
-    h = { name_ja: self.class.category_name , name_en: self.class.category_name_en }
-    ::BarrierFreeFacilityType.find_or_create_by(h).id
+  def seed_service_detail( barrier_free_facility_id )
+    @service_detail.try( :seed , barrier_free_facility_id )
   end
 
 end

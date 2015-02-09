@@ -1,0 +1,2 @@
+class TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Following::List < TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::MetaClass::List
+end

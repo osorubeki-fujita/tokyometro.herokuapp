@@ -1,11 +1,12 @@
 # 駅出入口を表すオブジェクトへのリンクの配列
-class TokyoMetro::Api::Station::Info::Exit::List < TokyoMetro::Api::Station::Info::ConnectingRailwayLine::List
+class TokyoMetro::Api::Station::Info::Exit::List < TokyoMetro::Api::Station::Info::Common::List
 
-  def seed( station_id )
-    self.each do | exit_id_urn |
-      exit_id = ::Point.find_by( id_urn: exit_id_urn )
-      ::StationPoint.create( point_id: exit_id , station_id: station_id )
-    end
+  def include_info_of?( id_urn )
+    self.any? { | item | item.point == id_urn }
+  end
+
+  def self.factory_for_seeding_this_class
+    factory_for_seeding_exits_of_each_station
   end
 
 end

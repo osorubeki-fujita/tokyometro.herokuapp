@@ -4,7 +4,7 @@
 class TokyoMetro::Api::Fare < TokyoMetro::Api::MetaClass::NotRealTime
 
   include ::TokyoMetro::ClassNameLibrary::Api::Fare
-  include ::TokyoMetro::ClassNameLibrary::StaticDatas::Fare
+  include ::TokyoMetro::ClassNameLibrary::Static::Fare
 
   # @!group クラスメソッド - データの取得・保存
 

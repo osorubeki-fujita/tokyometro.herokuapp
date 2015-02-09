@@ -8,11 +8,11 @@ module TokyoMetro::CommonModules::ConvertConstantToClassMethod
 
   module ClassMethods
 
-    def method_missing( method_name )
+    def method_missing( method_name , *args )
       if costants_converted_by_method_missing.include?( method_name.upcase )
-        const_get( method_name.upcase )
+        return const_get( method_name.upcase )
       else
-        super( method_name )
+        super( method_name , *args )
       end
     end
 

@@ -33,39 +33,4 @@ module ForRails::ExtendBuiltinLibraries::NamespaceModule
 
   end
 
-=begin
-
-  # 上位の名前空間が存在するか否かを判定するメソッド
-  # @return [Boolean]
-  def upper_namespace_exist?
-    # self.class.upper_namespace_exist?
-    upper_namespace_exist_sub?
-  end
-
-  # 上位の名前空間の名称を取得するメソッド
-  # @return [Const (classname)]
-  def upper_namespace
-    # self.class.upper_namespace
-    upper_namespace_sub
-  end
-
-  # @!endgroup
-
-  private
-
-  def upper_namespace_exist_sub?
-    class_name = self.class.name
-    /\:\:/ === class_name
-  end
-
-  def upper_namespace_sub
-    if upper_namespace_exist?
-      eval( self.class.name.split( "::" )[0..-2].join( "::" ) )
-    else
-      raise "Error: \"#{self.class.name}\" does not have an upper namespace."
-    end
-  end
-
-=end
-
 end

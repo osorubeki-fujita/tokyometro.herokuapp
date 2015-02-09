@@ -6,7 +6,7 @@ module TokyoMetro::Search::RailwayLine
       railway_line_name = railway_line_name.gsub( / *[lL]ine *\Z/ , "" )
     end
 
-    ::TokyoMetro::StaticDatas.railway_lines_operated_by_tokyo_metro.each do | item |
+    ::TokyoMetro::Static.railway_lines_operated_by_tokyo_metro.each do | item |
       if [ item[ "name" ] , item[ "name_en" ] , item[ "odpt:railway" ] , item[ "name_code" ] ].include?( railway_line_name )
         return item[ "odpt:railway" ]
       end
@@ -19,7 +19,7 @@ module TokyoMetro::Search::RailwayLine
   # @return [String]
   def self.normal_name( railway_line_name )
     railway_line_same_as = name_in_api( railway_line_name )
-    ::TokyoMetro::StaticDatas.railway_lines_operated_by_tokyo_metro.each do | item |
+    ::TokyoMetro::Static.railway_lines_operated_by_tokyo_metro.each do | item |
       if item[ "odpt:railway" ] == railway_line_same_as
         return item[ "name" ]
       end
@@ -32,7 +32,7 @@ module TokyoMetro::Search::RailwayLine
   # @return [String]
   def self.web_color( railway_line_name )
     railway_line_same_as = name_in_api( railway_line_name )
-    ::TokyoMetro::StaticDatas.railway_lines_operated_by_tokyo_metro.each do | item |
+    ::TokyoMetro::Static.railway_lines_operated_by_tokyo_metro.each do | item |
       if item[ "odpt:railway" ] == railway_line_same_as
         return item[ "color" ][ "web" ]
       end
@@ -45,7 +45,7 @@ module TokyoMetro::Search::RailwayLine
   # @return [String]
   def self.name_code( railway_line_name )
     railway_line_same_as = name_in_api( railway_line_name )
-    ::TokyoMetro::StaticDatas.railway_lines_operated_by_tokyo_metro.each do | item |
+    ::TokyoMetro::Static.railway_lines_operated_by_tokyo_metro.each do | item |
       if item[ "odpt:railway" ] == railway_line_same_as
         return item[ "name_code" ]
       end
@@ -59,7 +59,7 @@ module TokyoMetro::Search::RailwayLine
   # @note 建設順
   def self.railway_line_order( railway_line_name )
     railway_line_same_as = name_in_api( railway_line_name )
-    ::TokyoMetro::StaticDatas.railway_lines_operated_by_tokyo_metro.each do | item |
+    ::TokyoMetro::Static.railway_lines_operated_by_tokyo_metro.each do | item |
       if item[ "odpt:railway" ] == railway_line_same_as
         return item[ "number" ]
       end

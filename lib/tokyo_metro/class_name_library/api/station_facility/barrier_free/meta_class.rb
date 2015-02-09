@@ -5,44 +5,24 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::MetaClas
 
   module ClassMethods
 
-    def info_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Info
-    end
-
-    def service_detail_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
-    end
-
-    def service_detail_list_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::List
-    end
-
-    def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree
-    end
-
-    def factory_of_service_detail
-      ::TokyoMetro::Factories::Api::GenerateFromHash::StationFacility::Info::BarrierFree::ServiceDetail
-    end
-
     # @!group クラスメソッド (1) - メタデータ
 
     # クラス指定
     # @return [String]
     # @note サブクラスで上書きする。（"ug:Toilet", "spac:Stairlift", "ug:Elevator", "ug:Escalator", "ug:Link" のいずれかが格納される）
-    def rdf_type
-      raise "Error: The method #{__method__.to_s} is not defined in this class."
+    def rdf_type_of_facility
+      raise "Error: The method #{__method__} is not defined in this class."
     end
 
     # 施設のカテゴリの名称
     # @return [String]
     # @note サブクラスで上書きする。（「トイレ」「階段昇降機」「エレベータ」「エスカレータ」「ハンドル型電動車いす利用可能経路」のいずれかが格納される）
     def category_name
-      raise "Error: The method #{__method__.to_s} is not defined in this class."
+      raise "Error: The method #{__method__} is not defined in this class."
     end
 
     def category_name_en
-      raise "Error: The method #{__method__.to_s} is not defined in this class."
+      raise "Error: The method #{__method__} is not defined in this class."
     end
 
     # 車いす対応状況

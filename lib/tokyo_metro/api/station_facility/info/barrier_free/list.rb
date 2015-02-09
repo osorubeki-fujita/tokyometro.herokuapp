@@ -1,6 +1,9 @@
 # 各種施設の配列
 class TokyoMetro::Api::StationFacility::Info::BarrierFree::List < TokyoMetro::Api::MetaClass::Fundamental::List
 
+  include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
+  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+
   # インスタンスの情報を整形した文字列にして返すメソッド
   # @param indent [Integer (>=0)] インデントの幅
   # @return [String]
@@ -8,22 +11,12 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::List < TokyoMetro::Ap
     super( indent , 1 )
   end
 
-  def seed( station_facility_id , indent: 0 )
-    ::TokyoMetro::Seed::Inspection.title_with_method( self.class , __method__ , indent: indent )
-    time_begin = Time.now
+  def seed( station_facility_id , indent )
+    super( station_facility_id , indent: indent + 1 , not_on_the_top_layer: true )
+  end
 
-    self.each do | facility |
-      facility.seed( station_facility_id )
-
-      facility_id = facility.instance_in_db.id
-      facility.seed_place_name_info( facility_id )
-      facility.seed_additional_info( facility_id )
-      puts ""
-      puts "Complete: #{facility.same_as}"
-      puts ""
-    end
-
-    ::TokyoMetro::Seed::Inspection.time( time_begin , indent: indent )
+  def self.factory_for_seeding_this_class
+    factory_for_seeding_barrier_free_facilities_of_each_station
   end
 
 end
