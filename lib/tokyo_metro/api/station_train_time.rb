@@ -50,14 +50,14 @@ class TokyoMetro::Api::StationTrainTime
   end
 
   private
-  
+
   def process_station_timetable_of_specific_line( method_names_for_selecting_railway_line , proc_for_checking_method_name , procs_for_selecting_station_timetables )
     if method_names_for_selecting_railway_line.any?( &proc_for_checking_method_name )
       station_timetable_list_class = @station_timetables.class
       procs_for_selecting_station_timetables = [ procs_for_selecting_station_timetables ].flatten
 
       station_timetables_new = ::Array.new
-      
+
       procs_for_selecting_station_timetables.each do | procedure_for_selecting_station_timetable |
         station_timetables_new += @station_timetables.select( &procedure_for_selecting_station_timetable )
         @station_timetables.delete_if( &procedure_for_selecting_station_timetable )
@@ -88,7 +88,7 @@ class TokyoMetro::Api::StationTrainTime
 
   def process_station_timetable_of_namboku_line( method_names_for_selecting_railway_line )
     proc_for_checking_method_name = ::Proc.new { | method_name | /\Anamboku_(?:or|and)_toei_mita(?:_line)?\Z/ === method_name.to_s }
-    
+
     procs_for_selecting_station_timetables_1 = [ "ShirokaneTakanawa" , "Shirokanedai" ].map { | sta |
       ::Proc.new { | item | item.same_as == "odpt.StationTimetable:TokyoMetro.Namboku.#{sta}.Meguro.Toei.Mita.#{sta}.Meguro" }
     }

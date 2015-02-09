@@ -191,7 +191,7 @@ class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRea
         "Stations are same as ... #{ stations_same_as.to_s }" ,
         "Considered stations ... #{ ary_of_station_same_as.to_s }"
       ].map { | str | " " * 4 + str }
-      
+
       error_msg_ary << " " * 4 + "Stations where this train stops ... "
       error_msg_ary += stations.map { | str | " " * 8 + str }
       raise error_msg_ary.join( "\n" )
