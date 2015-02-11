@@ -75,7 +75,6 @@ module BarrierFreeFacilityHelper
 
   # 駅施設の番号を記述するメソッド
   def barrier_free_facility_place_name_number( facility )
-    # id_and_code = station_facility_id_and_code_hash( facility )
     id_and_code = facility.id_and_code_hash
     facility_id , facility_code = id_and_code[ :id ] , id_and_code[ :code ]
 
@@ -103,33 +102,42 @@ module BarrierFreeFacilityHelper
   # 駅施設の詳細（利用可能日、利用可能時間など）を記述するメソッド
   # @param barrier_free_facility [StationFacility] 駅施設のインスタンス
   def barrier_free_facility_service_details( barrier_free_facility )
-    patterns = barrier_free_facility.barrier_free_facility_service_detail_patterns.order( :operation_day_id )
-    h_locals = { patterns: patterns }
+    service_details = barrier_free_facility.barrier_free_facility_service_details
+    h_locals = { service_details: service_details }
 
     render inline: <<-HAML , type: :haml , locals: h_locals
-- if patterns.present?
-  - patterns.each do | pattern |
-    - if pattern.has_any_info?
+- if service_details.present?
+  %div{ class: :service_details }
+    - service_details.each do | service_detail |
       %div{ class: :service_detail }<
-        - # 利用可能日
-        - if pattern.operation_day_id.meaningful?
-          %div{ class: :operation_day }<
-            = pattern.operation_day.name_ja
-        - # 利用可能時間
-        - if pattern.has_service_time_info?
-          %div{ class: :service_time }<
-            = "利用可能時間：" + pattern.service_time_info( skip_validity_check: true )
-        - if pattern.has_escalator_direction_info?
-          %div{ class: :escalator_direction }<
-          - if pattern.escalator_direction_up
-            = "上り"
-          - if pattern.escalator_direction_down
-            = "下り"
+        - if service_detail.has_any_info?
+          - pattern = service_detail.barrier_free_facility_service_detail_pattern
+          - # 利用可能日
+          - if pattern.operation_day_id.meaningful?
+            %div{ class: :operation_day }<
+              = pattern.operation_day.name_ja
+          - # エスカレーターの方向
+          - if service_detail.has_escalator_direction_info?
+            - escalator_direction = service_detail.escalator_direction
+            %div{ class: :escalator_directions }<
+              - if escalator_direction.only_up?
+                %div{ class: :escalator_direction }<
+                  = "上り"
+              - if escalator_direction.only_down?
+                %div{ class: :escalator_direction }<
+                  = "下り"
+              - if escalator_direction.both?
+                %div{ class: :escalator_direction }<
+                  = "上り・下り"
+          - # 利用可能時間
+          - if pattern.has_service_time_info?
+            %div{ class: :service_time }<
+              = "利用可能時間：" + pattern.service_time_info( skip_validity_check: true )
     HAML
   end
 
   def barrier_free_facility_available_to_wheel_chair( facility )
-    if facility.is_available_to_wheel_chair
+    if facility.escalator_available_to_wheel_chair?
       render inline: <<-HAML , type: :haml
 %div{ class: :wheel_chair }<
   = "車いす対応"
@@ -138,25 +146,13 @@ module BarrierFreeFacilityHelper
   end
 
   def barrier_free_facility_toilet_assistant( facility )
-    if facility.barrier_free_facility_toilet_assistant_patterns.present?
-      toilet_assistant_patterns = facility.barrier_free_facility_toilet_assistant_patterns
-      unless toilet_assistant_patterns.length == 1
-        raise "Error"
-      end
-      toilet_asistant_instance = toilet_assistant_patterns.first
-      render inline: <<-HAML , type: :haml , locals: { toilet_asistant_instance: toilet_asistant_instance }
+    toilet_assistant_info = facility.toilet_assistant_info
+    if toilet_assistant_info.present?
+      render inline: <<-HAML , type: :haml , locals: { toilet_assistant_info: toilet_assistant_info }
 %div{ class: :toilet_assistants }<
-  - arr = Array.new
-  - if toilet_asistant_instance.wheelchair_accessible
-    - arr << "車いす対応"
-  - if toilet_asistant_instance.baby_chair
-    - arr << "乳幼児用いす"
-  - if toilet_asistant_instance.baby_changing_table
-    - arr << "おむつ交換台"
-  - if toilet_asistant_instance.ostomate
-    - arr << "オストメイト対応設備"
-  - if arr.present?
-    - arr.each do | assistant |
+  - ary = toilet_assistant_info.to_a
+  - if ary.present?
+    - ary.each do | assistant |
       %div{ class: :toilet_assistant }<
         = assistant
       HAML
@@ -165,12 +161,11 @@ module BarrierFreeFacilityHelper
 
   def barrier_free_facility_remark( facility )
     if facility.remark.present?
-      render inline: <<-HAML , type: :haml , locals: { remark_array: facility.remark_formatted }
+      render inline: <<-HAML , type: :haml , locals: { remark_array: facility.remark_to_a }
 %div{ class: :remark }
-  - remark_array.each.with_index(1) do | str , i |
-    = str
-    - unless i == remark_array.length
-      = tag( :br )
+  - remark_array.each do | str |
+    %p<
+      = str
       HAML
     end
   end

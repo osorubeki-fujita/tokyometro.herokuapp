@@ -62,7 +62,7 @@ class TokyoMetro::Factories::Generate::Api::MetaClass::Info::Fundamental
     else
       ary << [ :rdf_type_of_facility , "\@type" ]
       ary << [ :category_name , "ugsrv:categoryName" ] # (e.g.) ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Toilet.category_name (Class Method)
-      ary << [ :spac__is_available_to , "spac:isAvailableTo" ] # (e.g.) ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Link.spac__is_available_to (Class Method)
+      ary << [ :spac__is_available_to , "spac:isAvailableTo" ] # (e.g.) ::TokyoMetro::Api::StationFacility::Info::BarrierFree::LinkForMobilityScooter.spac__is_available_to (Class Method)
     end
 
     ary.each do | class_method_name , hash_key |

@@ -12,7 +12,10 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::List <
 
   alias :to_strf :to_s
 
+  undef :find_by_same_as
+
   def seed( barrier_free_facility_id )
+    raise unless barrier_free_facility_id.integer?
     super( barrier_free_facility_id , not_on_the_top_layer: true , no_display: true , display_number: false )
   end
 

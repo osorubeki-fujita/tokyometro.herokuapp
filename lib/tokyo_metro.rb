@@ -65,7 +65,7 @@ module TokyoMetro
 
   # @!group 駅名辞書
 
-  STATION_DICTIONARY = "#{ DICTIONARY_DIR }/station/tokyo_metro.yaml"
+  STATION_DICTIONARY = ::YAML.load_file( "#{ DICTIONARY_DIR }/station/tokyo_metro.yaml" )
 
   def self.reload_all_files!
     open( "#{ TOP_DIR }/required_files.txt" , "r:utf-8" ).read.split( /\n/ ).each do |f|

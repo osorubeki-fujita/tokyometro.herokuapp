@@ -2,9 +2,9 @@ module TokyoMetro::Factories::Seed::Api::StationTimetable::Info::Fundamental::Co
 
   private
 
-  def set_optional_variables( variables )
-    raise "Error" unless variables.length == 5
-    @station_timetable_id , @operators , @railway_lines , @stations , @railway_directions = variables
+  def set_optional_variables( args )
+    set_optional_variables__check_length_of_args( args , 5 )
+    @station_timetable_id , @operators , @railway_lines , @stations , @railway_directions = args
   end
 
   def optional_variables

@@ -3,7 +3,7 @@ module TokyoMetro::Factories::Seed::Static::Fare::Normal::Table::Common
   private
 
   def set_optional_variables( args )
-    raise "Error" unless args.length == 2
+    set_optional_variables__check_length_of_args( args , 2 )
     @date_of_revision , @operator_id = args
   end
 

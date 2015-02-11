@@ -216,6 +216,19 @@
     background-color: mix( $border_color , #fff , 20% ) ;
 }
 
+%serviceDetailPreciseInfo {
+	@extend %floatLeft ;
+	@extend %marginRight8 ;
+	padding: {
+		left: 4px ;
+		right: 4px ;
+		top: 2px ;
+		bottom: 2px ;
+	}
+	text-align:center;
+	@include border_radius( 2px ) ;
+}
+
 #station_facility_infos {
     %fontSize8 {
         font: {
@@ -225,7 +238,6 @@
     .title {
         clear: both ;
         @extend %marginBottom8 ;
-        // @extend %marginRight8 ;
         border: {
             bottom: solid 1px $operator_color ;
         }
@@ -271,48 +283,61 @@
             }
             .place {
                 @extend %fontSize8 ;
+                display: block ;
+				@extend %marginBottom4 ;
             }
-            .service_detail {
-                @extend %fontSize8 ;
-                .service_time {
-                    display: block ;
-                    @extend %commonSettingsOfServiceDetail ;
-                    @include colorSettingsOfServiceDetail( $jp_traditional_hiwa_iro ) ;
-                    margin: {
-                        bottom: 2px ;
+            .service_details {
+                .service_detail {
+                    .operation_day {
+                        @extend %floatLeft ;
+                        @extend %serviceDetailPreciseInfo ;
+                        border: solid 1px #eee ;
+                        background-color: #fafafa ;
+                    }
+                    .escalator_directions {
+                        @extend %floatLeft ;
+                        .escalator_direction {
+                            @extend %floatLeft ;
+                            @extend %serviceDetailPreciseInfo ;
+                            border: solid 1px $jp_traditional_aomidori ;
+                            background-color: rgba( $jp_traditional_aomidori , 0.12 ) ;
+                        }
+                        margin: {
+                            bottom: 4px ;
+                        }
+                    }
+                    .service_time {
+                        display: block ;
+                        @extend %floatLeft ;
+                        @extend %commonSettingsOfServiceDetail ;
+                        @extend %fontSize8 ;
+                        @include colorSettingsOfServiceDetail( $jp_traditional_moegi ) ;
+                        margin: {
+                            bottom: 2px ;
+                        }
                     }
                 }
             }
-            %barrierFreePreciseInfo {
-                @extend %floatLeft ;
-                @extend %marginRight8 ;
-                padding: {
-                    left: 8px ;
-                    right: 8px ;
-                    top: 4px ;
-                    bottom: 4px ;
-                }
-                @include border_radius( 4px ) ;
-            }
             .toilet_assistants {
                 div.toilet_assistant {
-                    @extend %barrierFreePreciseInfo ;
-                    background-color: $jp_traditional_kamenozoki ;
+					@extend %serviceDetailPreciseInfo ;
+					border: solid 1px $jp_traditional_kamenozoki ;
+					background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
                 }
-                img.toilet_assistant {
-                    $length: 24px ;
-                    width: $length ;
-                    height: $length ;
+				img.toilet_assistant {
+					$length: 24px ;
+					width: $length ;
+					height: $length ;
                 }
                 margin: {
-                    bottom: 2px ;
+					bottom: 4px ;
                 }
             }
             .wheel_chair {
                 display: block ;
-                @extend %barrierFreePreciseInfo ;
-                background-color: $jp_traditional_kompeki ;
-                color: #fff ;
+                @extend %serviceDetailPreciseInfo ;
+                border: solid 1px $jp_traditional_kamenozoki ;
+                background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
             }
             .remark {
                 @extend %floatLeft ;

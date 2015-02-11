@@ -80,7 +80,7 @@ module PlatformInfoHelper
       railway_line_tab_name = :platform_info_namboku_and_toei_mita_line
 
     else
-      railway_line = RailwayLine.find( railway_line_id )
+      railway_line = ::RailwayLine.find( railway_line_id )
 
       railway_line_name_ja = railway_line.name_ja
       railway_line_name_en = railway_line.name_en
@@ -94,7 +94,7 @@ module PlatformInfoHelper
       railway_line_classes: railway_line_classes ,
       railway_line_tab_name: railway_line_tab_name ,
       platform_infos_of_each_railway_line: infos_of_each_railway_line ,
-      car_composition_types: infos_of_each_railway_line.map { | info | info.car_composition }.uniq ,
+      car_composition_types: infos_of_each_railway_line.map( &:car_composition ).uniq ,
       direction_types_are_exist: !( infos_of_each_railway_line.all? { | info | info.railway_direction_id.nil? } ) ,
       yf: yf ,
       ni: ni
@@ -109,7 +109,7 @@ module PlatformInfoHelper
       %h4{ class: :text_en }<
         = railway_line_name_en
     - if direction_types_are_exist
-      - platform_infos_of_each_railway_line_grouped_by_direction = platform_infos_of_each_railway_line.group_by { | info | info.railway_direction_id }
+      - platform_infos_of_each_railway_line_grouped_by_direction = platform_infos_of_each_railway_line.group_by( &:railway_direction_id )
       - platform_infos_of_each_railway_line_grouped_by_direction.each do | railway_direction_id , infos |
         = platform_infos_of_each_direction( railway_direction_id , car_composition_types , infos , yf: yf , ni: ni )
     - else
@@ -205,7 +205,7 @@ module PlatformInfoHelper
     case car_composition_types.length
     when 1
       h_locals = {
-        info_sorted_by_car_number: infos.sort_by { | info | info.car_number } ,
+        info_sorted_by_car_number: infos.sort_by( &:car_number ) ,
         transfer_infos_are_exist: transfer_infos_are_exist ,
         barrier_free_facilities_are_exist: barrier_free_facilities_are_exist ,
         surrounding_areas_are_exist: surrounding_areas_are_exist
@@ -214,12 +214,12 @@ module PlatformInfoHelper
 
     # 車両編成の種類が複数の場合（有楽町線・副都心線）
     else
-      infos_grouped_by_car_composition = infos.group_by { | info | info.car_composition }
+      infos_grouped_by_car_composition = infos.group_by( &:car_composition )
       h_locals = { infos_grouped_by_car_composition: infos_grouped_by_car_composition }
       render inline: <<-HAML , type: :haml , locals: h_locals
 - car_composition_array = infos_grouped_by_car_composition.keys
 - car_composition_max = car_composition_array.max
-- info_of_car_composition_max = infos_grouped_by_car_composition[ car_composition_max ].sort_by { | info | info.car_number }
+- info_of_car_composition_max = infos_grouped_by_car_composition[ car_composition_max ].sort_by( &:car_number )
 - # 最長ではない車両編成を取得
 - car_composition_without_max = ( car_composition_array - [ car_composition_max ] ).sort.reverse
 
@@ -273,7 +273,7 @@ module PlatformInfoHelper
 
   def platform_infos_transfer_info_array( infos )
     h_locals = {
-      infos_of_transfer_infos: infos.map { | info | info.station_facility_platform_info_transfer_infos } ,
+      infos_of_transfer_infos: infos.map( &:station_facility_platform_info_transfer_infos ) ,
       proc_for_display: platform_infos_transfer_info_proc_for_display ,
       proc_for_decision: platform_infos_transfer_info_proc_for_decision
     }
@@ -289,27 +289,28 @@ module PlatformInfoHelper
     infos_of_barrier_free_facilities = infos.map { | info | info.barrier_free_facilities.includes( :barrier_free_facility_located_area , :barrier_free_facility_type , :barrier_free_facility_service_details ) }
     h_locals = {
       infos_of_barrier_free_facilities_inside: infos_of_barrier_free_facilities.map { | info_of_each_car |
-        info_of_each_car.select { | info | info.barrier_free_facility_located_area.name_ja == "改札内" }
+        info_of_each_car.select( &:inside? )
       } ,
       infos_of_barrier_free_facilities_outside: infos_of_barrier_free_facilities.map { | info_of_each_car |
-        info_of_each_car.select { | info | info.barrier_free_facility_located_area.name_ja == "改札外" }
+        info_of_each_car.select( &:outside? )
       } ,
       proc_for_display_inside: Proc.new { | info |
         id_and_code = info.id_and_code_hash
         link_to( id_and_code[ :platform ] , url_for( anchor: id_and_code[ :id ] ) )
       } ,
       proc_for_display_outside: Proc.new { | info |
-        info.same_as.gsub( /\Aodpt\.StationFacility:TokyoMetro\.[a-zA-Z]+\.[a-zA-Z]+\.Outside\./ , "" )
+        id_and_code = info.id_and_code_hash
+        link_to( id_and_code[ :platform ] , url_for( anchor: id_and_code[ :id ] ) )
       }
     }
 
     render inline: <<-HAML , type: :haml , locals: h_locals
-- if infos_of_barrier_free_facilities_inside.any? { | car_info | car_info.present? }
+- if infos_of_barrier_free_facilities_inside.any?( &:present? )
   %tr{ class: :barrier_free_infos_inside }
     - concat platform_infos_barrier_free_info_title_inside
     - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_inside , proc_for_display_inside )
 
-- if infos_of_barrier_free_facilities_outside.any? { | car_info | car_info.present? }
+- if infos_of_barrier_free_facilities_outside.any?( &:present? )
   %tr{ class: :barrier_free_infos_outside }
     - concat platform_infos_barrier_free_info_title_outside
     - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_outside , proc_for_display_outside )
@@ -318,7 +319,7 @@ module PlatformInfoHelper
 
   def platform_infos_surrounding_area_info_array( infos )
     h_locals = {
-      infos_of_surrounding_areas: infos.map { | info | info.surrounding_areas } ,
+      infos_of_surrounding_areas: infos.map( &:surrounding_areas ) ,
       proc_for_display: Proc.new { | info | info.name }
     }
 
@@ -341,7 +342,7 @@ __END__
 
     - ( car_composition_array - [ car_composition_max ] ).each do | car_composition |
       - info_of_this_car_composition = infos_grouped_by_car_composition[ car_composition ]
-      - info_sorted_by_car_number = info_of_this_car_composition.sort_by { | info | info.car_number }
+      - info_sorted_by_car_number = info_of_this_car_composition.sort_by( &:car_number )
       - car_number_of_in_the_longest_composition = 1
       - while car_number_of_in_the_longest_composition <= info_of_car_composition_max
         - compared_info_in_the_longest_composition = info_of_car_composition_max.select { | info | info.car_numeber == car_number_of_in_the_longest_composition }

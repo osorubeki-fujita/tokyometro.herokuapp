@@ -1,6 +1,3 @@
-#! ruby -Ku
-# -*- coding: utf-8 -*-
-
 module PlatformInfoProcHelper
 
   def platform_infos_transfer_info_proc_for_display
@@ -14,7 +11,7 @@ module PlatformInfoProcHelper
 - else
   = "東武スカイツリーライン"
 = tag( :br )
-- unless info.railway_direction.blank?
+- if info.railway_direction.present?
   %span{ class: :direction }<>
     = info.railway_direction.station.name_ja + "方面"
 %span{ class: :time }<

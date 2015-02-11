@@ -90,19 +90,19 @@ module PassengerSurveyHelper
 
   def passenger_survey_of_station
     survey_year = ::ApplicationHelper.latest_passenger_survey_year
-    journey = @station.passenger_surveys.find_by_year( survey_year )
-    if journey.blank?
-      journey = "xxxxxx"
+    journeys = @station.passenger_surveys.find_by_year( survey_year )
+    if journeys.blank?
+      journeys = "xxxxxx"
     else
-      journey = number_separated_by_comma( journey.passenger_journey )
+      journeys = number_separated_by_comma( journeys.passenger_journeys )
     end
-    render inline: <<-HAML , type: :haml , locals: { survey_year: survey_year , journey: journey }
+    render inline: <<-HAML , type: :haml , locals: { survey_year: survey_year , journeys: journeys }
 %div{ id: :passenger_survey_of_station }
   %span{ class: :title }<
     = "1日平均乗降人員"
   %span{ class: :passenger_journey }<
     %span{ class: :text_en }<>
-      = journey
+      = journeys
     = "人"
   %span{ class: :year }<
     = "（"

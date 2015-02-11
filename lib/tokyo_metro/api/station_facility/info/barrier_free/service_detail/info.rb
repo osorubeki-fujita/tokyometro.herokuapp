@@ -6,7 +6,6 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
   include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
   include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
 
-
   # Constructor
   def initialize( service_start_time , service_end_time , operation_day )
     @service_start_time = service_start_time
@@ -26,7 +25,7 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
   attr_reader :operation_day
 
   def to_s( indent = 0 )
-    " " * indent + self.operation_day_to_s + self.time_to_s
+    " " * indent + operation_day_to_s + time_to_s
   end
 
   def all_day?
@@ -37,11 +36,11 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
     @operation_day.nil?
   end
 
-  def start_before_first_train?
+  def service_start_before_first_train?
     @service_start_time == "始発"
   end
 
-  def end_after_last_train?
+  def service_end_after_last_train?
     @service_end_time == "終車時"
   end
 
@@ -78,23 +77,31 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
   def time_to_h
     h = ::Hash.new
 
-    h[ :service_start_before_first_train ] = self.start_before_first_train?
+    h[ :service_start_before_first_train ] = service_start_before_first_train?
     h[ :service_start_time_hour ] = nil
     h[ :service_start_time_min ] = nil
 
     h[ :service_end_time_hour ] = nil
     h[ :service_end_time_min ] = nil
-    h[ :service_end_after_last_train ] = self.end_after_last_train?
+    h[ :service_end_after_last_train ] = service_end_after_last_train?
 
-    if !( start_before_first_train? ) and @service_start_time.present?
+    if has_specific_service_start_time_info?
       h[ :service_start_time_hour ] , h[ :service_start_time_min ] = @service_start_time.to_time_hm_array
     end
 
-    if !( end_after_last_train? ) and @service_end_time.present?
+    if has_specific_service_end_time_info?
       h[ :service_end_time_hour ] , h[ :service_end_time_min ] = @service_end_time.to_time_hm_array
     end
 
     h
+  end
+
+  def has_specific_service_start_time_info?
+    !( service_start_before_first_train? ) and @service_start_time.present?
+  end
+
+  def has_specific_service_end_time_info?
+    !( service_end_after_last_train? ) and @service_end_time.present?
   end
 
   def self.factory_for_this_class

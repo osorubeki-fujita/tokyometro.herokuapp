@@ -1,6 +1,7 @@
 class Station < ActiveRecord::Base
   has_many :station_passenger_surveys
   has_many :passenger_surveys , through: :station_passenger_surveys
+
   belongs_to :station_facility
   belongs_to :railway_line
 
@@ -15,35 +16,29 @@ class Station < ActiveRecord::Base
   has_many :stopping_patterns , through: :station_stopping_patterns
 
   has_many :station_aliases
-  
+
   has_many :station_timetable_fundamental_infos
   has_many :station_timetables , through: :station_timetable_fundamental_infos
 
   # geocoded_by :name_ja
   # after_validation :geocode
 
+  include ::TokyoMetro::DbModules::Decision::Operator
+
   def stations_of_tokyo_metro
-    self.station_facility.stations.order( :railway_line_id )
+    station_facility.stations.order( :railway_line_id )
   end
 
   def base_station
-    self.stations_of_tokyo_metro.first
+    stations_of_tokyo_metro.first
   end
 
   def railway_lines_of_tokyo_metro
-    self.stations_of_tokyo_metro.select( :railway_line_id ).map { | station |
-      station.railway_line
-    }.select { | railway_line |
-      railway_line.tokyo_metro?
-    }
+    stations_of_tokyo_metro.includes( :railway_line ).order( :railway_line_id ).map( &:railway_line ).select( &:tokyo_metro? )
   end
 
   def connecting_railway_lines_without_tokyo_metro
-    self.connecting_railway_lines.select( :railway_line_id ).order( :railway_line_id ).includes( :railway_line ).map { | connecting_railway_line |
-      connecting_railway_line.railway_line
-    }.select { | railway_line |
-      !( railway_line.tokyo_metro? )
-    }
+    connecting_railway_lines.includes( :railway_line ).order( :railway_line_id ).map( &:railway_line ).select( &:not_tokyo_metro? )
   end
 
   # 特定の駅のインスタンスを取得する
@@ -76,6 +71,6 @@ class Station < ActiveRecord::Base
     if tokyo_metro_id.nil?
       tokyo_metro_id = ::Operator.id_of_tokyo_metro
     end
-    where( name_in_system: name_in_system , operator_id: tokyo_metro_id ).map { | station | station.station_code }
+    where( name_in_system: name_in_system , operator_id: tokyo_metro_id ).map( &:station_code )
   }
 end

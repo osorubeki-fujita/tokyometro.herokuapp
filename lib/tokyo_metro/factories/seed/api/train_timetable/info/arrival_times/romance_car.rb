@@ -23,7 +23,7 @@ class TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::ArrivalTimes::Roma
     _hash_to_select_station_timetable_base = hash_to_select_station_timetable_base
 
     _station_times_to_seed.each do | station_time |
-      db_class.create( hash_to_db( station_time , _hash_to_select_station_timetable_base ) )
+      db_class.find_or_create_by( hash_to_db( station_time , _hash_to_select_station_timetable_base ) )
       station_time.seed_completed!
     end
 

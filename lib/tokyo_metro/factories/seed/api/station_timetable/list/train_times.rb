@@ -5,7 +5,7 @@ class TokyoMetro::Factories::Seed::Api::StationTimetable::List::TrainTimes < Tok
   private
 
   def set_optional_variables( args )
-    raise "Error" unless args.length == 1
+    set_optional_variables__check_length_of_args( args , 1 )
     @train_timetables = args.first
   end
 

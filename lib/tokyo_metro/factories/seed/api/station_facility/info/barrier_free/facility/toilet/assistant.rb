@@ -5,7 +5,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Faci
   private
 
   def set_optional_variables( args )
-    raise "Error" unless args.length == 1
+    set_optional_variables__check_length_of_args( args , 1 )
     @barrier_free_facility_id = args.first
   end
 

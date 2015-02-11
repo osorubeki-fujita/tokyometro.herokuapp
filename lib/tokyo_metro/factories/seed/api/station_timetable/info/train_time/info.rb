@@ -20,8 +20,8 @@ class TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info 
 
   private
 
-  def set_optional_variables( variables )
-    super( variables )
+  def set_optional_variables( args )
+    super( args )
     @train_timetable_info = ::TokyoMetro::Factories::Seed::Api::StationTrainTime::TrainInStationTimetable.find_and_get_train_timetable_infos_of_this_train( @info , *optional_variables )
   end
 

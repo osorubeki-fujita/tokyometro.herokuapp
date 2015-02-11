@@ -6,7 +6,7 @@ class StationTrainTime < ActiveRecord::Base
 
   belongs_to :station_timetable_starting_station_info
   belongs_to :station_timetable_connection_info
-  
+
   def train_timetable_arrival_info
     train_timetable.train_timetable_arrival_info_id
   end

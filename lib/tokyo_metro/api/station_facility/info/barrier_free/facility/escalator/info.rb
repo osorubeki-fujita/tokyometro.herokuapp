@@ -3,6 +3,15 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Escalator
 
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::Availability::AliasTowardsAccessibility
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::MethodMissing
+
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::Availability::Escalator
+
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::MobilityScooter::Availability::None
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::MobilityScooter::Availability::AliasTowardsAccessibility
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::MobilityScooter::MethodMissing
+
   # Constructor
   def initialize( id_urn , same_as , service_detail , place_name , located_area_name , remark , is_available_to_wheel_chair )
     super( id_urn , same_as , service_detail , place_name , located_area_name , remark )
@@ -13,19 +22,6 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::
   attr_reader :direction
   # @return [Boolean] 一般的な車いすが利用可能か否か
   attr_reader :is_available_to_wheel_chair
-
-  # @!group 車いすの利用に関するメソッド
-
-  # ハンドル型電動車いすが利用可能か否かを判定するメソッド
-  # @return [Boolean]
-  # @note 現段階ではすべて false とする。
-  # @todo true のものがあるか否かを調べる。
-  def available_to_mobility_scooter?
-    false
-  end
-
-  alias :available_to_wheel_chair? :is_available_to_wheel_chair
-  alias :is_available_to_mobility_scooter :available_to_mobility_scooter?
 
   def self.factory_for_this_class
     factory_for_generating_barrier_free_escalator_info_from_hash

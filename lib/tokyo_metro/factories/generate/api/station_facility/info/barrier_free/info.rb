@@ -18,7 +18,7 @@ class TokyoMetro::Factories::Generate::Api::StationFacility::Info::BarrierFree::
       located_area_name = "☆☆☆☆☆☆☆☆"
     end
 
-    [ id , same_as , service_detail , place_name , located_area_name , remark ]
+    [ id , same_as , service_details , place_name , located_area_name , remark ]
   end
 
   private
@@ -48,7 +48,7 @@ class TokyoMetro::Factories::Generate::Api::StationFacility::Info::BarrierFree::
     "○"
   end
 
-  def service_detail
+  def service_details
     covert_and_set_array_data(
       "odpt:serviceDetail" ,
       self.class.barrier_free_service_detail_list_class ,

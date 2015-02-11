@@ -24,6 +24,12 @@
     min-width: 96px ;
 }
 
+%cellSettingsWhenInfoIsEmpty {
+    td.empty {
+        border-bottom: solid 2px #f6f6f6 ;
+    }
+}
+
 %cellSettingsWhenInfoIsPresent {
     td.present {
         border-bottom: solid 2px #999 ;
@@ -58,6 +64,7 @@
     }
     tr.transfer_infos {
         @extend %normalCellSettingsInPlatformInfo ;
+		@extend %cellSettingsWhenInfoIsEmpty ;
         @extend %cellSettingsWhenInfoIsPresent ;
         td.title {
             $base_color: rgba( $operator_color , 0.4 ) ;
@@ -73,6 +80,7 @@
     }
     tr.barrier_free_infos_inside {
         @extend %normalCellSettingsInPlatformInfo ;
+		@extend %cellSettingsWhenInfoIsEmpty ;
         @extend %cellSettingsWhenInfoIsPresent ;
         td.title {
             $base_color: rgba( $operator_color , 0.3 ) ;
@@ -85,6 +93,7 @@
     }
     tr.surrounding_areas {
         @extend %normalCellSettingsInPlatformInfo ;
+		@extend %cellSettingsWhenInfoIsEmpty ;
         @extend %cellSettingsWhenInfoIsPresent ;
         td.title {
             $base_color: rgba( $operator_color , 0.2 ) ;

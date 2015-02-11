@@ -1,0 +1,93 @@
+Operator:
+  - Operator
+  - TrainOwner
+
+RailwayLine:
+  - RailwayLine
+  - TravelTimeInfo
+  - WomenOnlyCarInfo
+  - ConnectingRailwayLine
+  - ConnectingRailwayLineNote
+
+RailwayDirection:
+  - RailwayDirection
+
+TrainType:
+  - TrainType
+  - TrainTypeInApi
+  - TrainTypeStoppingPattern
+
+StoppingPattern:
+  - StoppingPattern
+  - StationStoppingPattern
+  - StationStoppingPatternNote
+
+Station:
+  - Station
+  - StationAlias
+
+StationFacility:
+  - StationFacility
+  - StationFacilityAlias
+  - StationFacilityPlatformInfo
+  - StationFacilityPlatformInfoTransferInfo
+  - StationFacilityPlatformInfoBarrierFreeFacility
+  - StationFacilityPlatformInfoSurroundingArea
+  - SurroundingArea
+
+BarrierFreeFacility:
+  - BarrierFreeFacility
+  - BarrierFreeFacilityLocatedArea
+  - BarrierFreeFacilityPlaceName
+  - BarrierFreeFacilityRootInfo
+  - BarrierFreeFacilityServiceDetail
+  - BarrierFreeFacilityServiceDetailPattern
+  - BarrierFreeFacilityType
+  - BarrierFreeFacilityEscalatorDirection
+  - BarrierFreeFacilityEscalatorDirectionPattern
+  - BarrierFreeFacilityToiletAssistant
+  - BarrierFreeFacilityToiletAssistantPattern
+
+PassengerSurvey:
+  - PassengerSurvey
+  - StationPassengerSurvey
+
+Fare:
+  - Fare
+  - NormalFareGroup
+
+OperationDay:
+  - OperationDay
+
+Point:
+  - Point
+  - PointCategory
+  - StationPoint
+
+Timetable:
+  - StationTimetable
+  - StationTimetableFundamentalInfo
+  - StationTimetableStartingStationInfo
+  - StationTimetableConnectionInfo
+  - TrainTimetable
+  - TrainTimetableArrivalInfo
+  - TrainTimetableTrainTypeInOtherOperator
+  - TrainRelation
+  - StationTrainTime
+
+TrainInformation:
+  - TrainInformation
+  - TrainInformationOld
+  - TrainInformationStatus
+
+TrainLocation:
+  - TrainLocation
+  - TrainLocationOld
+
+Rss:
+  - Rss
+  - RssCategory
+
+AirConditioner:
+  - AirConditioner
+  - AirConditionerAnswer

@@ -19,8 +19,8 @@
       %td<
         = "Length"
     %tbody
-      - @models.each.with_index(1) do | array , i |
-        - category , model = array
+      - @models.each.with_index(1) do | ary , i |
+        - category , model , number = ary
         - raise "Error: #{i}" if model.nil?
         %tr{ class: cycle( :odd_row , :even_row , name: :row_color ) }<
           %td{ class: :index }<
@@ -33,4 +33,4 @@
           %td{ class: :model_name }<
             = model
           %td{ class: :length_of_model }<
-            = number_separated_by_comma( eval( "::#{model}.all.count" ) )
+            = number_separated_by_comma( number )

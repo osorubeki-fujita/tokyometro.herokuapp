@@ -2,38 +2,7 @@ class DocumentController < ApplicationController
 
   def index
     @title = "開発ドキュメント"
-    @models = [
-      [ "Operator" , "Operator" ] , [ nil , "TrainOwner" ] ,
-      [ "RailwayLine" , "RailwayLine" ] , [ nil , "TravelTimeInfo" ] , [ nil , "WomenOnlyCarInfo" ] , [ nil , "ConnectingRailwayLine" ] , [ nil , "ConnectingRailwayLineNote" ] ,
-      [ "RailwayDirection" , "RailwayDirection" ] ,
-      [ "TrainType" , "TrainType" ] , [ nil , "TrainTypeInApi" ] , [ nil , "TrainTypeStoppingPattern" ] ,
-      [ "StoppingPattern" , "StoppingPattern" ] , [ nil , "StationStoppingPattern" ] , [ nil , "StationStoppingPatternNote" ] ,
-      [ "Station", "Station" ] , [ nil , "StationAlias" ] ,
-      #
-      [ "StationFacility" , "StationFacility" ] , [ nil , "StationFacilityAlias" ] , [ nil , "StationFacilityPlatformInfo" ] , [ nil , "StationFacilityPlatformInfoTransferInfo" ] ,
-      [ nil , "StationFacilityPlatformInfoBarrierFreeFacility" ] , [ nil , "StationFacilityPlatformInfoSurroundingArea" ] , [ nil , "SurroundingArea" ] ,
-      #
-      [ "BarrierFreeFacility" , "BarrierFreeFacility" ] , [ nil , "BarrierFreeFacilityLocatedArea" ] , [ nil , "BarrierFreeFacilityPlaceName" ] ,
-      [ nil , "BarrierFreeFacilityRootInfo" ] ,
-      [ nil , "BarrierFreeFacilityServiceDetail" ] , [ nil , "BarrierFreeFacilityServiceDetailPattern" ] ,
-      [ nil , "BarrierFreeFacilityType" ] , [ nil , "BarrierFreeFacilityToiletAssistant" ] ,
-      [ nil , "BarrierFreeFacilityToiletAssistantPattern" ] ,
-      #
-      [ "PassengerSurvey" , "PassengerSurvey" ] , [ nil , "StationPassengerSurvey" ] ,
-      [ "Fare" , "Fare" ] , [ nil , "NormalFareGroup" ] ,
-      [ "OperationDay" , "OperationDay" ] ,
-      [ "Point" , "Point" ] , [ nil , "PointCategory" ] , [ nil , "StationPoint" ] ,
-      #
-      [ "Timetable" , "Timetable" ] , [ nil , "TimetableArrivalInfo" ] , [ nil , "TimetableConnectionInfo" ] ,
-      [ nil , "TimetableStartingStationInfo" ] , [ nil , "TimetableTrainTypeInOtherOperator" ] , [ nil , "TrainTime" ] ,
-      #
-      [ "TrainTimetable" , "TrainTimetable" ] , [ nil , "StationTrainTime" ] ,
-      #
-      [ "TrainInformation" , "TrainInformation" ] , [ nil , "TrainInformationOld" ] , [ nil , "TrainInformationStatus" ] ,
-      [ "TrainLocation" , "TrainLocation" ] , [ nil , "TrainLocationOld" ] ,
-      [ "Rss" , "Rss" ] , [ nil , "RssCategory" ] ,
-      [ "AirConditioner" , "AirConditioner" ] , [ nil , "AirConditionerAnswer" ]
-    ] #.sort_by { | array | array[1] }
+    @models = ::TokyoMetro::DbModules::Model.list
 
     render 'document/index' , layout: 'application'
   end

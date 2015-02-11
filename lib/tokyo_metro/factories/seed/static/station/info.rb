@@ -44,7 +44,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
   end
 
   def create_station_facility
-    ::StationFacility.create( same_as: @info.station_facility )
+    ::StationFacility.find_or_create_by( same_as: @info.station_facility )
   end
 
   def hash_for_updating_db
@@ -100,7 +100,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
     s_id = station_id
     if @info.station_alias.present?
       [ @info.station_alias ].flatten.each do | station_alias |
-        ::StationAlias.create( station_id: s_id , same_as: station_alias )
+        ::StationAlias.find_or_create_by( station_id: s_id , same_as: station_alias )
       end
     end
   end
@@ -118,7 +118,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
           index_of_alias: i ,
           same_as: station_facility_alias
         }
-        ::StationFacilityAlias.create(h)
+        ::StationFacilityAlias.find_or_create_by(h)
       end
     end
   end
@@ -138,7 +138,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
   def seed_normal_stopping_patterns( s_id )
     @info.stop.each do | pattern |
       p_id = create_and_get_pattern_id( pattern )
-      ::StationStoppingPattern.create(
+      ::StationStoppingPattern.find_or_create_by(
         station_id: s_id ,
         stopping_pattern_id: p_id ,
         partial: false ,
@@ -152,7 +152,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
       @info.some_trains_stop.each do | pattern , note |
         p_id = create_and_get_pattern_id( pattern )
         note_id = ::StationStoppingPatternNote.find_or_create_by( text: note ).id
-        ::StationStoppingPattern.create(
+        ::StationStoppingPattern.find_or_create_by(
           station_id: s_id ,
           stopping_pattern_id: p_id ,
           partial: true ,
@@ -167,7 +167,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
     if @info.stop_for_drivers.present?
       @info.stop_for_drivers.each do | pattern |
         p_id = create_and_get_pattern_id( pattern )
-        ::StationStoppingPattern.create(
+        ::StationStoppingPattern.find_or_create_by(
           station_id: s_id ,
           stopping_pattern_id: p_id ,
           partial: false ,

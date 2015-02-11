@@ -39,6 +39,14 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility
       ::TokyoMetro::Api::StationFacility::Info
     end
 
+    def barrier_free_top_level_class
+      ::TokyoMetro::Api::StationFacility::Info::BarrierFree
+    end
+
+    def barrier_free_list_class
+      TokyoMetro::Api::StationFacility::Info::BarrierFree::List
+    end
+
     def barrier_free_meta_info_class
       ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Info
     end
@@ -51,8 +59,8 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility
       ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::Info
     end
 
-    def barrier_free_link_info_class
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Link::Info
+    def barrier_free_link_for_mobility_scooter_info_class
+      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::LinkForMobilityScooter::Info
     end
 
     def barrier_free_stairlift_info_class
@@ -178,8 +186,8 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility
       ::TokyoMetro::Factories::Generate::Api::StationFacility::Info::BarrierFree::Info::Facility::Escalator::ServiceDetail::Direction
     end
 
-    def factory_for_generating_barrier_free_link_info_from_hash
-      ::TokyoMetro::Factories::Generate::Api::StationFacility::Info::BarrierFree::Info::Facility::Link
+    def factory_for_generating_barrier_free_link_for_mobility_scooter_info_from_hash
+      ::TokyoMetro::Factories::Generate::Api::StationFacility::Info::BarrierFree::Info::Facility::LinkForMobilityScooter
     end
 
     def factory_for_generating_barrier_free_stairlift_info_from_hash
@@ -338,6 +346,10 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility
 
     def db_instance_class_of_escalator_direction
       ::BarrierFreeFacilityEscalatorDirection
+    end
+    
+    def db_instance_class_of_escalator_direction_pattern
+      ::BarrierFreeFacilityEscalatorDirectionPattern
     end
 
     def db_instance_class_of_toilet_assistant

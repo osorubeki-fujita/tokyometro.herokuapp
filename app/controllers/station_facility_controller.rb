@@ -1,19 +1,20 @@
 class StationFacilityController < ApplicationController
 
-  # require 'each_railway_line'
-  # require 'yurakucho_and_fukutoshin_line'
+  require 'each_railway_line'
+  require 'yurakucho_and_fukutoshin_line'
   include EachRailwayLine
   include YurakuchoAndFukutoshinLine
 
-  # require 'each_station'
+  require 'each_station'
   include EachStation
 
   def index
     @title = "駅のご案内"
-    @railway_lines = RailwayLine.tokyo_metro.includes( :stations )
+    @railway_lines = RailwayLine.tokyo_metro
     @stations_of_railway_lines = ::Station.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
+
     render 'station_facility/index'
   end
 

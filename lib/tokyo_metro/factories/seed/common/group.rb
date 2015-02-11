@@ -3,7 +3,7 @@ class TokyoMetro::Factories::Seed::Common::Group
   include ::TokyoMetro::Factories::Seed::Common::SetOptionalVariables
   include ::ForRails::CommonModules::CalcTime
 
-  def initialize( *variables , class_name , method_name , indent , no_display , not_on_the_top_layer , display_number , other_info , interrupt )
+  def initialize( *args , class_name , method_name , indent , no_display , not_on_the_top_layer , display_number , other_info , interrupt )
     if no_display and display_number
       raise "Error: Do you want to display number? You set both of \'no_display\' and \'display_number\'."
     end
@@ -17,7 +17,7 @@ class TokyoMetro::Factories::Seed::Common::Group
 
     @interrupt = interrupt
 
-    set_optional_variables( variables )
+    set_optional_variables( args )
   end
 
   def self.process( *variables )
@@ -89,7 +89,7 @@ class TokyoMetro::Factories::Seed::Common::Group
     @array_to_seed.length
   end
 
-  def set_optional_variables( *args )
+  def set_optional_variables( args )
     nil
   end
 

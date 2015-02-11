@@ -1,6 +1,3 @@
-#! ruby -Ku
-# -*- coding: utf-8 -*-
-
 module PlatformInfoTitleHelper
 
   def platform_infos_transfer_info_title

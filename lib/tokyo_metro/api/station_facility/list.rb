@@ -4,6 +4,10 @@ class TokyoMetro::Api::StationFacility::List < TokyoMetro::Api::MetaClass::NotRe
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
   include ::TokyoMetro::CommonModules::ToFactory::Seed::List
 
+  def barrier_free_facilities
+    self.class.barrier_free_list_class.new( self.map( &:barrier_free_facilities ).flatten )
+  end
+
   # インスタンスの情報を整形した文字列にして返すメソッド
   # @param indent [Integer (>=0)] インデントの幅
   # @return [String]

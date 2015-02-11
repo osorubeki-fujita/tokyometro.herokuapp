@@ -4,9 +4,9 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::Common::List < To
 
   private
 
-  def set_optional_variables( variables )
-    raise "Error" unless variables.length == 1
-    @station_facility_id = variables.first
+  def set_optional_variables( args )
+    set_optional_variables__check_length_of_args( args , 1 )
+    @station_facility_id = args.first
   end
 
   def optional_variables

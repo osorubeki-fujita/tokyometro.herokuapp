@@ -1,9 +1,9 @@
 initializeDo = ->
-  processTopContent
-  processLinkToEachDocument
-  processColorInfoInDocument
-  processLineAndStationMatrixes
-  changeAttrOfStationTimetable
+  processTopContent()
+  processLinkToEachDocument()
+  processColorInfoInDocument()
+  processLineAndStationMatrixes()
+  changeAttrOfStationTimetable()
   return
 
 window.initializeDo = initializeDo
@@ -47,18 +47,6 @@ window.changeMarginOfLineBoxInfoDomain = changeMarginOfLineBoxInfoDomain
 # getMaxLength
 #--------------------------------
 
-getMaxOuterHeight = ( domains , settings ) ->
-  len = 0
-  domains.each ->
-    len = Math.max( len , $( this ).outerHeight( settings ) )
-  return len
-
-getMaxHeight = ( domains ) ->
-  len = 0
-  domains.each ->
-    len = Math.max( len , $( this ).height() )
-  return len
-
 getMaxOuterWidth = ( domains , settings ) ->
   len = 0
   domains.each ->
@@ -71,26 +59,26 @@ getMaxWidth = ( domains ) ->
     len = Math.max( len , $( this ).width() )
   return len
 
-window.getMaxOuterHeight = getMaxOuterHeight
-window.getMaxHeight = getMaxHeight
+getMaxOuterHeight = ( domains , settings ) ->
+  len = 0
+  domains.each ->
+    len = Math.max( len , $( this ).outerHeight( settings ) )
+  return len
+
+getMaxHeight = ( domains ) ->
+  len = 0
+  domains.each ->
+    len = Math.max( len , $( this ).height() )
+  return len
+
 window.getMaxOuterWidth = getMaxOuterWidth
 window.getMaxWidth = getMaxWidth
+window.getMaxOuterHeight = getMaxOuterHeight
+window.getMaxHeight = getMaxHeight
 
 #--------------------------------
 # getSumLength
 #--------------------------------
-
-getSumOuterHeight = ( domains , settings ) ->
-  len = 0
-  domains.each ->
-    len = len + $( this ).outerHeight( settings )
-  return len
-
-getSumHeight = ( domains ) ->
-  len = 0
-  domains.each ->
-    len = len + $( this ).height()
-  return len
 
 getSumOuterWidth = ( domains , settings ) ->
   len = 0
@@ -104,23 +92,35 @@ getSumWidth = ( domains ) ->
     len = len + $( this ).width()
   return len
 
-window.getSumOuterHeight = getSumOuterHeight
-window.getSumHeight = getSumHeight
+getSumOuterHeight = ( domains , settings ) ->
+  len = 0
+  domains.each ->
+    len = len + $( this ).outerHeight( settings )
+  return len
+
+getSumHeight = ( domains ) ->
+  len = 0
+  domains.each ->
+    len = len + $( this ).height()
+  return len
+
 window.getSumOuterWidth = getSumOuterWidth
 window.getSumWidth = getSumWidth
+window.getSumOuterHeight = getSumOuterHeight
+window.getSumHeight = getSumHeight
 
 #--------------------------------
 # setAllOfUniformLengthToMax
 #--------------------------------
 
 setAllOfUniformWidthToMax = ( blocks ) ->
-  max_width = getMaxWidth( blocks )
+  max_width = getMaxOuterWidth( blocks , false )
   blocks.each ->
     $( this ).css( 'width' , max_width )
   return
 
 setAllOfUniformHeightToMax = ( blocks ) ->
-  max_height = getMaxHeight( blocks )
+  max_height = getMaxOuterHeight( blocks , false )
   blocks.each ->
     $( this ).css( 'height' , max_height )
   return

@@ -2,9 +2,9 @@ module TokyoMetro::Factories::Seed::Api::Point::Common
 
   private
 
-  def set_optional_variables( variables )
-    raise "Error" unless variables.length == 1
-    @stations = variables.first
+  def set_optional_variables( args )
+    set_optional_variables__check_length_of_args( args , 1 )
+    @stations = args.first
   end
 
   def optional_variables

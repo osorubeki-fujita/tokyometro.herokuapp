@@ -7,7 +7,7 @@ class TokyoMetro::Factories::Seed::Api::RailwayLine::Info::WomenOnlyCar::Info < 
 
   def seed_main
     operation_day_ids.each do | operation_day_id |
-      self.class.send( method_name_for_db_instance_class ).create( hash_to_db( operation_day_id ) )
+      self.class.send( method_name_for_db_instance_class ).find_or_create_by( hash_to_db( operation_day_id ) )
     end
   end
 

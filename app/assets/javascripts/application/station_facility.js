@@ -1,11 +1,12 @@
-function processStationFacilityInfo( ) {
+function processStationFacilityInfos() {
   var station_facility_info = $( '#station_facility_info' ) ;
   station_facility_info.children().each( function() {
     var content = $( this ) ; // escalator , elevator , toilet , ...
     setTitleHeightOfEachStationFacility( content ) ;
     setInsideAndOutsideDomain( content ) ;
-    setAllOfUniformWidthToMax( station_facility_info.find( '.service_time' ) ) ;
-    setAllOfUniformWidthToMax( station_facility_info.find( '.remark' ) ) ;
+    setAllOfUniformWidthToMax( content.find( '.operation_day' ) ) ;
+    setAllOfUniformWidthToMax( content.find( '.service_time' ) ) ;
+    setAllOfUniformWidthToMax( content.find( '.remark' ) ) ;
   });
 
   var domains_of_inside_and_outside = station_facility_info.find( '.inside , .outside' ) ;
@@ -46,11 +47,20 @@ function setInsideAndOutsideDomain( content ) {
     var number = facility.children().eq(0) ;
     var info = facility.children().eq(1) ;
 
-    var domain_of_toilet_assistants = info.children( '.toilet_assistants' ).first() ;
-    setHeightOfToiletAssistantsDomain( domain_of_toilet_assistants ) ;
+    var service_details = info.children( '.service_details' ).first() ;
+    service_details.children().each( function() {
+      var service_detail = $( this ) ;
 
+      var escalator_directions = service_detail.children( '.escalator_directions' ).first() ;
+      escalator_directions.css( 'height' , getMaxOuterHeight( escalator_directions.children() , true ) ) ;
+
+      service_detail.css( 'height' , getMaxOuterHeight( service_detail.children() , true ) ) ;
+    });
+
+    var toilet_assistants = info.children( '.toilet_assistants' ).first() ;
+    toilet_assistants.css( 'height' , getMaxOuterHeight( toilet_assistants.children() , true ) ) ;
+    
     var info_height = getSumOuterHeight( info.children() , true ) ;
-    setCssAttributesToEachDomain( info , 'height' , info_height ) ;
     info.css( 'height' , info_height ) ;
     var facility_height = Math.max( number.outerHeight( true ) , info_height ) ;
     facility.css( 'height' , facility_height ) ;
@@ -58,9 +68,4 @@ function setInsideAndOutsideDomain( content ) {
 
   var content_height = getSumOuterHeight( content.children() , true ) ;
   content.css( 'height' , content_height ) ;
-}
-
-function setHeightOfToiletAssistantsDomain( domain ) {
-  var height_of_each_domain_of_toilet_assistants = getMaxOuterHeight( domain.children() , false ) ;
-  domain.css( 'height' , height_of_each_domain_of_toilet_assistants ) ;
 }

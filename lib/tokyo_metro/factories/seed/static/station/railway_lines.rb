@@ -10,7 +10,7 @@ class TokyoMetro::Factories::Seed::Static::Station::RailwayLines < TokyoMetro::F
 
   def seed_main_infos
     @h.each do | railway_line , in_each_railway_line |
-      puts " " * 4 * ( @indent + 1 ) + "※ #{ railway_line }"
+      puts " " * 4 * ( @indent + 1 ) + "窶ｻ #{ railway_line }"
       puts ""
       in_each_railway_line.seed( railway_line , @indent + 2 )
     end
@@ -18,7 +18,7 @@ class TokyoMetro::Factories::Seed::Static::Station::RailwayLines < TokyoMetro::F
 
   def seed_instance_for_escaping_undefined
     puts "seed_instance_for_escaping_undefined"
-    self.class.db_instance_class.create(
+    self.class.db_instance_class.find_or_create_by(
       same_as: "odpt.Station:Undefined" ,
       name_ja: "未定義" ,
       name_en: "Undefined" ,

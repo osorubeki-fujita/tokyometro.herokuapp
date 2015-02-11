@@ -5,4 +5,9 @@ class BarrierFreeFacilityToiletAssistant < ActiveRecord::Base
   scope :station_facility , ->{
     barrier_free_facility.station_facility
   }
+
+  def pattern
+    barrier_free_facility_toilet_assistant_pattern
+  end
+
 end

@@ -9,12 +9,12 @@ module TokyoMetro::ApiModules::Convert::Patches::StationFacility::EscalatorDirec
 
   private
 
-  def service_detail
+  def service_details
     case @hash[ "owl:sameAs" ]
     when CHIYODA_OTEMACHI_OUTSIDE_ESCALATOR_1
       service_detail_ary_new = @hash[ "odpt:serviceDetail" ].map { | info_h |
-    # factory_of_service_detail
-        factory_instance = self.class.factory_for_generating_barrier_free_service_detail_from_hash.new( info_h )
+        factory_instance = self.class.factory_for_generating_barrier_free_escalator_service_detail_from_hash.new( info_h )
+        # puts "★ " + @hash[ "owl:sameAs" ]
 
         class << factory_instance
           prepend ::TokyoMetro::ApiModules::Convert::Patches::StationFacility::EscalatorDirection::Generate::Info::BarrierFree::Facility::Escalator::ServiceDetail::ChiyodaOtemachiOutsideEscalator1

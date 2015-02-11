@@ -4,11 +4,10 @@ module TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Ser
 
   private
 
-  def set_optional_variables( *args )
-    unless args.length == 1
-      raise "Error"
-    end
+  def set_optional_variables( args )
+    set_optional_variables__check_length_of_args( args , 1 )
     @barrier_free_facility_id = args.first
+    raise unless @barrier_free_facility_id.integer?
   end
 
   def optional_variables

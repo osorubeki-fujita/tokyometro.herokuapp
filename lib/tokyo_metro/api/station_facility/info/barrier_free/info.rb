@@ -10,23 +10,26 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
   include ::TokyoMetro::ApiModules::Info::ToStringGeneral
   include ::TokyoMetro::ApiModules::Info::SetDataToHash
 
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree
+  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::LocatedArea
+
   # Constructor
-  def initialize( id_urn , same_as , service_detail , place_name , located_area_name , remark )
+  def initialize( id_urn , same_as , service_details , place_name , located_area_name , remark )
     @id_urn = id_urn
     @same_as = same_as
-    @service_detail = service_detail
+    @service_details = service_details
     @place_name = place_name
     @located_area_name = located_area_name
     @remark = remark
 
-    # 利用可能な車いすの情報は、Link, Escalator のクラスメソッドとして定義する。
+    # 利用可能な車いすの情報は、LinkForMobilityScooter, Escalator のクラスメソッドとして定義する。
   end
 
   # @return [String] 固有識別子
   # @note 命名ルールは「odpt.Facility:TokyoMetro.路線名.駅名.改札の内外.カテゴリ名.通し番号」
   attr_reader :same_as
-  # @return [ServiceDetail::Info] 施設の詳細情報
-  attr_reader :service_detail
+  # @return [ServiceDetail::List] 施設の詳細情報
+  attr_reader :service_details
   # @return [String] 施設の設置されている場所の名前
   attr_reader :place_name
   # @return [String] 施設の設置場所（改札内／改札外）
@@ -35,13 +38,17 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
   attr_reader :remark
 
   alias :to_strf :to_s
+  
+  alias :located_area_name_ja :located_area_name
 
-  def inside?
-    @located_area_name == "改札内"
-  end
-
-  def outside?
-    @located_area_name == "改札外"
+  def located_area_name_en
+    if inside?
+      "Inside"
+    elsif outside?
+      "Outside"
+    else
+      raise "Error"
+    end
   end
 
   # インスタンスの情報をハッシュにして返すメソッド
@@ -51,14 +58,14 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
 
       set_data_to_hash( h , "\@id" , @id_urn )
       set_data_to_hash( h , "owl:sameAs" , @same_as )
-      set_data_to_hash( h , "odpt:serviceDetail" , @service_detail )
+      set_data_to_hash( h , "odpt:serviceDetail" , @service_details )
       set_data_to_hash( h , "odpt:placeName" , @place_name )
       set_data_to_hash( h , "odpt:locatedAreaName" , @located_area_name )
       set_data_to_hash( h , "ugsrv:remark" , @remark )
 
       set_data_to_hash( h , "ugsrv:categoryName" , self.class.category_name )
 
-      # Link, Escalator クラスのみに関連（他のクラスでは、self.class.spac__is_available_to は nil）
+      # LinkForMobilityScooter, Escalator クラスのみに関連（他のクラスでは、self.class.spac__is_available_to は nil）
       set_data_to_hash( h , "spac:isAvailableTo" , self.class.spac__is_available_to )
 
       # Toilet クラスのみに関連（他のクラスでは @has_assistant は定義されないため、@has_assistant は nil を返す）
@@ -82,7 +89,8 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
   private
 
   def seed_service_detail( barrier_free_facility_id )
-    @service_detail.try( :seed , barrier_free_facility_id )
+    raise unless barrier_free_facility_id.integer?
+    @service_details.try( :seed , barrier_free_facility_id )
   end
 
 end

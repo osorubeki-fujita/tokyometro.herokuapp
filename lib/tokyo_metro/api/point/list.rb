@@ -4,6 +4,8 @@ class TokyoMetro::Api::Point::List < TokyoMetro::Api::MetaClass::Hybrid::List
   include ::TokyoMetro::ClassNameLibrary::Api::Point
   include ::TokyoMetro::CommonModules::ToFactory::Seed::List
 
+  undef :find_by_same_as
+
   def seed
     super( ::Station.all , display_number: true )
   end

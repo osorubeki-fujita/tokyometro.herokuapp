@@ -9,7 +9,7 @@ class TokyoMetro::Factories::Seed::Static::Operator::Hash < TokyoMetro::Factorie
   end
 
   def seed_instance_for_escaping_undefined
-    self.class.db_instance_class.create(
+    self.class.db_instance_class.find_or_create_by(
       same_as: "odpt.Operator:Undefined" ,
       name_ja: "未定義" ,
       name_en: "Undefined"

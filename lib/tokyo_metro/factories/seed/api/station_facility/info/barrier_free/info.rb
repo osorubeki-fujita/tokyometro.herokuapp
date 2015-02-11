@@ -5,6 +5,10 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Info
   include ::TokyoMetro::Factories::Seed::Reference::RailwayLine
   include ::TokyoMetro::Factories::Seed::Reference::RailwayDirection
 
+  def initialize( *args )
+    super( *args )
+  end
+
   private
 
   def hash_to_db
@@ -23,7 +27,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Info
   end
 
   def barrier_free_facility_located_area_id
-    ::BarrierFreeFacilityLocatedArea.find_or_create_by( name_ja: @info.located_area_name ).id
+    ::BarrierFreeFacilityLocatedArea.find_or_create_by( name_ja: @info.located_area_name_ja , name_en: @info.located_area_name_en ).id
   end
 
   def barrier_free_facility_type_id
@@ -61,7 +65,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Info
   end
 
   def seed_barrier_free_facility_root_info( place_name , i )
-    ::BarrierFreeFacilityRootInfo.create(
+    ::BarrierFreeFacilityRootInfo.find_or_create_by(
       barrier_free_facility_id: @id ,
       barrier_free_facility_place_name_id: place_name_id( place_name ) ,
       index_in_root: i

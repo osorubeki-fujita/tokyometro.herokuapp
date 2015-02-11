@@ -5,7 +5,7 @@ class TokyoMetro::Factories::Seed::Static::RailwayLine::Hash < TokyoMetro::Facto
   private
 
   def seed_instance_for_escaping_undefined
-    self.class.db_instance_class.create(
+    self.class.db_instance_class.find_or_create_by(
       same_as: "odpt.Railway:Undefined" ,
       name_ja: "未定義" ,
       name_en: "Undefined" ,

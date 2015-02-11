@@ -277,7 +277,19 @@ module RailsTokyoMetro
 
         ary.set_files Dir.glob( "#{ dir_station_facility_info }/barrier_free/**.rb" ).sort
         ary.set_files Dir.glob( "#{ dir_station_facility_info }/barrier_free/service_detail/**/**.rb" ).sort
+
+        [
+          [ "barrier_free", "facility" ] ,
+          [ "barrier_free", "facility" , "meta_class" ] ,
+          [ "barrier_free", "facility" , "meta_class" , "link_for_mobility_scooters_and_stairlift" ] ,
+          [ "barrier_free", "facility" , "meta_class" , "link_for_mobility_scooters_and_stairlift" , "info" ] ,
+          [ "barrier_free", "facility" , "meta_class" , "link_for_mobility_scooters_and_stairlift" , "list" ]
+        ].each do | dir_name |
+          ary.set_files File.join( *dir_station_facility_info , *dir_name )
+        end
+
         ary.set_files Dir.glob( "#{ dir_station_facility_info }/barrier_free/facility/**/**.rb" ).sort
+        
         ary.set_files Dir.glob( "#{ dir_station_facility_info }/**.rb" ).sort
 
         [
@@ -784,14 +796,14 @@ module RailsTokyoMetro
       #---------------- 定数の設定
       ::TokyoMetro.set_fundamental_constants
 
-      # ::TokyoMetro.set_api_consts( { station_facility: true , passenger_survey: true , station: true , railway_line: true , point: true })
+      # ::TokyoMetro.set_api_consts( :station_facility , :passenger_survey , :station , :railway_line , :point )
 
-      # ::TokyoMetro.set_api_constants( { station_timetable: true , train_timetable: true } )
-      # ::TokyoMetro.set_api_constants( { station_timetable: true } )
-      # ::TokyoMetro.set_api_constants( { train_timetable: true } )
+      # ::TokyoMetro.set_api_constants( :station_timetable , :train_timetable )
+      # ::TokyoMetro.set_api_constants( :station_timetable )
+      # ::TokyoMetro.set_api_constants( :train_timetable )
 
       # ::TokyoMetro.set_all_api_constants_without_fare
-      # ꇐ
+
       # ::TokyoMetro.set_all_api_constants
 
       ::ActiveRecord::Base.logger = nil
@@ -801,6 +813,8 @@ module RailsTokyoMetro
 end
 
 __END__
+
+# ꇐ
 
 TokyoMetro::Api::StationTrainTime.seed( :ginza )
 
@@ -826,20 +840,11 @@ TokyoMetro::Factories::Seed.destroy_all_items_of( ::StationTrainTime )
 
 #--------
 
-::TokyoMetro.set_api_constants( { station_timetable: true , train_timetable: true } )
-::TokyoMetro.set_api_constants( { station_timetable: true } )
-
 puts ::TokyoMetro::Api.station_timetables.select { | item | /NakanoSakaue/ =~ item.same_as }.map { | item | item.same_as }.sort
 puts ""
 puts ::TokyoMetro::Api.station_timetables.select { | item | item.at_nakano_sakaue? }.map { | item | item.same_as }.sort
 
 #--------
-
-::TokyoMetro::Api.station_timetables.each do | item |
-  ::TokyoMetro::Factories::Api::Seed::TimetableInfos::StationTrainTime::TrainInStationTimetable::StationTimetableInfo.new( item )
-end
-
-#-------- 
 
 puts ::TokyoMetro::Api.station_timetables.select { | item | /NakanoSakaue/ =~ item.same_as }.map { | item | item.same_as }.sort
 puts ::TokyoMetro::Api.station_timetables.select { | item | item.at_nakano_sakaue? }.map { | item | item.same_as }.sort
@@ -855,46 +860,11 @@ TokyoMetro::CommonModules::Dictionary::Station::RegexpInfo.nakano_sakaue
 
 puts ::TokyoMetro::Api.station_timetables.select { | item | /NakanoSakaue/ =~ item.same_as }.map { | item | item.station }.sort
 
-__END__
-
-完了 - Errorありの可能性
-::TokyoMetro::Api::StationTrainTime.seed( :ginza )
-::TokyoMetro::Api::StationTrainTime.seed( :hibiya )
-::TokyoMetro::Api::StationTrainTime.seed( :tozai )
-::TokyoMetro::Api::StationTrainTime.seed( :namboku )
-
-完了
-::TokyoMetro::Api::StationTrainTime.seed( :hanzomon )
-::TokyoMetro::Api::StationTrainTime.seed( :yurakucho_fukutoshin )
-::TokyoMetro::Api::StationTrainTime.seed( :chiyoda )
-
-完了 - Check 前
-
-実行中
-
-未完了
-::TokyoMetro::Api::StationTrainTime.seed( :marunouchi_including_branch )
-
-#--------
-
-TokyoMetro::Api::StationTrainTime.check_number( :ginza )
-TokyoMetro::Api::StationTrainTime.check_number( :hibiya )
-TokyoMetro::Api::StationTrainTime.check_number( :tozai )
-TokyoMetro::Api::StationTrainTime.check_number( :chiyoda )
-TokyoMetro::Api::StationTrainTime.check_number( :hanzomon )
-TokyoMetro::Api::StationTrainTime.check_number( :namboku )
-TokyoMetro::Api::StationTrainTime.check_number( :yurakucho , :fukutoshin )
-TokyoMetro::Api::StationTrainTime.check_number( :marunouchi , :marunouchi_branch )
-
-#--------
-
-TokyoMetro::Api::StationTrainTime.destory( :marunouchi , :marunouchi_branch )
-
 #--------
 
 # ary = TokyoMetro::Api::TrainLocation::generate_from_saved_json( 2014 , 10 , 6 , line: "Ginza" , max: 100 )
 
-__END__
+#--------
 
 ::TokyoMetro::Api.station_timetables.select { | timetable |
   timetable.at_honancho_including_invalid? or timetable.at_nakano_fujimicho_including_invalid? or timetable.at_nakano_shimbashi_including_invalid?
@@ -920,21 +890,3 @@ __END__
 
 ::TokyoMetro.set_api_constants( { station_timetable: true } )
 puts ::TokyoMetro::Api.station_timetables.select { | item | item.marunouchi_line_including_branch? }.length
-
-#--------
-
-def change_train_timetable_infos_of_marunouchi
-  marunouchi_ids = ::RailwayLine.where( same_as: [ "odpt.Railway:TokyoMetro.Marunouchi" , "odpt.Railway:TokyoMetro.MarunouchiBranch" ] ).pluck( :id )
-  train_timetable_ids = ::TrainTimetable.where( railway_line_id: marunouchi_ids ).pluck( :id )
-  puts train_timetable_ids.length
-  a = gets.chomp
-  train_timetable_ids.each do | train_timetable_id |
-    d = ::TrainTimetable.find( train_timetable_id )
-    d.destroy
-  end
-  puts "[Destroy] Completed"
-  a = gets.chomp
-
-  ::TokyoMetro::Api.train_timetables.marunouchi_including_branch.seed
-  return nil
-end

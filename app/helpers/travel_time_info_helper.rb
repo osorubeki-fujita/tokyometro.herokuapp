@@ -163,8 +163,8 @@ module TravelTimeInfoHelper
     = link_to( "" , "../railway_line/" + railway_line.name_en.gsub( " " , "_" ).underscore )
   = railway_line_code( railway_line , must_display_line_color: true , small: true )
   = railway_line_name_text( railway_line , process_special_railway_line: true )
-  - if connecting_railway_line.another_station_id.meaningful?
-    - another_station = connecting_railway_line.another_station
+  - if connecting_railway_line.connecting_to_another_station?
+    - another_station = connecting_railway_line.connecting_station
     - unless connecting_railway_line.railway_line.same_as == "odpt.Railway:Toei.TodenArakawa"
       - suffix_ja = "駅"
     - else

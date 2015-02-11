@@ -76,7 +76,7 @@
     .tozai {
         @include borderColorOfEachRailwaLineHeaderInDocument( $line_tozai_bgcolor )
     }
-    .chiyoda {
+    .chiyoda , .chiyoda_branch {
         @include borderColorOfEachRailwaLineHeaderInDocument( $line_chiyoda_bgcolor )
     }
     .yurakucho {

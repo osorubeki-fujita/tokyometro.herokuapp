@@ -16,7 +16,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Serv
         @id = db_class.find_or_create_by(h).id
         seed_optional_infos_for_each_loop
       else
-        db_class.create(h)
+        db_class.find_or_create_by(h)
       end
     end
   end

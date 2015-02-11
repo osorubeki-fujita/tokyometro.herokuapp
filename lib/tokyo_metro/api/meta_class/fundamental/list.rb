@@ -11,6 +11,10 @@ class TokyoMetro::Api::MetaClass::Fundamental::List < ::Array
     self.map { |i| i.to_strf( indent ) }.join( "\n" * ( empty_line + 1 ) )
   end
 
+  def find_by_same_as( search_by )
+    self.find { | item | search_by === item.same_as }
+  end
+
 end
 
 __END__

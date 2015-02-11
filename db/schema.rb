@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203021309) do
+ActiveRecord::Schema.define(version: 20150211124616) do
 
   create_table "air_conditioner_answers", force: true do |t|
     t.string   "name_ja"
@@ -42,12 +42,18 @@ ActiveRecord::Schema.define(version: 20150203021309) do
     t.datetime "updated_at"
   end
 
-  create_table "barrier_free_facility_escalator_directions", force: true do |t|
-    t.integer  "barrier_free_facility_service_detail_id"
+  create_table "barrier_free_facility_escalator_direction_patterns", force: true do |t|
     t.boolean  "up"
     t.boolean  "down"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "barrier_free_facility_escalator_directions", force: true do |t|
+    t.integer  "barrier_free_facility_service_detail_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "barrier_free_facility_escalator_direction_pattern_id"
   end
 
   create_table "barrier_free_facility_located_areas", force: true do |t|
@@ -91,7 +97,7 @@ ActiveRecord::Schema.define(version: 20150203021309) do
   end
 
   create_table "barrier_free_facility_toilet_assistant_patterns", force: true do |t|
-    t.boolean  "wheelchair_accessible"
+    t.boolean  "wheel_chair_accessible"
     t.boolean  "baby_chair"
     t.boolean  "baby_changing_table"
     t.boolean  "ostomate"

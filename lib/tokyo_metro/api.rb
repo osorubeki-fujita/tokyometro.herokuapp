@@ -13,33 +13,22 @@ module TokyoMetro::Api
 
   # 東京メトロ オープンデータに関する定数を定義するメソッド (2) - API から取得し保存したデータからインスタンスを作成し、定数とする
   # @return [nil]
-  def self.set_constants( config_of_api_constants )
-    if config_of_api_constants.nil?
-      ary_for_display = ::Array.new
-      ary_for_display << :none
-      list_of_constants.each do | constant |
-        ary_for_display << constant
-      end
+  def self.set_constants( *configs_of_api_constants )
+    config_of_api_constants = set_config_of_api_constants( *configs_of_api_constants )
 
-      numbers = numbers_of_constants( ary_for_display )
-
-      if numbers.include?(0)
-        return nil
-      end
-
-      config_of_api_constants = ::Hash.new
-      numbers.each do | i |
-        config_of_api_constants[ ary_for_display[i] ] = true
-      end
-    end
-
-    list_of_constants.each do | symbol |
-      if config_of_api_constants[ symbol ]
-        set_constant( symbol )
+    if config_of_api_constants.present?
+      list_of_constants.each do | symbol |
+        if config_of_api_constants[ symbol ]
+          set_constant( symbol )
+        end
       end
     end
 
     return nil
+  end
+
+  def self.barrier_free_facilities
+    STATION_FACILITY.send( __method__ )
   end
 
   class << self
@@ -60,6 +49,46 @@ module TokyoMetro::Api
       class_name = "::TokyoMetro::Api::#{ const_name_base.camelize }"
       puts const_name.to_s.ljust(48) + class_name
       const_set( const_name , eval( class_name ).generate_from_saved_json )
+    end
+
+    def set_config_of_api_constants( *configs_of_api_constants )
+      if configs_of_api_constants.blank? or configs_of_api_constants.all?( &:blank? )
+        ary_for_display = ::Array.new
+        ary_for_display << :none
+        list_of_constants.each do | constant |
+          ary_for_display << constant
+        end
+
+        numbers = numbers_of_constants( ary_for_display )
+
+        if numbers.include?(0)
+          return nil
+        end
+
+        h = ::Hash.new
+        numbers.each do | i |
+          h[ ary_for_display[i] ] = true
+        end
+
+        return h
+
+      elsif configs_of_api_constants.instance_of?( ::Array )
+        if configs_of_api_constants.length == 1 and configs_of_api_constants.first.instance_of?( ::Hash )
+          h = configs_of_api_constants.first
+          if h.keys.all? { | key | list_of_constants.include?( key ) }
+            return h
+          end
+
+        elsif configs_of_api_constants.all? { | item | ( item.instance_of?( ::String ) or item.instance_of?( ::Symbol ) ) and list_of_constants.include?( item ) }
+          h = ::Hash.new
+          configs_of_api_constants.each do | key |
+            h[ key.intern ] = true
+          end
+          return h
+        end
+      end
+
+      raise "Error: #{ configs_of_api_constants.to_s } is not valid."
     end
 
     def numbers_of_constants( ary_for_display )
@@ -112,21 +141,3 @@ module TokyoMetro::Api
   end
 
 end
-
-# api/meta_class.rb
-
-# api/station_timetable.rb
-# api/train_timetable.rb
-
-# api/train_information.rb
-# api/train_location.rb
-# api/station.rb
-# api/station_facility.rb
-# api/passenger_survey.rb
-# api/railway_line.rb
-# api/fare.rb
-
-# api/point.rb
-
-# api/mlit_railway_line.rb
-# api/mlit_station.rb

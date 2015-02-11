@@ -106,12 +106,6 @@
       }
     }
     .chiyoda {
-      .local_kita_ayase {
-        $color: $train_type_chiyoda_local_kita_ayase_color;
-        $bgcolor: $train_type_chiyoda_local_kita_ayase_bgcolor;
-        @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-        @extend %trainTypeBoxBase_normal ;
-      }
       .local_normal {
         $color: $train_type_chiyoda_local_normal_color;
         $bgcolor: $train_type_chiyoda_local_normal_bgcolor;
@@ -217,6 +211,14 @@
       .romance_car_normal {
         $color: $train_type_chiyoda_romance_car_normal_color;
         $bgcolor: $train_type_chiyoda_romance_car_normal_bgcolor;
+        @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+        @extend %trainTypeBoxBase_normal ;
+      }
+    }
+    .chiyoda_branch {
+      .local_normal {
+        $color: $train_type_chiyoda_local_kita_ayase_color;
+        $bgcolor: $train_type_chiyoda_local_kita_ayase_bgcolor;
         @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
         @extend %trainTypeBoxBase_normal ;
       }

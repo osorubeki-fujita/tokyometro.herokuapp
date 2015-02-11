@@ -1,4 +1,5 @@
 class RailwayLine < ActiveRecord::Base
+
   belongs_to :operator
   has_many :stations
   has_many :station_facilities , through: :stations
@@ -21,29 +22,30 @@ class RailwayLine < ActiveRecord::Base
   has_many :train_locations
   has_many :train_location_olds
 
-  def tokyo_metro?
-    self.operator.tokyo_metro?
-  end
-
-  def not_operated_yet?
-    self.same_as == "odpt.Railway:JR-East.UenoTokyo" and Time.now <= Time.new( 2015 , 3 , 14 , 3 )
-  end
+  include ::TokyoMetro::CommonModules::Info::RailwayLine
+  include ::TokyoMetro::DbModules::Decision::Operator
 
   # 東京メトロの路線を取得する
   scope :tokyo_metro , -> {
-    operator_id_number = Operator.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
-    where( operator_id: operator_id_number ).where.not( same_as: [ "odpt.Railway:TokyoMetro.MarunouchiBranch" , "odpt.Railway:TokyoMetro.ChiyodaBranch" ] ).order( index: :asc )
+    tokyo_metro_not_including_branch
   }
 
-  # 東京メトロの路線（支線を含まない）を取得する
+  # 東京メトロの路線（支線を含む）を取得する
   scope :tokyo_metro_including_branch , -> {
     operator_id_number = Operator.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
-    where( operator_id: operator_id_number ).order( index: :asc )
+    where( operator_id: operator_id_number ).includes( :stations ).order( index: :asc )
+  }
+  # 東京メトロの路線（支線を含まない）を取得する
+  scope :tokyo_metro_not_including_branch , -> {
+    tokyo_metro_including_branch.select( &:not_branch_line? )
+  }
+  scope :tokyo_metro_without_branch , -> {
+    tokyo_metro_not_including_branch
   }
 
   # 路線記号から路線を取得する
-  scope :select_by_railway_line_codes , ->( arr ) {
-    where( name_code: arr )
+  scope :select_by_railway_line_codes , ->( *ary ) {
+    where( name_code: ary )
   }
 
   # 銀座線の駅を取得する

@@ -22,8 +22,11 @@ class TokyoMetro::Factories::Generate::Api::StationFacility::Info < TokyoMetro::
   def barrier_free_facility_list
     covert_and_set_array_data(
       "odpt:barrierfreeFacility" ,
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::List ,
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree # ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Info ではないのがポイント
+      self.class.barrier_free_list_class ,
+      #
+      # ::TokyoMetro::Api::StationFacility::Info::BarrierFree
+      # @note ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Info (barrier_free_meta_info_class) ではない
+      self.class.barrier_free_top_level_class 
     )
   end
 
@@ -32,8 +35,8 @@ class TokyoMetro::Factories::Generate::Api::StationFacility::Info < TokyoMetro::
   def platform_info_list
     covert_and_set_array_data(
       "odpt:platformInformation" ,
-      ::TokyoMetro::Api::StationFacility::Info::Platform::List ,
-      ::TokyoMetro::Api::StationFacility::Info::Platform::Info
+      self.class.platform_list_class ,
+      self.class.platform_info_class
     )
   end
 

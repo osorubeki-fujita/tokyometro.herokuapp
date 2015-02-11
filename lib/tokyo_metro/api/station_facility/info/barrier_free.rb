@@ -29,7 +29,7 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree
       ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::Info
 
     when "ug:Link"
-      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Link::Info
+      ::TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::LinkForMobilityScooter::Info
 
     else
       raise "Error"

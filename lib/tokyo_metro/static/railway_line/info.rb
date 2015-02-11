@@ -8,6 +8,7 @@ class TokyoMetro::Static::RailwayLine::Info
 
   include ::TokyoMetro::CommonModules::Info::Decision::SameAs
   include ::TokyoMetro::CommonModules::Info::Decision::Operator
+  include ::TokyoMetro::CommonModules::Info::RailwayLine
 
   # Constructor
   # @param same_as [::String]

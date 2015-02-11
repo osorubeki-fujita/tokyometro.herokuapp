@@ -22,7 +22,7 @@ class TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::ArrivalTimes::Last
       check_validity_of_normal_trains
     end
 
-    db_class.create( hash_to_db )
+    db_class.find_or_create_by( hash_to_db )
 
     info_of_last_station_in_tokyo_metro.seed_completed!
 
