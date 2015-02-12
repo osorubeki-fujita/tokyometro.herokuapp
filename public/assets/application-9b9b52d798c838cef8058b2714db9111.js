@@ -11579,11 +11579,11 @@ function changeWidthOfRailwayLineDomain( blocks ) {
   var changeAttibutesOfTopHeader, changeAttrOfStationTimetable, changeMarginOfLineBoxInfoDomain, changeWidth, changeWidthAndHeightOfTrainTime, changeWidthOfContentsInTimetable, changeWidthOfMin, changeWidthOfOperationDay, changeWidthOfTdHour, getMaxHeight, getMaxOuterHeight, getMaxOuterWidth, getMaxWidth, getSumHeight, getSumOuterHeight, getSumOuterWidth, getSumWidth, initializeDo, processColorInfoInDocument, processLineAndStationMatrixes, processLinkToEachDocument, processTopContent, setAllOfUniformHeightToMax, setAllOfUniformWidthToMax, setCssAttributesToEachDomain, setVarticalPositionOfOperationDay;
 
   initializeDo = function() {
-    processTopContent;
-    processLinkToEachDocument;
-    processColorInfoInDocument;
-    processLineAndStationMatrixes;
-    changeAttrOfStationTimetable;
+    processTopContent();
+    processLinkToEachDocument();
+    processColorInfoInDocument();
+    processLineAndStationMatrixes();
+    changeAttrOfStationTimetable();
   };
 
   window.initializeDo = initializeDo;
@@ -11608,24 +11608,6 @@ function changeWidthOfRailwayLineDomain( blocks ) {
 
   window.changeMarginOfLineBoxInfoDomain = changeMarginOfLineBoxInfoDomain;
 
-  getMaxOuterHeight = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).outerHeight(settings));
-    });
-    return len;
-  };
-
-  getMaxHeight = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).height());
-    });
-    return len;
-  };
-
   getMaxOuterWidth = function(domains, settings) {
     var len;
     len = 0;
@@ -11644,31 +11626,31 @@ function changeWidthOfRailwayLineDomain( blocks ) {
     return len;
   };
 
-  window.getMaxOuterHeight = getMaxOuterHeight;
+  getMaxOuterHeight = function(domains, settings) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = Math.max(len, $(this).outerHeight(settings));
+    });
+    return len;
+  };
 
-  window.getMaxHeight = getMaxHeight;
+  getMaxHeight = function(domains) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = Math.max(len, $(this).height());
+    });
+    return len;
+  };
 
   window.getMaxOuterWidth = getMaxOuterWidth;
 
   window.getMaxWidth = getMaxWidth;
 
-  getSumOuterHeight = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).outerHeight(settings);
-    });
-    return len;
-  };
+  window.getMaxOuterHeight = getMaxOuterHeight;
 
-  getSumHeight = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).height();
-    });
-    return len;
-  };
+  window.getMaxHeight = getMaxHeight;
 
   getSumOuterWidth = function(domains, settings) {
     var len;
@@ -11688,17 +11670,35 @@ function changeWidthOfRailwayLineDomain( blocks ) {
     return len;
   };
 
-  window.getSumOuterHeight = getSumOuterHeight;
+  getSumOuterHeight = function(domains, settings) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = len + $(this).outerHeight(settings);
+    });
+    return len;
+  };
 
-  window.getSumHeight = getSumHeight;
+  getSumHeight = function(domains) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = len + $(this).height();
+    });
+    return len;
+  };
 
   window.getSumOuterWidth = getSumOuterWidth;
 
   window.getSumWidth = getSumWidth;
 
+  window.getSumOuterHeight = getSumOuterHeight;
+
+  window.getSumHeight = getSumHeight;
+
   setAllOfUniformWidthToMax = function(blocks) {
     var max_width;
-    max_width = getMaxWidth(blocks);
+    max_width = getMaxOuterWidth(blocks, false);
     blocks.each(function() {
       return $(this).css('width', max_width);
     });
@@ -11706,7 +11706,7 @@ function changeWidthOfRailwayLineDomain( blocks ) {
 
   setAllOfUniformHeightToMax = function(blocks) {
     var max_height;
-    max_height = getMaxHeight(blocks);
+    max_height = getMaxOuterHeight(blocks, false);
     blocks.each(function() {
       return $(this).css('height', max_height);
     });
@@ -12272,14 +12272,15 @@ function setHeightOfMainContents() {
   $('div#right_contents').css( 'height' , maxHeight );
 }
 ;
-function processStationFacilityInfo( ) {
+function processStationFacilityInfos() {
   var station_facility_info = $( '#station_facility_info' ) ;
   station_facility_info.children().each( function() {
     var content = $( this ) ; // escalator , elevator , toilet , ...
     setTitleHeightOfEachStationFacility( content ) ;
     setInsideAndOutsideDomain( content ) ;
-    setAllOfUniformWidthToMax( station_facility_info.find( '.service_time' ) ) ;
-    setAllOfUniformWidthToMax( station_facility_info.find( '.remark' ) ) ;
+    setAllOfUniformWidthToMax( content.find( '.operation_day' ) ) ;
+    setAllOfUniformWidthToMax( content.find( '.service_time' ) ) ;
+    setAllOfUniformWidthToMax( content.find( '.remark' ) ) ;
   });
 
   var domains_of_inside_and_outside = station_facility_info.find( '.inside , .outside' ) ;
@@ -12320,11 +12321,20 @@ function setInsideAndOutsideDomain( content ) {
     var number = facility.children().eq(0) ;
     var info = facility.children().eq(1) ;
 
-    var domain_of_toilet_assistants = info.children( '.toilet_assistants' ).first() ;
-    setHeightOfToiletAssistantsDomain( domain_of_toilet_assistants ) ;
+    var service_details = info.children( '.service_details' ).first() ;
+    service_details.children().each( function() {
+      var service_detail = $( this ) ;
 
+      var escalator_directions = service_detail.children( '.escalator_directions' ).first() ;
+      escalator_directions.css( 'height' , getMaxOuterHeight( escalator_directions.children() , true ) ) ;
+
+      service_detail.css( 'height' , getMaxOuterHeight( service_detail.children() , true ) ) ;
+    });
+
+    var toilet_assistants = info.children( '.toilet_assistants' ).first() ;
+    toilet_assistants.css( 'height' , getMaxOuterHeight( toilet_assistants.children() , true ) ) ;
+    
     var info_height = getSumOuterHeight( info.children() , true ) ;
-    setCssAttributesToEachDomain( info , 'height' , info_height ) ;
     info.css( 'height' , info_height ) ;
     var facility_height = Math.max( number.outerHeight( true ) , info_height ) ;
     facility.css( 'height' , facility_height ) ;
@@ -12332,11 +12342,6 @@ function setInsideAndOutsideDomain( content ) {
 
   var content_height = getSumOuterHeight( content.children() , true ) ;
   content.css( 'height' , content_height ) ;
-}
-
-function setHeightOfToiletAssistantsDomain( domain ) {
-  var height_of_each_domain_of_toilet_assistants = getMaxOuterHeight( domain.children() , false ) ;
-  domain.css( 'height' , height_of_each_domain_of_toilet_assistants ) ;
 }
 ;
 (function() {
@@ -12496,7 +12501,7 @@ $( document ).on( 'ready page:load' , function() { // Turbolinks 対策
   initializeDo() ;
 
   changeAttrOfStationFacility() ;
-  processStationFacilityInfo() ;
+  processStationFacilityInfos() ;
 
   // processPassengerSurveyTable() ;
   

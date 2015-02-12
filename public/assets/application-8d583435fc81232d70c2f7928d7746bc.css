@@ -1598,17 +1598,17 @@ ul.links li {
   border-bottom: solid 1px #109ed4;
 }
 /* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
-#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_kita_ayase, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
+#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .chiyoda_branch .local_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
   float: left;
 }
 
 /* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
-#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_kita_ayase, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
+#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .chiyoda_branch .local_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
   float: left;
 }
 
 /* line 26, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/color_boxes/_settings.scss */
-#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_kita_ayase, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
+#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .chiyoda_branch .local_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
   text-align: center;
   vertical-align: middle;
   border-style: solid;
@@ -1616,7 +1616,7 @@ ul.links li {
 }
 
 /* line 29, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/_color_boxes.scss */
-#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_kita_ayase, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
+#train_types .tokyo_metro .ginza .local_normal, #train_types .tokyo_metro .marunouchi .local_normal, #train_types .tokyo_metro .marunouchi_branch .local_normal, #train_types .tokyo_metro .hibiya .local_normal, #train_types .tokyo_metro .tozai .local_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .local_for_mitaka, #train_types .tokyo_metro .tozai .local_for_tsudanuma, #train_types .tokyo_metro .tozai .local_normal, #train_types .tokyo_metro .tozai .commuter_rapid_normal, #train_types .tokyo_metro .tozai .commuter_rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_normal, #train_types .tokyo_metro .tozai .rapid_for_mitaka, #train_types .tokyo_metro .tozai .rapid_for_tsudanuma, #train_types .tokyo_metro .tozai .rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .tozai .toyo_rapid_for_toyo_rapid_railway, #train_types .tokyo_metro .chiyoda .local_normal, #train_types .tokyo_metro .chiyoda .local_for_jr, #train_types .tokyo_metro .chiyoda .local_for_odakyu, #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu, #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23, #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22, #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80, #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22, #train_types .tokyo_metro .chiyoda .romance_car_normal, #train_types .tokyo_metro .chiyoda_branch .local_normal, #train_types .tokyo_metro .yurakucho .local_colored, #train_types .tokyo_metro .yurakucho .local_normal, #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu, #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_to_tokyu, #train_types .tokyo_metro .hanzomon .semi_express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tobu, #train_types .tokyo_metro .hanzomon .express_to_tokyu, #train_types .tokyo_metro .hanzomon .local_normal, #train_types .tokyo_metro .namboku .express_to_tokyu, #train_types .tokyo_metro .namboku .local_to_tokyu, #train_types .tokyo_metro .namboku .local_normal, #train_types .tokyo_metro .fukutoshin .local_colored, #train_types .tokyo_metro .fukutoshin .local_normal, #train_types .tokyo_metro .fukutoshin .commuter_express_normal, #train_types .tokyo_metro .fukutoshin .holiday_express_normal, #train_types .tokyo_metro .fukutoshin .express_normal, #train_types .toei_subway .toei_asakusa .airport_limited_express_normal, #train_types .toei_subway .toei_asakusa .local_normal, #train_types .toei_subway .toei_mita .local_normal, #train_types .toei_subway .toei_mita .express_to_tokyu, #train_types .toei_subway .toei_mita .local_to_tokyu, #train_types .toei_subway .toei_shinjuku .local_normal, #train_types .toei_subway .toei_shinjuku .express_normal, #train_types .toei_subway .toei_oedo .local_normal, #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu, #train_types .tokyu .tokyu_toyoko .express_to_tokyu, #train_types .tokyu .tokyu_toyoko .local_to_tokyu, #train_types .seibu .seibu_ikebukuro .local_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_to_seibu, #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu, #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu, #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
   width: 142px;
   height: 46px;
   border-radius: 9px;
@@ -1731,370 +1731,370 @@ ul.links li {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 153, 255, 0.4)), color-stop(0.2, rgba(102, 153, 255, 0.8)), color-stop(0.5, #6699ff), color-stop(0.8, rgba(102, 153, 255, 0.8)), to(rgba(102, 153, 255, 0.4)));
 }
 /* line 109, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
-#train_types .tokyo_metro .chiyoda .local_kita_ayase {
-  color: #ffffff;
-  background: #666666;
-  background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
-}
-/* line 115, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .local_normal {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 121, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 115, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .local_for_jr {
   color: #ffffff;
   background: #00b261;
   background: -moz-linear-gradient(top, rgba(0, 178, 97, 0.4), rgba(0, 178, 97, 0.8) 20%, #00b261 50%, rgba(0, 178, 97, 0.8) 80%, rgba(0, 178, 97, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 178, 97, 0.4)), color-stop(0.2, rgba(0, 178, 97, 0.8)), color-stop(0.5, #00b261), color-stop(0.8, rgba(0, 178, 97, 0.8)), to(rgba(0, 178, 97, 0.4)));
 }
-/* line 127, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 121, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .local_for_odakyu {
   color: #ffffff;
   background: #0c449b;
   background: -moz-linear-gradient(top, rgba(12, 68, 155, 0.4), rgba(12, 68, 155, 0.8) 20%, #0c449b 50%, rgba(12, 68, 155, 0.8) 80%, rgba(12, 68, 155, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(12, 68, 155, 0.4)), color-stop(0.2, rgba(12, 68, 155, 0.8)), color-stop(0.5, #0c449b), color-stop(0.8, rgba(12, 68, 155, 0.8)), to(rgba(12, 68, 155, 0.4)));
 }
-/* line 133, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 127, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .semi_express_for_odakyu {
   color: #ffffff;
   background: #319f2d;
   background: -moz-linear-gradient(top, rgba(49, 159, 45, 0.4), rgba(49, 159, 45, 0.8) 20%, #319f2d 50%, rgba(49, 159, 45, 0.8) 80%, rgba(49, 159, 45, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(49, 159, 45, 0.4)), color-stop(0.2, rgba(49, 159, 45, 0.8)), color-stop(0.5, #319f2d), color-stop(0.8, rgba(49, 159, 45, 0.8)), to(rgba(49, 159, 45, 0.4)));
 }
-/* line 139, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 133, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .tama_express_for_odakyu {
   color: #ffffff;
   background: #f13b9b;
   background: -moz-linear-gradient(top, rgba(241, 59, 155, 0.4), rgba(241, 59, 155, 0.8) 20%, #f13b9b 50%, rgba(241, 59, 155, 0.8) 80%, rgba(241, 59, 155, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(241, 59, 155, 0.4)), color-stop(0.2, rgba(241, 59, 155, 0.8)), color-stop(0.5, #f13b9b), color-stop(0.8, rgba(241, 59, 155, 0.8)), to(rgba(241, 59, 155, 0.4)));
 }
-/* line 145, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 139, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_24 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 151, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 145, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_21 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 157, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 151, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_71 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 163, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 157, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_41 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 169, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 163, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_weekdays_43 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 175, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 169, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_21 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 181, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 175, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_23 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 187, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 181, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_home_way_saturdays_holidays_43 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 193, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 187, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_weekdays_70 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 199, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 193, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_weekdays_22 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 205, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 199, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_sagami_saturdays_holidays_80 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 211, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 205, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_metro_hakone_saturdays_holidays_22 {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 217, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 211, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .chiyoda .romance_car_normal {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 225, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 219, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+#train_types .tokyo_metro .chiyoda_branch .local_normal {
+  color: #ffffff;
+  background: #666666;
+  background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
+}
+/* line 227, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .yurakucho .local_colored {
   color: #333333;
   background: #d7c447;
   background: -moz-linear-gradient(top, rgba(215, 196, 71, 0.4), rgba(215, 196, 71, 0.8) 20%, #d7c447 50%, rgba(215, 196, 71, 0.8) 80%, rgba(215, 196, 71, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(215, 196, 71, 0.4)), color-stop(0.2, rgba(215, 196, 71, 0.8)), color-stop(0.5, #d7c447), color-stop(0.8, rgba(215, 196, 71, 0.8)), to(rgba(215, 196, 71, 0.4)));
 }
-/* line 231, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 233, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .yurakucho .local_normal {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 239, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 241, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .semi_express_to_tokyu {
   color: #ffffff;
   background: #018d54;
   background: -moz-linear-gradient(top, rgba(1, 141, 84, 0.4), rgba(1, 141, 84, 0.8) 20%, #018d54 50%, rgba(1, 141, 84, 0.8) 80%, rgba(1, 141, 84, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 141, 84, 0.4)), color-stop(0.2, rgba(1, 141, 84, 0.8)), color-stop(0.5, #018d54), color-stop(0.8, rgba(1, 141, 84, 0.8)), to(rgba(1, 141, 84, 0.4)));
 }
-/* line 245, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 247, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .holiday_express_to_tokyu {
   color: #333333;
   background: #ff3399;
   background: -moz-linear-gradient(top, rgba(255, 51, 153, 0.4), rgba(255, 51, 153, 0.8) 20%, #ff3399 50%, rgba(255, 51, 153, 0.8) 80%, rgba(255, 51, 153, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 51, 153, 0.4)), color-stop(0.2, rgba(255, 51, 153, 0.8)), color-stop(0.5, #ff3399), color-stop(0.8, rgba(255, 51, 153, 0.8)), to(rgba(255, 51, 153, 0.4)));
 }
-/* line 251, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 253, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .local_to_tokyu {
   color: #ffffff;
   background: #0000ff;
   background: -moz-linear-gradient(top, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0.8) 20%, #0000ff 50%, rgba(0, 0, 255, 0.8) 80%, rgba(0, 0, 255, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 255, 0.4)), color-stop(0.2, rgba(0, 0, 255, 0.8)), color-stop(0.5, #0000ff), color-stop(0.8, rgba(0, 0, 255, 0.8)), to(rgba(0, 0, 255, 0.4)));
 }
-/* line 257, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 259, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .semi_express_to_tobu {
   color: #ffffff;
   background: #009900;
   background: -moz-linear-gradient(top, rgba(0, 153, 0, 0.4), rgba(0, 153, 0, 0.8) 20%, #009900 50%, rgba(0, 153, 0, 0.8) 80%, rgba(0, 153, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 153, 0, 0.4)), color-stop(0.2, rgba(0, 153, 0, 0.8)), color-stop(0.5, #009900), color-stop(0.8, rgba(0, 153, 0, 0.8)), to(rgba(0, 153, 0, 0.4)));
 }
-/* line 263, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 265, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .express_to_tobu {
   color: #ffffff;
   background: #ff0000;
   background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.8) 20%, #ff0000 50%, rgba(255, 0, 0, 0.8) 80%, rgba(255, 0, 0, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.4)), color-stop(0.2, rgba(255, 0, 0, 0.8)), color-stop(0.5, #ff0000), color-stop(0.8, rgba(255, 0, 0, 0.8)), to(rgba(255, 0, 0, 0.4)));
 }
-/* line 269, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 271, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .express_to_tokyu {
   color: #ffffff;
   background: #ee0011;
   background: -moz-linear-gradient(top, rgba(238, 0, 17, 0.4), rgba(238, 0, 17, 0.8) 20%, #ee0011 50%, rgba(238, 0, 17, 0.8) 80%, rgba(238, 0, 17, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(238, 0, 17, 0.4)), color-stop(0.2, rgba(238, 0, 17, 0.8)), color-stop(0.5, #ee0011), color-stop(0.8, rgba(238, 0, 17, 0.8)), to(rgba(238, 0, 17, 0.4)));
 }
-/* line 275, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 277, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .hanzomon .local_normal {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 283, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 285, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .namboku .express_to_tokyu {
   color: #ffffff;
   background: #ee0011;
   background: -moz-linear-gradient(top, rgba(238, 0, 17, 0.4), rgba(238, 0, 17, 0.8) 20%, #ee0011 50%, rgba(238, 0, 17, 0.8) 80%, rgba(238, 0, 17, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(238, 0, 17, 0.4)), color-stop(0.2, rgba(238, 0, 17, 0.8)), color-stop(0.5, #ee0011), color-stop(0.8, rgba(238, 0, 17, 0.8)), to(rgba(238, 0, 17, 0.4)));
 }
-/* line 289, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 291, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .namboku .local_to_tokyu {
   color: #ffffff;
   background: #00b379;
   background: -moz-linear-gradient(top, rgba(0, 179, 121, 0.4), rgba(0, 179, 121, 0.8) 20%, #00b379 50%, rgba(0, 179, 121, 0.8) 80%, rgba(0, 179, 121, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 179, 121, 0.4)), color-stop(0.2, rgba(0, 179, 121, 0.8)), color-stop(0.5, #00b379), color-stop(0.8, rgba(0, 179, 121, 0.8)), to(rgba(0, 179, 121, 0.4)));
 }
-/* line 295, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 297, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .namboku .local_normal {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 303, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 305, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .fukutoshin .local_colored {
   color: #ffffff;
   background: #bb641d;
   background: -moz-linear-gradient(top, rgba(187, 100, 29, 0.4), rgba(187, 100, 29, 0.8) 20%, #bb641d 50%, rgba(187, 100, 29, 0.8) 80%, rgba(187, 100, 29, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(187, 100, 29, 0.4)), color-stop(0.2, rgba(187, 100, 29, 0.8)), color-stop(0.5, #bb641d), color-stop(0.8, rgba(187, 100, 29, 0.8)), to(rgba(187, 100, 29, 0.4)));
 }
-/* line 309, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 311, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .fukutoshin .local_normal {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 315, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 317, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .fukutoshin .commuter_express_normal {
   color: #ffffff;
   background: #ff66cc;
   background: -moz-linear-gradient(top, rgba(255, 102, 204, 0.4), rgba(255, 102, 204, 0.8) 20%, #ff66cc 50%, rgba(255, 102, 204, 0.8) 80%, rgba(255, 102, 204, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 102, 204, 0.4)), color-stop(0.2, rgba(255, 102, 204, 0.8)), color-stop(0.5, #ff66cc), color-stop(0.8, rgba(255, 102, 204, 0.8)), to(rgba(255, 102, 204, 0.4)));
 }
-/* line 321, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 323, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .fukutoshin .holiday_express_normal {
   color: #333333;
   background: #ff3399;
   background: -moz-linear-gradient(top, rgba(255, 51, 153, 0.4), rgba(255, 51, 153, 0.8) 20%, #ff3399 50%, rgba(255, 51, 153, 0.8) 80%, rgba(255, 51, 153, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 51, 153, 0.4)), color-stop(0.2, rgba(255, 51, 153, 0.8)), color-stop(0.5, #ff3399), color-stop(0.8, rgba(255, 51, 153, 0.8)), to(rgba(255, 51, 153, 0.4)));
 }
-/* line 327, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 329, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyo_metro .fukutoshin .express_normal {
   color: #ffffff;
   background: #ff0066;
   background: -moz-linear-gradient(top, rgba(255, 0, 102, 0.4), rgba(255, 0, 102, 0.8) 20%, #ff0066 50%, rgba(255, 0, 102, 0.8) 80%, rgba(255, 0, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 102, 0.4)), color-stop(0.2, rgba(255, 0, 102, 0.8)), color-stop(0.5, #ff0066), color-stop(0.8, rgba(255, 0, 102, 0.8)), to(rgba(255, 0, 102, 0.4)));
 }
-/* line 337, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 339, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_asakusa .airport_limited_express_normal {
   color: #ffffff;
   background: #fd9a3d;
   background: -moz-linear-gradient(top, rgba(253, 154, 61, 0.4), rgba(253, 154, 61, 0.8) 20%, #fd9a3d 50%, rgba(253, 154, 61, 0.8) 80%, rgba(253, 154, 61, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(253, 154, 61, 0.4)), color-stop(0.2, rgba(253, 154, 61, 0.8)), color-stop(0.5, #fd9a3d), color-stop(0.8, rgba(253, 154, 61, 0.8)), to(rgba(253, 154, 61, 0.4)));
 }
-/* line 343, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 345, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_asakusa .local_normal {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 351, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 353, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_mita .local_normal {
   color: #ffffff;
   background: #0078c2;
   background: -moz-linear-gradient(top, rgba(0, 120, 194, 0.4), rgba(0, 120, 194, 0.8) 20%, #0078c2 50%, rgba(0, 120, 194, 0.8) 80%, rgba(0, 120, 194, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 120, 194, 0.4)), color-stop(0.2, rgba(0, 120, 194, 0.8)), color-stop(0.5, #0078c2), color-stop(0.8, rgba(0, 120, 194, 0.8)), to(rgba(0, 120, 194, 0.4)));
 }
-/* line 357, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 359, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_mita .express_to_tokyu {
   color: #ffffff;
   background: #ee0011;
   background: -moz-linear-gradient(top, rgba(238, 0, 17, 0.4), rgba(238, 0, 17, 0.8) 20%, #ee0011 50%, rgba(238, 0, 17, 0.8) 80%, rgba(238, 0, 17, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(238, 0, 17, 0.4)), color-stop(0.2, rgba(238, 0, 17, 0.8)), color-stop(0.5, #ee0011), color-stop(0.8, rgba(238, 0, 17, 0.8)), to(rgba(238, 0, 17, 0.4)));
 }
-/* line 363, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 365, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_mita .local_to_tokyu {
   color: #ffffff;
   background: #00b379;
   background: -moz-linear-gradient(top, rgba(0, 179, 121, 0.4), rgba(0, 179, 121, 0.8) 20%, #00b379 50%, rgba(0, 179, 121, 0.8) 80%, rgba(0, 179, 121, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 179, 121, 0.4)), color-stop(0.2, rgba(0, 179, 121, 0.8)), color-stop(0.5, #00b379), color-stop(0.8, rgba(0, 179, 121, 0.8)), to(rgba(0, 179, 121, 0.4)));
 }
-/* line 371, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 373, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_shinjuku .local_normal {
   color: #ffffff;
   background: #6cbb5a;
   background: -moz-linear-gradient(top, rgba(108, 187, 90, 0.4), rgba(108, 187, 90, 0.8) 20%, #6cbb5a 50%, rgba(108, 187, 90, 0.8) 80%, rgba(108, 187, 90, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(108, 187, 90, 0.4)), color-stop(0.2, rgba(108, 187, 90, 0.8)), color-stop(0.5, #6cbb5a), color-stop(0.8, rgba(108, 187, 90, 0.8)), to(rgba(108, 187, 90, 0.4)));
 }
-/* line 377, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 379, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_shinjuku .express_normal {
   color: #ffffff;
   background: #ff0066;
   background: -moz-linear-gradient(top, rgba(255, 0, 102, 0.4), rgba(255, 0, 102, 0.8) 20%, #ff0066 50%, rgba(255, 0, 102, 0.8) 80%, rgba(255, 0, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 102, 0.4)), color-stop(0.2, rgba(255, 0, 102, 0.8)), color-stop(0.5, #ff0066), color-stop(0.8, rgba(255, 0, 102, 0.8)), to(rgba(255, 0, 102, 0.4)));
 }
-/* line 385, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 387, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .toei_subway .toei_oedo .local_normal {
   color: #ffffff;
   background: #b6007a;
   background: -moz-linear-gradient(top, rgba(182, 0, 122, 0.4), rgba(182, 0, 122, 0.8) 20%, #b6007a 50%, rgba(182, 0, 122, 0.8) 80%, rgba(182, 0, 122, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(182, 0, 122, 0.4)), color-stop(0.2, rgba(182, 0, 122, 0.8)), color-stop(0.5, #b6007a), color-stop(0.8, rgba(182, 0, 122, 0.8)), to(rgba(182, 0, 122, 0.4)));
 }
-/* line 395, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 397, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyu .tokyu_toyoko .limited_express_to_tokyu {
   color: #333333;
   background: #fd9a3d;
   background: -moz-linear-gradient(top, rgba(253, 154, 61, 0.4), rgba(253, 154, 61, 0.8) 20%, #fd9a3d 50%, rgba(253, 154, 61, 0.8) 80%, rgba(253, 154, 61, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(253, 154, 61, 0.4)), color-stop(0.2, rgba(253, 154, 61, 0.8)), color-stop(0.5, #fd9a3d), color-stop(0.8, rgba(253, 154, 61, 0.8)), to(rgba(253, 154, 61, 0.4)));
 }
-/* line 401, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 403, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyu .tokyu_toyoko .commuter_limited_express_to_tokyu {
   color: #333333;
   background: #ffcc66;
   background: -moz-linear-gradient(top, rgba(255, 204, 102, 0.4), rgba(255, 204, 102, 0.8) 20%, #ffcc66 50%, rgba(255, 204, 102, 0.8) 80%, rgba(255, 204, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 204, 102, 0.4)), color-stop(0.2, rgba(255, 204, 102, 0.8)), color-stop(0.5, #ffcc66), color-stop(0.8, rgba(255, 204, 102, 0.8)), to(rgba(255, 204, 102, 0.4)));
 }
-/* line 407, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 409, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyu .tokyu_toyoko .express_to_tokyu {
   color: #ffffff;
   background: #ee0011;
   background: -moz-linear-gradient(top, rgba(238, 0, 17, 0.4), rgba(238, 0, 17, 0.8) 20%, #ee0011 50%, rgba(238, 0, 17, 0.8) 80%, rgba(238, 0, 17, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(238, 0, 17, 0.4)), color-stop(0.2, rgba(238, 0, 17, 0.8)), color-stop(0.5, #ee0011), color-stop(0.8, rgba(238, 0, 17, 0.8)), to(rgba(238, 0, 17, 0.4)));
 }
-/* line 413, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 415, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tokyu .tokyu_toyoko .local_to_tokyu {
   color: #ffffff;
   background: #0000ff;
   background: -moz-linear-gradient(top, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0.8) 20%, #0000ff 50%, rgba(0, 0, 255, 0.8) 80%, rgba(0, 0, 255, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 255, 0.4)), color-stop(0.2, rgba(0, 0, 255, 0.8)), color-stop(0.5, #0000ff), color-stop(0.8, rgba(0, 0, 255, 0.8)), to(rgba(0, 0, 255, 0.4)));
 }
-/* line 423, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 425, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .seibu .seibu_ikebukuro .local_to_seibu {
   color: #ffffff;
   background: #666666;
   background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
 }
-/* line 429, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 431, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .seibu .seibu_ikebukuro .rapid_to_seibu {
   color: #ffffff;
   background: #00ccff;
   background: -moz-linear-gradient(top, rgba(0, 204, 255, 0.4), rgba(0, 204, 255, 0.8) 20%, #00ccff 50%, rgba(0, 204, 255, 0.8) 80%, rgba(0, 204, 255, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 204, 255, 0.4)), color-stop(0.2, rgba(0, 204, 255, 0.8)), color-stop(0.5, #00ccff), color-stop(0.8, rgba(0, 204, 255, 0.8)), to(rgba(0, 204, 255, 0.4)));
 }
-/* line 435, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 437, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .seibu .seibu_ikebukuro .semi_express_to_seibu {
   color: #ffffff;
   background: #00cc99;
   background: -moz-linear-gradient(top, rgba(0, 204, 153, 0.4), rgba(0, 204, 153, 0.8) 20%, #00cc99 50%, rgba(0, 204, 153, 0.8) 80%, rgba(0, 204, 153, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 204, 153, 0.4)), color-stop(0.2, rgba(0, 204, 153, 0.8)), color-stop(0.5, #00cc99), color-stop(0.8, rgba(0, 204, 153, 0.8)), to(rgba(0, 204, 153, 0.4)));
 }
-/* line 441, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 443, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .seibu .seibu_ikebukuro .rapid_express_to_seibu {
   color: #ffffff;
   background: #cc6699;
   background: -moz-linear-gradient(top, rgba(204, 102, 153, 0.4), rgba(204, 102, 153, 0.8) 20%, #cc6699 50%, rgba(204, 102, 153, 0.8) 80%, rgba(204, 102, 153, 0.4));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(204, 102, 153, 0.4)), color-stop(0.2, rgba(204, 102, 153, 0.8)), color-stop(0.5, #cc6699), color-stop(0.8, rgba(204, 102, 153, 0.8)), to(rgba(204, 102, 153, 0.4)));
 }
-/* line 451, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
+/* line 453, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concern/train_types.scss */
 #train_types .tobu .tobu_tojo .local_to_tobu_tojo {
   color: #ffffff;
   background: #666666;
@@ -2282,7 +2282,7 @@ ul.links li {
 }
 
 /* line 54, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/header/railway_line.scss */
-.chiyoda .railway_line_name {
+.chiyoda .railway_line_name, .chiyoda_branch .railway_line_name {
   border-left-color: #0daa5d;
 }
 
@@ -3735,7 +3735,7 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
 }
 
 /* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
-.tokyo_metro_railway_lines .railway_lines .railway_line .railway_line_code_32, .connecting_railway_lines .railway_lines .railway_line .railway_line_code_32, .tokyo_metro_railway_lines .railway_lines .railway_line .color_box_32, .connecting_railway_lines .railway_lines .railway_line .color_box_32, .tokyo_metro_railway_lines .railway_lines .railway_line .railway_line_code_48, .connecting_railway_lines .railway_lines .railway_line .railway_line_code_48, .tokyo_metro_railway_lines .railway_lines .railway_line .color_box_48, .connecting_railway_lines .railway_lines .railway_line .color_box_48, .tokyo_metro_railway_lines .railway_lines .railway_line .text, .connecting_railway_lines .railway_lines .railway_line .text, .tokyo_metro_railway_lines .railway_lines .railway_line, .connecting_railway_lines .railway_lines .railway_line, #station_facility_infos .inside, #station_facility_infos .outside, #station_facility_infos .title .text_ja, #station_facility_infos .facility .number, #station_facility_infos .facility .info, #station_facility_infos .facility .info .toilet_assistants div.toilet_assistant, #station_facility_infos .facility .info .wheel_chair, #station_facility_infos .facility .info .remark {
+.tokyo_metro_railway_lines .railway_lines .railway_line .railway_line_code_32, .connecting_railway_lines .railway_lines .railway_line .railway_line_code_32, .tokyo_metro_railway_lines .railway_lines .railway_line .color_box_32, .connecting_railway_lines .railway_lines .railway_line .color_box_32, .tokyo_metro_railway_lines .railway_lines .railway_line .railway_line_code_48, .connecting_railway_lines .railway_lines .railway_line .railway_line_code_48, .tokyo_metro_railway_lines .railway_lines .railway_line .color_box_48, .connecting_railway_lines .railway_lines .railway_line .color_box_48, .tokyo_metro_railway_lines .railway_lines .railway_line .text, .connecting_railway_lines .railway_lines .railway_line .text, .tokyo_metro_railway_lines .railway_lines .railway_line, .connecting_railway_lines .railway_lines .railway_line, #station_facility_infos .inside, #station_facility_infos .outside, #station_facility_infos .facility .info .service_details .service_detail .operation_day, #station_facility_infos .facility .info .service_details .service_detail .escalator_directions .escalator_direction, #station_facility_infos .facility .info .toilet_assistants div.toilet_assistant, #station_facility_infos .facility .info .wheel_chair, #station_facility_infos .title .text_ja, #station_facility_infos .facility .number, #station_facility_infos .facility .info, #station_facility_infos .facility .info .service_details .service_detail .escalator_directions, #station_facility_infos .facility .info .service_details .service_detail .service_time, #station_facility_infos .facility .info .remark {
   float: left;
 }
 
@@ -3750,7 +3750,7 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
 }
 
 /* line 59, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
-#station_facility_infos .facility .info .toilet_assistants div.toilet_assistant, #station_facility_infos .facility .info .wheel_chair {
+#station_facility_infos .facility .info .service_details .service_detail .operation_day, #station_facility_infos .facility .info .service_details .service_detail .escalator_directions .escalator_direction, #station_facility_infos .facility .info .toilet_assistants div.toilet_assistant, #station_facility_infos .facility .info .wheel_chair {
   margin-right: 8px;
 }
 
@@ -3765,7 +3765,7 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
 }
 
 /* line 113, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
-.tokyo_metro_railway_lines .railway_lines .railway_line, .connecting_railway_lines .railway_lines .railway_line {
+.tokyo_metro_railway_lines .railway_lines .railway_line, .connecting_railway_lines .railway_lines .railway_line, #station_facility_infos .facility .info .place {
   margin-bottom: 4px;
 }
 
@@ -3871,81 +3871,102 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
 }
 
 /* line 200, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
-#station_facility_infos .facility .info .service_detail .service_time, #station_facility_infos .facility .info .remark {
+#station_facility_infos .facility .info .service_details .service_detail .service_time, #station_facility_infos .facility .info .remark {
   border-left-style: solid;
   border-left-width: 4px;
   padding: 4px;
 }
 
-/* line 220, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
-#station_facility_infos .facility .info .place, #station_facility_infos .facility .info .service_detail {
+/* line 219, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .service_details .service_detail .operation_day, #station_facility_infos .facility .info .service_details .service_detail .escalator_directions .escalator_direction, #station_facility_infos .facility .info .toilet_assistants div.toilet_assistant, #station_facility_infos .facility .info .wheel_chair {
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+  border-radius: 2px;
+  -mozila-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+
+/* line 233, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .place, #station_facility_infos .facility .info .service_details .service_detail .service_time {
   font-size: 8pt;
 }
-/* line 225, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 238, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .title {
   clear: both;
   border-bottom: solid 1px #109ed4;
 }
-/* line 234, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 246, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .title .text_ja {
   font-size: 14pt;
 }
-/* line 240, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 252, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .title .text_en {
   font-size: 10.5pt;
   margin-left: 7px;
 }
-/* line 256, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 268, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .facility {
   clear: both;
 }
-/* line 258, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 270, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .facility .number {
   color: #aaa;
   width: 32px;
 }
-/* line 265, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 277, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .facility .info {
   clear: none;
   font-size: 9pt;
 }
-/* line 277, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
-#station_facility_infos .facility .info .service_detail .service_time {
+/* line 284, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .place {
   display: block;
-  border-left-color: #d7cf3a;
-  background-color: #f7f5d7;
-  margin-bottom: 2px;
 }
-/* line 286, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
-#station_facility_infos .facility .info .toilet_assistants div.toilet_assistant, #station_facility_infos .facility .info .wheel_chair {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-radius: 4px;
-  -mozila-border-radius: 4px;
-  -webkit-border-radius: 4px;
+/* line 291, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .service_details .service_detail .operation_day {
+  border: solid 1px #eee;
+  background-color: #fafafa;
 }
 /* line 297, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
-#station_facility_infos .facility .info .toilet_assistants {
+#station_facility_infos .facility .info .service_details .service_detail .escalator_directions {
+  margin-bottom: 4px;
+}
+/* line 299, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .service_details .service_detail .escalator_directions .escalator_direction {
+  border: solid 1px #00a497;
+  background-color: rgba(0, 164, 151, 0.12);
+}
+/* line 309, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .service_details .service_detail .service_time {
+  display: block;
+  border-left-color: #aacf53;
+  background-color: #eef5dc;
   margin-bottom: 2px;
 }
-/* line 298, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
-#station_facility_infos .facility .info .toilet_assistants div.toilet_assistant {
-  background-color: #a2d7dd;
+/* line 321, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .toilet_assistants {
+  margin-bottom: 4px;
 }
-/* line 302, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 322, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+#station_facility_infos .facility .info .toilet_assistants div.toilet_assistant {
+  border: solid 1px #a2d7dd;
+  background-color: rgba(162, 215, 221, 0.12);
+}
+/* line 327, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .facility .info .toilet_assistants img.toilet_assistant {
   width: 24px;
   height: 24px;
 }
-/* line 311, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 336, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .facility .info .wheel_chair {
   display: block;
-  background-color: #007bbb;
-  color: #fff;
+  border: solid 1px #a2d7dd;
+  background-color: rgba(162, 215, 221, 0.12);
 }
-/* line 317, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
+/* line 342, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility.scss */
 #station_facility_infos .facility .info .remark {
   border-left-color: #ee827c;
   background-color: #fbe6e4;
@@ -4070,11 +4091,16 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
 }
 
 /* line 28, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+#station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.transfer_infos td.empty, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.barrier_free_infos_inside td.empty, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.barrier_free_infos_outside td.empty, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.surrounding_areas td.empty {
+  border-bottom: solid 2px #f6f6f6;
+}
+
+/* line 34, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.transfer_infos td.present, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.barrier_free_infos_inside td.present, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.barrier_free_infos_outside td.present, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.surrounding_areas td.present {
   border-bottom: solid 2px #999;
 }
 
-/* line 33, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 39, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info {
   margin-left: 8px;
   margin-top: 16px;
@@ -4082,11 +4108,11 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
   padding: 8px;
   border: solid 1px #eee;
 }
-/* line 43, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 49, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.car_numbers td.empty {
   border-style: none;
 }
-/* line 46, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 52, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.car_numbers td.car_number {
   min-width: 96px;
   border: solid 1px #999;
@@ -4095,26 +4121,26 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
   text-align: center;
   color: #333;
 }
-/* line 62, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 69, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.transfer_infos td.title {
   background: rgba(16, 158, 212, 0.4);
   background: -moz-linear-gradient(left, rgba(16, 158, 212, 0.4), #f6f6f6);
   background: -webkit-gradient(linear, left top, right top, from(rgba(16, 158, 212, 0.4)), to(#f6f6f6));
 }
-/* line 77, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 85, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.barrier_free_infos_inside td.title, #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.barrier_free_infos_outside td.title {
   background: rgba(16, 158, 212, 0.3);
   background: -moz-linear-gradient(left, rgba(16, 158, 212, 0.3), #f6f6f6);
   background: -webkit-gradient(linear, left top, right top, from(rgba(16, 158, 212, 0.3)), to(#f6f6f6));
 }
-/* line 89, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 98, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction table.platform_info tr.surrounding_areas td.title {
   background: rgba(16, 158, 212, 0.2);
   background: -moz-linear-gradient(left, rgba(16, 158, 212, 0.2), #f6f6f6);
   background: -webkit-gradient(linear, left top, right top, from(rgba(16, 158, 212, 0.2)), to(#f6f6f6));
 }
 
-/* line 184, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 193, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .title_of_railway_line {
   border-left: solid 8px #999;
 }
@@ -4267,11 +4293,11 @@ table.travel_time_info tr.through_operation td, table.travel_time_info_main tr.t
   background: -moz-linear-gradient(top, rgba(0, 174, 150, 0.7), rgba(0, 174, 150, 0.5) 40%, rgba(0, 120, 193, 0.05) 60%, rgba(0, 120, 194, 0.5) 80%, rgba(0, 120, 194, 0.7));
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 174, 150, 0.7)), color-stop(0.4, rgba(0, 174, 150, 0.5)), color-stop(0.6, rgba(0, 120, 193, 0.05)), color-stop(0.8, rgba(0, 120, 194, 0.5)), to(rgba(0, 120, 194, 0.7)));
 }
-/* line 190, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 199, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line {
   margin-left: 8px;
 }
-/* line 194, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
+/* line 203, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_facility/platform_info.scss */
 #station_facility_platform_infos .each_railway_line .info_of_railway_direction {
   margin-left: 8px;
   padding: 8px;
