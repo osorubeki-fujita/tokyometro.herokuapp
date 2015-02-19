@@ -1,7 +1,7 @@
 # 東京メトロ オープンデータの API から提供される情報を扱うモジュール
 module TokyoMetro::Api
 
-  include ::TokyoMetro::CommonModules::ConvertConstantToClassMethod
+  include ::TokyoMetro::Modules::Common::ConvertConstantToClassMethod
 
   def self.station_train_time
     ::TokyoMetro::Api::StationTrainTime

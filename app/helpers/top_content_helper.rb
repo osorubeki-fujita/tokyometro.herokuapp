@@ -5,8 +5,7 @@ module TopContentHelper
 - # %div{ id: method_name }
 - #   %div.text
 - #     = top_content_title
-%div{id: :now_developing }<
-  = remark_now_developing
+= remark_now_developing
     HAML
   end
 
@@ -24,11 +23,12 @@ module TopContentHelper
 
   def remark_now_developing
     render inline: <<-HAML , type: :haml
-= "ただいま開発中につき"
-= tag( :br )
-= "間違っている情報が"
-= tag( :br )
-= "含まれている場合があります"
+%div{id: :now_developing }<
+  = "ただいま開発中につき"
+  = tag( :br )
+  = "間違っている情報が"
+  = tag( :br )
+  = "含まれている場合があります"
     HAML
   end
 

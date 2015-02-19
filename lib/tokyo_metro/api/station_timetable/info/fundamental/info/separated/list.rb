@@ -1,7 +1,7 @@
 class TokyoMetro::Api::StationTimetable::Info::Fundamental::Info::Separated::List < Array
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationTimetable
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   def seed( *args )
     super( *args , indent: 2 , not_on_the_top_layer: true , display_number: false , no_display: true )

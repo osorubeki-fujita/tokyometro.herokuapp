@@ -2,7 +2,7 @@
 class TokyoMetro::Api::PassengerSurvey::List < TokyoMetro::Api::MetaClass::NotRealTime::List
 
   include ::TokyoMetro::ClassNameLibrary::Api::PassengerSurvey
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   # インスタンスの情報を整形した文字列にして返すメソッド
   # @param indent [Integer (>=0)] インデントの幅

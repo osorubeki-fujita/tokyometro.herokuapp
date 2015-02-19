@@ -1,20 +1,21 @@
 module OperatorRailwayLineStationCodeHelper
 
   def color_box( small: false )
-    if small
-      class_name = :color_box_32
-    else
-      class_name = :color_box_48
-    end
-    render inline: <<-HAML , type: :haml , locals: { class_name: class_name }
+    render inline: <<-HAML , type: :haml , locals: { class_name: color_box_class_name( small ) }
 %div{ class: class_name }<
-  - #
     HAML
   end
-
-  def oprator_color_box( small: false )
-    color_box( small: small )
+  
+  alias :oprator_color_box :color_box
+  
+  def color_box_class_name( small )
+    if small
+      :color_box_32
+    else
+      :color_box_48
+    end
   end
+  private :color_box_class_name
 
   def railway_line_code( railway_line , must_display_line_color: true , small: false , letter: nil )
     if small

@@ -2,7 +2,7 @@
 class TokyoMetro::Api::StationFacility::List < TokyoMetro::Api::MetaClass::NotRealTime::List
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   def barrier_free_facilities
     self.class.barrier_free_list_class.new( self.map( &:barrier_free_facilities ).flatten )

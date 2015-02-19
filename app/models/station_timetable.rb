@@ -8,4 +8,12 @@ class StationTimetable < ActiveRecord::Base
   has_many :railway_lines , through: :station_timetable_fundamental_infos
   has_many :operators , through: :station_timetable_fundamental_infos
   has_many :railway_directions , through: :station_timetable_fundamental_infos
+
+  def station_timetable_fundamental_infos
+    fundamental_infos
+  end
+
+  def has_only_one_fundamental_info?
+    fundamental_infos.length == 1
+  end
 end

@@ -1,22 +1,14 @@
 module PlatformInfoHelper
 
-  def platform_infos_title_in_info_of_station_facility
-    render inline: <<-HAML , type: :haml
-%div{ class: :top_title }
-  %h2{ class: :text_ja }<
-    = "乗車・降車位置のご案内"
-  %h3{ class: :text_en }<
-    = "Information of transfer, barrier free facilities, surrounding areas on the platforms"
-    HAML
-  end
-
-  def platform_infos_of_railway_lines( facility , platform_infos_grouped_by_railway_line )
+  def platform_infos_of_railway_lines
+    platform_infos_grouped_by_railway_line = @station_facility.platform_infos_including_other_infos_grouped_by_railway_line_id
+    
     class << platform_infos_grouped_by_railway_line
       include ::ForRails::PlatformInfosOfMultipleLine
     end
 
     # 有楽町線・副都心線の共用区間の場合
-    if platform_infos_grouped_by_railway_line.platform_infos_of_yurakucho_and_fukutoshin_line?( facility )
+    if platform_infos_grouped_by_railway_line.platform_infos_of_yurakucho_and_fukutoshin_line?( @station_facility )
       railway_line_ids = platform_infos_grouped_by_railway_line.keys.sort
       local_h = { railway_line_ids: railway_line_ids , platform_infos_grouped_by_railway_line: platform_infos_grouped_by_railway_line }
 
@@ -31,7 +23,7 @@ module PlatformInfoHelper
       HAML
 
     # 南北線・三田線の共用区間の場合
-    elsif platform_infos_grouped_by_railway_line.platform_infos_of_namboku_and_toei_mita_line?( facility )
+    elsif platform_infos_grouped_by_railway_line.platform_infos_of_namboku_and_toei_mita_line?( @station_facility )
       railway_line_ids = platform_infos_grouped_by_railway_line.keys.sort
       local_h = { railway_line_ids: railway_line_ids , platform_infos_grouped_by_railway_line: platform_infos_grouped_by_railway_line }
 
@@ -295,11 +287,11 @@ module PlatformInfoHelper
         info_of_each_car.select( &:outside? )
       } ,
       proc_for_display_inside: Proc.new { | info |
-        id_and_code = info.id_and_code_hash
+        id_and_code = info.decorate.id_and_code_hash
         link_to( id_and_code[ :platform ] , url_for( anchor: id_and_code[ :id ] ) )
       } ,
       proc_for_display_outside: Proc.new { | info |
-        id_and_code = info.id_and_code_hash
+        id_and_code = info.decorate.id_and_code_hash
         link_to( id_and_code[ :platform ] , url_for( anchor: id_and_code[ :id ] ) )
       }
     }

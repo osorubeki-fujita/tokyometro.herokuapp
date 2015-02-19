@@ -45,7 +45,7 @@
                     right: 8px ;
                 }
             }
-            tr {
+            tr.passenger_survey_table_row {
                 td {
                     text-align: right ;
                 }
@@ -79,30 +79,31 @@
                         }
                     }
                 }
+				td.survey_year {
+					color: #666 ;
+					font: {
+						size: 9pt ;
+					}
+				}
+				td.passenger_journey {
+					font: {
+						size: 12pt ;
+					}
+				}
+				td.graph {
+					svg {
+						height: 20px ;
+						width: 128px ;
+					}
+				}
             }
             thead {
-                background-color: #eee ;
-            }
-            thead {
+				font: {
+					size: 9pt ;
+				}
+                background-color: #ddd ;
                 td {
                     text-align: left ;
-                }
-            }
-            td.survey_year {
-                color: #999 ;
-                font: {
-                    size: 8pt ;
-                }
-            }
-            td.passenger_journey {
-                font: {
-                    size: 12pt ;
-                }
-            }
-            td.graph {
-                svg {
-                    height: 20px ;
-                    width: 128px ;
                 }
             }
         }   
@@ -121,7 +122,7 @@
 
 @mixin passengerSurveyTableYearCommonSettings( $img_length , $img_margin_right ) {
     $lines_max: 4 ;
-    .tokyo_metro {
+    .tokyo_metro , .station {
         table {
             $station_codes_width: ( $img_length + $img_margin_right ) * $lines_max ;
             td.station_info {

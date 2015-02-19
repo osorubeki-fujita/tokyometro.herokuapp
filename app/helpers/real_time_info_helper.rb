@@ -1,6 +1,3 @@
-#! ruby -Ku
-# -*- coding: utf-8 -*-
-
 module RealTimeInfoHelper
 
   def time_infos( time_now , last_update , next_update )

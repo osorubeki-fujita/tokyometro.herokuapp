@@ -10,7 +10,7 @@ class Operator < ActiveRecord::Base
   has_many :train_informations
   has_many :train_information_olds
 
-  include ::TokyoMetro::CommonModules::Info::Operator
+  include ::TokyoMetro::Modules::Common::Info::Operator
 
   # 指定された鉄道事業者の id を取得する
   scope :id_of , ->( operator_same_as ) {

@@ -2,10 +2,10 @@
 class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::ServiceDetail::Direction
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
 
   def initialize( up , down )
     @up = up

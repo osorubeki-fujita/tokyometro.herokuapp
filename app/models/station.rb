@@ -23,7 +23,7 @@ class Station < ActiveRecord::Base
   # geocoded_by :name_ja
   # after_validation :geocode
 
-  include ::TokyoMetro::DbModules::Decision::Operator
+  include ::TokyoMetro::Modules::Db::Decision::Operator
 
   def stations_of_tokyo_metro
     station_facility.stations.order( :railway_line_id )
@@ -39,6 +39,18 @@ class Station < ActiveRecord::Base
 
   def connecting_railway_lines_without_tokyo_metro
     connecting_railway_lines.includes( :railway_line ).order( :railway_line_id ).map( &:railway_line ).select( &:not_tokyo_metro? )
+  end
+
+  def latest_passenger_survey
+    passenger_surveys.latest
+  end
+
+  [ :attribute_ja , :attribute_en ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        railway_line.station_#{ method_name }
+      end
+    DEF
   end
 
   # 特定の駅のインスタンスを取得する

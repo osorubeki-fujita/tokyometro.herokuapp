@@ -2,14 +2,14 @@
 class TokyoMetro::Api::StationFacility::Info::Platform::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
-  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
 
-  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
-  include ::TokyoMetro::ApiModules::Info::SetDataToHash
+  include ::TokyoMetro::Modules::Api::Info::ToStringGeneral
+  include ::TokyoMetro::Modules::Api::Info::SetDataToHash
 
   # Constructor
   def initialize( railway_line , car_composition , car_number , railway_direction , transfer_infos , barrier_free_facilities , surrounding_areas )

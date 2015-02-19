@@ -2,12 +2,12 @@
 class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Toilet::Assistant
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::Accessibility::AliasTowardsAvailability
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::MethodMissing
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::ToiletAssistant
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::Accessibility::AliasTowardsAvailability
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::MethodMissing
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::ToiletAssistant
 
   def initialize( wheel_chair_accessible , baby_chair , baby_changing_table , ostomate )
     @wheel_chair_accessible = wheel_chair_accessible

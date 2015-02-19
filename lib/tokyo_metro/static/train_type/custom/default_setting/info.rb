@@ -2,7 +2,7 @@
 class TokyoMetro::Static::TrainType::Custom::DefaultSetting::Info < TokyoMetro::Static::TrainType::Custom::OtherOperator::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::DefaultSetting
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
 
 # @!group 種別の ID ・基本情報に関するメソッド - 例を追加するためだけに定義
 

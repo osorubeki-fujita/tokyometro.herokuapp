@@ -1,17 +1,21 @@
 module DocumentHelper
 
-  def document_top_title
-    render inline: <<-HAML , type: :haml
-%div{ id: :document_title }
-  = document_common_title
-  = application_common_top_title
-    HAML
+  # include CommonTitleHelper
+
+  def self.common_title_ja
+    "ドキュメント"
+    # "開発ドキュメント"
+  end
+
+  def self.common_title_en
+    "Documents"
+    # "Documents of development"
   end
 
   def document_title_of_each_content( title_ja , title_en )
     render inline: <<-HAML , type: :haml , locals: { title_ja: title_ja , title_en: title_en }
 %div{ id: :document_title }
-  = document_common_title
+  = render_common_title( common_title_ja: ::DocumentHelper.common_title_ja , common_title_en: ::DocumentHelper.common_title_en )
   = title_of_each_content( title_ja , title_en )
     HAML
   end
@@ -33,22 +37,6 @@ module DocumentHelper
 
   def self.train_type_css_class_in_document( train_type )
     train_type.same_as.gsub( train_type_regexp , "" ).gsub( /\./ , "_" ).underscore
-  end
-
-  private
-
-  def document_common_title
-    title_of_main_contents( document_common_title_ja , document_common_title_en )
-  end
-
-  def document_common_title_ja
-    "ドキュメント"
-    # "開発ドキュメント"
-  end
-
-  def document_common_title_en
-    "Documents"
-    # "Documents of development"
   end
 
   class << self

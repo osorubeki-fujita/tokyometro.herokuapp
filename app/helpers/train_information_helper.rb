@@ -1,19 +1,11 @@
 module TrainInformationHelper
 
-  def train_information_top_title
-    render inline: <<-HAML , type: :haml
-%div{ id: :train_information_title }
-  = train_information_common_title
-  = application_common_top_title
-    HAML
-  end
-
   def train_information_title_of_each_station
     render inline: <<-HAML , type: :haml , locals: { station: @station }
 %div{ id: :train_information_title }
-  = train_information_common_title
+  = ::TrainInformationDecorator.render_common_title
   = station_name_main( station , station_code: true , all_station_codes: true )
-= passenger_survey_of_station
+= station.latest_passenger_survey.decorate.render_journeys_of_each_station
     HAML
   end
 
@@ -47,23 +39,12 @@ module TrainInformationHelper
   def train_information_table( railway_lines )
     render inline: <<-HAML , type: :haml , locals: { railway_lines: railway_lines }
 %div{ id: :train_information }
-  - railway_lines.each 
+  - railway_lines.each do | railway_line |
+    - #
     HAML
   end
 
   private
-
-  def train_information_common_title
-    title_of_main_contents( train_information_common_title_ja , train_information_common_title_en )
-  end
-
-  def train_information_common_title_ja
-    "列車運行情報"
-  end
-
-  def train_information_common_title_en
-    "Information of trains from stations"
-  end
 
   def train_information_display_info_of_each_railway_line( railway_line )
     render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }

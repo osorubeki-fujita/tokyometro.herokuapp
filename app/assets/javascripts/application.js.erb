@@ -32,14 +32,12 @@ $( document ).on( 'ready page:load' , function() { // Turbolinks 対策
   // $( document ).live( 'pageshow', function() {
 
   initializeDo() ;
-
   changeAttrOfStationFacility() ;
   processStationFacilityInfos() ;
 
-  // processPassengerSurveyTable() ;
   <% if @default_platform_info_tab.present? %>
     <% default_tab = @default_platform_info_tab.to_s %>
-  changePlatformInfoTab( <%= default_tab %> ) ;
+    changePlatformInfoTab( <%= default_tab %> ) ;
   <% end %>
   processMainContents() ;
   // processBottomContent() ;

@@ -2,7 +2,7 @@
 class TokyoMetro::Static::Fare::Normal::Table::List < Array
 
   include ::TokyoMetro::ClassNameLibrary::Static::Fare
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   # 運賃の配列を文字列として返すメソッド
   # @param indent [Integer (>0)] インデントの幅

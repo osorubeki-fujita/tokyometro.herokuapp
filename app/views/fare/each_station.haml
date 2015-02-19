@@ -2,6 +2,6 @@
 
 = fare_title_of_each_content
 %div{ id: :fare_contents }
-  %div{ id: :fare_info }
-    = title_of_each_content( "各駅から・各駅までの運賃" , "Fares between stations" )
+  %div{ id: :fare_infos }
+    = @station.decorate.render_fare_title_of_this_station
   = fare_tables

@@ -2,22 +2,22 @@
 class TokyoMetro::Api::TrainTimetable::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainTimetable  
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
 
-  include ::TokyoMetro::CommonModules::Info::Decision::RomanceCar
-  include ::TokyoMetro::CommonModules::Info::Decision::ToeiMitaLine
-  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
+  include ::TokyoMetro::Modules::Common::Info::Decision::RomanceCar
+  include ::TokyoMetro::Modules::Common::Info::Decision::ToeiMitaLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::SameAs
 
-  include ::TokyoMetro::ApiModules::Info::Decision::StartingStation
-  include ::TokyoMetro::ApiModules::Info::Decision::TerminalStation
+  include ::TokyoMetro::Modules::Api::Info::Decision::StartingStation
+  include ::TokyoMetro::Modules::Api::Info::Decision::TerminalStation
 
-  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Info::Decision::TrainType
-  include ::TokyoMetro::ApiModules::Info::Decision::OperatedSection
-  include ::TokyoMetro::ApiModules::Info::Decision::TrainDirection
-  include ::TokyoMetro::ApiModules::Info::Decision::TrainOperationDay
+  include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Api::Info::Decision::TrainType
+  include ::TokyoMetro::Modules::Api::Info::Decision::OperatedSection
+  include ::TokyoMetro::Modules::Api::Info::Decision::TrainDirection
+  include ::TokyoMetro::Modules::Api::Info::Decision::TrainOperationDay
 
   # Constructor
   def initialize( id_urn , same_as , dc_date , train_number , railway_line , train_name , operator ,

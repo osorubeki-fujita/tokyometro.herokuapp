@@ -1,17 +1,13 @@
-#! ruby -Ku
-# -*- coding: utf-8 -*-
-
 module BottomContentHelper
 
   def bottom_content
-    arr_of_links = [ link_to_document , link_to_disclaimer , link_to_remark , link_to_tokyo_metro_official ]
-    render inline: <<-HAML , type: :haml , locals: { method_name: __method__ , arr_of_links: arr_of_links }
+    ary_of_link_methods = [ link_to_document , link_to_disclaimer , link_to_remark , link_to_tokyo_metro_official ]
+    render inline: <<-HAML , type: :haml , locals: { method_name: __method__ , ary_of_link_methods: ary_of_link_methods }
 %div{ id: method_name }
   %div{ class: "links" }
-    - last_index = arr_of_links.length - 1
-    - arr_of_links.each_with_index do | link_method , i |
+    - ary_of_link_methods.each.with_index(1) do | link_method , i |
       = link_method
-      - unless i == last_index
+      - unless i == ary_of_links.length
         = " | "
     HAML
   end

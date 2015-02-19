@@ -2,7 +2,7 @@ class BarrierFreeFacilityType < ActiveRecord::Base
 
   has_many :barrier_free_facilities
 
-  ::TokyoMetro::CommonModules::Dictionary::BarrierFree.facility_types.each do | method_base_name |
+  ::TokyoMetro::Modules::Common::Dictionary::BarrierFree.facility_types.each do | method_base_name |
     eval <<-DEF
       def #{ method_base_name }?
         name_en.underscore == "#{method_base_name}"

@@ -2,8 +2,8 @@
 class TokyoMetro::Static::TrainOwner::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainOwner
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
 # @!group Constructor
 

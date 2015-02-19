@@ -1,2 +1,2 @@
-module TokyoMetro::ApiModules::TimetableModules::StationTimetable
+module TokyoMetro::Modules::Api::TimetableModules::StationTimetable
 end

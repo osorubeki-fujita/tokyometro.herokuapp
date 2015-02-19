@@ -1,9 +1,9 @@
 class TokyoMetro::Factories::Seed::Api::MetaClass::Timetables::TrainType
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
 
-  include ::TokyoMetro::CommonModules::Info::Decision::RomanceCar
-  include ::TokyoMetro::CommonModules::Info::Decision::ToeiMitaLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::RomanceCar
+  include ::TokyoMetro::Modules::Common::Info::Decision::ToeiMitaLine
 
   include ::TokyoMetro::Factories::Seed::Api::MetaClass::Timetables::TrainTypeModules::ProcessPatterns
 
@@ -87,7 +87,7 @@ class TokyoMetro::Factories::Seed::Api::MetaClass::Timetables::TrainType
       hanzomon_line_holiday_express_to_tokyu_den_en_toshi_line_stopping_at_minami_machida
 
     # 南北線・三田線共用区間の三田線方面（西高島平方面）行き列車
-    #   @note TokyoMetro::CommonModules::Info::Decision::ToeiMitaLine#toei_mita_line_train_for_nishi_takashimadaira? を用いる。
+    #   @note TokyoMetro::Modules::Common::Info::Decision::ToeiMitaLine#toei_mita_line_train_for_nishi_takashimadaira? を用いる。
     #   @note #toei_mita_line_train_for_nishi_takashimadaira? は必要に応じて上書きする。
     elsif toei_mita_line_train_for_nishi_takashimadaira?
       toei_mita_line_local_train_normal

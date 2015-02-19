@@ -16,46 +16,16 @@ module StationTimetableHeaderHelper
 %thead{ class: railway_line.css_class_name }
   %tr
     %td{ colspan: 2 , class: :top_header }
-      = timetable_railway_line_name( railway_line )
+      = railway_line.decorate.render_in_station_timetable_header
       %div{ class: :main }
-        = timetable_operation_day( operation_day )
-        = timetable_railway_direction( direction )
+        = operation_day.decorate.render_in_station_timetable_header
+        = railway_direction.decorate.render_in_station_timetable_header
         = timetable_station_name( station )
   = timetable_only_one_train_type_or_station( only_one_train_type , train_types , only_one_to_station , to_stations , major_to_station_id )
     HAML
   end
 
   private
-
-  def timetable_railway_line_name( railway_line )
-    render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }
-%div{ class: :railway_line }<
-  %span{ class: :text_ja }<
-    = railway_line.name_ja
-  %span{ class: :text_en }<
-    = railway_line.name_en
-    HAML
-  end
-
-  def timetable_operation_day( operation_day )
-    render inline: <<-HAML , type: :haml , locals: { operation_day: operation_day }
-%div{ class: :operation_day }<
-  %div{ class: :text_ja }<
-    = operation_day.name_ja
-  %div{ class: :text_en }<
-    = operation_day.name_en.pluralize
-    HAML
-  end
-
-  def timetable_railway_direction( railway_direction )
-    render inline: <<-HAML , type: :haml , locals: { railway_direction: railway_direction }
-%div{ class: :direction }<
-  %div{ class: :text_ja }<
-    = railway_direction.station.name_ja + "方面"
-  %div{ class: :text_en }<
-    = "for " + railway_direction.station.name_en
-    HAML
-  end
 
   def timetable_station_name( station )
     render inline: <<-HAML , type: :haml , locals: { station: station }
@@ -82,13 +52,12 @@ module StationTimetableHeaderHelper
   %td{ colspan: 2 }<
     - str_ja = String.new
     - str_en = String.new
-    - if only_one_to_station or only_one_to_station
+    - if only_one_train_type or only_one_to_station
       - str_ja = "列車はすべて"
       - str_en = "All trains are"
       - if only_one_train_type
         - str_ja += train_types.first.train_type_in_api.name_ja
-        - str_en += " "
-        - str_en += train_types.first.train_type_in_api.name_en
+        - str_en += ( " " + train_types.first.train_type_in_api.name_en )
       - if only_one_to_station
         - destination = to_stations.first
         - str_ja += ( destination.name_ja + "行き" )

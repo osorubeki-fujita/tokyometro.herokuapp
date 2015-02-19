@@ -2,8 +2,8 @@
 class TokyoMetro::Static::TrainType::Custom::Main::Info < TokyoMetro::Static::TrainType::Custom::DefaultSetting::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::Main
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
   # Constructor
   # @param ary [::Array] 変数の配列（内部で展開する）
@@ -22,13 +22,13 @@ class TokyoMetro::Static::TrainType::Custom::Main::Info < TokyoMetro::Static::Tr
   attr_reader :css_class_name_in_document
 
 # @!group 文字色に関するメソッド (1)
-  include ::TokyoMetro::StaticModules::GetColorInfo::Base
+  include ::TokyoMetro::Modules::Static::GetColorInfo::Base
 # @!group 文字色に関するメソッド (2)
-  include ::TokyoMetro::StaticModules::GetColorInfo::EachRgbElement
+  include ::TokyoMetro::Modules::Static::GetColorInfo::EachRgbElement
 # @!group 背景色に関するメソッド (1)
-  include ::TokyoMetro::StaticModules::GetBackgroundColorInfo::Base
+  include ::TokyoMetro::Modules::Static::GetBackgroundColorInfo::Base
 # @!group 背景色に関するメソッド (2)
-  include ::TokyoMetro::StaticModules::GetBackgroundColorInfo::EachRgbElement
+  include ::TokyoMetro::Modules::Static::GetBackgroundColorInfo::EachRgbElement
 # @!endgroup
 
   alias :name_ja_to_haml :note

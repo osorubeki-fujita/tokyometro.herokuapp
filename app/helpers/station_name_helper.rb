@@ -138,7 +138,7 @@ module StationNameHelper
   end
 
   def list_of_station_codes_process_array( arr )
-    arr.sort_by { | station | station.railway_line_id }.map { | station | station.station_code }.uniq
+    arr.sort_by( &:railway_line_id ).map( &:station_code ).uniq
   end
 
 end

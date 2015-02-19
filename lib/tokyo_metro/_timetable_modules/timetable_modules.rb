@@ -1,15 +1,15 @@
-module TokyoMetro::ApiModules::TimetableModules
+module TokyoMetro::Modules::Api::TimetableModules
 
   def self.include_pattern_a
     # include_common_modules
 
     # ::TokyoMetro::Api::StationTimetable::Info.class_eval do
-      # include ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::Seed::PatternA
+      # include ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::Seed::PatternA
     # end
 
-    #-------- @todo TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA の削除
+    #-------- @todo TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA の削除
     # ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info.class_eval do
-      # include ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA
+      # include ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA
     # end
 
     # ::TokyoMetro::Factories::Seed.module_eval do
@@ -24,17 +24,17 @@ module TokyoMetro::ApiModules::TimetableModules
 
     # [class]
     # ::TokyoMetro::Api::StationTimetable::Info.class_eval do
-      # include ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::Seed::PatternB
+      # include ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::Seed::PatternB
     # end
 
     # [class]
     # ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info.class_eval do
-      # include ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternB
+      # include ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternB
     # end
 
     # [class]
     # ::TokyoMetro::Api::TrainTimetable::Info.class_eval do
-      # include ::TokyoMetro::ApiModules::TimetableModules::TrainTimetable::Info::Seed::PatternB
+      # include ::TokyoMetro::Modules::Api::TimetableModules::TrainTimetable::Info::Seed::PatternB
     # end
 
     # [module]
@@ -51,11 +51,11 @@ module TokyoMetro::ApiModules::TimetableModules
     def include_common_modules
 
       # ::TokyoMetro::Api::StationTimetable::Info.class_eval do
-        # include ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::Seed::Common
+        # include ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::Seed::Common
       # end
 
       # ::TokyoMetro::Api::StationTimetable::Info::TrainTime::Info.class_eval do
-        # include ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::Common
+        # include ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::Common
       # end
 
     end

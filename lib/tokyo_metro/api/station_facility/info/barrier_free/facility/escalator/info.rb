@@ -3,14 +3,14 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Facility::Escalator::
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::Escalator
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::Availability::AliasTowardsAccessibility
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::MethodMissing
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::Availability::AliasTowardsAccessibility
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::MethodMissing
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::WheelChair::Availability::Escalator
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::Availability::Escalator
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::MobilityScooter::Availability::None
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::MobilityScooter::Availability::AliasTowardsAccessibility
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::MobilityScooter::MethodMissing
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::MobilityScooter::Availability::None
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::MobilityScooter::Availability::AliasTowardsAccessibility
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::MobilityScooter::MethodMissing
 
   # Constructor
   def initialize( id_urn , same_as , service_detail , place_name , located_area_name , remark , is_available_to_wheel_chair )

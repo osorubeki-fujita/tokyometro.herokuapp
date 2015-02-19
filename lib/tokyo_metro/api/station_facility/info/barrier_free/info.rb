@@ -4,14 +4,14 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility::BarrierFree::MetaClass
 
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
-  include ::TokyoMetro::ApiModules::Info::SetDataToHash
+  include ::TokyoMetro::Modules::Api::Info::ToStringGeneral
+  include ::TokyoMetro::Modules::Api::Info::SetDataToHash
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::LocatedArea
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::LocatedArea
 
   # Constructor
   def initialize( id_urn , same_as , service_details , place_name , located_area_name , remark )

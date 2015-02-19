@@ -1,11 +1,8 @@
 class StationFacilityController < ApplicationController
 
-  require 'each_railway_line'
-  require 'yurakucho_and_fukutoshin_line'
   include EachRailwayLine
   include YurakuchoAndFukutoshinLine
 
-  require 'each_station'
   include EachStation
 
   def index

@@ -8,7 +8,7 @@ class TokyoMetro::Factories::Seed::Api::StationTrainTime::TrainInStationTimetabl
     @station_timetable_info = station_timetable_info
 
     class << @train
-      include ::TokyoMetro::ApiRefinements::StationTimetable::Info::TrainTime::Info::TerminalStationsSameAs
+      include ::TokyoMetro::Refinements::Api::StationTimetable::Info::TrainTime::Info::TerminalStationsSameAs
     end
 
     @operation_day_in_db = operation_day_in_db
@@ -45,7 +45,7 @@ class TokyoMetro::Factories::Seed::Api::StationTrainTime::TrainInStationTimetabl
   def train_timetable_in_api
     t = @train_timetables.find { | train_timetable |
       class << train_timetable
-        include ::TokyoMetro::ApiRefinements::TrainTimetable::Info::Match
+        include ::TokyoMetro::Refinements::Api::TrainTimetable::Info::Match
       end
       train_timetable.matches_station_timetable?( @train , @station_timetable_info , @operation_day_in_db )
     }
@@ -66,7 +66,7 @@ class TokyoMetro::Factories::Seed::Api::StationTrainTime::TrainInStationTimetabl
     DEF
   end
 
-  # @note {::TokyoMetro::ApiRefinements::StationTimetable::Info::TrainTime::Info::TerminalStationsSameAs.terminal_stations_same_as} を呼び出す。
+  # @note {::TokyoMetro::Refinements::Api::StationTimetable::Info::TrainTime::Info::TerminalStationsSameAs.terminal_stations_same_as} を呼び出す。
   def terminal_stations_same_as
     @train.send( :terminal_stations_same_as , railway_lines )
   end

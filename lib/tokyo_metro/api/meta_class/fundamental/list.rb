@@ -1,7 +1,7 @@
 # API から提供されるデータを格納する配列（メタクラス）
 class TokyoMetro::Api::MetaClass::Fundamental::List < ::Array
 
-  include ::TokyoMetro::ApiModules::Common::NotRealTime
+  include ::TokyoMetro::Modules::Api::Common::NotRealTime
 
   # インスタンスの情報を整形した文字列にして返すメソッド
   # @param indent [Integer (>=0)] インデントの幅

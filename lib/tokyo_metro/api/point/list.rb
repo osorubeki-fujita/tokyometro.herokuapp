@@ -2,7 +2,7 @@
 class TokyoMetro::Api::Point::List < TokyoMetro::Api::MetaClass::Hybrid::List
 
   include ::TokyoMetro::ClassNameLibrary::Api::Point
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   undef :find_by_same_as
 

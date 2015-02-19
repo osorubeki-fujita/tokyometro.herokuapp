@@ -2,13 +2,13 @@
 class TokyoMetro::Static::RailwayLine::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::RailwayLine
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
-  include ::TokyoMetro::StaticModules::GetName
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Static::GetName
 
-  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
-  include ::TokyoMetro::CommonModules::Info::Decision::Operator
-  include ::TokyoMetro::CommonModules::Info::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::SameAs
+  include ::TokyoMetro::Modules::Common::Info::Decision::Operator
+  include ::TokyoMetro::Modules::Common::Info::RailwayLine
 
   # Constructor
   # @param same_as [::String]

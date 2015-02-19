@@ -2,7 +2,7 @@
 class TokyoMetro::Static::TrainType::Color::Info < TokyoMetro::Static::Color
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainType::Color
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
 
 # @!group Constructor
 

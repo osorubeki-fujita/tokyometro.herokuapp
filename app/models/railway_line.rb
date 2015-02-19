@@ -22,8 +22,8 @@ class RailwayLine < ActiveRecord::Base
   has_many :train_locations
   has_many :train_location_olds
 
-  include ::TokyoMetro::CommonModules::Info::RailwayLine
-  include ::TokyoMetro::DbModules::Decision::Operator
+  include ::TokyoMetro::Modules::Common::Info::RailwayLine
+  include ::TokyoMetro::Modules::Db::Decision::Operator
 
   # 東京メトロの路線を取得する
   scope :tokyo_metro , -> {
@@ -135,4 +135,18 @@ class RailwayLine < ActiveRecord::Base
   scope :yf , -> {
     yurakucho_and_fukutoshin
   }
+
+  def station_attribute_ja
+    case same_as
+    when "odpt.Railway:Toei.TodenArakawa"
+      "停留場"
+    else
+      "駅"
+    end
+  end
+
+  def station_attribute_en
+    "Sta."
+  end
+
 end

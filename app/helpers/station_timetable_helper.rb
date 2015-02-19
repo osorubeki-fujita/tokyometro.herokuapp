@@ -1,17 +1,9 @@
 module StationTimetableHelper
 
-  def title_in_station_timetable_top
-    render inline: <<-HAML , type: :haml
-%div{ id: :station_timetable_title }
-  = common_title_of_station_timetable
-  = application_common_top_title
-    HAML
-  end
-
   def title_of_station_timetable_in_each_line
     render inline: <<-HAML , type: :haml , locals: { railway_lines: @railway_lines }
 %div{ id: :station_timetable_title }
-  = common_title_of_station_timetable
+  = ::StationTimetableDecorator.render_common_title
   = railway_line_name_main( railway_lines )
     HAML
   end
@@ -19,25 +11,36 @@ module StationTimetableHelper
   def title_of_station_timetable_in_each_station
     render inline: <<-HAML , type: :haml , locals: { station: @station }
 %div{ id: :station_facility_title }
-  = common_title_of_station_timetable
+  = ::StationTimetableDecorator.render_common_title
   = station_name_main( station , station_code: true , all_station_codes: true )
     HAML
   end
 
-  def make_timetables
-    timetables_grouped_by_railway_line = @timetables.group_by { | timetable | timetable.railway_line_id }
+  def station_timetable_grouped_by_railway_line
+    h = ::Hash.new
+    railway_line_ids = @station_timetables.flatten.map( &:railway_lines ).flatten.map( &:id ).uniq.sort
+    @station_timetables.each do | station_timetable |
+      railway_line_ids = station_timetable.station_timetable_fundamental_infos.pluck( :railway_line_id )
+      railway_line_ids.each do | railway_line_id |
+        if h[ railway_line_id ].nil?
+          h[ railway_line_id ] = ::Array.new
+        end
+        h[ railway_line_id ] << station_timetable
+      end
+    end
+    h.sort_keys
+  end
 
+  def make_station_timetables
     h_locals = {
-      timetables_grouped_by_railway_line: timetables_grouped_by_railway_line ,
+      station_timetable_grouped_by_railway_line: station_timetable_grouped_by_railway_line ,
       station: @station
     }
     render inline: <<-HAML , type: :haml , locals: h_locals
-- timetables_grouped_by_railway_line.keys.sort.each do | railway_line_id |
+- station_timetable_grouped_by_railway_line.each do | railway_line_id , station_timetables_of_a_railway_line |
   - # 路線別の時刻表（複数）を取得
-  - timetables_of_a_railway_line = timetables_grouped_by_railway_line[ railway_line_id ]
-  - #
   - railway_line = ::RailwayLine.find_by( id: railway_line_id )
-  - timetables_grouped_by_direction = timetables_of_a_railway_line.group_by { | timetable | timetable.railway_direction_id }
+  - timetables_grouped_by_direction = station_timetables_of_a_railway_line.group_by( &:railway_direction_id )
   - timetable_railway_direction_ids = timetables_grouped_by_direction.keys.sort_by { | direction_id | ::RailwayDirection.find_by( id: direction_id ).station_id }
   - timetable_railway_direction_ids.each do | direction_id |
     - # 方面別の時刻表（1つ）を取得
@@ -51,7 +54,7 @@ module StationTimetableHelper
     - # 方面ごとの各列車の時刻を取得
     - train_times_in_a_timetable_of_a_direction = timetable_of_a_direction.train_times.includes( :to_station , :train_type , :operation_day )
     - # 曜日ごとに仕分け
-    - train_times_in_a_timetable_of_a_direction_grouped_by_operation_days = train_times_in_a_timetable_of_a_direction.group_by { | train_time | train_time.operation_day_id }
+    - train_times_in_a_timetable_of_a_direction_grouped_by_operation_days = train_times_in_a_timetable_of_a_direction.group_by( &:operation_day_id )
     - operation_day_ids = train_times_in_a_timetable_of_a_direction_grouped_by_operation_days.keys.sort
     - operation_day_ids.each do | operation_day_id |
       - train_times_of_a_direction_and_an_operation_day = train_times_in_a_timetable_of_a_direction_grouped_by_operation_days[ operation_day_id ]
@@ -61,18 +64,6 @@ module StationTimetableHelper
   end
 
   private
-
-  def common_title_of_station_timetable
-    title_of_main_contents( common_station_timetable_title_ja , common_station_timetable_title_en )
-  end
-
-  def common_station_timetable_title_ja
-    "各駅の時刻表"
-  end
-
-  def common_station_timetable_title_en
-    "Timetable of stations"
-  end
 
   # 個別の時刻表（路線・方面・運行日別）を作成するメソッド
   # @param train_times_of_a_direction_and_an_operation_day [Array <TrainTime>] 各列車の情報（路線・方面・運行日別）のリスト
@@ -108,12 +99,12 @@ module StationTimetableHelper
 - train_types = ::TrainType.includes( :train_type_in_api ).find( train_type_ids )
 
 - only_one_to_station = ( to_stations.length == 1 )
-- only_one_train_type = ( train_types.map { | train_type | train_type.train_type_in_api }.uniq.length == 1 )
+- only_one_train_type = ( train_types.map( &:train_type_in_api ).uniq.length == 1 )
 
 - count_to_station_proc = Proc.new { | to_station_id | train_times.count { | train_time | train_time.to_station_id == to_station_id } }
 - major_to_station_id = to_station_ids.max { | to_station_id_1 , to_station_id_2 | count_to_station_proc.call( to_station_id_1 ) <=> count_to_station_proc.call( to_station_id_2 ) }
 
-- train_times_grouped_by_hour = train_times.group_by { | train_time | train_time.departure_time_hour }
+- train_times_grouped_by_hour = train_times.group_by( &:departure_time_hour )
 - midnight = [ 0 , 1 , 2 ]
 - train_time_hours = train_times_grouped_by_hour.keys.sort
 - midnight.each do | midnight_hour |
@@ -125,7 +116,7 @@ module StationTimetableHelper
   = timetable_header( railway_line , operation_day , direction , station , only_one_train_type , train_types , only_one_to_station , to_stations , major_to_station_id )
   %tbody
     - train_time_hours.each do | train_time_hour |
-      - train_times_in_an_hour = train_times_grouped_by_hour[ train_time_hour ].sort_by { | train_time | train_time.departure_time_min }
+      - train_times_in_an_hour = train_times_grouped_by_hour[ train_time_hour ].sort_by( &:departure_time_min )
       %tr{ class: :hour_row }
         %td{ class: :hour }<
           = train_time_hour

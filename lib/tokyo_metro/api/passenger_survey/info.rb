@@ -2,9 +2,9 @@
 class TokyoMetro::Api::PassengerSurvey::Info < TokyoMetro::Api::MetaClass::NotRealTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::PassengerSurvey
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::Modules::Api::Info::ToStringGeneral
 
   # Constructor
   def initialize( id_urn , same_as , operator , survey_year , passenger_journeys )

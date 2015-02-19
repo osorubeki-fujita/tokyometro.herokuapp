@@ -2,7 +2,7 @@ class DocumentController < ApplicationController
 
   def index
     @title = "開発ドキュメント"
-    @models = ::TokyoMetro::DbModules::Model.list
+    @models = ::TokyoMetro::Modules::Db::Model.list
 
     render 'document/index' , layout: 'application'
   end

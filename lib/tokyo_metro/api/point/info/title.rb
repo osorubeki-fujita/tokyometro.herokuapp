@@ -2,7 +2,7 @@
 class TokyoMetro::Api::Point::Info::Title
 
   include ::TokyoMetro::ClassNameLibrary::Api::Point
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
 
   # Constructor
   def initialize( station_name , code , additional_info , elevator , closed )

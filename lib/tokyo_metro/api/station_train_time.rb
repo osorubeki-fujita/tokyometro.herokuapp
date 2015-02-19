@@ -1,7 +1,7 @@
 class TokyoMetro::Api::StationTrainTime
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationTrainTime
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
   # Constructor
   # @param station_timetables [TokyoMetro::Api::StationTimetable::List <TokyoMetro::Api::StationTimetable::Info>] 流し込みの対象となる列車時刻に関連する駅時刻表
@@ -72,10 +72,10 @@ class TokyoMetro::Api::StationTrainTime
   def process_station_timetable_of_marunouchi_line( method_names_for_selecting_railway_line )
     proc_for_checking_method_name = ::Proc.new { | method_name | /\marunouchi/ === method_name.to_s }
 
-    procs_for_selecting_station_timetables_1 = ::TokyoMetro::CommonModules::Dictionary::Station::StringList.between_honancho_and_nakano_sakaue_in_system.map { | sta |
+    procs_for_selecting_station_timetables_1 = ::TokyoMetro::Modules::Common::Dictionary::Station::StringList.between_honancho_and_nakano_sakaue_in_system.map { | sta |
       ::Proc.new { | item | item.same_as == "odpt.StationTimetable:TokyoMetro.MarunouchiBranch.#{sta}.Honancho" }
     }
-    procs_for_selecting_station_timetables_2 = ::TokyoMetro::CommonModules::Dictionary::Station::StringList.between_honancho_and_nakano_shimbashi_in_system.map { | sta |
+    procs_for_selecting_station_timetables_2 = ::TokyoMetro::Modules::Common::Dictionary::Station::StringList.between_honancho_and_nakano_shimbashi_in_system.map { | sta |
       ::Proc.new { | item | item.same_as == "odpt.StationTimetable:TokyoMetro.MarunouchiBranch.#{sta}.NakanoSakaue" }
     }
 

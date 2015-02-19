@@ -1,32 +1,13 @@
 module ApplicationHelper
 
-  def self.latest_passenger_survey_year
-    2013
+  # include CommonTitleHelper
+
+  def self.common_title_ja
+    "Tokyo Metro Open Data Contest"
   end
 
-  def title_of_main_contents( name_ja , name_en )
-    if /\A[a-zA-Z ]+\Z/ =~ name_ja
-      h1_class_name = :text_en
-    else
-     h1_class_name = :text_ja
-    end
-    h_locals = { name_ja: name_ja , name_en: name_en , h1_class_name: h1_class_name }
-    render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :common }
-  %h1{ class: h1_class_name }<
-    = name_ja
-  %h2{ class: :text_en }<
-    = name_en
-    HAML
-  end
-
-  def application_common_top_title
-    render inline: <<-HAML , type: :haml
-%div{ class: :main_text }
-  %div{ class: :normal }
-    %h2{ class: :text_en }<
-      = "Top"
-    HAML
+  def self.common_title_en
+    "Ruby for Rails"
   end
 
   def title_of_each_content( name_ja , name_en )

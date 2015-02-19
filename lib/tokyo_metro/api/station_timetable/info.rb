@@ -3,11 +3,11 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationTimetable
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
-  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
-  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Info::Decision::CurrentStation
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::SameAs
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Api::Info::Decision::CurrentStation
 
   # Constructor
   def initialize( id_urn , same_as , dc_date , station_timetable_fundamental_infos ,

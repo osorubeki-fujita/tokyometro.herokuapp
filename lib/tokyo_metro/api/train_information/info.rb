@@ -3,10 +3,10 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainInformation
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
-  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
 
-  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::Modules::Api::Info::ToStringGeneral
 
   # Constructor
   # @param id_urn [String] 固有識別子 (ucode) <id - URN>

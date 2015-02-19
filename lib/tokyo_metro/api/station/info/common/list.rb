@@ -1,7 +1,7 @@
 class TokyoMetro::Api::Station::Info::Common::List < TokyoMetro::Api::MetaClass::Fundamental::List
 
   include ::TokyoMetro::ClassNameLibrary::Api::Station
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   def seed( station_id , indent )
     super( station_id , indent: indent + 1 , not_on_the_top_layer: true , no_display: true , display_number: false )

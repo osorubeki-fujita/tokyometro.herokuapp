@@ -6,11 +6,11 @@
 = railway_line_title_of_each_line
 %div{ id: :railway_line_contents }
   %div{ id: :train_info }
-    = title_of_each_content( "運行情報" , "Train Info" )
+    = ::RailwayLineDecorator.render_title_of_train_info
   %div{ id: :top_links }
     %p<
       = "路線時刻表 (Timetable of this line)"
     %p<
       = "リアルタイム運行情報 (Current train position)"
   = travel_time_info
-  = women_only_car_infos
+  = render_women_only_car_infos

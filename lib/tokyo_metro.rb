@@ -110,29 +110,15 @@ module TokyoMetro
 
   # @!group モジュールの組み込み
 
-  # 標準添付ライブラリの拡張
-  def self.extend_builtin_libraries
-    [ "String" , "Object" , "DateTime" , "Integer" , "Symbol" , "Time" ].each do | class_name |
-      eval( "::#{ class_name }" ).class_eval do
-        include eval( "::ForRails::ExtendBuiltinLibraries::#{ class_name }Module" )
-      end
-    end
-
-    # Module.class_eval do
-    ::Object.class_eval do
-      include ::ForRails::ExtendBuiltinLibraries::NamespaceModule
-    end
-  end
-
   def self.set_modules
-    # TokyoMetro::CommonModules::ConvertConstantToClassMethod の TokyoMetro への include は、
-    # tokyo_metro/common_modules/convert_constant_to_class_method.rb で行う。
+    # TokyoMetro::Modules::Common::ConvertConstantToClassMethod の TokyoMetro への include は、
+    # tokyo_metro/modules/common/convert_constant_to_class_method.rb で行う。
 
     module_library.each do | module_type , categories |
       categories.each do | category , namespaces |
         [ namespaces ].flatten.each do | namespace |
           eval <<-SET
-            ::TokyoMetro::ApiModules::Convert::#{module_type}::#{category}::#{namespace}.set_modules
+            ::TokyoMetro::Modules::Api::Convert::#{module_type}::#{category}::#{namespace}.set_modules
           SET
         end
       end

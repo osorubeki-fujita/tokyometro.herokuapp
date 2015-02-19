@@ -2,8 +2,8 @@
 class TokyoMetro::Static::Station::InEachRailwayLine < ::TokyoMetro::Static::Fundamental::Hash
 
   include ::TokyoMetro::ClassNameLibrary::Static::Station
-  include ::TokyoMetro::StaticModules::ToFactory::Generate::Group::OneYaml
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Hash
+  include ::TokyoMetro::Modules::Static::ToFactory::Generate::Group::OneYaml
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Hash
 
   def stations
     self.keys

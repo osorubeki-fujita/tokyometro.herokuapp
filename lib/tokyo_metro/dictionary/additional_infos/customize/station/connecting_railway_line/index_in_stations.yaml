@@ -310,6 +310,14 @@
     index_in_station: 4
     cleared: true
 
+# 【千代田線】明治神宮前
+
+"odpt.Station:TokyoMetro.Chiyoda.MeijiJingumae":
+  "odpt.Railway:TokyoMetro.Fukutoshin":
+    index_in_station: 1
+  "odpt.Railway:JR-East.Yamanote":
+    index_in_station: 2
+
 # 【千代田線】国会議事堂前
 
 "odpt.Station:TokyoMetro.Chiyoda.KokkaiGijidomae":
@@ -525,6 +533,14 @@
     cleared: true
   "odpt.Railway:Tobu.Tojo":
     index_in_station: 8
+
+# 【副都心線】明治神宮前
+
+"odpt.Station:TokyoMetro.Fukutoshin.MeijiJingumae":
+  "odpt.Railway:TokyoMetro.Chiyoda":
+    index_in_station: 1
+  "odpt.Railway:JR-East.Yamanote":
+    index_in_station: 2
 
 # 【副都心線】渋谷
 

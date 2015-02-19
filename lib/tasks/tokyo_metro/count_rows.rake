@@ -2,6 +2,7 @@ namespace :tokyo_metro do
   desc "コードの行数の取得"
   task :count_rows do
     files = [
+=begin
       "#{ ::Rails.root }/../rails_tokyo_metro_dev/tsukaisute/**/**.rb" ,
       "#{ ::Rails.root }/../rails_tokyo_metro_db/**.txt" ,
       "#{ ::Rails.root }/../rails_tokyo_metro_db/additional_datas/**/**.yaml" ,
@@ -17,7 +18,10 @@ namespace :tokyo_metro do
       "#{ ::Rails.root }/lib/**/**.rake" ,
       "#{ ::Rails.root }/test/tokyo_metro/**/**.rb" ,
       "#{ ::Rails.root }/config/application.rb" ,
+      "#{ ::Rails.root }/config/application/**/**.rb" ,
       "#{ ::Rails.root }/Rakefile"
+=end
+      "#{ ::Rails.root }/app/helpers/**/**.rb" ,
     ].map { | str | Dir.glob( str ) }.flatten.sort
     ary_of_row_info = ::Array.new
 

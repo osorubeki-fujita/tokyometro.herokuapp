@@ -29,7 +29,7 @@
 }
 
 %title_of_each_content_background_color {
-	$bgcolor: rgba( $jp_traditional_yokan_iro , 0.2 ) ;
+	$bgcolor: rgba( $jp_traditional_yokan_iro , 0.1 ) ;
 	$color_stop_point_1_moz : 50% ;
 	$color_stop_point_1_webkit : 0.5 ;
 	$color_stop_point_2_moz : 80% ;
@@ -55,8 +55,29 @@
 	);
 }
 
+#fare_infos {
+    .top_title {
+        @extend %title_of_each_content ;
+        @extend %title_of_each_content_background_color ;
+    }
+}
+
 #station_facility_platform_infos {
     .top_title {
+        @extend %title_of_each_content ;
+        @extend %title_of_each_content_background_color ;
+    }
+}
+
+#station_facility_infos {
+    .top_title {
+        @extend %title_of_each_content ;
+        @extend %title_of_each_content_background_color ;
+    }
+}
+
+#station_info_links {
+    .station_name {
         @extend %title_of_each_content ;
         @extend %title_of_each_content_background_color ;
     }
@@ -80,19 +101,5 @@
         	@extend %title_of_each_content ;
             @extend %title_of_each_content_background_color ;
         }
-    }
-}
-
-#station_facility_infos {
-    .top_title {
-        @extend %title_of_each_content ;
-        @extend %title_of_each_content_background_color ;
-    }
-}
-
-#station_info_links {
-    .station_name {
-        @extend %title_of_each_content ;
-        @extend %title_of_each_content_background_color ;
     }
 }

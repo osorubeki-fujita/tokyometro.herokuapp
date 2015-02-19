@@ -29,25 +29,4 @@ class BarrierFreeFacilityServiceDetailPattern < ActiveRecord::Base
     operation_day_id.present? or has_service_time_info?
   end
 
-  def service_time_info( skip_validity_check: false )
-    unless skip_validity_check
-      raise "Error" unless has_service_time_info?
-    end
-    time = String.new
-    if self.service_start_before_first_train
-      time << "始発"
-    else
-      time << ::ApplicationHelper.time_strf( self.service_start_time_hour , self.service_start_time_min )
-      # time << "#{ self.service_start_time_hour }:#{ self.service_start_time_min }"
-    end
-    time << " ～ "
-    if self.service_end_after_last_train
-      time << "終電"
-    else
-      time << ::ApplicationHelper.time_strf( self.service_end_time_hour , self.service_end_time_min )
-      # time << "#{ self.service_end_time_hour }:#{ self.service_end_time_min }"
-    end
-    time
-  end
-
 end

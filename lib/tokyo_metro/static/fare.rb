@@ -2,7 +2,7 @@
 module TokyoMetro::Static::Fare
 
   include ::TokyoMetro::ClassNameLibrary::Static::Fare
-  include ::TokyoMetro::CommonModules::ConvertConstantToClassMethod
+  include ::TokyoMetro::Modules::Common::ConvertConstantToClassMethod
 
   # 最後の運賃改定が行われた日付
   # @return [::DateTime]

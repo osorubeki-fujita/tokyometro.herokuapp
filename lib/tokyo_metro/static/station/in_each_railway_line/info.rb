@@ -2,8 +2,8 @@
 class TokyoMetro::Static::Station::InEachRailwayLine::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::Station
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
   # Constructor
   def initialize( same_as , station_alias , station_facility , station_facility_custom , station_facility_custom_alias ,

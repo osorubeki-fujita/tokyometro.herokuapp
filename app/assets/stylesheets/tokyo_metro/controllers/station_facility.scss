@@ -294,18 +294,21 @@
                         border: solid 1px #eee ;
                         background-color: #fafafa ;
                     }
-                    .escalator_directions {
-                        @extend %floatLeft ;
-                        .escalator_direction {
-                            @extend %floatLeft ;
-                            @extend %serviceDetailPreciseInfo ;
-                            border: solid 1px $jp_traditional_aomidori ;
-                            background-color: rgba( $jp_traditional_aomidori , 0.12 ) ;
-                        }
-                        margin: {
-                            bottom: 4px ;
-                        }
-                    }
+					// .escalator_directions {
+						// @extend %floatLeft ;
+						.escalator_direction {
+							@extend %floatLeft ;
+							@extend %serviceDetailPreciseInfo ;
+							border: solid 1px $jp_traditional_aomidori ;
+							background-color: rgba( $jp_traditional_aomidori , 0.12 ) ;
+							margin: {
+								bottom: 4px ;
+							}
+						}
+						// margin: {
+							// bottom: 4px ;
+						// }
+					// }
                     .service_time {
                         display: block ;
                         @extend %floatLeft ;

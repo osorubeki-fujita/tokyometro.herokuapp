@@ -2,7 +2,7 @@
 class TokyoMetro::Static::RailwayLine::Hash < ::TokyoMetro::Static::Fundamental::Hash
 
   include ::TokyoMetro::ClassNameLibrary::Static::RailwayLine
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Hash
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Hash
 
   # 与えられた路線名の文字列から色を取得するメソッド
   # @param str [String] 路線名の文字列

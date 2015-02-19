@@ -5,7 +5,7 @@
 # @note 始発駅や終着駅には、東京メトロ以外の駅名が出現する場合があるが、他社の駅時刻表や駅情報等は提供しない。
 class TokyoMetro::Api::TrainLocation < TokyoMetro::Api::MetaClass::RealTime
 
-  include ::TokyoMetro::ApiModules::ToFactory::Generate::Group::TrainLocation
+  include ::TokyoMetro::Modules::Api::ToFactory::Generate::Group::TrainLocation
   include ::TokyoMetro::ClassNameLibrary::Api::TrainLocation
 
   # @!group クラスメソッド - データの取得・保存

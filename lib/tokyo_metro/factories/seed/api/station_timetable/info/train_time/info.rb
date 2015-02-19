@@ -3,14 +3,14 @@ class TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info 
   include ::TokyoMetro::ClassNameLibrary::Api::StationTimetable
   include ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Common
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
-  include ::TokyoMetro::CommonModules::Info::Decision::CurrentStation
-  include ::TokyoMetro::CommonModules::Info::Decision::TrainType
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::CurrentStation
+  include ::TokyoMetro::Modules::Common::Info::Decision::TrainType
 
   def initialize( *args )
     super( *args , get_id: true )
     class << @info
-      include ::TokyoMetro::ApiRefinements::StationTimetable::Info::TrainTime::Info::OptionalInfoId
+      include ::TokyoMetro::Refinements::Api::StationTimetable::Info::TrainTime::Info::OptionalInfoId
     end
   end
 

@@ -1,6 +1,6 @@
 module TokyoMetro::Factories::Seed::Api::MetaClass::Timetables::TrainTypeModules::TrainType
 
-  include ::TokyoMetro::CommonModules::Info::Decision::TrainType
+  include ::TokyoMetro::Modules::Common::Info::Decision::TrainType
 
   private
 

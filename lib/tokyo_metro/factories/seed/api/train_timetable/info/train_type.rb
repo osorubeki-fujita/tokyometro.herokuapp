@@ -2,7 +2,7 @@ class TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::TrainType < TokyoM
 
   @patterns = ::Array.new
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
 
   include ::TokyoMetro::Factories::Seed::Api::MetaClass::Timetables::TrainTypeModules::StartingStation
   include ::TokyoMetro::Factories::Seed::Api::MetaClass::Timetables::TrainTypeModules::ConvertRailwayLine

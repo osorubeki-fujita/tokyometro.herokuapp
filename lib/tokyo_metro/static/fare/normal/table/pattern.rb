@@ -2,7 +2,7 @@
 class TokyoMetro::Static::Fare::Normal::Table::Pattern
 
   include ::TokyoMetro::ClassNameLibrary::Static::Fare
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
   # Constructor
   # @param ticket_fare [Integer] 普通運賃（大人・切符）

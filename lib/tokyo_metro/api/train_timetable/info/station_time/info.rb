@@ -2,12 +2,12 @@
 class TokyoMetro::Api::TrainTimetable::Info::StationTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainTimetable
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
 
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::ApiModules::Info::SeedCompleted
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Api::Info::SeedCompleted
 
-  include ::TokyoMetro::ApiModules::Info::Decision::ArrivalStation
+  include ::TokyoMetro::Modules::Api::Info::Decision::ArrivalStation
 
   def initialize( arrival_time , arrival_station , departure_time , departure_station )
     @arrival_time = arrival_time

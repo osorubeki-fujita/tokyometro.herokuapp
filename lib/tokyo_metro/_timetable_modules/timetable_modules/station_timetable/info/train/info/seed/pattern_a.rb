@@ -1,4 +1,4 @@
-module TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA
+module TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA
 
   extend ::ActiveSupport::Concern
 
@@ -37,7 +37,7 @@ module TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTi
   module ClassMethods
 
     def train_type_factory_class
-      ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory
+      ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory
     end
 
   end
@@ -65,12 +65,12 @@ end
 
 
 
-class TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory < TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info::TrainType
+class TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory < TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info::TrainType
 
   @patterns = ::Array.new
 
   def self.train_type_pattern_class
-    ::TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory::Pattern
+    ::TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory::Pattern
   end
 
   private
@@ -84,5 +84,5 @@ end
 
 
 
-class TokyoMetro::ApiModules::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory::Pattern < ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info::TrainType::Pattern
+class TokyoMetro::Modules::Api::TimetableModules::StationTimetable::Info::TrainTime::Info::Seed::PatternA::TrainTypeFactory::Pattern < ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info::TrainType::Pattern
 end

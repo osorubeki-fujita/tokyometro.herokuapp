@@ -6,7 +6,7 @@
   - # stations = railway_line.stations.sort_by { | station | station.index_in_railway_line }
   - stations = railway_line.stations.sort_by { | station | station.station_code }
   - sections = stations.each_cons(2).to_a
-  - travel_time_infos = railway_line.travel_time_infos
+  - travel_time_infos = railway_line.travel_time_infos.includes( :from_station , :to_station )
   %table{ class: :travel_time_info }
     - #
     - if through_operation_a.present?

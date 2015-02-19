@@ -2,11 +2,11 @@
 class TokyoMetro::Static::Operator::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::Operator
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
-  include ::TokyoMetro::StaticModules::GetName
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Static::GetName
 
-  include ::TokyoMetro::CommonModules::Info::Operator
+  include ::TokyoMetro::Modules::Common::Info::Operator
 
 # @!group Constructor
 
@@ -571,11 +571,11 @@ class TokyoMetro::Static::Operator::Info
 
   # @return [::TokyoMetro::Static::Color] 事業者の色
   attr_reader :color
-  include ::TokyoMetro::StaticModules::GetColorInfo::Base
+  include ::TokyoMetro::Modules::Static::GetColorInfo::Base
 
 # @!group 鉄道事業者の色に関するメソッド (2)
 
-  include ::TokyoMetro::StaticModules::GetColorInfo::EachRgbElement
+  include ::TokyoMetro::Modules::Static::GetColorInfo::EachRgbElement
 
 # @!endgroup
 

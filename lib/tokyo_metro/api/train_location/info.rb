@@ -3,17 +3,17 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainLocation
 
-  include ::TokyoMetro::ApiModules::Info::ToStringGeneral
+  include ::TokyoMetro::Modules::Api::Info::ToStringGeneral
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
-  include ::TokyoMetro::CommonModules::Info::Decision::ToeiMitaLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::ToeiMitaLine
 
-  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
-  include ::TokyoMetro::ApiModules::Info::Decision::TrainType
-  include ::TokyoMetro::ApiModules::Info::Decision::TrainDirection
-  include ::TokyoMetro::ApiModules::Info::Decision::StartingStation
-  include ::TokyoMetro::ApiModules::Info::Decision::TerminalStation
-  include ::TokyoMetro::ApiModules::Info::Decision::OperatedSection
+  include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Api::Info::Decision::TrainType
+  include ::TokyoMetro::Modules::Api::Info::Decision::TrainDirection
+  include ::TokyoMetro::Modules::Api::Info::Decision::StartingStation
+  include ::TokyoMetro::Modules::Api::Info::Decision::TerminalStation
+  include ::TokyoMetro::Modules::Api::Info::Decision::OperatedSection
 
   # Constructor
   def initialize( id_urn , same_as , train_number , train_type , dc_date , valid , frequency ,

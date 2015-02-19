@@ -2,6 +2,6 @@
 class TokyoMetro::Static::TrainOwner::Hash < TokyoMetro::Static::Fundamental::Hash
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainOwner
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Hash
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Hash
 
 end

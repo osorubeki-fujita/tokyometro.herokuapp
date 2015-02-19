@@ -3,7 +3,7 @@ class BarrierFreeFacilityEscalatorDirection < ActiveRecord::Base
   belongs_to :barrier_free_facility_service_detail
   belongs_to :barrier_free_facility_escalator_direction_pattern
 
-  include ::TokyoMetro::CommonModules::Info::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
+  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
 
   [ :service_detail , :escalator_direction_pattern ].each do | method_name |
     eval <<-DEF

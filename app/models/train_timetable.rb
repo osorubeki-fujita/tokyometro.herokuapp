@@ -13,7 +13,7 @@ class TrainTimetable < ActiveRecord::Base
   belongs_to :train_name , class: TrainType
   has_many :station_train_times
 
-  include ::TokyoMetro::DbModules::Decision::RailwayLine
-  include ::TokyoMetro::DbModules::Decision::TrainType
+  include ::TokyoMetro::Modules::Db::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Db::Decision::TrainType
 
 end

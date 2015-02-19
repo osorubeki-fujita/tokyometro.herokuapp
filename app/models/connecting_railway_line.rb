@@ -4,17 +4,7 @@ class ConnectingRailwayLine < ActiveRecord::Base
   belongs_to :connecting_station , class_name: 'Station'
   belongs_to :connecting_railway_line_note
 
-  [ :connecting_to_another_station , :cleared , :not_recommended ].each do | method_name |
-    eval <<-DEF
-      def #{ method_name }?
-        #{ method_name }
-      end
-    DEF
-  end
-
-  def station
-    connecting_station
-  end
+  include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
 
   def note_instance
     connecting_railway_line_note
@@ -30,6 +20,14 @@ class ConnectingRailwayLine < ActiveRecord::Base
         note.#{ method_base_name }
       end
     DEF
+  end
+
+  def has_index_in_station?
+    index_in_station.present?
+  end
+
+  def not_have_index_in_station?
+    !( has_index_in_station? )
   end
 
 end

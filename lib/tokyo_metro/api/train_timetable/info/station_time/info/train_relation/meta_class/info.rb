@@ -2,7 +2,7 @@ class TokyoMetro::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::M
 
   include ::TokyoMetro::ClassNameLibrary::Api::TrainTimetable
   include ::TokyoMetro::ClassNameLibrary::Api::StationTrainTime::Db
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
   def initialize( same_as , cars = :all )
     @same_as = same_as

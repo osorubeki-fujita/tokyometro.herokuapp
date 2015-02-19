@@ -3,19 +3,19 @@ class TokyoMetro::Api::StationTimetable::Info::TrainTime::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::StationTimetable
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
 
-  include ::TokyoMetro::ApiModules::Info::Decision::TerminalStation
-  include ::TokyoMetro::ApiModules::Info::Decision::TrainType
+  include ::TokyoMetro::Modules::Api::Info::Decision::TerminalStation
+  include ::TokyoMetro::Modules::Api::Info::Decision::TrainType
 
-  include ::TokyoMetro::ApiModules::Info::SetDataToHash
-  include ::TokyoMetro::ApiModules::Info::ToJson
-  include ::TokyoMetro::ApiModules::Info::SeedCompleted
+  include ::TokyoMetro::Modules::Api::Info::SetDataToHash
+  include ::TokyoMetro::Modules::Api::Info::ToJson
+  include ::TokyoMetro::Modules::Api::Info::SeedCompleted
 
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
-  include ::TokyoMetro::ApiModules::Common::NotRealTime
+  include ::TokyoMetro::Modules::Api::Common::NotRealTime
 
   # Constructor
   def initialize( departure_time , terminal_station , train_type ,

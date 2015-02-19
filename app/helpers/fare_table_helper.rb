@@ -49,7 +49,7 @@ module FareTableHelper
     render inline: <<-HAML , type: :haml , locals: h_locals
 %table{ class: [ :fare_table , railway_line.css_class_name ] }
   - # ヘッダーの作成
-  = fare_table_header
+  = ::FareDecorator.render_header_of_fare_table
   - stations_in_this_railway_line = railway_line.stations.order( :index_in_railway_line )
   - # 路線のインスタンス railway_line に stations_of_this_instance の要素である駅（路線別）が含まれている場合
   - if id_of_starting_station_id_included_in_this_railway_line.present?

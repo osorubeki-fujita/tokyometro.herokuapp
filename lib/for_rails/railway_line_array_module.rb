@@ -46,15 +46,15 @@ module ForRails::RailwayLineArrayModule
   end
 
   def marunouchi_line_including_branch?
-    self.map( &:same_as ) == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.marunouchi_main_and_branch_line_same_as
+    self.map( &:same_as ) == ::TokyoMetro::Modules::Common::Dictionary::RailwayLine::StringList.marunouchi_main_and_branch_line_same_as
   end
 
   def chiyoda_line?
-    self.map( &:same_as ) == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.chiyoda_main_and_branch_line_same_as
+    self.map( &:same_as ) == ::TokyoMetro::Modules::Common::Dictionary::RailwayLine::StringList.chiyoda_main_and_branch_line_same_as
   end
 
   def yurakucho_and_fukutoshin_line?
-    self.map( &:same_as ) == ::TokyoMetro::CommonModules::Dictionary::RailwayLine::StringList.yurakucho_and_fukutoshin_line_same_as
+    self.map( &:same_as ) == ::TokyoMetro::Modules::Common::Dictionary::RailwayLine::StringList.yurakucho_and_fukutoshin_line_same_as
   end
 
 end

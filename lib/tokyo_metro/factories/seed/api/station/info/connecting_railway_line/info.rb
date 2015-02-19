@@ -4,7 +4,7 @@ class TokyoMetro::Factories::Seed::Api::Station::Info::ConnectingRailwayLine::In
 
   private
 
-  # @todo prepend される {TokyoMetro::ApiModules::Convert::Customize::Station::ConnectingRailwayLine::Factories::Seed::Info::ConnectingRailwayLine::Info} で、 railway_line_id の列を廃止する（railway_line_id は station_id からアクセスできるようにする）。
+  # @todo prepend される {TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Factories::Seed::Info::ConnectingRailwayLine::Info} で、 railway_line_id の列を廃止する（railway_line_id は station_id からアクセスできるようにする）。
   def hash_to_db
     {
       station_id: @station_id ,

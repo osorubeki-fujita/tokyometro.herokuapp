@@ -2,7 +2,7 @@
 class TokyoMetro::Static::TrainType::Custom::OtherOperator::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::OtherOperator
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
 
 # @!group Constructor
 

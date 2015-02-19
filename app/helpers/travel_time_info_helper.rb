@@ -3,7 +3,7 @@ module TravelTimeInfoHelper
   def travel_time_info
     render inline: <<-HAML , type: :haml , locals: { railway_lines: @railway_lines }
 %div{ id: :travel_time }
-  = travel_time_info_title
+  = ::TravelTimeInfoDecorator.render_sub_top_title
   - case railway_lines.length
   - when 1
     - railway_line = railway_lines.first
@@ -73,7 +73,7 @@ module TravelTimeInfoHelper
   - when 2
     - special_proc_of_station = nil
     - special_proc_of_section = nil
-    - case railway_lines.map { | railway_line | railway_line.same_as }
+    - case railway_lines.map( &:same_as )
     - when [ "odpt.Railway:TokyoMetro.Marunouchi" , "odpt.Railway:TokyoMetro.MarunouchiBranch" ]
       = render( "travel_time_info_m" , railway_lines: railway_lines , special_proc_of_station: special_proc_of_station , special_proc_of_section: special_proc_of_section )
     - when [ "odpt.Railway:TokyoMetro.Yurakucho" , "odpt.Railway:TokyoMetro.Fukutoshin" ]
@@ -85,18 +85,10 @@ module TravelTimeInfoHelper
 
   private
 
-  def travel_time_info_title
-    title_of_each_content( "停車駅と所要時間のご案内" , "Stops and travel Time" )
-  end
-
   def travel_time_info_base_one_railway_line( railway_line )
     render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }
-- railway_line.travel_time_infos.each do | info |
-  - from = info.from_station.name_ja
-  - to = info.to_station.name_ja
-  - t = info.necessary_time
-  %div{ class: :info }
-    = from + " → " + to + "(" + t.to_s + ")"
+- railway_line.travel_time_infos.each do | travel_time_info |
+  = travel_time_info.decorate.render_simple_info
     HAML
   end
 
@@ -112,13 +104,13 @@ module TravelTimeInfoHelper
     connecting_railway_lines = station.connecting_railway_lines.includes( :railway_line , railway_line: :operator )
 
     if connecting_railway_lines.present?
-      if connecting_railway_lines.all?{ | railway_line | railway_line.index_in_station.present? }
+      if connecting_railway_lines.all?( &:has_index_in_station? )
         connecting_railway_lines = connecting_railway_lines.order( :index_in_station )
-      elsif connecting_railway_lines.all?{ | railway_line | railway_line.index_in_station.nil? }
+      elsif connecting_railway_lines.all?( &:not_have_index_in_station? )
         connecting_railway_lines = connecting_railway_lines.order( :railway_line_id )
       else
-        arr = connecting_railway_lines.map { | connecting_railway_line | [ connecting_railway_line.railway_line.same_as , connecting_railway_line.index_in_station ] }
-        raise "Error: #{arr.to_s}"
+        ary = connecting_railway_lines.map { | connecting_railway_line | [ connecting_railway_line.railway_line.same_as , connecting_railway_line.index_in_station ] }
+        raise "Error: #{ary.to_s}"
       end
     end
 
@@ -162,30 +154,16 @@ module TravelTimeInfoHelper
   - if tokyo_metro
     = link_to( "" , "../railway_line/" + railway_line.name_en.gsub( " " , "_" ).underscore )
   = railway_line_code( railway_line , must_display_line_color: true , small: true )
-  = railway_line_name_text( railway_line , process_special_railway_line: true )
+  = railway_line.decorate.render_name( process_special_railway_line: true )
   - if connecting_railway_line.connecting_to_another_station?
-    - another_station = connecting_railway_line.connecting_station
-    - unless connecting_railway_line.railway_line.same_as == "odpt.Railway:Toei.TodenArakawa"
-      - suffix_ja = "駅"
-    - else
-      - suffix_ja = "停留場"
-    %div{ class: :another_station }
-      %div{ class: :text_ja }
-        = station_name_ja_processing_subname( another_station.name_ja , suffix: suffix_ja )
-      %div{ class: :text_en }
-        = station_name_en_processing_subname( another_station.name_en , suffix: "Sta." )
+    = connecting_railway_line.connecting_station.decorate.render_connection_info_from_another_station
     HAML
   end
 
   def travel_time_info_between_stations( travel_time_infos , section )
     render inline: <<-HAML , type: :haml , locals: { travel_time_infos: travel_time_infos , section: section }
-- station_1 = section[0]
-- station_2 = section[1]
-- travel_time_infos_of_this_section_1 = travel_time_infos.find_by( from_station_id: station_1.id , to_station_id: station_2.id )
-- travel_time_infos_of_this_section_2 = travel_time_infos.find_by( from_station_id: station_2.id , to_station_id: station_1.id )
-- # raise "Error: " + station_1.same_as + " - " + station_2.same_as + " / " + travel_time_infos_of_this_section_1.to_s + " / " + travel_time_infos_of_this_section_2.to_s
-- travel_time = [ travel_time_infos_of_this_section_1 , travel_time_infos_of_this_section_2 ].map { | info | raise "Error: from " + station_1.same_as + " , " + "to " +station_2.same_as if info.nil? ; info.necessary_time }.max
-= "(" + travel_time.to_s + ")"
+- necessary_time = travel_time_infos.between( *section ).pluck( :necessary_time ).max
+= "(" + necessary_time.to_s + ")"
     HAML
   end
 

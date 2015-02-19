@@ -1,19 +1,19 @@
 # 個別の路線情報を扱うクラス
 # @note
-#   DB への流し込みは、{TokyoMetro::Static::RailwayLine::Info}#seed （{TokyoMetro::CommonModules::ToFactory::Seed::Info} で定義）で行う。
+#   DB への流し込みは、{TokyoMetro::Static::RailwayLine::Info}#seed （{TokyoMetro::Modules::Common::ToFactory::Seed::Info} で定義）で行う。
 #   関連： {TokyoMetro::Factories::Seed::Static::RailwayLine::Info}
 class TokyoMetro::Api::RailwayLine::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::RailwayLine
 
-  include ::TokyoMetro::CommonModules::Info::Decision::CompareBase
-  include ::TokyoMetro::CommonModules::Info::Decision::SameAs
-  include ::TokyoMetro::CommonModules::Info::Decision::Operator
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+  include ::TokyoMetro::Modules::Common::Info::Decision::SameAs
+  include ::TokyoMetro::Modules::Common::Info::Decision::Operator
 
-  include ::TokyoMetro::ApiModules::Info::Decision::RailwayLine
-  include ::TokyoMetro::CommonModules::Info::RailwayLine
+  include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::RailwayLine
 
-  include ::TokyoMetro::ApiModules::Info::ToStringWithArray
+  include ::TokyoMetro::Modules::Api::Info::ToStringWithArray
 
   # @!group Constructor
 

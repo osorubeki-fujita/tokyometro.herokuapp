@@ -2,7 +2,7 @@
 class TokyoMetro::Static::Color
 
   include ::TokyoMetro::ClassNameLibrary::Static::Color
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
 
   # Constructor
   # @param web [String] WebColor

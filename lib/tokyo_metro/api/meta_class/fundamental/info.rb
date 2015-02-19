@@ -2,12 +2,12 @@
 class TokyoMetro::Api::MetaClass::Fundamental::Info
 
   # クラスメソッドの追加
-  include ::TokyoMetro::ApiModules::Common::NotRealTime
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Api::Common::NotRealTime
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
 
   # インスタンスメソッドの追加
-  include ::TokyoMetro::ApiModules::Info::ToJson
-  include ::TokyoMetro::ApiModules::Info::SetDataToHash
+  include ::TokyoMetro::Modules::Api::Info::ToJson
+  include ::TokyoMetro::Modules::Api::Info::SetDataToHash
 
   # @return [String] 固有識別子 (ucode) - URN
   attr_reader :id_urn

@@ -2,7 +2,7 @@
 class TokyoMetro::Static::StationsInTokyoMetro::Hash < ::TokyoMetro::Static::Fundamental::Hash
 
   include ::TokyoMetro::ClassNameLibrary::Static::StationsInTokyoMetro
-  include ::TokyoMetro::StaticModules::Hash::MakeScss
+  include ::TokyoMetro::Modules::Static::Hash::MakeScss
 
   # テスト用メソッド
   # @param title [Strng] 表示するタイトル（設定しない場合は、ハッシュの上位の名前空間の名称）

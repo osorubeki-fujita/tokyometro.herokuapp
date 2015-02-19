@@ -1,7 +1,7 @@
 class TokyoMetro::Api::RailwayLine::Info::MetaClass::List < ::TokyoMetro::Api::MetaClass::Fundamental::List
 
   include ::TokyoMetro::ClassNameLibrary::Api::RailwayLine
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::List
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::List
 
   def seed( railway_line_id )
     super( railway_line_id , indent: 1 , not_on_the_top_layer: true , display_number: false , no_display: true )

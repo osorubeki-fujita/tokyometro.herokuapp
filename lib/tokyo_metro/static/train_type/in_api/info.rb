@@ -2,8 +2,8 @@
 class TokyoMetro::Static::TrainType::InApi::Info
 
   include ::TokyoMetro::ClassNameLibrary::Static::TrainType::InApi
-  include ::TokyoMetro::CommonModules::ToFactory::Generate::Info
-  include ::TokyoMetro::CommonModules::ToFactory::Seed::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Generate::Info
+  include ::TokyoMetro::Modules::Common::ToFactory::Seed::Info
 
   # @!group Constructor
 
