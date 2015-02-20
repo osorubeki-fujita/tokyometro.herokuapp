@@ -11575,324 +11575,6 @@ function changeWidthOfRailwayLineDomain( blocks ) {
   });
 }
 ;
-(function() {
-  var changeAttibutesOfTopHeader, changeAttrOfStationTimetable, changeMarginOfLineBoxInfoDomain, changeWidth, changeWidthAndHeightOfTrainTime, changeWidthOfContentsInTimetable, changeWidthOfMin, changeWidthOfOperationDay, changeWidthOfTdHour, getMaxHeight, getMaxOuterHeight, getMaxOuterWidth, getMaxWidth, getSumHeight, getSumOuterHeight, getSumOuterWidth, getSumWidth, initializeDo, processColorInfoInDocument, processLineAndStationMatrixes, processLinkToEachDocument, processTopContent, setAllOfUniformHeightToMax, setAllOfUniformWidthToMax, setCssAttributesToEachDomain, setVarticalPositionOfOperationDay;
-
-  initializeDo = function() {
-    processTopContent();
-    processLinkToEachDocument();
-    processColorInfoInDocument();
-    processLineAndStationMatrixes();
-    changeAttrOfStationTimetable();
-  };
-
-  window.initializeDo = initializeDo;
-
-  changeWidth = function(jq, length) {
-    jq.css('width', length + 'px');
-  };
-
-  window.changeWidth = changeWidth;
-
-  changeMarginOfLineBoxInfoDomain = function(matrix, line_info) {
-    var contents_of_special_railway_line_info, height_of_special_railway_line_info, railway_line_code_domain, special_railway_line_info_margin, text_en, text_ja;
-    contents_of_special_railway_line_info = line_info.children();
-    railway_line_code_domain = contents_of_special_railway_line_info.eq(0);
-    text_ja = contents_of_special_railway_line_info.eq(1);
-    text_en = contents_of_special_railway_line_info.eq(2);
-    height_of_special_railway_line_info = railway_line_code_domain.outerHeight(true) + text_ja.outerHeight(true) + text_en.outerHeight(true);
-    line_info.css('height', height_of_special_railway_line_info);
-    special_railway_line_info_margin = (matrix.innerHeight() - height_of_special_railway_line_info) * 0.5;
-    line_info.css('margin-top', special_railway_line_info_margin).css('margin-bottom', special_railway_line_info_margin);
-  };
-
-  window.changeMarginOfLineBoxInfoDomain = changeMarginOfLineBoxInfoDomain;
-
-  getMaxOuterWidth = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).outerWidth(settings));
-    });
-    return len;
-  };
-
-  getMaxWidth = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).width());
-    });
-    return len;
-  };
-
-  getMaxOuterHeight = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).outerHeight(settings));
-    });
-    return len;
-  };
-
-  getMaxHeight = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).height());
-    });
-    return len;
-  };
-
-  window.getMaxOuterWidth = getMaxOuterWidth;
-
-  window.getMaxWidth = getMaxWidth;
-
-  window.getMaxOuterHeight = getMaxOuterHeight;
-
-  window.getMaxHeight = getMaxHeight;
-
-  getSumOuterWidth = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).outerWidth(settings);
-    });
-    return len;
-  };
-
-  getSumWidth = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).width();
-    });
-    return len;
-  };
-
-  getSumOuterHeight = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).outerHeight(settings);
-    });
-    return len;
-  };
-
-  getSumHeight = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).height();
-    });
-    return len;
-  };
-
-  window.getSumOuterWidth = getSumOuterWidth;
-
-  window.getSumWidth = getSumWidth;
-
-  window.getSumOuterHeight = getSumOuterHeight;
-
-  window.getSumHeight = getSumHeight;
-
-  setAllOfUniformWidthToMax = function(blocks) {
-    var max_width;
-    max_width = getMaxOuterWidth(blocks, false);
-    blocks.each(function() {
-      return $(this).css('width', max_width);
-    });
-  };
-
-  setAllOfUniformHeightToMax = function(blocks) {
-    var max_height;
-    max_height = getMaxOuterHeight(blocks, false);
-    blocks.each(function() {
-      return $(this).css('height', max_height);
-    });
-  };
-
-  window.setAllOfUniformWidthToMax = setAllOfUniformWidthToMax;
-
-  window.setAllOfUniformHeightToMax = setAllOfUniformHeightToMax;
-
-  setCssAttributesToEachDomain = function(domains, css_attributes, css_value) {
-    domains.each(function() {
-      return $(this).css(css_attributes, css_value);
-    });
-  };
-
-  window.setCssAttributesToEachDomain = setCssAttributesToEachDomain;
-
-  processTopContent = function() {
-    var domain_of_now_developing, domain_of_text, domain_of_title, margin_of_domain_of_text, top_content;
-    top_content = $('div#top_content');
-    domain_of_text = top_content.children('.text').first();
-    domain_of_title = domain_of_text.children('.title').first();
-    domain_of_now_developing = domain_of_text.children('.now_developing').first();
-    domain_of_now_developing.css('margin-top', domain_of_title.outerHeight() - domain_of_now_developing.outerHeight());
-    margin_of_domain_of_text = (top_content.innerHeight() - domain_of_title.outerHeight()) * 0.5;
-    domain_of_text.css('margin-top', margin_of_domain_of_text).css('margin-bottom', margin_of_domain_of_text);
-  };
-
-  processLinkToEachDocument = function() {
-    var content_names, links_to_datas, width_of_content_name;
-    links_to_datas = $('#links_to_datas');
-    width_of_content_name = 0;
-    links_to_datas.contents().each(function() {
-      var content_name, height_of_content_name, link_to_content, model_name_text_en, text;
-      link_to_content = $(this);
-      text = link_to_content.children('.text').first();
-      content_name = text.children('.content_name').first();
-      model_name_text_en = text.children('.model_name.text_en').first();
-      height_of_content_name = content_name.innerHeight();
-      width_of_content_name = Math.max(width_of_content_name, content_name.innerWidth());
-      model_name_text_en.css('margin-top', height_of_content_name - model_name_text_en.innerHeight());
-      text.css('height', height_of_content_name);
-      link_to_content.css('height', text.outerHeight(true));
-    });
-    content_names = links_to_datas.find('.content_name');
-    setCssAttributesToEachDomain(content_names, 'width', width_of_content_name);
-    setCssAttributesToEachDomain(content_names, 'margin-right', 16);
-  };
-
-  processColorInfoInDocument = function() {
-    $('div#railway_lines').find('.top').each(function() {
-      var color_info_domain, height_of_top_domain, top_domain;
-      top_domain = $(this);
-      height_of_top_domain = getSumOuterHeight(top_domain, true);
-      color_info_domain = top_domain.children('.color_info').first();
-      color_info_domain.css('margin-top', height_of_top_domain - color_info_domain.outerHeight(true));
-      return top_domain.css('height', height_of_top_domain);
-    });
-  };
-
-  processLineAndStationMatrixes = function() {
-    var lineDivision, line_boxes, normal_railway_lines, numberOfNormalLines, number_of_special_railway_lines, outer_height_of_each_line, selector_for_railway_line_matrixes, selector_for_station_matrixes, special_railway_lines, width_of_border, width_of_each_normal_railway_line, width_of_main_content_center, width_of_special_railway_lines_in_railway_line_matrixes;
-    selector_for_railway_line_matrixes = "#railway_line_matrixes";
-    selector_for_station_matrixes = "#station_matrixes";
-    numberOfNormalLines = 9;
-    lineDivision = 3;
-    width_of_border = 1;
-    line_boxes = $(selector_for_railway_line_matrixes).children();
-    number_of_special_railway_lines = line_boxes.size() - numberOfNormalLines;
-    normal_railway_lines = line_boxes.slice(0, numberOfNormalLines);
-    special_railway_lines = line_boxes.slice(numberOfNormalLines);
-    outer_height_of_each_line = normal_railway_lines.first().outerHeight();
-    width_of_main_content_center = $('div#main_content_center').innerWidth();
-    width_of_each_normal_railway_line = Math.floor((width_of_main_content_center - (lineDivision + 1) * width_of_border) * 1.0 / lineDivision);
-    width_of_special_railway_lines_in_railway_line_matrixes = width_of_each_normal_railway_line * lineDivision + (lineDivision - 1) * width_of_border;
-    changeAttributesOfBoxesInLineMatrixes(selector_for_railway_line_matrixes, normal_railway_lines, special_railway_lines, width_of_each_normal_railway_line, width_of_special_railway_lines_in_railway_line_matrixes, lineDivision, number_of_special_railway_lines, outer_height_of_each_line, width_of_border);
-    changeWidth($('div#main_content_center'), width_of_special_railway_lines_in_railway_line_matrixes + width_of_border * 2);
-    changeAttributesOfBoxesInStationMatrixes(selector_for_station_matrixes, width_of_main_content_center, width_of_each_normal_railway_line, width_of_border);
-    changeAttributesOfBoxesInStationMatrixes("#train_informations", width_of_main_content_center, width_of_each_normal_railway_line, width_of_border);
-    moveLineCodeLettersToCenter();
-  };
-
-  changeAttrOfStationTimetable = function() {
-    var timetables;
-    timetables = $('table.timetable');
-    changeWidthOfOperationDay(timetables);
-    changeAttibutesOfTopHeader(timetables);
-    changeWidthOfTdHour(timetables);
-    changeWidthOfMin(timetables);
-    changeWidthAndHeightOfTrainTime(timetables);
-  };
-
-  changeWidthOfOperationDay = function(timetables) {
-    var domains_of_weekday_and_holiday;
-    domains_of_weekday_and_holiday = timetables.find('.operation_day');
-    changeWidthOfContentsInTimetable(domains_of_weekday_and_holiday);
-  };
-
-  changeAttibutesOfTopHeader = function(timetables) {
-    timetables.each(function() {
-      var additional_infos, direction, main_domain, margin_top_and_bottom, max_height_of_main_domain, timetable_top_header;
-      timetable_top_header = $(this).find('td.top_header').eq(0);
-      main_domain = timetable_top_header.children('.main').eq(0);
-      max_height_of_main_domain = getMaxOuterHeight(main_domain.children(), true);
-      main_domain.css('height', max_height_of_main_domain);
-      direction = main_domain.children('.direction').eq(0);
-      additional_infos = main_domain.children('.additional_infos').eq(0);
-      margin_top_and_bottom = (max_height_of_main_domain - direction.height()) * 0.5;
-      direction.css('margin-top', margin_top_and_bottom);
-      direction.css('margin-bottom', margin_top_and_bottom);
-      additional_infos.css('margin-top', margin_top_and_bottom);
-    });
-  };
-
-  changeWidthOfTdHour = function(timetables) {
-    var domains_of_hour;
-    domains_of_hour = timetables.find('.hour');
-    changeWidthOfContentsInTimetable(domains_of_hour);
-  };
-
-  changeWidthOfMin = function(timetables) {
-    var blocks, width_new;
-    blocks = timetables.find('.min');
-    width_new = getMaxWidth(blocks);
-    setCssAttributesToEachDomain(blocks, 'width', width_new);
-  };
-
-  changeWidthAndHeightOfTrainTime = function(timetables) {
-    timetables.each(function() {
-      var domains_of_each_hour, timetable, train_time_block_max_width, train_time_blocks;
-      timetable = $(this);
-      train_time_blocks = timetable.find('.train_time');
-      train_time_block_max_width = getMaxWidth(train_time_blocks);
-      setCssAttributesToEachDomain(train_time_blocks, 'width', train_time_block_max_width);
-      domains_of_each_hour = timetable.find('td.train_times');
-      domains_of_each_hour.each(function() {
-        var domain_of_an_hour, domains_of_train_times, height_max;
-        domain_of_an_hour = $(this);
-        domains_of_train_times = domain_of_an_hour.children('.train_time');
-        height_max = getMaxHeight(domains_of_train_times);
-        setCssAttributesToEachDomain(domains_of_train_times, 'height', height_max);
-      });
-    });
-  };
-
-  changeWidthOfContentsInTimetable = function(blocks) {
-    var max_width, padding, width_new;
-    max_width = getMaxWidth(blocks);
-    width_new = Math.ceil(max_width * goldenRatio);
-    padding = Math.ceil((width_new - max_width) * 0.5);
-    width_new = max_width + padding * 2;
-    setCssAttributesToEachDomain(blocks, 'width', width_new);
-    setCssAttributesToEachDomain(blocks, 'padding-left', padding);
-    setCssAttributesToEachDomain(blocks, 'padding-right', padding);
-  };
-
-  setVarticalPositionOfOperationDay = function(domains_of_weekday_and_holiday) {
-    domains_of_weekday_and_holiday.each(function() {
-      var height_of_domain, height_of_text, padding_top_and_bottom;
-      height_of_domain = $(this).height();
-      height_of_text = getMaxOuterHeight($(this).children(), true);
-      padding_top_and_bottom = (height_of_domain - height_of_text) * 0.5;
-      $(this).css('padding-top', padding_top_and_bottom);
-      $(this).css('padding-bottom', padding_top_and_bottom);
-    });
-  };
-
-}).call(this);
-function processPassengerSurveyTable() {
-  var passenger_survey_table = $( '#passenger_survey_table' ).children( 'table' ).first() ;
-  passenger_survey_table.children( 'tbody' ).first().children( 'tr' ).each( function() {
-    var station_info = $( this ).children( 'td.station_info' ).first() ;
-    var station_text = station_info.children( '.text' ).first() ;
-    var margin_of_station_text = ( $( this ).height() - station_text.outerHeight( true ) ) * 0.5 ;
-    station_text.css( 'margin-top' , margin_of_station_text ).css( 'margin-bottom' , margin_of_station_text ) ;
-  });
-}
-
-// 行全体へのリンク
-jQuery(function($) {
-  $('tr[data-href]').addClass('clickable').click( function(e) {
-    if(!$(e.target).is('a')){
-      window.location = $(e.target).closest('tr').data('href');
-    };
-  });
-});
 //-------- bottom_content の操作
 function processBottomContent() {
   var bottom_content = $( 'div#bottom_content' ) ;
@@ -12352,6 +12034,228 @@ function setInsideAndOutsideDomain( content ) {
 
 
 }).call(this);
+(function() {
+  var changeMarginOfLineBoxInfoDomain, changeWidth, getMaxHeight, getMaxOuterHeight, getMaxOuterWidth, getMaxWidth, getSumHeight, getSumOuterHeight, getSumOuterWidth, getSumWidth, setAllOfUniformHeightToMax, setAllOfUniformWidthToMax, setCssAttributesToEachDomain;
+
+  changeWidth = function(jq, length) {
+    jq.css('width', length + 'px');
+  };
+
+  window.changeWidth = changeWidth;
+
+  changeMarginOfLineBoxInfoDomain = function(matrix, line_info) {
+    var contents_of_special_railway_line_info, height_of_special_railway_line_info, railway_line_code_domain, special_railway_line_info_margin, text_en, text_ja;
+    contents_of_special_railway_line_info = line_info.children();
+    railway_line_code_domain = contents_of_special_railway_line_info.eq(0);
+    text_ja = contents_of_special_railway_line_info.eq(1);
+    text_en = contents_of_special_railway_line_info.eq(2);
+    height_of_special_railway_line_info = railway_line_code_domain.outerHeight(true) + text_ja.outerHeight(true) + text_en.outerHeight(true);
+    line_info.css('height', height_of_special_railway_line_info);
+    special_railway_line_info_margin = (matrix.innerHeight() - height_of_special_railway_line_info) * 0.5;
+    line_info.css('margin-top', special_railway_line_info_margin).css('margin-bottom', special_railway_line_info_margin);
+  };
+
+  window.changeMarginOfLineBoxInfoDomain = changeMarginOfLineBoxInfoDomain;
+
+  getMaxOuterWidth = function(domains, settings) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = Math.max(len, $(this).outerWidth(settings));
+    });
+    return len;
+  };
+
+  getMaxWidth = function(domains) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = Math.max(len, $(this).width());
+    });
+    return len;
+  };
+
+  getMaxOuterHeight = function(domains, settings) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = Math.max(len, $(this).outerHeight(settings));
+    });
+    return len;
+  };
+
+  getMaxHeight = function(domains) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = Math.max(len, $(this).height());
+    });
+    return len;
+  };
+
+  window.getMaxOuterWidth = getMaxOuterWidth;
+
+  window.getMaxWidth = getMaxWidth;
+
+  window.getMaxOuterHeight = getMaxOuterHeight;
+
+  window.getMaxHeight = getMaxHeight;
+
+  getSumOuterWidth = function(domains, settings) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = len + $(this).outerWidth(settings);
+    });
+    return len;
+  };
+
+  getSumWidth = function(domains) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = len + $(this).width();
+    });
+    return len;
+  };
+
+  getSumOuterHeight = function(domains, settings) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = len + $(this).outerHeight(settings);
+    });
+    return len;
+  };
+
+  getSumHeight = function(domains) {
+    var len;
+    len = 0;
+    domains.each(function() {
+      return len = len + $(this).height();
+    });
+    return len;
+  };
+
+  window.getSumOuterWidth = getSumOuterWidth;
+
+  window.getSumWidth = getSumWidth;
+
+  window.getSumOuterHeight = getSumOuterHeight;
+
+  window.getSumHeight = getSumHeight;
+
+  setAllOfUniformWidthToMax = function(blocks) {
+    var max_width;
+    max_width = getMaxOuterWidth(blocks, false);
+    blocks.each(function() {
+      return $(this).css('width', max_width);
+    });
+  };
+
+  setAllOfUniformHeightToMax = function(blocks) {
+    var max_height;
+    max_height = getMaxOuterHeight(blocks, false);
+    blocks.each(function() {
+      return $(this).css('height', max_height);
+    });
+  };
+
+  window.setAllOfUniformWidthToMax = setAllOfUniformWidthToMax;
+
+  window.setAllOfUniformHeightToMax = setAllOfUniformHeightToMax;
+
+  setCssAttributesToEachDomain = function(domains, css_attributes, css_value) {
+    domains.each(function() {
+      return $(this).css(css_attributes, css_value);
+    });
+  };
+
+  window.setCssAttributesToEachDomain = setCssAttributesToEachDomain;
+
+}).call(this);
+(function() {
+  var initializeDo, processColorInfoInDocument, processLineAndStationMatrixes, processLinkToEachDocument, processTopContent;
+
+  initializeDo = function() {
+    processTopContent();
+    processLinkToEachDocument();
+    processColorInfoInDocument();
+    processLineAndStationMatrixes();
+    processRailwayLine();
+    processStationTimetable();
+    processStationFacility();
+    processPassengerSurvey();
+  };
+
+  window.initializeDo = initializeDo;
+
+  processTopContent = function() {
+    var domain_of_now_developing, domain_of_text, domain_of_title, margin_of_domain_of_text, top_content;
+    top_content = $('div#top_content');
+    domain_of_text = top_content.children('.text').first();
+    domain_of_title = domain_of_text.children('.title').first();
+    domain_of_now_developing = domain_of_text.children('.now_developing').first();
+    domain_of_now_developing.css('margin-top', domain_of_title.outerHeight() - domain_of_now_developing.outerHeight());
+    margin_of_domain_of_text = (top_content.innerHeight() - domain_of_title.outerHeight()) * 0.5;
+    domain_of_text.css('margin-top', margin_of_domain_of_text).css('margin-bottom', margin_of_domain_of_text);
+  };
+
+  processLinkToEachDocument = function() {
+    var content_names, links_to_datas, width_of_content_name;
+    links_to_datas = $('#links_to_datas');
+    width_of_content_name = 0;
+    links_to_datas.contents().each(function() {
+      var content_name, height_of_content_name, link_to_content, model_name_text_en, text;
+      link_to_content = $(this);
+      text = link_to_content.children('.text').first();
+      content_name = text.children('.content_name').first();
+      model_name_text_en = text.children('.model_name.text_en').first();
+      height_of_content_name = content_name.innerHeight();
+      width_of_content_name = Math.max(width_of_content_name, content_name.innerWidth());
+      model_name_text_en.css('margin-top', height_of_content_name - model_name_text_en.innerHeight());
+      text.css('height', height_of_content_name);
+      link_to_content.css('height', text.outerHeight(true));
+    });
+    content_names = links_to_datas.find('.content_name');
+    setCssAttributesToEachDomain(content_names, 'width', width_of_content_name);
+    setCssAttributesToEachDomain(content_names, 'margin-right', 16);
+  };
+
+  processColorInfoInDocument = function() {
+    $('div#railway_lines').find('.top').each(function() {
+      var color_info_domain, height_of_top_domain, top_domain;
+      top_domain = $(this);
+      height_of_top_domain = getSumOuterHeight(top_domain, true);
+      color_info_domain = top_domain.children('.color_info').first();
+      color_info_domain.css('margin-top', height_of_top_domain - color_info_domain.outerHeight(true));
+      return top_domain.css('height', height_of_top_domain);
+    });
+  };
+
+  processLineAndStationMatrixes = function() {
+    var lineDivision, line_boxes, normal_railway_lines, numberOfNormalLines, number_of_special_railway_lines, outer_height_of_each_line, selector_for_railway_line_matrixes, selector_for_station_matrixes, special_railway_lines, width_of_border, width_of_each_normal_railway_line, width_of_main_content_center, width_of_special_railway_lines_in_railway_line_matrixes;
+    selector_for_railway_line_matrixes = "#railway_line_matrixes";
+    selector_for_station_matrixes = "#station_matrixes";
+    numberOfNormalLines = 9;
+    lineDivision = 3;
+    width_of_border = 1;
+    line_boxes = $(selector_for_railway_line_matrixes).children();
+    number_of_special_railway_lines = line_boxes.size() - numberOfNormalLines;
+    normal_railway_lines = line_boxes.slice(0, numberOfNormalLines);
+    special_railway_lines = line_boxes.slice(numberOfNormalLines);
+    outer_height_of_each_line = normal_railway_lines.first().outerHeight();
+    width_of_main_content_center = $('div#main_content_center').innerWidth();
+    width_of_each_normal_railway_line = Math.floor((width_of_main_content_center - (lineDivision + 1) * width_of_border) * 1.0 / lineDivision);
+    width_of_special_railway_lines_in_railway_line_matrixes = width_of_each_normal_railway_line * lineDivision + (lineDivision - 1) * width_of_border;
+    changeAttributesOfBoxesInLineMatrixes(selector_for_railway_line_matrixes, normal_railway_lines, special_railway_lines, width_of_each_normal_railway_line, width_of_special_railway_lines_in_railway_line_matrixes, lineDivision, number_of_special_railway_lines, outer_height_of_each_line, width_of_border);
+    changeWidth($('div#main_content_center'), width_of_special_railway_lines_in_railway_line_matrixes + width_of_border * 2);
+    changeAttributesOfBoxesInStationMatrixes(selector_for_station_matrixes, width_of_main_content_center, width_of_each_normal_railway_line, width_of_border);
+    changeAttributesOfBoxesInStationMatrixes("#train_informations", width_of_main_content_center, width_of_each_normal_railway_line, width_of_border);
+    moveLineCodeLettersToCenter();
+  };
+
+}).call(this);
 /*
  * jquery-auto-height.js
  *
@@ -12438,7 +12342,91 @@ function setInsideAndOutsideDomain( content ) {
 })(jQuery);
 
 (function() {
+  var processPassengerSurvey, setLinkToEachPassengerSurveyTableRow;
 
+  processPassengerSurvey = function() {
+    var passenger_survey_table;
+    passenger_survey_table = $('#passenger_survey_table').children('table').first();
+    passenger_survey_table.children('tbody').first().children('tr').each(function() {
+      var margin_of_station_text, station_info, station_text;
+      station_info = $(this).children('td.station_info').first();
+      station_text = station_info.children('.text').first();
+      margin_of_station_text = ($(this).height() - station_text.outerHeight(true)) * 0.5;
+      station_text.css('margin-top', margin_of_station_text).css('margin-bottom', margin_of_station_text);
+    });
+    setLinkToEachPassengerSurveyTableRow();
+  };
+
+  window.processPassengerSurvey = processPassengerSurvey;
+
+  setLinkToEachPassengerSurveyTableRow = function() {};
+
+}).call(this);
+(function() {
+  var processRailwayLine, processWomenOnlyCar, processWomenOnlyCarInfo, processWomenOnlyCarPlaceDomains, processWomenOnlyCarSectionInfos;
+
+  processRailwayLine = function() {
+    return processWomenOnlyCar();
+  };
+
+  window.processRailwayLine = processRailwayLine;
+
+  processWomenOnlyCar = function() {
+    var section_domains, women_only_car_info_domain;
+    women_only_car_info_domain = $('#women_only_car');
+    section_domains = women_only_car_info_domain.find('.section');
+    section_domains.children('.section_infos').each(function() {
+      var section_infos;
+      section_infos = $(this);
+      processWomenOnlyCarSectionInfos(section_infos);
+    });
+    processWomenOnlyCarPlaceDomains(women_only_car_info_domain.find('.place'));
+  };
+
+  processWomenOnlyCarPlaceDomains = function(place_domains) {
+    var place_domains_max_width;
+    place_domains_max_width = getMaxWidth(place_domains) * 1.2;
+    place_domains.each(function() {
+      var place;
+      place = $(this);
+      place.css('width', place_domains_max_width);
+    });
+  };
+
+  processWomenOnlyCarSectionInfos = function(section_infos) {
+    var available_time, higher, infos, margin_of_shorter, shorter;
+    available_time = section_infos.children().eq(0);
+    infos = section_infos.children().eq(1);
+    infos.children('.info').each(function() {
+      processWomenOnlyCarInfo($(this));
+    });
+    infos.css('height', getSumOuterHeight(infos.children('.info'), true));
+    section_infos.css('height', getMaxOuterHeight(section_infos.children(), true));
+    if (available_time.outerHeight(false) < infos.outerHeight(false)) {
+      higher = infos;
+      shorter = available_time;
+    } else {
+      higher = available_time;
+      shorter = infos;
+    }
+    margin_of_shorter = (higher.outerHeight(false) - shorter.outerHeight(false)) * 0.5;
+    shorter.css('margin-top', margin_of_shorter).css('margin-bottom', margin_of_shorter);
+  };
+
+  processWomenOnlyCarInfo = function(info) {
+    var car_domains, max_outer_height_of_car_domains;
+    car_domains = info.find('.car');
+    max_outer_height_of_car_domains = getMaxOuterHeight(car_domains, false) * 1.5;
+    info.find('.car').each(function() {
+      var car, current_height, padding_top_and_bottom;
+      car = $(this);
+      current_height = car.outerHeight(false);
+      padding_top_and_bottom = (max_outer_height_of_car_domains - current_height) * 0.5;
+      car.css('padding-top', padding_top_and_bottom).css('padding-bottom', padding_top_and_bottom);
+    });
+    setAllOfUniformHeightToMax(info.children());
+    info.css('height', getMaxOuterHeight(info.children(), true));
+  };
 
 }).call(this);
 (function() {
@@ -12446,15 +12434,154 @@ function setInsideAndOutsideDomain( content ) {
 
 }).call(this);
 (function() {
+  var processRailwayLinesRelatedToThisStation, processStationFacility, processStationFacilityPlatformInfoTabs, processStationFacilityPlatformInfos;
 
+  processStationFacility = function() {
+    processRailwayLinesRelatedToThisStation();
+    processStationFacilityPlatformInfoTabs();
+    processStationFacilityPlatformInfos();
+  };
+
+  window.processStationFacility = processStationFacility;
+
+  processRailwayLinesRelatedToThisStation = function() {
+    var other_railway_lines, railway_lines_in_another_station, railway_lines_in_this_station, tokyo_metro_railway_lines;
+    tokyo_metro_railway_lines = $('.tokyo_metro_railway_lines').first().children('.railway_lines').first();
+    railway_lines_in_this_station = tokyo_metro_railway_lines.children('.railway_lines_in_this_station').first();
+    railway_lines_in_another_station = tokyo_metro_railway_lines.children('.railway_lines_in_another_station').first();
+    other_railway_lines = $('.other_railway_lines').first().children('.railway_lines').first();
+    $.each([railway_lines_in_this_station, railway_lines_in_another_station, other_railway_lines], function() {
+      var domains;
+      domains = $(this).children();
+      $(this).css('height', getMaxOuterHeight(domains, true));
+    });
+    tokyo_metro_railway_lines.css('height', getSumOuterHeight(tokyo_metro_railway_lines.children(), true));
+  };
+
+  processStationFacilityPlatformInfoTabs = function() {
+    $('#platform_info_tabs').children('ul').first().children('li').each(function() {
+      var children_of_railway_line_name, platform_info_tab, railway_line_name;
+      platform_info_tab = $(this);
+      railway_line_name = platform_info_tab.children('.railway_line_name').first();
+      children_of_railway_line_name = railway_line_name.children();
+      railway_line_name.css('width', getSumOuterWidth(children_of_railway_line_name, true));
+      railway_line_name.css('height', getMaxOuterHeight(children_of_railway_line_name, true));
+    });
+  };
+
+  processStationFacilityPlatformInfos = function() {
+    var platform_info_tab_contents, tables;
+    platform_info_tab_contents = $('#platform_info_tab_contents');
+    tables = platform_info_tab_contents.find('table.platform_info');
+    tables.each(function() {
+      var table;
+      table = $(this);
+      table.find('.transfer_info').each(function() {
+        var railway_line_code, railway_line_code_main, string_domain, transfer_additional_info, transfer_info, transfer_info_height;
+        transfer_info = $(this);
+        railway_line_code = transfer_info.children().eq(0);
+        railway_line_code_main = railway_line_code.children().first();
+        railway_line_code.css('height', railway_line_code_main.outerHeight(true)).css('width', railway_line_code_main.outerWidth(true)).css('float', 'left');
+        string_domain = transfer_info.children('.string').first();
+        transfer_additional_info = string_domain.children('.additional_info').first();
+        transfer_additional_info.css('height', getMaxOuterHeight(transfer_additional_info.children(), true));
+        string_domain.css('height', getSumOuterHeight(string_domain.children(), true));
+        transfer_info_height = Math.max(railway_line_code.outerHeight(true), string_domain.outerHeight(true));
+        transfer_info.css('height', transfer_info_height);
+      });
+    });
+  };
 
 }).call(this);
 (function() {
+  var changeAttibutesOfTopHeader, changeWidthAndHeightOfTrainTime, changeWidthOfContentsInStationTimetable, changeWidthOfMin, changeWidthOfOperationDay, changeWidthOfTdHour, processStationTimetable, setVarticalPositionOfOperationDay;
 
+  processStationTimetable = function() {
+    var timetables;
+    timetables = $('table.timetable');
+    changeWidthOfOperationDay(timetables);
+    changeAttibutesOfTopHeader(timetables);
+    changeWidthOfTdHour(timetables);
+    changeWidthOfMin(timetables);
+    changeWidthAndHeightOfTrainTime(timetables);
+  };
 
-}).call(this);
-(function() {
+  window.processStationTimetable = processStationTimetable;
 
+  changeWidthOfOperationDay = function(timetables) {
+    var domains_of_weekday_and_holiday;
+    domains_of_weekday_and_holiday = timetables.find('.operation_day');
+    changeWidthOfContentsInStationTimetable(domains_of_weekday_and_holiday);
+  };
+
+  changeAttibutesOfTopHeader = function(timetables) {
+    timetables.each(function() {
+      var additional_infos, direction, main_domain, margin_top_and_bottom, max_height_of_main_domain, timetable_top_header;
+      timetable_top_header = $(this).find('td.top_header').eq(0);
+      main_domain = timetable_top_header.children('.main').eq(0);
+      max_height_of_main_domain = getMaxOuterHeight(main_domain.children(), true);
+      main_domain.css('height', max_height_of_main_domain);
+      direction = main_domain.children('.direction').eq(0);
+      additional_infos = main_domain.children('.additional_infos').eq(0);
+      margin_top_and_bottom = (max_height_of_main_domain - direction.height()) * 0.5;
+      direction.css('margin-top', margin_top_and_bottom);
+      direction.css('margin-bottom', margin_top_and_bottom);
+      additional_infos.css('margin-top', margin_top_and_bottom);
+    });
+  };
+
+  changeWidthOfTdHour = function(timetables) {
+    var domains_of_hour;
+    domains_of_hour = timetables.find('.hour');
+    changeWidthOfContentsInStationTimetable(domains_of_hour);
+  };
+
+  changeWidthOfMin = function(timetables) {
+    var blocks, width_new;
+    blocks = timetables.find('.min');
+    width_new = getMaxWidth(blocks);
+    setCssAttributesToEachDomain(blocks, 'width', width_new);
+  };
+
+  changeWidthAndHeightOfTrainTime = function(timetables) {
+    timetables.each(function() {
+      var domains_of_each_hour, timetable, train_time_block_max_width, train_time_blocks;
+      timetable = $(this);
+      train_time_blocks = timetable.find('.train_time');
+      train_time_block_max_width = getMaxWidth(train_time_blocks);
+      setCssAttributesToEachDomain(train_time_blocks, 'width', train_time_block_max_width);
+      domains_of_each_hour = timetable.find('td.train_times');
+      domains_of_each_hour.each(function() {
+        var domain_of_an_hour, domains_of_train_times, height_max;
+        domain_of_an_hour = $(this);
+        domains_of_train_times = domain_of_an_hour.children('.train_time');
+        height_max = getMaxHeight(domains_of_train_times);
+        setCssAttributesToEachDomain(domains_of_train_times, 'height', height_max);
+      });
+    });
+  };
+
+  changeWidthOfContentsInStationTimetable = function(blocks) {
+    var max_width, padding, width_new;
+    max_width = getMaxWidth(blocks);
+    width_new = Math.ceil(max_width * goldenRatio);
+    padding = Math.ceil((width_new - max_width) * 0.5);
+    width_new = max_width + padding * 2;
+    setCssAttributesToEachDomain(blocks, 'width', width_new);
+    setCssAttributesToEachDomain(blocks, 'padding-left', padding);
+    setCssAttributesToEachDomain(blocks, 'padding-right', padding);
+  };
+
+  setVarticalPositionOfOperationDay = function(domains_of_weekday_and_holiday) {
+    domains_of_weekday_and_holiday.each(function() {
+      var height_of_domain, height_of_text, padding_top_and_bottom;
+      height_of_domain = $(this).height();
+      height_of_text = getMaxOuterHeight($(this).children(), true);
+      padding_top_and_bottom = (height_of_domain - height_of_text) * 0.5;
+      $(this).css('padding-top', padding_top_and_bottom);
+      $(this).css('padding-bottom', padding_top_and_bottom);
+    });
+  };
 
 }).call(this);
 (function() {
@@ -12499,11 +12626,9 @@ $( document ).on( 'ready page:load' , function() { // Turbolinks 対策
   // $( document ).live( 'pageshow', function() {
 
   initializeDo() ;
-
   changeAttrOfStationFacility() ;
   processStationFacilityInfos() ;
 
-  // processPassengerSurveyTable() ;
   
   processMainContents() ;
   // processBottomContent() ;
