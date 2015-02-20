@@ -1,9 +1,9 @@
 = render "common_content"
 
 - content_for :right_contents do
-  = twitter_official
+  = twitter_tokyo_metro
 
 = ::TrainLocationDecorator.render_top_title( id: :train_location_title )
 %div{ id: "lines" }
   = select_line
-  = make_railway_line_matrixes_whole( with_yf: true , make_link_to_line: true )
+  = ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: true , make_link_to_line: true )

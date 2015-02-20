@@ -21,7 +21,7 @@ module TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
       def is_#{ method_base_name }?
         #{ method_base_name }?
       end
-      
+
       def is_not_#{ method_base_name }?
         not_#{ method_base_name }?
       end

@@ -1,18 +1,21 @@
 class TokyoMetro::Factories::Generate::Static::RailwayLine::Info < TokyoMetro::Factories::Generate::Static::MetaClass::Info::Normal
 
   include ::TokyoMetro::ClassNameLibrary::Static::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine::SetStartOn
 
   def self.hash_keys
-    [ :name_ja , :name_hira , :name_en , :name_code , :operator , :index , :color ]
+    [ :name_ja , :name_hira , :name_en , :name_code , :operator , :index , :color , :start_on , :twitter_widget_id , :twitter_account ]
   end
 
   private
 
   def set_values_to_hash_for_making_variables
     super( hash_key_array: [ :name_ja , :name_hira , :name_en , :name_code ] , make_array: true )
+    super( hash_key_array: [ :twitter_widget_id , :twitter_account ] )
 
     @hash_for_making_variables[ :color ] = color_instance
     @hash_for_making_variables[ :operator ] = operator_instance
+    @hash_for_making_variables[ :start_on ] = set_start_on( @h[ :start_on ] )
   end
 
   # 事業者のインスタンスを取得するメソッド

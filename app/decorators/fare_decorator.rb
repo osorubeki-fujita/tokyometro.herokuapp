@@ -16,7 +16,7 @@ class FareDecorator < Draper::Decorator
   end
 
   def self.render_header_of_fare_table
-    render inline: <<-HAML , type: :haml
+    h.render inline: <<-HAML , type: :haml
 %tr{ class: :header }
   %td{ rowspan: 3 , class: [ :station_name_top , :header_bottom ] }<
     = "駅名"

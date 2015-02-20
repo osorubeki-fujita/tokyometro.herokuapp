@@ -164,9 +164,9 @@ module FareTableHelper
   = display_images_of_station_codes( station , false )
 %div{ class: :station_name_text }
   %div{ class: :text_ja }
-    = station_name_ja_processing_subname( station.name_ja )
+    = station.decorate.render_name_ja( with_subname: true )
   %div{ class: :text_en }
-    = station_name_en_processing_subname( station.name_en )
+    = station.decorate.render_name_en( with_subname: true )
     HAML
   end
 

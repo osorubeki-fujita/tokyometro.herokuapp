@@ -5,6 +5,8 @@
 module TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Info::ConnectingRailwayLine::Info
 
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine::SetStartOn
 
   # Constructor
   def initialize( railway_line , start_on: nil , index_in_station: nil , cleared: false , connecting_another_station: nil , not_recommended: false , note: nil )
@@ -50,20 +52,6 @@ module TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayL
 
   def connecting_to_another_station?
     connecting_another_station.present?
-  end
-
-  private
-
-  def set_start_on( start_on )
-    if start_on.instance_of?( ::Time ) or start_on.instance_of?( ::DateTime )
-      start_on
-    elsif start_on.instance_of?( ::String ) and /\A(\d{4})\.(\d{2})\.(\d{2})\Z/ =~ start_on
-      ::DateTime.new( $1.to_i , $2.to_i , $3.to_i )
-    elsif start_on.nil?
-      nil
-    else
-      raise "Error"
-    end
   end
 
 end

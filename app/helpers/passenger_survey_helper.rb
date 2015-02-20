@@ -22,7 +22,7 @@ module PassengerSurveyHelper
     render inline: <<-HAML , type: :haml , locals: { station: @station }
 %div{ id: :passenger_survey_title }
   = ::PassengerSurveyDecorator.render_common_title( :station )
-  = station_name_main( @station , station_code: true , all_station_codes: true )
+  = @station.decorate.render_header( station_code: true , all_station_codes: true )
     HAML
   end
 

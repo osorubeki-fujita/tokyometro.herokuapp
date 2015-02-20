@@ -4,7 +4,7 @@ module TrainInformationHelper
     render inline: <<-HAML , type: :haml , locals: { station: @station }
 %div{ id: :train_information_title }
   = ::TrainInformationDecorator.render_common_title
-  = station_name_main( station , station_code: true , all_station_codes: true )
+  = station.decorate.render_header( station_code: true , all_station_codes: true )
 = station.latest_passenger_survey.decorate.render_journeys_of_each_station
     HAML
   end
@@ -48,7 +48,7 @@ module TrainInformationHelper
 
   def train_information_display_info_of_each_railway_line( railway_line )
     render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }
-= make_railway_line_matrix( railway_line , make_link_to_line: false , size: :small )
+= railway_line.render_matrix( make_link_to_line: false , size: :small )
 - # %div{ class: [ :line , railway_line.css_class_name ] }
 - #   %div{ class: :image }
 - #     = image_tag( "train_information/railway_line_code/#{ railway_line.name_code.downcase }.png" )

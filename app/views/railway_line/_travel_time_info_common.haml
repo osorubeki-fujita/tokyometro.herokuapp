@@ -16,7 +16,7 @@
     %tr
       - if special_proc_of_section.present?
         = special_proc_of_section.call( section )
-      %td{ class: :travel_time }
-        = travel_time_info_between_stations( travel_time_infos , section )
+      %td{ class: :travel_time }<
+        = ::TravelTimeInfoDecorator.render_info_between_stations( travel_time_infos , section )
       %td{ colspan: 2 }
         = " "

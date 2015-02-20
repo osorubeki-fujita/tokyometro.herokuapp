@@ -12,7 +12,7 @@ module StationTimetableHelper
     render inline: <<-HAML , type: :haml , locals: { station: @station }
 %div{ id: :station_facility_title }
   = ::StationTimetableDecorator.render_common_title
-  = station_name_main( station , station_code: true , all_station_codes: true )
+  = station.decorate.render_header( station_code: true , all_station_codes: true )
     HAML
   end
 
@@ -181,13 +181,12 @@ module StationTimetableHelper
   end
 
   def timetable_destination_name_ja( destination )
-    destination_name_ja = destination.name_ja.delete_station_subname
-    render inline: <<-HAML , type: :haml , locals: { destination_name_ja: destination_name_ja }
+    render inline: <<-HAML , type: :haml , locals: { destination: destination }
 - if destination_name_ja.length <= 4
   %div{ class: :destination }<
-    = station_name_ja_processing_subname( destination_name_ja )
+    = destination.decorate.render_name_ja( with_subname: true )
 - else
-  = timetable_destination_name_ja_long( destination_name_ja )
+  = timetable_destination_name_ja_long( destination.name_ja.delete_station_subname )
     HAML
   end
 

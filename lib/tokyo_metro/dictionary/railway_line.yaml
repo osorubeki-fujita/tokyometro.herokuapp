@@ -7,6 +7,8 @@ odpt.Railway:TokyoMetro.Ginza:
   name_code : G
   operator : odpt.Operator:TokyoMetro
   index : 1
+  twitter_widget_id: 532630018443059201
+  twitter_account: G_line_info
   color :
     web: "#f39700"
     red : 243
@@ -20,6 +22,8 @@ odpt.Railway:TokyoMetro.Marunouchi:
   name_code : M
   operator : odpt.Operator:TokyoMetro
   index : 2
+  twitter_widget_id: 532630724893868032
+  twitter_account: M_line_info
   color :
     web: "#e60012"
     red : 230
@@ -46,6 +50,8 @@ odpt.Railway:TokyoMetro.Hibiya:
   name_code : H
   operator : odpt.Operator:TokyoMetro
   index : 3
+  twitter_widget_id: 532631112032321536
+  twitter_account: H_line_info
   color :
     web: "#9caeb7"
     red : 156
@@ -59,6 +65,8 @@ odpt.Railway:TokyoMetro.Tozai:
   name_code : T
   operator : odpt.Operator:TokyoMetro
   index : 4
+  twitter_widget_id: 532631565486923777
+  twitter_account: T_line_info
   color :
     web: "#00a7db"
     red : 0
@@ -72,6 +80,8 @@ odpt.Railway:TokyoMetro.Chiyoda:
   name_code : C
   operator : odpt.Operator:TokyoMetro
   index : 5
+  twitter_widget_id: 532631847792959489
+  twitter_account: C_line_info
   color :
     web: "#009945"
     red : 0
@@ -98,6 +108,8 @@ odpt.Railway:TokyoMetro.Yurakucho:
   name_code : Y
   operator : odpt.Operator:TokyoMetro
   index : 6
+  twitter_widget_id: 532632847350112256
+  twitter_account: Y_line_info
   color :
     web: "#d7c447"
     red : 215
@@ -111,6 +123,8 @@ odpt.Railway:TokyoMetro.Hanzomon:
   name_code : Z
   operator : odpt.Operator:TokyoMetro
   index : 7
+  twitter_widget_id: 532632130656825344
+  twitter_account: Z_line_info
   color :
     web: "#9b7cb6"
     red : 155
@@ -124,6 +138,8 @@ odpt.Railway:TokyoMetro.Namboku:
   name_code : N
   operator : odpt.Operator:TokyoMetro
   index : 8
+  twitter_widget_id: 532632503169724416
+  twitter_account: N_line_info
   color :
     web: "#00ada9"
     red : 0
@@ -137,24 +153,13 @@ odpt.Railway:TokyoMetro.Fukutoshin:
   name_code : F
   operator : odpt.Operator:TokyoMetro
   index : 9
+  twitter_widget_id: 532633227697991680
+  twitter_account: F_line_info
   color :
     web: "#bb641d"
     red : 187
     green : 100
     blue : 29
-
-odpt.Railway:TokyoMetro.ChiyodaBranch:
-  name_ja: 千代田線（綾瀬 - 北綾瀬）
-  name_hira: ちよだせん
-  name_en : Chiyoda Line (Ayase - Kita-ayase)
-  name_code : C
-  operator : odpt.Operator:TokyoMetro
-  index : 5.1
-  color :
-    web: "#009945"
-    red : 0
-    green : 153
-    blue : 69
 
 #-------- 東京都交通局
 
@@ -332,6 +337,7 @@ odpt.Railway:JR-East.UenoTokyo:
   name_ja: 上野東京ライン
   name_en : Ueno-Tokyo Line
   operator : odpt.Operator:JR-East
+  start_on: 2015.03.14
   index : 8
   color :
     web : "#654e99"

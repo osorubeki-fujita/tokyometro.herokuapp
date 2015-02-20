@@ -4,7 +4,7 @@
 - @railway_lines = ::RailwayLine.find( ::Station.where( id: station_ids ).pluck( :railway_line_id ).uniq.sort )
 
 = train_information_title_of_each_station
-= station_info_links
+= @station.decorate.render_links_to_infos
 
 - content_for :right_contents do
   = twitter_railway_line_info

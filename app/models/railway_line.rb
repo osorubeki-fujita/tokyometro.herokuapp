@@ -23,6 +23,7 @@ class RailwayLine < ActiveRecord::Base
   has_many :train_location_olds
 
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
   include ::TokyoMetro::Modules::Db::Decision::Operator
 
   # 東京メトロの路線を取得する
@@ -145,8 +146,25 @@ class RailwayLine < ActiveRecord::Base
     end
   end
 
+  def station_attribute_hira
+    case same_as
+    when "odpt.Railway:Toei.TodenArakawa"
+      "ていりゅうじょう"
+    else
+      "えき"
+    end
+  end
+
   def station_attribute_en
-    "Sta."
+    "station"
+  end
+  
+  def station_attribute_en_short
+    "sta."
+  end
+  
+  def railway_line
+    self
   end
 
 end

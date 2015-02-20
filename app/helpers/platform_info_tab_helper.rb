@@ -33,7 +33,7 @@ module PlatformInfoTabHelper
         - railway_line_ids.each do | railway_line_id |
           - railway_line_instance = ::RailwayLine.find( railway_line_id )
           %div{ class: railway_line_instance.css_class_name }
-            = railway_line_code( railway_line_instance , small: true )
+            = railway_line_instance.decorate.render_railway_line_code( small: true )
         %div{ class: :text }<
           %div{ class: :text_ja }<
             = railway_line_name_ja
@@ -53,7 +53,7 @@ module PlatformInfoTabHelper
         = platform_infos_link_in_tab( tab_name )
         %div{ class: :railway_line_name }
           %div{ class: railway_line_instance.css_class_name }
-            = railway_line_code( railway_line_instance , small: true )
+            = railway_line_instance.decorate.render_railway_line_code( small: true )
           %div{ class: :text }<
             %div{ class: :text_ja }<
               = railway_line_instance.name_ja

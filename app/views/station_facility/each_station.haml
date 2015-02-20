@@ -1,7 +1,13 @@
 = render "common_content"
 
-= station_facility_title_of_each_station
-= station_info_links
+- station_decorated = @station.decorate
+
+= station_decorated.render_station_facility_title
+= @station.latest_passenger_survey.decorate.render_journeys_of_each_station
+
+= station_decorated.render_tokyo_metro_railway_lines
+= station_decorated.render_railway_lines_except_for_tokyo_metro
+= station_decorated.render_links_to_infos
 = render partial: "google_map"
 
 %div{ id: :station_facility_contents }

@@ -1,5 +1,5 @@
 @charset "utf-8" ;
-@import '../../../fundamental_settings.scss' ;
+@import '../../fundamental_settings.scss' ;
 
 %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
 	@extend %floatLeft ;
@@ -30,17 +30,73 @@
     }
 }
 
+%railwayLineConnectingToAnotherStation {
+    .another_station {
+        float:left ;
+        @include border_radius( 2px ) ;
+        background-color: #eee ;
+        padding: 2px ;
+        margin: {
+            left: 4px ;
+        }
+        $font_size_ja: 8pt ;
+        .text_ja {
+            font-size: $font_size_ja ;
+        }
+        .text_en {
+            font-size: $font_size_ja * 0.6 ;
+        }
+    }
+}
+
+%connectingRailwayLineCleared {
+    .cleared {
+        clear: both ;
+    }
+}
+
+%connectingRailwayLineNotRecommended {
+    .not_recommended {
+        border: {
+            style: dotted ;
+        }
+    }
+}
+
+%connectingRailwayLineOfTokyoMetro {
+    .tokyo_metro {
+        border: {
+            color: #ccc ;
+        }
+        &:hover {
+            background-color: $jp_traditional_aijiro ;
+        }
+        @extend %link_in_div ;
+        a {
+            background-color: transparent ;
+        }
+        @extend %connectingRailwayLineCleared ;
+        @extend %connectingRailwayLineNotRecommended ;
+    }
+}
+
+%connectingRailwayLineOfOtherOperator {
+  .other_operators {
+    border: {
+      color: #ddd ;
+    }
+    @extend %connectingRailwayLineCleared ;
+    @extend %connectingRailwayLineNotRecommended ;
+  }
+}
+
 %connectingRailwayLineInfo {
-    padding: {
-        top: 3px ;
-        bottom: 3px ;
-    }
-    margin: {
-        bottom: 6px ;
-    }
     @extend %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+    @extend %connectingRailwayLineOfTokyoMetro ;
+    @extend %connectingRailwayLineOfOtherOperator ;
+    @extend %railwayLineConnectingToAnotherStation ;
     .connecting_railway_line {
-		@extend %floatLeft ;
+		    @extend %floatLeft ;
         padding: 6px ;
         margin: {
             right: 12px ;

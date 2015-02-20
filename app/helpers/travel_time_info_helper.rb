@@ -1,6 +1,6 @@
 module TravelTimeInfoHelper
 
-  def travel_time_info
+  def render_travel_time_info
     render inline: <<-HAML , type: :haml , locals: { railway_lines: @railway_lines }
 %div{ id: :travel_time }
   = ::TravelTimeInfoDecorator.render_sub_top_title
@@ -85,21 +85,6 @@ module TravelTimeInfoHelper
 
   private
 
-  def travel_time_info_base_one_railway_line( railway_line )
-    render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }
-- railway_line.travel_time_infos.each do | travel_time_info |
-  = travel_time_info.decorate.render_simple_info
-    HAML
-  end
-
-  def travel_time_info_base_two_railway_lines( railway_lines )
-    render inline: <<-HAML , type: :haml , locals: { railway_lines: railway_lines }
-- railway_lines.each do | railway_line |
-  %div{ class: :railway_line }
-    = travel_time_info_base_one_railway_line( railway_line )
-    HAML
-  end
-
   def travel_time_info_station_name( station )
     connecting_railway_lines = station.connecting_railway_lines.includes( :railway_line , railway_line: :operator )
 
@@ -119,65 +104,16 @@ module TravelTimeInfoHelper
   = link_to( "" , "../station_facility/" + station.name_in_system.underscore , name: station.name_ja + "駅のご案内へジャンプします。" )
   = display_images_of_station_codes( station , false )
   %div{ class: :station }<
-    = station_text( station )
+    = station.decorate.render_name_ja_and_en
 %td{ class: :transfer , colspan: 2 }
   - connecting_railway_lines.each do | connecting_railway_line |
-    - # 非表示の条件
-    - unless connecting_railway_line.railway_line.not_operated_yet?
-      = travel_time_info_each_connecting_railway_line( connecting_railway_line )
+    = connecting_railway_line.decorate.render
   HAML
-  end
-
-  def travel_time_info_each_connecting_railway_line( connecting_railway_line )
-    css_class_name = [ :connecting_railway_line , connecting_railway_line.railway_line.css_class_name ]
-    tokyo_metro = connecting_railway_line.railway_line.tokyo_metro?
-    if tokyo_metro
-      css_class_name << :tokyo_metro
-    else
-      css_class_name << :other_operators
-    end
-    if connecting_railway_line.not_recommended
-      css_class_name << :not_recommended
-    end
-    if connecting_railway_line.cleared
-      css_class_name << :cleared
-    end
-
-    h_locals = {
-      connecting_railway_line: connecting_railway_line ,
-      css_class_name: css_class_name ,
-      tokyo_metro: tokyo_metro
-    }
-    render inline: <<-HAML , type: :haml , locals: h_locals
-- railway_line = connecting_railway_line.railway_line
-%div{ class: css_class_name }<
-  - if tokyo_metro
-    = link_to( "" , "../railway_line/" + railway_line.name_en.gsub( " " , "_" ).underscore )
-  = railway_line_code( railway_line , must_display_line_color: true , small: true )
-  = railway_line.decorate.render_name( process_special_railway_line: true )
-  - if connecting_railway_line.connecting_to_another_station?
-    = connecting_railway_line.connecting_station.decorate.render_connection_info_from_another_station
-    HAML
-  end
-
-  def travel_time_info_between_stations( travel_time_infos , section )
-    render inline: <<-HAML , type: :haml , locals: { travel_time_infos: travel_time_infos , section: section }
-- necessary_time = travel_time_infos.between( *section ).pluck( :necessary_time ).max
-= "(" + necessary_time.to_s + ")"
-    HAML
   end
 
   def travel_time_info_square( station )
     render inline: <<-HAML , type: :haml
 = " "
-    HAML
-  end
-
-  def travel_time_info_empty_row
-    render inline: <<-HAML , type: :haml
-%tr{ class: :empty_row }<
-  %td{ colspan: 3 }<
-    = " "
     HAML
   end
 

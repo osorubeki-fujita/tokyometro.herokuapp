@@ -5,7 +5,8 @@ initializeDo = ->
   processLineAndStationMatrixes()
   processRailwayLine()
   processStationTimetable()
-  processPassengerSurvey() ;
+  processStationFacility()
+  processPassengerSurvey()
   return
 
 window.initializeDo = initializeDo

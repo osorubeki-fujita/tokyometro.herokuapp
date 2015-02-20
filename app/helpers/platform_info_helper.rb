@@ -24,7 +24,7 @@ module PlatformInfoHelper
 
     # 南北線・三田線の共用区間の場合
     elsif platform_infos_grouped_by_railway_line.platform_infos_of_namboku_and_toei_mita_line?( @station_facility )
-      railway_line_ids = platform_infos_grouped_by_railway_line.keys.sort
+      railway_line_ids = [ "odpt.Railway:TokyoMetro.Namboku" , "odpt.Railway:Toei.Mita" ].map { | item | ::RailwayLine.find_by_same_as( item ).id }
       local_h = { railway_line_ids: railway_line_ids , platform_infos_grouped_by_railway_line: platform_infos_grouped_by_railway_line }
 
       render inline: <<-HAML , type: :haml , locals: local_h
@@ -63,12 +63,12 @@ module PlatformInfoHelper
     if yf
       railway_line_name_ja = "有楽町線・副都心線"
       railway_line_name_en = "Yurakucho and Fukutoshin Line"
-      railway_line_classes = [ :each_railway_line , :yurakucho_and_fukutoshin ]
+      railway_line_class = :yurakucho_and_fukutoshin
       railway_line_tab_name = :platform_info_yurakucho_and_fukutoshin_line
     elsif ni
       railway_line_name_ja = "南北線・都営三田線"
       railway_line_name_en = "Namboku and Toei Mita Line"
-      railway_line_classes = [ :each_railway_line , :namboku_and_toei_mita ]
+      railway_line_class = :namboku_and_toei_mita
       railway_line_tab_name = :platform_info_namboku_and_toei_mita_line
 
     else
@@ -76,14 +76,14 @@ module PlatformInfoHelper
 
       railway_line_name_ja = railway_line.name_ja
       railway_line_name_en = railway_line.name_en
-      railway_line_classes = [ :each_railway_line , railway_line.css_class_name ]
+      railway_line_class = railway_line.css_class_name
       railway_line_tab_name = "platform_info_" + railway_line.css_class_name
     end
 
     render_settings = {
       railway_line_name_ja: railway_line_name_ja ,
       railway_line_name_en: railway_line_name_en ,
-      railway_line_classes: railway_line_classes ,
+      railway_line_class: railway_line_class ,
       railway_line_tab_name: railway_line_tab_name ,
       platform_infos_of_each_railway_line: infos_of_each_railway_line ,
       car_composition_types: infos_of_each_railway_line.map( &:car_composition ).uniq ,
@@ -94,18 +94,18 @@ module PlatformInfoHelper
 
     render inline: <<-HAML , type: :haml , locals: render_settings
 %li{ id: railway_line_tab_name , name: railway_line_tab_name , class: :platform_info_tab_content }
-  %div{ class: railway_line_classes }
+  %div{ class: railway_line_class }
     %div{ class: :title_of_railway_line }
       %h3{ class: :text_ja }<
         = railway_line_name_ja
       %h4{ class: :text_en }<
         = railway_line_name_en
-    - if direction_types_are_exist
-      - platform_infos_of_each_railway_line_grouped_by_direction = platform_infos_of_each_railway_line.group_by( &:railway_direction_id )
-      - platform_infos_of_each_railway_line_grouped_by_direction.each do | railway_direction_id , infos |
-        = platform_infos_of_each_direction( railway_direction_id , car_composition_types , infos , yf: yf , ni: ni )
-    - else
-      = platform_infos_of_each_platform( car_composition_types , infos )
+  - if direction_types_are_exist
+    - platform_infos_of_each_railway_line_grouped_by_direction = platform_infos_of_each_railway_line.group_by( &:railway_direction_id )
+    - platform_infos_of_each_railway_line_grouped_by_direction.each do | railway_direction_id , infos |
+      = platform_infos_of_each_direction( railway_direction_id , railway_line_class , car_composition_types , infos , yf: yf , ni: ni )
+  - else
+    = platform_infos_of_each_platform( railway_line_class , car_composition_types , infos , transfer_infos_are_exist , barrier_free_facilities_are_exist , surrounding_areas_are_exist )
     HAML
 
   end
@@ -132,7 +132,7 @@ module PlatformInfoHelper
 
   end
 
-  def platform_infos_of_each_direction( railway_direction_id , car_composition_types , infos , yf: false , ni: false )
+  def platform_infos_of_each_direction( railway_direction_id , railway_line_class , car_composition_types , infos , yf: false , ni: false )
 
     transfer_infos_are_exist = infos.any? { | info | info.station_facility_platform_info_transfer_infos.present? }
     barrier_free_facilities_are_exist = infos.any? { | info | info.barrier_free_facilities.present? }
@@ -145,6 +145,7 @@ module PlatformInfoHelper
       hash_of_locals = {
         direction: direction ,
         car_composition_types: car_composition_types ,
+        railway_line_class: railway_line_class ,
         infos: infos ,
         transfer_infos_are_exist: transfer_infos_are_exist ,
         barrier_free_facilities_are_exist: barrier_free_facilities_are_exist ,
@@ -183,20 +184,21 @@ module PlatformInfoHelper
         = "西高島平" + platform_str_ja_base
         - platform_str_en += "Nishi-takashimadaira (Toei Mita Line)"
       - else
-        = station_name_ja_processing_subname( direction.name_ja , add_subname: false , suffix: platform_str_ja_base )
+        = direction.decorate.render_name_ja( with_subname: true , suffix: platform_str_ja_base )
         - platform_str_en += direction.name_en
     %h5{ class: :text_en }<>
       = ( platform_str_en_base + platform_str_en )
-  = platform_infos_of_each_platform( car_composition_types , infos , transfer_infos_are_exist , barrier_free_facilities_are_exist , surrounding_areas_are_exist )
+  = platform_infos_of_each_platform( railway_line_class , car_composition_types , infos , transfer_infos_are_exist , barrier_free_facilities_are_exist , surrounding_areas_are_exist )
     HAML
 
     end
   end
 
-  def platform_infos_of_each_platform( car_composition_types , infos , transfer_infos_are_exist , barrier_free_facilities_are_exist , surrounding_areas_are_exist )
+  def platform_infos_of_each_platform( railway_line_class , car_composition_types , infos , transfer_infos_are_exist , barrier_free_facilities_are_exist , surrounding_areas_are_exist )
     case car_composition_types.length
     when 1
       h_locals = {
+        railway_line_class: railway_line_class ,
         info_sorted_by_car_number: infos.sort_by( &:car_number ) ,
         transfer_infos_are_exist: transfer_infos_are_exist ,
         barrier_free_facilities_are_exist: barrier_free_facilities_are_exist ,
@@ -240,7 +242,7 @@ module PlatformInfoHelper
   def platform_infos_of_each_platform_sub( h_locals )
     render inline: <<-HAML , type: :haml , locals: h_locals
 %table{ class: :platform_info }
-  = platform_infos_car_number_array( info_sorted_by_car_number )
+  = platform_infos_car_number_array( railway_line_class , info_sorted_by_car_number )
   - # 乗換路線がある場合は、乗換の情報を記述
   - if transfer_infos_are_exist
     = platform_infos_transfer_info_array( info_sorted_by_car_number )
@@ -253,9 +255,9 @@ module PlatformInfoHelper
     HAML
   end
 
-  def platform_infos_car_number_array( infos )
-    render inline: <<-HAML , type: :haml , locals: { infos: infos }
-%tr{ class: [ :car_numbers , :text_en ] }
+  def platform_infos_car_number_array( railway_line_class , infos )
+    render inline: <<-HAML , type: :haml , locals: { railway_line_class: railway_line_class , infos: infos }
+%tr{ class: [ railway_line_class , :car_numbers , :text_en ] }
   = platform_infos_make_an_empty_cell
   - infos.each do | info |
     %td{ class: :car_number }<
@@ -266,13 +268,13 @@ module PlatformInfoHelper
   def platform_infos_transfer_info_array( infos )
     h_locals = {
       infos_of_transfer_infos: infos.map( &:station_facility_platform_info_transfer_infos ) ,
-      proc_for_display: platform_infos_transfer_info_proc_for_display ,
-      proc_for_decision: platform_infos_transfer_info_proc_for_decision
+      proc_for_display: ::Proc.new { | info | info.decorate.render } ,
+      proc_for_decision: ::Proc.new { | infos | infos.map( &:to_array_of_displayed_infos ) }
     }
 
     render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: :transfer_infos }
-  - concat platform_infos_transfer_info_title
+  = ::StationFacilityPlatformInfoDecorator.render_transfer_info_title
   - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_transfer_infos , proc_for_display , proc_for_decision )
     HAML
   end
@@ -299,12 +301,12 @@ module PlatformInfoHelper
     render inline: <<-HAML , type: :haml , locals: h_locals
 - if infos_of_barrier_free_facilities_inside.any?( &:present? )
   %tr{ class: :barrier_free_infos_inside }
-    - concat platform_infos_barrier_free_info_title_inside
+    = ::StationFacilityPlatformInfoDecorator.render_inside_barrier_free_facility_title
     - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_inside , proc_for_display_inside )
 
 - if infos_of_barrier_free_facilities_outside.any?( &:present? )
   %tr{ class: :barrier_free_infos_outside }
-    - concat platform_infos_barrier_free_info_title_outside
+    = ::StationFacilityPlatformInfoDecorator.render_outside_barrier_free_facility_title
     - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_outside , proc_for_display_outside )
     HAML
   end
@@ -312,12 +314,12 @@ module PlatformInfoHelper
   def platform_infos_surrounding_area_info_array( infos )
     h_locals = {
       infos_of_surrounding_areas: infos.map( &:surrounding_areas ) ,
-      proc_for_display: Proc.new { | info | info.name }
+      proc_for_display: ::Proc.new { | info | info.decorate.render }
     }
 
     render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: :surrounding_areas }
-  - concat platform_infos_surrounding_area_info_title
+  = ::StationFacilityPlatformInfoDecorator.render_surrounding_area_info_title
   - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_surrounding_areas , proc_for_display )
     HAML
   end

@@ -34,8 +34,8 @@ namespace :tokyo_metro do
       ary_of_row_info << { filename: filename , rows: rows }
     end
 
-    ary_of_row_info.each do | row_info |
-      i = 216
+    ary_of_row_info.sort_by { | item | item[ :rows ] }.each do | row_info |
+      i = 108
       str = row_info[ :filename ] + " " + "." * [ 0 , ( i - row_info[ :filename ].length ) ].max + " " + row_info[ :rows ].to_s.rjust(4)
       puts str
     end

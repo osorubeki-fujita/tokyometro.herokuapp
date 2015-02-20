@@ -1,6 +1,7 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
+@import 'concern/connecting_railway_line_info.scss' ;
 
 %lineCodeAndColorBoxInStationFacilityRailwayLineInfo {
     @extend %floatLeft ;
@@ -35,45 +36,7 @@
     .railway_lines {
         height: auto ;
         @extend %marginBottom16 ;
-        .railway_line {
-            @extend %floatLeft ;
-            @extend %marginTop4 ;
-            @extend %marginBottom4 ;
-            @extend %marginRight16 ;
-            clear: inherit ;
-            border: {
-                style: solid ;
-                width: 1px ;
-            }
-            @include border_radius( 4px ) ;
-            .railway_line_code_32 {
-                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
-            }
-            .color_box_32 {
-                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
-            }
-            .railway_line_code_48 {
-                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
-            }
-            .color_box_48 {
-                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
-            }
-            .text {
-                @extend %lineCodeAndColorBoxInStationFacilityRailwayLineInfo ;
-                $font_size_ja: 10pt ;
-                $font_size_en: $font_size_ja * 0.75 ;
-                .text_ja {
-                    font: {
-                        size: $font_size_ja ;
-                    }
-                }
-                .text_en {
-                    font: {
-                        size: $font_size_en ;
-                    }
-                }
-            }
-        }
+        @extend %connectingRailwayLineInfo ;
     }
 }
 
@@ -151,10 +114,14 @@
                 background-color: transparent ;
             }
         }
+        .railway_lines_in_another_station {
+          clear: both ;
+          height: auto ;
+        }
     }
 }
 
-.connecting_railway_lines {
+.other_railway_lines {
     @extend %stationFacilityRailwayLineInfo ;
     @extend %connectingRailwayLinesTitle ;
     .railway_lines {

@@ -1,5 +1,5 @@
 = render "common_content"
 
 = title_of_station_timetable_in_each_station
-= station_info_links
+= @station.decorate.render_links_to_infos
 = make_station_timetables

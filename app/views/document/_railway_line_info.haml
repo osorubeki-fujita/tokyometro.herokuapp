@@ -7,7 +7,7 @@
 %div{ class: [ :document_info_box_normal , css_name_of_railway_line_rounded_square ] }
   %div{ class: :top }
     = color_box
-    = railway_line_code( railway_line , must_display_line_color: false )
+    = railway_line.render_railway_line_code( must_display_line_color: false )
     %div{ class: :color_info }
       %div{ class: :web_color }<
         = railway_line.color

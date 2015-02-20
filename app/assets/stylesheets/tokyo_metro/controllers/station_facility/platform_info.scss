@@ -21,7 +21,7 @@
 }
 
 %titleOfEachContentsInPlatformInfo {
-    min-width: 96px ;
+    min-width: 128px ;
 }
 
 %cellSettingsWhenInfoIsEmpty {
@@ -33,6 +33,34 @@
 %cellSettingsWhenInfoIsPresent {
     td.present {
         border-bottom: solid 2px #999 ;
+        ul {
+          list-style:none ;
+          li {
+            clear: both ;
+            div {
+              display: block ;
+            }
+            .transfer_info {
+              @extend %marginTop4 ;
+              @extend %marginBottom4 ;
+              @extend %marginLeft8 ;
+              @extend %marginRight8 ;
+              // border: solid 1px #ccc ;
+              .string {
+                float: left ;
+                @extend %marginLeft4 ;
+                .additional_info {
+                  .railway_direction {
+                    @extend %floatLeft ;
+                  }
+                  .time {
+                    @extend %floatLeft ;
+                  }
+                }
+              }
+            }
+          }
+        }
     }
 }
 
@@ -50,7 +78,7 @@
             border-style: none ;
         }
         td.car_number {
-            min-width: 96px ;
+            @extend %titleOfEachContentsInPlatformInfo ;
             border: solid 1px #999 ;
             font: {
                 size: 24pt ;
@@ -71,7 +99,7 @@
             @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
             @extend %titleOfEachContentsInPlatformInfo ;
         }
-        .direction {
+        .railway_direction {
             @extend %smallTextInPlatformInfo ;
         }
         .time {
@@ -196,19 +224,17 @@
         }
     }
     @include settingsOfPlatformInfoOfEachRailway( $border_width_of_title_of_railway_line ) ;
-    .each_railway_line {
+    margin: {
+        left: $border_width_of_title_of_railway_line ;
+    }
+    .info_of_railway_direction {
         margin: {
-            left: $border_width_of_title_of_railway_line ;
+            left: 8px ;
         }
-        .info_of_railway_direction {
-            margin: {
-                left: 8px ;
-            }
-            padding: 8px ;
-            @include titleOfDirectionInPlatformInfo ;
-            table.platform_info {
-                @extend %tableSettingsOfPlatformInfo ;
-            }
+        padding: 8px ;
+        @include titleOfDirectionInPlatformInfo ;
+        table.platform_info {
+            @extend %tableSettingsOfPlatformInfo ;
         }
     }
 }

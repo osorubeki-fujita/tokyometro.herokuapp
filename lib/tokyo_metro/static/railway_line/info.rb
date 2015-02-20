@@ -9,6 +9,7 @@ class TokyoMetro::Static::RailwayLine::Info
   include ::TokyoMetro::Modules::Common::Info::Decision::SameAs
   include ::TokyoMetro::Modules::Common::Info::Decision::Operator
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
 
   # Constructor
   # @param same_as [::String]
@@ -19,7 +20,7 @@ class TokyoMetro::Static::RailwayLine::Info
   # @param operator [::TokyoMetro::Static::Operator::Info]
   # @param index [::Numeric]
   # @param color
-  def initialize( same_as , name_ja , name_hira , name_en , name_code , operator , index , color )
+  def initialize( same_as , name_ja , name_hira , name_en , name_code , operator , index , color , start_on , twitter_widget_id , twitter_account )
     @same_as = same_as
     @name_ja = name_ja
     @name_hira = name_hira
@@ -28,7 +29,13 @@ class TokyoMetro::Static::RailwayLine::Info
     @index = index
     @color = color
     @operator = operator
+    @start_on = start_on
+    @twitter_widget_id = twitter_widget_id
+    @twitter_account = twitter_account
   end
+  attr_reader :start_on
+  attr_reader :twitter_widget_id
+  attr_reader :twitter_account
 
   # インスタンスの比較に用いるメソッド
   # @return [Integer]

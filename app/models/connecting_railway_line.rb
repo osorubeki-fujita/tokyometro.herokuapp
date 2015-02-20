@@ -5,6 +5,7 @@ class ConnectingRailwayLine < ActiveRecord::Base
   belongs_to :connecting_railway_line_note
 
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
 
   def note_instance
     connecting_railway_line_note
@@ -28,6 +29,10 @@ class ConnectingRailwayLine < ActiveRecord::Base
 
   def not_have_index_in_station?
     !( has_index_in_station? )
+  end
+
+  def not_operated_yet?
+    super or railway_line.not_operated_yet?
   end
 
 end

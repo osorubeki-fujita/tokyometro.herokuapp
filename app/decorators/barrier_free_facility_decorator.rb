@@ -27,7 +27,7 @@ class BarrierFreeFacilityDecorator < Draper::Decorator
     regexp = /\Aodpt\.StationFacility\:TokyoMetro\.(\w+)\.(?:\w+)\.(Inside|Outside)\.(\w+)/
     if regexp =~ same_as.to_s
       railway_line_name = $1
-      railway_line_code = ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.#{ railway_line_name }" ).name_code
+      railway_line_code_letter = ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.#{ railway_line_name }" ).name_code
 
       place = $2
       category = $3
@@ -41,7 +41,7 @@ class BarrierFreeFacilityDecorator < Draper::Decorator
     end
 
     facility_id = [ place.downcase , category.downcase , number ].select( &:present? ).map( &:to_s ).join( "_" )
-    facility_code = [ railway_line_code , number ].map( &:to_s ).join
+    facility_code = [ railway_line_code_letter , number ].map( &:to_s ).join
     platform = [ place , category , number ].select( &:present? ).map( &:to_s ).join( "." )
     { :id => facility_id , :code => facility_code , :platform => platform }
   end
@@ -56,7 +56,7 @@ class BarrierFreeFacilityDecorator < Draper::Decorator
   end
 
   def remark_to_a
-    remark.gsub( /。([\(（].+?[\)）])/ ) { "#{$1}。" }.gsub( /(?<=。)\n?[ 　]?/ , "\n" ).gsub( "出きません" , "できません" ).split( /\n/ )
+    remark.gsub( /。([\(（].+?[\)）])/ ) { "#{$1}。" }.gsub( /(?<=。)\n?[ 　]?/ , "\n" ).gsub( "出きません" , "できません" ).gsub( "ＪＲ" , "JR" ).split( /\n/ )
   end
 
   def render

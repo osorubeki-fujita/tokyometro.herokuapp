@@ -1,1 +1,1 @@
-= render "common_content"= ::StationFacilityDecorator.render_top_title( id: :station_facility_title )- # %div{ id: :lines }- #   = select_station_from_railway_line- #   = make_railway_line_matrixes_whole( with_yf: false )= station_link_matrix_and_lists
+= render "common_content"= ::StationFacilityDecorator.render_top_title( id: :station_facility_title )- # %div{ id: :lines }- #   = select_station_from_railway_line- #   = ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: false )= station_link_matrix_and_lists

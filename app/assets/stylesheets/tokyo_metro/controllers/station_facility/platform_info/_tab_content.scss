@@ -43,11 +43,20 @@
     .fukutoshin {
         @extend %baseOfLineCodeInPlatformInfoTab ;
     }
+    .toei_mita {
+        @extend %baseOfLineCodeInPlatformInfoTab ;
+    }
 }
 
 %textSettingsOfLineNameInPlatformInfoTab {
     .railway_line_name {
         @extend %lineCodeInPlatformInfoTab ;
+        margin: {
+            left: 8px ;
+            right: 8px ;
+            top: 4px ;
+            bottom: 4px ;
+        }
         .text {
 			@extend %floatLeft ;
             .text_ja {
@@ -75,12 +84,6 @@
                     list-style-type: none;
 					@extend %link_in_div ;
                     border: solid 1px #ccc ;
-                    padding: {
-                        left: 8px ;
-                        right: 8px ;
-                        top: 4px ;
-                        bottom: 4px ;
-                    }
                     margin: {
                         right: -1px ;
                     }

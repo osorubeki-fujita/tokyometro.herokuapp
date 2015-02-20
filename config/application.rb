@@ -93,7 +93,6 @@ module RailsTokyoMetro
       ::ActiveRecord::Base.logger = nil
     end
     #-------- config.after_initialize ここまで
-
   end
 end
 

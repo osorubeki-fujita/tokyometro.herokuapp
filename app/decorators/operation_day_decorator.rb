@@ -1,6 +1,6 @@
 class OperationDayDecorator < Draper::Decorator
   delegate_all
-  
+
   def render_in_women_only_car_info
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :title }
@@ -10,14 +10,14 @@ class OperationDayDecorator < Draper::Decorator
     = info.name_en
     HAML
   end
-  
+
   def render_in_barrier_free_facility_service_detail_pattern
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :operation_day }<
   = info.name_ja
     HAML
   end
-  
+
   def render_in_station_timetable_header
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :operation_day }<

@@ -146,7 +146,7 @@ class PassengerSurveyDecorator < Draper::Decorator
       %div{ class: :station_codes }<
         = passenger_survey_station_codes_in_table( stations )
       %div{ class: :text }<
-        = station_text( stations )
+        = stations.first.decorate.render_name_ja_and_en
   - case type
   - when :railway_line , :station
     %td{ class: [ :survey_year , :text_en ] }<

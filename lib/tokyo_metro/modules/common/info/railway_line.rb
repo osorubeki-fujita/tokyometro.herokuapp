@@ -4,18 +4,14 @@ module TokyoMetro::Modules::Common::Info::RailwayLine
     /Branch\Z/ === same_as
   end
 
-  def not_operated_yet?
-    same_as == "odpt.Railway:JR-East.UenoTokyo" and ::Time.now <= ::Time.new( 2015 , 3 , 14 , 3 )
-  end
-
   def not_branch_line?
     !( branch_line? )
   end
 
-  def operated_already?
-    !( not_operated_yet? )
+  [ :branch_line? , :not_branch_line? ].each do | method_base_name |
+    eval <<-ALIAS
+      alias :is_#{ method_base_name } :#{ method_base_name }
+    ALIAS
   end
-
-  alias :already_operated? :operated_already?
 
 end

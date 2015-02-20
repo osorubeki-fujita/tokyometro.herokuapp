@@ -1,11 +1,8 @@
-#! ruby -Ku
-# -*- coding: utf-8 -*-
-
 module PlatformInfoCellProcessHelper
 
   def platform_infos_conncet_cells_including_same_info_and_make_cells( infos , proc_for_display , proc_for_dicision = nil )
     if proc_for_dicision.nil?
-      proc_for_dicision = Proc.new { | info | info.map { | i | i.id } }
+      proc_for_dicision = Proc.new { | infos | infos.map( &:id ) }
     end
 
     i = 0
@@ -38,7 +35,7 @@ module PlatformInfoCellProcessHelper
   # 次のセルと内容が同一か否かを判定するメソッド
   # @note #platform_infos_number_of_connected_cells から呼び出す
   def platform_infos_equal_to_next_cell?( infos , i , i_compared , proc_for_dicision )
-    info_in_i = infos[i]
+    info_in_i = infos[ i ]
     info_compared = infos[ i_compared ]
     last_index = infos.length - 1
     if i < last_index and info_compared.present?
@@ -72,9 +69,10 @@ module PlatformInfoCellProcessHelper
   # 中身のあるセルの具体的な中身を記述するメソッド
   def platform_infos_make_content_in_a_cell_including_same_info( infos , proc_for_display )
     render inline: <<-HAML , type: :haml , locals: { infos: infos , proc_for_display: proc_for_display }
-- infos.each.with_index(1) do | info , i |
-  = proc_for_display.call( info )
-  = clear_line_in_text_arr( infos.length , i )
+%ul
+  - infos.each do | info |
+    %li<
+      = proc_for_display.call( info )
     HAML
   end
 

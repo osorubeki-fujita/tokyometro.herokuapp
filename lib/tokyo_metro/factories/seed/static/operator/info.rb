@@ -13,7 +13,7 @@ class TokyoMetro::Factories::Seed::Static::Operator::Info < TokyoMetro::Factorie
       # :name_hira ,
       :name_en_display , :name_en_normal_precise , :name_en_normal , :name_en_for_transfer_info , :name_en_to_haml ,
       :index , :operator_code , :numbering , :railway_line_code_shape , :station_code_shape ,
-      :css_class_name
+      :css_class_name , :twitter_widget_id , :twitter_account
     ].each do | key_name |
       h[ key_name ] = @info.send( key_name )
     end

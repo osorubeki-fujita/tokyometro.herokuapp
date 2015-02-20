@@ -10,5 +10,39 @@ class StationFacilityPlatformInfoDecorator < Draper::Decorator
   def self.sub_top_title_en
     "Information of transfer, barrier free facilities, surrounding areas on the platforms"
   end
+  
+  def self.render_transfer_info_title
+    h.render inline: <<-HAML , type: :haml
+%td{ class: :title }<
+  = "のりかえ"
+    HAML
+  end
+
+  def self.render_inside_barrier_free_facility_title
+    h.render inline: <<-HAML , type: :haml
+%td{ class: :title }<
+  = "改札内の"
+  = tag( :br )
+  = "駅設備"
+    HAML
+  end
+
+  def self.render_outside_barrier_free_facility_title
+    h.render inline: <<-HAML , type: :haml
+%td{ class: :title }<
+  = "改札外の"
+  = tag( :br )
+  = "駅設備"
+    HAML
+  end
+
+  def self.render_surrounding_area_info_title
+    h.render inline: <<-HAML , type: :haml
+%td{ class: :title }<
+  = "駅周辺の"
+  = tag( :br )
+  = "主要施設・名所"
+    HAML
+  end
 
 end

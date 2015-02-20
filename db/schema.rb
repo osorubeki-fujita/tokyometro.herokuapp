@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211124616) do
+ActiveRecord::Schema.define(version: 20150315091756) do
 
   create_table "air_conditioner_answers", force: true do |t|
     t.string   "name_ja"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20150211124616) do
     t.integer  "connecting_railway_line_note_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_on"
   end
 
   create_table "fares", force: true do |t|
@@ -194,6 +195,8 @@ ActiveRecord::Schema.define(version: 20150211124616) do
     t.string   "css_class_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "twitter_widget_id"
+    t.string   "twitter_account"
   end
 
   create_table "passenger_surveys", force: true do |t|
@@ -260,6 +263,9 @@ ActiveRecord::Schema.define(version: 20150211124616) do
     t.string   "geo_json"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_on"
+    t.integer  "twitter_widget_id"
+    t.string   "twitter_account"
   end
 
   create_table "rss_categories", force: true do |t|

@@ -24,7 +24,7 @@ module StationLinkMatrixHelper
 %div{ id: :station_matrixes }
   - railway_lines.each do | railway_line |
     %div{ class: :railway_line }
-      = make_railway_line_matrix( railway_line , make_link_to_line: make_link_to_line , size: :small )
+      = railway_line.decorate.render_matrix( make_link_to_line: make_link_to_line , size: :small )
       %div{ class: :stations }
         - if railway_line.same_as == "odpt.Railway:TokyoMetro.Marunouchi"
           = station_link_matrix_of_marunouchi_line( railway_line , stations_of_railway_lines , tokyo_metro_station_dictionary , tokyo_metro_station_dictionary_including_main_info )
@@ -41,7 +41,7 @@ module StationLinkMatrixHelper
     tokyo_metro_station_dictionary_including_main_info
   )
     h_locals = {
-      stations: stations.sort_by { | station | station.index_in_railway_line } ,
+      stations: stations.sort_by( &:index_in_railway_line ) ,
       stations_of_railway_lines: stations_of_railway_lines ,
       tokyo_metro_station_dictionary: tokyo_metro_station_dictionary ,
       tokyo_metro_station_dictionary_including_main_info: tokyo_metro_station_dictionary_including_main_info

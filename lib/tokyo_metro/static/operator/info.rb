@@ -21,7 +21,10 @@ class TokyoMetro::Static::Operator::Info
   # @param railway_line_code_shape [String or nil] 路線記号の形
   # @param station_code_shape [Stirng or nil] 駅番号の形
   # @param color [::TokyoMetro::Static::Color] 事業者の色
-  def initialize( same_as , name_ja , name_ja_display , name_en , name_en_display , index , operator_code , numbering , railway_line_code_shape , station_code_shape , color )
+  def initialize( same_as , name_ja , name_ja_display , name_en , name_en_display , index , operator_code ,
+    numbering , railway_line_code_shape , station_code_shape , color ,
+    twitter_widget_id , twitter_account
+  )
     @same_as = same_as
     @name_ja = name_ja
     @name_ja_display = name_ja_display
@@ -33,9 +36,15 @@ class TokyoMetro::Static::Operator::Info
     @railway_line_code_shape = railway_line_code_shape
     @station_code_shape = station_code_shape
     @color = color
+
+    @twitter_widget_id = twitter_widget_id
+    @twitter_account = twitter_account
   end
 
   attr_reader :operator_code
+
+  attr_reader :twitter_widget_id
+  attr_reader :twitter_account
 
 # @!group 鉄道事業者の ID、番号に関するメソッド
 

@@ -27,12 +27,6 @@ module ApplicationHelper
     number_to_currency( num , unit: "" , format: "%n" , precision: 0 )
   end
 
-  def clear_line_in_text_arr( length_of_arr , index_n )
-    unless length_of_arr == index_n
-      tag( :br )
-    end
-  end
-
   def self.time_strf( h , m )
     m_2 = sprintf( "%2.2d" , m)
     "#{h}:#{m_2}"

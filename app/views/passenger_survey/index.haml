@@ -17,7 +17,7 @@
     %div #{title}
 - # %div{ id: :lines }
 -   #%div{ id: :railway_line_matrixes }
--     #= make_railway_line_matrixes_whole( with_yf: false )
+-     #= ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: false )
 %h3<
   = "各路線・各駅の乗降客数"
 %p<

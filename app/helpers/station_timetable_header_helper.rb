@@ -20,24 +20,12 @@ module StationTimetableHeaderHelper
       %div{ class: :main }
         = operation_day.decorate.render_in_station_timetable_header
         = railway_direction.decorate.render_in_station_timetable_header
-        = timetable_station_name( station )
+        = station.decorate.render_in_station_timetable_header
   = timetable_only_one_train_type_or_station( only_one_train_type , train_types , only_one_to_station , to_stations , major_to_station_id )
     HAML
   end
 
   private
-
-  def timetable_station_name( station )
-    render inline: <<-HAML , type: :haml , locals: { station: station }
-%div{ class: :additional_infos }
-  = display_images_of_station_codes( station , false )
-  %div{ class: :station_name }<
-    %div{ class: :text_ja }<
-      = station_name_ja_processing_subname( station.name_ja )
-    %div{ class: :text_en }<
-      = station.name_en
-    HAML
-  end
 
   def timetable_only_one_train_type_or_station( only_one_train_type , train_types , only_one_to_station , to_stations , major_to_station_id )
     h_locals = {

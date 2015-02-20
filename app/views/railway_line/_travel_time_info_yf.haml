@@ -2,4 +2,4 @@
 - # @note 部分テンプレート travel_time_info_common を内部で呼び出す。
 - # @version 2014.11.27.13.42
 %div{ class: [ :railway_lines , "yurakucho_fukutoshin_travel_time" ] }
-  = travel_time_info_base_two_railway_lines( railway_lines )
+  = ::RailwayLineDecorator.render_travel_time_simple_infos_of_multiple_railway_lines( railway_lines )

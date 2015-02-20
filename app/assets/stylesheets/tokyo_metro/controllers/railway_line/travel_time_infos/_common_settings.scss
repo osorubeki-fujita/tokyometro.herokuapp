@@ -1,7 +1,7 @@
 @charset "utf-8" ;
 
 @import 'font_settings.scss' ;
-@import 'connecting_railway_line_info.scss' ;
+@import '../../concern/connecting_railway_line_info.scss' ;
 @import 'color_settings_of_travel_time_info_through_operation.scss' ;
 
 %commonSettingsOfTravelTimeInfo {

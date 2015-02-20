@@ -2,8 +2,6 @@
 
 // 車両番号の領域の色の設定（路線が1つの場合）
 @mixin cellOfCarNumberInPlatformInfo( $color ) {
-    table.platform_info {
-        tr.car_numbers {
             td.car_number {
                 $color_top: rgba( $color , 0.5 ) ;
                 $color_middle: rgba( $color , 0.3 ) ;
@@ -26,14 +24,10 @@
                     to( #{$color_bottom} )
                 );
             }
-        }
-    }
 }
 
 // 車両番号の領域の色の設定（路線が2つの場合）
 @mixin cellOfCarNumberInPlatformInfoOfTwoRailways( $color_1 , $color_2 ) {
-    table.platform_info {
-        tr.car_numbers {
             td.car_number {
                 $color_top: rgba( $color_1 , 0.7 ) ;
                 $color_middle_1: rgba( $color_1 , 0.5 ) ;
@@ -66,6 +60,4 @@
                     to( #{$color_bottom} )
                 );
             }
-        }
-    }
 }

@@ -14,7 +14,7 @@
     cleared: true
   "odpt.Railway:TokyoMetro.Fukutoshin":
     index_in_station: 6
-    cleared: true
+    cleared: false
   "odpt.Railway:Tokyu.Toyoko":
     index_in_station: 7
     cleared: true
@@ -53,6 +53,25 @@
   "odpt.Railway:TokyoMetro.Marunouchi":
     index_in_station: 3
 
+# 【銀座線】新橋
+
+"odpt.Station:TokyoMetro.Ginza.Shimbashi":
+  "odpt.Railway:Toei.Asakusa":
+    index_in_station: 1
+  "odpt.Railway:JR-East.Yamanote":
+    index_in_station: 2
+    cleared: true
+  "odpt.Railway:JR-East.KeihinTohoku":
+    index_in_station: 3
+  "odpt.Railway:JR-East.Tokaido":
+    index_in_station: 4
+  "odpt.Railway:JR-East.Yokosuka":
+    index_in_station: 5
+  "odpt.Railway:JR-East.UenoTokyo":
+    index_in_station: 6
+  "odpt.Railway:Yurikamome.Yurikamome":
+    index_in_station: 7
+
 # 【銀座線】銀座
 
 "odpt.Station:TokyoMetro.Ginza.Ginza":
@@ -82,9 +101,9 @@
     index_in_station: 1
   "odpt.Railway:JR-East.Yamanote":
     index_in_station: 2
-    cleared: true
   "odpt.Railway:JR-East.KeihinTohoku":
     index_in_station: 3
+    cleared: true
   "odpt.Railway:JR-East.UenoTokyo":
     index_in_station: 4
   "odpt.Railway:JR-East.Takasaki":
@@ -295,6 +314,29 @@
   "odpt.Railway:TokyoMetro.Ginza":
     index_in_station: 4
     cleared: true
+
+# 【日比谷線】上野
+"odpt.Station:TokyoMetro.Hibiya.Ueno":
+  "odpt.Railway:TokyoMetro.Ginza":
+    index_in_station: 1
+  "odpt.Railway:JR-East.Yamanote":
+    index_in_station: 2
+  "odpt.Railway:JR-East.KeihinTohoku":
+    index_in_station: 3
+    cleared: true
+  "odpt.Railway:JR-East.UenoTokyo":
+    index_in_station: 4
+  "odpt.Railway:JR-East.Takasaki":
+    index_in_station: 5
+  "odpt.Railway:JR-East.Utsunomiya":
+    index_in_station: 6
+  "odpt.Railway:JR-East.Joban":
+    index_in_station: 7
+  "odpt.Railway:JR-East.Shinkansen":
+    index_in_station: 8
+    cleared: true
+  "odpt.Railway:Keisei.KeiseiMain":
+    index_in_station: 9
 
 # 【日比谷線】北千住
 

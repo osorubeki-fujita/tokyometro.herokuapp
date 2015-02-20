@@ -16,7 +16,8 @@ module TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayL
       connecting_to_another_station: connecting_to_another_station? ,
       cleared: cleared? ,
       not_recommended: not_recommended? ,
-      connecting_railway_line_note_id: connecting_railway_line_note_id
+      connecting_railway_line_note_id: connecting_railway_line_note_id ,
+      start_on: @info.start_on
     })
   end
   
