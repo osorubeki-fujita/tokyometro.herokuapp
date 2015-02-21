@@ -87,7 +87,7 @@ module PlatformInfoHelper
       railway_line_tab_name: railway_line_tab_name ,
       platform_infos_of_each_railway_line: infos_of_each_railway_line ,
       car_composition_types: infos_of_each_railway_line.map( &:car_composition ).uniq ,
-      direction_types_are_exist: !( infos_of_each_railway_line.all? { | info | info.railway_direction_id.nil? } ) ,
+      direction_types_are_exist: infos_of_each_railway_line.any? { | info | info.railway_direction_id.present? } ,
       yf: yf ,
       ni: ni
     }
@@ -258,7 +258,7 @@ module PlatformInfoHelper
   def platform_infos_car_number_array( railway_line_class , infos )
     render inline: <<-HAML , type: :haml , locals: { railway_line_class: railway_line_class , infos: infos }
 %tr{ class: [ railway_line_class , :car_numbers , :text_en ] }
-  = platform_infos_make_an_empty_cell
+  = ::StationFacilityPlatformInfoDecorator.render_an_empty_cell
   - infos.each do | info |
     %td{ class: :car_number }<
       = info.car_number
@@ -322,6 +322,57 @@ module PlatformInfoHelper
   = ::StationFacilityPlatformInfoDecorator.render_surrounding_area_info_title
   - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_surrounding_areas , proc_for_display )
     HAML
+  end
+
+  # 乗車位置情報のタブを作成
+  def platform_infos_tabs( railway_line_ids , yf: false , ni: false )
+    raise "Error" if yf and ni
+
+    if yf or ni
+      if yf
+        tab_name = @default_platform_info_tab
+        railway_line_name_ja = "有楽町線・副都心線"
+        railway_line_name_en = "Yurakucho and Fukutoshin Line"
+      elsif ni
+        tab_name = @default_platform_info_tab
+        div_class_name = :namboku_and_toei_mita
+        railway_line_name_ja = "南北線・都営三田線"
+        railway_line_name_en = "Namboku and Toei Mita Line"
+      end
+
+      h_locals = {
+        railway_line_ids: railway_line_ids ,
+        tab_name: tab_name ,
+        railway_line_name_ja: railway_line_name_ja ,
+        railway_line_name_en: railway_line_name_en
+      }
+      render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ id: :platform_info_tabs }
+  %ul
+    %li{ class: [ tab_name , :platform_info_tab ] }<
+      = ::StationFacilityPlatformInfoDecorator.render_link_in_tab( tab_name )
+      %div{ class: :railway_line_name }
+        - railway_line_ids.each do | railway_line_id |
+          - railway_line_instance = ::RailwayLine.find( railway_line_id ).decorate
+          %div{ class: railway_line_instance.css_class_name }
+            = railway_line_instance.render_railway_line_code( small: true )
+        %div{ class: :text }<
+          %div{ class: :text_ja }<
+            = railway_line_name_ja
+          %div{ class: :text_en }<
+            = railway_line_name_en
+      HAML
+
+    else
+
+      render inline: <<-HAML , type: :haml , locals: { railway_line_ids: railway_line_ids }
+%div{ id: :platform_info_tabs }
+  %ul
+    - railway_line_ids.sort.each do | railway_line_id |
+      = ::RailwayLine.find( railway_line_id ).decorate.render_station_facility_platform_info_transfer_info
+      HAML
+    end
+
   end
 
 end

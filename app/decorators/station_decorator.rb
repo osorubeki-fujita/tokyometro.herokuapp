@@ -1,6 +1,8 @@
 class StationDecorator < Draper::Decorator
 
   delegate_all
+  
+  decorates_association :station_facility
 
   include SubTopTitleRenderer
 
@@ -102,8 +104,7 @@ class StationDecorator < Draper::Decorator
       %span{ class: :text_en }<
         = info.render_name_en( with_subname: true )
   - if station_code
-    - # = display_station_codes( station , all_station_codes )
-    = display_images_of_station_codes( info.object , all_station_codes )
+    = info.render_station_code_image( all: all_station_codes )
     HAML
   end
   
@@ -194,13 +195,87 @@ class StationDecorator < Draper::Decorator
   def render_in_station_timetable_header
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :additional_infos }
-  = display_images_of_station_codes( info , false )
+  = info.render_station_code_image( all: false )
   %div{ class: :station_name }<
     %div{ class: :text_ja }<
       = info.decorate.render_name_ja
     %div{ class: :text_en }<
       = info.name_en
     HAML
+  end
+
+  def render_in_fare_table( starting_station: false )
+    h.render inline: <<-HAML , type: :haml , locals: { info: self , starting_station: starting_station }
+- if starting_station
+  %td{ class: [ :station_name , :starting_station ] }<
+    = info.render_in_fare_table_without_link
+- else
+  = info.render_in_fare_table_with_link( linked_page: linked_page = info.object.name_in_system.underscore )
+    HAML
+  end
+
+  def render_in_fare_table_without_link
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ class: :station_code_outer }
+  = info.render_station_code_image( all: false )
+%div{ class: :station_name_text }
+  %div{ class: :text_ja }
+    = info.render_name_ja( with_subname: true )
+  %div{ class: :text_en }
+    = info.render_name_en( with_subname: true )
+    HAML
+  end
+
+  def render_in_fare_table_with_link( linked_page: nil )
+    h.render inline: <<-HAML , type: :haml , locals: { info: self , linked_page: linked_page }
+%td{ class: :station_name , "data-href" => linked_page }<
+  %div{ class: :station_name_domain }
+    - if linked_page.present?
+      = link_to( "" , linked_page )
+    = info.render_in_fare_table_without_link
+    HAML
+  end
+  
+  def render_station_code_image( all: false )
+    h.render inline: <<-HAML , type: :haml , locals: { info: self , all: all }
+%div{ class: :station_codes }<
+  - if all
+    - info.stations_including_other_railway_lines.each do | station_decorator |
+      = station_decorator.render_station_code_image( all: false )
+  - else
+    %div{ class: :station_codes }
+      = info.render_each_station_code_image_tag
+    HAML
+  end
+  
+  def render_station_code_images
+    render_station_code_image( all: true )
+  end
+  
+  def render_each_station_code_image_tag
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+= image_tag( code_image_filename , class: :station_code )
+    HAML
+  end
+  
+  def self.render_station_code_imags( stations )
+    h.render inline: <<-HAML , type: :haml , locals: { infos: stations }
+%div{ class: :station_codes }<
+  - infos.each do | station |
+    = station.decorate.render_each_station_code_image_tag
+    HAML
+  end
+
+  private
+  
+  def code_image_filename
+    dirname = "provided_by_tokyo_metro/station_number"
+    if /\Am(\d{2})\Z/ =~ station_code
+      file_basename = "mm#{$1}"
+    else
+      file_basename = station_code.downcase
+    end
+    "#{dirname}/#{file_basename}.png"
   end
 
 end

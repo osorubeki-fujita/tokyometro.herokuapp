@@ -1,6 +1,6 @@
 = render "common_content"
 
-- station_ids = @station.station_facility.stations.pluck( :id )
+- station_ids = @station.stations_including_other_railway_lines.pluck( :id )
 - @railway_lines = ::RailwayLine.find( ::Station.where( id: station_ids ).pluck( :railway_line_id ).uniq.sort )
 
 = train_information_title_of_each_station

@@ -27,7 +27,7 @@ class StationTimetableController < ApplicationController
 
   def each_station( station_name )
     each_station_sub( "駅の時刻表" , "station_timetable" , station_name , layout: "application_wide" ) do
-      station_ids = @station.station_facility.stations.pluck( :id )
+      station_ids = @station.stations_including_other_railway_lines.pluck( :id )
       station_timetable_ids = ::StationTimetableFundamentalInfo.where( station_id: station_ids ).pluck( :station_timetable_id )
       @station_timetables = ::StationTimetable.where( id: station_timetable_ids ).includes(
         :station_train_times ,

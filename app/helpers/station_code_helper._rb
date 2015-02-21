@@ -1,3 +1,6 @@
+
+__END__
+
 module StationCodeHelper
 
   # Station のインスタンスをもとに駅番号の画像を表示するメソッド
@@ -12,17 +15,6 @@ module StationCodeHelper
 %div{ class: :station_codes }
   - images_list.each do | image_filename |
     = image_tag( image_filename , class: :station_code )
-    HAML
-  end
-
-  # Station のインスタンスをもとに駅番号の文字列を表示するメソッド
-  def display_station_codes( station , all_station_codes )
-    list_of_codes = list_of_station_codes( station , all_station_codes )
-    render inline: <<-HAML , type: :haml , locals: { list_of_codes: list_of_codes }
-%div{ class: :station_codes }<
-  - list_of_codes.each do | railway_line_code_letter |
-    %div{ class: :station_code }<
-      = railway_line_code_letter
     HAML
   end
 

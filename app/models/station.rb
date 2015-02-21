@@ -24,17 +24,17 @@ class Station < ActiveRecord::Base
   # after_validation :geocode
 
   include ::TokyoMetro::Modules::Db::Decision::Operator
-
-  def stations_of_tokyo_metro
+  
+  def stations_including_other_railway_lines
     station_facility.stations.order( :railway_line_id )
   end
 
   def base_station
-    stations_of_tokyo_metro.first
+    stations_including_other_railway_lines.first
   end
 
   def railway_lines_of_tokyo_metro
-    stations_of_tokyo_metro.includes( :railway_line ).order( :railway_line_id ).map( &:railway_line ).select( &:tokyo_metro? )
+    stations_including_other_railway_lines.includes( :railway_line ).order( :railway_line_id ).map( &:railway_line ).select( &:tokyo_metro? )
   end
 
   def latest_passenger_survey

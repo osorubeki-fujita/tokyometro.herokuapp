@@ -16,4 +16,4 @@
     = platform_infos_of_railway_lines
   %div{ id: :station_facility_infos }
     = ::BarrierFreeFacilityDecorator.render_sub_top_title
-    = barrier_free_facility_infos
+    = @station_facility.decorate.render_barrier_free_facility_infos

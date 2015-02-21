@@ -2,6 +2,10 @@ module ApplicationHelper
 
   # include CommonTitleHelper
 
+  def self.tokyo_metro
+    ::Operator.find_by_same_as( "odpt.Operator:TokyoMetro" )
+  end
+
   def self.common_title_ja
     "Tokyo Metro Open Data Contest"
   end

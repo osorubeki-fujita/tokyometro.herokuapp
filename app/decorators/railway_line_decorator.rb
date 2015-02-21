@@ -112,13 +112,23 @@ class RailwayLineDecorator < Draper::Decorator
     "#{ object.css_class_name }_line"
   end
 
+  def station_facility_platform_info_tab_name
+    "platform_info_#{css_class_name}"
+  end
+
   def render_name( process_special_railway_line: true )
     h.render inline: <<-HAML , type: :haml , locals: { info: self , process_special_railway_line: process_special_railway_line }
 %div{ class: :text }<
-  %div{ class: :text_ja }<>
-    = info.name_ja_with_operator_name( process_special_railway_line: process_special_railway_line )
-  %div{ class: :text_en }<>
-    = info.name_en_with_operator_name( process_special_railway_line: process_special_railway_line )
+  = info.render_name_base( process_special_railway_line: true )
+    HAML
+  end
+  
+  def render_name_base( process_special_railway_line: true )
+    h.render inline: <<-HAML , type: :haml , locals: { info: self , process_special_railway_line: process_special_railway_line }
+%div{ class: :text_ja }<>
+  = info.name_ja_with_operator_name( process_special_railway_line: process_special_railway_line )
+%div{ class: :text_en }<>
+  = info.name_en_with_operator_name( process_special_railway_line: process_special_railway_line )
     HAML
   end
 
@@ -214,21 +224,12 @@ class RailwayLineDecorator < Draper::Decorator
     end
   end
 
-  def render_name_in_matrix
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: :text_ja }<
-  = info.name_ja
-%div{ class: :text_en }<
-  = info.name_en
-    HAML
-  end
-
   def render_matrix( make_link_to_line: true , size: :normal )
     case size
     when :normal
-      class_names = [ :railway_line_matrix , :each_line , railway_line.css_class_name ]
+      class_names = [ :railway_line_matrix , :each_line , css_class_name ]
     when :small
-      class_names = [ :railway_line_matrix_small , :each_line , railway_line.css_class_name ]
+      class_names = [ :railway_line_matrix_small , :each_line , css_class_name ]
     end
 
     h_locals = {
@@ -246,12 +247,23 @@ class RailwayLineDecorator < Draper::Decorator
   - when :normal
     %div{ class: :info }
       = info.render_railway_line_code_code_outer
-      = info.render_name_in_matrix
+      = info.render_name_base( process_special_railway_line: true )
   - when :small
     %div{ class: :info }
       = info.render_railway_line_code_code_outer
-      %div{ class: :text }
-        = info.render_name_in_matrix
+      = info.render_name( process_special_railway_line: true )
+    HAML
+  end
+  
+  def render_station_facility_platform_info_transfer_info
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+- tab_name = info.station_facility_platform_info_tab_name
+%li{ class: [ tab_name , :platform_info_tab ] }<
+  = ::StationFacilityPlatformInfoDecorator.render_link_in_tab( tab_name )
+  %div{ class: :railway_line_name }
+    %div{ class: info.css_class_name }
+      = info.render_railway_line_code( small: true )
+    = info.render_name
     HAML
   end
   

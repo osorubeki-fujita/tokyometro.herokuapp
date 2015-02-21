@@ -45,4 +45,18 @@ class StationFacilityPlatformInfoDecorator < Draper::Decorator
     HAML
   end
 
+  def self.render_link_in_tab( tab_name )
+    h.render inline: <<-HAML , type: :haml , locals: { tab_name: tab_name }
+= link_to( "" , url_for( anchor: tab_name ) , onclick: raw( "changePlatformInfoTab('" + tab_name.to_s + "') ; return false ; " ) )
+    HAML
+  end
+  
+  # 中身のないセルを作成するメソッド
+  def self.render_an_empty_cell
+    render inline: <<-HAML , type: :haml
+%td{ class: :empty }<
+  = " "
+    HAML
+  end
+
 end

@@ -24,24 +24,24 @@ module TravelTimeInfoHelper
       - through_operation_b_info = travel_time_info_through_operation_h_tobu_info
       - #
     - when "odpt.Railway:TokyoMetro.Tozai"
-      - special_proc_of_station = travel_time_info_special_proc_of_station_t
-      - special_proc_of_section = travel_time_info_special_proc_of_section_t
+      - special_proc_of_station = travel_time_info_special_proc_of_station_tozai_a
+      - special_proc_of_section = travel_time_info_special_proc_of_section_tozai_b
       - through_operation_a = travel_time_info_through_operation_t_chuo
       - through_operation_a_info = travel_time_info_through_operation_t_chuo_info
       - through_operation_b = travel_time_info_through_operation_t_sobu_toyo
       - through_operation_b_info = travel_time_info_through_operation_t_sobu_toyo_info
       - #
     - when "odpt.Railway:TokyoMetro.Chiyoda"
-      - special_proc_of_station = travel_time_info_special_proc_of_station_c
-      - special_proc_of_section = travel_time_info_special_proc_of_section_c
+      - special_proc_of_station = travel_time_info_special_proc_of_station_chiyoda_a
+      - special_proc_of_section = travel_time_info_special_proc_of_section_chiyoda_b
       - through_operation_a = travel_time_info_through_operation_c_odakyu
       - through_operation_a_info = travel_time_info_through_operation_c_odakyu_info
       - through_operation_b = travel_time_info_through_operation_c_joban
       - through_operation_b_info = travel_time_info_through_operation_c_joban_info
       - #
     - when "odpt.Railway:TokyoMetro.Yurakucho"
-      - special_proc_of_station = travel_time_info_special_proc_of_station_y
-      - special_proc_of_section = travel_time_info_special_proc_of_section_y
+      - special_proc_of_station = travel_time_info_special_proc_of_station_yurakucho_a
+      - special_proc_of_section = travel_time_info_special_proc_of_section_yurakucho_b
       - through_operation_a = travel_time_info_through_operation_yf_tobu_seibu
       - through_operation_a_info = travel_time_info_through_operation_yf_tobu_seibu_info
       - #
@@ -52,16 +52,16 @@ module TravelTimeInfoHelper
       - through_operation_b_info = travel_time_info_through_operation_z_tobu_info
       - #
     - when "odpt.Railway:TokyoMetro.Namboku"
-      - special_proc_of_station = travel_time_info_special_proc_of_station_n
-      - special_proc_of_section = travel_time_info_special_proc_of_section_n
+      - special_proc_of_station = travel_time_info_special_proc_of_station_namboku_a
+      - special_proc_of_section = travel_time_info_special_proc_of_section_namboku_b
       - through_operation_a = travel_time_info_through_operation_n_tokyu
       - through_operation_a_info = travel_time_info_through_operation_n_tokyu_info
       - through_operation_b = travel_time_info_through_operation_n_saitama
       - through_operation_b_info = travel_time_info_through_operation_n_saitama_info
       - #
     - when "odpt.Railway:TokyoMetro.Fukutoshin"
-      - special_proc_of_station = travel_time_info_special_proc_of_station_f
-      - special_proc_of_section = travel_time_info_special_proc_of_section_f
+      - special_proc_of_station = travel_time_info_special_proc_of_station_fukutoshin_a
+      - special_proc_of_section = travel_time_info_special_proc_of_section_fukutoshin_b
       - through_operation_a = travel_time_info_through_operation_yf_tobu_seibu
       - through_operation_a_info = travel_time_info_through_operation_yf_tobu_seibu_info
       - through_operation_b = travel_time_info_through_operation_f_tokyu_minatomirai
@@ -99,12 +99,12 @@ module TravelTimeInfoHelper
       end
     end
 
-    render inline: <<-HAML , type: :haml , locals: { station: station , connecting_railway_lines: connecting_railway_lines }
+    render inline: <<-HAML , type: :haml , locals: { station: station.decorate , connecting_railway_lines: connecting_railway_lines }
 %td{ class: :station_name }
   = link_to( "" , "../station_facility/" + station.name_in_system.underscore , name: station.name_ja + "駅のご案内へジャンプします。" )
-  = display_images_of_station_codes( station , false )
+  = station.render_station_code_image( all: false )
   %div{ class: :station }<
-    = station.decorate.render_name_ja_and_en
+    = station.render_name_ja_and_en
 %td{ class: :transfer , colspan: 2 }
   - connecting_railway_lines.each do | connecting_railway_line |
     = connecting_railway_line.decorate.render

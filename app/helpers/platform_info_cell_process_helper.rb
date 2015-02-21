@@ -9,7 +9,7 @@ module PlatformInfoCellProcessHelper
     while i <= infos.length - 1 do
       info_in_this_cell = infos[i]
       if info_in_this_cell.blank?
-        concat platform_infos_make_an_empty_cell
+        concat ::StationFacilityPlatformInfoDecorator.render_an_empty_cell
         i += 1
       else
         connected_cells = platform_infos_number_of_connected_cells( infos , i , proc_for_dicision )
@@ -43,14 +43,6 @@ module PlatformInfoCellProcessHelper
     else
       false
     end
-  end
-
-  # 中身のないセルを作成するメソッド
-  def platform_infos_make_an_empty_cell
-    render inline: <<-HAML , type: :haml
-%td{ class: :empty }<
-  = " "
-    HAML
   end
 
   # 中身のあるセルを作成するメソッド

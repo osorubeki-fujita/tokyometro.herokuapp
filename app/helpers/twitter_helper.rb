@@ -1,7 +1,7 @@
 module TwitterHelper
 
   def twitter_tokyo_metro
-    tokyo_metro.decorate.render_twitter_widget
+    ::ApplicationHelper.tokyo_metro.decorate.render_twitter_widget
   end
 
   def twitter_railway_line_info

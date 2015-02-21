@@ -61,7 +61,7 @@ module PassengerSurveyHelper
     end
 
     stations_displayed = stations.in_railway_line( @railway_lines_including_branch.map( &:id ).flatten )
-    display_images_of_station_codes( stations_displayed , true )
+    ::StationDecorator.render_station_code_imags( stations_displayed )
   end
 
 end
