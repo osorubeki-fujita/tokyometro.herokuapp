@@ -3,7 +3,7 @@ module CommonTitleHelper
   #extend ActiveSupport::Concern
 
   #module ClassMethods
-  
+
   # class << self
 
   def render_top_title( text_ja: common_title_ja , text_en: common_title_en , id: nil )

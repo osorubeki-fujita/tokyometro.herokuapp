@@ -35,18 +35,4 @@ module DocumentHelper
     HAML
   end
 
-  def self.train_type_css_class_in_document( train_type )
-    train_type.same_as.gsub( train_type_regexp , "" ).gsub( /\./ , "_" ).underscore
-  end
-
-  class << self
-
-    private
-
-    def train_type_regexp
-      /\Acustom\.TrainType\:(?:[a-zA-Z]+)\.(?:[a-zA-Z]+)\./
-    end
-
-  end
-
 end

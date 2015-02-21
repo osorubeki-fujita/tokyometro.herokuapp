@@ -99,9 +99,8 @@
         @extend %fareCellCommonSettings ;
     }
     td.ic_card_child_1 { // 133 北千住 - 綾瀬
-      @include fareCellColorSettingTicket1
-        @include fareCellColorSettingIcCard1( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
+      @include fareCellColorSettingIcCard1( $ic_card_color_base ) ;
+      @extend %fareCellCommonSettings ;
     }
     td.ic_card_child_2 { // 165
         @include fareCellColorSettingIcCard2( $ic_card_color_base ) ;

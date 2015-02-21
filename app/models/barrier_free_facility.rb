@@ -6,7 +6,7 @@ class BarrierFreeFacility < ActiveRecord::Base
 
   has_many :barrier_free_facility_root_infos
   has_many :barrier_free_facility_place_names , through: :barrier_free_facility_root_infos
-  
+
   has_many :barrier_free_facility_service_details
   has_many :barrier_free_facility_service_detail_patterns , through: :barrier_free_facility_service_details
   has_many :barrier_free_facility_escalator_directions , through: :barrier_free_facility_service_details

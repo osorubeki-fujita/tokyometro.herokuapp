@@ -35,4 +35,14 @@ class ConnectingRailwayLine < ActiveRecord::Base
     super or railway_line.not_operated_yet?
   end
 
+  scope :sort , -> {
+    if where.not( index_in_station: nil ).blank?
+      order( :index_in_station )
+    elsif where( index_in_station: nil ).blank?
+      order( :railway_line_id )
+    else
+      raise "Error"
+    end
+  }
+
 end

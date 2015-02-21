@@ -20,7 +20,7 @@ class PassengerSurveyController < ApplicationController
   def marunouchi_line
     each_railway_line( "M" , "m" )
   end
-  
+
   [ 2011 , 2012 , 2013 ].each do | year |
     eval <<-DEF
       def in_#{ year }

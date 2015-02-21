@@ -1,18 +1,10 @@
 module StationTimetableHelper
 
   def title_of_station_timetable_in_each_line
-    render inline: <<-HAML , type: :haml , locals: { railway_lines: @railway_lines }
+    render inline: <<-HAML , type: :haml , locals: { infos: @railway_lines }
 %div{ id: :station_timetable_title }
   = ::StationTimetableDecorator.render_common_title
-  = railway_line_name_main( railway_lines )
-    HAML
-  end
-
-  def title_of_station_timetable_in_each_station
-    render inline: <<-HAML , type: :haml , locals: { station: @station }
-%div{ id: :station_facility_title }
-  = ::StationTimetableDecorator.render_common_title
-  = station.decorate.render_header( station_code: true , all_station_codes: true )
+  = ::RailwayLineDecorator.name_main( infos )
     HAML
   end
 
@@ -165,7 +157,7 @@ module StationTimetableHelper
 - only_one_to_station = ( to_stations.length == 1 )
 - only_one_train_type = ( train_types.map( &:train_type_in_api ).uniq.length == 1 )
 
-- count_to_station_proc = Proc.new { | to_station_id | train_times.count { | train_time | train_time.to_station_id == to_station_id } }
+- count_to_station_proc = ::Proc.new { | to_station_id | train_times.count { | train_time | train_time.to_station_id == to_station_id } }
 - major_to_station_id = to_station_ids.max { | to_station_id_1 , to_station_id_2 | count_to_station_proc.call( to_station_id_1 ) <=> count_to_station_proc.call( to_station_id_2 ) }
 
 - train_times_grouped_by_hour = train_times.group_by( &:departure_time_hour )

@@ -158,11 +158,11 @@ class RailwayLine < ActiveRecord::Base
   def station_attribute_en
     "station"
   end
-  
+
   def station_attribute_en_short
     "sta."
   end
-  
+
   def railway_line
     self
   end

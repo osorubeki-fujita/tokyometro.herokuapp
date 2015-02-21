@@ -1,8 +1,8 @@
 class PassengerSurveyDecorator < Draper::Decorator
   delegate_all
-  
+
   include CommonTitleRenderer
-  
+
   def self.common_title_ja( type = nil )
     str = "各駅の乗降客数"
     case type
@@ -19,10 +19,19 @@ class PassengerSurveyDecorator < Draper::Decorator
   def self.common_title_en
     "Passenger survey"
   end
-  
+
   # タイトルを記述するメソッド（路線別・年度別 共通部分）
   def self.render_common_title( type = nil , text_en: common_title_en )
     super( text_ja: common_title_ja( type ) , text_en: text_en )
+  end
+
+  # タイトルを記述するメソッド（年度別）
+  def self.render_title_when_grouped_by_year( year )
+    h.render inline: <<-HAML , type: :haml , locals: { year: year }
+%div{ id: :passenger_survey_title }
+  = ::PassengerSurveyDecorator.render_common_title( :year )
+  = ::PassengerSurveyDecorator.render_year_in_title( year )
+    HAML
   end
 
   # タイトルを記述するメソッド（年度別・色）
@@ -81,11 +90,28 @@ class PassengerSurveyDecorator < Draper::Decorator
       = "乗降客数"
     HAML
   end
-  
+
   def self.render_year_header
     h.render inline: <<-HAML , type: :haml
 %td{ class: :survey_year }<
   = "調査年度"
+    HAML
+  end
+  
+  # Table を作成するメソッド
+  def self.render_table( passenger_survey_infos , type , make_graph , railway_lines_including_branch )
+    h_locals ={
+      passenger_survey_infos: passenger_survey_infos ,
+      type: type ,
+      make_graph: make_graph ,
+      class_name: css_class_name_of_table( type , railway_lines_including_branch )
+    }
+  
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ id: :passenger_survey_table , class: class_name }
+  %table{ class: [ :table , "table-striped" ] }
+    = ::PassengerSurveyDecorator.render_header_of_table( type , make_graph )
+    = ::PassengerSurveyDecorator.render_body_of_table( passenger_survey_infos , type , make_graph )
     HAML
   end
 
@@ -114,7 +140,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   end
 
   alias :journeys_separated_by_comma :passenger_journeys_separated_by_comma
-  
+
   def svg_id(i)
     "passengers_#{i}_#{station_name_in_system}"
   end
@@ -123,7 +149,7 @@ class PassengerSurveyDecorator < Draper::Decorator
     width_max = 120
     [ ( object.passenger_journeys * 1.0 / passenger_journey_max * width_max ).round , width_max ].min
   end
-  
+
   def render_table_row( i , passenger_journey_max , type , make_graph )
     h_locals = {
       passenger_survey_info: self ,
@@ -144,7 +170,8 @@ class PassengerSurveyDecorator < Draper::Decorator
     - case type
     - when :railway_line , :year , :station
       %div{ class: :station_codes }<
-        = passenger_survey_station_codes_in_table( stations )
+        - stations_displayed = passenger_survey_stations_displayed( stations )
+        = ::StationDecorator.render_station_code_imags( stations_displayed )
       %div{ class: :text }<
         = stations.first.decorate.render_name_ja_and_en
   - case type
@@ -177,6 +204,22 @@ class PassengerSurveyDecorator < Draper::Decorator
       = passenger_survey_info.survey_year
     = "年度）"
     HAML
+  end
+  
+  class << self
+
+    def css_class_name_of_table( type , railway_lines_including_branch )
+      case type
+      when :year
+        :tokyo_metro
+      when :railway_line
+        raise "Error" unless railway_lines_including_branch.present?
+        railway_lines_including_branch.first.css_class_name
+      when :station
+        :station
+      end
+    end
+  
   end
 
 end

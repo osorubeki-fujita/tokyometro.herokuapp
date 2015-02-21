@@ -8,7 +8,7 @@ module WomenOnlyCarInfoHelper
         def have_only_one_railway_line?
           self.pluck( :railway_line_id ).length == 1
         end
-        
+
         def only_one_railway_line
           if have_only_one_railway_line?
             ::RailwayLine.find( self.pluck( :railway_line_id ).first )
@@ -36,8 +36,7 @@ module WomenOnlyCarInfoHelper
     = railway_line.decorate.render_women_only_car_infos_in_a_railway_line( infos , in_group_of_multiple_railway_line: false )
   - else
     - infos.group_by( &:railway_line_id ).each do | railway_line_id , infos_of_a_railway_line |
-      - railway_line = ::RailwayLine.find( railway_line_id )
-      = railway_line.decorate.render_women_only_car_infos_in_a_railway_line( infos_of_a_railway_line , in_group_of_multiple_railway_line: true )
+      = ::RailwayLine.find( railway_line_id ).decorate.render_women_only_car_infos_in_a_railway_line( infos_of_a_railway_line , in_group_of_multiple_railway_line: true )
       HAML
     end
   end

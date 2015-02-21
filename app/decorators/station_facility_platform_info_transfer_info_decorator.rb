@@ -1,11 +1,11 @@
 class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
   delegate_all
   decorates_association :railway_line
-  
+
   def necessary_time_to_s
     "（#{ necessary_time.to_s }分）"
   end
-  
+
   def render
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :transfer_info }
@@ -22,7 +22,7 @@ class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
       = info.render_necessary_time
     HAML
   end
-  
+
   def render_railway_direction
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :railway_direction }<

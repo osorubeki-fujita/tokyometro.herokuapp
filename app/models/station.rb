@@ -24,7 +24,7 @@ class Station < ActiveRecord::Base
   # after_validation :geocode
 
   include ::TokyoMetro::Modules::Db::Decision::Operator
-  
+
   def stations_including_other_railway_lines
     station_facility.stations.order( :railway_line_id )
   end
@@ -34,11 +34,19 @@ class Station < ActiveRecord::Base
   end
 
   def railway_lines_of_tokyo_metro
-    stations_including_other_railway_lines.includes( :railway_line ).order( :railway_line_id ).map( &:railway_line ).select( &:tokyo_metro? )
+    stations_including_other_railway_lines.includes( :railway_line ).order( railway_line_id: :asc ).map( &:railway_line ).select( &:tokyo_metro? )
   end
 
   def latest_passenger_survey
     passenger_surveys.latest
+  end
+
+  def station_page_name
+    name_in_system.underscore
+  end
+
+  def at_ayase?
+    [ "odpt.Station:TokyoMetro.Chiyoda.Ayase" , "odpt.Station:TokyoMetro.ChiyodaBranch.Ayase" ].include?( same_as )
   end
 
   [ :attribute_ja , :attribute_hira , :attribute_en , :attribute_en_short ].each do | method_name |

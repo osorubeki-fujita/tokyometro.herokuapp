@@ -16,7 +16,7 @@ class WomenOnlyCarInfo < ActiveRecord::Base
   def available_time_until
     ::ApplicationHelper.time_strf( available_time_until_hour , available_time_until_min )
   end
-  
+
   def available_time_to_s
     [ available_time_from , available_time_until ].join( " - " )
   end

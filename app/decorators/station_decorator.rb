@@ -1,7 +1,7 @@
 class StationDecorator < Draper::Decorator
 
   delegate_all
-  
+
   decorates_association :station_facility
 
   include SubTopTitleRenderer
@@ -9,7 +9,7 @@ class StationDecorator < Draper::Decorator
   def name_ja_in_direction_info
     "#{ name_ja }方面"
   end
-  
+
   def name_en_in_direction_info
     "for #{ name_en }"
   end
@@ -22,14 +22,22 @@ class StationDecorator < Draper::Decorator
     connecting_railway_lines.includes( :railway_line ).order( :railway_line_id ).select { | item | item.railway_line.not_tokyo_metro? }
   end
   
+  def link_title_to_station_page_ja
+    "#{ station_codes_in_link_title } #{ name_ja } - #{ name_hira } (#{ name_en }) "
+  end
+  
+  def link_title_to_station_page_en
+    "#{ station_codes_in_link_title } #{ name_en } - #{ name_ja } （#{ name_hira }）"
+  end
+
   def render_name_ja( with_subname: true , suffix: nil )
     render_name_ja_or_hira( name_ja , with_subname , suffix )
   end
-  
+
   def render_name_hira( with_subname: true , suffix: nil )
     render_name_ja_or_hira( name_hira , with_subname , suffix )
   end
-  
+
   def render_name_ja_or_hira( name_ja_or_hira , with_subname , suffix )
     regexp = ::ApplicationHelper.regexp_for_parentheses_ja
     if regexp =~ name_ja_or_hira
@@ -107,15 +115,7 @@ class StationDecorator < Draper::Decorator
     = info.render_station_code_image( all: all_station_codes )
     HAML
   end
-  
-  def render_station_facility_title
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ id: :station_facility_title }
-  = ::StationFacilityDecorator.render_common_title
-  = info.render_header( station_code: true , all_station_codes: true )
-    HAML
-  end
-  
+
   # 東京メトロの路線情報を表示する method
   def render_tokyo_metro_railway_lines
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
@@ -235,29 +235,124 @@ class StationDecorator < Draper::Decorator
     = info.render_in_fare_table_without_link
     HAML
   end
-  
+
   def render_station_code_image( all: false )
-    h.render inline: <<-HAML , type: :haml , locals: { info: self , all: all }
+    if at_ayase?
+
+      h.render inline: <<-HAML , type: :haml , locals: { info: self , all: all }
 %div{ class: :station_codes }<
-  - if all
-    - info.stations_including_other_railway_lines.each do | station_decorator |
-      = station_decorator.render_station_code_image( all: false )
-  - else
-    %div{ class: :station_codes }
-      = info.render_each_station_code_image_tag
-    HAML
+  = info.render_each_station_code_image_tag
+      HAML
+
+    else
+      h.render inline: <<-HAML , type: :haml , locals: { info: self , all: all }
+- if all
+  %div{ class: :station_codes }<
+    - info.stations_including_other_railway_lines.each do | station |
+      = station.decorate.render_each_station_code_image_tag
+- else
+  %div{ class: :station_codes }<
+    = info.render_each_station_code_image_tag
+      HAML
+    end
   end
-  
+
   def render_station_code_images
     render_station_code_image( all: true )
   end
-  
+
   def render_each_station_code_image_tag
+    h.image_tag( code_image_filename , class: :station_code )
+  end
+
+  def render_title_of_passenger_survey
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-= image_tag( code_image_filename , class: :station_code )
+%div{ id: :passenger_survey_title }
+  = ::PassengerSurveyDecorator.render_common_title( :station )
+  = info.render_header( station_code: true , all_station_codes: true )
+    HAML
+  end
+
+  # タイトルを記述するメソッド
+  def render_title_of_fare
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ id: :fare_title }
+  = ::FareDecorator.render_common_title
+  = info.render_header( station_code: true , all_station_codes: true )
+    HAML
+  end
+
+  def render_title_of_station_facility
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ id: :station_facility_title }
+  = ::StationFacilityDecorator.render_common_title
+  = info.render_header( station_code: true , all_station_codes: true )
+    HAML
+  end
+
+  def render_title_of_station_timetable
+    render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ id: :station_facility_title }
+  = ::StationTimetableDecorator.render_common_title
+  = info.render_header( station_code: true , all_station_codes: true )
+    HAML
+  end
+
+  def render_title_of_train_information
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ id: :train_information_title }
+  = ::TrainInformationDecorator.render_common_title
+  = info.render_header( station_code: true , all_station_codes: true )
     HAML
   end
   
+  def render_link_to_station_page_ja
+    h.link_to( name_ja , station_page_name , title: link_title_to_station_page_ja )
+  end
+  
+  def render_link_to_station_page_en
+    h.link_to( name_en , station_page_name , title: link_title_to_station_page_en )
+  end
+  
+  def render_link_to_station_facility_page_ja
+    h.link_to( "" , "../station_facility/#{station_page_name}" , name: "#{ name_ja }駅のご案内へジャンプします。" )
+  end
+  
+  def render_latest_passenger_survey
+    latest_passenger_survey.decorate.render_journeys_of_each_station
+  end
+
+  def render_travel_time_info_square
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ class: :travel_time_info_square }<
+  = " "
+    HAML
+  end
+
+  def render_travel_time_info_row( special_proc_of_station )
+    h.render inline: <<-HAML , type: :haml , locals: { info: self , special_proc_of_station: special_proc_of_station }
+  %tr
+    - if special_proc_of_station.present?
+      = special_proc_of_station.call( info )
+    %td{ class: :line }<
+      = info.render_travel_time_info_square
+    = info.render_in_travel_time_info
+    HAML
+  end
+
+  def render_in_travel_time_info
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%td{ class: :station_name }
+  = info.render_link_to_station_facility_page_ja
+  = info.render_station_code_image( all: false )
+  %div{ class: :station }<
+    = info.render_name_ja_and_en
+%td{ class: :transfer , colspan: 2 }
+  - info.connecting_railway_lines.includes( :railway_line , railway_line: :operator ).sort.each do | connecting_railway_line |
+    = connecting_railway_line.decorate.render
+    HAML
+  end
+
   def self.render_station_code_imags( stations )
     h.render inline: <<-HAML , type: :haml , locals: { infos: stations }
 %div{ class: :station_codes }<
@@ -267,7 +362,24 @@ class StationDecorator < Draper::Decorator
   end
 
   private
+
+  def station_codes
+    ary = object.stations_including_other_railway_lines.map( &:station_code )
+    if at_ayase?
+      ary.uniq
+    else
+      ary
+    end
+  end
+
+  def station_codes_in_link_title
+    "\[ #{ station_codes.join(" , " ) } \]"
+  end
   
+  def name_ja
+    object.name_ja.process_specific_letter
+  end
+
   def code_image_filename
     dirname = "provided_by_tokyo_metro/station_number"
     if /\Am(\d{2})\Z/ =~ station_code

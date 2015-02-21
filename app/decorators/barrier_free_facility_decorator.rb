@@ -1,6 +1,6 @@
 class BarrierFreeFacilityDecorator < Draper::Decorator
   delegate_all
-  
+
   decorates_association :barrier_free_facility_type
   decorates_association :barrier_free_facility_located_area
   decorates_association :barrier_free_facility_root_infos
@@ -101,8 +101,7 @@ class BarrierFreeFacilityDecorator < Draper::Decorator
   def render_service_details
     _service_details = service_details
     if _service_details.present?
-      h_locals = { service_details: _service_details }
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
+      h.render inline: <<-HAML , type: :haml , locals: { service_details: _service_details }
 %div{ class: :service_details }
   - service_details.each do | item |
     = item.decorate.render

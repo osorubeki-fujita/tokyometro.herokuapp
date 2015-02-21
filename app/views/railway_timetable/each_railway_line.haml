@@ -1,6 +1,6 @@
 = render "common_content"
 
-= railway_timetable_title_of_each_line
+= ::RailwayLineDecorator.render_title_of_railway_timetable( @railway_lines )
 %div{ id: :railway_timetable_contents }
   = select_station_from_railway_line
   %div{ id: :railway_line_matrixes }

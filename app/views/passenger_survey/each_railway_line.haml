@@ -3,6 +3,6 @@
 - content_for :right_contents do
   = ::PassengerSurveyDecorator.render_right_contents
 
-= passenger_survey_title_of_grouped_by_line
+= ::RailwayLineDecorator.render_title_of_passenger_survey( @railway_lines )
 %div{ id: :passenger_survey_contents }
-  = passenger_survey_table
+  = ::PassengerSurveyDecorator.render_table( @passenger_survey_infos , @type , @make_graph , @railway_lines_including_branch )

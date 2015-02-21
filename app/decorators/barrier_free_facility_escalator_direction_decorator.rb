@@ -1,6 +1,6 @@
 class BarrierFreeFacilityEscalatorDirectionDecorator < Draper::Decorator
   delegate_all
-  
+
   def render
     h.render inline: <<-HAML , type: :haml , locals: { escalator_direction: self }
 - # %div{ class: :escalator_directions }<

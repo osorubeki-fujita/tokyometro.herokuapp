@@ -35,5 +35,5 @@ class StationFacility < ActiveRecord::Base
   def platform_infos_including_other_infos_grouped_by_railway_line_id
     platform_infos_including_other_infos.group_by( &:railway_line_id )
   end
-  
+
 end

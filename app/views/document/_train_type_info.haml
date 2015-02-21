@@ -1,6 +1,5 @@
 - regexp_of_parentheses = ApplicationHelper.regexp_for_parentheses_ja
-- class_name_base = ::DocumentHelper.train_type_css_class_in_document( train_type )
-- class_name = [ class_name_base ]
+- class_name = [ train_type.decorate.css_class_in_document ]
 
 - unless train_type.color == "\#333333"
   - class_name << :train_type_displayed

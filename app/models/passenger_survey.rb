@@ -5,7 +5,7 @@ class PassengerSurvey < ActiveRecord::Base
   def self.latest_passenger_survey_year
     self.all.pluck( :survey_year ).max
   end
-  
+
   [ :journeys , :passenger_journey , :journey ].each do | method_name |
     eval <<-DEF
       def #{ method_name }
@@ -42,7 +42,7 @@ class PassengerSurvey < ActiveRecord::Base
   scope :latest , -> {
     find_by_year( ::PassengerSurvey.latest_passenger_survey_year )
   }
-  
+
   def station_name_in_system
     [ stations ].flatten.first.name_in_system.underscore
   end

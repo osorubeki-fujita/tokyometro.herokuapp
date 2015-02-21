@@ -7,8 +7,8 @@
 - @last_update = Time.now
 - @next_update = Time.now
 
-= train_location_title_of_each_content
+= ::RailwayLineDecorator.render_title_of_train_location( @railway_lines )
 = render( 'ajax/get_new_info' , time_now: @time_now , last_update: @last_update , next_update: @next_update )
 %div{ id: "train_informations" }
   - @railway_lines.each do | railway_line |
-    = train_information_test( railway_line )
+    = railway_line.decorate.render_train_information_test

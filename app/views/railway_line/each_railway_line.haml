@@ -3,7 +3,7 @@
 - content_for :right_contents do
   = twitter_railway_line_info
 
-= railway_line_title_of_each_line
+= ::RailwayLineDecorator.render_title_of_railway_lines( @railway_lines )
 %div{ id: :railway_line_contents }
   %div{ id: :train_info }
     = ::RailwayLineDecorator.render_title_of_train_info

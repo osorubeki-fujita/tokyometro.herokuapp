@@ -5,9 +5,9 @@ module ColorBoxHelper
 %div{ class: class_name }<
     HAML
   end
-  
+
   private
-  
+
   def css_class_name_of_color_box( small )
     if small
       :color_box_32

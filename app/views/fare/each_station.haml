@@ -1,6 +1,6 @@
 = render "common_content"
 
-= fare_title_of_each_content
+= @station.decorate.render_title_of_fare
 %div{ id: :fare_contents }
   %div{ id: :fare_infos }
     = @station.decorate.render_fare_title_of_this_station

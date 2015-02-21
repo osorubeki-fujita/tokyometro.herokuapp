@@ -9,7 +9,7 @@ module TwitterRenderer
       h.concat( render_twitter_widget_domain + render_twitter_script )
     end
   end
-  
+
   def render_twitter_widget_domain
     h.link_to( twitter_title , twitter_link_url ,
         "data-widget-id" => twitter_widget_id ,
@@ -17,7 +17,7 @@ module TwitterRenderer
         width: 240
       )
   end
-  
+
   def render_twitter_script
     h.render( partial: "twitter_script" , type: :html )
   end

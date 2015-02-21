@@ -2,9 +2,9 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
   delegate_all
 
   decorates_association :railway_line
-  
+
   include CssClassNameOfConnectingRailwayLine
-  
+
   def self.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
     h.render inline: <<-HAML , type: :haml
 %div{ class: :title }
@@ -14,7 +14,7 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
     = "Railway lines of Tokyo Metro"
     HAML
   end
-  
+
   def self.render_title_of_other_railway_lines_in_station_facility_info
     h.render inline: <<-HAML , type: :haml
 %div{ class: :title }
@@ -35,7 +35,7 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
     end
     ary
   end
-  
+
   alias :css_class_names :css_class_name_of_connecting_railway_line
 
   def render

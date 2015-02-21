@@ -1,14 +1,5 @@
 module TrainLocationHelper
 
-  # タイトルを記述するメソッド
-  def train_location_title_of_each_content
-    render inline: <<-HAML , type: :haml , locals: { railway_lines: @railway_lines }
-%div{ id: :train_location_title }
-  = ::TrainLocationDecorator.render_common_title
-  = railway_line_name_main( railway_lines )
-    HAML
-  end
-
   def station_array
     content_tag( :table , id: :stations ) do
       concat body_of_station_array

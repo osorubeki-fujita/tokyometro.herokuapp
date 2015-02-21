@@ -2,15 +2,15 @@ class StationFacilityPlatformInfoDecorator < Draper::Decorator
   delegate_all
 
   extend SubTopTitleRenderer
-  
+
   def self.sub_top_title_ja
     "乗車・降車位置のご案内"
   end
-  
+
   def self.sub_top_title_en
     "Information of transfer, barrier free facilities, surrounding areas on the platforms"
   end
-  
+
   def self.render_transfer_info_title
     h.render inline: <<-HAML , type: :haml
 %td{ class: :title }<
@@ -50,10 +50,10 @@ class StationFacilityPlatformInfoDecorator < Draper::Decorator
 = link_to( "" , url_for( anchor: tab_name ) , onclick: raw( "changePlatformInfoTab('" + tab_name.to_s + "') ; return false ; " ) )
     HAML
   end
-  
+
   # 中身のないセルを作成するメソッド
   def self.render_an_empty_cell
-    render inline: <<-HAML , type: :haml
+    h.render inline: <<-HAML , type: :haml
 %td{ class: :empty }<
   = " "
     HAML

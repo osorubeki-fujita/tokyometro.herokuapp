@@ -3,14 +3,7 @@
 - # @note 部分テンプレート travel_time_info_one_railway_line , travel_time_info_m , travel_time_info_yf から呼び出される。
 - # @version 2014.11.27.13.42
 - stations.each.with_index(1) do | station , i |
-  - station = station
-  %tr
-    - if special_proc_of_station.present?
-      = special_proc_of_station.call( station )
-    %td{ class: :line }<
-      %div{ class: :travel_time_info_square }<
-        = travel_time_info_square( station )
-    = travel_time_info_station_name( station )
+  = station.decorate.render_travel_time_info_row( special_proc_of_station )
   - unless i == stations.length
     - section = sections[ i - 1 ]
     %tr

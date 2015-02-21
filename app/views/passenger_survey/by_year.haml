@@ -3,7 +3,7 @@
 - content_for :right_contents do
   = ::PassengerSurveyDecorator.render_right_contents
 
-= passenger_survey_title_grouped_by_year
+= ::PassengerSurveyDecorator.render_title_when_grouped_by_year( @year )
 %div{ id: :passenger_survey_contents }
-  = passenger_survey_table
+  = ::PassengerSurveyDecorator.render_table( @passenger_survey_infos , @type , @make_graph , @railway_lines_including_branch )
   %div{ id: :passenge_survey_graph }
