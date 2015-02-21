@@ -15,7 +15,6 @@ module FareHelper
 
     render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :fare_tables }
-  - # ::RailwayLine.tokyo_metro_including_branch.where.not( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ).each do | railway_line |
   - ::RailwayLine.tokyo_metro_including_branch.each do | railway_line |
     = railway_line.decorate.render_fare_table( stations_of_this_instance , starting_station , fares , normal_fare_groups )
     HAML
