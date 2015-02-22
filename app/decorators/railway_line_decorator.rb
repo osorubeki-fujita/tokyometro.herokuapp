@@ -70,10 +70,18 @@ class RailwayLineDecorator < Draper::Decorator
     HAML
   end
 
+  def self.render_title_of_station_timetable( railway_lines )
+    render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
+%div{ id: :station_timetable_title }
+  = ::StationTimetableDecorator.render_common_title
+  = ::RailwayLineDecorator.name_main( infos )
+    HAML
+  end
+
   def self.render_title_of_railway_timetable( railway_lines )
     render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :railway_timetable_title }
-  = render_common_title( common_title_ja: ::RailwayTimetableHelper.common_title_ja , common_title_en: ::DocumentHelper.common_title_en )
+  = render_common_title( common_title_ja: ::RailwayTimetableHelper.common_title_ja , common_title_en: ::RailwayTimetableHelper.common_title_en )
   = ::RailwayLineDecorator.name_main( infos )
     HAML
   end

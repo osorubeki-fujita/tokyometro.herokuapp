@@ -3,5 +3,5 @@
 - content_for :right_contents do
   = twitter_railway_line_info
 
-= title_of_station_timetable_in_each_line
+= ::RailwayLineDecorator.render_title_of_station_timetable( @railway_lines )
 %div{ id: :station_timetable_contents }
