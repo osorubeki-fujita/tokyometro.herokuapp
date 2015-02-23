@@ -1,0 +1,67 @@
+@charset "utf-8" ;
+
+@import 'document_info_box/mixins.scss' ;
+
+%train_type_displayed {
+  @extend %nameInDocument ;
+  text-align: center ;
+  padding: 4px ;
+}
+
+#train_types {
+    $train_type_padding_left_width: 8px ;
+    $train_type_border_left_width: 8px ;
+    .operator {
+        margin: {
+            left: $train_type_padding_left_width + $train_type_border_left_width ;
+            bottom: 64px ;
+        }
+        .railway_line {
+            @extend %marginBottom32 ;
+            .document_info_box_wide {
+                $height: 144px ;
+                @include documentInfoBoxWide( $height ) ;
+                @extend %commonSettingsOfColorBox ;
+                //
+                .train_type_displayed {
+                  @extend %train_type_displayed ;
+                }
+                .train_type_displayed_black {
+                  @extend %train_type_displayed ;
+                }
+                .displayed_black {
+                    .text_ja {
+                        font: {
+                            size: 24pt ;
+                            weight: bold ;
+                        }
+                    }
+                    .text_en {
+                        font: {
+                            size: 8pt ;
+                        }
+                    }
+                }
+                .train_type_name {
+                    @extend %nameInDocument ;
+                    @extend %marginLeft8 ;
+                    .same_as {
+                        font: {
+                            size: 8pt ;
+                        }
+                        @extend %marginBottom4 ;
+                    }
+                    span.note_sub {
+                        font: {
+                            size: 8pt ;
+                        }
+                    }
+                }
+                .color_infos {
+                    @extend %floatLeft ;
+                    @extend %marginLeft8 ;
+                }
+            }
+        }
+    }
+}

@@ -32,13 +32,11 @@
 
 %railwayLineConnectingToAnotherStation {
     .another_station {
-        float:left ;
+        @extend %floatLeft ;
+        @extend %marginLeft4 ;
         @include border_radius( 2px ) ;
         background-color: #eee ;
         padding: 2px ;
-        margin: {
-            left: 4px ;
-        }
         $font_size_ja: 8pt ;
         .text_ja {
             font-size: $font_size_ja ;
@@ -91,41 +89,41 @@
 }
 
 %connectingRailwayLineInfo {
-    @extend %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-    @extend %connectingRailwayLineOfTokyoMetro ;
-    @extend %connectingRailwayLineOfOtherOperator ;
-    @extend %railwayLineConnectingToAnotherStation ;
-    .connecting_railway_line {
-		    @extend %floatLeft ;
-        padding: 6px ;
-        margin: {
-            right: 12px ;
-            top: 3px ;
-            bottom: 3px ;
-        }
-        @include border_radius( 4px ) ;
-        border: {
-            style: solid ;
-            width: 1px ;
-        }
-        .railway_line_code_48 {
-            @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-            @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
-        }
-        .color_box_48 {
-            @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-            @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
-        }
-        .railway_line_code_32 {
-            @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-            @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
-        }
-        .color_box_32 {
-            @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-            @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
-        }
-        .text {
-            @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-        }
+  @extend %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+  @extend %connectingRailwayLineOfTokyoMetro ;
+  @extend %connectingRailwayLineOfOtherOperator ;
+  @extend %railwayLineConnectingToAnotherStation ;
+  .connecting_railway_line {
+    @extend %floatLeft ;
+    @include border_radius( 4px ) ;
+    padding: 6px ;
+    margin: {
+        right: 12px ;
+        top: 3px ;
+        bottom: 3px ;
     }
+    border: {
+        style: solid ;
+        width: 1px ;
+    }
+    .railway_line_code_48 {
+        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
+    }
+    .color_box_48 {
+        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
+    }
+    .railway_line_code_32 {
+        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
+    }
+    .color_box_32 {
+        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
+    }
+    .text {
+        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+    }
+  }
 }

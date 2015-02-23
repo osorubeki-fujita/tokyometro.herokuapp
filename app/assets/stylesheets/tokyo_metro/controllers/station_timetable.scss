@@ -87,13 +87,13 @@ table.station_timetable {
             background-color: #f9f9f9 ;
             .train_time {
                 clear: right ;
-				@extend %floatLeft ;
+                @extend %floatLeft ;
                 @extend %margin4 ;
                 padding: 4px ;
                 border: solid 1px #eee ;
                 background-color: #fff ;
                 .min {
-					@extend %floatLeft ;
+                    @extend %floatLeft ;
                     @extend %marginRight4 ;
                     text-align: right ;
                     color: #333 ;
@@ -104,7 +104,7 @@ table.station_timetable {
                     }
                 }
                 .precise {
-					@extend %floatLeft ;
+                    @extend %floatLeft ;
                     color: $jp_traditional_sumi_iro ;
                     font: {
                         size: 8pt ;
@@ -118,7 +118,7 @@ table.station_timetable {
                             }
                         }
                     }
-                    .additional_info {
+                    .additional_infos {
                         @extend %trainTimeAdditionalInfos ;
                     }
                 }

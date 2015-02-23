@@ -1,16 +1,16 @@
 initializeDo = ->
   processTopContent()
-  processLinkToEachDocument()
-  processColorInfoInDocument()
+  processDocument()
   processLineAndStationMatrixes()
   processRailwayLine()
   processStationTimetable()
   processStationFacility()
   processPassengerSurvey()
+  processMainContents()
+  # processBottomContent() 不使用
   return
 
 window.initializeDo = initializeDo
-
 
 #----------------------------------------------------------------
 # 個別の操作
@@ -34,55 +34,12 @@ processTopContent = ->
   return
 
 #--------------------------------
-# processLinkToEachDocument
-#--------------------------------
-
-processLinkToEachDocument = ->
-  links_to_datas = $( '#links_to_datas' )
-  width_of_content_name = 0
-
-  links_to_datas.contents().each ->
-    link_to_content = $( this )
-
-    text = link_to_content.children( '.text' ).first()
-    content_name = text.children( '.content_name' ).first()
-    model_name_text_en = text.children( '.model_name.text_en' ).first()
-
-    height_of_content_name = content_name.innerHeight()
-
-    width_of_content_name = Math.max( width_of_content_name , content_name.innerWidth() )
-
-    model_name_text_en.css( 'margin-top' , height_of_content_name - model_name_text_en.innerHeight() )
-    text.css( 'height' , height_of_content_name )
-    link_to_content.css( 'height' , text.outerHeight( true ) )
-    return
-
-  content_names = links_to_datas.find( '.content_name' )
-  setCssAttributesToEachDomain( content_names , 'width' , width_of_content_name )
-  setCssAttributesToEachDomain( content_names , 'margin-right' , 16 )
-  return
-
-#--------------------------------
-# processColorInfoInDocument
-#--------------------------------
-
-processColorInfoInDocument = ->
-  $( 'div#railway_lines' ).find( '.top' ).each ->
-    top_domain = $( this )
-    height_of_top_domain = getSumOuterHeight( top_domain , true )
-    color_info_domain = top_domain.children( '.color_info' ).first()
-    color_info_domain.css( 'margin-top' , height_of_top_domain - color_info_domain.outerHeight( true ) )
-    top_domain.css( 'height' , height_of_top_domain )
-  return
-
-#--------------------------------
 # processLineAndStationMatrixes
 # 路線記号の操作
 #--------------------------------
 
 processLineAndStationMatrixes = ->
   selector_for_railway_line_matrixes = "#railway_line_matrixes"
-  selector_for_station_matrixes =  "#station_matrixes"
 
   # 一般路線の数 (const)
   numberOfNormalLines = 9
@@ -119,10 +76,49 @@ processLineAndStationMatrixes = ->
 
   changeWidth( $( 'div#main_content_center' ) , width_of_special_railway_lines_in_railway_line_matrixes + width_of_border * 2 )
 
-  changeAttributesOfBoxesInStationMatrixes( selector_for_station_matrixes , width_of_main_content_center , width_of_each_normal_railway_line , width_of_border )
-  changeAttributesOfBoxesInStationMatrixes( "#train_informations" , width_of_main_content_center , width_of_each_normal_railway_line , width_of_border )
+  processStationMatrixes( "#station_matrixes" , width_of_main_content_center , width_of_each_normal_railway_line , width_of_border )
+  processStationMatrixes( "#train_informations" , width_of_main_content_center , width_of_each_normal_railway_line , width_of_border )
   # changeAttibutesOfBoxesInTrainInformation( width_of_each_normal_railway_line )
 
   # 路線記号の文字の垂直方向の位置を、円の中心へ
   moveLineCodeLettersToCenter()
+  return
+
+#-------- 路線記号の文字の垂直方向の位置を、円の中心へ
+# 記号すべて
+moveLineCodeLettersToCenter = ->
+  $( 'div.railway_line_code_48 , div.railway_line_code_32 , div.railway_line_code_24 , div.railway_line_code_16' ).each ->
+  
+    #---- 路線記号の文字の垂直方向の位置を、円の中心へ
+    # それぞれの記号
+    
+    # .railway_line_code の高さ (innnerHeight) を取得
+    height_of_railway_line_code = $( this ).innerHeight()
+    
+    # .railway_line_code の子要素である p タグを操作
+    $( this ).children('p').each ->
+      p_domain = $( this )
+      # p タグの高さ (outerHeight) を取得
+      height_of_p = p_domain.outerHeight( true )
+      # p タグの上下の margin を決定
+      margin_of_p = ( ( height_of_railway_line_code - height_of_p ) * 0.5 ) + 'px'
+      # p タグの上下の margin を適用
+      p_domain.css( 'marginTop' , margin_of_p ).css( 'marginBottom' , margin_of_p )
+      return
+
+    return
+  return
+
+#--------------------------------
+# bottom_content
+# （不使用）
+#--------------------------------
+
+processBottomContent = ->
+  bottom_content = $( 'div#bottom_content' )
+  links = bottom_content.children( '.links' )
+  height_of_domain = bottom_content.outerHeight( true )
+  margin_of_links = ( height_of_domain - getSumOuterHeight( links , true ) ) * 0.5
+  setCssAttributesToEachDomain( links , 'margin-top' , margin_of_links )
+  setCssAttributesToEachDomain( links , 'margin-bottom' , margin_of_links )
   return

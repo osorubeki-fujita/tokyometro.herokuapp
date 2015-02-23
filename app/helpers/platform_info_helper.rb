@@ -350,6 +350,7 @@ module PlatformInfoHelper
 %div{ id: :platform_info_tabs }
   %ul
     %li{ class: [ tab_name , :platform_info_tab ] }<
+      - # %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTab('" + tab_name.to_s + "') ; return false ; " ) }
       = ::StationFacilityPlatformInfoDecorator.render_link_in_tab( tab_name )
       %div{ class: :railway_line_name }
         - railway_line_ids.each do | railway_line_id |
@@ -369,7 +370,7 @@ module PlatformInfoHelper
 %div{ id: :platform_info_tabs }
   %ul
     - railway_line_ids.sort.each do | railway_line_id |
-      = ::RailwayLine.find( railway_line_id ).decorate.render_station_facility_platform_info_transfer_info
+      = ::RailwayLine.find( railway_line_id ).decorate.render_station_facility_platform_info_transfer_info_tab
       HAML
     end
 

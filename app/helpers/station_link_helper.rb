@@ -1,24 +1,30 @@
 module StationLinkHelper
 
-  def station_link_matrix_and_lists( make_link_to_line: false )
-    render inline: <<-HAML , type: :haml , locals: { make_link_to_line: make_link_to_line }
-= station_link_matrix( make_link_to_line )
+  def station_link_matrix_and_lists( make_link_to_railway_line: false , type_of_link_to_station: nil )
+    h_locals = {
+      make_link_to_railway_line: make_link_to_railway_line ,
+      type_of_link_to_station: type_of_link_to_station
+    }
+    render inline: <<-HAML , type: :haml , locals: h_locals
+= station_link_matrix( make_link_to_railway_line , type_of_link_to_station )
 - # = station_link_list_ja
 - # = station_link_list_en
     HAML
   end
 
   # 駅一覧表（路線別）を作成
-  def station_link_matrix( make_link_to_line )
+  def station_link_matrix( make_link_to_railway_line , type_of_link_to_station )
     h_locals = {
-      railway_lines: @railway_lines ,
-      make_link_to_line: make_link_to_line
+      railway_lines: @railway_lines.select_not_branch_line ,
+      make_link_to_railway_line: make_link_to_railway_line ,
+      type_of_link_to_station: type_of_link_to_station
     }
 
     render inline: <<-HAML , type: :haml , locals: h_locals
+= select_station_from_railway_line
 %div{ id: :station_matrixes }
   - railway_lines.each do | railway_line |
-    = railway_line.decorate.render_matrix_and_links_to_stations( make_link_to_line )
+    = railway_line.decorate.render_matrix_and_links_to_stations( make_link_to_railway_line , type_of_link_to_station )
     HAML
   end
 

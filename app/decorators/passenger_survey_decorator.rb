@@ -62,7 +62,7 @@ class PassengerSurveyDecorator < Draper::Decorator
     %li
       = "路線別の乗降客数"
       %ul{ class: :link_to_lines }
-        - ::RailwayLine.tokyo_metro.each do | railway_line |
+        - ::RailwayLine.tokyo_metro( including_branch_line: false ).each do | railway_line |
           %li{ class: railway_line.css_class_name }
             = link_to_unless_current( railway_line.name_ja  , railway_line.css_class_name + "_line" )
     %li

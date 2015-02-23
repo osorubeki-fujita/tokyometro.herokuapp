@@ -1,11 +1,8 @@
 class PassengerSurveyController < ApplicationController
 
-  # require 'each_railway_line'
-  # require 'marunouchi_line_branch'
   include EachRailwayLine
   include MarunouchiLineBranch
 
-  # require 'each_station'
   include EachStation
 
   def index
@@ -32,7 +29,7 @@ class PassengerSurveyController < ApplicationController
   private
 
   def each_railway_line( *railway_line_name_codes , railway_line_name_ja: nil , railway_line_name_en: nil )
-    @railway_lines , @railway_lines_including_branch = [ ::RailwayLine.tokyo_metro , ::RailwayLine.tokyo_metro_including_branch ].map { | railway_lines |
+    @railway_lines , @railway_lines_including_branch = [ ::RailwayLine.tokyo_metro( including_branch_line: false ) , ::RailwayLine.tokyo_metro( including_branch_line: true ) ].map { | railway_lines |
       railway_lines.select { | item | railway_line_name_codes.include?( item.name_code ) }
     }
 
@@ -60,6 +57,7 @@ class PassengerSurveyController < ApplicationController
 
   def each_station( station_name )
     each_station_sub( "駅 各年度の乗降客数" , "passenger_survey" , station_name ) do
+      #raise "Error: " + @station.same_as
       @passenger_survey_infos = @station.passenger_surveys.includes( :stations )
       @type = :station
       @make_graph = true

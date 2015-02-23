@@ -26,4 +26,4 @@
             %h5{ class: :text_en }<
               = railway_line_instance.name_en
           - railway_directions_in_a_railway_line.each do | railway_direction |
-            = render( "railway_direction_info" , railway_direction: railway_direction )
+            = railway_direction.decorate.render_in_document

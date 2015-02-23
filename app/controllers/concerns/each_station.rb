@@ -22,7 +22,7 @@ module EachStation
     # @param station_name [String] 駅名（日本語）
     # @param layout [String or Symbol] 使用するレイアウトの名称
     def each_station_sub( title_base , controller , station_name , layout: :application )
-      @station = ::Station.of( station_name )
+      @station = ::Station.select_tokyo_metro.find_by_name_ja( station_name )
       @title = "#{ station_name.station_name_in_title }#{title_base}"
       if block_given?
         yield

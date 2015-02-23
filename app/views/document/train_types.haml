@@ -27,4 +27,4 @@
             %h5{ class: :text_en }<
               = railway_line_instance.name_en
           - train_types_in_a_railway_line.each do | train_type |
-            = render( "train_type_info" , train_type: train_type )
+            = train_type.decorate.render_document_info_box

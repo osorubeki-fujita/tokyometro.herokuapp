@@ -45,48 +45,58 @@
 }
 
 %colorSettingsOfTravelTimeInfoThroughOperation {
+  $normal_background_color: #f6f6f6 ;
+  $yf_color: mix( $line_yurakucho_bgcolor , $line_fukutoshin_bgcolor ) ;
   tr.through_operation {
-    $normal_background_color: #f6f6f6 ;
-    $yf_color: mix( $line_yurakucho_bgcolor , $line_fukutoshin_bgcolor ) ;
     background-color: $normal_background_color ;
-    &.hibiya_tobu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hibiya_bgcolor , $normal_background_color , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;
-    }
-    &.tozai_chuo {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_jr_chuo_and_sobu_local_bgcolor , $normal_background_color , $line_tozai_bgcolor ) ;
-    }
-    td.tozai_sobu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tozai_bgcolor , $normal_background_color , $line_jr_chuo_and_sobu_local_bgcolor ) ;
-    }
-    td.tozai_toyo {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tozai_bgcolor , $normal_background_color , $line_toyo_rapid_bgcolor ) ;
-    }
-    &.chiyoda_odakyu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_odakyu_odawara_bgcolor , $normal_background_color , $line_chiyoda_bgcolor ) ;
-    }
-    &.chiyoda_joban {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_chiyoda_bgcolor , $normal_background_color , $line_jr_joban_bgcolor ) ;
-    }
-    &.hanzomon_tokyu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tokyu_den_en_toshi_bgcolor , $normal_background_color , $line_hanzomon_bgcolor ) ;
-    }
-    &.hanzomon_tobu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hanzomon_bgcolor , $normal_background_color , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;
-    }
-    &.namboku_tokyu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tokyu_meguro_bgcolor , $normal_background_color , $line_namboku_bgcolor ) ;
-    }
-    &.namboku_saitama {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_namboku_bgcolor , $normal_background_color , $line_saitama_bgcolor ) ;
-    }
-    td.yf_seibu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_seibu_ikebukuro_bgcolor , $normal_background_color , $yf_color ) ;
-    }
-    td.yf_tobu {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tobu_tojo_bgcolor , $normal_background_color , $yf_color ) ;
-    }
-    &.fukutoshin_tokyu_mm {
-      @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_fukutoshin_bgcolor , $normal_background_color , $line_tokyu_toyoko_bgcolor ) ;
-    }
+    min-height: 160px ;
+  }
+  td.through_operation_info {
+    padding: 4px ;
+  }
+  td.hibiya_tobu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hibiya_bgcolor , $normal_background_color , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;
+  }
+  td.tozai_chuo {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_jr_chuo_and_sobu_local_bgcolor , $normal_background_color , $line_tozai_bgcolor ) ;
+  }
+  td.tozai_sobu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tozai_bgcolor , $normal_background_color , $line_jr_chuo_and_sobu_local_bgcolor ) ;
+  }
+  td.tozai_toyo {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tozai_bgcolor , $normal_background_color , $line_toyo_rapid_bgcolor ) ;
+  }
+  td.chiyoda_odakyu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_odakyu_odawara_bgcolor , $normal_background_color , $line_chiyoda_bgcolor ) ;
+  }
+  td.chiyoda_joban {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_chiyoda_bgcolor , $normal_background_color , $line_jr_joban_bgcolor ) ;
+  }
+  td.yurakucho_seibu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_seibu_ikebukuro_bgcolor , $normal_background_color , $line_yurakucho_bgcolor ) ;
+  }
+  td.yurakucho_tobu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tobu_tojo_bgcolor , $normal_background_color , $line_yurakucho_bgcolor ) ;
+  }
+  td.hanzomon_tokyu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tokyu_den_en_toshi_bgcolor , $normal_background_color , $line_hanzomon_bgcolor ) ;
+  }
+  td.hanzomon_tobu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hanzomon_bgcolor , $normal_background_color , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;
+  }
+  td.namboku_tokyu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tokyu_meguro_bgcolor , $normal_background_color , $line_namboku_bgcolor ) ;
+  }
+  td.namboku_saitama {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_namboku_bgcolor , $normal_background_color , $line_saitama_bgcolor ) ;
+  }
+  td.fukutoshin_seibu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_seibu_ikebukuro_bgcolor , $normal_background_color , $line_fukutoshin_bgcolor ) ;
+  }
+  td.fukutoshin_tobu {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tobu_tojo_bgcolor , $normal_background_color , $line_fukutoshin_bgcolor ) ;
+  }
+  td.fukutoshin_tokyu_mm {
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_fukutoshin_bgcolor , $normal_background_color , $line_tokyu_toyoko_bgcolor ) ;
   }
 }

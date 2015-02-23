@@ -1,18 +1,11 @@
 class TrainInformationController < ApplicationController
 
-  # require 'ajax_update'
-  # require 'each_railway_line'
-  # require 'yurakucho_and_fukutoshin_line'
-  # require 'each_station'
-
   include AjaxUpdate
-  # include EachRailwayLine
-  # include YurakuchoAndFukutoshinLine
   include EachStation
 
   def index
     @title = "各線の列車運行情報"
-    @railway_lines = RailwayLine.tokyo_metro.includes( :stations )
+    @railway_lines = ::RailwayLine.tokyo_metro
     @stations_of_railway_lines = ::Station.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )

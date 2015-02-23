@@ -72,6 +72,12 @@ getSumOuterWidth = ( domains , settings ) ->
     len = len + $( this ).outerWidth( settings )
   return len
 
+getSumInnerWidth = ( domains ) ->
+  len = 0
+  domains.each ->
+    len = len + $( this ).innerWidth()
+  return len
+
 getSumWidth = ( domains ) ->
   len = 0
   domains.each ->
@@ -84,6 +90,12 @@ getSumOuterHeight = ( domains , settings ) ->
     len = len + $( this ).outerHeight( settings )
   return len
 
+getSumInnerHeight = ( domains ) ->
+  len = 0
+  domains.each ->
+    len = len + $( this ).innerHeight()
+  return len
+
 getSumHeight = ( domains ) ->
   len = 0
   domains.each ->
@@ -91,8 +103,10 @@ getSumHeight = ( domains ) ->
   return len
 
 window.getSumOuterWidth = getSumOuterWidth
+window.getSumInnerWidth = getSumInnerWidth
 window.getSumWidth = getSumWidth
 window.getSumOuterHeight = getSumOuterHeight
+window.getSumInnerHeight = getSumInnerHeight
 window.getSumHeight = getSumHeight
 
 #--------------------------------

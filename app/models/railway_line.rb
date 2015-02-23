@@ -26,22 +26,39 @@ class RailwayLine < ActiveRecord::Base
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
   include ::TokyoMetro::Modules::Db::Decision::Operator
 
-  # 東京メトロの路線を取得する
-  scope :tokyo_metro , -> {
-    tokyo_metro_not_including_branch
+  default_scope {
+    order( index: :desc )
   }
 
-  # 東京メトロの路線（支線を含む）を取得する
-  scope :tokyo_metro_including_branch , -> {
-    operator_id_number = Operator.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
-    where( operator_id: operator_id_number ).includes( :stations ).order( index: :asc )
+  scope :select_tokyo_metro , ->( tokyo_metro_id = nil ) {
+    if tokyo_metro_id.nil?
+      tokyo_metro_id = ::Operator.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
+    else
+      unless tokyo_metro_id.integer?
+        raise "Error"
+      end
+    end
+
+    where( operator_id: tokyo_metro_id ).includes( :stations )
   }
-  # 東京メトロの路線（支線を含まない）を取得する
-  scope :tokyo_metro_not_including_branch , -> {
-    tokyo_metro_including_branch.select( &:not_branch_line? )
+  
+  scope :select_branch_line , -> {
+    where( is_branch_railway_line: true )
   }
-  scope :tokyo_metro_without_branch , -> {
-    tokyo_metro_not_including_branch
+  
+  scope :select_not_branch_line , -> {
+    where( is_branch_railway_line: [ false , nil ] )
+  }
+
+  # 東京メトロの路線を取得する
+  scope :tokyo_metro , ->( including_branch_line: true ) {
+    # 東京メトロの路線（支線を含む）を取得する
+    if including_branch_line
+      select_tokyo_metro
+    # 東京メトロの路線（支線を含まない）を取得する
+    else
+      select_tokyo_metro.select_not_branch_line
+    end
   }
 
   # 路線記号から路線を取得する

@@ -4,6 +4,7 @@ class StationTimetableStartingStationInfo < ActiveRecord::Base
   belongs_to :station
 
   def to_s
-    self.station.name_ja + "発"
+    "#{ station.name_ja }始発"
   end
+
 end

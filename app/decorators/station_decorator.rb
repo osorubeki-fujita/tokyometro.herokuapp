@@ -39,7 +39,7 @@ class StationDecorator < Draper::Decorator
   end
 
   def render_name_ja_or_hira( name_ja_or_hira , with_subname , suffix )
-    regexp = ::ApplicationHelper.regexp_for_parentheses_ja
+    regexp = ::ApplicationHelper.regexp_for_parentheses_normal
     if regexp =~ name_ja_or_hira
       name_main = name_ja_or_hira.gsub( regexp , "" ).process_specific_letter
       name_sub = $1
@@ -63,7 +63,7 @@ class StationDecorator < Draper::Decorator
   end
 
   def render_name_en( with_subname: true , suffix: nil )
-    regexp = ::ApplicationHelper.regexp_for_parentheses_en
+    regexp = ::ApplicationHelper.regexp_for_parentheses_for_quotation
     if regexp =~ name_en
       name_main = name_en.gsub( regexp , "" )
       name_sub = $1
@@ -305,15 +305,27 @@ class StationDecorator < Draper::Decorator
   = info.render_header( station_code: true , all_station_codes: true )
     HAML
   end
-  
-  def render_link_to_station_page_ja
-    h.link_to( name_ja , station_page_name , title: link_title_to_station_page_ja )
+
+  def render_link_to_station_in_matrix( type_of_link_to_station )
+    @type_of_link_to_station = type_of_link_to_station
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ class: :station }<
+  = info.render_link_to_station_page_ja
+    HAML
   end
-  
+
+  def render_link_to_station_page_ja
+    if add_anchor_to_link_to_station_page_ja?
+      h.link_to( name_ja , h.url_for( action: station_page_name , anchor: anchor_added_to_link_of_station_page ) , title: link_title_to_station_page_ja )
+    else
+      h.link_to( name_ja , station_page_name , title: link_title_to_station_page_ja )
+    end
+  end
+
   def render_link_to_station_page_en
     h.link_to( name_en , station_page_name , title: link_title_to_station_page_en )
   end
-  
+
   def render_link_to_station_facility_page_ja
     h.link_to( "" , "../station_facility/#{station_page_name}" , name: "#{ name_ja }駅のご案内へジャンプします。" )
   end
@@ -331,12 +343,12 @@ class StationDecorator < Draper::Decorator
 
   def render_travel_time_info_row( special_proc_of_station )
     h.render inline: <<-HAML , type: :haml , locals: { info: self , special_proc_of_station: special_proc_of_station }
-  %tr
-    - if special_proc_of_station.present?
-      = special_proc_of_station.call( info )
-    %td{ class: :line }<
-      = info.render_travel_time_info_square
-    = info.render_in_travel_time_info
+%tr
+  - if special_proc_of_station.present?
+    = special_proc_of_station.call( info )
+  %td{ class: :railway_line_column }<
+    = info.render_travel_time_info_square
+  = info.render_in_travel_time_info
     HAML
   end
 
@@ -364,7 +376,7 @@ class StationDecorator < Draper::Decorator
   private
 
   def station_codes
-    ary = object.stations_including_other_railway_lines.map( &:station_code )
+    ary = object.stations_including_other_railway_lines.select_tokyo_metro.map( &:station_code )
     if at_ayase?
       ary.uniq
     else
@@ -385,9 +397,33 @@ class StationDecorator < Draper::Decorator
     if /\Am(\d{2})\Z/ =~ station_code
       file_basename = "mm#{$1}"
     else
+      if station_code.nil?
+        raise "Error: " + same_as
+      end
       file_basename = station_code.downcase
     end
     "#{dirname}/#{file_basename}.png"
+  end
+  
+  def add_anchor_to_link_to_station_page_ja?
+    case @type_of_link_to_station
+    when :must_link_to_railway_line_page , :must_link_to_railway_line_page_and_merge_yf
+      true
+    when :link_to_railway_line_page_if_containing_multiple_railway_lines
+     has_another_railway_lines_of_tokyo_metro?
+    when :link_to_railway_line_page_if_containing_multiple_railway_lines_and_merge_yf
+     has_another_railway_lines_of_tokyo_metro? and !( between_wakoshi_and_kotake_mukaihara? )
+    when nil
+      false
+    end
+  end
+
+  def anchor_added_to_link_of_station_page
+    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
+      :yurakucho_and_fukutoshin
+    else
+      object.railway_line.css_class_name.gsub( /_branch\Z/ , "" )
+    end
   end
 
 end

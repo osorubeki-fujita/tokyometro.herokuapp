@@ -2,7 +2,7 @@ module PassengerSurveyHelper
 
   def passenger_survey_stations_displayed( stations )
     if @railway_lines_including_branch.blank?
-      @railway_lines_including_branch = ::RailwayLine.tokyo_metro_including_branch
+      @railway_lines_including_branch = ::RailwayLine.tokyo_metro( including_branch_line: true )
     end
 
     stations_displayed = stations.in_railway_line( @railway_lines_including_branch.map( &:id ).flatten )

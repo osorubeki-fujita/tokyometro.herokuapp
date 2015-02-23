@@ -1,6 +1,5 @@
 @charset "utf-8" ;
 
-@import 'document_info_box/name_in_document.scss' ;
 @import 'document_info_box/mixins.scss' ;
 
 #operators {
@@ -34,7 +33,6 @@
             }
         }
         .railway_line_name {
-			@extend %floatLeft ;
             @extend %nameInDocument ;
             .text_ja {
                 max-height: 96px ;
@@ -58,83 +56,6 @@
             .document_info_box_normal {
                 @include documentInfoBoxNormal ;
                 @extend %commonSettingsOfColorBox ;
-            }
-        }
-    }
-}
-
-#train_types {
-    $train_type_padding_left_width: 8px ;
-    $train_type_border_left_width: 8px ;
-    .operator {
-        margin: {
-            left: $train_type_padding_left_width + $train_type_border_left_width ;
-            bottom: 64px ;
-        }
-        .railway_line {
-            margin: {
-                bottom: 32px ;
-            }
-            //
-            .document_info_box_wide {
-                $height: 144px ;
-                @include documentInfoBoxWide( $height ) ;
-                @extend %commonSettingsOfColorBox ;
-                //
-                .train_type_displayed {
-					@extend %floatLeft ;
-                    text-align: center ;
-                    @extend %nameInDocument ;
-                    padding: 4px ;
-                    margin: {
-                        right: 8px ;
-                    }
-                }
-                .train_type_displayed_black {
-                    @extend .train_type_displayed ;
-                }
-                .displayed_black {
-                    .text_ja {
-                        font: {
-                            size: 24pt ;
-                            weight: bold ;
-                        }
-                    }
-                    .text_en {
-                        font: {
-                            size: 8pt ;
-                        }
-                    }
-                }
-                .displayed {
-                    @include text_stroke ;
-                    @extend .displayed_black ;
-                }
-                .right {
-					@extend %floatLeft ;
-                    .train_type_name {
-                        @extend %nameInDocument ;
-                        .same_as {
-                            font: {
-                                size: 8pt ;
-                            }
-                            margin: {
-                                bottom: 4px ;
-                            }
-                        }
-                        .note_sub {
-                            font: {
-                                size: 8pt ;
-                            }
-                        }
-                    }
-                    .color_infos {
-                        float: right ;
-                        margin: {
-                            left: 8px ;
-                        }
-                    }
-                }
             }
         }
     }

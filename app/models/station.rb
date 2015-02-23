@@ -4,10 +4,10 @@ class Station < ActiveRecord::Base
 
   belongs_to :station_facility
   belongs_to :railway_line
+  belongs_to :operator
 
   has_many :connecting_railway_lines
   has_many :railway_lines , through: :connecting_railway_lines
-  has_many :operators , through: :railway_lines
 
   has_many :station_points
   has_many :points , through: :station_points
@@ -23,7 +23,9 @@ class Station < ActiveRecord::Base
   # geocoded_by :name_ja
   # after_validation :geocode
 
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
   include ::TokyoMetro::Modules::Db::Decision::Operator
+  include ::TokyoMetro::Modules::Db::Decision::CurrentStation
 
   def stations_including_other_railway_lines
     station_facility.stations.order( :railway_line_id )
@@ -49,6 +51,10 @@ class Station < ActiveRecord::Base
     [ "odpt.Station:TokyoMetro.Chiyoda.Ayase" , "odpt.Station:TokyoMetro.ChiyodaBranch.Ayase" ].include?( same_as )
   end
 
+  def has_another_railway_lines_of_tokyo_metro?
+    railway_lines_of_tokyo_metro.length > 1
+  end
+
   [ :attribute_ja , :attribute_hira , :attribute_en , :attribute_en_short ].each do | method_name |
     eval <<-DEF
       def #{ method_name }
@@ -57,10 +63,8 @@ class Station < ActiveRecord::Base
     DEF
   end
 
-  # 特定の駅のインスタンスを取得する
-  # @param station_name_ja [String] 駅名（日本語表記）
-  scope :of , ->( station_name_ja ) {
-    find_by( name_ja: station_name_ja )
+  default_scope {
+   order( railway_line_id: :asc ).order( index_in_railway_line: :asc )
   }
 
   # 特定の路線の駅を取得する
@@ -69,24 +73,18 @@ class Station < ActiveRecord::Base
     where( railway_line_id: railway_line_ids )
   }
 
-  scope :tokyo_metro , ->( tokyo_metro_id = nil ) {
+  scope :select_tokyo_metro , ->( tokyo_metro_id = nil ) {
     if tokyo_metro_id.nil?
-      tokyo_metro_id = ::Operator.id_of_tokyo_metro
+      tokyo_metro_id = ::Operator.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
+    else
+      unless tokyo_metro_id.integer?
+        raise "Error"
+      end
     end
     where( operator_id: tokyo_metro_id )
   }
-
-  scope :find_tokyo_metro_station_by_name_in_system , ->( name_in_system , tokyo_metro_id = nil ) {
-    if tokyo_metro_id.nil?
-      tokyo_metro_id = ::Operator.id_of_tokyo_metro
-    end
-    find_by( name_in_system: name_in_system , operator_id: tokyo_metro_id )
-  }
-
-  scope :station_number_in_tokyo_metro_by_name_in_system , ->( name_in_system , tokyo_metro_id = nil ) {
-    if tokyo_metro_id.nil?
-      tokyo_metro_id = ::Operator.id_of_tokyo_metro
-    end
-    where( name_in_system: name_in_system , operator_id: tokyo_metro_id ).map( &:station_code )
+  
+  scope :tokyo_metro , ->( tokyo_metro_id = nil ) {
+    select_tokyo_metro( tokyo_metro_id )
   }
 end

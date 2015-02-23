@@ -4,87 +4,84 @@
 @import '../../concern/connecting_railway_line_info.scss' ;
 @import 'color_settings_of_travel_time_info_through_operation.scss' ;
 
-%commonSettingsOfTravelTimeInfo {
-    border-collapse: separate ;
-    border-spacing: 2px 0px ;
-    td {
-        padding: {
-            top: 0px ;
-            bottom: 0px ;
-        }
+%settingsOfTravelTimeInfoRailwayColumn {
+  $line_width: 48px ;
+  $travel_time_square_margin: 8px ;
+  $travel_time_square_length: $line_width - $travel_time_square_margin * 2 ;
+  td.railway_line_column {
+    width: $line_width ;
+    padding: 0px ;
+    text-align: center ;
+    .travel_time_info_square {
+      @include text_en ;
+      background-color: #fff ;
+      color: $text_black_base_color ;
+      width: $travel_time_square_length ;
+      height: $travel_time_square_length ;
+      margin: {
+        top: $travel_time_square_margin ;
+        bottom: $travel_time_square_margin ;
+        left: $travel_time_square_margin ;
+        right: $travel_time_square_margin ;
+      }
     }
-    margin: {
-        bottom: 16px ;
-    }
-    $line_width: 32px ;
-    $travel_time_square_margin: 4px ;
-    $travel_time_square_length: $line_width - $travel_time_square_margin * 2 ;
-    border: solid 1px #999 ;
-    padding: 4px ;
-    .line {
-        width: $line_width ;
-        text-align: center ;
-        .travel_time_info_square {
-            @include text_en ;
-            background-color: #fff ;
-            color: $text_black_base_color ;
-            width: $travel_time_square_length ;
-            height: $travel_time_square_length ;
-            margin: {
-                top: $travel_time_square_margin ;
-                bottom: $travel_time_square_margin ;
-                left: $travel_time_square_margin ;
-                right: $travel_time_square_margin ;
-            }
-        }
-    }
-    .travel_time {
-        width: $line_width ;
-        text-align: center ;
-        @include text_en ;
-        height: 24px ;
-        vertical-align: middle ;
-        font: {
-            size: 8pt ;
-        }
-    }
-    .station_name {
+  }
+}
+
+%settingsOfTravelTimeInfoStationName {
+    td.station_name {
         width: 192px ;
         &:hover {
             background-color: $jp_traditional_aijiro ;
         }
         @extend %link_in_div ;
         .station_codes {
-			@extend %floatLeft ;
+            @extend %floatLeft ;
+            @extend %marginRight4 ;
             img {
                 $length: 24px ;
                 width: $length ;
                 height: $length ;
             }
-            margin: {
-                right: 4px ;
-            }
         }
         .station {
-			@extend %floatLeft ;
+            @extend %floatLeft ;
             @extend %fontSettingsOfTravelTimeInfo ;
         }
     }
+}
+
+%commonSettingsOfTravelTimeInfo {
+  @extend %marginBottom16 ;
+  @extend %colorSettingsOfTravelTimeInfoThroughOperation ;
+  @extend %settingsOfTravelTimeInfoRailwayColumn ;
+  @extend %settingsOfTravelTimeInfoStationName ;
+  border: solid 1px #999 ;
+  border-collapse: separate ;
+  border-spacing: 2px 0px ;
+  td {
+    padding: {
+      top: 0px ;
+      bottom: 0px ;
+    }
+  }
+  .travel_time {
+    @include text_en ;
+    text-align: center ;
+    height: 24px ;
+    vertical-align: middle ;
+    font: {
+      size: 8pt ;
+    }
+  }
 	tr.empty_row {
 		height: 4px ;
 	}
 	tr.through_operation {
 		td {
-			padding: {
-				left: 4px ;
-				right: 4px ;
-				top: 4px ;
-				bottom: 4px ;
-			}
 			font: {
 				size: 10pt ;
 			}
 		}
 	}
-    @extend %colorSettingsOfTravelTimeInfoThroughOperation ;
 }

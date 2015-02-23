@@ -44,7 +44,7 @@ module EachRailwayLine
 
     def each_railway_line_sub( title_base , controller , *railway_line_name_codes , with_branch: false , layout: "application" )
       if with_branch
-        @railway_lines = ::RailwayLine.tokyo_metro_including_branch.select_by_railway_line_codes( railway_line_name_codes )
+        @railway_lines = ::RailwayLine.tokyo_metro( including_branch_line: true ).select_by_railway_line_codes( railway_line_name_codes )
       else
         @railway_lines = ::RailwayLine.tokyo_metro.select_by_railway_line_codes( railway_line_name_codes )
       end

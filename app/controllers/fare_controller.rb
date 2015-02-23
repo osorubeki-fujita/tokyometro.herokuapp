@@ -1,11 +1,5 @@
 class FareController < ApplicationController
 
-  # require 'each_railway_line'
-  # require 'marunouchi_line_branch'
-  # include EachRailwayLine
-  # include MarunouchiLineBranch
-
-  # require 'each_station'
   include EachStation
 
   def index

@@ -100,7 +100,7 @@ module ForRails::ExtendBuiltinLibraries::StringModule
   end
 
   def delete_station_subname
-    regexp = ::ApplicationHelper.regexp_for_parentheses_ja
+    regexp = ::ApplicationHelper.regexp_for_parentheses_normal
     gsub( regexp , "" )
   end
 

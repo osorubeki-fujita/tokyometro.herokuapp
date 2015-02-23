@@ -1,17 +1,17 @@
 module TokyoMetro::Modules::Common::Info::RailwayLine
 
-  def branch_line?
-    /Branch\Z/ === same_as
+  def not_branch_railway_line
+    !( branch_railway_line )
   end
 
-  def not_branch_line?
-    !( branch_line? )
-  end
-
-  [ :branch_line? , :not_branch_line? ].each do | method_base_name |
-    eval <<-ALIAS
-      alias :is_#{ method_base_name } :#{ method_base_name }
-    ALIAS
+  def method_missing( method_name , *args )
+    if args.empty?
+      if /\A((?:is|is_not|not|has)_)?branch(?:_railway)?(?:_line)?(?:\?)?\Z/ =~ method_name.to_s
+        valid_method_name = $1.gsub( /is_/ , "" ) + branch_railway_line
+        send( valid_method_name )
+      end
+    end
+    super( method_name , *args )
   end
 
 end

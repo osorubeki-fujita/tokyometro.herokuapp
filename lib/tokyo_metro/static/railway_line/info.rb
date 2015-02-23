@@ -9,6 +9,7 @@ class TokyoMetro::Static::RailwayLine::Info
   include ::TokyoMetro::Modules::Common::Info::Decision::SameAs
   include ::TokyoMetro::Modules::Common::Info::Decision::Operator
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::RailwayLine::BranchLine
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
 
   # Constructor

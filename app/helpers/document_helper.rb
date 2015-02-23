@@ -15,7 +15,7 @@ module DocumentHelper
   def document_title_of_each_content( title_ja , title_en )
     render inline: <<-HAML , type: :haml , locals: { title_ja: title_ja , title_en: title_en }
 %div{ id: :document_title }
-  = render_common_title( common_title_ja: ::DocumentHelper.common_title_ja , common_title_en: ::DocumentHelper.common_title_en )
+  = render_common_title( text_ja: ::DocumentHelper.common_title_ja , text_en: ::DocumentHelper.common_title_en )
   = title_of_each_content( title_ja , title_en )
     HAML
   end

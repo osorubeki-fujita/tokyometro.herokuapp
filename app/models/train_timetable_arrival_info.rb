@@ -3,6 +3,7 @@ class TrainTimetableArrivalInfo < ActiveRecord::Base
   belongs_to :station
 
   def platform_number_with_parentheses
-    "(#{ self.platform_number })"
+    "(#{ platform_number })"
   end
+
 end

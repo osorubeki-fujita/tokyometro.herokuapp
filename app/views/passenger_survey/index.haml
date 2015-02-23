@@ -14,14 +14,12 @@
   %h3<
     = "乗降客数ランキング"
   - [ "乗降客数が多い駅" , "乗降客数が少ない駅" , "乗降客数の増加率が高い駅" ].each do | title |
-    %div #{title}
-- # %div{ id: :lines }
--   #%div{ id: :railway_line_matrixes }
--     #= ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: false )
+    %div<
+      = #{title}
 %h3<
   = "各路線・各駅の乗降客数"
 %p<
   = "路線名をクリックすると、各路線のすべての駅の乗降客数をご覧いただけます。"
 %p<
   = "駅名をクリックすると、各駅の乗降客数の推移（2011年 - 2013年）をご覧いただけます。"
-= station_link_matrix_and_lists( make_link_to_line: true )
+= station_link_matrix_and_lists( make_link_to_railway_line: true )

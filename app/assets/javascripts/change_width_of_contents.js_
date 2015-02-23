@@ -1,8 +1,3 @@
-function changeAttrOfStationFacility() {
-  var railway_line_titles = $( '.tokyo_metro_railway_lines , .connecting_railway_lines' ) ;
-  // changeWidthOfRailwayLineDomain( railway_line_titles ) ;
-}
-
 function changeWidthOfRailwayLineDomain( blocks ) {
   var max_width_of_title = 0 ;
   var max_height_of_railway_line_domain = 0 ;

@@ -2,5 +2,5 @@
 
 = document_title_of_each_content( @title_ja , @title_en )
 %div{ id: :operators }
-  - @operators.each do | operator_instance |
-    = render( "operator_info" , operator: operator_instance )
+  - @operators.each do | operator |
+    = operator.decorate.render_document_info_box

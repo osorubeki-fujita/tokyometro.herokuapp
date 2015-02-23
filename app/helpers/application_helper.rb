@@ -38,7 +38,7 @@ module ApplicationHelper
 
   # 括弧に対する正規表現（日本語）
   # @return [Regexp]
-  def self.regexp_for_parentheses_ja
+  def self.regexp_for_parentheses_normal
     /([\(（〈\|【].+[】\|〉）\)])$/
   end
 
@@ -51,7 +51,7 @@ module ApplicationHelper
 
   # quotation に対する正規表現
   # @return [Regexp]
-  def self.regexp_for_parentheses_en
+  def self.regexp_for_parentheses_for_quotation
     /('.+')$/
   end
 

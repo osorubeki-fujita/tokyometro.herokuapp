@@ -2415,106 +2415,68 @@ ul.links li {
 }
 
 /* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
-#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name, #operators .document_info_box_normal .color_info, #train_owners .document_info_box_normal .color_info, #railway_lines .operator .document_info_box_normal .color_info, #railway_directions .operator .railway_line .document_info_box_normal .color_info, #train_types .operator .railway_line .document_info_box_wide .color_info, #train_types .operator .railway_line .document_info_box_wide .right {
+#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name, #operators .document_info_box_normal .color_info, #train_owners .document_info_box_normal .color_info, #railway_lines .operator .document_info_box_normal .color_info, #railway_directions .operator .railway_line .document_info_box_normal .color_info {
   float: left;
 }
 
-/* line 4, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name {
+/* line 5, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name {
   vertical-align: middle;
-  margin-right: 4px;
 }
-/* line 12, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_ja, #train_owners .operator_name .text_ja, #railway_lines .operator .railway_line_name .text_ja, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_ja, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_ja, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_ja {
+/* line 10, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .operator_name .text_ja, #train_owners .operator_name .text_ja, #railway_lines .operator .railway_line_name .text_ja {
   font-size: 18pt;
   margin-bottom: -2px;
 }
-/* line 20, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_ja .sub, #train_owners .operator_name .text_ja .sub, #railway_lines .operator .railway_line_name .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_ja .sub {
+/* line 14, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .operator_name .text_ja .sub, #train_owners .operator_name .text_ja .sub, #railway_lines .operator .railway_line_name .text_ja .sub {
   font-size: 10pt;
   line-height: 1.3em;
   margin-top: -2px;
   margin-bottom: 6px;
 }
-/* line 34, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_en, #train_owners .operator_name .text_en, #railway_lines .operator .railway_line_name .text_en, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_en, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_en, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_en {
+/* line 28, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .operator_name .text_en, #train_owners .operator_name .text_en, #railway_lines .operator .railway_line_name .text_en {
   font-size: 10pt;
 }
-/* line 38, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_en .sub, #train_owners .operator_name .text_en .sub, #railway_lines .operator .railway_line_name .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_en .sub {
+/* line 32, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .operator_name .text_en .sub, #train_owners .operator_name .text_en .sub, #railway_lines .operator .railway_line_name .text_en .sub {
   font-size: 8pt;
   line-height: 1.3em;
 }
 
-/* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
-#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name, #operators .document_info_box_normal .color_info, #train_owners .document_info_box_normal .color_info, #railway_lines .operator .document_info_box_normal .color_info, #railway_directions .operator .railway_line .document_info_box_normal .color_info, #train_types .operator .railway_line .document_info_box_wide .color_info, #train_types .operator .railway_line .document_info_box_wide .right {
-  float: left;
-}
-
-/* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
-#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name, #operators .document_info_box_normal .color_info, #train_owners .document_info_box_normal .color_info, #railway_lines .operator .document_info_box_normal .color_info, #railway_directions .operator .railway_line .document_info_box_normal .color_info, #train_types .operator .railway_line .document_info_box_wide .color_info, #train_types .operator .railway_line .document_info_box_wide .right {
-  float: left;
-}
-
-/* line 4, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name, #train_owners .operator_name, #railway_lines .operator .railway_line_name, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name {
-  vertical-align: middle;
-  margin-right: 4px;
-}
-/* line 12, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_ja, #train_owners .operator_name .text_ja, #railway_lines .operator .railway_line_name .text_ja, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_ja, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_ja, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_ja {
-  font-size: 18pt;
-  margin-bottom: -2px;
-}
-/* line 20, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_ja .sub, #train_owners .operator_name .text_ja .sub, #railway_lines .operator .railway_line_name .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_ja .sub {
-  font-size: 10pt;
-  line-height: 1.3em;
-  margin-top: -2px;
-  margin-bottom: 6px;
-}
-/* line 34, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_en, #train_owners .operator_name .text_en, #railway_lines .operator .railway_line_name .text_en, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_en, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_en, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_en {
-  font-size: 10pt;
-}
-/* line 38, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/name_in_document.scss */
-#operators .operator_name .text_en .sub, #train_owners .operator_name .text_en .sub, #railway_lines .operator .railway_line_name .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .right .train_type_name .text_en .sub {
-  font-size: 8pt;
-  line-height: 1.3em;
-}
-
-/* line 27, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
-#operators .document_info_box_normal, #train_owners .document_info_box_normal, #railway_lines .operator .document_info_box_normal, #railway_directions .operator .railway_line .document_info_box_normal, #train_types .operator .railway_line .document_info_box_wide {
+/* line 62, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .document_info_box_normal, #train_owners .document_info_box_normal, #railway_lines .operator .document_info_box_normal, #railway_directions .operator .railway_line .document_info_box_normal {
   border: solid 1px #999;
   margin-left: 16px;
   margin-bottom: 9px;
   padding: 9px;
 }
-/* line 19, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
-#operators .document_info_box_normal .color_box_48, #train_owners .document_info_box_normal .color_box_48, #railway_lines .operator .document_info_box_normal .color_box_48, #railway_directions .operator .railway_line .document_info_box_normal .color_box_48, #train_types .operator .railway_line .document_info_box_wide .color_box_48, #operators .document_info_box_normal .color_box_32, #train_owners .document_info_box_normal .color_box_32, #railway_lines .operator .document_info_box_normal .color_box_32, #railway_directions .operator .railway_line .document_info_box_normal .color_box_32, #train_types .operator .railway_line .document_info_box_wide .color_box_32 {
+/* line 54, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .document_info_box_normal .color_box_48, #train_owners .document_info_box_normal .color_box_48, #railway_lines .operator .document_info_box_normal .color_box_48, #railway_directions .operator .railway_line .document_info_box_normal .color_box_48, #operators .document_info_box_normal .color_box_32, #train_owners .document_info_box_normal .color_box_32, #railway_lines .operator .document_info_box_normal .color_box_32, #railway_directions .operator .railway_line .document_info_box_normal .color_box_32 {
   margin-left: 0px;
   margin-right: 9px;
 }
-/* line 35, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
-#operators .document_info_box_normal .color_info, #train_owners .document_info_box_normal .color_info, #railway_lines .operator .document_info_box_normal .color_info, #railway_directions .operator .railway_line .document_info_box_normal .color_info, #train_types .operator .railway_line .document_info_box_wide .color_info {
+/* line 70, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .document_info_box_normal .color_info, #train_owners .document_info_box_normal .color_info, #railway_lines .operator .document_info_box_normal .color_info, #railway_directions .operator .railway_line .document_info_box_normal .color_info {
   width: 96px;
 }
-/* line 38, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
-#operators .document_info_box_normal .color_info .web_color, #train_owners .document_info_box_normal .color_info .web_color, #railway_lines .operator .document_info_box_normal .color_info .web_color, #railway_directions .operator .railway_line .document_info_box_normal .color_info .web_color, #train_types .operator .railway_line .document_info_box_wide .color_info .web_color {
+/* line 73, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .document_info_box_normal .color_info .web_color, #train_owners .document_info_box_normal .color_info .web_color, #railway_lines .operator .document_info_box_normal .color_info .web_color, #railway_directions .operator .railway_line .document_info_box_normal .color_info .web_color {
   font-size: 12pt;
   font-family: "helvetica", "verdana", "arial", "sans-serif", "HiraKakuProN-W3", "ヒラギノ", "メイリオ";
 }
-/* line 44, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
-#operators .document_info_box_normal .color_info .rgb_color, #train_owners .document_info_box_normal .color_info .rgb_color, #railway_lines .operator .document_info_box_normal .color_info .rgb_color, #railway_directions .operator .railway_line .document_info_box_normal .color_info .rgb_color, #train_types .operator .railway_line .document_info_box_wide .color_info .rgb_color {
+/* line 79, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#operators .document_info_box_normal .color_info .rgb_color, #train_owners .document_info_box_normal .color_info .rgb_color, #railway_lines .operator .document_info_box_normal .color_info .rgb_color, #railway_directions .operator .railway_line .document_info_box_normal .color_info .rgb_color {
   font-size: 8pt;
   font-family: "helvetica", "verdana", "arial", "sans-serif", "HiraKakuProN-W3", "ヒラギノ", "メイリオ";
 }
 
-/* line 70, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+/* line 106, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
 #operators, #train_owners {
   margin-bottom: 32px;
 }
-/* line 72, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+/* line 108, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
 #operators .document_info_box_normal, #train_owners .document_info_box_normal {
   width: 594.78231px;
   height: 67px;
@@ -2522,17 +2484,17 @@ ul.links li {
   -mozila-border-radius: 9px;
   -webkit-border-radius: 9px;
 }
-/* line 77, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+/* line 113, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
 #operators .operator_name, #train_owners .operator_name {
   width: 398.78231px;
 }
 
-/* line 17, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 16, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_lines .operator {
   margin-left: 16px;
   margin-bottom: 32px;
 }
-/* line 24, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 23, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_lines .operator .document_info_box_normal {
   width: 594.78231px;
   height: 131px;
@@ -2540,88 +2502,36 @@ ul.links li {
   -mozila-border-radius: 9px;
   -webkit-border-radius: 9px;
 }
-/* line 29, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 28, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_lines .operator .top {
   width: 582.78231px;
   height: 48px;
 }
-/* line 32, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 31, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_lines .operator .top .color_info {
   float: right;
 }
-/* line 39, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 37, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_lines .operator .railway_line_name .text_ja {
   max-height: 96px;
 }
 
-/* line 49, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 47, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_directions .operator {
   margin-left: 16px;
   margin-bottom: 64px;
 }
-/* line 54, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 52, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_directions .operator .railway_line {
   margin-bottom: 32px;
 }
-/* line 58, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
+/* line 56, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
 #railway_directions .operator .railway_line .document_info_box_normal {
   width: 594.78231px;
   height: 67px;
   border-radius: 9px;
   -mozila-border-radius: 9px;
   -webkit-border-radius: 9px;
-}
-
-/* line 69, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator {
-  margin-left: 16px;
-  margin-bottom: 64px;
-}
-/* line 74, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line {
-  margin-bottom: 32px;
-}
-/* line 79, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide {
-  width: 851.89116px;
-  height: 115px;
-  border-radius: 9px;
-  -mozila-border-radius: 9px;
-  -webkit-border-radius: 9px;
-}
-/* line 84, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black {
-  text-align: center;
-  padding: 4px;
-  margin-right: 8px;
-}
-/* line 97, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .displayed_black .text_ja, #train_types .operator .railway_line .document_info_box_wide .displayed .text_ja {
-  font-size: 24pt;
-  font-weight: bold;
-}
-/* line 103, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .displayed_black .text_en, #train_types .operator .railway_line .document_info_box_wide .displayed .text_en {
-  font-size: 8pt;
-}
-/* line 109, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .displayed {
-  -webkit-text-stroke-color: #000;
-  -webkit-text-stroke-width: 0.5px;
-}
-/* line 117, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .right .train_type_name .same_as {
-  font-size: 8pt;
-  margin-bottom: 4px;
-}
-/* line 125, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .right .train_type_name .note_sub {
-  font-size: 8pt;
-}
-/* line 131, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/operator.scss */
-#train_types .operator .railway_line .document_info_box_wide .right .color_infos {
-  float: right;
-  margin-left: 8px;
 }
 /* line 3, c:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/title.scss */
 .content_title, h1#title {
@@ -2640,6 +2550,116 @@ ul.links li {
   font-size: 11pt;
   font-weight: normal;
   line-height: 1.1em;
+}
+
+/* line 3, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .train_type_name, #train_types .operator .railway_line .document_info_box_wide .color_info, #train_types .operator .railway_line .document_info_box_wide .color_infos {
+  float: left;
+}
+
+/* line 29, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_name, #train_types .operator .railway_line .document_info_box_wide .color_infos {
+  margin-left: 8px;
+}
+
+/* line 113, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_name .same_as {
+  margin-bottom: 4px;
+}
+
+/* line 137, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
+#train_types .operator .railway_line {
+  margin-bottom: 32px;
+}
+
+/* line 5, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black, #train_types .operator .railway_line .document_info_box_wide .train_type_name {
+  vertical-align: middle;
+}
+/* line 10, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_ja, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_ja, #train_types .operator .railway_line .document_info_box_wide .train_type_name .text_ja {
+  font-size: 18pt;
+  margin-bottom: -2px;
+}
+/* line 14, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_ja .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_name .text_ja .sub {
+  font-size: 10pt;
+  line-height: 1.3em;
+  margin-top: -2px;
+  margin-bottom: 6px;
+}
+/* line 28, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_en, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_en, #train_types .operator .railway_line .document_info_box_wide .train_type_name .text_en {
+  font-size: 10pt;
+}
+/* line 32, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black .text_en .sub, #train_types .operator .railway_line .document_info_box_wide .train_type_name .text_en .sub {
+  font-size: 8pt;
+  line-height: 1.3em;
+}
+
+/* line 62, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide {
+  border: solid 1px #999;
+  margin-left: 16px;
+  margin-bottom: 9px;
+  padding: 9px;
+}
+/* line 54, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .color_box_48, #train_types .operator .railway_line .document_info_box_wide .color_box_32 {
+  margin-left: 0px;
+  margin-right: 9px;
+}
+/* line 70, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .color_info {
+  width: 96px;
+}
+/* line 73, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .color_info .web_color {
+  font-size: 12pt;
+  font-family: "helvetica", "verdana", "arial", "sans-serif", "HiraKakuProN-W3", "ヒラギノ", "メイリオ";
+}
+/* line 79, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/document_info_box/mixins.scss */
+#train_types .operator .railway_line .document_info_box_wide .color_info .rgb_color {
+  font-size: 8pt;
+  font-family: "helvetica", "verdana", "arial", "sans-serif", "HiraKakuProN-W3", "ヒラギノ", "メイリオ";
+}
+
+/* line 5, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_displayed, #train_types .operator .railway_line .document_info_box_wide .train_type_displayed_black {
+  text-align: center;
+  padding: 4px;
+}
+
+/* line 14, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator {
+  margin-left: 16px;
+  margin-bottom: 64px;
+}
+/* line 21, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator .railway_line .document_info_box_wide {
+  width: 851.89116px;
+  height: 115px;
+  border-radius: 9px;
+  -mozila-border-radius: 9px;
+  -webkit-border-radius: 9px;
+}
+/* line 33, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator .railway_line .document_info_box_wide .displayed_black .text_ja {
+  font-size: 24pt;
+  font-weight: bold;
+}
+/* line 39, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator .railway_line .document_info_box_wide .displayed_black .text_en {
+  font-size: 8pt;
+}
+/* line 48, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_name .same_as {
+  font-size: 8pt;
+}
+/* line 54, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/document/train_type.scss */
+#train_types .operator .railway_line .document_info_box_wide .train_type_name span.note_sub {
+  font-size: 8pt;
 }
 
 /* line 28, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/common_mixins/link.scss */
@@ -2671,7 +2691,7 @@ ul.links li {
 }
 
 /* line 16, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_1, #fare_tables table.fare_table td.ic_card_2, #fare_tables table.fare_table td.ic_card_3, #fare_tables table.fare_table td.ic_card_4, #fare_tables table.fare_table td.ic_card_5, #fare_tables table.fare_table td.ic_card_6, #fare_tables table.fare_table td.ticket_1, #fare_tables table.fare_table td.ticket_2, #fare_tables table.fare_table td.ticket_3, #fare_tables table.fare_table td.ticket_4, #fare_tables table.fare_table td.ticket_5, #fare_tables table.fare_table td.ticket_6 {
+#fare_tables table.fare_table td.ic_card_adult_1, #fare_tables table.fare_table td.ic_card_adult_2, #fare_tables table.fare_table td.ic_card_adult_3, #fare_tables table.fare_table td.ic_card_adult_4, #fare_tables table.fare_table td.ic_card_adult_5, #fare_tables table.fare_table td.ic_card_adult_6, #fare_tables table.fare_table td.ic_card_child_1, #fare_tables table.fare_table td.ic_card_child_2, #fare_tables table.fare_table td.ic_card_child_3, #fare_tables table.fare_table td.ic_card_child_4, #fare_tables table.fare_table td.ic_card_child_5, #fare_tables table.fare_table td.ic_card_child_6, #fare_tables table.fare_table td.ticket_adult_1, #fare_tables table.fare_table td.ticket_adult_2, #fare_tables table.fare_table td.ticket_adult_3, #fare_tables table.fare_table td.ticket_adult_4, #fare_tables table.fare_table td.ticket_adult_5, #fare_tables table.fare_table td.ticket_adult_6, #fare_tables table.fare_table td.ticket_child_1, #fare_tables table.fare_table td.ticket_child_2, #fare_tables table.fare_table td.ticket_child_3, #fare_tables table.fare_table td.ticket_child_4, #fare_tables table.fare_table td.ticket_child_5, #fare_tables table.fare_table td.ticket_child_6 {
   font-family: "helvetica", "verdana", "arial", "sans-serif", "HiraKakuProN-W3", "ヒラギノ", "メイリオ";
   font-size: 14pt;
   font-weight: bold;
@@ -2679,88 +2699,136 @@ ul.links li {
   padding-right: 4px;
 }
 
-/* line 90, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 176, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table {
   border: solid 1px #666;
   border-collapse: collapse;
   border-spacing: 0px;
   margin-bottom: 32px;
 }
-/* line 39, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_1 {
+/* line 77, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_adult_1 {
   background-color: rgba(251, 238, 241, 0.2);
 }
-/* line 43, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_2 {
+/* line 81, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_adult_2 {
   background-color: rgba(251, 238, 241, 0.3);
 }
-/* line 47, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_3 {
+/* line 85, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_adult_3 {
   background-color: rgba(251, 238, 241, 0.4);
 }
-/* line 51, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_4 {
+/* line 89, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_adult_4 {
   background-color: rgba(251, 238, 241, 0.5);
 }
-/* line 55, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_5 {
+/* line 93, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_adult_5 {
   background-color: rgba(251, 238, 241, 0.6);
 }
-/* line 59, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ic_card_6 {
+/* line 97, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_adult_6 {
   background-color: rgba(251, 238, 241, 0.7);
 }
-/* line 63, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ticket_1 {
+/* line 101, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_child_1 {
+  background-color: rgba(251, 238, 241, 0.2);
+}
+/* line 105, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_child_2 {
+  background-color: rgba(251, 238, 241, 0.3);
+}
+/* line 109, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_child_3 {
+  background-color: rgba(251, 238, 241, 0.4);
+}
+/* line 113, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_child_4 {
+  background-color: rgba(251, 238, 241, 0.5);
+}
+/* line 117, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_child_5 {
+  background-color: rgba(251, 238, 241, 0.6);
+}
+/* line 121, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ic_card_child_6 {
+  background-color: rgba(251, 238, 241, 0.7);
+}
+/* line 125, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_adult_1 {
   background-color: rgba(246, 250, 247, 0.3);
 }
-/* line 67, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ticket_2 {
+/* line 129, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_adult_2 {
   background-color: rgba(246, 250, 247, 0.4);
 }
-/* line 71, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ticket_3 {
+/* line 133, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_adult_3 {
   background-color: rgba(246, 250, 247, 0.5);
 }
-/* line 75, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ticket_4 {
+/* line 137, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_adult_4 {
   background-color: rgba(246, 250, 247, 0.6);
 }
-/* line 79, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ticket_5 {
+/* line 141, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_adult_5 {
   background-color: rgba(246, 250, 247, 0.7);
 }
-/* line 83, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
-#fare_tables table.fare_table td.ticket_6 {
+/* line 145, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_adult_6 {
   background-color: rgba(246, 250, 247, 0.8);
 }
-/* line 101, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 149, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_child_1 {
+  background-color: rgba(246, 250, 247, 0.3);
+}
+/* line 153, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_child_2 {
+  background-color: rgba(246, 250, 247, 0.4);
+}
+/* line 157, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_child_3 {
+  background-color: rgba(246, 250, 247, 0.5);
+}
+/* line 161, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_child_4 {
+  background-color: rgba(246, 250, 247, 0.6);
+}
+/* line 165, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_child_5 {
+  background-color: rgba(246, 250, 247, 0.7);
+}
+/* line 169, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+#fare_tables table.fare_table td.ticket_child_6 {
+  background-color: rgba(246, 250, 247, 0.8);
+}
+/* line 187, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td {
   border: solid 1px #ccc;
   padding-left: 8px;
   padding-top: 2px;
   padding-bottom: 2px;
 }
-/* line 109, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 195, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name {
   clear: both;
   width: 192px;
   height: 40px;
 }
-/* line 115, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 201, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name:hover {
   background-color: #eee;
 }
-/* line 118, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 204, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_name_domain {
   height: 40px;
 }
-/* line 121, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 207, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_name_domain a {
   top: 0;
   left: 0;
 }
-/* line 126, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 212, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_code_outer {
   width: 28px;
   height: 28px;
@@ -2769,73 +2837,73 @@ ul.links li {
   -mozila-border-radius: 14px;
   -webkit-border-radius: 14px;
 }
-/* line 135, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 221, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_code_outer .station_codes {
   margin: 2px;
 }
-/* line 138, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 224, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_code_outer .station_codes img {
   width: 24px;
   height: 24px;
 }
-/* line 146, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 232, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_name_text .text_ja {
   font-size: 12pt;
 }
-/* line 150, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 236, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_name_text .text_ja .small {
   font-size: 9pt;
 }
-/* line 156, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 242, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name .station_name_text .text_en {
   font-size: 7.2pt;
 }
-/* line 163, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 249, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name.starting_station {
   background-color: #f66;
   color: #fff;
 }
-/* line 166, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 252, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name.starting_station .text_ja {
   font-size: 12pt;
 }
-/* line 171, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 257, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.station_name.starting_station .text_en {
   font-size: 7.2pt;
 }
-/* line 177, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 263, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.normal_fare {
   background-color: #eaf4fc;
 }
-/* line 180, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 266, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.ic_card {
   background-color: rgba(251, 238, 241, 0.8);
 }
-/* line 183, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 269, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.ticket {
   background-color: rgba(246, 250, 247, 0.8);
 }
-/* line 186, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 272, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.adult, #fare_tables table.fare_table td.child {
   width: 64px;
 }
-/* line 195, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 281, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.no_fare {
   background-color: #ccc;
 }
-/* line 198, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 284, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table tr.empty_row {
   height: 1px;
 }
-/* line 201, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 287, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.starting_station {
   background-color: #fcc;
 }
-/* line 203, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 289, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.starting_station .text_ja {
   font-size: 10pt;
 }
-/* line 208, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
+/* line 294, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/fare.scss */
 #fare_tables table.fare_table td.starting_station .text_en {
   font-size: 6pt;
 }
@@ -5021,7 +5089,7 @@ table.timetable.holiday .operation_day {
 }
 
 /* line 7, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_timetable.scss */
-table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info .last, table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info .origin, table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info .starting_station {
+table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos .last, table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos .origin, table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos .starting_station {
   float: left;
   clear: both;
   margin-top: 2px;
@@ -5039,23 +5107,23 @@ table.station_timetable tr.hour_row td.train_times .train_time .precise .additio
 }
 
 /* line 30, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_timetable.scss */
-table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info {
+table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos {
   margin-top: 2px;
 }
 /* line 34, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_timetable.scss */
-table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info .last {
+table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos .last {
   color: #222;
   background-color: rgba(0, 123, 187, 0.2);
   border-color: #007bbb;
 }
 /* line 43, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_timetable.scss */
-table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info .origin {
+table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos .origin {
   color: #222;
   background-color: rgba(246, 191, 188, 0.5);
   border-color: #f6bfbc;
 }
 /* line 52, C:/RubyPj/rails_tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/station_timetable.scss */
-table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_info .starting_station {
+table.station_timetable tr.hour_row td.train_times .train_time .precise .additional_infos .starting_station {
   color: #222;
   background-color: #eeeeee;
   border-color: #ddd;

@@ -3,7 +3,7 @@
 @import 'common_settings.scss' ;
 
 @mixin colorSettingsOfTravelTimeInfo( $background_color , $text_color_on_background: #fff , $text_color_on_travel_time_square: $text_black_base_color ) {
-    .line {
+    .railway_line_column {
         background-color: $background_color ;
         color: $text_color_on_travel_time_square ;
     }
@@ -13,22 +13,22 @@
     }
 }
 
-
 @mixin travel_time_info_each_line( $bgcolor , $text_color_on_background: #fff , $text_color_on_travel_time_square: $text_black_base_color ) {
   table.travel_time_info {
     @include colorSettingsOfTravelTimeInfo( $bgcolor , $text_color_on_background , $text_color_on_travel_time_square ) ;
   }
 }
 
-
-table.travel_time_info {
-  @extend %commonSettingsOfTravelTimeInfo ;
-}
-table.travel_time_info_main {
-  @extend %commonSettingsOfTravelTimeInfo ;
-}
-table.travel_time_info_branch {
-  @extend %commonSettingsOfTravelTimeInfo ;
+table {
+  &.travel_time_info {
+    @extend %commonSettingsOfTravelTimeInfo ;
+  }
+ &.travel_time_info_main {
+    @extend %commonSettingsOfTravelTimeInfo ;
+  }
+ &.travel_time_info_branch {
+    @extend %commonSettingsOfTravelTimeInfo ;
+  }
 }
 
 

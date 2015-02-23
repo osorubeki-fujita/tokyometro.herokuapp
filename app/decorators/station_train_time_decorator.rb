@@ -40,7 +40,7 @@ class StationTrainTimeDecorator < Draper::Decorator
   def render_additional_infos_in_station_timetable
     if has_additional_infos?
       h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: :additional_info }<
+%div{ class: :additional_infos }<
   = info.render_last_in_station_timetable
   = info.render_starting_info_at_this_station_in_station_timetable
   = info.render_departing_platform_info_in_station_timetable
@@ -60,7 +60,7 @@ class StationTrainTimeDecorator < Draper::Decorator
   end
 
   def render_starting_info_at_this_station_in_station_timetable
-    if is_origin
+    if start_at_this_station?
       h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :origin }<>
   = "当駅始発"
@@ -79,19 +79,13 @@ class StationTrainTimeDecorator < Draper::Decorator
 
   def render_starting_station_info_in_station_timetable
     if has_station_timetable_starting_station_info?
-      h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: :starting_station }<>
-  = info.station_timetable_starting_station_info.to_s
-      HAML
+      station_timetable_starting_station_info.decorate.render
     end
   end
 
   def render_arrival_info_in_station_timetable
     if has_train_timetable_arrival_info?
-      h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: [ :arrival_info , :text_en ] }<>
-  = info.train_timetable_arrival_info.platform_number_with_parentheses
-      HAML
+      train_timetable_arrival_info.decorate.render
     end
   end
 

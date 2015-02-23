@@ -14,5 +14,16 @@ class RailwayDirectionDecorator < Draper::Decorator
 = info.station.render_name_ja( with_subname: false , suffix: "方面" )
     HAML
   end
+  
+  def render_in_document
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+- station = info.station
+%div{ class: :document_info_box_normal }
+  %div{ class: :text_ja }<
+    = station.name_ja
+  %div{ class: :text_en }<
+    = station.name_en
+    HAML
+  end
 
 end

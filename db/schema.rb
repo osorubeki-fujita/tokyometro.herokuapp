@@ -266,6 +266,10 @@ ActiveRecord::Schema.define(version: 20150315091756) do
     t.datetime "start_on"
     t.integer  "twitter_widget_id"
     t.string   "twitter_account"
+    t.boolean  "is_branch_railway_line"
+    t.integer  "main_railway_line_id"
+    t.boolean  "has_branch_railway_line"
+    t.integer  "branch_railway_line_id"
   end
 
   create_table "rss_categories", force: true do |t|
