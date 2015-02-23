@@ -170,8 +170,8 @@ class PassengerSurveyDecorator < Draper::Decorator
     - case type
     - when :railway_line , :year , :station
       %div{ class: :station_codes }<
-        - stations_displayed = passenger_survey_stations_displayed( stations )
-        = ::StationDecorator.render_station_code_imags( stations_displayed )
+        - stations_displayed = stations_displayed_in_passenger_survey_table_row( stations )
+        = ::StationDecorator.render_station_code_images_in_passenger_survey_table_row( stations )
       %div{ class: :text }<
         = stations.first.decorate.render_name_ja_and_en
   - case type

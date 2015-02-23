@@ -372,6 +372,10 @@ class StationDecorator < Draper::Decorator
     = station.decorate.render_each_station_code_image_tag
     HAML
   end
+  
+  class << self
+    alias :render_station_code_images_in_passenger_survey_table_row :render_station_code_imags
+  end
 
   private
 

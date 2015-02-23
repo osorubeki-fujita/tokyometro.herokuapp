@@ -57,7 +57,6 @@ class PassengerSurveyController < ApplicationController
 
   def each_station( station_name )
     each_station_sub( "駅 各年度の乗降客数" , "passenger_survey" , station_name ) do
-      #raise "Error: " + @station.same_as
       @passenger_survey_infos = @station.passenger_surveys.includes( :stations )
       @type = :station
       @make_graph = true

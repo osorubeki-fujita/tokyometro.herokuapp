@@ -1,4 +1,16 @@
-module StationLinkHelper
+module StationHelper
+
+  def stations_displayed_in_passenger_survey_table_row( stations )
+    if @railway_lines_including_branch.blank?
+      @railway_lines_including_branch = ::RailwayLine.tokyo_metro( including_branch_line: true )
+    end
+
+    stations_displayed = stations.in_railway_line( @railway_lines_including_branch.map( &:id ).flatten )
+    if stations_displayed.all?( &:at_ayase? )
+      stations_displayed = [ stations_displayed.first ]
+    end
+    stations_displayed
+  end
 
   def station_link_matrix_and_lists( make_link_to_railway_line: false , type_of_link_to_station: nil )
     h_locals = {

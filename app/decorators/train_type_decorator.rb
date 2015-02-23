@@ -28,7 +28,7 @@ class TrainTypeDecorator < Draper::Decorator
     = info.train_type_in_api.decorate.render_name_in_box
     HAML
   end
-  
+
   def render_name_in_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :train_type_name }
@@ -44,7 +44,7 @@ class TrainTypeDecorator < Draper::Decorator
   = info.same_as
     HAML
   end
-  
+
   def render_note_in_document_info_box
     if note.present?
       regexp = /(（.+）)\Z/
