@@ -43,31 +43,31 @@ class TravelTimeInfoDecorator < Draper::Decorator
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - if train_type.present?
-  = train_type.decorate.render_name_box
-%div{ class: :travel_time_info }
+  = train_type.decorate.render_name_box_in_travel_time_info
+%div{ class: :through_operation_info }
   - if from.present?
     %p{ class: :from }<
       = "〈" + from.name_ja + "から〉"
   - if direction.present? or via.present?
-    %div{ class: :additional_info }<
+    %div{ class: :railway_line }<
       - if direction.present?
         %span{ class: :direction }<
           = [ direction ].flatten.map( &:name_ja ).join( "、" ) + "方面"
       - if via.present?
         %span{ class: :via }<
-          = [ via ].flatten.map( &:name_ja_with_operator_name_precise ).join( "、" ) + "経由"
+          :ruby
+            ary = [ via ].flatten.map( &:name_ja_with_operator_name_precise_and_without_parentheses )
+          = ary.join( "、" ) + "経由"
   %div{ class: :main }<
     - set_of_railway_line_and_terminal_station = [ railway_line_and_terminal_station ].flatten
     - set_of_railway_line_and_terminal_station.each.with_index(1) do | info , i |
       %span{ class: :railway_line }<
-        = info[ :railway_line ].name_ja_with_operator_name_precise
+        = info[ :railway_line ].name_ja_with_operator_name_precise_and_without_parentheses
       %span{ class: :terminal_station }<
         = "「" + info[ :terminal_station ].name_ja + "」"
       - if set_of_railway_line_and_terminal_station.length > 1 and set_of_railway_line_and_terminal_station.length > i
         = "・"
-    = "まで"
-  %div{ class: :through_to }
-    = "直通運転"
+    = "まで直通運転"
   - if info.present?
     %div{ class: :info }<
       :ruby
@@ -78,10 +78,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_hibiya_line_and_tobu_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :bottom ] }<
   %td{ class: [ :railway_line_column , :hibiya_tobu ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         direction: [
@@ -102,10 +102,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_tozai_line_and_jr_chuo_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :top ] }<
   %td{ class: [ :railway_line_column , :tozai_chuo ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         via:  ,
@@ -121,10 +121,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_tozai_line_jr_sobu_line_and_toyo_rapid_railway_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :bottom ] }<
   %td{ class: [ :railway_line_column , :tozai_toyo ] }<
-  %td{ class: :through_operation_info }<
+  %td{ class: :through_operation_infos }<
     :ruby
       h = {
         railway_line_and_terminal_station: {
@@ -134,7 +134,7 @@ class TravelTimeInfoDecorator < Draper::Decorator
       }
     = ::TravelTimeInfoDecorator.render_travel_time_info_through_operation_info(h)
   %td{ class: [ :railway_line_column , :tozai_sobu ] }<
-  %td{ class: :through_operation_info }<
+  %td{ class: :through_operation_infos }<
     :ruby
       h = {
         railway_line_and_terminal_station: {
@@ -150,10 +150,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_chiyoda_line_and_odakyu_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :top ] }<
   %td{ class: :chiyoda_odakyu }<
-  %td{ colspan: 3 }
+  %td{ colspan: 3 , class: :through_operation_infos }<
     %div{ class: :through_operation_info_box }
       :ruby
         h = {
@@ -210,11 +210,11 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_chiyoda_line_and_jr_joban_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :bottom ] }<
   %td{ class: :chiyoda_joban }<
     = ""
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         from: ::Station.find_by_same_as( "odpt.Station:TokyoMetro.Chiyoda.Ayase" ) ,
@@ -237,10 +237,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_hanzomon_line_and_tokyu_den_en_toshi_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :top ] }<
   %td{ class: [ :railway_line_column , :hanzomon_tokyu ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         direction: [
@@ -259,10 +259,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_hanzomon_line_and_tobu_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :bottom ] }<
   %td{ class: [ :railway_line_column , :hanzomon_tobu ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         direction: [
@@ -287,10 +287,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_namboku_line_and_tokyu_meguro_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :top ] }<
   %td{ class: [ :railway_line_column , :namboku_tokyu ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         direction: [
@@ -309,10 +309,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_namboku_line_and_saitama_railway_line
     Proc.new {
-      render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :bottom ] }<
   %td{ class: [ :railway_line_column , :namboku_saitama ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         direction: ::Station.find_by_same_as( "odpt.Station:SaitamaRailway.SaitamaRailway.HigashiKawaguchi" ) ,
@@ -336,10 +336,10 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
   def self.proc_for_rendering_through_operation_info_of_fukutoshin_line_and_tokyu_toyoko_mm_line
     Proc.new {
-    render inline: <<-HAML , type: :haml
-%tr{ class: :through_operation }<
+      h.render inline: <<-HAML , type: :haml
+%tr{ class: [ :through_operation_info_row , :bottom ] }<
   %td{ class: [ :railway_line_column , :fukutoshin_tokyu_mm ] }<
-  %td{ colspan: 3 , class: :through_operation_info }<
+  %td{ colspan: 3 , class: :through_operation_infos }<
     :ruby
       h = {
         direction: [
@@ -372,12 +372,12 @@ class TravelTimeInfoDecorator < Draper::Decorator
 
     def proc_for_rendering_through_operation_info_of_yurakucho_fukutoshin_line_tobu_tojo_line_and_seibu_ikebukuro_line( railway_line )
       Proc.new {
-        render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }
+        h.render inline: <<-HAML , type: :haml , locals: { railway_line: railway_line }
 - wakoshi = ::Station.find_by( name_in_system: "Wakoshi" , railway_line_id: railway_line.id )
 - kotake_mukaihara = ::Station.find_by( name_in_system: "KotakeMukaihara" , railway_line_id: railway_line.id)
-%tr{ class: :through_operation }<
+%tr{ class: [ :through_operation_info_row , :top ] }<
   %td{ class: [ railway_line.css_class_name + "_tobu" , :railway_line_column ] }<
-  %td{ class: :through_operation_info }<
+  %td{ class: :through_operation_infos }<
     :ruby
       h = {
         from: wakoshi ,
@@ -391,7 +391,7 @@ class TravelTimeInfoDecorator < Draper::Decorator
       }
     = ::TravelTimeInfoDecorator.render_travel_time_info_through_operation_info(h)
   %td{ class: [ railway_line.css_class_name + "_seibu" , :railway_line_column ] }<
-  %td{ class: :through_operation_info }<
+  %td{ class: :through_operation_infos }<
     :ruby
       h = {
         from: kotake_mukaihara ,

@@ -3,112 +3,168 @@
 @import '../../../fundamental_settings.scss' ;
 
 %baseOfLineCodeInPlatformInfoTab {
-	@extend %floatLeft ;
-    margin: {
-        right: 6px ;
-    }
+  @extend %floatLeft ;
+  margin: {
+    right: 6px ;
+  }
 }
 
 %lineCodeInPlatformInfoTab {
-    .ginza {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .marunouchi {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .marunouchi_branch {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .hibiya {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .tozai {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .chiyoda {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .chiyoda_branch {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .yurakucho {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .hanzomon {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .namboku {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .fukutoshin {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
-    .toei_mita {
-        @extend %baseOfLineCodeInPlatformInfoTab ;
-    }
+  .ginza {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .marunouchi {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .marunouchi_branch {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .hibiya {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .tozai {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .chiyoda {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .chiyoda_branch {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .yurakucho {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .hanzomon {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .namboku {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .fukutoshin {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
+  .toei_mita {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+  }
 }
 
 %textSettingsOfLineNameInPlatformInfoTab {
-    .railway_line_name {
-        @extend %lineCodeInPlatformInfoTab ;
-        margin: {
-            left: 8px ;
-            right: 8px ;
-            top: 4px ;
-            bottom: 4px ;
-        }
-        .text {
-			@extend %floatLeft ;
-            .text_ja {
-                font: {
-                    size: 10pt ;
-                }
-            }
-            .text_en {
-                font: {
-                    size: 7.5pt ;
-                }
-            }
-        }
+  .railway_line_name {
+    @extend %lineCodeInPlatformInfoTab ;
+    margin: {
+      left: 8px ;
+      right: 8px ;
+      top: 4px ;
+      bottom: 4px ;
     }
+    .text {
+      @extend %floatLeft ;
+      .text_ja {
+        font: {
+          size: 10pt ;
+        }
+      }
+      .text_en {
+        font: {
+          size: 7.5pt ;
+        }
+      }
+    }
+  }
+}
+
+%platformInfoTabUl {
+  position: relative ;
+  z-index: 1 ;
+  padding: 0px ;
+  margin: {
+    top: 0px ;
+    bottom: 0px ;
+  }
+}
+%platformInfoTabLi {
+  display: block;
+  @extend %floatLeft ;
+  @extend %link_in_div ;
+  @extend %textSettingsOfLineNameInPlatformInfoTab ;
+  list-style-type: none;
+  border: {
+    style: solid ;
+  }
+  &.displayed {
+    background-color: #fff ;
+    border: {
+      bottom: {
+        style: dotted ;
+        color: #eee ;
+      }
+    }
+  }
+  &.hidden {
+    background-color: #f6f6f6 ;
+    cursor: pointer;
+    cursor: hand;
+    &:hover {
+      background-color: $jp_traditional_aijiro ;
+    }
+  }
+}
+
+%tabContentsUl {
+  padding: 0px;
+  margin: 0px;
+}
+
+%tabContentsLi {
+  clear: left;
+  display: block;
+  list-style-type: none;
+  height: 300px;
+  padding: 30px ;
+  overflow: auto;
+  &.hidden {
+    display: none;
+  }
+}
+
+%platformInfoContentBorder {
+  border: {
+    style: solid ;
+    color: #ccc ;
+  }
 }
 
 %platformInfoTabContent {
-    #platform_info_tab_menu {
-        #platform_info_tabs {
-            ul {
-                padding: 0px ;
-                li.platform_info_tab {
-                    display: block;
-					@extend %floatLeft ;
-                    list-style-type: none;
-					@extend %link_in_div ;
-                    border: solid 1px #ccc ;
-                    margin: {
-                        right: -1px ;
-                    }
-                    &:hover {
-                        background-color: #eee ;
-                    }
-                    @extend %textSettingsOfLineNameInPlatformInfoTab ;
-                }
-            }
+  $border_width: 1px ;
+  #platform_info_tab_menu {
+    ul#platform_info_tabs {
+      @extend %platformInfoTabUl ;
+      li.platform_info_tab {
+        @extend %platformInfoTabLi ;
+        @extend %platformInfoContentBorder ;
+        border: {
+          width: $border_width ;
         }
-        #platform_info_tab_contents {
-            clear: both ;
-            ul {
-                padding: 0px;
-                margin: 0px;
-                li.platform_info_tab_content {
-                    clear: left;
-                    display: block;
-                    list-style-type: none;
-                    height: 300px;
-                    padding: 30px ;
-                    border: solid 1px #eee ;
-                    overflow: auto;
-                }
-            }
+        margin: {
+          right: -1 * $border_width ;
         }
+      }
     }
+  }
+  #platform_info_tab_contents {
+    clear: both ;
+    position: relative ;
+    z-index: 0 ;
+    top: -1 * $border_width ;
+    ul {
+      @extend %tabContentsUl ;
+      li.platform_info_tab_content {
+        @extend %tabContentsLi ;
+        @extend %platformInfoContentBorder ;
+        border: {
+          width: $border_width ;
+        }
+      }
+    }
+  }
 }

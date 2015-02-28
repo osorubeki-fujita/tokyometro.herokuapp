@@ -33,3 +33,6 @@ $( document ).on( 'ready page:load' , function() { // Turbolinks 対策
 
   initializeDo() ;
 });
+
+observer_of_station_facility_platform_info_tab = new ObserverOfStationFacilityPlatformInfoTab() ;
+window.setInterval( 'observer_of_station_facility_platform_info_tab.listen()' , observer_of_station_facility_platform_info_tab.duration() ) ;

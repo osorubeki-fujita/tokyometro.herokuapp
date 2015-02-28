@@ -27,7 +27,7 @@ class StationTimetableController < ApplicationController
       station_timetable_ids = ::StationTimetableFundamentalInfo.where( station_id: station_ids ).pluck( :station_timetable_id )
       @station_timetables = ::StationTimetable.where( id: station_timetable_ids ).includes(
         :station_train_times ,
-        station_timetable_fundamental_infos: [ :station , :railway_line , :operator , :railway_direction ]
+        :station_timetable_fundamental_infos
       )
       @railway_lines = ::RailwayLine.find( ::Station.where( id: station_ids ).pluck( :railway_line_id ).uniq.sort )
     end

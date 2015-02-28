@@ -5,8 +5,10 @@ module TwitterRenderer
   end
 
   def render_twitter_widget
-    h.content_tag( :div , class: :twitter ) do
-      h.concat( render_twitter_widget_domain + render_twitter_script )
+    if twitter_widget_id.present?
+      h.content_tag( :div , class: :twitter ) do
+        h.concat( render_twitter_widget_domain + render_twitter_script )
+      end
     end
   end
 

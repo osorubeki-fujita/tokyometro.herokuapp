@@ -4,51 +4,24 @@ module EachRailwayLine
 
   included do
 
-    def ginza_line
-      each_railway_line( "G" )
-    end
-
-    def marunouchi_line
-      each_railway_line( "M" )
-    end
-
-    def hibiya_line
-      each_railway_line( "H" )
-    end
-
-    def tozai_line
-      each_railway_line( "T" )
-    end
-
-    def chiyoda_line
-      each_railway_line( "C" )
-    end
-
-    def yurakucho_line
-      each_railway_line( "Y" )
-    end
-
-    def hanzomon_line
-      each_railway_line( "Z" )
-    end
-
-    def namboku_line
-      each_railway_line( "N" )
-    end
-
-    def fukutoshin_line
-      each_railway_line( "F" )
+    [ :ginza , :marunouchi , :hibiya , :tozai , :chiyoda , :yurakucho , :hanzomon , :namboku , :fukutoshin ].each do | railway_line_name |
+      eval <<-DEF
+        def #{railway_line_name}_line
+          each_railway_line( "odpt.Railway:TokyoMetro.#{railway_line_name.capitalize}" )
+        end
+      DEF
     end
 
     private
 
-    def each_railway_line_sub( title_base , controller , *railway_line_name_codes , with_branch: false , layout: "application" )
+    def each_railway_line_sub( title_base , controller , *railway_line_names , with_branch: false , including_chiyoda_branch: false , layout: "application" )
       if with_branch
-        @railway_lines = ::RailwayLine.tokyo_metro( including_branch_line: true ).select_by_railway_line_codes( railway_line_name_codes )
+        @railway_lines = ::RailwayLine.tokyo_metro( including_branch_line: true ).where( same_as: railway_line_names )
       else
-        @railway_lines = ::RailwayLine.tokyo_metro.select_by_railway_line_codes( railway_line_name_codes )
+        @railway_lines = ::RailwayLine.tokyo_metro.where( same_as: railway_line_names )
       end
-      if @railway_lines.where( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ).present?
+
+      if @railway_lines.where( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ).present? and !( including_chiyoda_branch )
         @railway_lines = @railway_lines.where.not( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" )
       end
 

@@ -4,6 +4,7 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
   decorates_association :railway_line
 
   include CssClassNameOfConnectingRailwayLine
+  include RenderLinkToRailwayLinePage
 
   def self.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
     h.render inline: <<-HAML , type: :haml
@@ -44,13 +45,27 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
         info: self
       }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
-- railway_line = info.railway_line
 %div{ class: info.css_class_names }<
+  = info.render_link_to_railway_line_page
   = info.railway_line.render_in_station_info_of_travel_time_info
   - if info.connecting_to_another_station?
     = info.connecting_station.decorate.render_connection_info_from_another_station
       HAML
     end
+  end
+  
+  private
+  
+  def railway_line_decorated
+    railway_line.decorate
+  end
+  
+  def railway_line_page_exists?
+    object.railway_line.tokyo_metro?
+  end
+
+  def set_anchor_in_travel_time_info_table?
+    object.railway_line.branch_line? or object.station.railway_line.branch_railway_line_of?( object.railway_line )
   end
 
 end

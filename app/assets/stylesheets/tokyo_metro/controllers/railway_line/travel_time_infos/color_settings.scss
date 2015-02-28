@@ -32,38 +32,39 @@ table {
 }
 
 
-.railway_line.ginza_travel_time {
+#ginza_travel_time {
     @include travel_time_info_each_line( $line_ginza_bgcolor ) ;
 }
-.railway_lines.marunouchi_travel_time {
-    table.travel_time_info_main {
-        @include colorSettingsOfTravelTimeInfo( $line_marunouchi_bgcolor ) ;
-    }
-    table.travel_time_info_branch {
-        @include colorSettingsOfTravelTimeInfo( $line_marunouchi_bgcolor ) ;
-    }
+#marunouchi_travel_time {
+ @include colorSettingsOfTravelTimeInfo( $line_marunouchi_bgcolor ) ;
 }
-.railway_line.hibiya_travel_time {
+#marunouchi_branch_travel_time {
+ @extend #marunouchi_travel_time ;
+}
+#hibiya_travel_time.railway_line {
     @include colorSettingsOfTravelTimeInfo( $line_hibiya_bgcolor ) ;
 }
-.railway_line.tozai_travel_time {
+#tozai_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_tozai_bgcolor ) ;
 }
-.railway_line.chiyoda_travel_time {
+#chiyoda_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_chiyoda_bgcolor ) ;
 }
-.railway_line.yurakucho_travel_time {
+#chiyoda_branch_travel_time {
+    @extend #chiyoda_travel_time ;
+}
+#yurakucho_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_yurakucho_bgcolor ) ;
 }
-.railway_line.hanzomon_travel_time {
+#hanzomon_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_hanzomon_bgcolor ) ;
 }
-.railway_line.namboku_travel_time {
+#namboku_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_namboku_bgcolor ) ;
 }
-.railway_line.fukutoshin_travel_time {
+#fukutoshin_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_fukutoshin_bgcolor ) ;
 }
-.railway_line.toei_mita_travel_time {
+#toei_mita_travel_time {
     @include colorSettingsOfTravelTimeInfo( $line_toei_mita_bgcolor ) ;
 }

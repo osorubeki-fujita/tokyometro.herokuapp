@@ -58,20 +58,64 @@ class BarrierFreeFacilityDecorator < Draper::Decorator
   def remark_to_a
     remark.gsub( /。([\(（].+?[\)）])/ ) { "#{$1}。" }.gsub( /(?<=。)\n?[ 　]?/ , "\n" ).gsub( "出きません" , "できません" ).gsub( "ＪＲ" , "JR" ).split( /\n/ )
   end
+  
+  def self.inspect_image_filenames
+    ary = ::Array.new
+    ::BarrierFreeFacility.all.each do | item |
+      filename = item.decorate.image_filename
+      if filename.blank?
+        raise "Error: ● #{ item.same_as }"
+      else
+        ary << filename
+        if /stairlift/ =~ filename
+          puts "○ " + item.same_as
+        elsif /slope/ =~ filename
+          puts "△ " + item.same_as
+        end
+      end
+    end
+    puts ""
+    puts ary.uniq.sort
+  end
+
+  def image_filename
+    ary = ::Array.new
+    ary << type.decorate.image_basename
+    unless service_details.present? and service_details.length > 1
+      if escalator?
+        set_wheel_chair_info_to( ary )
+        directions = object.escalator_directions
+        raise "Error" if directions.length > 1
+        if directions.present?
+          ary << directions.first.pattern.attribute
+        else
+          puts "※ " + object.same_as
+        end
+      elsif toilet?
+        pattern = barrier_free_facility_toilet_assistant_pattern
+        ary << pattern.decorate.image_basename
+      end
+    end
+    ary << located_area.name_en
+    image_file_basename = ary.select( &:present? ).map { | item | item.to_s.underscore.downcase }.join( "_" )
+    "barrier_free_facility/#{ image_file_basename }.svg"
+  end
 
   def render
-    h.render inline: <<-HAML , type: :haml , locals: { facility: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :facility }
-  = facility.render_place_name_number
+  %div{ class: :image_and_number }
+    = image_tag( info.image_filename , class: :barrier_free_facility , title: info.title_added_to_image )
+    = info.render_place_name_number
   %div{ class: :info }
-    = facility.render_place_name
-    = facility.render_service_details
+    = info.render_place_name
+    = info.render_service_details
     - # 車いす対応か否かの情報
-    = facility.render_wheel_chair_info
+    = info.render_wheel_chair_info
     - # トイレ設備
-    = facility.render_toilet_assistant
+    = info.render_toilet_assistant
     - # 特記事項
-    = facility.render_remark
+    = info.render_remark
     HAML
   end
 
@@ -134,6 +178,39 @@ class BarrierFreeFacilityDecorator < Draper::Decorator
       = str
       HAML
     end
+  end
+
+  def render_in_platform_info
+    hs = id_and_code_hash
+    if image_filename.present?
+      h.link_to(
+        h.image_tag( image_filename , class: :barrier_free_facility ) ,
+        h.url_for( anchor: hs[ :id ] ) ,
+        title: title_added_to_image
+      )
+    else
+      h.link_to(
+        hs[ :platform ] ,
+        h.url_for( anchor: hs[ :id ] ) ,
+        title: hs[ :platform ]
+      )
+    end
+  end
+
+  def title_added_to_image
+    "#{ type.name_en } - #{ id_and_code_hash[ :platform ] }"
+  end
+
+  private
+
+  def set_wheel_chair_info_to( ary )
+    if available_to_wheel_chair?
+      ary << :wheel_chair
+    end
+  end
+  
+  def available_to_wheel_chair?
+    object.available_to_wheel_chair?
   end
 
 end

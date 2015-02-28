@@ -6,10 +6,6 @@
 %fundamentalSettingsOfRailwayLineAndStationMatrixes {
   @extend %floatLeft ;
   border: solid 1px #333 ;
-  margin: {
-    right: -1px ;
-    bottom: -1px ;
-  }
 }
 
 %fundamentalSettingsOfStationDomainInStationMatrixes {
@@ -122,19 +118,31 @@
     }
 }
 
-.railway_line_matrix_small {
-  @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
-  @extend %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes ;
-  @extend %textSettingsOfRailwayLineMatrixes ;
-  .info {
-    @extend %marginLeft8 ;
-    @extend %marginRight8 ;
-    .railway_line_code_outer {
-      @extend %floatLeft ;
-      @extend %marginRight8 ;
+%marginBottomMinus1 {
+  margin: {
+      bottom: -1px ;
+  }
+}
+
+%railwayLineMatrixSmall {
+  .railway_line_matrix_small {
+    @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+    @extend %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes ;
+    @extend %textSettingsOfRailwayLineMatrixes ;
+    @extend %marginBottomMinus1 ;
+    margin: {
+      right: -1px ;
     }
-    .text {
-      @extend %floatLeft ;
+    .info {
+      @extend %marginLeft8 ;
+      @extend %marginRight8 ;
+      .railway_line_code_outer {
+        @extend %floatLeft ;
+        @extend %marginRight8 ;
+      }
+      .text {
+        @extend %floatLeft ;
+      }
     }
   }
 }
@@ -142,18 +150,17 @@
 #station_matrixes {
     .railway_line {
         clear: both ;
-        margin: {
-            right: -1px ;
-            bottom: -1px ;
-        }
+        @extend %railwayLineMatrixSmall ;
         @extend %contentsIncludedInRailwayLineMatrixes ;
+        @extend %marginBottomMinus1 ;
         .station {
           @extend %floatLeft ;
           @extend %marginRight8 ;
         }
         .stations {
-            @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
-            @extend %fundamentalSettingsOfStationDomainInStationMatrixes ;
+          @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+          @extend %fundamentalSettingsOfStationDomainInStationMatrixes ;
+          @extend %marginBottomMinus1 ;
         }
         .stations_on_main_line {
             @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
@@ -166,6 +173,7 @@
         .stations_on_branch_line {
             @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
             @extend %fundamentalSettingsOfStationDomainInStationMatrixes ;
+            @extend %marginBottomMinus1 ;
             border: {
               top: none ;
             }

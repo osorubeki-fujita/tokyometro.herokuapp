@@ -1,65 +1,142 @@
-processDocument = ->
-  processLinkToEachDocument()
-  processColorInfoInDocument()
-  processTrainTypeNameInDocument()
-  return
+class Document
 
-window.processDocument = processDocument
+  constructor: ->
 
-#--------------------------------
-# processLinkToEachDocument
-#--------------------------------
+  process: ->
+    link_to_document_contents = new LinkToDocumentContents()
+    color_infos_in_document = new ColorInfosInDocument()
+    train_types_in_document = new TrainTypesInDocument()
 
-processLinkToEachDocument = ->
-  links_to_datas = $( '#links_to_datas' )
-  width_of_content_name = 0
-
-  links_to_datas.contents().each ->
-    link_to_content = $( this )
-
-    text = link_to_content.children( '.text' ).first()
-    content_name = text.children( '.content_name' ).first()
-    model_name_text_en = text.children( '.model_name.text_en' ).first()
-
-    height_of_content_name = content_name.innerHeight()
-
-    width_of_content_name = Math.max( width_of_content_name , content_name.innerWidth() )
-
-    model_name_text_en.css( 'margin-top' , height_of_content_name - model_name_text_en.innerHeight() )
-    text.css( 'height' , height_of_content_name )
-    link_to_content.css( 'height' , text.outerHeight( true ) )
+    link_to_document_contents.process()
+    color_infos_in_document.process()
+    train_types_in_document.process()
     return
 
-  content_names = links_to_datas.find( '.content_name' )
-  setCssAttributesToEachDomain( content_names , 'width' , width_of_content_name )
-  setCssAttributesToEachDomain( content_names , 'margin-right' , 16 )
-  return
+window.Document = Document
 
 #--------------------------------
-# processColorInfoInDocument
-#--------------------------------
 
-processColorInfoInDocument = ->
-  $( 'div#railway_lines' ).find( '.top' ).each ->
-    top_domain = $( this )
-    height_of_top_domain = getSumOuterHeight( top_domain , true )
-    color_info_domain = top_domain.children( '.color_info' ).first()
-    color_info_domain.css( 'margin-top' , height_of_top_domain - color_info_domain.outerHeight( true ) )
-    top_domain.css( 'height' , height_of_top_domain )
-  return
+class LinkToDocumentContents
 
-#--------------------------------
-# processTrainTypeNameInDocument
-#--------------------------------
+  constructor: ( @domain = $( '#links_to_datas' ) ) ->
 
-processTrainTypeNameInDocument = ->
-  max_width_of_train_type_name = 0
-  domains_of_document_info_box_wide = $( '#train_types' ).find( '.document_info_box_wide' )
-  domains_of_document_info_box_wide.each ->
-    train_type_name = $( this ).children( '.train_type_name' ).first()
-    max_width_of_train_type_name = Math.max( train_type_name.outerWidth() , max_width_of_train_type_name )
+  content_name_domains = (v) ->
+    return v.domain.find( '.content_name' )
+
+  width_of_content_name = (v) ->
+    console.log 'LinkToDocumentContents\#width_of_content_name'
+    p = new DomainsCommonProcessor( content_name_domains(v).children() )
+    return p.max_width()
+
+  process_domain = (v) ->
+    # console.log 'LinkToDocumentContents\#process_domain'
+    _content_name_domains = content_name_domains(v)
+    p = new DomainsCommonProcessor( _content_name_domains )
+    p.set_css_attribute( 'width' , width_of_content_name(v) )
+    p.set_css_attribute( 'margin-right' , 16 )
     return
-  domains_of_document_info_box_wide.each ->
-    $( this ).children( '.train_type_name' ).first().css( 'width' , max_width_of_train_type_name )
+
+  process_each_content = (v) ->
+    console.log 'LinkToDocumentContents\#process_each_content'
+    v.domain.children().each ->
+      console.log $( this )
+      d = new LinkToEachDocument( $( this ) )
+      d.process()
+      return
     return
-  return
+
+  process: ->
+    console.log 'LinkToDocumentContents\#process'
+    process_each_content(@)
+    process_domain(@)
+    return
+
+class LinkToEachDocument
+
+  constructor: ( @domain ) ->
+
+  text = (v) ->
+    return v.domain.children( '.text' ).first()
+
+  content_name = (v) ->
+    return text(v).children( '.content_name' ).first()
+
+  model_name_text_en = (v) ->
+    return text(v).children( '.model_name.text_en' ).first()
+
+  height_of_content_name = (v) ->
+    return content_name(v).innerHeight()
+
+  margin_top_of_model_name_text_en = (v) ->
+    return height_of_content_name(v) - model_name_text_en(v).innerHeight()
+
+  process: ->
+    _text = text(@)
+    model_name_text_en(@).css( 'margin-top' , margin_top_of_model_name_text_en(@) )
+    _text.css( 'height' , height_of_content_name(@) )
+    @domain.css( 'height' , _text.outerHeight( true ) )
+    return
+
+#--------------------------------
+
+class ColorInfosInDocument
+  constructor: ( @domain = $( 'div#railway_lines' ) ) ->
+
+  top_contents = (v) ->
+    return v.domain.find( '.top' )
+
+  process: ->
+    top_contents(@).each ->
+      d = new ColorInfoInDocumentEachTop( $( this ) )
+      d.process()
+      return
+    return
+
+class ColorInfoInDocumentEachTop
+  constructor: ( @domain ) ->
+
+  height_of_top_domain = (v) ->
+    p = new DomainsCommonProcessor( v.domain )
+    return p.sum_outer_height( true )
+
+  color_info = (v) ->
+    return v.domain.children( '.color_info' ).first()
+
+  margin_top_of_color_info = (v) ->
+    return height_of_top_domain(v) - color_info(v).outerHeight( true )
+
+  process: ->
+    color_info(@).css( 'margin-top' , margin_top_of_color_info(@) )
+    @domain.css( 'height' , height_of_top_domain(@) )
+    return
+
+#--------------------------------
+
+
+class TrainTypesInDocument
+  constructor: ( @domain = $( '#train_types' ) ) ->
+
+  document_info_boxes = (v) ->
+    return v.domain.find( '.document_info_box_wide' )
+
+  max_width_of_train_type_name = (v) ->
+    # console.log 'TrainTypesInDocument\#max_width_of_train_type_name'
+    len = 0
+    document_info_boxes(v).each ->
+      train_type = new TrainTypeInDocument( $( this ) )
+      len = Math.max( train_type.train_type_name().outerWidth() , len )
+      return
+    return len
+
+  process: ->
+    _max_width_of_train_type_name = max_width_of_train_type_name(@)
+    document_info_boxes(@).each ->
+      train_type = new TrainTypeInDocument( $( this ) )
+      train_type.train_type_name().css( 'width' , _max_width_of_train_type_name )
+      return
+    return
+
+class TrainTypeInDocument
+  constructor: ( @domain ) ->
+  train_type_name: ->
+    return @domain.children( '.train_type_name' ).first()

@@ -36,10 +36,10 @@ class StationFacilityController < ApplicationController
 
   def set_platform_info_tab
     if %w( Wakoshi ChikatetsuNarimasu ChikatetsuAkatsuka Heiwadai Hikawadai KotakeMukaihara ).include?( @station.name_in_system )
-      @default_platform_info_tab = :platform_info_yurakucho_and_fukutoshin_line
+      @default_platform_info_tab = :platform_info_yurakucho_and_fukutoshin
       @platform_info_tabs = [ @default_platform_info_tab ]
     elsif %w( Meguro Shirokanedai ShirokaneTakanawa ).include?( @station.name_in_system )
-      @default_platform_info_tab = :platform_info_namboku_and_toei_mita_line
+      @default_platform_info_tab = :platform_info_namboku_and_toei_mita
       @platform_info_tabs = [ @default_platform_info_tab ]
     else
       railway_lines = @station_facility.stations.map { | station | station.railway_line }.sort_by { | railway_line | railway_line.id }

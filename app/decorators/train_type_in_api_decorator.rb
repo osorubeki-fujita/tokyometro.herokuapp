@@ -19,4 +19,11 @@ class TrainTypeInApiDecorator < Draper::Decorator
     HAML
   end
 
+  def render_name_in_travel_time_info
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ class: :name_ja_normal }<
+  = info.name_ja_normal
+    HAML
+  end
+
 end

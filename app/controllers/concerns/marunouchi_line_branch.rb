@@ -1,13 +1,7 @@
 module MarunouchiLineBranch
 
-  extend ActiveSupport::Concern
-
-  included do
-
-    def marunouchi_line
-      each_railway_line( "M" , "m" )
-    end
-
+  def marunouchi_line
+    each_railway_line( "odpt.Railway:TokyoMetro.Marunouchi" , "odpt.Railway:TokyoMetro.MarunouchiBranch" )
   end
 
 end

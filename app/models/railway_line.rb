@@ -184,4 +184,12 @@ class RailwayLine < ActiveRecord::Base
     self
   end
 
+  def name_ja_with_operator_name_precise_and_without_parentheses
+    name_ja_with_operator_name_precise.gsub( /（.+）\Z/ , "" )
+  end
+  
+  def branch_railway_line_of?( railway_line )
+    branch_railway_line? and railway_line.id == main_railway_line_id
+  end
+
 end

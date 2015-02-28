@@ -6,7 +6,3 @@
   color: $color ;
   @include gradationSettingsOfColorBox( $background_color ) ;
 }
-
-%trainTypeBoxBase_normal {
-	@extend %colorBoxBase_48_144 ;
-}

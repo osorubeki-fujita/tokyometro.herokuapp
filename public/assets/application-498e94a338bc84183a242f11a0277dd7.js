@@ -11543,491 +11543,1214 @@ return jQuery;
 
 }).call(this);
 $('#progress').html(	"JavaScript Test");
-function changeAttrOfStationFacility() {
-  var railway_line_titles = $( '.tokyo_metro_railway_lines , .connecting_railway_lines' ) ;
-  // changeWidthOfRailwayLineDomain( railway_line_titles ) ;
-}
+(function() {
+  var BottomContent;
 
-function changeWidthOfRailwayLineDomain( blocks ) {
-  var max_width_of_title = 0 ;
-  var max_height_of_railway_line_domain = 0 ;
-  var width_of_railway_line_domain = 0 ;
-  var width_of_railway_line_name_domain = 0 ;
+  BottomContent = (function() {
+    var links, margin_of_links, processor_of_links;
 
-  // タイトルの幅をあわせ、路線名リストの幅を取得
-  blocks.each( function() {
-    var railway_line_domain = $( this ) ;
-    var title_domain = railway_line_domain.children( '.title' ).first() ;
-    max_width_of_title = Math.max( max_width_of_title , title_domain.width() ) ;
-    max_height_of_railway_line_domain = Math.max( max_height_of_railway_line_domain , title_domain.height() ) ;
-    width_of_railway_line_domain = Math.max( width_of_railway_line_domain , railway_line_domain.width() ) ;
+    function BottomContent(domain) {
+      this.domain = domain != null ? domain : $('div#bottom_content');
+    }
 
-    width_of_railway_line_name_domain = title_domain.innerWidth() ;
-  });
+    links = function(v) {
+      return v.domain.children('.links');
+    };
 
-  blocks.each( function() {
-    var railway_line_domain = $( this ) ;
-    var title_domain = railway_line_domain.children( '.title' ).first() ;
-    var railway_line_name_domain = railway_line_domain.children( '.railway_lines' ).first() ;
-    railway_line_domain.css( 'width' , width_of_railway_line_domain ) ;
-    title_domain.css( 'width' , max_width_of_title ) ;
-    railway_line_name_domain.css( 'width' , width_of_railway_line_name_domain ) ;
-  });
-}
-;
-//-------- bottom_content の操作
-function processBottomContent() {
-  var bottom_content = $( 'div#bottom_content' ) ;
-  var links = bottom_content.children( '.links' ) ;
-  var height_of_domain = bottom_content.outerHeight( true ) ;
-  var margin_of_links = ( height_of_domain - getSumOuterHeight( links , true ) ) * 0.5 ;
-  setCssAttributesToEachDomain( links , 'margin-top' , margin_of_links ) ;
-  setCssAttributesToEachDomain( links , 'margin-bottom' , margin_of_links ) ;
-}
-;
-// "#railway_line_matrixes" の処理
-function changeAttributesOfBoxesInLineMatrixes(
-  selector_for_railway_line_matrixes ,
-  normal_railway_lines , special_railway_lines ,
-  width_of_each_normal_railway_line ,
-  width_of_special_railway_lines_in_railway_line_matrixes ,
-  lineDivision ,
-  number_of_special_railway_lines ,
-  outer_height_of_each_line , width_of_border ) {
+    margin_of_links = function(v, p) {
+      return (v.domain.outerHeight(true) - p.sum_outer_height(true)) * 0.5;
+    };
 
-  // 一般路線の box の設定
-  changeAttributesOfNormalLineBoxes( normal_railway_lines , width_of_each_normal_railway_line ) ;
+    processor_of_links = function(v) {
+      return new DomainsCommonProcessor(links(v));
+    };
 
-  // 特殊な路線（「有楽町線・副都心線」を想定）の box の設定
-  changeAttributesOfSpecialLineBoxes( special_railway_lines , width_of_special_railway_lines_in_railway_line_matrixes ) ;
+    BottomContent.prototype.process = function() {
+      var p, _margin_of_links;
+      p = processor_of_links(this);
+      _margin_of_links = margin_of_links(this, p);
+      ['margin-top', 'margin-bottom'].each(function() {
+        p.set_css_attribute($(this), _margin_of_links);
+      });
+    };
 
-  // #railway_line_matrixes の高さの設定
-  setHeightOfLineMatrixes( selector_for_railway_line_matrixes , normal_railway_lines , lineDivision , number_of_special_railway_lines , outer_height_of_each_line , width_of_border ) ;
-}
-;
-// 一般路線の box の設定
-function changeAttributesOfNormalLineBoxes( lines , width ) {
-  changeWidthOfNormalLineBoxes( lines , width ) ;
-}
+    return BottomContent;
 
-// 一般路線の box の幅の変更
-function changeWidthOfNormalLineBoxes( lines , width ) {
-  lines.each( function() {
-    // var line_box = $( this ) ;
-    // 路線の box (.line_box) の幅の変更
-    // changeWidth( line_box , width ) ;
-    // 路線の box のコンテンツの幅の変更
-    // !! changeWidthOflLineBoxes( line_box , width ) ;
-    // 路線記号の左右の margin の変更
-    // changeMarginOfNormalLineCodeOuter( line_box , width ) ;
-    changeWidth( $( this ) , width ) ;
-    changeMarginOfNormalLineCodeOuter( $( this ) , width ) ;
-    changeMarginOfLineBoxInfoDomain( $( this ) , $( this ).children( '.info' ).first() ) ;
-  }) ;
-}
+  })();
 
-// 路線記号の左右の margin の変更
-function changeMarginOfNormalLineCodeOuter( jq , width_of_each_normal_railway_line ) {
-  jq.find( '.railway_line_code_outer' ).each( function() {
-    var width_of_railway_line_code_outer = $( this ).outerWidth( true ) ;
-    var margin_of_railway_line_code_outer = ( ( width_of_each_normal_railway_line - width_of_railway_line_code_outer ) * 0.5 )  + 'px' ;
-    $( this ).css( 'marginLeft' , margin_of_railway_line_code_outer ).css( 'marginRight' , margin_of_railway_line_code_outer) ;
-  });
-}
-;
-// 特殊な路線（「有楽町線・副都心線」を想定）の box の設定
-function changeAttributesOfSpecialLineBoxes( railway_lines , width ) {
-  railway_lines.each( function() {
-    // .line_box の幅の変更
-    changeWidth( $( this ) , width ) ;
-    var special_railway_line_info = $( this ).children( '.info' ).first() ;
-    changeAttributesOfSpecialLineCodeBox( special_railway_line_info ) ;
-    changeMarginOfLineBoxInfoDomain( $( this ) , special_railway_line_info ) ;
-  }) ;
-}
+}).call(this);
+(function() {
+  var DomainsCommonProcessor;
 
-// // 路線の box のコンテンツの幅の変更
-// function changeWidthOfSpecialLineCodeBox( line_box , width ) {
-//  // .railway_line_codes , .text_ja , .text_en の配列
-//  var array_of_contents_in_line_box = line_box.children( '.info' ).contents() ;
-//  // .railway_line_codes , .text_ja , .text_en の幅の設定
-//  array_of_contents_in_line_box.each( function() {
-//    // $( this ) は .railway_line_codes , .text_ja , .text_en のいずれか
-//    changeWidth( $( this ) , width ) ;
-//  }) ;
-//}
-  
-// 路線記号の設定の変更
-function changeAttributesOfSpecialLineCodeBox( special_railway_line_info ) {
-  var array_of_railway_line_codes = special_railway_line_info.children( '.railway_line_codes' ) ;
-  // 路線記号のサイズの取得
-  var size_of_railway_line_code_box = setSizeOfSpecialLineCodeBox( array_of_railway_line_codes ) ;
-  
-  var width_of_railway_line_code_box = size_of_railway_line_code_box[0] ;
-  var height_of_railway_line_code_box = size_of_railway_line_code_box[1] ;
+  DomainsCommonProcessor = (function() {
+    function DomainsCommonProcessor(domains) {
+      this.domains = domains;
+    }
 
-  array_of_railway_line_codes.each( function() {
-    // --------
-    // 属性 .railway_line_codes をもつ要素
-    // var railway_line_codes = $( this ) ;
-    // railway_line_codes.css( 'height' , height_of_railway_line_code_box ) ;
-    // 属性 .railway_line_codes をもつ要素とその子孫要素の設定
-    // setAttributesToLineCodesAndChildren( railway_line_codes , width_of_railway_line_code_box , height_of_railway_line_code_box ) ;
-    
-    $( this ).css( 'height' , height_of_railway_line_code_box ) ;
-    setAttributesToLineCodesAndChildren( $( this ) , width_of_railway_line_code_box , height_of_railway_line_code_box ) ;
-    // --------
-  });
-}
+    DomainsCommonProcessor.prototype.max_outer_width = function(setting) {
+      var len;
+      if (setting == null) {
+        setting = false;
+      }
+      len = 0;
+      this.domains.each(function() {
+        return len = Math.max(len, $(this).outerWidth(setting));
+      });
+      return len;
+    };
 
-// 路線記号のサイズの取得
-function setSizeOfSpecialLineCodeBox( array_of_railway_line_codes ) {
-  var width_of_railway_line_code_box = 0 ;
-  var height_of_railway_line_code_box = 0 ;
+    DomainsCommonProcessor.prototype.max_width = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = Math.max(len, $(this).width());
+      });
+      return len;
+    };
 
-  // array_of_railway_line_codes は 属性 .railway_line_codes をもつ要素の配列（長さ1）
-  array_of_railway_line_codes.each( function() {
-    // --------
-      // 属性 .railway_line_codes をもつ要素
-      // var railway_line_codes = $( this ) ;
-      // railway_line_codes.children() は、属性 .railway_line_codes をもつ要素の子要素の配列（.railway_line_code_block、長さ1）
-      // railway_line_codes.children().each( function() {
-    $( this ).children().each( function() {
-    // --------
-      // --------
-        // 属性 .railway_line_code_block をもつ要素
-        // var railway_line_code_block = $( this ) ;
-        // railway_line_code_block は、属性 .railway_line_code_block をもつ要素
-        // railway_line_code_block.children() - $( this ).children() は、属性 .railway_line_code_block をもつ要素の子要素の配列 (.yurakucho , .fukutoshin)
-      $( this ).children().each( function() {
-          // railway_line_name_domain は、属性 .yurakucho または .fukutoshin をもつ要素
-          //   var railway_line_name_domain = $( this ) ;
-          // railway_line_name_domain.children( '.railway_line_code_outer' ) は、属性 .yurakucho または .fukutoshin をもつ要素の子要素であり、
-          // かつ 属性 .railway_line_code_outer をもつ要素の配列（.railway_line_code_outer、長さ1）
-          //    railway_line_name_domain.children( '.railway_line_code_outer' ).each( function() {
-          $( this ).children( '.railway_line_code_outer' ).each( function() {
-            var railway_line_code_outer = $( this ) ;
-            width_of_railway_line_code_box = Math.max( railway_line_code_outer.outerWidth( true ) , width_of_railway_line_code_box ) ;
-            height_of_railway_line_code_box = Math.max( railway_line_code_outer.outerHeight( true ) , height_of_railway_line_code_box ) ;
-          });
+    DomainsCommonProcessor.prototype.max_inner_width = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = Math.max(len, $(this).innerWidth());
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.max_outer_height = function(setting) {
+      var len;
+      if (setting == null) {
+        setting = false;
+      }
+      len = 0;
+      this.domains.each(function() {
+        return len = Math.max(len, $(this).outerHeight(setting));
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.max_height = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = Math.max(len, $(this).height());
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.max_inner_height = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = Math.max(len, $(this).innerHeight());
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.sum_outer_width = function(setting) {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = len + $(this).outerWidth(setting);
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.sum_width = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = len + $(this).width();
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.sum_inner_width = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = len + $(this).innerWidth();
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.sum_outer_height = function(setting) {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = len + $(this).outerHeight(setting);
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.sum_height = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = len + $(this).height();
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.sum_inner_height = function() {
+      var len;
+      len = 0;
+      this.domains.each(function() {
+        return len = len + $(this).innerHeight();
+      });
+      return len;
+    };
+
+    DomainsCommonProcessor.prototype.set_all_of_uniform_width_to_max = function() {
+      var _max_width;
+      _max_width = this.max_outer_width(false);
+      this.set_css_attribute('width', _max_width);
+    };
+
+    DomainsCommonProcessor.prototype.sum_all_of_uniform_height_to_max = function() {
+      var _max_height;
+      _max_height = this.max_outer_height(false);
+      this.set_css_attribute('height', _max_height);
+    };
+
+    DomainsCommonProcessor.prototype.set_css_attribute = function(css_attribute, css_value) {
+      this.domains.each(function() {
+        $(this).css(css_attribute, css_value);
+      });
+    };
+
+    return DomainsCommonProcessor;
+
+  })();
+
+  window.DomainsCommonProcessor = DomainsCommonProcessor;
+
+}).call(this);
+(function() {
+  var MainContents;
+
+  MainContents = (function() {
+    var added_to_max_height, contents, left_contents, main_content_center, main_content_wide, max_height, padding_bottom_of_contents, padding_top_of_contents, right_contents;
+
+    function MainContents() {}
+
+    contents = function(v) {
+      return $('div#contents');
+    };
+
+    left_contents = function(v) {
+      return $('div#left_contents');
+    };
+
+    main_content_center = function(v) {
+      return $('div#main_content_center');
+    };
+
+    main_content_wide = function(v) {
+      return $('div#main_content_wide');
+    };
+
+    right_contents = function(v) {
+      return $('div#right_contents');
+    };
+
+    added_to_max_height = function(v) {
+      return 32;
+    };
+
+    padding_top_of_contents = function(v) {
+      return 8;
+    };
+
+    padding_bottom_of_contents = function(v) {
+      return 8;
+    };
+
+    max_height = function(v) {
+      var ary;
+      console.log('MainContents\#max_height');
+      ary = [left_contents(v).outerHeight(), main_content_center(v).outerHeight(), main_content_wide(v).outerHeight(), right_contents(v).outerHeight()];
+      console.log(ary);
+      return Math.max.apply(null, ary) + added_to_max_height(v);
+    };
+
+    MainContents.prototype.process = function() {
+      var _max_height;
+      console.log('MainContents\#process');
+      _max_height = max_height(this);
+      contents(this).css('height', _max_height + padding_top_of_contents(this) + padding_bottom_of_contents(this));
+      left_contents(this).css('height', _max_height);
+      main_content_center(this).css('height', _max_height);
+      main_content_wide(this).css('height', _max_height);
+      right_contents(this).css('height', _max_height);
+    };
+
+    return MainContents;
+
+  })();
+
+  window.MainContents = MainContents;
+
+}).call(this);
+(function() {
+  var RailwayLineAndStationMatrix;
+
+  RailwayLineAndStationMatrix = (function() {
+    var border_width, height_of_domain, normal_railway_lines, number_of_all_railway_lines, number_of_normal_railway_lines, number_of_railway_lines_in_each_row, number_of_rows_of_normal_railway_lines, number_of_special_railway_line_groups, outer_height_of_each_railway_line_box, process_normal_railway_lines, process_special_railway_lines, process_station_matrixes, railway_line_boxes, set_height_of_domain, set_new_width_to_main_content_center, special_railway_lines, width_of_each_normal_railway_line, width_of_each_special_railway_line_group, width_of_main_content_center;
+
+    function RailwayLineAndStationMatrix(domain) {
+      this.domain = domain != null ? domain : $("#railway_line_matrixes");
+    }
+
+    number_of_railway_lines_in_each_row = function(v) {
+      return 3;
+    };
+
+    border_width = function(v) {
+      return 1;
+    };
+
+    railway_line_boxes = function(v) {
+      return v.domain.children();
+    };
+
+    number_of_normal_railway_lines = function(v) {
+      return 9;
+    };
+
+    normal_railway_lines = function(v) {
+      return railway_line_boxes(v).slice(0, number_of_normal_railway_lines(v));
+    };
+
+    number_of_special_railway_line_groups = function(v) {
+      return railway_line_boxes(v).size() - number_of_normal_railway_lines(v);
+    };
+
+    special_railway_lines = function(v) {
+      return railway_line_boxes(v).slice(number_of_normal_railway_lines(v));
+    };
+
+    outer_height_of_each_railway_line_box = function(v) {
+      return normal_railway_lines(v).first().outerHeight();
+    };
+
+    width_of_main_content_center = function(v) {
+      return $('div#main_content_center').innerWidth();
+    };
+
+    width_of_each_normal_railway_line = function(v) {
+      var base, _in_each_row;
+      _in_each_row = number_of_railway_lines_in_each_row(v);
+      base = (width_of_main_content_center(v) - (_in_each_row + 1) * border_width(v)) * 1.0 / _in_each_row;
+      return Math.floor(base);
+    };
+
+    width_of_each_special_railway_line_group = function(v) {
+      var _in_each_row;
+      _in_each_row = number_of_railway_lines_in_each_row(v);
+      return width_of_each_normal_railway_line(v) * _in_each_row + ((_in_each_row - 1) * border_width(v));
+    };
+
+    number_of_rows_of_normal_railway_lines = function(v) {
+      var base, err;
+      err = 0.01;
+      base = number_of_normal_railway_lines(v) * 1.0 / number_of_railway_lines_in_each_row - err;
+      return Math.ceil(base);
+    };
+
+    number_of_all_railway_lines = function(v) {
+      return number_of_rows_of_normal_railway_lines(v) + number_of_special_railway_line_groups(v);
+    };
+
+    height_of_domain = function(v) {
+      var _border_width;
+      _border_width = border_width(v);
+      return number_of_all_railway_lines(v) * (outer_height_of_each_railway_line_box(v) - _border_width) + _border_width;
+    };
+
+    process_normal_railway_lines = function(v) {
+      var _width;
+      _width = width_of_each_normal_railway_line(v);
+      normal_railway_lines(v).each(function() {
+        var normal_railway_line_box;
+        normal_railway_line_box = new NormalRailwayLineBox($(this), _width);
+        normal_railway_line_box.process();
+      });
+    };
+
+    process_special_railway_lines = function(v) {
+      var _width;
+      _width = width_of_each_special_railway_line_group(v);
+      special_railway_lines(v).each(function() {
+        var special_railway_line_box;
+        special_railway_line_box = new SpecialRailwayLineBox($(this), _width);
+        special_railway_line_box.process();
+      });
+    };
+
+    set_height_of_domain = function(v) {
+      v.domain.css('height', height_of_domain(v));
+    };
+
+    set_new_width_to_main_content_center = function(v) {
+      var main_content_center, new_width;
+      main_content_center = $('div#main_content_center');
+      new_width = width_of_each_special_railway_line_group(v) + border_width(v) * 2;
+      main_content_center.css('width', new_width);
+    };
+
+    process_station_matrixes = function(v) {
+      var railway_line_domains, _border_width, _width_of_each_normal_railway_line, _width_of_main_content_center;
+      _width_of_main_content_center = width_of_main_content_center(v);
+      _width_of_each_normal_railway_line = width_of_each_normal_railway_line(v);
+      _border_width = border_width(v);
+      railway_line_domains = $("#station_matrixes").children();
+      railway_line_domains.each(function() {
+        var railway_line_domain, station_matrix_row;
+        railway_line_domain = $(this);
+        console.log('RailwayLineAndStationMatrix\#process_station_matrixes' + ' ' + railway_line_domain.attr('class'));
+        station_matrix_row = new StationMatrixRow(railway_line_domain, _width_of_main_content_center, _width_of_each_normal_railway_line, _border_width);
+        station_matrix_row.process();
+      });
+    };
+
+    RailwayLineAndStationMatrix.prototype.process = function() {
+      process_normal_railway_lines(this);
+      process_special_railway_lines(this);
+      set_height_of_domain(this);
+      set_new_width_to_main_content_center(this);
+      process_station_matrixes(this);
+    };
+
+    return RailwayLineAndStationMatrix;
+
+  })();
+
+  window.RailwayLineAndStationMatrix = RailwayLineAndStationMatrix;
+
+}).call(this);
+(function() {
+  var NormalRailwayLineBox, RailwayLineBoxBase, SpecialRailwayLineBox, SpecialRailwayLineBoxCodeBlock,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  RailwayLineBoxBase = (function() {
+    var height_of_railway_line_infos, inner_height, margin_top_and_bottom, railway_line_code, railway_line_name_text_en, railway_line_name_text_ja;
+
+    function RailwayLineBoxBase(domain, width) {
+      this.domain = domain;
+      this.width = width;
+    }
+
+    RailwayLineBoxBase.prototype.info = function() {
+      return this.domain.children('.info').first();
+    };
+
+    RailwayLineBoxBase.prototype.change_width = function() {
+      this.domain.css('width', this.width);
+    };
+
+    inner_height = function(v) {
+      return v.domain.innerHeight();
+    };
+
+    railway_line_code = function(v) {
+      return v.info().children().eq(0);
+    };
+
+    railway_line_name_text_ja = function(v) {
+      return v.info().children().eq(1);
+    };
+
+    railway_line_name_text_en = function(v) {
+      return v.info().children().eq(2);
+    };
+
+    height_of_railway_line_infos = function(v) {
+      return railway_line_code(v).outerHeight(true) + railway_line_name_text_ja(v).outerHeight(true) + railway_line_name_text_en(v).outerHeight(true);
+    };
+
+    margin_top_and_bottom = function(v) {
+      return (inner_height(v) - height_of_railway_line_infos(v)) * 0.5;
+    };
+
+    RailwayLineBoxBase.prototype.set_height_and_margin_of_info = function() {
+      var _info, _margin_top_and_bottom;
+      _info = this.info();
+      _margin_top_and_bottom = margin_top_and_bottom(this);
+      _info.css('height', height_of_railway_line_infos(this));
+      _info.css('margin-top', _margin_top_and_bottom).css('margin-bottom', _margin_top_and_bottom);
+    };
+
+    return RailwayLineBoxBase;
+
+  })();
+
+  NormalRailwayLineBox = (function(_super) {
+    var margin_of_railway_line_code_outer, railway_line_code_outer, set_margin_of_railway_line_code_outer, width_of_railway_line_code_outer;
+
+    __extends(NormalRailwayLineBox, _super);
+
+    function NormalRailwayLineBox() {
+      return NormalRailwayLineBox.__super__.constructor.apply(this, arguments);
+    }
+
+    railway_line_code_outer = function(v) {
+      return v.info().find('.railway_line_code_outer').first();
+    };
+
+    width_of_railway_line_code_outer = function(v) {
+      return railway_line_code_outer(v).outerWidth(true);
+    };
+
+    margin_of_railway_line_code_outer = function(v) {
+      return (v.width - width_of_railway_line_code_outer(v)) * 0.5;
+    };
+
+    set_margin_of_railway_line_code_outer = function(v) {
+      var _margin_of_railway_line_code_outer, _railway_line_code_outer;
+      _railway_line_code_outer = railway_line_code_outer(v);
+      _margin_of_railway_line_code_outer = margin_of_railway_line_code_outer(v);
+      railway_line_code_outer(v).css('margin-left', _margin_of_railway_line_code_outer).css('margin-right', _margin_of_railway_line_code_outer);
+    };
+
+    NormalRailwayLineBox.prototype.process = function() {
+      this.change_width();
+      set_margin_of_railway_line_code_outer(this);
+      this.set_height_and_margin_of_info();
+    };
+
+    return NormalRailwayLineBox;
+
+  })(RailwayLineBoxBase);
+
+  window.NormalRailwayLineBox = NormalRailwayLineBox;
+
+  SpecialRailwayLineBox = (function(_super) {
+    var domains_of_railway_line_code_outer, process_railway_line_codes, railway_line_codes, width_and_height_of_railway_line_codes;
+
+    __extends(SpecialRailwayLineBox, _super);
+
+    function SpecialRailwayLineBox() {
+      return SpecialRailwayLineBox.__super__.constructor.apply(this, arguments);
+    }
+
+    railway_line_codes = function(v) {
+      return v.info().children('.railway_line_codes').first();
+    };
+
+    domains_of_railway_line_code_outer = function(v) {
+      return railway_line_codes(v).find('.railway_line_code_outer');
+    };
+
+    width_and_height_of_railway_line_codes = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(domains_of_railway_line_code_outer(v));
+      return {
+        width: p.max_outer_width(true),
+        height: p.max_outer_height(true)
+      };
+    };
+
+    process_railway_line_codes = function(v) {
+      var size_of_railway_line_code_box, _railway_line_codes;
+      size_of_railway_line_code_box = width_and_height_of_railway_line_codes(v);
+      _railway_line_codes = railway_line_codes(v);
+      _railway_line_codes.css('height', size_of_railway_line_code_box.height);
+      _railway_line_codes.children().each(function() {
+        var railway_line_code_block;
+        railway_line_code_block = new SpecialRailwayLineBoxCodeBlock($(this), size_of_railway_line_code_box);
+        railway_line_code_block.process(_railway_line_codes);
+      });
+    };
+
+    SpecialRailwayLineBox.prototype.process = function() {
+      this.change_width();
+      process_railway_line_codes(this);
+      this.set_height_and_margin_of_info();
+    };
+
+    return SpecialRailwayLineBox;
+
+  })(RailwayLineBoxBase);
+
+  window.SpecialRailwayLineBox = SpecialRailwayLineBox;
+
+  SpecialRailwayLineBoxCodeBlock = (function() {
+    var height, margin_left_and_right_of_railway_line_code_block, railway_line_code_domains, set_height, set_margin_to_line_code_block, set_size_and_margin_to_each_railway_line_domain, width, width_of_railway_line_code_domain;
+
+    function SpecialRailwayLineBoxCodeBlock(domain, size) {
+      this.domain = domain;
+      this.size = size;
+    }
+
+    width = function(v) {
+      return v.size.width;
+    };
+
+    height = function(v) {
+      return v.size.height;
+    };
+
+    railway_line_code_domains = function(v) {
+      return v.domain.children();
+    };
+
+    set_height = function(v) {
+      v.domain.css('height', height(v));
+    };
+
+    set_size_and_margin_to_each_railway_line_domain = function(v) {
+      var margin;
+      margin = 4;
+      railway_line_code_domains(v).each(function() {
+        $(this).css('width', width(v)).css('height', height(v)).css('margin-left', margin).css('margin-right', margin);
+      });
+    };
+
+    width_of_railway_line_code_domain = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(railway_line_code_domains(v));
+      return p.sum_outer_width(true);
+    };
+
+    margin_left_and_right_of_railway_line_code_block = function(v, railway_line_codes) {
+      return (railway_line_codes.innerWidth() - width_of_railway_line_code_domain(v)) * 0.5;
+    };
+
+    set_margin_to_line_code_block = function(v, railway_line_codes) {
+      var _margin;
+      _margin = margin_left_and_right_of_railway_line_code_block(v, railway_line_codes);
+      v.domain.css('margin-left', _margin).css('margin-right', _margin);
+    };
+
+    SpecialRailwayLineBoxCodeBlock.prototype.process = function(railway_line_codes) {
+      set_height(this);
+      set_size_and_margin_to_each_railway_line_domain(this);
+      set_margin_to_line_code_block(this, railway_line_codes);
+    };
+
+    return SpecialRailwayLineBoxCodeBlock;
+
+  })();
+
+}).call(this);
+(function() {
+  var RailwayLineCode, RailwayLineCodeLetter, RailwayLineCodes;
+
+  RailwayLineCodes = (function() {
+    var move_letters_to_center;
+
+    function RailwayLineCodes(domains) {
+      this.domains = domains != null ? domains : $('div.railway_line_code_48 , div.railway_line_code_32 , div.railway_line_code_24 , div.railway_line_code_16');
+    }
+
+    move_letters_to_center = function(v) {
+      v.domains.each(function() {
+        var c;
+        c = new RailwayLineCode($(this));
+        c.move_letter_to_center();
+      });
+    };
+
+    RailwayLineCodes.prototype.process = function() {
+      move_letters_to_center(this);
+    };
+
+    return RailwayLineCodes;
+
+  })();
+
+  window.RailwayLineCodes = RailwayLineCodes;
+
+  RailwayLineCode = (function() {
+    var height, p_domains;
+
+    function RailwayLineCode(domain) {
+      this.domain = domain;
+    }
+
+    p_domains = function(v) {
+      return v.domain.children('p');
+    };
+
+    height = function(v) {
+      return v.domain.innerHeight();
+    };
+
+    RailwayLineCode.prototype.move_letter_to_center = function() {
+      var _height;
+      _height = height(this);
+      p_domains(this).each(function() {
+        var d;
+        d = new RailwayLineCodeLetter($(this), _height);
+        d.move_to_center();
+      });
+    };
+
+    return RailwayLineCode;
+
+  })();
+
+  RailwayLineCodeLetter = (function() {
+    var margin_top_and_bottom, outer_height;
+
+    function RailwayLineCodeLetter(domain, height_of_railway_line_code) {
+      this.domain = domain;
+      this.height_of_railway_line_code = height_of_railway_line_code;
+    }
+
+    outer_height = function(v) {
+      return v.domain.outerHeight(true);
+    };
+
+    margin_top_and_bottom = function(v) {
+      return (v.height_of_railway_line_code - outer_height(v)) * 0.5;
+    };
+
+    RailwayLineCodeLetter.prototype.move_to_center = function() {
+      var _margin_top_and_bottom;
+      _margin_top_and_bottom = margin_top_and_bottom(this);
+      this.domain.css('margin-top', _margin_top_and_bottom).css('margin-bottom', _margin_top_and_bottom);
+    };
+
+    return RailwayLineCodeLetter;
+
+  })();
+
+}).call(this);
+(function() {
+  var RailwayLineMatrixSmallInfo, StationGroup, StationMatrixRow;
+
+  StationMatrixRow = (function() {
+    var base_width_of_station_box, change_width, change_width_of_domain, change_width_of_railway_line_matrix_small, change_width_of_station_domain, domains_in_a_row, domains_of_stations_of_normal_railway_line, domains_of_stations_of_railway_line_including_branch_line, has_branch_line, height_of_domain_of_stations_of_normal_railway_line, info_domain_in_railway_line_matrix_small, new_height_of_domain_of_normal_railway_line, new_height_of_railway_line_matrix_small_of_normal_railway_line, padding_top_plus_bottom_of_domain_of_stations_of_normal_railway_line, process_elements_in_railway_line_info_in_railway_line_matrix_small, railway_line_matrix_small, set_height_of_domain_of_normal_railway_line, set_height_of_domain_of_normal_railway_line_matrix_small, set_height_of_station_domain_of_normal_railway_line, set_height_of_station_domains_of_railway_line_including_branch_line, set_margin_of_info_domain_in_railway_line_matrix_small, sum_height_of_station_domains_of_railway_line_including_branch_line, width_of_railway_line_matrix_small;
+
+    function StationMatrixRow(domain, width_of_main_content_center, width_of_each_normal_railway_line, border_width) {
+      this.domain = domain;
+      this.width_of_main_content_center = width_of_main_content_center;
+      this.width_of_each_normal_railway_line = width_of_each_normal_railway_line;
+      this.border_width = border_width;
+    }
+
+    width_of_railway_line_matrix_small = function(v) {
+      return v.width_of_each_normal_railway_line;
+    };
+
+    base_width_of_station_box = function(v) {
+      return v.width_of_main_content_center - (width_of_railway_line_matrix_small(v) + v.border_width * 2) - v.border_width;
+    };
+
+    domains_in_a_row = function(v) {
+      return v.domain.children();
+    };
+
+    has_branch_line = function(v) {
+      switch (domains_in_a_row(v).length) {
+        case 2 + 1:
+          return true;
+        case 1 + 1:
+          return false;
+        default:
+          console.log('StationMatrixRow\#has_branch ... Error');
+          alert('Error');
+          return false;
+      }
+    };
+
+    railway_line_matrix_small = function(v) {
+      return v.domain.children('.railway_line_matrix_small').first();
+    };
+
+    info_domain_in_railway_line_matrix_small = function(v) {
+      return railway_line_matrix_small(v).children('.info').first();
+    };
+
+    change_width = function(v) {};
+
+    change_width_of_domain = function(v) {
+      v.domain.css('width', v.width_of_main_content_center);
+    };
+
+    change_width_of_railway_line_matrix_small = function(v) {
+      var _width;
+      _width = width_of_railway_line_matrix_small(v);
+      console.log('StationMatrixRow\#change_width_of_railway_line_matrix_small' + ' ' + '\(width: ' + _width + ')');
+      railway_line_matrix_small(v).css('width', _width);
+    };
+
+    domains_of_stations_of_railway_line_including_branch_line = function(v) {
+      return v.domain.children('.stations_on_main_line , .stations_on_branch_line');
+    };
+
+    domains_of_stations_of_normal_railway_line = function(v) {
+      return v.domain.children('.stations').first();
+    };
+
+    change_width_of_station_domain = function(v) {
+      var station_group;
+      console.log('StationMatrixRow\#change_width_of_station_domain');
+      if (has_branch_line(v)) {
+        domains_of_stations_of_railway_line_including_branch_line(v).each(function() {
+          var station_group;
+          station_group = new StationGroup($(this), base_width_of_station_box(v));
+          station_group.process();
         });
-    }) ;
-  }) ;
-  return [ width_of_railway_line_code_box , height_of_railway_line_code_box ] ;
-}
+      } else {
+        station_group = new StationGroup(domains_of_stations_of_normal_railway_line(v), base_width_of_station_box(v));
+        station_group.process();
+      }
+    };
 
-// 属性 .railway_line_codes をもつ要素とその子孫要素の設定
-function setAttributesToLineCodesAndChildren( railway_line_codes , width_of_railway_line_code_box , height_of_railway_line_code_box ) {
-  // railway_line_codes.children() は、属性 .railway_line_codes をもつ要素の子要素の配列（.railway_line_code_block, 長さ 1）
-  railway_line_codes.children().each( function() {
-    // 属性 .railway_line_code_block をもつ要素
-    //   var railway_line_code_block = $( this ) ;
-    // .railway_line_code_block の高さを設定
-    //   railway_line_code_block.css( 'height' , height_of_railway_line_code_box ) ;
-    // 属性 .railway_line_code_block をもつ要素の子要素の配列 (.yurakucho , .fukutoshin)
-    //   var elements_of_railway_line_codes = railway_line_code_block.children() ;
-    // .yurakucho , .fukutoshin に幅と margin を設定
-    //   setAttributesToLineDomain( width_of_railway_line_code_box , height_of_railway_line_code_box , elements_of_railway_line_codes ) ;
-    // .railway_line_code_block の margin を設定
-    //   setMarginToLineCodeBlock( railway_line_codes , railway_line_code_block , elements_of_railway_line_codes ) ;
-    $( this ).css( 'height' , height_of_railway_line_code_box ) ;
-    var elements_of_railway_line_codes = $( this ).children() ;
-    setAttributesToLineDomain( width_of_railway_line_code_box , height_of_railway_line_code_box , elements_of_railway_line_codes ) ;
-    setMarginToLineCodeBlock( railway_line_codes , $( this ) , elements_of_railway_line_codes ) ;
-  });
-}
+    process_elements_in_railway_line_info_in_railway_line_matrix_small = function(v) {
+      var matrix;
+      console.log('StationMatrixRow\#process_elements_in_railway_line_info_in_railway_line_matrix_small');
+      console.log(info_domain_in_railway_line_matrix_small(v).attr('class'));
+      matrix = new RailwayLineMatrixSmallInfo(info_domain_in_railway_line_matrix_small(v));
+      matrix.set_height_and_vertical_align_center();
+    };
 
+    sum_height_of_station_domains_of_railway_line_including_branch_line = function(v) {
+      var p;
+      console.log('StationMatrixRow\#sum_height_of_station_domains_of_railway_line_including_branch_line');
+      p = new DomainsCommonProcessor(domains_of_stations_of_railway_line_including_branch_line(v));
+      return p.sum_inner_height();
+    };
 
-// .yurakucho , .fukutoshin に幅と margin を設定する関数
-function setAttributesToLineDomain( width_of_railway_line_code_box , height_of_railway_line_code_box , elements_of_railway_line_codes ) {
-  elements_of_railway_line_codes.each( function() {
-    // .yurakucho または .fukutoshin
-    //  var line_domain = $( this ) ;
-    // margin の大きさ
-    //    const margin = 4 ;
-    //  line_domain.css( 'width' , width_of_railway_line_code_box ).css( 'height' , height_of_railway_line_code_box ).css( 'margin-left' , margin ).css( 'margin-right' , margin ) ;
+    set_height_of_station_domains_of_railway_line_including_branch_line = function(v) {
+      var sum_height, _railway_line_matrix_small;
+      console.log('StationMatrixRow\#set_height_of_station_domains_of_railway_line_including_branch_line');
+      _railway_line_matrix_small = railway_line_matrix_small(v);
+      sum_height = sum_height_of_station_domains_of_railway_line_including_branch_line(v);
+      if (_railway_line_matrix_small.outerHeight(true) < sum_height) {
+        _railway_line_matrix_small.css('height', sum_height);
+      } else {
+        console.log('Error: StationMatrixRow\#set_height_of_station_domains_of_railway_line_including_branch_line');
+        alert('Error');
+      }
+    };
 
-    const margin = 4 ;
-    $( this ).css( 'width' , width_of_railway_line_code_box ).css( 'height' , height_of_railway_line_code_box ).css( 'margin-left' , margin ).css( 'margin-right' , margin ) ;
-  }) ;
-}
+    new_height_of_domain_of_normal_railway_line = function(v) {
+      var h;
+      h = Math.max(railway_line_matrix_small(v).outerHeight(true), domains_of_stations_of_normal_railway_line(v).outerHeight(true));
+      console.log('StationMatrixRow\#new_height_of_domain_of_normal_railway_line' + ' ' + '(height:' + h + ')');
+      return h;
+    };
 
-// .railway_line_code_block の margin を設定
-function setMarginToLineCodeBlock( railway_line_codes , railway_line_code_block , elements_of_railway_line_codes ) {
-  // .railway_line_code_block の幅を取得
-  var width_of_railway_line_code_block = getWidthOfLineCodeBlock( elements_of_railway_line_codes ) ;
-  // .railway_line_code_block の margin を決定
-  var margin_of_railway_line_code_block = ( railway_line_codes.innerWidth() - width_of_railway_line_code_block ) * 0.5 ;
-  railway_line_code_block.css( 'margin-left' , margin_of_railway_line_code_block ).css( 'margin-right' , margin_of_railway_line_code_block ) ;
-}
+    set_height_of_domain_of_normal_railway_line = function(v) {
+      return v.domain.css('height', new_height_of_domain_of_normal_railway_line(v));
+    };
 
-// .railway_line_code_block の幅を取得する関数
-function getWidthOfLineCodeBlock( elements_of_railway_line_codes ) {
-  var width_of_railway_line_code_block = 0 ;
-  elements_of_railway_line_codes.each( function() {
-    // var line_domain = $( this ) ;
-    // width_of_railway_line_code_block = width_of_railway_line_code_block + line_domain.outerWidth( true ) ;
-    width_of_railway_line_code_block = width_of_railway_line_code_block + $( this ).outerWidth( true ) ;
-  });
-  return width_of_railway_line_code_block ;
-}
-;
-//-------- #railway_line_matrix の高さの設定
-function setHeightOfLineMatrixes( selector , normal_railway_lines , line_division , number_of_special_railway_lines , outer_height_of_each_line , width_of_border ) {
-  // 一般路線の行の数
-  var number_of_rows_of_normal_railway_lines = Math.ceil( ( normal_railway_lines.size() * 1.0 ) / line_division - 0.01 ) ;
-  // 全体の行の数
-  var number_of_rows_whole = number_of_rows_of_normal_railway_lines + number_of_special_railway_lines ;
-  // 高さ
-  var height_of_lines = number_of_rows_whole * ( outer_height_of_each_line - width_of_border ) + width_of_border ;
-  // $( selector ).each( function() {
-    // $( this ).css( 'height' , height_of_lines + 'px' ) ;
-  // }) ;
-  $( selector ).css( 'height' , height_of_lines + 'px' ) ;
-}
-;
-function changeAttributesOfBoxesInStationMatrixes( selector_for_station_matrixes , width_of_main_content_center , width_of_each_normal_railway_line , width_of_border ) {
-  // 各路線の要素 (.railway_lines) の要素の集合
-  var railway_lines = $( selector_for_station_matrixes ).children() ;
+    new_height_of_railway_line_matrix_small_of_normal_railway_line = function(v) {
+      var h;
+      h = new_height_of_domain_of_normal_railway_line(v) - v.border_width;
+      console.log('StationMatrixRow\#new_height_of_railway_line_matrix_small_of_normal_railway_line' + ' ' + '(height:' + h + ')');
+      return h;
+    };
 
-  var width_of_main_content_center = $( '#main_content_center' ).innerWidth() ;
-  var width_of_railway_line_matrix = width_of_each_normal_railway_line ; // Math.floor( width_of_each_normal_railway_line * 1.0 / goldenRatio ) ;
-  var width_of_stations = width_of_main_content_center - ( width_of_railway_line_matrix + width_of_border * 2 )  - width_of_border ;
+    set_height_of_domain_of_normal_railway_line_matrix_small = function(v) {
+      railway_line_matrix_small(v).css('height', new_height_of_railway_line_matrix_small_of_normal_railway_line(v));
+    };
 
-  railway_lines.each( function() {
-    var a_railway_line = $( this ) ;
-    var contents_in_a_railway_line = a_railway_line.children() ;
-    var railway_line_matrix = contents_in_a_railway_line.eq(0) ;
-    var stations = contents_in_a_railway_line.eq(1) ;
+    padding_top_plus_bottom_of_domain_of_stations_of_normal_railway_line = function(v) {
+      var d;
+      d = domains_of_stations_of_normal_railway_line(v);
+      return d.innerHeight() - d.height();
+    };
 
-    // railway_line_matrix, stations それぞれの長さを設定し、a_railway_line の長さも微調整する
-    changeWidth( a_railway_line , width_of_main_content_center ) ;
-    changeWidth( railway_line_matrix , width_of_railway_line_matrix ) ;
-    changeWidth( stations , width_of_stations - ( stations.innerWidth() - stations.width() ) ) ; // - width_of_border * 2  ;
+    height_of_domain_of_stations_of_normal_railway_line = function(v) {
+      return new_height_of_domain_of_normal_railway_line(v) - (v.border_width + padding_top_plus_bottom_of_domain_of_stations_of_normal_railway_line(v));
+    };
 
-    // railway_line_matrix 内部の要素を操作する
-    var info = railway_line_matrix.children( '.info' ).first() ;
+    set_height_of_station_domain_of_normal_railway_line = function(v) {
+      console.log('StationMatrixRow\#set_height_of_station_domain_of_normal_railway_line');
+      domains_of_stations_of_normal_railway_line(v).css('height', height_of_domain_of_stations_of_normal_railway_line(v));
+    };
 
-    var railway_line_code_outer = info.children( '.railway_line_code_outer' ).first() ;
-    var text = info.children( '.text' ).first() ;
+    set_margin_of_info_domain_in_railway_line_matrix_small = function(v) {
+      var matrix;
+      matrix = new RailwayLineMatrixSmallInfo(info_domain_in_railway_line_matrix_small(v));
+      matrix.set_margin_top_and_bottom(railway_line_matrix_small(v).innerHeight());
+    };
 
+    StationMatrixRow.prototype.process = function() {
+      console.log('StationMatrixRow\#process');
+      change_width_of_domain(this);
+      change_width_of_railway_line_matrix_small(this);
+      change_width_of_station_domain(this);
+      process_elements_in_railway_line_info_in_railway_line_matrix_small(this);
+      if (has_branch_line(this)) {
+        set_height_of_station_domains_of_railway_line_including_branch_line(this);
+      } else {
+        set_height_of_domain_of_normal_railway_line(this);
+        set_height_of_domain_of_normal_railway_line_matrix_small(this);
+        set_height_of_station_domain_of_normal_railway_line(this);
+      }
+      set_margin_of_info_domain_in_railway_line_matrix_small(this);
+    };
 
-    var info_height = Math.max( railway_line_code_outer.outerHeight( true ) , text.outerHeight( true ) ) ;
+    return StationMatrixRow;
 
-    var margin_of_railway_line_code_outer = ( info_height - railway_line_code_outer.outerHeight() ) * 0.5 ;
-    var margin_of_text = ( info_height - text.outerHeight() ) * 0.5 ;
+  })();
 
-    // info 領域の高さを設定し、railway_line_code_outer と text の上下方向の位置を中心揃えにする
-    railway_line_code_outer.css( 'margin-top' , margin_of_railway_line_code_outer ).css( 'margin-bottom' , margin_of_railway_line_code_outer ) ;
-    text.css( 'margin-top' , margin_of_text ).css( 'margin-bottom' , margin_of_text ) ;
+  window.StationMatrixRow = StationMatrixRow;
 
-    info.css( 'height' , info_height ) ;
+  RailwayLineMatrixSmallInfo = (function() {
+    var height, margin_of_railway_line_code_outer, margin_of_text, railway_line_code_outer, text;
 
-    // railway_line_matrix , stations , a_railway_line それぞれの高さを揃える
-    var height_of_contents = Math.max( railway_line_matrix.outerHeight( true ) , stations.outerHeight( true ) ) ;
-    a_railway_line.css( 'height' , height_of_contents ) ;
-    railway_line_matrix.css( 'height' , height_of_contents - width_of_border * 2 ) ;
-    stations.css( 'height' , height_of_contents - width_of_border * 2 - ( stations.innerHeight() - stations.height() ) ) ;
+    function RailwayLineMatrixSmallInfo(domain) {
+      this.domain = domain;
+    }
 
-    // info 領域の上下の margin を変更
-    var margin_of_info = ( railway_line_matrix.innerHeight() - info_height ) * 0.5 ;
-    info.css( 'margin-top' , margin_of_info ).css( 'margin-bottom' , margin_of_info )
-  });
-}
-;
-function changeAttibutesOfBoxesInTrainInformation( width_of_each_normal_railway_line ) {
-  var train_information_domain = $( "#train_informations" ) ;
-  // changeAttibutesOfLineMatrixDomainInTrainInformation( train_information_domain , width_of_each_normal_railway_line ) ;
+    railway_line_code_outer = function(v) {
+      return v.domain.children('.railway_line_code_outer').first();
+    };
 
-  var width_and_height_of_status = determineWidthOfStatusInTrainInformation( train_information_domain ) ;
-  var width_of_status = width_and_height_of_status[0] ;
-  var height_of_status = width_and_height_of_status[1] ;
+    text = function(v) {
+      return v.domain.children('.text').first();
+    };
 
-  train_information_domain.children().each( function() {
-    var train_information = $( this );
-    var status = train_information.children().eq(1) ;
-    status.css( 'width' , width_of_status ) ;
-    status.css( 'height' , height_of_status ) ;
-  });
-}
+    height = function(v, _railway_line_code_outer) {
+      if (_railway_line_code_outer == null) {
+        _railway_line_code_outer = railway_line_code_outer(v);
+      }
+      return Math.max(_railway_line_code_outer.outerHeight(true), text(v).outerHeight(true));
+    };
 
-function changeAttibutesOfLineMatrixDomainInTrainInformation( train_information_domain , width_of_each_normal_railway_line ) {
-  train_information_domain.children().each( function() {
-    var train_information = $( this );
-    var railway_line_matrix = train_information.children().eq(0) ;
+    margin_of_railway_line_code_outer = function(v, _railway_line_code_outer) {
+      if (_railway_line_code_outer == null) {
+        _railway_line_code_outer = railway_line_code_outer(v);
+      }
+      return (height(v, _railway_line_code_outer) - _railway_line_code_outer.outerHeight()) * 0.5;
+    };
 
-    var railway_line_matrix_info_domain = railway_line_matrix.children().first() ;
-    var railway_line_code_outer = railway_line_matrix_info_domain.children().eq(0) ;
-    var railway_line_text = railway_line_matrix_info_domain.children().eq(1) ;
+    margin_of_text = function(v, _railway_line_code_outer) {
+      if (_railway_line_code_outer == null) {
+        _railway_line_code_outer = railway_line_code_outer(v);
+      }
+      return (height(v, _railway_line_code_outer) - text(v).outerHeight) * 0.5;
+    };
 
-    changeAttibutesOfLineMatrixDomainInTrainInformationSub( railway_line_matrix , width_of_each_normal_railway_line , railway_line_matrix_info_domain , railway_line_code_outer , railway_line_text ) ;
-    changeWidthAndMarginOfLineMatrixInfoDomain( width_of_each_normal_railway_line , railway_line_matrix_info_domain ) ;
-  });
-}
+    RailwayLineMatrixSmallInfo.prototype.set_height_and_vertical_align_center = function() {
+      var _margin_of_railway_line_code_outer, _margin_of_text, _railway_line_code_outer;
+      _railway_line_code_outer = railway_line_code_outer(this);
+      _margin_of_railway_line_code_outer = margin_of_railway_line_code_outer(this, _railway_line_code_outer);
+      _margin_of_text = margin_of_text(this, _railway_line_code_outer);
+      _railway_line_code_outer.css('margin-top', _margin_of_railway_line_code_outer).css('margin-bottom', _margin_of_railway_line_code_outer);
+      text(this).css('margin-top', _margin_of_text).css('margin-bottom', _margin_of_text);
+      this.domain.css('height', height(this, _railway_line_code_outer));
+    };
 
-function changeAttibutesOfLineMatrixDomainInTrainInformationSub( railway_line_matrix , width_of_each_normal_railway_line , railway_line_matrix_info_domain , railway_line_code_outer , railway_line_text ) {
-  var railway_line_matrix_info_padding_top_and_bottom = 4 ;
-  var railway_line_matrix_info_height = Math.max( railway_line_code_outer.outerHeight( true ) , railway_line_text.outerHeight( true ) ) + railway_line_matrix_info_padding_top_and_bottom * 2 ;
-  railway_line_matrix_info_domain.css( 'height' , railway_line_matrix_info_height ) ;
-  railway_line_matrix.css( 'height' , railway_line_matrix_info_height ) ;
-  railway_line_matrix.css( 'padding-top' , railway_line_matrix_info_padding_top_and_bottom ) ;
-  railway_line_matrix.css( 'padding-bottom' , railway_line_matrix_info_padding_top_and_bottom ) ;
-  railway_line_matrix.css( 'width' , width_of_each_normal_railway_line ) ;
+    RailwayLineMatrixSmallInfo.prototype.set_margin_top_and_bottom = function(railway_line_matrix_small_inner_height) {
+      var margin_top_and_bottom;
+      console.log('RailwayLineMatrixSmallInfo\#set_margin');
+      margin_top_and_bottom = (railway_line_matrix_small_inner_height - this.domain.outerHeight()) * 0.5;
+      this.domain.css('margin-top', margin_top_and_bottom).css('margin-bottom', margin_top_and_bottom);
+    };
 
-  railway_line_matrix_info_domain.css( 'width' , Math.ceil( railway_line_code_outer.outerWidth( true ) + railway_line_text.outerWidth( true ) ) ) ;
-}
+    return RailwayLineMatrixSmallInfo;
 
-function changeWidthAndMarginOfLineMatrixInfoDomain( width_of_each_normal_railway_line , railway_line_matrix_info_domain ) {
-  var width_of_railway_line_matrix_info_domain = railway_line_matrix_info_domain.outerWidth( true ) ;
-  var railway_line_matrix_info_domain_margin_left_and_right = Math.floor( ( width_of_each_normal_railway_line - width_of_railway_line_matrix_info_domain ) * 0.5 ) ;
-  railway_line_matrix_info_domain.css( 'margin-left' , railway_line_matrix_info_domain_margin_left_and_right ) ;
-  railway_line_matrix_info_domain.css( 'margin-right' , railway_line_matrix_info_domain_margin_left_and_right ) ;
-}
+  })();
 
-function determineWidthOfStatusInTrainInformation( train_information_domain ) {
-  var width_of_railway_line_matrix = 0 ;
-  var height_of_railway_line_matrix = 0 ;
-  train_information_domain.children().each( function() {
-    width_of_railway_line_matrix = Math.max( width_of_railway_line_matrix , $( this ).children().eq(0).outerWidth( true ) ) ;
-    height_of_railway_line_matrix = Math.max( height_of_railway_line_matrix , $( this ).children().eq(0).innerHeight() ) ;
-  });
-  var width_of_status = train_information_domain.innerWidth() - width_of_railway_line_matrix - 2 ;
-  var height_of_railway_line_matrix = height_of_railway_line_matrix ;
-  return [ width_of_status , height_of_railway_line_matrix ] ;
-}
-;
-// 路線記号の文字の垂直方向の位置を、円の中心へ
-// 記号すべて
-function moveLineCodeLettersToCenter() {
-  $( 'div.railway_line_code_48 , div.railway_line_code_32 , div.railway_line_code_24 , div.railway_line_code_16' ).each( function() {
-    moveEachLineCodeLetterToCenter( $( this ) ) ;
-  }) ;
-}
+  StationGroup = (function() {
+    var width_of_domain;
 
-// 路線記号の文字の垂直方向の位置を、円の中心へ
-// それぞれの記号
-function moveEachLineCodeLetterToCenter( jq ) {
-  // .railway_line_code の高さ (innnerHeight) を取得
-  var height_of_railway_line_code = jq.innerHeight() ;
-  // .railway_line_code の子要素である p タグを操作
-  jq.children('p').each( function() {
-    var p_domain = $( this ) ;
-    // p タグの高さ (outerHeight) を取得
-    var height_of_p = p_domain.outerHeight( true ) ;
-    // p タグの上下の margin を決定
-    var margin_of_p = ( ( height_of_railway_line_code - height_of_p ) * 0.5 ) + 'px' ;
-    // p タグの上下の margin を適用
-    p_domain.css( 'marginTop' , margin_of_p ).css( 'marginBottom' , margin_of_p ) ;
-  }) ;
-}
-;
-//-------- メイン要素の操作
-function processMainContents() {
-  //-------- メイン要素の高さを揃える
-  setHeightOfMainContents() ;
-}
+    function StationGroup(domain, base_width_of_station_box) {
+      this.domain = domain;
+      this.base_width_of_station_box = base_width_of_station_box;
+    }
 
-//-------- メイン要素の高さを揃える
-function setHeightOfMainContents() {
-  // 高さ (outerHeight) の最大値（初期設定）
-  var maxHeight = 0 ;
-  // div#left_contents の高さ (outerHeight)
-  var height_of_left_contents = $( 'div#left_contents' ).outerHeight() ;
-  // div#main_content_center の高さ (outerHeight)
-  var height_of_main_content_center = $( 'div#main_content_center' ).outerHeight() ;
-  // div#main_content_wide の高さ (outerHeight)
-  var height_of_main_content_wide = $( 'div#main_content_wide' ).outerHeight() ;
-  // div#right_contents の高さ (outerHeight)
-  var height_of_right_contents = $( 'div#right_contents' ).outerHeight() ;
-  // 高さ (outerHeight) の最大値
-  // ---- 【注意】実際の最大値に 64px を加える
-  maxHeight = Math.max( maxHeight , height_of_left_contents , height_of_main_content_center , height_of_main_content_wide , height_of_right_contents ) + 32 ;
+    width_of_domain = function(v) {
+      return v.base_width_of_station_box - (v.domain.innerWidth() - v.domain.width());
+    };
 
-  var padding_top_of_contents = 8 ; // $( 'div#contents' ).paddingTop ;
-  var padding_bottom_of_contents = 8 ; // $( 'div#contents' ).paddingBottom ;
+    StationGroup.prototype.process = function() {
+      this.domain.css('width', width_of_domain(this));
+    };
 
-  // div#main_content , div#list_of_contents , div#main_content_center の各要素に高さを設定
-  $('div#contents').css( 'height' , maxHeight + padding_top_of_contents + padding_bottom_of_contents );
-  $('div#left_contents').css( 'height' , maxHeight );
-  $('div#main_content_center').css( 'height' , maxHeight );
-  $('div#main_content_wide').css( 'height' , maxHeight );
-  $('div#right_contents').css( 'height' , maxHeight );
-}
-;
-function processStationFacilityInfos() {
-  var station_facility_info = $( '#station_facility_info' ) ;
-  station_facility_info.children().each( function() {
-    var content = $( this ) ; // escalator , elevator , toilet , ...
-    setTitleHeightOfEachStationFacility( content ) ;
-    setInsideAndOutsideDomain( content ) ;
-    setAllOfUniformWidthToMax( content.find( '.operation_day' ) ) ;
-    setAllOfUniformWidthToMax( content.find( '.service_time' ) ) ;
-    setAllOfUniformWidthToMax( content.find( '.remark' ) ) ;
-  });
+    return StationGroup;
 
-  var domains_of_inside_and_outside = station_facility_info.find( '.inside , .outside' ) ;
-  var title_width = getMaxOuterWidth( domains_of_inside_and_outside , true ) ;
-  setCssAttributesToEachDomain( domains_of_inside_and_outside.find( '.title' ) , 'width' , title_width ) ;
+  })();
 
-  domains_of_inside_and_outside.each( function() {
-    var margin_left = $( this ).marginLeft ;
-    $( this ).css( 'margin-right' , 0 ) ;
-    $( this ).css( 'width' , title_width - margin_left ) ;
-  });
-}
-
-function setTitleHeightOfEachStationFacility( content ) {
-  var title = content.children( '.title' ).first() ;
-  var title_text_ja = title.children().eq(0) ;
-  // var title_text_en = title.children().eq(1) ;
-
-  // var title_height = Math.max( title_text_ja.height() , title_text_en.height() );
-  // var title_text_ja_margin_top = title_height - title_text_ja.height() ;
-  // var title_text_en_margin_top = title_height - title_text_en.height() ;
-  var title_height = title_text_ja.height() ;
-
-  // title_text_ja.css( 'margin-top' , title_text_ja_margin_top ) ;
-  // title_text_en.css( 'margin-top' , title_text_en_margin_top ) ;
-  title.css( 'height' , title_height ) ;
-}
-
-function setInsideAndOutsideDomain( content ) {
-  var inside_and_outside = content.children( '.inside , .outside' ) ;
-  inside_and_outside.each( function() {
-    var domain = $( this ) ;
-    setTitleHeightOfEachStationFacility( domain ) ;
-  });
-
-  inside_and_outside.children( '.facility' ).each( function() {
-    var facility = $( this ) ;
-    var number = facility.children().eq(0) ;
-    var info = facility.children().eq(1) ;
-
-    var service_details = info.children( '.service_details' ).first() ;
-    service_details.children().each( function() {
-      var service_detail = $( this ) ;
-
-      var escalator_directions = service_detail.children( '.escalator_directions' ).first() ;
-      escalator_directions.css( 'height' , getMaxOuterHeight( escalator_directions.children() , true ) ) ;
-
-      service_detail.css( 'height' , getMaxOuterHeight( service_detail.children() , true ) ) ;
-    });
-
-    var toilet_assistants = info.children( '.toilet_assistants' ).first() ;
-    toilet_assistants.css( 'height' , getMaxOuterHeight( toilet_assistants.children() , true ) ) ;
-    
-    var info_height = getSumOuterHeight( info.children() , true ) ;
-    info.css( 'height' , info_height ) ;
-    var facility_height = Math.max( number.outerHeight( true ) , info_height ) ;
-    facility.css( 'height' , facility_height ) ;
-  });
-
-  var content_height = getSumOuterHeight( content.children() , true ) ;
-  content.css( 'height' , content_height ) ;
-}
-;
+}).call(this);
 (function() {
+  var TabUl;
 
+  TabUl = (function() {
+    function TabUl(ul) {
+      this.ul = ul;
+    }
+
+    TabUl.prototype.li_contents = function() {
+      console.log('TabUl\#li_contents');
+      return this.ul.children('li');
+    };
+
+    TabUl.prototype.process = function() {
+      var p;
+      console.log('TabUl\#process');
+      p = new DomainsCommonProcessor(this.li_contents());
+      this.ul.css('height', p.max_outer_height(true));
+    };
+
+    return TabUl;
+
+  })();
+
+  window.TabUl = TabUl;
+
+}).call(this);
+(function() {
+  var TopContent;
+
+  TopContent = (function() {
+    var margin_top_and_bottom_of_text, margin_top_of_now_developing, now_developing, text, title;
+
+    function TopContent(domain) {
+      this.domain = domain != null ? domain : $('div#top_content');
+    }
+
+    text = function(v) {
+      return v.domain.children('.text').first();
+    };
+
+    title = function(v) {
+      return text(v).children('.title').first();
+    };
+
+    now_developing = function(v) {
+      return text(v).children('.now_developing').first();
+    };
+
+    margin_top_of_now_developing = function(v) {
+      return title(v).outerHeight() - now_developing(v).outerHeight();
+    };
+
+    margin_top_and_bottom_of_text = function(v) {
+      return (v.domain.innerHeight() - title(v).outerHeight()) * 0.5;
+    };
+
+    TopContent.prototype.process = function() {
+      var _margin_top_and_bottom_of_text;
+      now_developing(this).css('margin-top', margin_top_of_now_developing(this));
+      _margin_top_and_bottom_of_text = margin_top_and_bottom_of_text(this);
+      text(this).css('margin-top', _margin_top_and_bottom_of_text).css('margin-bottom', _margin_top_and_bottom_of_text);
+    };
+
+    return TopContent;
+
+  })();
+
+  window.TopContent = TopContent;
+
+}).call(this);
+(function() {
+  var ColorInfoInDocumentEachTop, ColorInfosInDocument, Document, LinkToDocumentContents, LinkToEachDocument, TrainTypeInDocument, TrainTypesInDocument;
+
+  Document = (function() {
+    function Document() {}
+
+    Document.prototype.process = function() {
+      var color_infos_in_document, link_to_document_contents, train_types_in_document;
+      link_to_document_contents = new LinkToDocumentContents();
+      color_infos_in_document = new ColorInfosInDocument();
+      train_types_in_document = new TrainTypesInDocument();
+      link_to_document_contents.process();
+      color_infos_in_document.process();
+      train_types_in_document.process();
+    };
+
+    return Document;
+
+  })();
+
+  window.Document = Document;
+
+  LinkToDocumentContents = (function() {
+    var content_name_domains, process_domain, process_each_content, width_of_content_name;
+
+    function LinkToDocumentContents(domain) {
+      this.domain = domain != null ? domain : $('#links_to_datas');
+    }
+
+    content_name_domains = function(v) {
+      return v.domain.find('.content_name');
+    };
+
+    width_of_content_name = function(v) {
+      var p;
+      console.log('LinkToDocumentContents\#width_of_content_name');
+      p = new DomainsCommonProcessor(content_name_domains(v).children());
+      return p.max_width();
+    };
+
+    process_domain = function(v) {
+      var p, _content_name_domains;
+      _content_name_domains = content_name_domains(v);
+      p = new DomainsCommonProcessor(_content_name_domains);
+      p.set_css_attribute('width', width_of_content_name(v));
+      p.set_css_attribute('margin-right', 16);
+    };
+
+    process_each_content = function(v) {
+      console.log('LinkToDocumentContents\#process_each_content');
+      v.domain.children().each(function() {
+        var d;
+        console.log($(this));
+        d = new LinkToEachDocument($(this));
+        d.process();
+      });
+    };
+
+    LinkToDocumentContents.prototype.process = function() {
+      console.log('LinkToDocumentContents\#process');
+      process_each_content(this);
+      process_domain(this);
+    };
+
+    return LinkToDocumentContents;
+
+  })();
+
+  LinkToEachDocument = (function() {
+    var content_name, height_of_content_name, margin_top_of_model_name_text_en, model_name_text_en, text;
+
+    function LinkToEachDocument(domain) {
+      this.domain = domain;
+    }
+
+    text = function(v) {
+      return v.domain.children('.text').first();
+    };
+
+    content_name = function(v) {
+      return text(v).children('.content_name').first();
+    };
+
+    model_name_text_en = function(v) {
+      return text(v).children('.model_name.text_en').first();
+    };
+
+    height_of_content_name = function(v) {
+      return content_name(v).innerHeight();
+    };
+
+    margin_top_of_model_name_text_en = function(v) {
+      return height_of_content_name(v) - model_name_text_en(v).innerHeight();
+    };
+
+    LinkToEachDocument.prototype.process = function() {
+      var _text;
+      _text = text(this);
+      model_name_text_en(this).css('margin-top', margin_top_of_model_name_text_en(this));
+      _text.css('height', height_of_content_name(this));
+      this.domain.css('height', _text.outerHeight(true));
+    };
+
+    return LinkToEachDocument;
+
+  })();
+
+  ColorInfosInDocument = (function() {
+    var top_contents;
+
+    function ColorInfosInDocument(domain) {
+      this.domain = domain != null ? domain : $('div#railway_lines');
+    }
+
+    top_contents = function(v) {
+      return v.domain.find('.top');
+    };
+
+    ColorInfosInDocument.prototype.process = function() {
+      top_contents(this).each(function() {
+        var d;
+        d = new ColorInfoInDocumentEachTop($(this));
+        d.process();
+      });
+    };
+
+    return ColorInfosInDocument;
+
+  })();
+
+  ColorInfoInDocumentEachTop = (function() {
+    var color_info, height_of_top_domain, margin_top_of_color_info;
+
+    function ColorInfoInDocumentEachTop(domain) {
+      this.domain = domain;
+    }
+
+    height_of_top_domain = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.domain);
+      return p.sum_outer_height(true);
+    };
+
+    color_info = function(v) {
+      return v.domain.children('.color_info').first();
+    };
+
+    margin_top_of_color_info = function(v) {
+      return height_of_top_domain(v) - color_info(v).outerHeight(true);
+    };
+
+    ColorInfoInDocumentEachTop.prototype.process = function() {
+      color_info(this).css('margin-top', margin_top_of_color_info(this));
+      this.domain.css('height', height_of_top_domain(this));
+    };
+
+    return ColorInfoInDocumentEachTop;
+
+  })();
+
+  TrainTypesInDocument = (function() {
+    var document_info_boxes, max_width_of_train_type_name;
+
+    function TrainTypesInDocument(domain) {
+      this.domain = domain != null ? domain : $('#train_types');
+    }
+
+    document_info_boxes = function(v) {
+      return v.domain.find('.document_info_box_wide');
+    };
+
+    max_width_of_train_type_name = function(v) {
+      var len;
+      len = 0;
+      document_info_boxes(v).each(function() {
+        var train_type;
+        train_type = new TrainTypeInDocument($(this));
+        len = Math.max(train_type.train_type_name().outerWidth(), len);
+      });
+      return len;
+    };
+
+    TrainTypesInDocument.prototype.process = function() {
+      var _max_width_of_train_type_name;
+      _max_width_of_train_type_name = max_width_of_train_type_name(this);
+      document_info_boxes(this).each(function() {
+        var train_type;
+        train_type = new TrainTypeInDocument($(this));
+        train_type.train_type_name().css('width', _max_width_of_train_type_name);
+      });
+    };
+
+    return TrainTypesInDocument;
+
+  })();
+
+  TrainTypeInDocument = (function() {
+    function TrainTypeInDocument(domain) {
+      this.domain = domain;
+    }
+
+    TrainTypeInDocument.prototype.train_type_name = function() {
+      return this.domain.children('.train_type_name').first();
+    };
+
+    return TrainTypeInDocument;
+
+  })();
 
 }).call(this);
 (function() {
@@ -12035,225 +12758,31 @@ function setInsideAndOutsideDomain( content ) {
 
 }).call(this);
 (function() {
-  var changeMarginOfLineBoxInfoDomain, changeWidth, getMaxHeight, getMaxOuterHeight, getMaxOuterWidth, getMaxWidth, getSumHeight, getSumOuterHeight, getSumOuterWidth, getSumWidth, setAllOfUniformHeightToMax, setAllOfUniformWidthToMax, setCssAttributesToEachDomain;
-
-  changeWidth = function(jq, length) {
-    jq.css('width', length + 'px');
-  };
-
-  window.changeWidth = changeWidth;
-
-  changeMarginOfLineBoxInfoDomain = function(matrix, line_info) {
-    var contents_of_special_railway_line_info, height_of_special_railway_line_info, railway_line_code_domain, special_railway_line_info_margin, text_en, text_ja;
-    contents_of_special_railway_line_info = line_info.children();
-    railway_line_code_domain = contents_of_special_railway_line_info.eq(0);
-    text_ja = contents_of_special_railway_line_info.eq(1);
-    text_en = contents_of_special_railway_line_info.eq(2);
-    height_of_special_railway_line_info = railway_line_code_domain.outerHeight(true) + text_ja.outerHeight(true) + text_en.outerHeight(true);
-    line_info.css('height', height_of_special_railway_line_info);
-    special_railway_line_info_margin = (matrix.innerHeight() - height_of_special_railway_line_info) * 0.5;
-    line_info.css('margin-top', special_railway_line_info_margin).css('margin-bottom', special_railway_line_info_margin);
-  };
-
-  window.changeMarginOfLineBoxInfoDomain = changeMarginOfLineBoxInfoDomain;
-
-  getMaxOuterWidth = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).outerWidth(settings));
-    });
-    return len;
-  };
-
-  getMaxWidth = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).width());
-    });
-    return len;
-  };
-
-  getMaxOuterHeight = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).outerHeight(settings));
-    });
-    return len;
-  };
-
-  getMaxHeight = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = Math.max(len, $(this).height());
-    });
-    return len;
-  };
-
-  window.getMaxOuterWidth = getMaxOuterWidth;
-
-  window.getMaxWidth = getMaxWidth;
-
-  window.getMaxOuterHeight = getMaxOuterHeight;
-
-  window.getMaxHeight = getMaxHeight;
-
-  getSumOuterWidth = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).outerWidth(settings);
-    });
-    return len;
-  };
-
-  getSumWidth = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).width();
-    });
-    return len;
-  };
-
-  getSumOuterHeight = function(domains, settings) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).outerHeight(settings);
-    });
-    return len;
-  };
-
-  getSumHeight = function(domains) {
-    var len;
-    len = 0;
-    domains.each(function() {
-      return len = len + $(this).height();
-    });
-    return len;
-  };
-
-  window.getSumOuterWidth = getSumOuterWidth;
-
-  window.getSumWidth = getSumWidth;
-
-  window.getSumOuterHeight = getSumOuterHeight;
-
-  window.getSumHeight = getSumHeight;
-
-  setAllOfUniformWidthToMax = function(blocks) {
-    var max_width;
-    max_width = getMaxOuterWidth(blocks, false);
-    blocks.each(function() {
-      return $(this).css('width', max_width);
-    });
-  };
-
-  setAllOfUniformHeightToMax = function(blocks) {
-    var max_height;
-    max_height = getMaxOuterHeight(blocks, false);
-    blocks.each(function() {
-      return $(this).css('height', max_height);
-    });
-  };
-
-  window.setAllOfUniformWidthToMax = setAllOfUniformWidthToMax;
-
-  window.setAllOfUniformHeightToMax = setAllOfUniformHeightToMax;
-
-  setCssAttributesToEachDomain = function(domains, css_attributes, css_value) {
-    domains.each(function() {
-      return $(this).css(css_attributes, css_value);
-    });
-  };
-
-  window.setCssAttributesToEachDomain = setCssAttributesToEachDomain;
-
-}).call(this);
-(function() {
-  var initializeDo, processColorInfoInDocument, processLineAndStationMatrixes, processLinkToEachDocument, processTopContent;
+  var initializeDo;
 
   initializeDo = function() {
-    processTopContent();
-    processLinkToEachDocument();
-    processColorInfoInDocument();
-    processLineAndStationMatrixes();
-    processRailwayLine();
-    processStationTimetable();
-    processStationFacility();
-    processPassengerSurvey();
+    var document, main_contents, passenger_survey_table, railway_line, railway_line_and_station_matrix, railway_line_codes, station_facility, station_timetables, top_content;
+    top_content = new TopContent();
+    document = new Document();
+    railway_line_and_station_matrix = new RailwayLineAndStationMatrix();
+    railway_line_codes = new RailwayLineCodes();
+    railway_line = new RailwayLine();
+    station_timetables = new StationTimetables();
+    station_facility = new StationFacility();
+    passenger_survey_table = new PassengerSurveyTable();
+    main_contents = new MainContents();
+    top_content.process();
+    document.process();
+    railway_line_and_station_matrix.process();
+    railway_line_codes.process();
+    railway_line.process();
+    station_timetables.process();
+    station_facility.process();
+    passenger_survey_table.process();
+    main_contents.process();
   };
 
   window.initializeDo = initializeDo;
-
-  processTopContent = function() {
-    var domain_of_now_developing, domain_of_text, domain_of_title, margin_of_domain_of_text, top_content;
-    top_content = $('div#top_content');
-    domain_of_text = top_content.children('.text').first();
-    domain_of_title = domain_of_text.children('.title').first();
-    domain_of_now_developing = domain_of_text.children('.now_developing').first();
-    domain_of_now_developing.css('margin-top', domain_of_title.outerHeight() - domain_of_now_developing.outerHeight());
-    margin_of_domain_of_text = (top_content.innerHeight() - domain_of_title.outerHeight()) * 0.5;
-    domain_of_text.css('margin-top', margin_of_domain_of_text).css('margin-bottom', margin_of_domain_of_text);
-  };
-
-  processLinkToEachDocument = function() {
-    var content_names, links_to_datas, width_of_content_name;
-    links_to_datas = $('#links_to_datas');
-    width_of_content_name = 0;
-    links_to_datas.contents().each(function() {
-      var content_name, height_of_content_name, link_to_content, model_name_text_en, text;
-      link_to_content = $(this);
-      text = link_to_content.children('.text').first();
-      content_name = text.children('.content_name').first();
-      model_name_text_en = text.children('.model_name.text_en').first();
-      height_of_content_name = content_name.innerHeight();
-      width_of_content_name = Math.max(width_of_content_name, content_name.innerWidth());
-      model_name_text_en.css('margin-top', height_of_content_name - model_name_text_en.innerHeight());
-      text.css('height', height_of_content_name);
-      link_to_content.css('height', text.outerHeight(true));
-    });
-    content_names = links_to_datas.find('.content_name');
-    setCssAttributesToEachDomain(content_names, 'width', width_of_content_name);
-    setCssAttributesToEachDomain(content_names, 'margin-right', 16);
-  };
-
-  processColorInfoInDocument = function() {
-    $('div#railway_lines').find('.top').each(function() {
-      var color_info_domain, height_of_top_domain, top_domain;
-      top_domain = $(this);
-      height_of_top_domain = getSumOuterHeight(top_domain, true);
-      color_info_domain = top_domain.children('.color_info').first();
-      color_info_domain.css('margin-top', height_of_top_domain - color_info_domain.outerHeight(true));
-      return top_domain.css('height', height_of_top_domain);
-    });
-  };
-
-  processLineAndStationMatrixes = function() {
-    var lineDivision, line_boxes, normal_railway_lines, numberOfNormalLines, number_of_special_railway_lines, outer_height_of_each_line, selector_for_railway_line_matrixes, selector_for_station_matrixes, special_railway_lines, width_of_border, width_of_each_normal_railway_line, width_of_main_content_center, width_of_special_railway_lines_in_railway_line_matrixes;
-    selector_for_railway_line_matrixes = "#railway_line_matrixes";
-    selector_for_station_matrixes = "#station_matrixes";
-    numberOfNormalLines = 9;
-    lineDivision = 3;
-    width_of_border = 1;
-    line_boxes = $(selector_for_railway_line_matrixes).children();
-    number_of_special_railway_lines = line_boxes.size() - numberOfNormalLines;
-    normal_railway_lines = line_boxes.slice(0, numberOfNormalLines);
-    special_railway_lines = line_boxes.slice(numberOfNormalLines);
-    outer_height_of_each_line = normal_railway_lines.first().outerHeight();
-    width_of_main_content_center = $('div#main_content_center').innerWidth();
-    width_of_each_normal_railway_line = Math.floor((width_of_main_content_center - (lineDivision + 1) * width_of_border) * 1.0 / lineDivision);
-    width_of_special_railway_lines_in_railway_line_matrixes = width_of_each_normal_railway_line * lineDivision + (lineDivision - 1) * width_of_border;
-    changeAttributesOfBoxesInLineMatrixes(selector_for_railway_line_matrixes, normal_railway_lines, special_railway_lines, width_of_each_normal_railway_line, width_of_special_railway_lines_in_railway_line_matrixes, lineDivision, number_of_special_railway_lines, outer_height_of_each_line, width_of_border);
-    changeWidth($('div#main_content_center'), width_of_special_railway_lines_in_railway_line_matrixes + width_of_border * 2);
-    changeAttributesOfBoxesInStationMatrixes(selector_for_station_matrixes, width_of_main_content_center, width_of_each_normal_railway_line, width_of_border);
-    changeAttributesOfBoxesInStationMatrixes("#train_informations", width_of_main_content_center, width_of_each_normal_railway_line, width_of_border);
-    moveLineCodeLettersToCenter();
-  };
 
 }).call(this);
 /*
@@ -12342,250 +12871,1416 @@ function setInsideAndOutsideDomain( content ) {
 })(jQuery);
 
 (function() {
-  var processPassengerSurvey, setLinkToEachPassengerSurveyTableRow;
+  var PassengerSurveyTable;
 
-  processPassengerSurvey = function() {
-    var passenger_survey_table;
-    passenger_survey_table = $('#passenger_survey_table').children('table').first();
-    passenger_survey_table.children('tbody').first().children('tr').each(function() {
-      var margin_of_station_text, station_info, station_text;
-      station_info = $(this).children('td.station_info').first();
-      station_text = station_info.children('.text').first();
-      margin_of_station_text = ($(this).height() - station_text.outerHeight(true)) * 0.5;
-      station_text.css('margin-top', margin_of_station_text).css('margin-bottom', margin_of_station_text);
-    });
-    setLinkToEachPassengerSurveyTableRow();
-  };
+  PassengerSurveyTable = (function() {
+    var set_link_to_each_row, tbody, tr_rows;
 
-  window.processPassengerSurvey = processPassengerSurvey;
-
-  setLinkToEachPassengerSurveyTableRow = function() {};
-
-}).call(this);
-(function() {
-  var processRailwayLine, processWomenOnlyCar, processWomenOnlyCarInfo, processWomenOnlyCarPlaceDomains, processWomenOnlyCarSectionInfos;
-
-  processRailwayLine = function() {
-    return processWomenOnlyCar();
-  };
-
-  window.processRailwayLine = processRailwayLine;
-
-  processWomenOnlyCar = function() {
-    var section_domains, women_only_car_info_domain;
-    women_only_car_info_domain = $('#women_only_car');
-    section_domains = women_only_car_info_domain.find('.section');
-    section_domains.children('.section_infos').each(function() {
-      var section_infos;
-      section_infos = $(this);
-      processWomenOnlyCarSectionInfos(section_infos);
-    });
-    processWomenOnlyCarPlaceDomains(women_only_car_info_domain.find('.place'));
-  };
-
-  processWomenOnlyCarPlaceDomains = function(place_domains) {
-    var place_domains_max_width;
-    place_domains_max_width = getMaxWidth(place_domains) * 1.2;
-    place_domains.each(function() {
-      var place;
-      place = $(this);
-      place.css('width', place_domains_max_width);
-    });
-  };
-
-  processWomenOnlyCarSectionInfos = function(section_infos) {
-    var available_time, higher, infos, margin_of_shorter, shorter;
-    available_time = section_infos.children().eq(0);
-    infos = section_infos.children().eq(1);
-    infos.children('.info').each(function() {
-      processWomenOnlyCarInfo($(this));
-    });
-    infos.css('height', getSumOuterHeight(infos.children('.info'), true));
-    section_infos.css('height', getMaxOuterHeight(section_infos.children(), true));
-    if (available_time.outerHeight(false) < infos.outerHeight(false)) {
-      higher = infos;
-      shorter = available_time;
-    } else {
-      higher = available_time;
-      shorter = infos;
+    function PassengerSurveyTable(table) {
+      this.table = table != null ? table : $('#passenger_survey_table').children('table').first();
     }
-    margin_of_shorter = (higher.outerHeight(false) - shorter.outerHeight(false)) * 0.5;
-    shorter.css('margin-top', margin_of_shorter).css('margin-bottom', margin_of_shorter);
-  };
 
-  processWomenOnlyCarInfo = function(info) {
-    var car_domains, max_outer_height_of_car_domains;
-    car_domains = info.find('.car');
-    max_outer_height_of_car_domains = getMaxOuterHeight(car_domains, false) * 1.5;
-    info.find('.car').each(function() {
-      var car, current_height, padding_top_and_bottom;
-      car = $(this);
-      current_height = car.outerHeight(false);
-      padding_top_and_bottom = (max_outer_height_of_car_domains - current_height) * 0.5;
-      car.css('padding-top', padding_top_and_bottom).css('padding-bottom', padding_top_and_bottom);
-    });
-    setAllOfUniformHeightToMax(info.children());
-    info.css('height', getMaxOuterHeight(info.children(), true));
-  };
+    tbody = function(v) {
+      return v.table.children('tbody');
+    };
 
-}).call(this);
-(function() {
+    tr_rows = function(v) {
+      return tbody(v).children('tr');
+    };
 
+    set_link_to_each_row = function(v) {};
 
-}).call(this);
-(function() {
-  var processRailwayLinesRelatedToThisStation, processStationFacility, processStationFacilityPlatformInfoTabs, processStationFacilityPlatformInfos;
-
-  processStationFacility = function() {
-    processRailwayLinesRelatedToThisStation();
-    processStationFacilityPlatformInfoTabs();
-    processStationFacilityPlatformInfos();
-  };
-
-  window.processStationFacility = processStationFacility;
-
-  processRailwayLinesRelatedToThisStation = function() {
-    var other_railway_lines, railway_lines_in_another_station, railway_lines_in_this_station, tokyo_metro_railway_lines;
-    tokyo_metro_railway_lines = $('.tokyo_metro_railway_lines').first().children('.railway_lines').first();
-    railway_lines_in_this_station = tokyo_metro_railway_lines.children('.railway_lines_in_this_station').first();
-    railway_lines_in_another_station = tokyo_metro_railway_lines.children('.railway_lines_in_another_station').first();
-    other_railway_lines = $('.other_railway_lines').first().children('.railway_lines').first();
-    $.each([railway_lines_in_this_station, railway_lines_in_another_station, other_railway_lines], function() {
-      var domains;
-      domains = $(this).children();
-      $(this).css('height', getMaxOuterHeight(domains, true));
-    });
-    tokyo_metro_railway_lines.css('height', getSumOuterHeight(tokyo_metro_railway_lines.children(), true));
-  };
-
-  processStationFacilityPlatformInfoTabs = function() {
-    $('#platform_info_tabs').children('ul').first().children('li').each(function() {
-      var children_of_railway_line_name, platform_info_tab, railway_line_name;
-      platform_info_tab = $(this);
-      railway_line_name = platform_info_tab.children('.railway_line_name').first();
-      children_of_railway_line_name = railway_line_name.children();
-      railway_line_name.css('width', getSumOuterWidth(children_of_railway_line_name, true));
-      railway_line_name.css('height', getMaxOuterHeight(children_of_railway_line_name, true));
-    });
-  };
-
-  processStationFacilityPlatformInfos = function() {
-    var platform_info_tab_contents, tables;
-    platform_info_tab_contents = $('#platform_info_tab_contents');
-    tables = platform_info_tab_contents.find('table.platform_info');
-    tables.each(function() {
-      var table;
-      table = $(this);
-      table.find('.transfer_info').each(function() {
-        var railway_line_code, railway_line_code_main, string_domain, transfer_additional_info, transfer_info, transfer_info_height;
-        transfer_info = $(this);
-        railway_line_code = transfer_info.children().eq(0);
-        railway_line_code_main = railway_line_code.children().first();
-        railway_line_code.css('height', railway_line_code_main.outerHeight(true)).css('width', railway_line_code_main.outerWidth(true)).css('float', 'left');
-        string_domain = transfer_info.children('.string').first();
-        transfer_additional_info = string_domain.children('.additional_info').first();
-        transfer_additional_info.css('height', getMaxOuterHeight(transfer_additional_info.children(), true));
-        string_domain.css('height', getSumOuterHeight(string_domain.children(), true));
-        transfer_info_height = Math.max(railway_line_code.outerHeight(true), string_domain.outerHeight(true));
-        transfer_info.css('height', transfer_info_height);
+    PassengerSurveyTable.prototype.process = function() {
+      tr_rows(this).each(function() {
+        var margin_of_station_text, station_info, station_text;
+        station_info = $(this).children('td.station_info').first();
+        station_text = station_info.children('.text').first();
+        margin_of_station_text = ($(this).height() - station_text.outerHeight(true)) * 0.5;
+        station_text.css('margin-top', margin_of_station_text).css('margin-bottom', margin_of_station_text);
       });
-    });
-  };
+      set_link_to_each_row(this);
+    };
+
+    return PassengerSurveyTable;
+
+  })();
+
+  window.PassengerSurveyTable = PassengerSurveyTable;
 
 }).call(this);
 (function() {
-  var changeAttibutesOfTopHeader, changeWidthAndHeightOfTrainTime, changeWidthOfContentsInStationTimetable, changeWidthOfMin, changeWidthOfOperationDay, changeWidthOfTdHour, processStationTimetable, setVarticalPositionOfOperationDay;
+  var RailwayLine, WomenOnlyCar, WomenOnlyCarSectionInfo, WomenOnlyCarSectionInfoCar, WomenOnlyCarSectionInfos;
 
-  processStationTimetable = function() {
-    var timetables;
-    timetables = $('table.timetable');
-    changeWidthOfOperationDay(timetables);
-    changeAttibutesOfTopHeader(timetables);
-    changeWidthOfTdHour(timetables);
-    changeWidthOfMin(timetables);
-    changeWidthAndHeightOfTrainTime(timetables);
-  };
+  RailwayLine = (function() {
+    var process_women_only_car;
 
-  window.processStationTimetable = processStationTimetable;
+    function RailwayLine() {}
 
-  changeWidthOfOperationDay = function(timetables) {
-    var domains_of_weekday_and_holiday;
-    domains_of_weekday_and_holiday = timetables.find('.operation_day');
-    changeWidthOfContentsInStationTimetable(domains_of_weekday_and_holiday);
-  };
+    process_women_only_car = function(v) {
+      var women_only_car;
+      women_only_car = new WomenOnlyCar();
+      women_only_car.process();
+    };
 
-  changeAttibutesOfTopHeader = function(timetables) {
-    timetables.each(function() {
-      var additional_infos, direction, main_domain, margin_top_and_bottom, max_height_of_main_domain, timetable_top_header;
-      timetable_top_header = $(this).find('td.top_header').eq(0);
-      main_domain = timetable_top_header.children('.main').eq(0);
-      max_height_of_main_domain = getMaxOuterHeight(main_domain.children(), true);
-      main_domain.css('height', max_height_of_main_domain);
-      direction = main_domain.children('.direction').eq(0);
-      additional_infos = main_domain.children('.additional_infos').eq(0);
-      margin_top_and_bottom = (max_height_of_main_domain - direction.height()) * 0.5;
-      direction.css('margin-top', margin_top_and_bottom);
-      direction.css('margin-bottom', margin_top_and_bottom);
-      additional_infos.css('margin-top', margin_top_and_bottom);
-    });
-  };
+    RailwayLine.prototype.process = function() {
+      process_women_only_car(this);
+    };
 
-  changeWidthOfTdHour = function(timetables) {
-    var domains_of_hour;
-    domains_of_hour = timetables.find('.hour');
-    changeWidthOfContentsInStationTimetable(domains_of_hour);
-  };
+    return RailwayLine;
 
-  changeWidthOfMin = function(timetables) {
-    var blocks, width_new;
-    blocks = timetables.find('.min');
-    width_new = getMaxWidth(blocks);
-    setCssAttributesToEachDomain(blocks, 'width', width_new);
-  };
+  })();
 
-  changeWidthAndHeightOfTrainTime = function(timetables) {
-    timetables.each(function() {
-      var domains_of_each_hour, timetable, train_time_block_max_width, train_time_blocks;
-      timetable = $(this);
-      train_time_blocks = timetable.find('.train_time');
-      train_time_block_max_width = getMaxWidth(train_time_blocks);
-      setCssAttributesToEachDomain(train_time_blocks, 'width', train_time_block_max_width);
-      domains_of_each_hour = timetable.find('td.train_times');
-      domains_of_each_hour.each(function() {
-        var domain_of_an_hour, domains_of_train_times, height_max;
-        domain_of_an_hour = $(this);
-        domains_of_train_times = domain_of_an_hour.children('.train_time');
-        height_max = getMaxHeight(domains_of_train_times);
-        setCssAttributesToEachDomain(domains_of_train_times, 'height', height_max);
+  window.RailwayLine = RailwayLine;
+
+  WomenOnlyCar = (function() {
+    var group_of_section_infos, places, process_group_of_section_infos, process_places, sections;
+
+    function WomenOnlyCar(domain) {
+      this.domain = domain != null ? domain : $('#women_only_car');
+    }
+
+    sections = function(v) {
+      return v.domain.find('.section');
+    };
+
+    group_of_section_infos = function(v) {
+      return sections(v).children('.section_infos');
+    };
+
+    places = function(v) {
+      return v.domain.find('.place');
+    };
+
+    process_group_of_section_infos = function(v) {
+      group_of_section_infos(v).each(function() {
+        var s;
+        s = new WomenOnlyCarSectionInfos($(this));
+        s.process();
       });
-    });
-  };
+    };
 
-  changeWidthOfContentsInStationTimetable = function(blocks) {
-    var max_width, padding, width_new;
-    max_width = getMaxWidth(blocks);
-    width_new = Math.ceil(max_width * goldenRatio);
-    padding = Math.ceil((width_new - max_width) * 0.5);
-    width_new = max_width + padding * 2;
-    setCssAttributesToEachDomain(blocks, 'width', width_new);
-    setCssAttributesToEachDomain(blocks, 'padding-left', padding);
-    setCssAttributesToEachDomain(blocks, 'padding-right', padding);
-  };
+    process_places = function(v) {
+      var d, _places;
+      _places = places(v);
+      d = new DomainsCommonProcessor(_places);
+      d.set_css_attribute('width', d.max_width() * 1.2);
+    };
 
-  setVarticalPositionOfOperationDay = function(domains_of_weekday_and_holiday) {
-    domains_of_weekday_and_holiday.each(function() {
-      var height_of_domain, height_of_text, padding_top_and_bottom;
-      height_of_domain = $(this).height();
-      height_of_text = getMaxOuterHeight($(this).children(), true);
-      padding_top_and_bottom = (height_of_domain - height_of_text) * 0.5;
-      $(this).css('padding-top', padding_top_and_bottom);
-      $(this).css('padding-bottom', padding_top_and_bottom);
-    });
-  };
+    WomenOnlyCar.prototype.process = function() {
+      process_group_of_section_infos(this);
+      process_places(this);
+    };
+
+    return WomenOnlyCar;
+
+  })();
+
+  WomenOnlyCarSectionInfos = (function() {
+    var available_time, children, domain_of_infos, infos, process_each_info, process_height_of_domain, process_height_of_domain_of_infos, set_vartical_align_center, shorter_children, taller_children;
+
+    function WomenOnlyCarSectionInfos(domain) {
+      this.domain = domain;
+    }
+
+    children = function(v) {
+      return v.domain.children();
+    };
+
+    available_time = function(v) {
+      return children(v).eq(0);
+    };
+
+    domain_of_infos = function(v) {
+      return children(v).eq(1);
+    };
+
+    infos = function(v) {
+      return domain_of_infos(v).children('.info');
+    };
+
+    process_each_info = function(v) {
+      domain_of_infos(v).children('.info').each(function() {
+        var i;
+        i = new WomenOnlyCarSectionInfo($(this));
+        i.process();
+      });
+    };
+
+    process_height_of_domain_of_infos = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(infos(v));
+      domain_of_infos(v).css('height', p.sum_outer_height(true));
+    };
+
+    process_height_of_domain = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(children(v));
+      v.domain.css('height', p.max_outer_height(true));
+    };
+
+    taller_children = function(v) {
+      var c;
+      if (available_time(v).outerHeight(false) < infos(v).outerHeight(false)) {
+        c = infos(v);
+      } else {
+        c = available_time(v);
+      }
+      return c;
+    };
+
+    shorter_children = function(v) {
+      var c;
+      if (available_time(v).outerHeight(false) < infos(v).outerHeight(false)) {
+        c = available_time(v);
+      } else {
+        c = infos(v);
+      }
+      return c;
+    };
+
+    set_vartical_align_center = function(v) {
+      var margin_of_shorter, _shorter, _taller;
+      _taller = taller_children(v);
+      _shorter = shorter_children(v);
+      margin_of_shorter = (_taller.outerHeight(false) - _shorter.outerHeight(false)) * 0.5;
+      _shorter.css('margin-top', margin_of_shorter).css('margin-bottom', margin_of_shorter);
+    };
+
+    WomenOnlyCarSectionInfos.prototype.process = function() {
+      process_each_info(this);
+      process_height_of_domain_of_infos(this);
+      process_height_of_domain(this);
+      set_vartical_align_center(this);
+    };
+
+    return WomenOnlyCarSectionInfos;
+
+  })();
+
+  WomenOnlyCarSectionInfo = (function() {
+    var cars, max_outer_height_of_car_domains, max_outer_height_of_children, process_cars, process_height;
+
+    function WomenOnlyCarSectionInfo(domain) {
+      this.domain = domain;
+    }
+
+    cars = function(v) {
+      return v.domain.find('.car');
+    };
+
+    max_outer_height_of_car_domains = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(cars(v));
+      return p.max_outer_height(false) * 1.5;
+    };
+
+    max_outer_height_of_children = function(v) {
+      var p2;
+      p2 = new DomainsCommonProcessor(v.domain.children());
+      return p2.sum_all_of_uniform_height_to_max();
+    };
+
+    process_cars = function(v) {
+      var _max_height;
+      _max_height = max_outer_height_of_car_domains(v);
+      cars(v).each(function() {
+        var c;
+        c = new WomenOnlyCarSectionInfoCar($(this), _max_height);
+        c.process();
+      });
+    };
+
+    process_height = function(v) {
+      v.domain.css('height', max_outer_height_of_children(v));
+    };
+
+    WomenOnlyCarSectionInfo.prototype.process = function() {
+      process_cars(this);
+      process_height(this);
+    };
+
+    return WomenOnlyCarSectionInfo;
+
+  })();
+
+  WomenOnlyCarSectionInfoCar = (function() {
+    var current_height, padding_top_and_bottom;
+
+    function WomenOnlyCarSectionInfoCar(car, max_height) {
+      this.car = car;
+      this.max_height = max_height;
+    }
+
+    current_height = function(v) {
+      return v.car.outerHeight(false);
+    };
+
+    padding_top_and_bottom = function(v) {
+      return (v.max_height - current_height(v)) * 0.5;
+    };
+
+    WomenOnlyCarSectionInfoCar.prototype.process = function() {
+      var _padding_top_and_bottom;
+      _padding_top_and_bottom = padding_top_and_bottom(this);
+      this.car.css('padding-top', _padding_top_and_bottom).css('padding-bottom', _padding_top_and_bottom);
+    };
+
+    return WomenOnlyCarSectionInfoCar;
+
+  })();
 
 }).call(this);
 (function() {
 
+
+}).call(this);
+(function() {
+  var ObserverOfStationFacilityPlatformInfoTab, StationFacility, StationFacilityBarrierFreeFacilityInfos, StationFacilityBarrierFreeFacilityTitle, StationFacilityInfosOfEachSpecificFacility, StationFacilityInfosOfEachType, StationFacilityInfosOfEachTypeAndLocatedArea, StationFacilityPlatformInfoTabProcessor, StationFacilityPlatformInfoTabTarget, StationFacilityPlatformInfoTabUl, StationFacilityPlatformInfoTable, StationFacilityTabsAndContents, StationFacilityTransferInfoInPlatformInfo, StationFacilityTransferInfosInPlatformInfos, changeStationFacilityPlatformInfoTabByPageLink,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  StationFacility = (function() {
+    var process_barrier_free_facility_infos, process_platform_infos, process_railway_lines_related_to_this_station, process_tables_of_platform_info_tab_contents, tables_of_platform_info_tab_contents;
+
+    function StationFacility() {
+      this.tab_contents = $('#platform_info_tab_contents');
+      this.tokyo_metro_railway_lines = $('.tokyo_metro_railway_lines').first().children('.railway_lines').first();
+      this.tokyo_metro_railway_lines_in_this_station = this.tokyo_metro_railway_lines.children('.railway_lines_in_this_station').first();
+      this.tokyo_metro_railway_lines_in_another_stations = this.tokyo_metro_railway_lines.children('.railway_lines_in_another_station').first();
+      this.railway_lines_operated_by_other_operators = $('.other_railway_lines').first().children('.railway_lines').first();
+    }
+
+    tables_of_platform_info_tab_contents = function(v) {
+      return v.tab_contents.find('table.platform_info');
+    };
+
+    process_railway_lines_related_to_this_station = function(v) {
+      var p;
+      $.each([v.tokyo_metro_railway_lines_in_this_station, v.tokyo_metro_railway_lines_in_another_stations, v.railway_lines_operated_by_other_operators], function() {
+        var p, railway_lines_of_each_category;
+        railway_lines_of_each_category = $(this).children();
+        p = new DomainsCommonProcessor(railway_lines_of_each_category);
+        $(this).css('height', p.max_outer_height(true));
+      });
+      p = new DomainsCommonProcessor(v.tokyo_metro_railway_lines.children());
+      v.tokyo_metro_railway_lines.css('height', p.sum_outer_height(true));
+    };
+
+    process_tables_of_platform_info_tab_contents = function(v) {
+      tables_of_platform_info_tab_contents(v).each(function() {
+        var table;
+        table = new StationFacilityPlatformInfoTable($(this));
+        table.process();
+      });
+    };
+
+    process_platform_infos = function(v) {
+      var platform_info_tabs, t, tab_ul_processor;
+      process_tables_of_platform_info_tab_contents(v);
+      tab_ul_processor = new StationFacilityPlatformInfoTabUl();
+      tab_ul_processor.process();
+      platform_info_tabs = tab_ul_processor.li_contents();
+      t = new StationFacilityTabsAndContents(platform_info_tabs);
+      t.initialize_platform_infos();
+    };
+
+    process_barrier_free_facility_infos = function(v) {
+      var b;
+      b = new StationFacilityBarrierFreeFacilityInfos();
+      b.process();
+    };
+
+    StationFacility.prototype.process = function() {
+      process_railway_lines_related_to_this_station(this);
+      process_platform_infos(this);
+      return process_barrier_free_facility_infos(this);
+    };
+
+    return StationFacility;
+
+  })();
+
+  window.StationFacility = StationFacility;
+
+  changeStationFacilityPlatformInfoTabByPageLink = function(tab_id, change_location) {
+    var s;
+    if (change_location == null) {
+      change_location = true;
+    }
+    s = new StationFacilityTabsAndContents();
+    s.display_platform_info_tab_of_id(tab_id, change_location);
+  };
+
+  window.changeStationFacilityPlatformInfoTabByPageLink = changeStationFacilityPlatformInfoTabByPageLink;
+
+  StationFacilityPlatformInfoTable = (function() {
+    var process_transfer_infos, transfer_infos;
+
+    function StationFacilityPlatformInfoTable(domain) {
+      this.domain = domain;
+    }
+
+    transfer_infos = function(v) {
+      return v.domain.find('.transfer_info');
+    };
+
+    process_transfer_infos = function(v) {
+      var platform_infos;
+      platform_infos = new StationFacilityTransferInfosInPlatformInfos(transfer_infos(v));
+      platform_infos.process();
+    };
+
+    StationFacilityPlatformInfoTable.prototype.process = function() {
+      process_transfer_infos(this);
+    };
+
+    return StationFacilityPlatformInfoTable;
+
+  })();
+
+  StationFacilityTransferInfosInPlatformInfos = (function() {
+    function StationFacilityTransferInfosInPlatformInfos(domains) {
+      this.domains = domains;
+    }
+
+    StationFacilityTransferInfosInPlatformInfos.prototype.process = function() {
+      this.domains.each(function() {
+        var info;
+        info = new StationFacilityTransferInfoInPlatformInfo($(this));
+        return info.process();
+      });
+    };
+
+    return StationFacilityTransferInfosInPlatformInfos;
+
+  })();
+
+  StationFacilityTransferInfoInPlatformInfo = (function() {
+    var process_railway_line_code, railway_line_code, railway_line_code_main, set_height_of_outer_domain, set_height_of_transfer_additional_info, string_domain, transfer_additional_info;
+
+    function StationFacilityTransferInfoInPlatformInfo(domain) {
+      this.domain = domain;
+    }
+
+    railway_line_code = function(v) {
+      return v.domain.children().first();
+    };
+
+    railway_line_code_main = function(v) {
+      return railway_line_code(v).children().first();
+    };
+
+    string_domain = function(v) {
+      return v.domain.children('.string').first();
+    };
+
+    transfer_additional_info = function(v) {
+      return string_domain(v).children('.additional_info').first();
+    };
+
+    process_railway_line_code = function(v) {
+      var _railway_line_code_main;
+      _railway_line_code_main = railway_line_code_main(v);
+      railway_line_code(v).css('height', _railway_line_code_main.outerHeight(true)).css('width', _railway_line_code_main.outerWidth(true)).css('float', 'left');
+    };
+
+    set_height_of_transfer_additional_info = function(v) {
+      var p, _transfer_additional_info;
+      _transfer_additional_info = transfer_additional_info(v);
+      p = new DomainsCommonProcessor(_transfer_additional_info.children());
+      _transfer_additional_info.css('height', p.max_outer_height(true));
+    };
+
+    set_height_of_outer_domain = function(v) {
+      var h;
+      h = Math.max(railway_line_code(v).outerHeight(true), string_domain(v).outerHeight(true));
+      return v.domain.css('height', h);
+    };
+
+    StationFacilityTransferInfoInPlatformInfo.prototype.process = function() {
+      process_railway_line_code(this);
+      set_height_of_transfer_additional_info(this);
+      set_height_of_outer_domain(this);
+    };
+
+    return StationFacilityTransferInfoInPlatformInfo;
+
+  })();
+
+  StationFacilityPlatformInfoTabUl = (function(_super) {
+    var process_railway_line_name;
+
+    __extends(StationFacilityPlatformInfoTabUl, _super);
+
+    function StationFacilityPlatformInfoTabUl(ul) {
+      this.ul = ul != null ? ul : $('ul#platform_info_tabs');
+    }
+
+    process_railway_line_name = function(v) {
+      console.log('StationFacilityPlatformInfoTabUl\#process_railway_line_name');
+      console.log(v);
+      console.log(v.li_contents());
+      v.li_contents().each(function() {
+        var children_of_railway_line_name, p, platform_info_tab, railway_line_name;
+        platform_info_tab = $(this);
+        railway_line_name = platform_info_tab.children('.railway_line_name').first();
+        children_of_railway_line_name = railway_line_name.children();
+        p = new DomainsCommonProcessor(children_of_railway_line_name);
+        railway_line_name.css('width', p.sum_outer_width(true) * 1.2);
+        railway_line_name.css('height', p.max_outer_height(true));
+      });
+    };
+
+    StationFacilityPlatformInfoTabUl.prototype.process = function() {
+      if (this.ul.length > 0) {
+        process_railway_line_name(this);
+        StationFacilityPlatformInfoTabUl.__super__.process.call(this);
+        return;
+      }
+    };
+
+    return StationFacilityPlatformInfoTabUl;
+
+  })(TabUl);
+
+  StationFacilityPlatformInfoTabTarget = (function() {
+    function StationFacilityPlatformInfoTabTarget(anchor, tab_id) {
+      this.anchor = anchor;
+      this.tab_id = tab_id;
+    }
+
+    StationFacilityPlatformInfoTabTarget.prototype.is_included_in = function(contents) {
+      return contents.is('#' + this.tab_id);
+    };
+
+    StationFacilityPlatformInfoTabTarget.prototype.is_not_included_in = function(contents) {
+      return !(is_included_in(contents));
+    };
+
+    StationFacilityPlatformInfoTabTarget.prototype.set_anchor = function() {
+      window.location.hash = this.anchor;
+    };
+
+    return StationFacilityPlatformInfoTabTarget;
+
+  })();
+
+  StationFacilityPlatformInfoTabProcessor = (function() {
+    var content_matches, display, hide;
+
+    function StationFacilityPlatformInfoTabProcessor(tab, content, target) {
+      this.tab = tab;
+      this.content = content;
+      this.target = target;
+    }
+
+    content_matches = function(value) {
+      return value.content.attr('id') === value.target.tab_id;
+    };
+
+    hide = function(value) {
+      $.each([value.tab, value.content], function() {
+        $(this).removeClass('displayed');
+        $(this).addClass('hidden');
+      });
+    };
+
+    display = function(value) {
+      $.each([value.tab, value.content], function() {
+        $(this).removeClass('hidden');
+        $(this).addClass('displayed');
+      });
+    };
+
+    StationFacilityPlatformInfoTabProcessor.prototype.process = function() {
+      if (!content_matches(this)) {
+        hide(this);
+      } else {
+        display(this);
+      }
+    };
+
+    return StationFacilityPlatformInfoTabProcessor;
+
+  })();
+
+  StationFacilityTabsAndContents = (function() {
+    var anchor, anchor_is_defined, anchor_is_not_defined, anchor_is_valid_as_platform_info, anchor_name_of_platform_info, contents_exists, display_first_platform_info_tab, display_platform_info_tab_of, first_platform_info_tab_id, process_platform_info_tabs, tab_id_of_platform_info;
+
+    function StationFacilityTabsAndContents(platform_info_tabs, platform_info_contents) {
+      this.platform_info_tabs = platform_info_tabs != null ? platform_info_tabs : $('ul#platform_info_tabs').children('li');
+      this.platform_info_contents = platform_info_contents != null ? platform_info_contents : $('#platform_info_tab_contents').find('li.platform_info_tab_content');
+      return;
+    }
+
+    StationFacilityTabsAndContents.prototype.initialize_platform_infos = function() {
+      var target, _anchor;
+      if (contents_exists(this)) {
+        _anchor = anchor(this);
+        target = new StationFacilityPlatformInfoTabTarget(_anchor, tab_id_of_platform_info(this, _anchor));
+        if (anchor_is_defined(this, target)) {
+          if (anchor_is_valid_as_platform_info(this, target)) {
+            display_platform_info_tab_of(this, target, false);
+          } else {
+            display_first_platform_info_tab(this, true);
+          }
+        } else {
+          display_first_platform_info_tab(this, false);
+          return;
+        }
+        return;
+      }
+    };
+
+    StationFacilityTabsAndContents.prototype.hook_while_observing_platform_infos = function() {
+      var target, _anchor;
+      if (anchor_is_defined(this)) {
+        _anchor = anchor(this);
+        target = new StationFacilityPlatformInfoTabTarget(_anchor, tab_id_of_platform_info(this, _anchor));
+        if (anchor_is_valid_as_platform_info(this, target)) {
+          process_platform_info_tabs(this, target);
+        }
+        return;
+      } else {
+        display_first_platform_info_tab(this, false);
+      }
+    };
+
+    StationFacilityTabsAndContents.prototype.display_platform_info_tab_of_id = function(tab_id, change_location) {
+      var target, _anchor;
+      if (change_location == null) {
+        change_location = false;
+      }
+      _anchor = anchor_name_of_platform_info(this, tab_id);
+      target = new StationFacilityPlatformInfoTabTarget(_anchor, tab_id);
+      display_platform_info_tab_of(this, target, change_location);
+    };
+
+    contents_exists = function(v) {
+      return v.platform_info_contents.length > 0;
+    };
+
+    anchor = function(v) {
+      return window.location.hash.replace("#", "");
+    };
+
+    anchor_is_not_defined = function(v) {
+      return anchor(v) === '';
+    };
+
+    anchor_is_defined = function(v) {
+      return !(anchor_is_not_defined(v));
+    };
+
+    anchor_is_valid_as_platform_info = function(v, target) {
+      return target.is_included_in(v.platform_info_contents);
+    };
+
+    process_platform_info_tabs = function(v, target) {
+      v.platform_info_contents.each(function() {
+        var content, processor, tab;
+        content = $(this);
+        tab = v.platform_info_tabs.filter('.' + content.attr('id'));
+        processor = new StationFacilityPlatformInfoTabProcessor(tab, content, target);
+        processor.process();
+      });
+    };
+
+    first_platform_info_tab_id = function(v) {
+      return v.platform_info_contents.first().attr('id');
+    };
+
+    display_platform_info_tab_of = function(v, target, change_location) {
+      if (change_location == null) {
+        change_location = false;
+      }
+      process_platform_info_tabs(v, target);
+      if (change_location) {
+        target.set_anchor();
+      }
+    };
+
+    display_first_platform_info_tab = function(v, change_location) {
+      var target, _anchor, _first_tab_id;
+      if (change_location == null) {
+        change_location = false;
+      }
+      _first_tab_id = first_platform_info_tab_id(v);
+      _anchor = anchor_name_of_platform_info(v, _first_tab_id);
+      target = new StationFacilityPlatformInfoTabTarget(_anchor, _first_tab_id);
+      display_platform_info_tab_of(v, target, change_location);
+    };
+
+    anchor_name_of_platform_info = function(v, tab_id) {
+      return tab_id.replace(/\#?platform_info_/, "");
+    };
+
+    tab_id_of_platform_info = function(v, anchor) {
+      return 'platform_info_' + anchor;
+    };
+
+    return StationFacilityTabsAndContents;
+
+  })();
+
+  ObserverOfStationFacilityPlatformInfoTab = (function() {
+    var hook, location_hash_was_changed;
+
+    function ObserverOfStationFacilityPlatformInfoTab(anchor) {
+      this.anchor = anchor != null ? anchor : window.location.hash.replace("#", "");
+    }
+
+    location_hash_was_changed = function(value) {
+      return window.location.hash.replace("#", "") !== value.anchor;
+    };
+
+    hook = function(value) {
+      var s;
+      s = new StationFacilityTabsAndContents();
+      s.hook_while_observing_platform_infos();
+    };
+
+    ObserverOfStationFacilityPlatformInfoTab.prototype.listen = function() {
+      if (location_hash_was_changed(this)) {
+        this.anchor = window.location.hash.replace("\#", "");
+        hook(this);
+      }
+    };
+
+    ObserverOfStationFacilityPlatformInfoTab.prototype.duration = function() {
+      return 1500;
+    };
+
+    return ObserverOfStationFacilityPlatformInfoTab;
+
+  })();
+
+  window.ObserverOfStationFacilityPlatformInfoTab = ObserverOfStationFacilityPlatformInfoTab;
+
+  StationFacilityBarrierFreeFacilityInfos = (function() {
+    var contents_grouped_by_located_area, process_each_types, set_margins_to_each_infos_grouped_by_type_and_located_area, set_title_width;
+
+    function StationFacilityBarrierFreeFacilityInfos(domain) {
+      this.domain = domain != null ? domain : $('#station_facility_info');
+    }
+
+    StationFacilityBarrierFreeFacilityInfos.prototype.contents_grouped_by_type = function() {
+      return this.domain.children();
+    };
+
+    StationFacilityBarrierFreeFacilityInfos.prototype.process = function() {
+      process_each_types(this);
+      set_title_width(this);
+      set_margins_to_each_infos_grouped_by_type_and_located_area(this);
+    };
+
+    contents_grouped_by_located_area = function(v) {
+      return v.domain.find('.inside , .outside');
+    };
+
+    process_each_types = function(v) {
+      v.contents_grouped_by_type().each(function() {
+        var t;
+        t = new StationFacilityInfosOfEachType($(this));
+        t.process();
+      });
+    };
+
+    set_title_width = function(v) {
+      var c, p1, p2, title_width;
+      c = contents_grouped_by_located_area(v);
+      p1 = new DomainsCommonProcessor(c);
+      title_width = p1.max_outer_width(true);
+      p2 = new DomainsCommonProcessor(c.find('.title'));
+      p2.set_css_attribute('width', title_width);
+    };
+
+    set_margins_to_each_infos_grouped_by_type_and_located_area = function(v) {
+      var c, p, title_width;
+      c = contents_grouped_by_located_area(v);
+      p = new DomainsCommonProcessor(c);
+      title_width = p.max_outer_width();
+      c.each(function() {
+        var margin_left;
+        margin_left = $(this).marginLeft;
+        $(this).css('margin-right', 0);
+        $(this).css('width', title_width - margin_left);
+      });
+    };
+
+    return StationFacilityBarrierFreeFacilityInfos;
+
+  })();
+
+  StationFacilityInfosOfEachType = (function() {
+    var domain_height, inside, operation_day_domains, outside, process_each_side_domain, remark_domains, service_time_domains, set_title_height_of_each_station_facility_type, title_domain;
+
+    function StationFacilityInfosOfEachType(domain) {
+      this.domain = domain;
+    }
+
+    StationFacilityInfosOfEachType.prototype.process = function() {
+      set_title_height_of_each_station_facility_type(this);
+      process_each_side_domain(this);
+      $.each([operation_day_domains(this), service_time_domains(this), remark_domains(this)], function() {
+        var length_processor;
+        length_processor = new DomainsCommonProcessor($(this));
+        length_processor.set_all_of_uniform_width_to_max();
+      });
+      this.domain.css('height', domain_height(this));
+    };
+
+    domain_height = function(v) {
+      return title_domain(v).outerHeight(true) + inside(v).outerHeight(true) + outside(v).outerHeight(true);
+    };
+
+    title_domain = function(v) {
+      return v.domain.children('.title').first();
+    };
+
+    inside = function(v) {
+      return v.domain.children('.inside').first();
+    };
+
+    outside = function(v) {
+      return v.domain.children('.outside').first();
+    };
+
+    operation_day_domains = function(v) {
+      return v.domain.find('.operation_day');
+    };
+
+    service_time_domains = function(v) {
+      return v.domain.find('.service_time');
+    };
+
+    remark_domains = function(v) {
+      return v.domain.find('.remark');
+    };
+
+    set_title_height_of_each_station_facility_type = function(v) {
+      var t;
+      t = new StationFacilityBarrierFreeFacilityTitle(title_domain(v));
+      t.process();
+    };
+
+    process_each_side_domain = function(v) {
+      $.each([inside(v), outside(v)], function() {
+        var instance_of_each_area;
+        instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea($(this));
+        instance_of_each_area.process();
+      });
+    };
+
+    return StationFacilityInfosOfEachType;
+
+  })();
+
+  StationFacilityInfosOfEachTypeAndLocatedArea = (function() {
+    var domain_height, facilities, process_facilities, process_title_domain, title_domain;
+
+    function StationFacilityInfosOfEachTypeAndLocatedArea(domain) {
+      this.domain = domain;
+    }
+
+    StationFacilityInfosOfEachTypeAndLocatedArea.prototype.process = function() {
+      process_title_domain(this);
+      process_facilities(this);
+      this.domain.css('height', domain_height(this));
+    };
+
+    domain_height = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(facilities(v));
+      return title_domain(v).outerHeight(true) + p.sum_outer_height(true);
+    };
+
+    title_domain = function(v) {
+      return v.domain.children('.title').first();
+    };
+
+    facilities = function(v) {
+      return v.domain.children('.facility');
+    };
+
+    process_title_domain = function(v) {
+      var t;
+      t = new StationFacilityBarrierFreeFacilityTitle(title_domain(v));
+      t.process();
+    };
+
+    process_facilities = function(v) {
+      facilities(v).each(function() {
+        var f;
+        f = new StationFacilityInfosOfEachSpecificFacility($(this));
+        f.process();
+      });
+    };
+
+    return StationFacilityInfosOfEachTypeAndLocatedArea;
+
+  })();
+
+  StationFacilityInfosOfEachSpecificFacility = (function() {
+    var facility_height, image_and_number, info, margin_top_of_number, number, process_image_and_number, process_info, process_service_details, process_toilet_assistants, service_details, set_margin_top_to_number, toilet_assistants;
+
+    function StationFacilityInfosOfEachSpecificFacility(domain) {
+      this.domain = domain;
+    }
+
+    image_and_number = function(v) {
+      return v.domain.children('.image_and_number').first();
+    };
+
+    number = function(v) {
+      return image_and_number(v).children().eq(1);
+    };
+
+    margin_top_of_number = function(v) {
+      return image_and_number(v).innerHeight() - number(v).outerHeight(true);
+    };
+
+    process_image_and_number = function(v) {
+      var p, _image_and_number;
+      _image_and_number = image_and_number(v);
+      p = new DomainsCommonProcessor(_image_and_number.children());
+      _image_and_number.css('height', p.max_outer_height(true));
+      set_margin_top_to_number(v);
+    };
+
+    set_margin_top_to_number = function(v) {
+      number(v).css('margin-top', margin_top_of_number(v));
+    };
+
+    info = function(v) {
+      return v.domain.children('.info').first();
+    };
+
+    facility_height = function(v) {
+      return Math.max(number(v).outerHeight(true), info(v).height());
+    };
+
+    process_info = function(v) {
+      var p, _info;
+      process_service_details(v);
+      process_toilet_assistants(v);
+      _info = info(v);
+      p = new DomainsCommonProcessor(_info.children());
+      _info.css('height', p.sum_outer_height(true));
+      v.domain.css('height', facility_height(v));
+    };
+
+    service_details = function(v) {
+      return info(v).children('.service_details').first();
+    };
+
+    process_service_details = function(v) {
+      service_details(v).children().each(function() {
+        var escalator_directions, p1, p2, service_detail;
+        service_detail = $(this);
+        escalator_directions = service_detail.children('.escalator_directions').first();
+        p1 = new DomainsCommonProcessor(escalator_directions.children());
+        escalator_directions.css('height', p1.max_outer_height(true));
+        p2 = new DomainsCommonProcessor(service_detail.children());
+        service_detail.css('height', p2.max_outer_height(true));
+      });
+    };
+
+    toilet_assistants = function(v) {
+      return info(v).children('.toilet_assistants').first();
+    };
+
+    process_toilet_assistants = function(v) {
+      var p, _toilet_assistants;
+      _toilet_assistants = toilet_assistants(v);
+      p = new DomainsCommonProcessor(_toilet_assistants.children());
+      _toilet_assistants.css('height', p.max_outer_height(true));
+    };
+
+    StationFacilityInfosOfEachSpecificFacility.prototype.process = function() {
+      process_image_and_number(this);
+      process_info(this);
+    };
+
+    return StationFacilityInfosOfEachSpecificFacility;
+
+  })();
+
+  StationFacilityBarrierFreeFacilityTitle = (function() {
+    var title_height, title_text_en, title_text_en_margin_top, title_text_ja, title_text_ja_margin_top, title_text_margin_top;
+
+    function StationFacilityBarrierFreeFacilityTitle(domain) {
+      this.domain = domain;
+    }
+
+    title_text_ja = function(v) {
+      return v.domain.children().eq(0);
+    };
+
+    title_text_en = function(v) {
+      return v.domain.children().eq(1);
+    };
+
+    title_height = function(v) {
+      return Math.max(title_text_ja(v).height(), title_text_en(v).height());
+    };
+
+    title_text_margin_top = function(v, domain) {
+      return title_height(v) - domain.height();
+    };
+
+    title_text_ja_margin_top = function(v) {
+      return title_text_margin_top(v, title_text_ja(v));
+    };
+
+    title_text_en_margin_top = function(v) {
+      return title_text_margin_top(v, title_text_en(v));
+    };
+
+    StationFacilityBarrierFreeFacilityTitle.prototype.process = function() {
+      title_text_ja(this).css('margin-top', title_text_ja_margin_top(this));
+      title_text_en(this).css('margin-top', title_text_en_margin_top(this));
+      this.domain.css('height', title_height(this));
+    };
+
+    return StationFacilityBarrierFreeFacilityTitle;
+
+  })();
+
+}).call(this);
+(function() {
+  var StationTimetable, StationTimetableBase, StationTimetableContents, StationTimetableContentsHours, StationTimetableContentsOperation, StationTimetableContentsOperationDay, StationTimetableTopHeader, StationTimetableTrainTimesOfEachHour, StationTimetables,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  StationTimetables = (function() {
+    var hours, operation_day_domains, process_hours, process_mins, process_operation_day_domains, process_top_headers, process_train_times;
+
+    function StationTimetables(domains) {
+      this.domains = domains != null ? domains : $('table.timetable');
+    }
+
+    operation_day_domains = function(v) {
+      return v.domains.find('.operation_day');
+    };
+
+    hours = function(v) {
+      return v.domains.find('.hour ) mins = (v) -> return v.domains.find( '.min);
+    };
+
+    process_operation_day_domains = function(v) {
+      var contents, _operation_day_domains;
+      _operation_day_domains = operation_day_domains(v);
+      contents = new StationTimetableContentsOperation(_operation_day_domains);
+      contents.decorate_contents();
+    };
+
+    process_top_headers = function(v) {
+      v.domains.each(function() {
+        var d;
+        d = new StationTimetableTopHeader($(this));
+        d.process();
+      });
+    };
+
+    process_hours = function(v) {
+      var contents;
+      contents = new StationTimetableContentsHours(hours(v));
+      contents.decorate_contents();
+    };
+
+    process_mins = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(mins(v));
+      p.set_css_attribute('width', p.max_width());
+    };
+
+    process_train_times = function(v) {
+      v.domains.each(function() {
+        var t;
+        t = new StationTimetable($(this));
+        t.process_train_times();
+      });
+    };
+
+    StationTimetables.prototype.process = function() {
+      console.log('StationTimetables\#process (' + this.domains.length + ')');
+      if (this.domains.length > 0) {
+        process_operation_day_domains(this);
+        process_top_headers(this);
+        process_hours(this);
+        process_mins(this);
+        process_train_times(this);
+      }
+    };
+
+    return StationTimetables;
+
+  })();
+
+  window.StationTimetables = StationTimetables;
+
+  StationTimetableBase = (function() {
+    function StationTimetableBase(domain) {
+      this.domain = domain;
+    }
+
+    return StationTimetableBase;
+
+  })();
+
+  StationTimetableTopHeader = (function(_super) {
+    var additional_infos, direction, main_domain, margin_top_and_bottom_of_direction_and_additional_infos, max_height_of_main_domain, top_header;
+
+    __extends(StationTimetableTopHeader, _super);
+
+    function StationTimetableTopHeader() {
+      return StationTimetableTopHeader.__super__.constructor.apply(this, arguments);
+    }
+
+    top_header = function(v) {
+      return v.domain.find('td.top_header').first();
+    };
+
+    main_domain = function(v) {
+      return top_header(v).children('.main').first();
+    };
+
+    max_height_of_main_domain = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(main_domain(v).children());
+      return p.max_outer_height(true);
+    };
+
+    direction = function(v) {
+      return main_domain(v).children('.direction').first();
+    };
+
+    additional_infos = function(v) {
+      return main_domain(v).children('.additional_infos').first();
+    };
+
+    margin_top_and_bottom_of_direction_and_additional_infos = function(v) {
+      return (max_height_of_main_domain(v) - direction(v).height()) * 0.5;
+    };
+
+    StationTimetableTopHeader.prototype.process = function() {
+      var _additional_infos, _direction, _margin_top_and_bottom_of_direction_and_additional_infos;
+      main_domain(this).css('height', max_height_of_main_domain(this));
+      _direction = direction(this);
+      _margin_top_and_bottom_of_direction_and_additional_infos = margin_top_and_bottom_of_direction_and_additional_infos(this);
+      _additional_infos = additional_infos(this);
+      _direction.css('margin-top', _margin_top_and_bottom_of_direction_and_additional_infos);
+      _direction.css('margin-bottom', _margin_top_and_bottom_of_direction_and_additional_infos);
+      _additional_infos.css('margin-top', _margin_top_and_bottom_of_direction_and_additional_infos);
+    };
+
+    return StationTimetableTopHeader;
+
+  })(StationTimetableBase);
+
+  StationTimetable = (function(_super) {
+    var rows_of_each_hour, set_height_of_contents_in_each_hour, set_max_width_to_all_train_times, train_times;
+
+    __extends(StationTimetable, _super);
+
+    function StationTimetable() {
+      return StationTimetable.__super__.constructor.apply(this, arguments);
+    }
+
+    train_times = function(v) {
+      return v.domain.find('.train_time');
+    };
+
+    rows_of_each_hour = function(v) {
+      return v.domain.find('td.train_times');
+    };
+
+    set_max_width_to_all_train_times = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(train_times(v));
+      p.set_css_attribute('width', p.max_width());
+    };
+
+    set_height_of_contents_in_each_hour = function(v) {
+      rows_of_each_hour(v).each(function() {
+        var d;
+        d = new StationTimetableTrainTimesOfEachHour($(this));
+        d.set_max_height_to_all();
+      });
+    };
+
+    StationTimetable.prototype.process_train_times = function() {
+      set_max_width_to_all_train_times(this);
+      set_height_of_contents_in_each_hour(this);
+    };
+
+    return StationTimetable;
+
+  })(StationTimetableBase);
+
+  StationTimetableTrainTimesOfEachHour = (function() {
+    var train_times;
+
+    function StationTimetableTrainTimesOfEachHour(domain) {
+      this.domain = domain;
+    }
+
+    train_times = function(v) {
+      return this.domain.children('.train_time');
+    };
+
+    StationTimetableTrainTimesOfEachHour.prototype.set_max_height_to_all = function() {
+      var p;
+      p = new DomainsCommonProcessor(train_times(v));
+      p.set_css_attribute('height', p.max_height());
+    };
+
+    return StationTimetableTrainTimesOfEachHour;
+
+  })();
+
+  StationTimetableContents = (function() {
+    var width_new;
+
+    function StationTimetableContents(domains) {
+      var p;
+      this.domains = domains;
+      p = new DomainsCommonProcessor(this.domains);
+      this.max_width = p.max_width();
+      this.inner_width_new = Math.ceil(this.max_width() * goldenRatio);
+      this.padding_new = Math.ceil((v.inner_width_new - v.max_width) * 0.5);
+      return;
+    }
+
+    width_new = function(v) {
+      return v.max_width + v.padding_new * 2;
+    };
+
+    StationTimetableContents.prototype.decorate_contents = function() {
+      var p;
+      p = new DomainsCommonProcessor(this.domains);
+      p.set_css_attribute('width', width_new(this));
+      p.set_css_attribute('padding-left', this.padding_new);
+      p.set_css_attribute('padding-right', this.padding_new);
+    };
+
+    return StationTimetableContents;
+
+  })();
+
+  StationTimetableContentsOperation = (function(_super) {
+    var set_vertical_position;
+
+    __extends(StationTimetableContentsOperation, _super);
+
+    function StationTimetableContentsOperation() {
+      return StationTimetableContentsOperation.__super__.constructor.apply(this, arguments);
+    }
+
+    set_vertical_position = function(v) {
+      v.domains.each(function() {
+        var operation_day;
+        operation_day = new StationTimetableContentsOperationDay($(this));
+        operation_day.set_vertical_positon();
+      });
+    };
+
+    StationTimetableContentsOperation.prototype.decorate_contents = function() {
+      StationTimetableContentsOperation.__super__.decorate_contents.call(this);
+    };
+
+    return StationTimetableContentsOperation;
+
+  })(StationTimetableContents);
+
+  StationTimetableContentsOperationDay = (function() {
+    var height, height_of_text, padding_top_and_bottom;
+
+    function StationTimetableContentsOperationDay(domain) {
+      this.domain = domain;
+    }
+
+    height = function(v) {
+      return v.domain.height();
+    };
+
+    height_of_text = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.domain.children());
+      return p.max_outer_height(true);
+    };
+
+    padding_top_and_bottom = function(v) {
+      return (height(v) - height_of_text(v)) * 0.5;
+    };
+
+    StationTimetableContentsOperationDay.prototype.set_vertical_positon = function() {
+      var _padding_top_and_bottom;
+      _padding_top_and_bottom = padding_top_and_bottom(this);
+      operation_day.css('padding-top', padding_top_and_bottom);
+      operation_day.css('padding-bottom', padding_top_and_bottom);
+    };
+
+    return StationTimetableContentsOperationDay;
+
+  })();
+
+  StationTimetableContentsHours = (function(_super) {
+    __extends(StationTimetableContentsHours, _super);
+
+    function StationTimetableContentsHours() {
+      return StationTimetableContentsHours.__super__.constructor.apply(this, arguments);
+    }
+
+    return StationTimetableContentsHours;
+
+  })(StationTimetableContents);
+
+}).call(this);
+(function() {
+  var TrainInformation, TrainInformationRailwayLineMatrix, Traininformations;
+
+  Traininformations = (function() {
+    var informations, size_of_status;
+
+    function Traininformations(width_of_each_normal_railway_line, domain) {
+      this.width_of_each_normal_railway_line = width_of_each_normal_railway_line;
+      this.domain = domain != null ? domain : $("#train_informations");
+    }
+
+    informations = function(v) {
+      return v.domain.children();
+    };
+
+    size_of_status = function(v) {
+      var height_of_railway_line_matrix, height_of_status, width_of_railway_line_matrix, width_of_status;
+      width_of_railway_line_matrix = 0;
+      height_of_railway_line_matrix = 0;
+      informations(v).each(function() {
+        width_of_railway_line_matrix = Math.max(width_of_railway_line_matrix, $(this).children().eq(0).outerWidth(true));
+        height_of_railway_line_matrix = Math.max(height_of_railway_line_matrix, $(this).children().eq(0).innerHeight());
+      });
+      width_of_status = v.domain.innerWidth() - width_of_railway_line_matrix - 2;
+      height_of_status = height_of_railway_line_matrix;
+      return {
+        width: width_of_status,
+        height: height_of_status
+      };
+    };
+
+    Traininformations.prototype.process = function() {
+      var _size_of_status;
+      _size_of_status = size_of_status(this);
+      informations(this).each(function() {
+        var train_information;
+        train_information = new TrainInformation($(this), this.width_of_each_normal_railway_line, _size_of_status);
+        return train_infomation.process_railway_line_matrix();
+      });
+      informations(this).each(function() {
+        var train_infomation;
+        train_infomation = new TrainInformation($(this), this.width_of_each_normal_railway_line, _size_of_status);
+        train_infomation.set_size();
+      });
+    };
+
+    return Traininformations;
+
+  })();
+
+  window.Traininformations = Traininformations;
+
+  TrainInformation = (function() {
+    var railway_line_matrix, status;
+
+    function TrainInformation(domain, width_of_each_normal_railway_line, size) {
+      this.domain = domain;
+      this.width_of_each_normal_railway_line = width_of_each_normal_railway_line;
+      this.size = size;
+    }
+
+    railway_line_matrix = function(v) {
+      return v.domain.children().eq(0);
+    };
+
+    status = function(v) {
+      return v.domain.children().eq(1);
+    };
+
+    TrainInformation.prototype.set_size = function() {
+      status(this).css('width', this.size.width).css('height', this.size.height);
+    };
+
+    TrainInformation.prototype.process_railway_line_matrix = function() {
+      var _railway_line_matrix;
+      _railway_line_matrix = new TrainInformationRailwayLineMatrix(railway_lline_matrix(this), this.width_of_each_normal_railway_line);
+      _railway_line_matrix.process();
+    };
+
+    return TrainInformation;
+
+  })();
+
+  TrainInformationRailwayLineMatrix = (function() {
+    var change_attributes, change_width_and_margin_of_info_domain, info, info_padding_top_and_bottom, new_height_of_info, new_margin_left_and_right_of_info_domain, railway_line_code_outer, text, width_of_info_domain;
+
+    function TrainInformationRailwayLineMatrix(domain, width_of_each_normal_railway_line) {
+      this.domain = domain;
+      this.width_of_each_normal_railway_line = width_of_each_normal_railway_line;
+    }
+
+    info = function(v) {
+      return v.domain.children().first();
+    };
+
+    railway_line_code_outer = function(v) {
+      return info(v).children().eq(0);
+    };
+
+    text = function(v) {
+      return info(v).children().eq(1);
+    };
+
+    info_padding_top_and_bottom = function(v) {
+      return 4;
+    };
+
+    new_height_of_info = function(v) {
+      return Math.max(railway_line_code_outer(v).outerHeight(true), text(v).outerHeight(true)) + info_padding_top_and_bottom(v) * 2;
+    };
+
+    change_attributes = function(v) {
+      var w, _h, _padding;
+      _h = new_height_of_info(v);
+      _padding = info_padding_top_and_bottom(v);
+      info(v).css('height', _h);
+      v.domain.css('height', _h).css('padding-top', _padding).css('padding-bottom', _padding).css('width', v.width_of_each_normal_railway_line);
+      w = Math.ceil(railway_line_code_outer(v).outerWidth(true) + text(v).outerWidth(true));
+      info(v).css('width', w);
+    };
+
+    width_of_info_domain = function(v) {
+      return info(v).outerWidth(true);
+    };
+
+    new_margin_left_and_right_of_info_domain = function(v) {
+      return Math.floor((v.width_of_each_normal_railway_line - width_of_info_domain) * 0.5);
+    };
+
+    change_width_and_margin_of_info_domain = function(v) {
+      var _margin;
+      _margin = new_margin_left_and_right_of_info_domain(v);
+      info(v).css('margin-left', _margin).css('margin-right', _margin);
+    };
+
+    TrainInformationRailwayLineMatrix.prototype.process = function() {
+      change_attributes(this);
+      change_width_and_margin_of_info_domain(this);
+    };
+
+    return TrainInformationRailwayLineMatrix;
+
+  })();
 
 }).call(this);
 (function() {
@@ -12626,10 +14321,7 @@ $( document ).on( 'ready page:load' , function() { // Turbolinks 対策
   // $( document ).live( 'pageshow', function() {
 
   initializeDo() ;
-  changeAttrOfStationFacility() ;
-  processStationFacilityInfos() ;
-
-  
-  processMainContents() ;
-  // processBottomContent() ;
 });
+
+observer_of_station_facility_platform_info_tab = new ObserverOfStationFacilityPlatformInfoTab() ;
+window.setInterval( 'observer_of_station_facility_platform_info_tab.listen()' , observer_of_station_facility_platform_info_tab.duration() ) ;

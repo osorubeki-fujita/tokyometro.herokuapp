@@ -25,7 +25,10 @@ module PlatformInfoHelper
     # 南北線・三田線の共用区間の場合
     elsif platform_infos_grouped_by_railway_line.platform_infos_of_namboku_and_toei_mita_line?( @station_facility )
       railway_line_ids = [ "odpt.Railway:TokyoMetro.Namboku" , "odpt.Railway:Toei.Mita" ].map { | item | ::RailwayLine.find_by_same_as( item ).id }
-      local_h = { railway_line_ids: railway_line_ids , platform_infos_grouped_by_railway_line: platform_infos_grouped_by_railway_line }
+      local_h = {
+        railway_line_ids: railway_line_ids ,
+        platform_infos_grouped_by_railway_line: platform_infos_grouped_by_railway_line
+      }
 
       render inline: <<-HAML , type: :haml , locals: local_h
 %div{ id: :platform_info_tab_menu }
@@ -64,12 +67,12 @@ module PlatformInfoHelper
       railway_line_name_ja = "有楽町線・副都心線"
       railway_line_name_en = "Yurakucho and Fukutoshin Line"
       railway_line_class = :yurakucho_and_fukutoshin
-      railway_line_tab_name = :platform_info_yurakucho_and_fukutoshin_line
+      railway_line_tab_name = :platform_info_yurakucho_and_fukutoshin
     elsif ni
       railway_line_name_ja = "南北線・都営三田線"
       railway_line_name_en = "Namboku and Toei Mita Line"
       railway_line_class = :namboku_and_toei_mita
-      railway_line_tab_name = :platform_info_namboku_and_toei_mita_line
+      railway_line_tab_name = :platform_info_namboku_and_toei_mita
 
     else
       railway_line = ::RailwayLine.find( railway_line_id )
@@ -288,13 +291,8 @@ module PlatformInfoHelper
       infos_of_barrier_free_facilities_outside: infos_of_barrier_free_facilities.map { | info_of_each_car |
         info_of_each_car.select( &:outside? )
       } ,
-      proc_for_display_inside: Proc.new { | info |
-        id_and_code = info.decorate.id_and_code_hash
-        link_to( id_and_code[ :platform ] , url_for( anchor: id_and_code[ :id ] ) )
-      } ,
-      proc_for_display_outside: Proc.new { | info |
-        id_and_code = info.decorate.id_and_code_hash
-        link_to( id_and_code[ :platform ] , url_for( anchor: id_and_code[ :id ] ) )
+      proc_for_display: Proc.new { | info |
+        id_and_code = info.decorate.render_in_platform_info
       }
     }
 
@@ -302,12 +300,12 @@ module PlatformInfoHelper
 - if infos_of_barrier_free_facilities_inside.any?( &:present? )
   %tr{ class: :barrier_free_infos_inside }
     = ::StationFacilityPlatformInfoDecorator.render_inside_barrier_free_facility_title
-    - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_inside , proc_for_display_inside )
+    - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_inside , proc_for_display )
 
 - if infos_of_barrier_free_facilities_outside.any?( &:present? )
   %tr{ class: :barrier_free_infos_outside }
     = ::StationFacilityPlatformInfoDecorator.render_outside_barrier_free_facility_title
-    - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_outside , proc_for_display_outside )
+    - concat platform_infos_conncet_cells_including_same_info_and_make_cells( infos_of_barrier_free_facilities_outside , proc_for_display )
     HAML
   end
 
@@ -330,48 +328,41 @@ module PlatformInfoHelper
 
     if yf or ni
       if yf
-        tab_name = @default_platform_info_tab
         railway_line_name_ja = "有楽町線・副都心線"
         railway_line_name_en = "Yurakucho and Fukutoshin Line"
       elsif ni
-        tab_name = @default_platform_info_tab
-        div_class_name = :namboku_and_toei_mita
         railway_line_name_ja = "南北線・都営三田線"
         railway_line_name_en = "Namboku and Toei Mita Line"
       end
 
       h_locals = {
         railway_line_ids: railway_line_ids ,
-        tab_name: tab_name ,
+        tab_name: @default_platform_info_tab ,
         railway_line_name_ja: railway_line_name_ja ,
         railway_line_name_en: railway_line_name_en
       }
       render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :platform_info_tabs }
-  %ul
-    %li{ class: [ tab_name , :platform_info_tab ] }<
-      - # %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTab('" + tab_name.to_s + "') ; return false ; " ) }
-      = ::StationFacilityPlatformInfoDecorator.render_link_in_tab( tab_name )
-      %div{ class: :railway_line_name }
-        - railway_line_ids.each do | railway_line_id |
-          - railway_line_instance = ::RailwayLine.find( railway_line_id ).decorate
-          %div{ class: railway_line_instance.css_class_name }
-            = railway_line_instance.render_railway_line_code( small: true )
-        %div{ class: :text }<
-          %div{ class: :text_ja }<
-            = railway_line_name_ja
-          %div{ class: :text_en }<
-            = railway_line_name_en
+%ul{ id: :platform_info_tabs }
+  %li{ class: [ tab_name , :platform_info_tab ] }<
+    %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTabByPageLink('" + tab_name.to_s + "' , true ) ; return false ; " ) }
+      - railway_line_ids.each do | railway_line_id |
+        - railway_line_instance = ::RailwayLine.find( railway_line_id ).decorate
+        %div{ class: railway_line_instance.css_class_name }
+          = railway_line_instance.render_railway_line_code( small: true )
+      %div{ class: :text }<
+        %div{ class: :text_ja }<
+          = railway_line_name_ja
+        %div{ class: :text_en }<
+          = railway_line_name_en
       HAML
 
     else
 
       render inline: <<-HAML , type: :haml , locals: { railway_line_ids: railway_line_ids }
-%div{ id: :platform_info_tabs }
-  %ul
-    - railway_line_ids.sort.each do | railway_line_id |
-      = ::RailwayLine.find( railway_line_id ).decorate.render_station_facility_platform_info_transfer_info_tab
-      HAML
+%ul{ id: :platform_info_tabs }
+  - railway_line_ids.sort.each do | railway_line_id |
+    = ::RailwayLine.find( railway_line_id ).decorate.render_station_facility_platform_info_transfer_info_tab
+    HAML
     end
 
   end

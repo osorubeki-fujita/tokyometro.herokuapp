@@ -39,7 +39,7 @@ class BarrierFreeFacility < ActiveRecord::Base
 
   [
     :type , :located_area , :place_names ,
-    :service_details , :service_detail_patterns , :escalator_directions ,
+    :service_details , :service_detail_patterns , :escalator_directions , :escalator_direction_patterns ,
     :toilet_assistants , :toilet_assistant_patterns
   ].each do | method_name |
     eval <<-DEF
@@ -67,6 +67,18 @@ class BarrierFreeFacility < ActiveRecord::Base
         located_area.#{ method_base_name }
       end
     DEF
+  end
+  
+  def barrier_free_facility_toilet_assistant_pattern
+    _patterns = barrier_free_facility_toilet_assistant_patterns
+    if _patterns.present?
+      if _patterns.length > 2
+        raise "Error"
+      end
+      _patterns.first
+    else
+      nil
+    end
   end
 
 end

@@ -6,6 +6,7 @@ class RailwayLineDecorator < Draper::Decorator
 
   include TwitterRenderer
   include CssClassNameOfConnectingRailwayLine
+  include RenderLinkToRailwayLinePage
 
   def self.common_title_ja
     "路線のご案内"
@@ -168,7 +169,15 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def railway_line_page_name
-    "#{ object.css_class_name }_line"
+    if object.branch_line?
+      "#{ css_class_name }_line".gsub( /_branch/ , "" ) 
+    else
+      "#{ css_class_name }_line"
+    end
+  end
+  
+  def travel_time_table_id
+    css_class_name + "_travel_time"
   end
 
   def station_facility_platform_info_tab_name
@@ -240,19 +249,20 @@ class RailwayLineDecorator < Draper::Decorator
     HAML
   end
 
-  def render_in_station_info_of_travel_time_info
+  def render_in_pages_related_to_station
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- if info.tokyo_metro?
-  = link_to( "" , "../railway_line/" + info.name_en.gsub( " " , "_" ).underscore )
 = info.render_railway_line_code( must_display_line_color: true , small: true )
 = info.render_name( process_special_railway_line: true )
     HAML
   end
 
+  alias :render_in_station_info_of_travel_time_info :render_in_pages_related_to_station
+
   def render_connecting_railway_line_info_in_station_facility
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: info.css_class_name_of_connecting_railway_line }<
-  = info.render_in_station_info_of_travel_time_info
+  = info.render_link_to_railway_line_page
+  = info.render_in_pages_related_to_station
     HAML
   end
 
@@ -320,9 +330,9 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 - tab_name = info.station_facility_platform_info_tab_name
 %li{ class: [ tab_name , :platform_info_tab ] }<
-  - # %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTab('" + tab_name.to_s + "') ; return false ; " ) }
-  = ::StationFacilityPlatformInfoDecorator.render_link_in_tab( tab_name )
-  %div{ class: :railway_line_name }
+  - # = ::StationFacilityPlatformInfoDecorator.render_link_in_tab( tab_name )
+  - # %div{ class: :railway_line_name }
+  %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTabByPageLink('" + tab_name.to_s + "' , true ) ; return false ; " ) }
     %div{ class: info.css_class_name }
       = info.render_railway_line_code( small: true )
     = info.render_name
@@ -538,6 +548,18 @@ class RailwayLineDecorator < Draper::Decorator
     else
       :railway_line_code_48
     end
+  end
+
+  def railway_line_decorated
+    self
+  end
+
+  def railway_line_page_exists?
+    object.tokyo_metro?
+  end
+
+  def set_anchor_in_travel_time_info_table?
+    object.branch_line?
   end
 
 end

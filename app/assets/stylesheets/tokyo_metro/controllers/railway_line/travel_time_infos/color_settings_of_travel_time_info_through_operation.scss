@@ -47,12 +47,32 @@
 %colorSettingsOfTravelTimeInfoThroughOperation {
   $normal_background_color: #f6f6f6 ;
   $yf_color: mix( $line_yurakucho_bgcolor , $line_fukutoshin_bgcolor ) ;
-  tr.through_operation {
+  tr.through_operation_info_row {
     background-color: $normal_background_color ;
     min-height: 160px ;
+    border-spacing: 0px ;
   }
-  td.through_operation_info {
-    padding: 4px ;
+  td.through_operation_infos {
+    padding: 8px ;
+    .through_operation_info_box {
+      .train_type_displayed {
+        clear: both ;
+        @extend %floatLeft ;
+      }
+      .through_operation_info {
+        @extend %floatLeft ;
+      }
+    }
+  }
+  tr.through_operation_info_row.top {
+    td.through_operation_infos {
+      @extend %paddingBottom16 ;
+    }
+  }
+  tr.through_operation_info_row.bottom {
+    td.through_operation_infos {
+      @extend %paddingTop16 ;
+    }
   }
   td.hibiya_tobu {
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hibiya_bgcolor , $normal_background_color , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;

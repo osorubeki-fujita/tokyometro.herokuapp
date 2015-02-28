@@ -35,10 +35,10 @@ class ConnectingRailwayLine < ActiveRecord::Base
     super or railway_line.not_operated_yet?
   end
 
-  scope :sort , -> {
-    if where.not( index_in_station: nil ).blank?
+  default_scope {
+    if pluck( :index_in_station ).all?( &:present? )
       order( :index_in_station )
-    elsif where( index_in_station: nil ).blank?
+    elsif pluck( :index_in_station ).all?( &:blank? )
       order( :railway_line_id )
     else
       raise "Error"

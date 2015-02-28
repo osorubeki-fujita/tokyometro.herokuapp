@@ -11,7 +11,7 @@ module ForRails::RailwayLineArrayModule
     elsif yurakucho_and_fukutoshin_line?
       self.map( &:name_ja ).join( "・" )
     else
-      raise "Error"
+      raise "Error: " + self.map( &:name_ja ).to_s
     end
   end
 
@@ -54,7 +54,7 @@ module ForRails::RailwayLineArrayModule
   end
 
   def yurakucho_and_fukutoshin_line?
-    self.map( &:same_as ) == ::TokyoMetro::Modules::Common::Dictionary::RailwayLine::StringList.yurakucho_and_fukutoshin_line_same_as
+    self.map( &:same_as ).sort == ::TokyoMetro::Modules::Common::Dictionary::RailwayLine::StringList.yurakucho_and_fukutoshin_line_same_as.sort
   end
 
 end

@@ -1,15 +1,31 @@
 - # 各線の所要時間情報
 - # @note 一般的な分岐などがない路線、分岐などがある路線のそれぞれで共通に使用する部分テンプレート
 - # @note 部分テンプレート travel_time_info_one_railway_line , travel_time_info_m , travel_time_info_yf から呼び出される。
-- # @version 2014.11.27.13.42
-- stations.each.with_index(1) do | station , i |
-  = station.decorate.render_travel_time_info_row( special_proc_of_station )
-  - unless i == stations.length
-    - section = sections[ i - 1 ]
-    %tr
-      - if special_proc_of_section.present?
-        = special_proc_of_section.call( section )
-      %td{ class: :travel_time }<
-        = ::TravelTimeInfoDecorator.render_info_between_stations( travel_time_infos , section )
-      %td{ colspan: 2 }
-        = " "
+- stations = railway_line.stations.order( :index_in_railway_line )
+- sections = stations.each_cons(2).to_a
+- travel_time_infos = railway_line.travel_time_infos.includes( :from_station , :to_station )
+%div{ id: railway_line.decorate.travel_time_table_id }
+  %table{ class: :travel_time_info }
+    - if through_operation_a.present?
+      = through_operation_a.call
+    - if through_operation_a_info.present?
+      = through_operation_a_info.call
+      - # = ::TravelTimeInfoDecorator.render_empty_row
+    - #
+    - stations.each.with_index(1) do | station , i |
+      = station.decorate.render_travel_time_info_row( special_proc_of_station )
+      - unless i == stations.length
+        - section = sections[ i - 1 ]
+        %tr
+          - if special_proc_of_section.present?
+            = special_proc_of_section.call( section )
+          %td{ class: :travel_time }<
+            = ::TravelTimeInfoDecorator.render_info_between_stations( travel_time_infos , section )
+          %td{ colspan: 2 }
+            = " "
+    - #
+    - if through_operation_b_info.present?
+      - # = ::TravelTimeInfoDecorator.render_empty_row
+      = through_operation_b_info.call
+    - if through_operation_b.present?
+      = through_operation_b.call

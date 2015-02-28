@@ -3,4 +3,4 @@
 = document_title_of_each_content( @title_ja , @title_en )
 %div{ id: :train_owners }
   - @train_owners.each do | train_owner |
-    = train_owner.render_document_info_box
+    = train_owner.decorate.render_document_info_box

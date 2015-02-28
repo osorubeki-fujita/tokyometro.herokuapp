@@ -163,9 +163,9 @@ class StationDecorator < Draper::Decorator
         station_timetable: "駅の時刻表" ,
         station_facility: "駅施設のご案内"
       }
-    - h.each do | body , title |
+    - h.each do | controller , title |
       %div{ class: :link }<
-        = link_to_unless_current( title , "../" + body.to_s + "/" + info.name_in_system.underscore )
+        = link_to_unless_current( title , url_for( controller: controller , action: info.name_in_system.underscore )
     HAML
   end
 
@@ -327,7 +327,12 @@ class StationDecorator < Draper::Decorator
   end
 
   def render_link_to_station_facility_page_ja
-    h.link_to( "" , "../station_facility/#{station_page_name}" , name: "#{ name_ja }駅のご案内へジャンプします。" )
+    link_name = "#{ name_ja }駅のご案内へジャンプします。"
+    if add_anchor_to_link_to_station_facility_page_ja?
+      h.link_to( "" , h.url_for( controller: :station_facility , action: station_page_name , anchor: anchor_added_to_link_of_station_faility_page ) , name: link_name )
+    else
+      h.link_to( "" , h.url_for( controller: :station_facility , action: station_page_name ) , name: link_name )
+    end
   end
   
   def render_latest_passenger_survey
@@ -360,7 +365,7 @@ class StationDecorator < Draper::Decorator
   %div{ class: :station }<
     = info.render_name_ja_and_en
 %td{ class: :transfer , colspan: 2 }
-  - info.connecting_railway_lines.includes( :railway_line , railway_line: :operator ).sort.each do | connecting_railway_line |
+  - info.connecting_railway_lines.includes( :railway_line , railway_line: :operator ).each do | connecting_railway_line |
     = connecting_railway_line.decorate.render
     HAML
   end
@@ -372,7 +377,7 @@ class StationDecorator < Draper::Decorator
     = station.decorate.render_each_station_code_image_tag
     HAML
   end
-  
+
   class << self
     alias :render_station_code_images_in_passenger_survey_table_row :render_station_code_imags
   end
@@ -408,7 +413,7 @@ class StationDecorator < Draper::Decorator
     end
     "#{dirname}/#{file_basename}.png"
   end
-  
+
   def add_anchor_to_link_to_station_page_ja?
     case @type_of_link_to_station
     when :must_link_to_railway_line_page , :must_link_to_railway_line_page_and_merge_yf
@@ -421,13 +426,20 @@ class StationDecorator < Draper::Decorator
       false
     end
   end
+  
+  def add_anchor_to_link_to_station_facility_page_ja?
+    @type_of_link_to_station = :link_to_railway_line_page_if_containing_multiple_railway_lines_and_merge_yf
+    add_anchor_to_link_to_station_page_ja?
+  end
 
   def anchor_added_to_link_of_station_page
     if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
       :yurakucho_and_fukutoshin
     else
-      object.railway_line.css_class_name.gsub( /_branch\Z/ , "" )
+      object.railway_line.css_class_name
     end
   end
+  
+  alias :anchor_added_to_link_of_station_faility_page :anchor_added_to_link_of_station_page
 
 end

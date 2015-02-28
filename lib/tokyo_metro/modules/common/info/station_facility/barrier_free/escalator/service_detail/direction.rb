@@ -58,6 +58,16 @@ module TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::Escalato
       raise "Error"
     end
   end
+  
+  def attribute
+    if both?
+      :both
+    elsif only_up?
+      :up
+    else
+      :down
+    end
+  end
 
   def to_a
     [ self.up? , self.down? ]

@@ -21,11 +21,18 @@ class TrainTypeDecorator < Draper::Decorator
     HAML
   end
 
+  def render_name_box_in_travel_time_info
+    h.render inline: <<-HAML , type: :haml , locals: { info: self , class_name: class_name_of_name_box }
+%div{ class: info.railway_line.css_class_name }
+  %div{ class: class_name }
+    = info.train_type_in_api.decorate.render_name_in_travel_time_info
+    HAML
+  end
+
   def render_name_box
     h.render inline: <<-HAML , type: :haml , locals: { info: self , class_name: class_name_of_name_box }
 %div{ class: class_name }
-  %div{ class: :train_type_name_displayed }
-    = info.train_type_in_api.decorate.render_name_in_box
+  = info.train_type_in_api.decorate.render_name_in_box
     HAML
   end
 

@@ -48,8 +48,8 @@ class StationFacilityPlatformInfoDecorator < Draper::Decorator
   def self.render_link_in_tab( tab_name )
     h.link_to(
       "" ,
-      h.url_for( anchor: tab_name.gsub( /\Aplatform_info_/ , "" ) ) ,
-      onclick: h.raw( "changeStationFacilityPlatformInfoTabByPageLink('" + tab_name.to_s + "') ; return false ; " )
+      h.url_for( anchor: tab_name.to_s.gsub( /\Aplatform_info_/ , "" ) ) ,
+      onclick: h.raw( "changeStationFacilityPlatformInfoTabByPageLink('" + tab_name.to_s + "', true ) ; return false ; " )
     )
   end
 

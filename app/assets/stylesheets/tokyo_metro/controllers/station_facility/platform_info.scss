@@ -36,9 +36,13 @@
         ul {
           list-style:none ;
           li {
-            clear: both ;
-            div {
-              display: block ;
+            display: block ;
+            float: left ;
+            a {
+              img {
+                $length: 32px ;
+                height: $length ;
+              }
             }
             .transfer_info {
               @extend %marginTop4 ;
@@ -71,6 +75,8 @@
         top: 16px ;
         bottom: 16px ;
     }
+    border-collapse: separate ;
+    border-spacing: 8px 2px ;
     padding: $margin_and_padding ;
     border: solid 1px #eee ;
     tr.car_numbers {
@@ -92,7 +98,7 @@
     }
     tr.transfer_infos {
         @extend %normalCellSettingsInPlatformInfo ;
-		@extend %cellSettingsWhenInfoIsEmpty ;
+        @extend %cellSettingsWhenInfoIsEmpty ;
         @extend %cellSettingsWhenInfoIsPresent ;
         td.title {
             $base_color: rgba( $operator_color , 0.4 ) ;
@@ -108,7 +114,7 @@
     }
     tr.barrier_free_infos_inside {
         @extend %normalCellSettingsInPlatformInfo ;
-		@extend %cellSettingsWhenInfoIsEmpty ;
+        @extend %cellSettingsWhenInfoIsEmpty ;
         @extend %cellSettingsWhenInfoIsPresent ;
         td.title {
             $base_color: rgba( $operator_color , 0.3 ) ;
@@ -121,12 +127,15 @@
     }
     tr.surrounding_areas {
         @extend %normalCellSettingsInPlatformInfo ;
-		@extend %cellSettingsWhenInfoIsEmpty ;
+        @extend %cellSettingsWhenInfoIsEmpty ;
         @extend %cellSettingsWhenInfoIsPresent ;
         td.title {
             $base_color: rgba( $operator_color , 0.2 ) ;
             @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
             @extend %titleOfEachContentsInPlatformInfo ;
+        }
+        li {
+          clear: both ;
         }
     }
 }
