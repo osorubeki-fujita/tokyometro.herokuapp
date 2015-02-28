@@ -165,7 +165,7 @@ class StationDecorator < Draper::Decorator
       }
     - h.each do | controller , title |
       %div{ class: :link }<
-        = link_to_unless_current( title , url_for( controller: controller , action: info.name_in_system.underscore )
+        = link_to_unless_current( title , url_for( controller: controller , action: info.name_in_system.underscore ) )
     HAML
   end
 
