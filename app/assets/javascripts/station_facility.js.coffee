@@ -323,13 +323,19 @@ class StationFacilityTabsAndContents
     # console.log 'StationFacilityTabsAndContents\#display_first_platform_info_tab'
     _first_tab_id = first_platform_info_tab_id(v)
     # console.log '_first_tab_id: ' + _first_tab_id
-    _anchor = anchor_name_of_platform_info( v , _first_tab_id )
-    target =new StationFacilityPlatformInfoTabTarget( _anchor , _first_tab_id )
-    display_platform_info_tab_of( v , target , change_location )
+    _anchor_name = anchor_name_of_platform_info( v , _first_tab_id )
+    unless _anchor_name == null
+      target =new StationFacilityPlatformInfoTabTarget( _anchor_name , _first_tab_id )
+      display_platform_info_tab_of( v , target , change_location )
+      return
     return
 
   anchor_name_of_platform_info = ( v , tab_id ) ->
-    return tab_id.replace( /\#?platform_info_/ , "" )
+    unless tab_id == null
+      anchor_name = tab_id.replace( /\#?platform_info_/ , "" )
+    else
+      anchor_name = null
+    return anchor_name
 
   tab_id_of_platform_info = ( v , anchor ) ->
     return 'platform_info_' + anchor

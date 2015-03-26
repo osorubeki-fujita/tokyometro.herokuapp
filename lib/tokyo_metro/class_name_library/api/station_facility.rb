@@ -332,8 +332,8 @@ module TokyoMetro::ClassNameLibrary::Api::StationFacility
       ::StationFacility
     end
 
-    def db_instance_class_of_barrier_free_facility
-      ::BarrierFreeFacility
+    def db_instance_class_of_barrier_free_facility_info
+      ::BarrierFreeFacility::Info
     end
 
     def db_instance_class_of_barrier_free_service_detail

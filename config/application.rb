@@ -41,6 +41,7 @@ module RailsTokyoMetro
     #----------------
 
     config.eager_load_paths += Dir[ ::Rails.root.join('app', 'decorators', 'concerns') ]
+    config.eager_load_paths += Dir[ ::Rails.root.join('app', 'decorators', 'concerns','association') ]
 
     # 標準添付ライブラリの拡張
     def self.extend_builtin_libraries

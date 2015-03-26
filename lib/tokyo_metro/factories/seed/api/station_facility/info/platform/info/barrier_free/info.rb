@@ -1,6 +1,6 @@
 class TokyoMetro::Factories::Seed::Api::StationFacility::Info::Platform::Info::BarrierFree::Info < TokyoMetro::Factories::Seed::Api::StationFacility::Info::Platform::Info::Common::Info
 
-  include ::TokyoMetro::Factories::Seed::Reference::BarrierFreeFacility
+  include ::TokyoMetro::Factories::Seed::Reference::BarrierFreeFacility::Info
 
   private
 

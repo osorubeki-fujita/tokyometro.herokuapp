@@ -1,13 +1,13 @@
 = render "common_content"
 
-- station_ids = @station.stations_including_other_railway_lines.pluck( :id )
-- @railway_lines = ::RailwayLine.find( ::Station.where( id: station_ids ).pluck( :railway_line_id ).uniq.sort )
+- station_ids = @station_info.station_infos_including_other_railway_lines.pluck( :id )
+- @railway_lines = ::RailwayLine.find( ::Station::Info.where( id: station_ids ).pluck( :railway_line_id ).uniq.sort )
 
-- station_decorated = @station.decorate
+- station_info_decorated = @station_info.decorate
 
-= station_decorated.render_title_of_train_information
-= station_decorated.render_latest_passenger_survey
-= station_decorated.render_links_to_infos
+= station_info_decorated.render_title_of_train_information
+= station_info_decorated.render_latest_passenger_survey
+= station_info_decorated.render_links_to_infos
 
 - content_for :right_contents do
   = twitter_railway_line_info

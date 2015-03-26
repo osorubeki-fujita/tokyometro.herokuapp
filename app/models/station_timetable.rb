@@ -4,13 +4,13 @@ class StationTimetable < ActiveRecord::Base
 
   has_many :station_timetable_fundamental_infos
 
-  has_many :stations , through: :station_timetable_fundamental_infos
+  has_many :station_infos , through: :station_timetable_fundamental_infos , class: ::Station::Info
   has_many :railway_lines , through: :station_timetable_fundamental_infos
   has_many :operators , through: :station_timetable_fundamental_infos
   has_many :railway_directions , through: :station_timetable_fundamental_infos
 
-  def station_timetable_fundamental_infos
-    fundamental_infos
+  def fundamental_infos
+    station_timetable_fundamental_infos
   end
 
   def has_only_one_fundamental_info?

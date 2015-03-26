@@ -1,9 +1,9 @@
 - # 各線の所要時間情報
 - # @note 一般的な分岐などがない路線、分岐などがある路線のそれぞれで共通に使用する部分テンプレート
 - # @note 部分テンプレート travel_time_info_one_railway_line , travel_time_info_m , travel_time_info_yf から呼び出される。
-- stations = railway_line.stations.order( :index_in_railway_line )
-- sections = stations.each_cons(2).to_a
-- travel_time_infos = railway_line.travel_time_infos.includes( :from_station , :to_station )
+- station_infos = railway_line.station_infos.order( :index_in_railway_line )
+- sections = station_infos.each_cons(2).to_a
+- travel_time_infos = railway_line.travel_time_infos.includes( :from_station_info , :to_station_info )
 %div{ id: railway_line.decorate.travel_time_table_id }
   %table{ class: :travel_time_info }
     - if through_operation_a.present?
@@ -12,9 +12,9 @@
       = through_operation_a_info.call
       - # = ::TravelTimeInfoDecorator.render_empty_row
     - #
-    - stations.each.with_index(1) do | station , i |
-      = station.decorate.render_travel_time_info_row( special_proc_of_station )
-      - unless i == stations.length
+    - station_infos.each.with_index(1) do | station_info , i |
+      = station_info.decorate.render_travel_time_info_row( special_proc_of_station )
+      - unless i == station_infos.length
         - section = sections[ i - 1 ]
         %tr
           - if special_proc_of_section.present?

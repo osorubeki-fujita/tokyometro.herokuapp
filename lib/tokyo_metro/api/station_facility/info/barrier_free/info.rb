@@ -75,7 +75,7 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
   end
 
   def instance_in_db
-    ::BarrierFreeFacility.find_by_same_as( @same_as )
+    self.class.db_instance_class_of_barrier_free_facility_info.find_by_same_as( @same_as )
   end
 
   def self.factory_for_this_class

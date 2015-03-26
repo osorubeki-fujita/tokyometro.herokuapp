@@ -14,7 +14,7 @@
         }
         padding: 2em ;
         border-collapse: collapse ;
-        @include cycle_of_row_color ;
+        @extend %cycleOfRowColor ;
         thead {
             background-color: rgba( $jp_traditional_ameiro , 0.6 ) ;
             td {

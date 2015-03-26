@@ -1,12 +1,11 @@
 class WomenOnlyCarInfo < ActiveRecord::Base
   belongs_to :operation_day
   belongs_to :railway_line
-
-  include AssociationFromFromStation
-  include AssociationFromToStation
+  include ::Association::To::FromStation::Info
+  include ::Association::To::ToStation::Info
 
   def section
-    [ from_station , to_station ]
+    [ from_station_info , to_station_info ]
   end
 
   def available_time_from
@@ -25,7 +24,7 @@ class WomenOnlyCarInfo < ActiveRecord::Base
     [ :ja , :en ].each do | lang |
       eval <<-DEF
         def #{prefix}_station_name_#{lang}
-          #{prefix}_station.name_#{lang}
+          #{prefix}_station_info.name_#{lang}
         end
       DEF
     end

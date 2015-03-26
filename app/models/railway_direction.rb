@@ -1,6 +1,6 @@
 class RailwayDirection < ActiveRecord::Base
   belongs_to :railway_line
-  belongs_to :station
+  include ::Association::To::Station::Info
 
   has_many :station_timetable_fundamental_infos
   has_many :station_timetables , through: :station_timetable_fundamental_infos

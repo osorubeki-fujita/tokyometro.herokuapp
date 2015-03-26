@@ -1,13 +1,13 @@
 = render "common_content"
 
-- station_decorated = @station.decorate
+- station_info_decorated = @station_info.decorate
 
-= station_decorated.render_title_of_station_facility
-= station_decorated.render_latest_passenger_survey
+= station_info_decorated.render_title_of_station_facility
+= station_info_decorated.render_latest_passenger_survey
 
-= station_decorated.render_tokyo_metro_railway_lines
-= station_decorated.render_railway_lines_except_for_tokyo_metro
-= station_decorated.render_links_to_infos
+= station_info_decorated.render_tokyo_metro_railway_lines
+= station_info_decorated.render_railway_lines_except_for_tokyo_metro
+= station_info_decorated.render_links_to_infos
 = render partial: "google_map"
 
 %div{ id: :station_facility_contents }
@@ -15,5 +15,5 @@
     = ::StationFacilityPlatformInfoDecorator.render_sub_top_title
     = platform_infos_of_railway_lines
   %div{ id: :station_facility_infos }
-    = ::BarrierFreeFacilityDecorator.render_sub_top_title
+    = ::BarrierFreeFacility::InfoDecorator.render_sub_top_title
     = @station_facility.decorate.render_barrier_free_facility_infos

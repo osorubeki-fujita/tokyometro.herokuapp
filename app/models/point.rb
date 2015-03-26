@@ -3,13 +3,13 @@ class Point < ActiveRecord::Base
   belongs_to :point_category
 
   has_many :station_points
-  has_many :stations , through: :station_points
+  has_many :station_infos , through: :station_points
 
   # geocoded_by :code
   # after_validation :geocode
 
-  scope :stations , -> {
-    station_facility.stations
+  scope :station_infos , -> {
+    station_facility.station_infos
   }
 
   scope :elevator , -> {

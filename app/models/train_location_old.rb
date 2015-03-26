@@ -1,5 +1,5 @@
 class TrainLocationOld < ActiveRecord::Base
   include TrainLocationCommonSettings
-  include AssociationFromFromStation
-  include AssociationFromToStation
+  include ::Association::To::FromStation::Info
+  include ::Association::To::ToStation::Info
 end

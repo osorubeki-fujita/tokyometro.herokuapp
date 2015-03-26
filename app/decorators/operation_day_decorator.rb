@@ -27,5 +27,9 @@ class OperationDayDecorator < Draper::Decorator
     = info.name_en.pluralize
     HAML
   end
+  
+  def css_class_name
+    name_en.downcase.gsub( / / , "_" )
+  end
 
 end

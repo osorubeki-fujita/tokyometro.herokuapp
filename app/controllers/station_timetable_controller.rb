@@ -9,7 +9,7 @@ class StationTimetableController < ApplicationController
   def index
     @title = "駅の時刻表"
     @railway_lines = ::RailwayLine.tokyo_metro
-    @stations_of_railway_lines = ::Station.tokyo_metro
+    @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
     render 'station_timetable/index'
@@ -23,13 +23,13 @@ class StationTimetableController < ApplicationController
 
   def each_station( station_name )
     each_station_sub( "駅の時刻表" , "station_timetable" , station_name , layout: "application_wide" ) do
-      station_ids = @station.stations_including_other_railway_lines.pluck( :id )
-      station_timetable_ids = ::StationTimetableFundamentalInfo.where( station_id: station_ids ).pluck( :station_timetable_id )
+      station_info_ids = @station_info.station_infos_including_other_railway_lines.pluck( :id )
+      station_timetable_ids = ::StationTimetableFundamentalInfo.where( station_info_id: station_info_ids ).pluck( :station_timetable_id )
       @station_timetables = ::StationTimetable.where( id: station_timetable_ids ).includes(
         :station_train_times ,
         :station_timetable_fundamental_infos
       )
-      @railway_lines = ::RailwayLine.find( ::Station.where( id: station_ids ).pluck( :railway_line_id ).uniq.sort )
+      @railway_lines = ::RailwayLine.where( id: ::Station::Info.where( id: station_info_ids ).pluck( :railway_line_id ).uniq.sort )
     end
   end
 

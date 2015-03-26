@@ -1,10 +1,10 @@
 class BarrierFreeFacilityServiceDetail < ActiveRecord::Base
-  belongs_to :barrier_free_facility
+  belongs_to :barrier_free_facility_info , class: ::BarrierFreeFacility::Info , foreign_key: :barrier_free_facility_info_id
   belongs_to :barrier_free_facility_service_detail_pattern
   has_one :barrier_free_facility_escalator_direction
 
   def station_facility
-    barrier_free_facility.station_facility
+    barrier_free_facility_info.station_facility
   end
 
   def escalator_direction

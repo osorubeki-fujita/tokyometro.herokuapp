@@ -1,6 +1,6 @@
 class PassengerSurvey < ActiveRecord::Base
   has_many :station_passenger_surveys
-  has_many :stations , through: :station_passenger_surveys
+  has_many :station_infos , through: :station_passenger_surveys , class: ::Station::Info
 
   def self.latest_passenger_survey_year
     self.all.pluck( :survey_year ).max
@@ -28,8 +28,8 @@ class PassengerSurvey < ActiveRecord::Base
   # 駅が設定された路線に所属しているか否かによって判定する。
   scope :select_railway_line , ->( railway_lines ) {
     railway_line_ids = railway_lines.map( &:id ).uniq
-    station_ids = ::Station.where( railway_line_id: railway_line_ids ).pluck( :id )
-    passenger_survey_ids = ::StationPassengerSurvey.where( station_id: station_ids ).pluck( :passenger_survey_id )
+    station_info_ids = ::Station::Info.where( railway_line_id: railway_line_ids ).pluck( :id )
+    passenger_survey_ids = ::StationPassengerSurvey.where( station_info_id: station_info_ids ).pluck( :passenger_survey_id )
     where( id: passenger_survey_ids )
   }
 
@@ -44,6 +44,6 @@ class PassengerSurvey < ActiveRecord::Base
   }
 
   def station_name_in_system
-    [ stations ].flatten.first.name_in_system.underscore
+    [ station_infos ].flatten.first.name_in_system.underscore
   end
 end

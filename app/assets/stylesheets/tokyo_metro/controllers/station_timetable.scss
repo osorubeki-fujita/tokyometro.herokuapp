@@ -60,69 +60,87 @@
     }
 }
 
+%stationTrainTimePreciseInfos {
+          @extend %floatLeft ;
+          color: $jp_traditional_sumi_iro ;
+          font: {
+            size: 8pt ;
+          }
+          .destination {
+            color: #000 ;
+            .small {
+              font: {
+                size: 6pt ;
+                color: $jp_traditional_sumi_iro ;
+              }
+            }
+          }
+          .additional_infos {
+            @extend %trainTimeAdditionalInfos ;
+          }
+}
+
+%stationTimetableBorderSetting {
+  border: solid 1px #999 ;
+}
+
 table.station_timetable {
-    clear:both ;
-    border: solid 1px #999 ;
-    background-color: #fff ;
-    border-collapse: collapse ;
-    @extend %marginBottom32 ;
-    @extend %commonSettingsOfStationTimetableHeader ;
-    @extend %colorSettingsOfStationTimetableHeader ;
+  clear:both ;
+  background-color: #fff ;
+  border-collapse: collapse ;
+  width: auto ;
+  @extend %marginBottom32 ;
+  @extend %commonSettingsOfStationTimetableHeader ;
+  @extend %colorSettingsOfStationTimetableHeader ;
+  @extend %stationTimetableBorderSetting ;
+  thead {
     td {
-        border: solid 1px #999 ;
-    }
-    tr.hour_row {
-        td.hour {
-            @include text_en ;
-            height: auto ;
-            text-align: right ;
-            font: {
-                size: 24pt ;
-                weight: bold ;
-            }
-            color: $jp_traditional_sumi_iro ;
-            background-color: mix( $jp_traditional_urumi_iro , #fff , 30% ) ;
+      .main {
+        .operation_day {
+          @include border_radius( 4px ) ;
         }
-        td.train_times {
-            background-color: #f9f9f9 ;
-            .train_time {
-                clear: right ;
-                @extend %floatLeft ;
-                @extend %margin4 ;
-                padding: 4px ;
-                border: solid 1px #eee ;
-                background-color: #fff ;
-                .min {
-                    @extend %floatLeft ;
-                    @extend %marginRight4 ;
-                    text-align: right ;
-                    color: #333 ;
-                    @include text_en ;
-                    font: {
-                        size: 18pt ;
-                        weight: bold ;
-                    }
-                }
-                .precise {
-                    @extend %floatLeft ;
-                    color: $jp_traditional_sumi_iro ;
-                    font: {
-                        size: 8pt ;
-                    }
-                    .destination {
-                        color: #000 ;
-                        .small {
-                            font: {
-                                size: 6pt ;
-                                color: $jp_traditional_sumi_iro ;
-                            }
-                        }
-                    }
-                    .additional_infos {
-                        @extend %trainTimeAdditionalInfos ;
-                    }
-                }
-            }
-        }
+      }
     }
+  }
+  tr.hour_row {
+    td.hour {
+      @include text_en ;
+      @extend %stationTimetableBorderSetting ;
+      height: auto ;
+      text-align: right ;
+      font: {
+        size: 24pt ;
+        weight: bold ;
+      }
+      padding: 8px ;
+      color: $jp_traditional_sumi_iro ;
+      background-color: mix( $jp_traditional_urumi_iro , #fff , 30% ) ;
+    }
+    td.station_train_times {
+      background-color: #f9f9f9 ;
+      @extend %stationTimetableBorderSetting ;
+      .station_train_time {
+        clear: right ;
+        @extend %floatLeft ;
+        @extend %margin4 ;
+        padding: 8px ;
+        border: solid 1px #ddd ;
+        background-color: #fff ;
+        .min {
+          @include text_en ;
+          @extend %floatLeft ;
+          @extend %marginRight4 ;
+          text-align: right ;
+          color: #333 ;
+          font: {
+            size: 18pt ;
+            weight: bold ;
+          }
+        }
+        .precise {
+          @extend %stationTrainTimePreciseInfos ;
+        }
+      }
+    }
+  }
 }

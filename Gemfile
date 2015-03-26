@@ -6,7 +6,7 @@ ruby '2.1.5'
 # -------- Ruby on Rails
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.1'
 
 #-------- development 環境
 
@@ -40,10 +40,10 @@ end
 
 #-------- test 環境
 
-# group :test do
+group :test do
   # gem 'rspec'
   # gem 'rspec-rails'
-# end
+end
 
 #--------
 
@@ -112,3 +112,14 @@ gem 'draper'
 # gem 'sass'
 
 # require 'psych'
+
+gem 'kaminari'
+
+#--------
+
+gem 'pry-rails' , group: [ :development , :test ]
+gem 'pry-byebug' , group: [ :development , :test ]
+gem 'hirb' , group: [ :development , :test ]
+gem 'hirb-unicode' , group: [ :development , :test ]
+gem 'better_errors' , group: [ :development , :test ]
+gem 'binding_of_caller' , group: [ :development , :test ]

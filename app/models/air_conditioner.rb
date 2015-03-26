@@ -1,5 +1,5 @@
-class AirConditioner < ActiveRecord::Base
-  belongs_to :air_conditioner_answer
-  belongs_to :railway_line
-  belongs_to :train_location
+module AirConditioner
+  def self.table_name_prefix
+    'air_conditioner_'
+  end
 end

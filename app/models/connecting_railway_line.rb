@@ -1,7 +1,7 @@
 class ConnectingRailwayLine < ActiveRecord::Base
-  belongs_to :station
+  include ::Association::To::Station::Info
   belongs_to :railway_line
-  belongs_to :connecting_station , class_name: 'Station'
+  belongs_to :connecting_station_info , class_name: ::Station::Info , foreign_key: :connecting_station_info_id
   belongs_to :connecting_railway_line_note
 
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine

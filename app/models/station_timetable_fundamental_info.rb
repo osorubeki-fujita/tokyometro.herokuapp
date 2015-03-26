@@ -1,7 +1,7 @@
 class StationTimetableFundamentalInfo < ActiveRecord::Base
   belongs_to :station_timetable
 
-  belongs_to :station
+  include ::Association::To::Station::Info
   belongs_to :railway_line
   belongs_to :operator
   belongs_to :railway_direction

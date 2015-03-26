@@ -4,8 +4,10 @@ class TrainTimetable < ActiveRecord::Base
   belongs_to :railway_direction
   belongs_to :train_owner
   belongs_to :operation_day
-  belongs_to :starting_station , class: Station
-  belongs_to :terminal_station , class: Station
+
+  belongs_to :starting_station_info , class: ::Station::Info
+  belongs_to :terminal_station_info , class: ::Station::Info
+
   belongs_to :train_timetable_arrival_info
   belongs_to :train_timetable_connection_info
   belongs_to :train_timetable_train_type_in_other_operator

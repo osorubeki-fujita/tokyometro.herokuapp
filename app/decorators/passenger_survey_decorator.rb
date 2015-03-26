@@ -56,9 +56,9 @@ class PassengerSurveyDecorator < Draper::Decorator
     %li<
       = "年度別の乗降客数"
       %ul<
-        - [ 2011 , 2012 , 2013 ].each do | year |
+        - [ 2011 , 2012 , 2013 ].each do |y|
           %li<
-            = link_to_unless_current( year.to_s + "年度"  , "in_" + year.to_s )
+            = link_to_unless_current( y.to_s + "年度" , "in_" + y.to_s )
     %li
       = "路線別の乗降客数"
       %ul{ class: :link_to_lines }
@@ -166,14 +166,13 @@ class PassengerSurveyDecorator < Draper::Decorator
     %td{ class: [ :order , :text_en ] }<
       = i
   %td{ class: :station_info }
-    - stations = passenger_survey_info.stations
+    - station_infos = passenger_survey_info.station_infos
     - case type
     - when :railway_line , :year , :station
-      %div{ class: :station_codes }<
-        - stations_displayed = stations_displayed_in_passenger_survey_table_row( stations )
-        = ::StationDecorator.render_station_code_images_in_passenger_survey_table_row( stations )
+      - station_infos_displayed = stations_displayed_in_passenger_survey_table_row( station_infos )
+      = ::Station::InfoDecorator.render_station_code_images_in_passenger_survey_table_row( station_infos_displayed )
       %div{ class: :text }<
-        = stations.first.decorate.render_name_ja_and_en
+        = station_infos.first.decorate.render_name_ja_and_en
   - case type
   - when :railway_line , :station
     %td{ class: [ :survey_year , :text_en ] }<

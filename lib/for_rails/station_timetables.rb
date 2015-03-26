@@ -1,0 +1,2 @@
+module ForRails::StationTimetables
+end

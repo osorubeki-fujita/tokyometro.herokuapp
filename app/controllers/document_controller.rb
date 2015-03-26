@@ -32,7 +32,7 @@ class DocumentController < ApplicationController
   end
 
   def railway_directions
-    infos = RailwayDirection.all.includes( :railway_line , :station , railway_line: :operator )
+    infos = RailwayDirection.all.includes( :railway_line , :station_info , railway_line: :operator )
     @title = "路線の行先（方面）"
     @title_en = "Railway directions"
     @title_ja = @title

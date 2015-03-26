@@ -8,7 +8,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Faci
   end
 
   def seed_availability_to_wheel_chair
-    ::BarrierFreeFacility.find( @id ).update( is_available_to_wheel_chair: @info.available_to_wheel_chair? )
+    self.class.db_instance_class_of_barrier_free_facility_info.find( @id ).update( is_available_to_wheel_chair: @info.available_to_wheel_chair? )
   end
 
 end

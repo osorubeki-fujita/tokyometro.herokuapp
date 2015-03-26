@@ -23,7 +23,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Info
   end
 
   def method_name_for_db_instance_class
-    :db_instance_class_of_barrier_free_facility
+    :db_instance_class_of_barrier_free_facility_info
   end
 
   def barrier_free_facility_located_area_id

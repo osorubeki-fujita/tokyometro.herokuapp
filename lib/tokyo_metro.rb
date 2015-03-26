@@ -75,7 +75,7 @@ module TokyoMetro
 
   def self.station_dictionary_including_main_info( stations_of_railway_lines = nil )
     if stations_of_railway_lines.nil?
-      stations_of_railway_lines = ::Station.where( operator_id: ::Operator.id_of_tokyo_metro )
+      stations_of_railway_lines = ::Station::Info.where( operator_id: ::Operator.id_of_tokyo_metro )
     end
 
     h = ::Hash.new

@@ -1,8 +1,8 @@
 class RailwayLine < ActiveRecord::Base
 
+  include ::Association::To::Station::Infos
   belongs_to :operator
-  has_many :stations
-  has_many :station_facilities , through: :stations
+  has_many :station_facilities , through: :station_infos
   has_many :women_only_car_infos
   has_many :travel_time_infos
   has_many :railway_directions
@@ -21,6 +21,8 @@ class RailwayLine < ActiveRecord::Base
 
   has_many :train_locations
   has_many :train_location_olds
+  
+  has_many :air_conditioner_infos
 
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
@@ -39,13 +41,13 @@ class RailwayLine < ActiveRecord::Base
       end
     end
 
-    where( operator_id: tokyo_metro_id ).includes( :stations )
+    where( operator_id: tokyo_metro_id ).includes( :station_infos )
   }
-  
+
   scope :select_branch_line , -> {
     where( is_branch_railway_line: true )
   }
-  
+
   scope :select_not_branch_line , -> {
     where( is_branch_railway_line: [ false , nil ] )
   }

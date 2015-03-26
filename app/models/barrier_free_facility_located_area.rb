@@ -1,6 +1,6 @@
 class BarrierFreeFacilityLocatedArea < ActiveRecord::Base
 
-  has_many :barrier_free_facilities
+  has_many :barrier_free_facility_infos
 
   include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::LocatedArea
 

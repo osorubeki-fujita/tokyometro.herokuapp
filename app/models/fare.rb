@@ -1,6 +1,5 @@
 class Fare < ActiveRecord::Base
   belongs_to :normal_fare_group
-
-  include AssociationFromFromStation
-  include AssociationFromToStation
+  include ::Association::To::FromStation::Info
+  include ::Association::To::ToStation::Info
 end

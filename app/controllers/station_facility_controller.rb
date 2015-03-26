@@ -8,7 +8,7 @@ class StationFacilityController < ApplicationController
   def index
     @title = "駅のご案内"
     @railway_lines = ::RailwayLine.tokyo_metro
-    @stations_of_railway_lines = ::Station.tokyo_metro
+    @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
 
@@ -24,7 +24,7 @@ class StationFacilityController < ApplicationController
   def each_station( station_name )
     each_station_sub( "駅のご案内" , "station_facility" , station_name , layout: "application_wide" ) do
       @display_google_map = true
-      @station_facility = @station.station_facility
+      @station_facility = @station_info.station_facility
 
       @points = @station_facility.points.includes( :point_category )
 
@@ -35,25 +35,25 @@ class StationFacilityController < ApplicationController
   end
 
   def set_platform_info_tab
-    if %w( Wakoshi ChikatetsuNarimasu ChikatetsuAkatsuka Heiwadai Hikawadai KotakeMukaihara ).include?( @station.name_in_system )
+    if %w( Wakoshi ChikatetsuNarimasu ChikatetsuAkatsuka Heiwadai Hikawadai KotakeMukaihara ).include?( @station_info.name_in_system )
       @default_platform_info_tab = :platform_info_yurakucho_and_fukutoshin
       @platform_info_tabs = [ @default_platform_info_tab ]
-    elsif %w( Meguro Shirokanedai ShirokaneTakanawa ).include?( @station.name_in_system )
+    elsif %w( Meguro Shirokanedai ShirokaneTakanawa ).include?( @station_info.name_in_system )
       @default_platform_info_tab = :platform_info_namboku_and_toei_mita
       @platform_info_tabs = [ @default_platform_info_tab ]
     else
-      railway_lines = @station_facility.stations.map { | station | station.railway_line }.sort_by { | railway_line | railway_line.id }
+      railway_lines = @station_facility.station_infos.map { | station_info | station_info.railway_line }.sort_by { | railway_line | railway_line.id }
       @platform_info_tabs =railway_lines.map { | railway_line | railway_line.css_class_name  }
       @default_platform_info_tab = @platform_info_tabs.first
     end
   end
 
   def set_station_info_for_google_map
-    @station_info_for_google_map = Gmaps4rails.build_markers( @station_facility.stations ) do | station , marker |
-      marker.lat( station.latitude )
-      marker.lng( station.longitude )
-      marker.infowindow( "#{station.name_ja}（#{station.railway_line.name_ja}）" )
-      marker.json( { title: station.name_ja } )
+    @station_info_for_google_map = Gmaps4rails.build_markers( @station_facility.station_infos ) do | station_info , marker |
+      marker.lat( station_info.latitude )
+      marker.lng( station_info.longitude )
+      marker.infowindow( "#{ station_info.name_ja }（#{ station_info.railway_line.name_ja }）" )
+      marker.json( { title: station_info.name_ja } )
     end
   end
 
@@ -78,7 +78,7 @@ class StationFacilityController < ApplicationController
       marker.lat( point.latitude )
       marker.lng( point.longitude )
       marker.infowindow( [ info_window_ja , info_window_en ].join( " " ) )
-      json_title = @station.name_ja  + " " + @station.name_en
+      json_title = @station_info.name_ja  + " " + @station_info.name_en
       marker.json( { title: json_title } )
     end
   end

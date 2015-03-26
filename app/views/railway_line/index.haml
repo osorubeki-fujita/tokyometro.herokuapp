@@ -1,6 +1,6 @@
 = render "common_content"
 
 = ::RailwayLineDecorator.render_top_title( id: :railway_line_title )
-%div{ id: :lines }
+%div{ id: :railway_lines }
   = select_line
   = ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: true )

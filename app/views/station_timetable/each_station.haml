@@ -1,8 +1,8 @@
 = render "common_content"
 
-- station_decorated = @station.decorate
+- station_info_decorated = @station_info.decorate
 
-= station_decorated.render_title_of_station_timetable
-= station_decorated.render_links_to_infos
+= station_info_decorated.render_title_of_station_timetable
+= station_info_decorated.render_links_to_infos
 
 = make_station_timetables

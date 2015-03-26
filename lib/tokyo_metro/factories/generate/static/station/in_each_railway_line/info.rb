@@ -4,7 +4,7 @@ class TokyoMetro::Factories::Generate::Static::Station::InEachRailwayLine::Info 
 
   def self.hash_keys
     [
-      :station_alias , :station_facility , :station_facility_custom , :station_facility_custom_alias ,
+      :station_name_alias , :station_facility , :station_facility_custom , :station_facility_custom_alias ,
       :name_ja , :name_hira , :name_in_system , :name_en , :station_code ,
       :administrator , :other_operator , :stop ,
       :some_trains_stop , :stop_for_drivers

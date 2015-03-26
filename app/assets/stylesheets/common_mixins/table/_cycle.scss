@@ -3,7 +3,7 @@
 $cycle_bgcolor_of_odd_row: #fff ;
 $cycle_bgcolor_of_even_row: #f6f6f6 ;
 
-@mixin cycle_of_row_color {
+%cycleOfRowColor {
     tr.odd_row {
         background-color: $cycle_bgcolor_of_odd_row ;
     }
@@ -12,7 +12,7 @@ $cycle_bgcolor_of_even_row: #f6f6f6 ;
     }
 }
 
-@mixin cycle_of_cell_color {
+%cycleOfCellColor {
     td.odd_row {
         background-color: $cycle_bgcolor_of_odd_row ;
     }

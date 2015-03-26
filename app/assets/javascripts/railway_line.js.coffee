@@ -1,5 +1,35 @@
 class RailwayLine
   constructor: ->
+  
+  travel_time = (v) ->
+    $( '#travel_time' )
+  
+  travel_time_info = (v) ->
+    travel_time(v).find( 'table.travel_time_info' )
+  
+  has_multiple_travel_time_info_tables = (v) ->
+    travel_time_info(v).length > 1
+  
+  max_width_of_travel_time_info_tables = (v) ->
+    n = 0
+    travel_time_info(v).each ->
+      table = new TravelTimeInfoTable( $( this ) )
+      n = Math.max( n , table.inner_width() )
+      return
+    return n
+    
+  process_travel_time_info_tables = (v) ->
+    console.log 'RailwayLine\#process_travel_time_info_tables'
+    if has_multiple_travel_time_info_tables(v)
+      console.log 'RailwayLine\#has_multiple_travel_time_info_tables'
+      _width_new = max_width_of_travel_time_info_tables(v)
+      console.log ( 'width_new: ' + _width_new )
+      travel_time_info(v).each ->
+        table = new TravelTimeInfoTable( $( this ) )
+        table.set_width( _width_new )
+        return
+      return
+    return
 
   process_women_only_car = (v) ->
     women_only_car = new WomenOnlyCar()
@@ -7,10 +37,24 @@ class RailwayLine
     return
 
   process: ->
+    process_travel_time_info_tables(@)
     process_women_only_car(@)
     return
 
 window.RailwayLine = RailwayLine
+
+#-------- TravelTimeInfoTable
+
+class TravelTimeInfoTable
+  constructor: ( @table ) ->
+  
+  inner_width: ->
+    console.log 'TravelTimeInfoTable\#inner_width'
+    return @table.innerWidth()
+  
+  set_width: ( _width ) ->
+    @table.css( 'width' , _width )
+    return
 
 #-------- WomenOnlyCar
 

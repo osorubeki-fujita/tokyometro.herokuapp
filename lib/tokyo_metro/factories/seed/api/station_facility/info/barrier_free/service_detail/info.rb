@@ -3,7 +3,7 @@ class TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::Serv
   include ::TokyoMetro::ClassNameLibrary::Api::StationFacility
 
   include ::TokyoMetro::Factories::Seed::Reference::OperationDay
-  include ::TokyoMetro::Factories::Seed::Reference::BarrierFreeFacilityServiceDetailPattern
+  include ::TokyoMetro::Factories::Seed::Reference::BarrierFreeFacility::ServiceDetailPattern
 
   include ::TokyoMetro::Factories::Seed::Api::StationFacility::Info::BarrierFree::ServiceDetail::Common
 

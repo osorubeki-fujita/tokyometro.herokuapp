@@ -1,11 +1,24 @@
 class StationTrainTime < ActiveRecord::Base
   belongs_to :station_timetable
   belongs_to :train_timetable
-  belongs_to :train_type_in_this_station , class: TrainType
+  belongs_to :train_type_in_this_station , class: ::TrainType
   belongs_to :station_timetable_starting_station_info
 
-  belongs_to :station_timetable_starting_station_info
   belongs_to :station_timetable_connection_info
+  
+  [ :operation_day , :terminal_station_info , :train_type ].each do | method_base_name |
+    [ method_base_name , "#{ method_base_name}_id" ].each do | method_name |
+      eval <<-DEF
+        def #{ method_name }
+          train_timetable.#{ method_name }
+        end
+      DEF
+    end
+  end
+  
+  def car_composition
+    train_timetable.car_composition
+  end
 
   def is_last?
     is_last

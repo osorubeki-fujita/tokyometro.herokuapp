@@ -1,15 +1,15 @@
 class StationTimetables
 
-  constructor: ( @domains = $( 'table.timetable' ) ) ->
+  constructor: ( @domains = $( 'table.station_timetable' ) ) ->
 
   operation_day_domains = (v) ->
     return v.domains.find( '.operation_day' )
 
   hours = (v) ->
-    return v.domains.find( '.hour )
+    return v.domains.find( '.hour' )
 
   mins = (v) ->
-    return v.domains.find( '.min )
+    return v.domains.find( '.min' )
 
   process_operation_day_domains = (v) ->
     _operation_day_domains = operation_day_domains(v)
@@ -34,10 +34,10 @@ class StationTimetables
     p.set_css_attribute( 'width' , p.max_width() )
     return
 
-  process_train_times = (v) ->
+  process_station_train_times = (v) ->
     v.domains.each ->
       t = new StationTimetable( $( this ) )
-      t.process_train_times()
+      t.process_station_train_times()
       return
     return
 
@@ -48,7 +48,7 @@ class StationTimetables
       process_top_headers(@)
       process_hours(@)
       process_mins(@)
-      process_train_times(@)
+      process_station_train_times(@)
       return
 
 window.StationTimetables = StationTimetables
@@ -91,14 +91,14 @@ class StationTimetableTopHeader extends StationTimetableBase
 
 class StationTimetable extends StationTimetableBase
 
-  train_times = (v) ->
-    return v.domain.find( '.train_time' )
+  station_train_times = (v) ->
+    return v.domain.find( '.station_train_time' )
 
   rows_of_each_hour = (v) ->
-    return v.domain.find( 'td.train_times' )
+    return v.domain.find( 'td.station_train_times' )
 
-  set_max_width_to_all_train_times = (v) ->
-    p = new DomainsCommonProcessor( train_times(v) )
+  set_max_width_to_all_station_train_times = (v) ->
+    p = new DomainsCommonProcessor( station_train_times(v) )
     p.set_css_attribute( 'width' , p.max_width() )
     return
 
@@ -109,19 +109,19 @@ class StationTimetable extends StationTimetableBase
       return
     return
 
-  process_train_times: ->
-    set_max_width_to_all_train_times(@)
+  process_station_train_times: ->
+    set_max_width_to_all_station_train_times(@)
     set_height_of_contents_in_each_hour(@)
     return
 
 class StationTimetableTrainTimesOfEachHour
   constructor: ( @domain ) ->
 
-  train_times = (v) ->
-    return @domain.children( '.train_time' )
+  station_train_times = (v) ->
+    return v.domain.children( '.station_train_time' )
 
   set_max_height_to_all: ->
-    p = new DomainsCommonProcessor( train_times(v) )
+    p = new DomainsCommonProcessor( station_train_times(@) )
     p.set_css_attribute( 'height' , p.max_height() )
     return
 
@@ -129,8 +129,8 @@ class StationTimetableContents
   constructor: ( @domains ) ->
     p = new DomainsCommonProcessor( @domains )
     @max_width = p.max_width()
-    @inner_width_new = Math.ceil( @max_width() * goldenRatio )
-    @padding_new = Math.ceil( ( v.inner_width_new - v.max_width ) * 0.5 )
+    @inner_width_new = Math.ceil( @max_width * goldenRatio )
+    @padding_new = Math.ceil( ( @inner_width_new - @max_width ) * 0.5 )
     return
 
   width_new = (v) ->

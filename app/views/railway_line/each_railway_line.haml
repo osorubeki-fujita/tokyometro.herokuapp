@@ -13,4 +13,4 @@
     %p<
       = "リアルタイム運行情報 (Current train position)"
   = render_travel_time_info
-  = render_women_only_car_infos
+  = ::RailwayLineDecorator.render_women_only_car_infos_of_multiple_railway_lines( @railway_lines )

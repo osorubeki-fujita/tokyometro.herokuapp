@@ -6,14 +6,14 @@ $background_color_of_weekday: $jp_traditional_shimbashi_iro ;
 $background_color_of_holiday: $jp_traditional_akamurasaki ;
 
 @mixin colorSettingsOfStationTimetableHeaderInEachLine( $background_color , $text_color: $text_black_base_color ) {
-    tr {
-        td {
-            .railway_line {
-                background-color: $background_color ;
-                color: $text_color ;
-            }
-        }
+  tr {
+    td {
+      .railway_line {
+        background-color: $background_color ;
+        color: $text_color ;
+      }
     }
+  }
 }
 
 %colorSettingsOfStationTimetableHeader {
@@ -47,28 +47,31 @@ $background_color_of_holiday: $jp_traditional_akamurasaki ;
     thead.fukutoshin {
         @include colorSettingsOfStationTimetableHeaderInEachLine( $line_fukutoshin_bgcolor , #fff ) ;
     }
+    thead.toei_mita {
+        @include colorSettingsOfStationTimetableHeaderInEachLine( $line_toei_mita_bgcolor , #fff ) ;
+    }
 }
 
-@mixin timetableHeaderOperationDayBackgroundColor( $background_color ) {
-    background-color: mix( $background_color , #fff , 70% ) ;
-    border: {
-        color: $background_color ;
-    }
+@mixin stationTimetableHeaderMainOperationDayBackgroundColor( $background_color ) {
+  background-color: mix( $background_color , #fff , 70% ) ;
+  border: {
+    color: $background_color ;
+  }
 }
 
 @mixin rows_of_train_times( $background_color ) {
-    td.train_times.odd {
-        background-color: mix( $background_color , #fff , 4% ) ;
-    }
-    td.train_times.even {
-        background-color: mix( $background_color , #fff , 10% ) ;
-    }
+  td.station_train_times.odd {
+    background-color: mix( $background_color , #fff , 4% ) ;
+  }
+  td.station_train_times.even {
+    background-color: mix( $background_color , #fff , 10% ) ;
+  }
 }
 
-table.timetable.weekday {
-    @include rows_of_train_times( $background_color_of_weekday ) ;
+table.station_timetable.weekday {
+  @include rows_of_train_times( $background_color_of_weekday ) ;
 }
 
-table.timetable.holiday {
-    @include rows_of_train_times( $background_color_of_holiday ) ;
+table.station_timetable.saturday_and_holiday {
+  @include rows_of_train_times( $background_color_of_holiday ) ;
 }

@@ -24,8 +24,8 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
   end
 
   def seed_optional_infos
-    # StationAlias , 停車駅の処理
-    seed_station_alias
+    # StationNameAlias , 停車駅の処理
+    seed_station_name_alias
     seed_station_facility_custom
 
     seed_stopping_patterns
@@ -80,7 +80,7 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
     DEF
   end
 
-  [ :station_in_db , :station_id ].each do | method_name |
+  [ :station_info_in_db , :station_info_id ].each do | method_name |
     eval <<-DEF
       def #{method_name}( whole = nil , search_by: @info.same_as )
         super( whole = nil , search_by: search_by )
@@ -96,11 +96,11 @@ class TokyoMetro::Factories::Seed::Static::Station::Info < TokyoMetro::Factories
     DEF
   end
 
-  def seed_station_alias
-    s_id = station_id
-    if @info.station_alias.present?
-      [ @info.station_alias ].flatten.each do | station_alias |
-        ::StationAlias.find_or_create_by( station_id: s_id , same_as: station_alias )
+  def station_name_alias
+    s_id = station_info_id
+    if @info.station_name_alias.present?
+      [ @info.station_name_alias ].flatten.each do | station_name_alias |
+        ::Station::NameAlias.find_or_create_by( station_info_id: s_id , same_as: station_name_alias )
       end
     end
   end

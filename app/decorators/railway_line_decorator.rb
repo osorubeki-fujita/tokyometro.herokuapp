@@ -130,6 +130,27 @@ class RailwayLineDecorator < Draper::Decorator
       = "Yurakucho and Fukutoshin Line"
     HAML
   end
+  
+  def self.render_women_only_car_infos_of_multiple_railway_lines( railway_lines )
+    infos = ::WomenOnlyCarInfo.where( railway_line_id: railway_lines.pluck( :id ) ).includes( :operation_day , :from_station_info , :to_station_info )
+    if infos.present?
+
+      class << infos
+        include ::ForRails::WomenOnlyCarInfos
+      end
+
+      h.render inline: <<-HAML , type: :haml , locals: { infos: infos }
+%div{ id: :women_only_car }
+  = ::WomenOnlyCarInfoDecorator.render_sub_top_title
+  - if infos.have_only_one_railway_line?
+    - railway_line = infos.only_one_railway_line
+    = railway_line.decorate.render_women_only_car_infos_in_a_railway_line( infos , in_group_of_multiple_railway_line: false )
+  - else
+    - infos.group_by( &:railway_line_id ).each do | railway_line_id , infos_of_a_railway_line |
+      = ::RailwayLine.find( railway_line_id ).decorate.render_women_only_car_infos_in_a_railway_line( infos_of_a_railway_line , in_group_of_multiple_railway_line: true )
+      HAML
+    end
+  end
 
   def name_ja_with_operator_name( process_special_railway_line: false )
     if process_special_railway_line
@@ -213,10 +234,10 @@ class RailwayLineDecorator < Draper::Decorator
 - if in_group_of_multiple_railway_line
   %div{ class: [ info.css_class_name , :in_railway_line_group ] }
     = info.render_title_in_women_only_car_info
-    = render_women_only_car_infos_in_a_railway_line( women_only_car_infos_of_a_railway_line )
+    = ::WomenOnlyCarInfoDecorator.render_infos_in_a_railway_line( women_only_car_infos_of_a_railway_line )
 - else
   %div{ class: info.css_class_name }
-    = render_women_only_car_infos_in_a_railway_line( women_only_car_infos_of_a_railway_line )
+    = ::WomenOnlyCarInfoDecorator.render_infos_in_a_railway_line( women_only_car_infos_of_a_railway_line )
     HAML
   end
 
@@ -367,8 +388,8 @@ class RailwayLineDecorator < Draper::Decorator
       type_of_link_to_station: type_of_link_to_station
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-- info.stations.each do | station |
-  = station.decorate.render_link_to_station_in_matrix( type_of_link_to_station )
+- info.station_infos.each do | station_info |
+  = station_info.decorate.render_link_to_station_in_matrix( type_of_link_to_station )
     HAML
   end
 
@@ -386,12 +407,12 @@ class RailwayLineDecorator < Draper::Decorator
     HAML
   end
 
-  def render_row_of_starting_station( stations_of_this_instance )
-    starting_station = stations_of_this_instance.find_by( railway_line_id: self.id )
-    raise "Error" if starting_station.nil?
-    h.render inline: <<-HAML , type: :haml , locals: { info: starting_station.decorate }
+  def render_fare_table_row_of_starting_station_info( station_infos_of_this_instance )
+    starting_station_info = station_infos_of_this_instance.find_by( railway_line_id: self.id )
+    raise "Error" if starting_station_info.nil?
+    h.render inline: <<-HAML , type: :haml , locals: { info: starting_station_info.decorate }
 %tr<
-  = info.render_in_fare_table( starting_station: true )
+  = info.render_in_fare_table( starting_station_info: true )
   %td{ class: :starting_station , colspan: 4 }<
     %div{ class: :text_ja }
       = "この駅からの運賃を表示しています"
@@ -426,24 +447,24 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   # 各路線のすべての駅への運賃
-  # @param stations_of_this_instance [Array <Station>] 駅（複数、同名）のインスタンスのリスト（複数路線がある場合は、各路線のインスタンスを保持）
-  # @param starting_station [Station] 運賃表の基準駅のインスタンス
-  def render_fare_table( stations_of_this_instance , starting_station , fares , normal_fare_groups )
+  # @param station_infos_of_this_instance [Array <Station::Info>] 駅（複数、同名）のインスタンスのリスト（複数路線がある場合は、各路線のインスタンスを保持）
+  # @param starting_station_info [Station::Info] 運賃表の基準駅のインスタンス
+  def render_fare_table( station_infos_of_this_instance , starting_station_info , fares , normal_fare_groups )
 
     # 路線のインスタンス railway_line に、
-    # stations_of_this_instance の要素である駅（路線別）が含まれている場合は、その駅の id を返す。
+    # station_infos_of_this_instance の要素である駅（路線別）が含まれている場合は、その駅の id を返す。
     # 含まれていない場合は、nil
     class << self
-      include ForRails::FareTable::StartingStationIdIncludedInThisRailwayLine
+      include ForRails::FareTable::StartingStationInfoIdIncludedInThisRailwayLine
     end
 
-    id_of_starting_station_id_included_in_this_railway_line = self.fare_table_starting_station_id_included_in_this_railway_line( stations_of_this_instance )
+    id_of_starting_station_info_id_included_in_this_railway_line = self.fare_table_starting_station_info_id_included_in_this_railway_line( station_infos_of_this_instance )
 
     h_locals = {
       info: self ,
-      stations_of_this_instance: stations_of_this_instance ,
-      id_of_starting_station_id_included_in_this_railway_line: id_of_starting_station_id_included_in_this_railway_line ,
-      starting_station: starting_station ,
+      station_infos_of_this_instance: station_infos_of_this_instance ,
+      id_of_starting_station_info_id_included_in_this_railway_line: id_of_starting_station_info_id_included_in_this_railway_line ,
+      starting_station_info: starting_station_info ,
       fares: fares ,
       normal_fare_groups: normal_fare_groups
     }
@@ -452,25 +473,25 @@ class RailwayLineDecorator < Draper::Decorator
 %table{ class: [ :fare_table , info.css_class_name ] }
   - # ヘッダーの作成
   = ::FareDecorator.render_header_of_fare_table
-  - stations_in_this_railway_line = info.stations.order( :index_in_railway_line )
-  - # 路線のインスタンス info に stations_of_this_instance の要素である駅（路線別）が含まれている場合
-  - if id_of_starting_station_id_included_in_this_railway_line.present?
-    - class << stations_in_this_railway_line
-      - include ForRails::FareTable::SplitStationsByStartingStationId
-    - group_of_stations = stations_in_this_railway_line.fare_table_split_stations_by_starting_station_id( id_of_starting_station_id_included_in_this_railway_line )
-    - before_starting_station = group_of_stations[0]
-    - after_starting_station = group_of_stations[1]
+  - station_infos_in_this_railway_line = info.station_infos.order( :index_in_railway_line )
+  - # 路線のインスタンス info に station_infos_of_this_instance の要素である駅（路線別）が含まれている場合
+  - if id_of_starting_station_info_id_included_in_this_railway_line.present?
+    - class << station_infos_in_this_railway_line
+      - include ForRails::FareTable::SplitStationInfosByStartingStationInfoId
+    - group_of_stations = station_infos_in_this_railway_line.fare_table_split_station_infos_by_starting_station_info_id( id_of_starting_station_info_id_included_in_this_railway_line )
+    - before_starting_station_info = group_of_stations[0]
+    - after_starting_station_info = group_of_stations[1]
     - #
-    - if starting_station.nil?
-      - err_msg = "Error: Station.find( " + id_of_starting_station_id_included_in_this_railway_line.to_s + " ) is not valid."
+    - if starting_station_info.nil?
+      - err_msg = "Error: Station::Info.find( " + id_of_starting_station_info_id_included_in_this_railway_line.to_s + " ) is not valid."
     - #
-    = fare_table_make_rows( fares , before_starting_station , normal_fare_groups , make_empty_row_when_no_station: true )
-    = info.render_row_of_starting_station( stations_of_this_instance )
-    = fare_table_make_rows( fares , after_starting_station , normal_fare_groups )
+    = fare_table_make_rows( fares , before_starting_station_info , normal_fare_groups , make_empty_row_when_no_station: true )
+    = info.render_fare_table_row_of_starting_station_info( station_infos_of_this_instance )
+    = fare_table_make_rows( fares , after_starting_station_info , normal_fare_groups )
     - #
-    - # 路線のインスタンス info に stations_of_this_instance の要素である駅（路線別）が含まれていない場合
+    - # 路線のインスタンス info に station_infos_of_this_instance の要素である駅（路線別）が含まれていない場合
   - else
-    = fare_table_make_rows( fares , stations_in_this_railway_line , normal_fare_groups )
+    = fare_table_make_rows( fares , station_infos_in_this_railway_line , normal_fare_groups )
     HAML
   end
 
