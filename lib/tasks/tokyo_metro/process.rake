@@ -46,5 +46,11 @@ namespace :tokyo_metro do
 
     end
 
+    desc "CSV ファイルの文字コードの変換"
+    task :db_csv_files do
+      require_relative( "#{File.dirname( __FILE__ ) }/../../../db/csv/convert_csv_letter_codes.rb" )
+      ::ConvertCsvLetterCode.process
+    end
+
   end
 end

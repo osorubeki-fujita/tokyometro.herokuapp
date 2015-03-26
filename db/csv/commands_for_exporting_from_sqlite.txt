@@ -1,106 +1,122 @@
 .mode csv
 .header OFF
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/air_conditioner_answers.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/air_conditioner_answers.csv
 select * from air_conditioner_answers;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/air_conditioners.csv
-select * from air_conditioners;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facilities.csv
-select * from barrier_free_facilities;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_located_areas.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/air_conditioner_infos.csv
+select * from air_conditioner_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_escalator_direction_patterns.csv
+select * from barrier_free_facility_escalator_direction_patterns;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_escalator_directions.csv
+select * from barrier_free_facility_escalator_directions;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_infos.csv
+select * from barrier_free_facility_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_located_areas.csv
 select * from barrier_free_facility_located_areas;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_place_names.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_place_names.csv
 select * from barrier_free_facility_place_names;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_root_infos.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_root_infos.csv
 select * from barrier_free_facility_root_infos;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_service_detail_patterns.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_service_detail_patterns.csv
 select * from barrier_free_facility_service_detail_patterns;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_service_details.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_service_details.csv
 select * from barrier_free_facility_service_details;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_toilet_assistant_patterns.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_toilet_assistant_patterns.csv
 select * from barrier_free_facility_toilet_assistant_patterns;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_toilet_assistants.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_toilet_assistants.csv
 select * from barrier_free_facility_toilet_assistants;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/barrier_free_facility_types.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/barrier_free_facility_types.csv
 select * from barrier_free_facility_types;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/connecting_railway_line_notes.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/connecting_railway_line_notes.csv
 select * from connecting_railway_line_notes;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/connecting_railway_lines.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/connecting_railway_lines.csv
 select * from connecting_railway_lines;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/fares.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/fares.csv
 select * from fares;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/normal_fare_groups.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/normal_fare_groups.csv
 select * from normal_fare_groups;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/operation_days.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/operation_days.csv
 select * from operation_days;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/operators.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/operators.csv
 select * from operators;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/passenger_surveys.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/passenger_surveys.csv
 select * from passenger_surveys;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/point_categories.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/point_categories.csv
 select * from point_categories;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/points.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/points.csv
 select * from points;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/railway_directions.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/railway_directions.csv
 select * from railway_directions;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/railway_lines.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/railway_lines.csv
 select * from railway_lines;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/rss_categories.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/rss_categories.csv
 select * from rss_categories;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/rsses.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/rsses.csv
 select * from rsses;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_aliases.csv
-select * from station_aliases;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_facilities.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_facilities.csv
 select * from station_facilities;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_facility_aliases.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_facility_aliases.csv
 select * from station_facility_aliases;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_facility_platform_info_barrier_free_facilities.csv
-select * from station_facility_platform_info_barrier_free_facilities;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_facility_platform_info_surrounding_areas.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_facility_platform_info_barrier_free_facility_infos.csv
+select * from station_facility_platform_info_barrier_free_facility_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_facility_platform_info_surrounding_areas.csv
 select * from station_facility_platform_info_surrounding_areas;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_facility_platform_info_transfer_infos.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_facility_platform_info_transfer_infos.csv
 select * from station_facility_platform_info_transfer_infos;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_facility_platform_infos.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_facility_platform_infos.csv
 select * from station_facility_platform_infos;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_passenger_surveys.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_infos.csv
+select * from station_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_name_aliases.csv
+select * from station_name_aliases;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_passenger_surveys.csv
 select * from station_passenger_surveys;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_points.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_points.csv
 select * from station_points;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_stopping_pattern_notes.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_stopping_pattern_notes.csv
 select * from station_stopping_pattern_notes;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_stopping_patterns.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_stopping_patterns.csv
 select * from station_stopping_patterns;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/station_train_times.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_timetable_connection_infos.csv
+select * from station_timetable_connection_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_timetable_fundamental_infos.csv
+select * from station_timetable_fundamental_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_timetable_starting_station_infos.csv
+select * from station_timetable_starting_station_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_timetables.csv
+select * from station_timetables;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/station_train_times.csv
 select * from station_train_times;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/stations.csv
-select * from stations;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/stopping_patterns.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/stopping_patterns.csv
 select * from stopping_patterns;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/surrounding_areas.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/surrounding_areas.csv
 select * from surrounding_areas;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_information_olds.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_information_olds.csv
 select * from train_information_olds;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_information_statuses.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_information_statuses.csv
 select * from train_information_statuses;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_informations.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_informations.csv
 select * from train_informations;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_location_olds.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_location_olds.csv
 select * from train_location_olds;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_locations.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_locations.csv
 select * from train_locations;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_owners.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_owners.csv
 select * from train_owners;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_timetable_station_times.csv
-select * from train_timetable_station_times;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_timetables.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_relations.csv
+select * from train_relations;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_timetable_arrival_infos.csv
+select * from train_timetable_arrival_infos;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_timetable_train_type_in_other_operators.csv
+select * from train_timetable_train_type_in_other_operators;
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_timetables.csv
 select * from train_timetables;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_type_in_apis.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_type_in_apis.csv
 select * from train_type_in_apis;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_type_stopping_patterns.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_type_stopping_patterns.csv
 select * from train_type_stopping_patterns;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/train_types.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/train_types.csv
 select * from train_types;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/travel_time_infos.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/travel_time_infos.csv
 select * from travel_time_infos;
-.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20141210_0419/women_only_car_infos.csv
+.output ./../rails_tokyo_metro_db/csv/utf_8_as_of_20150326_1503/women_only_car_infos.csv
 select * from women_only_car_infos;

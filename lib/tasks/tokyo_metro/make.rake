@@ -65,6 +65,12 @@ namespace :tokyo_metro do
     task :static_examples => :load do
       ::TokyoMetro::Document::MakeExamples::Static.process
     end
+    
+    desc  "DB の import, export に関するコマンドの一括作成"
+    task :commands_for_db do
+      require_relative( "#{ File.dirname( __FILE__ ) }/../../../db/csv/make_commands.rb" )
+      MakeCommands.process
+    end
 
   end
 end
