@@ -10,7 +10,7 @@ class OperatorDecorator < Draper::Decorator
   def render_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: [ :document_info_box_normal , info.css_class_name ] }
-  = color_box
+  = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
   %div{ class: :operator_name }
     = info.render_name_ja_in_document_info_box
     = info.render_name_en_in_document_info_box

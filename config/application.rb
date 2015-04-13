@@ -12,6 +12,10 @@ module RailsTokyoMetro
   #-------- [begin] RailsTokyoMetro::Application
   class Application < Rails::Application
 
+    def self.processor_of_real_time_infos
+      PROCESSOR_OF_REAL_TIME_INFOS
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -51,6 +55,10 @@ module RailsTokyoMetro
             include ::ForRails::ExtendBuiltinLibraries::#{ class_name }Module
           end
         INCLUDE
+      end
+      
+      ::DateTime.class_eval do
+        include ::ForRails::ExtendBuiltinLibraries::TimeModule
       end
 
       # Module.class_eval do
@@ -92,6 +100,8 @@ module RailsTokyoMetro
       # ::TokyoMetro.set_all_api_constants
 
       ::ActiveRecord::Base.logger = nil
+
+      # PROCESSOR_OF_REAL_TIME_INFOS = ::TokyoMetro::ApiProcessor::RealTimeInfos.instance
     end
     #-------- config.after_initialize ここまで
   end
@@ -103,7 +113,7 @@ __END__
 
 TokyoMetro::Api::StationTrainTime.seed( :ginza )
 
-TokyoMetro::Factories::Seed.destroy_all_items_of( ::StationTrainTime )
+TokyoMetro::Factory::Seed.destroy_all_items_of( ::StationTrainTime )
 
 #--------
 

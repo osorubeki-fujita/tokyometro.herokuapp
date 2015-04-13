@@ -58,8 +58,8 @@ class PassengerSurveyController < ApplicationController
     render 'passenger_survey/by_year'
   end
 
-  def each_station( station_name )
-    each_station_sub( "駅 各年度の乗降客数" , "passenger_survey" , station_name ) do
+  def each_station( station_info_same_as )
+    each_station_sub( "駅 各年度の乗降客数" , "passenger_survey" , station_info_same_as ) do
       @passenger_survey_infos = @station_info.passenger_surveys
       @type = :station
       @make_graph = true

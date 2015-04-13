@@ -10,25 +10,6 @@ class WomenOnlyCarInfoDecorator < Draper::Decorator
   def self.sub_top_title_en
     "Women only car"
   end
-  
-  def self.render_infos_in_a_railway_line( infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: infos }
-- infos.group_by( &:operation_day_id ).each do | operation_day_id , group_by_operation_day_id |
-  %div{ class: :operation_day }<
-    = ::OperationDay.find( operation_day_id ).decorate.render_in_women_only_car_info
-    - group_by_operation_day_id.group_by( &:from_station_info_id ).each do | from_station_info_id , group_by_from_station_info_id |
-      - group_by_from_station_info_id.group_by( &:to_station_info_id ).each do | to_station_info_id , group_by_from_and_to_station_info_id |
-        %div{ class: :section }
-          = group_by_from_and_to_station_info_id.first.decorate.render_title_of_section
-          - group_by_from_and_to_station_info_id.group_by( &:available_time_to_s ).each do | available_time , group_by_available_time |
-            %div{ class: :section_infos }
-              %div{ class: [ :available_time , :text_en ] }<
-                = available_time
-              %div{ class: :infos }
-                - group_by_available_time.each do | info |
-                  = info.decorate.render_place
-    HAML
-  end
 
   def car_composition_ja_precise
     "#{ object.car_composition }両編成"
@@ -67,28 +48,28 @@ class WomenOnlyCarInfoDecorator < Draper::Decorator
   end
 
   def render_title_of_section
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :title }
   %h5{ class: :text_ja }<
-    = info.section_to_s_ja
+    = this.section_to_s_ja
   %h6{ class: :text_en }<
-    = info.section_to_s_en
+    = this.section_to_s_en
     HAML
   end
 
   def render_place
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :info }<
   %div{ class: :place }<
     %span{ class: :text_en }<>
-      = info.car_composition
+      = this.car_composition
     = "両編成の"
     %span{ class: :text_en }<>
-      = info.car_number
+      = this.car_number
     = "号車"
   %div{ class: :cars }
-    - ( 1..( info.car_composition ) ).each do | car |
-      - if car == info.car_number
+    - ( 1..( this.car_composition ) ).each do | car |
+      - if car == this.car_number
         - div_classes = [ :car , :text_en , :women_only ]
       - else
         - div_classes = [ :car , :text_en , :normal ]

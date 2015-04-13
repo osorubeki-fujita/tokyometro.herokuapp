@@ -3,15 +3,26 @@
 @import '../../fundamental_settings.scss' ;
 
 #now_developing {
-	@extend %floatLeft ;
-    @extend %marginBottom16 ;
-    @include border_radius( 4px ) ;
-    @include text_ja ;
-    padding: 4px ;
-    border: solid 1px $jp_traditional_akamurasaki ;
+  border: solid 1px desaturate( $jp_traditional_jinzamomi , 20% ) ;
+  @extend %floatLeft ;
+  @extend %marginBottom16 ;
+  .content_header {
     background-color: $jp_traditional_jinzamomi ;
     color: #fff ;
-    font: {
-        size: 10pt;
+  }
+  .info_text {
+    padding: 8px ;
+    background-color: rgba( $jp_traditional_jinzamomi , 0.2 ) ;
+    .text_ja {
+      font: {
+        size: 9pt;
+      }
+      @extend %marginBottom8 ;
     }
+    .text_en {
+      font: {
+        size: 6.75pt;
+      }
+    }
+  }
 }

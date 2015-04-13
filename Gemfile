@@ -50,6 +50,8 @@ end
 gem 'yaml_db'
 gem 'taps'
 
+gem 'font-awesome-sass'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 5.0.0'
 
@@ -77,6 +79,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'haml-rails'
 gem 'httpclient'
 gem 'moji'
+gem 'holiday_jp'
 
 gem 'json' # JSONを扱うライブラリ
 

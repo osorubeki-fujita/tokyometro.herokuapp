@@ -23,20 +23,20 @@ StoppingPattern:
   - StationStoppingPatternNote
 
 Station:
-  - Station
-  - StationAlias
+  - "Station::Info"
+  - "Station::NameAlias"
 
 StationFacility:
   - StationFacility
   - StationFacilityAlias
   - StationFacilityPlatformInfo
   - StationFacilityPlatformInfoTransferInfo
-  - StationFacilityPlatformInfoBarrierFreeFacility
+  - StationFacilityPlatformInfoBarrierFreeFacilityInfo
   - StationFacilityPlatformInfoSurroundingArea
   - SurroundingArea
 
 BarrierFreeFacility:
-  - BarrierFreeFacility
+  - "BarrierFreeFacility::Info"
   - BarrierFreeFacilityLocatedArea
   - BarrierFreeFacilityPlaceName
   - BarrierFreeFacilityRootInfo
@@ -89,5 +89,5 @@ Rss:
   - RssCategory
 
 AirConditioner:
-  - AirConditioner
-  - AirConditionerAnswer
+  - "AirConditioner::Info"
+  - "AirConditioner::Answer"

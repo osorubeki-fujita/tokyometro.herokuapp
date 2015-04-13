@@ -1,31 +1,67 @@
-initializeDo = ->
-  top_content = new TopContent()
-  document = new Document()
-  railway_line_and_station_matrix = new RailwayLineAndStationMatrix()
-  railway_line_codes = new RailwayLineCodes()
-  railway_line = new RailwayLine()
-  station_timetables = new StationTimetables()
-  station_facility = new StationFacility()
-  passenger_survey_table = new PassengerSurveyTable()
-  main_contents = new MainContents()
+class Initializer
 
-  # 不使用
-  # bottom_content = new BottomContent()
+  process: ->
+    top_content = new TopContent()
+    document = new Document()
 
-  #--------
+    railway_line_and_station_matrixes = new RailwayLineMatrixes()
+    railway_line_codes = new RailwayLineCodes()
 
-  top_content.process()
-  document.process()
-  railway_line_and_station_matrix.process()
-  railway_line_codes.process()
-  railway_line.process()
-  station_timetables.process()
-  station_facility.process()
-  passenger_survey_table.process()
-  main_contents.process()
+    railway_line = new RailwayLine()
+    station_timetables = new StationTimetables()
+    station_facility = new StationFacility()
+    passenger_survey_table = new PassengerSurveyTable()
+    fare_table = new FareTables()
 
-  # 不使用
-  # bottom_content.process()
-  return
+    train_informations = new TrainInformations()
+    train_locations = new TrainLocations()
 
-window.initializeDo = initializeDo
+    links_to_station_info_pages = new LinksToStationInfoPages()
+    selection_header_processor = new SelectionHeaderProcessor()
+    real_time_info_processor = new RealTimeInfoProcessor()
+    twitters_processor = new TwittersProcessor()
+
+    now_developing_processor = new NowDevelopingProcessor()
+    side_menu_processor = new SideMenuProcessor()
+
+    main_contents = new MainContents()
+
+    # 不使用
+    # bottom_content = new BottomContent()
+
+    #--------
+
+    top_content.process()
+    document.process()
+
+    railway_line_and_station_matrixes.process()
+    railway_line_codes.process()
+
+    railway_line.process()
+    station_timetables.process()
+    station_facility.process()
+    passenger_survey_table.process()
+    fare_table.process()
+
+    train_informations.process()
+    train_locations.process()
+
+    console.log '\#--------'
+    console.log 'Initializer\#process (1)'
+    links_to_station_info_pages.process()
+    console.log 'Initializer\#process (2)'
+    selection_header_processor.process()
+    real_time_info_processor.process()
+    twitters_processor.process()
+
+    now_developing_processor.process()
+    side_menu_processor.process()
+
+    main_contents.process()
+
+    # 不使用
+    # bottom_content.process()
+
+    return
+
+window.Initializer = Initializer

@@ -140,7 +140,7 @@
         @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
         .title {
             @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
-            @include text_en ;
+            @extend %text_en ;
             .tokyo_metro {
                 display: block;
                 color: #fff ;

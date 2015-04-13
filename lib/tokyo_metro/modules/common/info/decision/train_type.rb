@@ -98,7 +98,7 @@ module TokyoMetro::Modules::Common::Info::Decision::TrainType
   end
 
   alias :is_train_of? :train_of?
-  
+
   # 「化け種別」の判定
   # @todo 具体的な定義
   def change_into?( on: nil , at: nil )

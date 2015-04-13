@@ -104,7 +104,7 @@ table.station_timetable {
   }
   tr.hour_row {
     td.hour {
-      @include text_en ;
+      @extend %text_en ;
       @extend %stationTimetableBorderSetting ;
       height: auto ;
       text-align: right ;
@@ -127,7 +127,7 @@ table.station_timetable {
         border: solid 1px #ddd ;
         background-color: #fff ;
         .min {
-          @include text_en ;
+          @extend %text_en ;
           @extend %floatLeft ;
           @extend %marginRight4 ;
           text-align: right ;

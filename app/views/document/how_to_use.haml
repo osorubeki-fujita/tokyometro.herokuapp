@@ -1,9 +1,10 @@
 = render "common_content"
 
 - content_for :right_contents do
-  = twitter_tokyo_metro
+  = ::TokyoMetro::App::Renderer::Twitter.new( request , :tokyo_metro ).render
 
-= document_title_of_each_content( @title_ja , @title_en )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
 %div{ id: :how_to_use }
   %div{ class: :what_s_ruby_for_rails }
     %h1<

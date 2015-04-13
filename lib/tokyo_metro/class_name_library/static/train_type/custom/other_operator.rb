@@ -18,15 +18,15 @@ module TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::OtherOperator
     end
 
     def factory_for_generating_from_saved_files
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::OtherOperator::Hash
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::OtherOperator::Hash
     end
 
     def factory_for_generating_from_each_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::OtherOperator::Hash::EachFile
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::OtherOperator::Hash::EachFile
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::OtherOperator::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::OtherOperator::Info
     end
 
     private

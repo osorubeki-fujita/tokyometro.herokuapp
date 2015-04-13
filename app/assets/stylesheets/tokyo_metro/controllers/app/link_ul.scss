@@ -1,0 +1,153 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+$icon_common_width: 32px ;
+$width_of_li_border_in_link: 1px ;
+$border_color_of_li_in_link: #ddd ;
+
+%liBorderSettingsOfSideMenu {
+    border: {
+      top: {
+        style: dotted ;
+        width: $width_of_li_border_in_link ;
+        color: $border_color_of_li_in_link ;
+      }
+      bottom: {
+        style: dotted ;
+        width: $width_of_li_border_in_link ;
+        color: $border_color_of_li_in_link ;
+      }
+    }
+}
+
+ul.links {
+  .link_to_content , .link_to_document , .link_to_other_website , .link_to_railway_line_page {
+    margin: 4px ;
+  }
+  height: auto ;
+  margin: {
+    top: 0px ;
+    bottom: 16px ;
+  }
+  padding: {
+    left: 0px ;
+  }
+  li:hover {
+    background: {
+      color: $jp_traditional_aijiro ;
+    }
+    .icon {
+      color: desaturate( $operator_color , 20% ) ;
+    }
+    .text_large , .text_en {
+      color: $operator_color ;
+    }
+  }
+  a {
+    top: 0;
+    left: 0px;
+    color: #333 ;
+    text-decoration: none ;
+  }
+}
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages , ul#links_to_railway_line_pages {
+  li {
+    //
+    @extend %link_in_div ;
+    list-style: none ;
+    //
+    //
+    margin: {
+      bottom: -1 * $width_of_li_border_in_link ;
+    }
+    .text , .text_large , .model_name {
+      @extend %floatLeft ;
+    }
+    div.icon {
+      @extend %floatLeft ;
+      @extend %marginRight4 ;
+    }
+    .link_type {
+      @extend %floatRight ;
+    }
+    .text_en {
+      color: #999 ;
+    }
+  }
+  li.normal {
+    div.icon {
+      width: $icon_common_width ;
+      height: $icon_common_width ;
+      img {
+        $length: 32px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+    .text_large , .text_ja {
+      font: {
+        size: 12pt ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 9pt ;
+      }
+    }
+  }
+  li.small {
+    div.icon {
+      width: $icon_common_width ;
+      height: $icon_common_width ;
+      img {
+        $length: 18px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+    .text_large , .text_ja {
+      font: {
+        size: 9pt ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 6.75pt ;
+      }
+    }
+  }
+}
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents {
+  width: $width_of_left_contents ;
+  li {
+    width: floor( $width_of_left_contents * $bronze_ratio / ( $bronze_ratio + 1 ) ) ;
+    @extend %liBorderSettingsOfSideMenu ;
+  }
+}
+
+ul#links_to_main_contents {
+  .top {
+    .text_ja {
+      @extend %text_en ;
+    }
+  }
+}
+
+ul#links_to_railway_line_pages {
+  li {
+    @extend %floatLeft ;
+    width: 160px ;
+    height: 60px ;
+    .railway_line_code_32 , .text {
+      @extend %floatLeft ;
+    }
+    border: solid 1px #ccc ;
+    margin: {
+      right: -1 * $width_of_li_border_in_link ;
+    }
+  }
+  height: 180px + 1px ;
+}

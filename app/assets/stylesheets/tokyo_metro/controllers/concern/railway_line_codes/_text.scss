@@ -18,7 +18,7 @@
 //---------------- 文字のフォント
 
 %railwayLineCodesFontSettings {
-  @include text_en ;
+  @extend %text_en ;
 }
 
 //---------------- 文字サイズ

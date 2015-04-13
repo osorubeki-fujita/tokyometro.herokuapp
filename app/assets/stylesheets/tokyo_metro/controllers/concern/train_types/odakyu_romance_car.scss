@@ -37,14 +37,13 @@
 }
 
 @mixin odakyu_romance_car( $square_width: $width_of_rounded_square ) {
-    @extend %colorBoxCommonBase ;
-    @include rounded_square_base ;
-    @include rounded_square_border_radius ;
-    //---- サイズの定義
-    $border_width : 1px ;
-    @include rounded_square_size( $width_of_rounded_square_wide , $height_of_rounded_square , $border_width ) ;
-    //---- ボーダーの定義
-	border: solid #{$border_width} #999 ;
-    
-    @include odakyu_romance_car_grad_color ;
+  @extend %colorBoxCommonBase ;
+  @include rounded_square_base ;
+  @include rounded_square_border_radius ;
+  //---- サイズの定義
+  $border_width : 1px ;
+  @include rounded_square_size( $width_of_rounded_square_wide , $height_of_rounded_square , $border_width ) ;
+  //---- ボーダーの定義
+  border: solid #{$border_width} #999 ;
+  @include odakyu_romance_car_grad_color ;
 }

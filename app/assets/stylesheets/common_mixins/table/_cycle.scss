@@ -1,22 +1,22 @@
 @charset "utf-8" ;
 
 $cycle_bgcolor_of_odd_row: #fff ;
-$cycle_bgcolor_of_even_row: #f6f6f6 ;
+$cycle_bgcolor_of_even_row: #f9f9f9 ;
 
 %cycleOfRowColor {
-    tr.odd_row {
-        background-color: $cycle_bgcolor_of_odd_row ;
-    }
-    tr.even_row {
-        background-color: $cycle_bgcolor_of_even_row ;
-    }
+  tr.odd_row {
+    background-color: $cycle_bgcolor_of_odd_row ;
+  }
+  tr.even_row {
+    background-color: $cycle_bgcolor_of_even_row ;
+  }
 }
 
 %cycleOfCellColor {
-    td.odd_row {
-        background-color: $cycle_bgcolor_of_odd_row ;
-    }
-    td.even_row {
-        background-color: $cycle_bgcolor_of_even_row ;
-    }
+  td.odd_row {
+    background-color: $cycle_bgcolor_of_odd_row ;
+  }
+  td.even_row {
+    background-color: $cycle_bgcolor_of_even_row ;
+  }
 }

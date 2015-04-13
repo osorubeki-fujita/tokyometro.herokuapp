@@ -22,19 +22,19 @@ module TokyoMetro::ClassNameLibrary::Static::RailwayDirection
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::RailwayDirection::Hash
+      ::TokyoMetro::Factory::Generate::Static::RailwayDirection::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::RailwayDirection::Info
+      ::TokyoMetro::Factory::Generate::Static::RailwayDirection::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::RailwayDirection::Hash
+      ::TokyoMetro::Factory::Seed::Static::RailwayDirection::Hash
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::RailwayDirection::Info
+      ::TokyoMetro::Factory::Seed::Static::RailwayDirection::Info
     end
 
     def db_instance_class

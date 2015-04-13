@@ -80,7 +80,7 @@ module StationTimetableHelper
     car_compositions = proc_for_getting_contents_in_train_times.call( station_train_times_of_a_direction_and_an_operation_day , :car_composition ).select { | car_composition | car_composition.present? }
 
     terminal_station_infos = ::Station::Info.find( terminal_station_info_ids )
-    
+
     count_terminal_station_proc = ::Proc.new { | station_train_times , terminal_station_info_id |
       station_train_times.count { | station_train_time |
         station_train_time.terminal_station_info_id == terminal_station_info_id
@@ -92,7 +92,7 @@ module StationTimetableHelper
       count_1 <=> count_2
     }
     train_types = ::TrainType.includes( :train_type_in_api ).find( train_type_ids )
-    
+
     h_locals = {
       station_train_times: station_train_times_of_a_direction_and_an_operation_day ,
       railway_line: railway_line ,
@@ -106,7 +106,7 @@ module StationTimetableHelper
     }
 
     render inline: <<-HAML , type: :haml , locals: h_locals
-- only_one_to_station = ( terminal_station_infos.length == 1 )
+- has_one_terminal_station = ( terminal_station_infos.length == 1 )
 - only_one_train_type = ( train_types.map( &:train_type_in_api ).uniq.length == 1 )
 
 - station_train_times_grouped_by_hour = station_train_times.group_by( &:departure_time_hour )
@@ -118,7 +118,7 @@ module StationTimetableHelper
     - train_time_hours = train_time_hours + [ midnight_hour ]
 
 %table{ class: [ :station_timetable , operation_day.decorate.css_class_name ] }
-  = timetable_header( railway_line , operation_day , direction , station , only_one_train_type , train_types , only_one_to_station , terminal_station_infos , major_terminal_station_info_id )
+  = timetable_header( railway_line , operation_day , direction , station , only_one_train_type , train_types , has_one_terminal_station , terminal_station_infos , major_terminal_station_info_id )
   %tbody
     - train_time_hours.each do | train_time_hour |
       - station_train_times_in_an_hour = station_train_times_grouped_by_hour[ train_time_hour ].sort_by( &:departure_time_min )
@@ -127,11 +127,11 @@ module StationTimetableHelper
           = train_time_hour
         %td{ class: [ :station_train_times , cycle( :odd , :even ) ] }
           - station_train_times_in_an_hour.each do | station_train_times |
-            = station_train_times.decorate.render_in_station_timetable( terminal_station_infos , train_types , only_one_train_type , only_one_to_station , major_terminal_station_info_id )
+            = station_train_times.decorate.render_in_station_timetable( terminal_station_infos , train_types , only_one_train_type , has_one_terminal_station , major_terminal_station_info_id )
     HAML
   end
 
-  def timetable_header( railway_line , operation_day , railway_direction , station_info , only_one_train_type , train_types , only_one_to_station , terminal_station_infos , major_terminal_station_info_id )
+  def timetable_header( railway_line , operation_day , railway_direction , station_info , only_one_train_type , train_types , has_one_terminal_station , terminal_station_infos , major_terminal_station_info_id )
     h_locals = {
       railway_line: railway_line ,
       operation_day: operation_day ,
@@ -139,7 +139,7 @@ module StationTimetableHelper
       station_info: station_info ,
       only_one_train_type: only_one_train_type ,
       train_types: train_types ,
-      only_one_to_station: only_one_to_station ,
+      has_one_terminal_station: has_one_terminal_station ,
       terminal_station_infos: terminal_station_infos ,
       major_terminal_station_info_id: major_terminal_station_info_id
     }
@@ -153,39 +153,39 @@ module StationTimetableHelper
         = railway_direction.decorate.render_in_station_timetable_header
         - if station_info.present?
           = station_info.decorate.render_in_station_timetable_header
-  = timetable_only_one_train_type_or_station( only_one_train_type , train_types , only_one_to_station , terminal_station_infos , major_terminal_station_info_id )
+  = timetable_only_one_train_type_or_station( only_one_train_type , train_types , has_one_terminal_station , terminal_station_infos , major_terminal_station_info_id )
     HAML
   end
 
-  def timetable_only_one_train_type_or_station( only_one_train_type , train_types , only_one_to_station , terminal_station_infos , major_terminal_station_info_id )
+  def timetable_only_one_train_type_or_station( only_one_train_type , train_types , has_one_terminal_station , terminal_station_infos , major_terminal_station_info_id )
     h_locals = {
       only_one_train_type: only_one_train_type ,
       train_types: train_types ,
-      only_one_to_station: only_one_to_station ,
+      has_one_terminal_station: has_one_terminal_station ,
       terminal_station_infos: terminal_station_infos ,
       major_terminal_station_info_id: major_terminal_station_info_id
     }
     render inline: <<-HAML , type: :haml , locals: h_locals
 %tr
-  %td{ colspan: 2 }<
+  %td{ colspan: 2 , class: :train_type_and_terminal_station_infos }<
     - str_ja = String.new
     - str_en = String.new
-    - if only_one_train_type or only_one_to_station
-      - str_ja = "列車はすべて"
+    - if only_one_train_type or has_one_terminal_station
+      - str_ja = ( "列車はすべて" + " " )
       - str_en = "All trains are"
       - if only_one_train_type
-        - str_ja += train_types.first.train_type_in_api.name_ja
+        - str_ja += ( train_types.first.train_type_in_api.name_ja + " " )
         - str_en += ( " " + train_types.first.train_type_in_api.name_en )
-      - if only_one_to_station
+      - if has_one_terminal_station
         - destination = terminal_station_infos.first
-        - str_ja += ( destination.name_ja + "行き" )
+        - str_ja += ( destination.name_ja + " " + "行き " )
         - str_en += ( " bound for " + destination.name_en )
       - str_ja += "です。"
       - str_en += "."
-      - unless only_one_to_station
+      - unless has_one_terminal_station
         - str_ja += "なお、"
         - str_en += " "
-    - else
+    - unless has_one_terminal_station
       - major_to_station = terminal_station_infos.find{ | to_station | to_station.id == major_terminal_station_info_id }
       - str_ja += "行先の記載がない列車はすべて" + major_to_station.name_ja + "行きです。"
       - str_en += "All trains with no description of destination are bound for " + major_to_station.name_en + "."

@@ -3,68 +3,48 @@
 @import 'common_settings.scss' ;
 
 @mixin colorSettingsOfTravelTimeInfo( $background_color , $text_color_on_background: #fff , $text_color_on_travel_time_square: $text_black_base_color ) {
-    .railway_line_column {
-        background-color: $background_color ;
-        color: $text_color_on_travel_time_square ;
-    }
-    .travel_time {
-        background-color: $background_color ;
-        color: $text_color_on_background ;
-    }
-}
-
-@mixin travel_time_info_each_line( $bgcolor , $text_color_on_background: #fff , $text_color_on_travel_time_square: $text_black_base_color ) {
-  table.travel_time_info {
-    @include colorSettingsOfTravelTimeInfo( $bgcolor , $text_color_on_background , $text_color_on_travel_time_square ) ;
+  .railway_line_column {
+    background-color: $background_color ;
+    color: $text_color_on_travel_time_square ;
+  }
+  .travel_time {
+    background-color: $background_color ;
+    color: $text_color_on_background ;
   }
 }
 
-table {
-  &.travel_time_info {
-    @extend %commonSettingsOfTravelTimeInfo ;
-  }
- &.travel_time_info_main {
-    @extend %commonSettingsOfTravelTimeInfo ;
-  }
- &.travel_time_info_branch {
-    @extend %commonSettingsOfTravelTimeInfo ;
-  }
+table.travel_time_info , table.travel_time_info_main , table.travel_time_info_branch {
+  @extend %commonSettingsOfTravelTimeInfo ;
 }
 
 
 #ginza_travel_time {
-    @include travel_time_info_each_line( $line_ginza_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_ginza_bgcolor ) ;
 }
-#marunouchi_travel_time {
- @include colorSettingsOfTravelTimeInfo( $line_marunouchi_bgcolor ) ;
+#marunouchi_travel_time , #marunouchi_branch_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_marunouchi_bgcolor ) ;
 }
-#marunouchi_branch_travel_time {
- @extend #marunouchi_travel_time ;
-}
-#hibiya_travel_time.railway_line {
-    @include colorSettingsOfTravelTimeInfo( $line_hibiya_bgcolor ) ;
+#hibiya_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_hibiya_bgcolor ) ;
 }
 #tozai_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_tozai_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_tozai_bgcolor ) ;
 }
-#chiyoda_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_chiyoda_bgcolor ) ;
-}
-#chiyoda_branch_travel_time {
-    @extend #chiyoda_travel_time ;
+#chiyoda_travel_time , #chiyoda_branch_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_chiyoda_bgcolor ) ;
 }
 #yurakucho_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_yurakucho_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_yurakucho_bgcolor ) ;
 }
 #hanzomon_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_hanzomon_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_hanzomon_bgcolor ) ;
 }
 #namboku_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_namboku_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_namboku_bgcolor ) ;
 }
 #fukutoshin_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_fukutoshin_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_fukutoshin_bgcolor ) ;
 }
 #toei_mita_travel_time {
-    @include colorSettingsOfTravelTimeInfo( $line_toei_mita_bgcolor ) ;
+  @include colorSettingsOfTravelTimeInfo( $line_toei_mita_bgcolor ) ;
 }

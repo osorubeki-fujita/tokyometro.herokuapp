@@ -7,8 +7,10 @@ $golden_ratio: 1.62 ; // 1.618033988749895
 $silver_ratio: 2.41 ; // 2.414213562373095
 $bronze_ratio: 3.3 ; // 3.302775637731995
 
-$base_r: $silver_ratio ;
+$r: ( ( 1 / $silver_ratio ) + 1 + ( 1 / $golden_ratio ) ) ;
 
-$width_list_of_contents: $width_whole * 1.0 / ( 1 + 1 + $base_r ) - 10 ;
-$width_main_content_center: $width_whole * $base_r / ( 1 + 1 + $base_r ) - 25 ;
-$width_main_content_wide: $width_whole * ( 1 + $base_r ) / ( 1 + 1 + $base_r ) - 40 ;
+$width_of_left_contents: floor( $width_whole * ( 1 / $silver_ratio ) / $r ) ;
+$width_of_right_contents: floor( $width_whole * ( 1 / $golden_ratio ) / $r ) ;
+
+$width_main_content_center: floor( $width_whole * 1 / $r ) ;
+$width_main_content_wide: floor( $width_whole * ( 1 + ( 1 / $golden_ratio ) ) / $r ) ;

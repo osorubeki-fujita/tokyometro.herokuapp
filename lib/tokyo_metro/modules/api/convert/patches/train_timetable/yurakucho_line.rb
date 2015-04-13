@@ -27,7 +27,7 @@ module TokyoMetro::Modules::Api::Convert::Patches::TrainTimetable::YurakuchoLine
       include ::TokyoMetro::Modules::Api::Convert::Patches::TrainTimetable::YurakuchoLine::Info::StationTime::Info
     end
 
-    ::TokyoMetro::Factories::Generate::Api::TrainTimetable::List.class_eval do
+    ::TokyoMetro::Factory::Generate::Api::TrainTimetable::List.class_eval do
       include ::TokyoMetro::Modules::Api::Convert::Patches::TrainTimetable::YurakuchoLine::Generate::List
     end
   end

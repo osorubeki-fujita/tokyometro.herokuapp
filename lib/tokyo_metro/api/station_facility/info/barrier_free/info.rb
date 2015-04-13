@@ -38,7 +38,7 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::Info < TokyoMetro::Ap
   attr_reader :remark
 
   alias :to_strf :to_s
-  
+
   alias :located_area_name_ja :located_area_name
 
   def located_area_name_en

@@ -55,6 +55,23 @@ Rails.application.routes.draw do
   #   end
 
   # resources :others, controller: :application
+
+  # -------- 運賃
+
+  get 'fare(/index)' , to: 'fare#index' , via: [ :get , :post , :patch ]
+  get 'fare/:station/marunouchi_branch_line' => redirect( '/fare/%{station}/marunouchi_line' )
+  get 'fare/:station/chiyoda_branch_line' => redirect( '/fare/%{station}/chiyoda_line' )
+
+  match 'fare(/:station(/:railway_line))' , to: 'fare#action_for_station_page' , via: [ :get , :post , :patch ]
+
+  # -------- 駅時刻表
+
+  get 'station_timetable(/index)' , to: 'station_timetable#index'
+
+  match 'station_timetable(/:station(/:railway_line))' , to: 'station_timetable#action_for_station_page' , via: [ :get , :post , :patch ]
+
+  #-------- その他
+
   match ':controller/:action', via: [ :get , :post , :patch ]
   root to: 'application#index'
 end

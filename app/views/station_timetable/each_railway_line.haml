@@ -1,7 +1,7 @@
 = render "common_content"
 
 - content_for :right_contents do
-  = twitter_railway_line_info
+  = ::TokyoMetro::App::Renderer::Twitter.new( request , :railway_lines , @railway_lines ).render
 
 = ::RailwayLineDecorator.render_title_of_station_timetable( @railway_lines )
 %div{ id: :station_timetable_contents }

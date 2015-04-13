@@ -22,19 +22,19 @@ module TokyoMetro::ClassNameLibrary::Static::RailwayLine
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::RailwayLine::Hash
+      ::TokyoMetro::Factory::Generate::Static::RailwayLine::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::RailwayLine::Info
+      ::TokyoMetro::Factory::Generate::Static::RailwayLine::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::RailwayLine::Hash
+      ::TokyoMetro::Factory::Seed::Static::RailwayLine::Hash
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::RailwayLine::Info
+      ::TokyoMetro::Factory::Seed::Static::RailwayLine::Info
     end
 
     def db_instance_class
@@ -44,7 +44,7 @@ module TokyoMetro::ClassNameLibrary::Static::RailwayLine
     # SCCS の color ファイルを作成する Factory Pattern Class の名称を返すメソッド
     # @return [Const (class)]
     def scss_color_factory
-      ::TokyoMetro::Factories::Scss::RailwayLines::Colors
+      ::TokyoMetro::Factory::Scss::RailwayLines::Colors
     end
 
     private

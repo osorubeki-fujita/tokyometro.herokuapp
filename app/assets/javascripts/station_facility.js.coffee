@@ -1,4 +1,5 @@
 class StationFacility
+
   constructor: ->
     @tab_contents = $( '#platform_info_tab_contents' )
     @tokyo_metro_railway_lines = $( '.tokyo_metro_railway_lines' ).first().children( '.railway_lines' ).first()
@@ -6,6 +7,7 @@ class StationFacility
     @tokyo_metro_railway_lines_in_another_stations = @tokyo_metro_railway_lines.children( '.railway_lines_in_another_station' ).first()
     @railway_lines_operated_by_other_operators = $( '.other_railway_lines' ).first().children( '.railway_lines' ).first()
 
+  # 各路線のプラットホーム情報の table
   tables_of_platform_info_tab_contents = (v) ->
     return v.tab_contents.find( 'table.platform_info' )
 
@@ -19,13 +21,6 @@ class StationFacility
     v.tokyo_metro_railway_lines.css( 'height' , p.sum_outer_height( true ) )
     return
 
-  process_tables_of_platform_info_tab_contents = (v) ->
-    tables_of_platform_info_tab_contents(v).each ->
-      table = new StationFacilityPlatformInfoTable( $( this ) )
-      table.process()
-      return
-    return
-
   #-------- プラットホーム情報のタブとその内容の処理・初期化
   process_platform_infos = (v) ->
     process_tables_of_platform_info_tab_contents(v)
@@ -36,6 +31,13 @@ class StationFacility
     platform_info_tabs = tab_ul_processor.li_contents()
     t = new StationFacilityTabsAndContents( platform_info_tabs )
     t.initialize_platform_infos()
+    return
+
+  process_tables_of_platform_info_tab_contents = (v) ->
+    tables_of_platform_info_tab_contents(v).each ->
+      table = new StationFacilityPlatformInfoTable( $( this ) )
+      table.process()
+      return
     return
 
   #-------- バリアフリー情報の処理
@@ -52,26 +54,13 @@ class StationFacility
 window.StationFacility = StationFacility
 
 #--------------------------------
-# プラットホーム情報の処理
-#--------------------------------
-
-#-------- changeStationFacilityPlatformInfoTabByPageLink
-#-------- ページ内のタブをクリックすることによる処理
-
-changeStationFacilityPlatformInfoTabByPageLink = ( tab_id , change_location = true ) ->
-  s = new StationFacilityTabsAndContents()
-  s.display_platform_info_tab_of_id( tab_id , change_location )
-  return
-
-window.changeStationFacilityPlatformInfoTabByPageLink = changeStationFacilityPlatformInfoTabByPageLink
-
-#--------------------------------
 # ※ 以下、クラスの定義
 #--------------------------------
 
 #-------------------------------- プラットホーム情報の処理
 
 class StationFacilityPlatformInfoTable
+
   constructor: ( @domain ) ->
 
   transfer_infos = (v) ->
@@ -88,7 +77,9 @@ class StationFacilityPlatformInfoTable
     return
 
 class StationFacilityTransferInfosInPlatformInfos
+
   constructor: ( @domains ) ->
+
   process: ->
     @domains.each ->
       info = new StationFacilityTransferInfoInPlatformInfo( $( this ) )
@@ -96,6 +87,7 @@ class StationFacilityTransferInfosInPlatformInfos
     return
 
 class StationFacilityTransferInfoInPlatformInfo
+
   constructor: ( @domain ) ->
 
   railway_line_code = (v) ->
@@ -104,15 +96,24 @@ class StationFacilityTransferInfoInPlatformInfo
   railway_line_code_main = (v) ->
     return railway_line_code(v).children().first()
 
-  string_domain = (v) ->
-    return v.domain.children( '.string' ).first()
+  text_domain = (v) ->
+    return v.domain.children( '.text' ).first()
 
   transfer_additional_info = (v) ->
-    return string_domain(v).children( '.additional_info' ).first()
+    return text_domain(v).children( '.additional_info' ).first()
 
   process_railway_line_code = (v) ->
     _railway_line_code_main = railway_line_code_main(v)
-    railway_line_code(v).css( 'height' , _railway_line_code_main.outerHeight( true ) ).css( 'width' , _railway_line_code_main.outerWidth( true ) ).css( 'float' , 'left' )
+    railway_line_code(v).css( 'height' , _railway_line_code_main.outerHeight( true ) )
+    railway_line_code(v).css( 'width' , _railway_line_code_main.outerWidth( true ) )
+    railway_line_code(v).css( 'float' , 'left' )
+    return
+  
+  process_text = (v) ->
+    _text_domain = text_domain(v)
+    p = new DomainsCommonProcessor( _text_domain.children() )
+    _text_domain.css( 'height' , p.sum_outer_height( true ) )
+    _text_domain.css( 'width' , Math.ceil( p.max_outer_width( true ) * 1.1 ) )
     return
 
   set_height_of_transfer_additional_info = (v) ->
@@ -122,13 +123,28 @@ class StationFacilityTransferInfoInPlatformInfo
     return
 
   set_height_of_outer_domain = (v) ->
-    h = Math.max( railway_line_code(v).outerHeight( true ) , string_domain(v).outerHeight( true ) )
+    # h = Math.max( railway_line_code(v).outerHeight( true ) , text_domain(v).outerHeight( true ) )
+    # v.domain.css( 'height' , h )
+    doms = v.domain.children()
+    p1 = new DomainsCommonProcessor( doms )
+    h = p1.max_outer_height( true )
+    p2 = new DomainsVerticalAlignProcessor( doms , h , 'middle' )
+    p2.process()
     v.domain.css( 'height' , h )
+    return
+    
+  set_width_of_outer_domain = (v) ->
+    doms = v.domain.children()
+    p1 = new DomainsCommonProcessor( doms )
+    w = p1.sum_outer_width( true ) + ( v.domain.innerWidth() - v.domain.width() )
+    v.domain.css( 'width' , w )
 
   process: ->
     process_railway_line_code(@)
+    process_text(@)
     set_height_of_transfer_additional_info(@)
     set_height_of_outer_domain(@)
+    set_width_of_outer_domain(@)
     return
 
 #-------- [class] StationFacilityPlatformInfoTabUl
@@ -142,15 +158,15 @@ class StationFacilityPlatformInfoTabUl extends TabUl
     # return
 
   process_railway_line_name = (v) ->
-    console.log 'StationFacilityPlatformInfoTabUl\#process_railway_line_name'
-    console.log v
-    console.log v.li_contents()
+    # console.log( 'StationFacilityPlatformInfoTabUl\#process_railway_line_name' )
+    # console.log(v)
+    # console.log( v.li_contents() )
     v.li_contents().each ->
       platform_info_tab = $( this )
       railway_line_name = platform_info_tab.children( '.railway_line_name' ).first()
       children_of_railway_line_name = railway_line_name.children()
       p = new DomainsCommonProcessor( children_of_railway_line_name )
-      railway_line_name.css( 'width' , p.sum_outer_width( true ) * 1.2 )
+      railway_line_name.css( 'width' , Math.ceil( p.sum_outer_width( true ) * 1.2 ) )
       railway_line_name.css( 'height' , p.max_outer_height( true ) )
       return
     return
@@ -161,207 +177,6 @@ class StationFacilityPlatformInfoTabUl extends TabUl
       super()
       return
     return
-
-#-------- [class] StationFacilityPlatformInfoTabTarget
-
-class StationFacilityPlatformInfoTabTarget
-  constructor: ( @anchor , @tab_id ) ->
-    # console.log 'StationFacilityPlatformInfoTabTarget\#constructor'
-    # console.log( 'anchor: ' + @anchor + ' / ' + 'tab_id: ' + @tab_id )
-  is_included_in: ( contents ) ->
-    # console.log 'StationFacilityPlatformInfoTabTarget\#is_included_in'
-    # console.log( 'search_by: ' + '#' + @tab_id )
-    return contents.is( '#' + @tab_id )
-  is_not_included_in: ( contents ) ->
-    # console.log 'StationFacilityPlatformInfoTabTarget\#is_not_included_in'
-    return !( is_included_in( contents ) )
-  set_anchor: ->
-    # console.log 'StationFacilityPlatformInfoTabTarget\#set_anchor'
-    window.location.hash = @anchor
-    return
-
-#-------- [class] StationFacilityPlatformInfoTabProcessor
-
-class StationFacilityPlatformInfoTabProcessor
-
-  constructor: ( @tab , @content , @target ) ->
-    # console.log 'StationFacilityPlatformInfoTabProcessor\#constructor'
-
-  content_matches = ( value ) ->
-    # console.log 'StationFacilityPlatformInfoTabProcessor\#content_matches'
-    return ( value.content.attr( 'id' ) is value.target.tab_id )
-
-  hide = ( value ) ->
-    # console.log 'StationFacilityPlatformInfoTabProcessor\#hide'
-    $.each [ value.tab , value.content ] , ->
-      $( this ).removeClass( 'displayed' )
-      $( this ).addClass( 'hidden' )
-      return
-    return
-
-  display = ( value ) ->
-    # console.log 'StationFacilityPlatformInfoTabProcessor\#display'
-    $.each [ value.tab , value.content ] , ->
-      $( this ).removeClass( 'hidden' )
-      $( this ).addClass( 'displayed' )
-      return
-    return
-
-  process: ->
-    # console.log 'StationFacilityPlatformInfoTabProcessor\#process'
-    # console.log( 'attr id: ' + @content.attr( 'id' ) + ' / ' + 'target tab id: ' + @target.tab_id + ' / ' + 'match: ' + content_matches(@) )
-    unless content_matches(@)
-      hide(@)
-    else
-      display(@)
-    return
-
-#-------- [class] StationFacilityTabsAndContents
-
-class StationFacilityTabsAndContents
-
-  constructor: ( @platform_info_tabs = $( 'ul#platform_info_tabs' ).children( 'li' ) , @platform_info_contents = $( '#platform_info_tab_contents' ).find( 'li.platform_info_tab_content' ) ) ->
-    # console.log 'construct StationFacilityTabsAndContents\#constructor'
-    return
-
-  # ページを最初に表示した際の初期化
-  initialize_platform_infos: ->
-    # console.log 'StationFacilityTabsAndContents\#initialize_platform_infos'
-    if contents_exists(@)
-      _anchor = anchor(@)
-      target = new StationFacilityPlatformInfoTabTarget( _anchor , tab_id_of_platform_info( @ , _anchor ) )
-      #-------- アンカーが指定されている場合
-      if anchor_is_defined( @ , target )
-        #---- アンカーが正しく指定されている場合
-        if anchor_is_valid_as_platform_info( @ , target )
-          # console.log( "指定OK: " + _anchor )
-          #-- アンカーに適合するタブを表示
-          display_platform_info_tab_of( @ , target , false )
-        #---- アンカーが正しく指定されていない場合
-        else
-          # console.log( "指定NG: " + _anchor )
-          #-- 最初のタブを表示
-          display_first_platform_info_tab( @ , true )
-      #-------- アンカーが指定されていない場合
-      else
-        # console.log( "未指定: " + _anchor )
-        #-- 最初のタブを表示
-        display_first_platform_info_tab( @ , false )
-        return
-      return
-    return
-
-  #-------- 監視中に変更があった場合の処理
-  hook_while_observing_platform_infos: ->
-    # console.log 'StationFacilityTabsAndContents\#hook_while_observing_platform_infos'
-    if anchor_is_defined(@)
-      _anchor = anchor(@)
-      target = new StationFacilityPlatformInfoTabTarget( _anchor , tab_id_of_platform_info( @ , _anchor ) )
-      if anchor_is_valid_as_platform_info( @ , target )
-        process_platform_info_tabs( @ , target )
-      return
-    else
-      display_first_platform_info_tab( @ , false )
-    return
-
-  #-------- id で指定されたタブの内容を表示
-  display_platform_info_tab_of_id: ( tab_id , change_location = false ) ->
-    # console.log 'StationFacilityTabsAndContents\#display_platform_info_tab_of_id'
-    # console.log tab_id
-    _anchor = anchor_name_of_platform_info( @ , tab_id )
-    target = new StationFacilityPlatformInfoTabTarget( _anchor , tab_id )
-    display_platform_info_tab_of( @ , target , change_location )
-    return
-
-  contents_exists = ( v ) ->
-    # console.log 'StationFacilityTabsAndContents\#contents_exists'
-    return v.platform_info_contents.length > 0
-
-  anchor = (v) ->
-    # console.log 'StationFacilityTabsAndContents\#anchor'
-    return window.location.hash.replace( "#" , "" )
-
-  anchor_is_not_defined = (v) ->
-    # console.log 'StationFacilityTabsAndContents\#anchor_is_not_defined'
-    return anchor(v) is ''
-
-  anchor_is_defined = (v) ->
-    # console.log 'StationFacilityTabsAndContents\#anchor_is_defined'
-    return !( anchor_is_not_defined(v) )
-
-  anchor_is_valid_as_platform_info = ( v , target ) ->
-    # console.log 'StationFacilityTabsAndContents\#anchor_is_valid_as_platform_info'
-    return target.is_included_in( v.platform_info_contents )
-
-  #-------- タブ（複数）の処理
-  process_platform_info_tabs = ( v , target ) ->
-    # console.log 'StationFacilityTabsAndContents\#process_platform_info_tabs'
-    # console.log v
-    v.platform_info_contents.each ->
-      content = $( this )
-      tab = v.platform_info_tabs.filter( '.' + content.attr( 'id' ) )
-      processor = new StationFacilityPlatformInfoTabProcessor( tab , content , target )
-      processor.process()
-      return
-    return
-
-  #-------- 最初のタブの id
-  first_platform_info_tab_id = (v) ->
-    # console.log 'StationFacilityTabsAndContents\#first_platform_info_tab_id'
-    return v.platform_info_contents.first().attr( 'id' )
-
-  #-------- 指定されたタブの内容を表示
-  display_platform_info_tab_of = ( v , target , change_location = false ) ->
-    # console.log 'StationFacilityTabsAndContents\#display_platform_info_tab_of'
-    process_platform_info_tabs( v , target )
-    if change_location
-      target.set_anchor()
-    return
-
-  #-------- 最初のタブの内容を表示
-  display_first_platform_info_tab = ( v , change_location = false ) ->
-    # console.log 'StationFacilityTabsAndContents\#display_first_platform_info_tab'
-    _first_tab_id = first_platform_info_tab_id(v)
-    # console.log '_first_tab_id: ' + _first_tab_id
-    _anchor_name = anchor_name_of_platform_info( v , _first_tab_id )
-    unless _anchor_name == null
-      target =new StationFacilityPlatformInfoTabTarget( _anchor_name , _first_tab_id )
-      display_platform_info_tab_of( v , target , change_location )
-      return
-    return
-
-  anchor_name_of_platform_info = ( v , tab_id ) ->
-    unless tab_id == null
-      anchor_name = tab_id.replace( /\#?platform_info_/ , "" )
-    else
-      anchor_name = null
-    return anchor_name
-
-  tab_id_of_platform_info = ( v , anchor ) ->
-    return 'platform_info_' + anchor
-
-#-------- ObserverOfStationFacilityPlatformInfoTab
-
-class ObserverOfStationFacilityPlatformInfoTab
-  constructor: ( @anchor = window.location.hash.replace( "#" , "" ) ) ->
-  location_hash_was_changed = ( value ) ->
-    return window.location.hash.replace( "#" , "" ) isnt value.anchor
-  hook = ( value ) ->
-    # console.log 'ObserverOfStationFacilityPlatformInfoTab#hook'
-    s = new StationFacilityTabsAndContents()
-    s.hook_while_observing_platform_infos()
-    return
-  listen: ->
-    # console.log 'ObserverOfStationFacilityPlatformInfoTab#listen'
-    if location_hash_was_changed( @ )
-      # console.log @anchor
-      @anchor = window.location.hash.replace( "\#" , "" )
-      hook(@)
-    return
-  duration: ->
-    return 1500
-
-window.ObserverOfStationFacilityPlatformInfoTab = ObserverOfStationFacilityPlatformInfoTab
 
 #--------------------------------
 # バリアフリー情報の処理

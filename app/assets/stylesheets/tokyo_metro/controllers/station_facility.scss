@@ -101,13 +101,13 @@
   @extend %tokyoMetroRailwayLinesTitle ;
   .railway_lines {
     .railway_line {
+      @extend %link_in_div ;
       border: {
         color: #ddd ;
       }
       &:hover {
         background-color: $jp_traditional_aijiro ;
       }
-      @extend %link_in_div ;
       a {
         background-color: transparent ;
       }
@@ -241,7 +241,7 @@
     }
   }
 }
-                  
+
 %stationFacilityInfoServiceDetailServiceTime {
   .service_time {
     display: block ;

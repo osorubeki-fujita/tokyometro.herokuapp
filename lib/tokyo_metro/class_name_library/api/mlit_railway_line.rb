@@ -42,41 +42,41 @@ module TokyoMetro::ClassNameLibrary::Api::MlitRailwayLine
     # @!group Factory Pattern のクラスの情報
 
     # 地物情報検索 API からデータを取得するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Get::Api::Geo::MlitRailwayLine )]
+    # @return [Const ( ::TokyoMetro::Factory::Get::Api::Geo::MlitRailwayLine )]
     def factory_for_getting_geo
-      ::TokyoMetro::Factories::Get::Api::Geo::MlitRailwayLine
+      ::TokyoMetro::Factory::Get::Api::Geo::MlitRailwayLine
     end
 
     # API から取得したデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::MlitRailwayLine::EachFile )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::MlitRailwayLine::EachFile )]
     def factory_for_saving_to_each_file
-      ::TokyoMetro::Factories::Save::Api::MlitRailwayLine::EachFile
+      ::TokyoMetro::Factory::Save::Api::MlitRailwayLine::EachFile
     end
 
     # グループ化されたデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::MlitRailwayLine::Group )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::MlitRailwayLine::Group )]
     def factory_for_saving_datas_of_each_group
-      ::TokyoMetro::Factories::Save::Api::MlitRailwayLine::Group
+      ::TokyoMetro::Factory::Save::Api::MlitRailwayLine::Group
     end
 
     def list_class_for_saving_grouped_infos
-      ::TokyoMetro::Factories::Save::Api::MlitRailwayLine::Group::List
+      ::TokyoMetro::Factory::Save::Api::MlitRailwayLine::Group::List
     end
 
     def file_info_class_for_saving
-      ::TokyoMetro::Factories::Save::Api::MlitRailwayLine::Group::FileInfo
+      ::TokyoMetro::Factory::Save::Api::MlitRailwayLine::Group::FileInfo
     end
 
     # JSON をパースして得られた配列の要素である Hash からインスタンスを作成するメソッドための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::MlitRailwayLine::Info )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::MlitRailwayLine::Info )]
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Api::MlitRailwayLine::Info
+      ::TokyoMetro::Factory::Generate::Api::MlitRailwayLine::Info
     end
 
     # 保存済みの情報を処理しインスタンスを復元するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::MlitRailwayLine::List )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::MlitRailwayLine::List )]
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Api::MlitRailwayLine::List
+      ::TokyoMetro::Factory::Generate::Api::MlitRailwayLine::List
     end
 
     # API の情報（generate_instance が true のときの、インスタンスの配列）の各成分をディレクトリ分けするときに使用するキーの設定

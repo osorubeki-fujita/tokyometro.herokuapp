@@ -61,6 +61,10 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
 
   alias :to_strf :to_s
 
+  def decorate( request , railway_line , max_delay , controller )
+    ::TokyoMetro::Api::TrainInformation::Info::Decorator.new( request , self , railway_line , max_delay , controller )
+  end
+
   # インスタンスの情報をハッシュにして返すメソッド
   # @return [Hash]
   def to_h
@@ -80,22 +84,46 @@ class TokyoMetro::Api::TrainInformation::Info < TokyoMetro::Api::MetaClass::Real
     h
   end
 
-  # 運行障害が発生した場所を取得するメソッド
-  # @return [String]
-  def place
-    if @text.string?
-      if /(.+)駅?\s*[-ー－~～―‐・･]\s*(.+)駅?間?で発生/ === @text
-        "#{$1} - #{$2}"
-      elsif /(.+)駅?(?:構内)?で発生/ === @text
-        "#{$1}"
-      else
-        nil
-      end
+  # @!endgroup
+
+  def train_information_status
+    if status.present?
+      ::TrainInformationStatus.find_or_create_by( in_api: status )
     else
       nil
     end
   end
 
-  # @!endgroup
+  def train_information_text
+    ::TrainInformationText.find_or_create_by( in_api: @text )
+  end
+
+  def text_in_api
+    train_information_text.in_api
+  end
+
+  def text_en
+    if on_schedule?
+      "Trains are operated on schedule."
+    else
+      nil
+    end
+  end
+
+  def place
+    train_information_text.place
+  end
+
+  def on_schedule?
+    train_information_text.on_schedule?
+  end
+
+  def delayed?
+    train_information_status.try( :delayed? )
+  end
+
+  def suspended?
+    train_information_status.try( :suspended? )
+  end
 
 end

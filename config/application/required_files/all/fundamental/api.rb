@@ -19,7 +19,9 @@ class RailsTokyoMetro::Application::RequiredFiles::All::Fundamental::Api < Rails
       StationFacility.files ,
       StationTrainTime.files ,
       StationTimetable.files ,
-      TrainTimetable.files
+      TrainTimetable.files ,
+      TrainInformation.files ,
+      TrainLocation.files
     ]
   end
 

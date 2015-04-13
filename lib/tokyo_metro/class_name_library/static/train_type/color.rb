@@ -18,11 +18,11 @@ module TokyoMetro::ClassNameLibrary::Static::TrainType::Color
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Color::Hash
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Color::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Color::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Color::Info
     end
 
     private

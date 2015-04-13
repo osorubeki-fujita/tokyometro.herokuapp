@@ -18,19 +18,19 @@ module TokyoMetro::ClassNameLibrary::Static::TrainType::InApi
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainType::InApi::Hash
+      ::TokyoMetro::Factory::Generate::Static::TrainType::InApi::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainType::InApi::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainType::InApi::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::TrainType::InApi::Hash
+      ::TokyoMetro::Factory::Seed::Static::TrainType::InApi::Hash
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::TrainType::InApi::Info
+      ::TokyoMetro::Factory::Seed::Static::TrainType::InApi::Info
     end
 
     def db_instance_class

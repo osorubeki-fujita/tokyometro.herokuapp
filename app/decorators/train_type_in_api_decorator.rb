@@ -1,6 +1,6 @@
 class TrainTypeInApiDecorator < Draper::Decorator
   delegate_all
-  
+
   def render_name_in_box
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :text_ja }<
@@ -23,6 +23,14 @@ class TrainTypeInApiDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :name_ja_normal }<
   = info.name_ja_normal
+    HAML
+  end
+
+  def render_in_train_location
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+%div{ class: :train_type }
+  %div{ class: :text_ja }<
+    = info.name_ja_normal
     HAML
   end
 

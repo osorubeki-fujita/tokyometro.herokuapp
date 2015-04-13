@@ -1,15 +1,15 @@
 class RailwayLine
   constructor: ->
-  
+
   travel_time = (v) ->
     $( '#travel_time' )
-  
+
   travel_time_info = (v) ->
     travel_time(v).find( 'table.travel_time_info' )
-  
+
   has_multiple_travel_time_info_tables = (v) ->
     travel_time_info(v).length > 1
-  
+
   max_width_of_travel_time_info_tables = (v) ->
     n = 0
     travel_time_info(v).each ->
@@ -17,18 +17,21 @@ class RailwayLine
       n = Math.max( n , table.inner_width() )
       return
     return n
-    
+
   process_travel_time_info_tables = (v) ->
-    console.log 'RailwayLine\#process_travel_time_info_tables'
+    # console.log( 'RailwayLine\#process_travel_time_info_tables' )
     if has_multiple_travel_time_info_tables(v)
-      console.log 'RailwayLine\#has_multiple_travel_time_info_tables'
+      # console.log( 'RailwayLine\#has_multiple_travel_time_info_tables' )
       _width_new = max_width_of_travel_time_info_tables(v)
-      console.log ( 'width_new: ' + _width_new )
+      # console.log( 'width_new: ' + _width_new )
       travel_time_info(v).each ->
         table = new TravelTimeInfoTable( $( this ) )
         table.set_width( _width_new )
         return
       return
+    travel_time_info(v).each ->
+      table = new TravelTimeInfoTable( $( this ) )
+      table.set_width_of_station_info_domain()
     return
 
   process_women_only_car = (v) ->
@@ -46,14 +49,42 @@ window.RailwayLine = RailwayLine
 #-------- TravelTimeInfoTable
 
 class TravelTimeInfoTable
-  constructor: ( @table ) ->
-  
+  constructor: ( @domain ) ->
+
   inner_width: ->
-    console.log 'TravelTimeInfoTable\#inner_width'
-    return @table.innerWidth()
-  
+    # console.log( 'TravelTimeInfoTable\#inner_width' )
+    return @domain.innerWidth()
+
   set_width: ( _width ) ->
-    @table.css( 'width' , _width )
+    @domain.css( 'width' , _width )
+    return
+
+  tbody = (v) ->
+    return v.domain.children( 'tbody' ).first()
+
+  station_info_rows = (v) ->
+    return tbody(v).children( 'tr.station_info_row' )
+
+  set_width_of_station_info_domain: ->
+    station_info_rows(@).each ->
+      s = new TravelTimeInfoTableStationInfoRow( $( this ) )
+      s.process()
+      return
+    return
+
+class TravelTimeInfoTableStationInfoRow
+
+  constructor: ( @domain ) ->
+
+  station_info_cell = (v) ->
+    return v.domain.children( 'td.station_info' ).first()
+
+  station_info_domain = (v) ->
+    return station_info_cell(v).children( '.station_info_domain' ).first()
+
+  process: ->
+    s = new StationInfoProcessor( station_info_domain(@) )
+    s.process()
     return
 
 #-------- WomenOnlyCar
@@ -80,7 +111,7 @@ class WomenOnlyCar
   process_places = (v) ->
     _places = places(v)
     d = new DomainsCommonProcessor( _places )
-    d.set_css_attribute( 'width' , d.max_width() * 1.2 )
+    d.set_css_attribute( 'width' , Math.ceil( d.max_width() ) )
     return
 
   process: ->
@@ -121,25 +152,13 @@ class WomenOnlyCarSectionInfos
     v.domain.css( 'height' , p.max_outer_height( true ) )
     return
 
-  taller_children = (v) ->
-    if available_time(v).outerHeight( false ) < infos(v).outerHeight( false )
-      c = infos(v)
-    else
-      c = available_time(v)
-    return c
-
-  shorter_children = (v) ->
-    if available_time(v).outerHeight( false ) < infos(v).outerHeight( false )
-      c = available_time(v)
-    else
-      c = infos(v)
-    return c
-
   set_vartical_align_center = (v) ->
-    _taller = taller_children(v)
-    _shorter = shorter_children(v)
-    margin_of_shorter = ( _taller.outerHeight( false ) - _shorter.outerHeight( false ) ) * 0.5
-    _shorter.css( 'margin-top' , margin_of_shorter ).css( 'margin-bottom' , margin_of_shorter )
+    _children = children(v)
+    p1 = new DomainsCommonProcessor( _children )
+    h = p1.max_outer_height( true )
+    p2 = new DomainsVerticalAlignProcessor( _children , h , 'middle' )
+    p2.process()
+    v.domain.css( 'height' , h )
     return
 
   process: ->
@@ -160,8 +179,8 @@ class WomenOnlyCarSectionInfo
     return p.max_outer_height( false ) * 1.5
 
   max_outer_height_of_children = (v) ->
-    p2 = new DomainsCommonProcessor( v.domain.children() )
-    return p2.sum_all_of_uniform_height_to_max()
+    p = new DomainsCommonProcessor( v.domain.children() )
+    return p.max_outer_height( true )
 
   process_cars = (v) ->
     _max_height = max_outer_height_of_car_domains(v)
@@ -172,7 +191,10 @@ class WomenOnlyCarSectionInfo
     return
 
   process_height = (v) ->
-    v.domain.css( 'height' , max_outer_height_of_children(v) )
+    _h = max_outer_height_of_children(v)
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , _h , 'middle' )
+    p.process()
+    v.domain.css( 'height' , _h )
     return
 
   process: ->

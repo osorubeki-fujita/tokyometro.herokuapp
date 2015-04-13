@@ -12,8 +12,8 @@ class RailwayLineController < ApplicationController
 
   private
 
-  def each_railway_line( *railway_line_name_codes )
-    each_railway_line_sub( "路線のご案内" , "railway_line" , *railway_line_name_codes , with_branch: true , including_chiyoda_branch: true )
+  def each_railway_line( *railway_lines_same_as )
+    each_railway_line_sub( "路線のご案内" , "railway_line" , *railway_lines_same_as , with_branch: true , including_chiyoda_branch: true )
   end
 
 end

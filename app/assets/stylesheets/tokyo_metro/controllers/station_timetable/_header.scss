@@ -4,24 +4,39 @@
 // '../../fundamental_settings.scss' は、
 // 'color_settings.scss' の内部で import している。
 
+%stationTimeTableHeaderRailwayLinePadding {
+  padding: {
+      left: 8px ;
+      right: 8px ;
+      top: 4px ;
+      bottom: 4px ;
+  }
+}
+
+%stationTimeTableHeaderNormalPadding {
+  padding: {
+      left: 8px ;
+      right: 8px ;
+      top: 8px ;
+      bottom: 8px ;
+  }
+}
+
 %stationTimeTableHeaderRailwayLine {
   .railway_line {
-    padding: {
-        left: 8px ;
-        right: 4px ;
-        top: 4px ;
-        bottom: 4px ;
-    }
+    @extend %stationTimeTableHeaderRailwayLinePadding ;
     $font_size_ja: 12pt ;
     $font_size_en: $font_size_ja * 0.75 ;
-    font: {
+    .text_ja {
+      font: {
         size: $font_size_ja ;
+        weight: bold ;
+      }
     }
     .text_en {
-        font: {
-            size: $font_size_en ;
-            weight: bold ;
-        }
+      font: {
+        size: $font_size_en ;
+      }
     }
   }
 }
@@ -42,7 +57,7 @@
   }
   .text_en {
     font: {
-      size: 12pt ;
+      size: 10pt ;
     }
   }
   border: {
@@ -55,13 +70,15 @@
   @extend %floatLeft ;
   @extend %marginLeft4 ;
   // background-color: #f6f6f6 ;
-  font: {
-    size: 18pt ;
-    weight: bold ;
+  .text_ja {
+    font: {
+      size: 18pt ;
+      weight: bold ;
+    }
   }
   .text_en {
     font: {
-      size: 13.5pt ;
+      size: 11.25pt ;
       weight: normal ;
     }
   }
@@ -91,12 +108,27 @@
   }
 }
 
+%stationTimetableHeaderTrainTypeAndTerminalStationInfos {
+  @extend %stationTimeTableHeaderNormalPadding ;
+  .text_ja {
+    font: {
+      size: 12pt ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 9pt ;
+    }
+  }
+}
+
 %commonSettingsOfStationTimetableHeader {
   thead {
-    td {
+    td.top_header {
+      background-color: #f6f6f6 ;
       @extend %stationTimeTableHeaderRailwayLine ;
       .main {
-        padding: 8px ;
+        @extend %stationTimeTableHeaderNormalPadding ;
         .operation_day {
           @extend %stationTimetableHeaderMainOperationDay ;
         }
@@ -113,6 +145,9 @@
           @extend %stationTimetableHeaderAdditionalInfosStationName ;
         }
       }
+    }
+    td.train_type_and_terminal_station_infos {
+      @extend %stationTimetableHeaderTrainTypeAndTerminalStationInfos ;
     }
   }
 }

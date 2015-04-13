@@ -7,7 +7,7 @@ module TokyoMetro::Modules::Api::Convert::Customize::StationTimetable::Additiona
   end
 
   def self.set_modules
-    ::TokyoMetro::Factories::Generate::Api::StationTimetable::List.class_eval do
+    ::TokyoMetro::Factory::Generate::Api::StationTimetable::List.class_eval do
       include ::TokyoMetro::Modules::Api::Convert::Customize::StationTimetable::AdditionalInfos::Generate::List
     end
   end

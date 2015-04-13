@@ -1,54 +1,18 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
+@import 'concern/station/in_table_cell.scss' ;
 
-@mixin passengerSurveyTableStationInfoCommonSettings( $img_length , $img_margin_right ) {
+@mixin passengerSurveyTableStationInfoCommonSettings( $img_margin_right ) {
   $td_height: 40px ;
-  $td_station_info_height: 320px ;
+  $td_station_info_width: 320px ;
   $station_codes_margin_right: $img_margin_right * 2 ;
   #passenger_survey_table {
     td.station_info {
       .station_codes {
-        width: $td_station_info_height ;
+        width: $td_station_info_width ;
         margin: {
           right: $station_codes_margin_right ;
-        }
-        img.station_code {
-          width: $img_length ;
-          height: $img_length ;
-          margin: {
-            right: $img_margin_right ;
-          }
-        }
-      }
-    }
-  }
-}
-
-%passengerSurveyTableStationInfoTextCommonSettings {
-  td.station_info {
-    text-align: left ;
-    .station_codes {
-      @extend %floatLeft ;
-      img.station_code {
-        @extend %floatLeft ;
-      }
-    }
-    .text {
-      @extend %floatLeft ;
-      .text_ja {
-        font: {
-          size: 14pt ;
-        }
-        .small {
-          font: {
-            size: 10.5pt ;
-          }
-        }
-      }
-      .text_en {
-        font: {
-          size: 8.4pt ;
         }
       }
     }
@@ -58,10 +22,10 @@
 %passengerSurveyTableCommonSettings {
   #passenger_survey_table {
     table {
-      border: solid 1px #999 ;
+      @extend %stationInfoInTableCommonSettings ;
       @extend %cycleOfRowColor ;
-      border-collapse: separate ;
-      border-spacing: 2px 0px ;
+      border-collapse: collapse ;
+      border-spacing: 0px ;
       td {
         padding: {
           top: 0px ;
@@ -71,13 +35,16 @@
         }
       }
       tr.passenger_survey_table_row {
+          border: {
+            top: dotted 1px #999 ;
+            bottom: dotted 1px #999 ;
+          }
         td {
           text-align: right ;
         }
         td.order {
           width: 40px ;
         }
-        @extend %passengerSurveyTableStationInfoTextCommonSettings ;
         td.survey_year {
           color: #666 ;
           font: {
@@ -97,12 +64,24 @@
         }
       }
       thead {
+        tr {
+          border: solid 1px #999 ;
+        }
+        td {
+          border: {
+            bottom: solid 1px #999 ;
+          }
+        }
         font: {
           size: 9pt ;
         }
-        background-color: #ddd ;
+        background-color: #e0e0e0 ;
         td {
           text-align: left ;
+          padding: {
+            top: 4px ;
+            bottom: 4px ;
+          }
         }
       }
     }   
@@ -203,7 +182,7 @@
   $img_margin_right: 4px ;
   //
   @extend %passengerSurveyTableCommonSettings ;
-  @include passengerSurveyTableStationInfoCommonSettings( $img_length , $img_margin_right ) ;
+  @include passengerSurveyTableStationInfoCommonSettings( $img_margin_right ) ;
   @include passengerSurveyTableNormalCommonSettings( $img_length , $img_margin_right ) ;
   @include passengerSurveyTableRailwaySettings( $img_length , $img_margin_right ) ;
 }
@@ -222,6 +201,7 @@
     bottom: 2px ;
     right: 8px ;
   }
+  @extend %marginBottom8 ;
   $font_size_base: 12px ;
   $font_size_year: $font_size_base * 0.75 ;
   font: {

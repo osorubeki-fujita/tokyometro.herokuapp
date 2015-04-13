@@ -1,0 +1,59 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+#station_link_list_ja , #station_link_list_en {
+  clear: both ;
+  margin: {
+    top: 8px ;
+    bottom: 16px ;
+    left: 8px ;
+    right: 8px ;
+  }
+  padding: {
+    left: 0px ;
+  }
+}
+
+ul.hiragana_column , ul.alphabet_column {
+  @extend %floatLeft ;
+  @extend %marginRight16 ;
+  padding: {
+    left: 0px ;
+  }
+  li {
+    @extend %marginBottom16 ;
+    list-style: none ;
+    h4.letter {
+      border: {
+        bottom: solid 1px $operator_color ;
+      }
+      padding: {
+        left: 4px ;
+      }
+      font: {
+        size: 12pt ;
+      }
+      @extend %marginBottom8 ;
+    }
+    ul.stations {
+      padding: {
+        left: 0px ;
+      }
+      li.station {
+        margin: {
+          bottom: 0px ;
+        }
+      }
+      font: {
+        size: 10pt ;
+      }
+      .small {
+        font: {
+          size: 7.5pt ;
+        }
+      }
+      @extend %marginLeft8 ;
+    }
+  }
+}

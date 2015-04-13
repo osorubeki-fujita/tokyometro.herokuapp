@@ -18,19 +18,19 @@ module TokyoMetro::ClassNameLibrary::Static::TrainInformationStatus
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainInformationStatus::List
+      ::TokyoMetro::Factory::Generate::Static::TrainInformationStatus::List
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainInformationStatus::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainInformationStatus::Info
     end
 
     def factory_for_seeding_list
-      ::TokyoMetro::Factories::Seed::Static::TrainInformationStatus::List
+      ::TokyoMetro::Factory::Seed::Static::TrainInformationStatus::List
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::TrainInformationStatus::Info
+      ::TokyoMetro::Factory::Seed::Static::TrainInformationStatus::Info
     end
 
     def db_instance_class

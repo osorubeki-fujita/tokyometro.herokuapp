@@ -1,0 +1,39 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+.button , .update_button , .size_button {
+  $length: 20px ;
+  width: $length ;
+  height: $length ;
+  border: solid 1px #fff ;
+  @include border_radius( 4px ) ;
+  @extend %floatRight ;
+  @extend %link_in_div ;
+  &:hover {
+    border: solid 1px #fff ;
+    background-color: #999 ;
+  }
+  list-style: none ;
+  a {
+    cursor: pointer ;
+  }
+  form {
+    padding: 0px ;
+    width: $length ;
+    height: $length ;
+  }
+  button {
+    padding: 0px ;
+    margin: 0px ;
+    width: $length ;
+    height: $length ;
+    border: none ;
+    color: #fff ;
+    background-color: transparent ;
+    cursor: pointer ;
+    text-align: center ;
+    vertical-align: middle ;
+    display: block ;
+  }
+}

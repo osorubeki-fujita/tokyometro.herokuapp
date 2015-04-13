@@ -18,11 +18,11 @@ module TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::DefaultSetting
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::DefaultSetting::Hash
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::DefaultSetting::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::DefaultSetting::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::DefaultSetting::Info
     end
 
     private

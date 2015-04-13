@@ -21,15 +21,15 @@ class PassengerSurveyDecorator < Draper::Decorator
   end
 
   # タイトルを記述するメソッド（路線別・年度別 共通部分）
-  def self.render_common_title( type = nil , text_en: common_title_en )
-    super( text_ja: common_title_ja( type ) , text_en: text_en )
+  def self.render_common_title( request , type = nil , text_en: common_title_en )
+    super( request , text_ja: common_title_ja( type ) , text_en: text_en )
   end
 
   # タイトルを記述するメソッド（年度別）
   def self.render_title_when_grouped_by_year( year )
     h.render inline: <<-HAML , type: :haml , locals: { year: year }
 %div{ id: :passenger_survey_title }
-  = ::PassengerSurveyDecorator.render_common_title( :year )
+  = ::PassengerSurveyDecorator.render_common_title( request , :year )
   = ::PassengerSurveyDecorator.render_year_in_title( year )
     HAML
   end
@@ -61,7 +61,7 @@ class PassengerSurveyDecorator < Draper::Decorator
             = link_to_unless_current( y.to_s + "年度" , "in_" + y.to_s )
     %li
       = "路線別の乗降客数"
-      %ul{ class: :link_to_lines }
+      %ul{ class: :links_to_railway_line_pages }
         - ::RailwayLine.tokyo_metro( including_branch_line: false ).each do | railway_line |
           %li{ class: railway_line.css_class_name }
             = link_to_unless_current( railway_line.name_ja  , railway_line.css_class_name + "_line" )
@@ -97,7 +97,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   = "調査年度"
     HAML
   end
-  
+
   # Table を作成するメソッド
   def self.render_table( passenger_survey_infos , type , make_graph , railway_lines_including_branch )
     h_locals ={
@@ -106,7 +106,7 @@ class PassengerSurveyDecorator < Draper::Decorator
       make_graph: make_graph ,
       class_name: css_class_name_of_table( type , railway_lines_including_branch )
     }
-  
+
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :passenger_survey_table , class: class_name }
   %table{ class: [ :table , "table-striped" ] }
@@ -165,14 +165,19 @@ class PassengerSurveyDecorator < Draper::Decorator
   - when :railway_line , :year
     %td{ class: [ :order , :text_en ] }<
       = i
-  %td{ class: :station_info }
-    - station_infos = passenger_survey_info.station_infos
-    - case type
-    - when :railway_line , :year , :station
-      - station_infos_displayed = stations_displayed_in_passenger_survey_table_row( station_infos )
-      = ::Station::InfoDecorator.render_station_code_images_in_passenger_survey_table_row( station_infos_displayed )
-      %div{ class: :text }<
-        = station_infos.first.decorate.render_name_ja_and_en
+  - station_infos = passenger_survey_info.station_infos
+  - url_of_station_page = url_for( controller: :passenger_survey , action: station_infos.first.name_in_system.underscore )
+  - class_name_of_cell = [ :station_info ]
+  - unless current_page?( url_of_station_page )
+    - class_name_of_cell << :with_link
+  %td{ class: class_name_of_cell }
+    = link_to_unless_current( "" , url_of_station_page )
+    %div{ class: :station_info_domain }
+      - case type
+      - when :railway_line , :year , :station
+        = ::Station::InfoDecorator.render_station_code_images_in_passenger_survey_table_row( station_infos )
+        %div{ class: :text }<
+          = station_infos.first.decorate.render_name_ja_and_en
   - case type
   - when :railway_line , :station
     %td{ class: [ :survey_year , :text_en ] }<
@@ -204,7 +209,7 @@ class PassengerSurveyDecorator < Draper::Decorator
     = "年度）"
     HAML
   end
-  
+
   class << self
 
     def css_class_name_of_table( type , railway_lines_including_branch )
@@ -218,7 +223,7 @@ class PassengerSurveyDecorator < Draper::Decorator
         :station
       end
     end
-  
+
   end
 
 end

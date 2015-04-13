@@ -4,12 +4,12 @@ module CommonTitleRenderer
 
   module ClassMethods
 
-    def render_top_title( text_ja: common_title_ja , text_en: common_title_en , id: nil )
-      h.render_top_title( text_ja: text_ja , text_en: common_title_en , id: id )
+    def render_top_title( request , text_ja: common_title_ja , text_en: common_title_en , domain_id_name: nil )
+      ::TokyoMetro::App::Renderer::Concern::Header::Title.new( request , text_ja , text_en , domain_id_name: domain_id_name ).render
     end
 
-    def render_common_title( text_ja: common_title_ja , text_en: common_title_en )
-      h.render_common_title( text_ja: text_ja , text_en: text_en )
+    def render_common_title( request , text_ja: common_title_ja , text_en: common_title_en )
+      ::TokyoMetro::App::Renderer::Concern::Header::Title::Base.new( request , text_ja , text_en ).render
     end
 
   end

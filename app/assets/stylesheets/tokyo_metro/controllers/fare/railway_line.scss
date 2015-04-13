@@ -1,0 +1,67 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+@mixin colorSettingsOfBottomOfHeaderInFareTables( $color ) {
+  .header_bottom {
+    border: {
+      bottom: {
+        color: $color ;
+      }
+    }
+  }
+}
+
+%commonSettingsOfBottomOfHeaderInFareTables {
+  .header_bottom {
+    border: {
+      bottom: {
+        style: solid;
+        width: 6px ;
+      }
+    }
+  }
+}
+
+%fareTableSettingOfEachRailwayLine {
+  .ginza {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_ginza_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .marunouchi {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_marunouchi_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .marunouchi_branch {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_tokyo_metro_marunouchi_b_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .hibiya {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_hibiya_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .tozai {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_tozai_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .chiyoda , .chiyoda_branch {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_chiyoda_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .yurakucho {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_yurakucho_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .hanzomon {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_hanzomon_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .namboku {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_namboku_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+  .fukutoshin {
+    @include colorSettingsOfBottomOfHeaderInFareTables( $line_fukutoshin_bgcolor ) ;
+    @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  }
+}

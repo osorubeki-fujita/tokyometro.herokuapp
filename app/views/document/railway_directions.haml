@@ -1,6 +1,7 @@
 = render "common_content"
 
-= document_title_of_each_content( @title_ja , @title_en )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
 %div{ id: :railway_directions }
   - railway_directions_grouped_by_operator = @railway_directions.group_by { | railway_direction | railway_direction.railway_line.operator.id }
   - raise "Error" if railway_directions_grouped_by_operator.nil?

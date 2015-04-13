@@ -82,15 +82,13 @@
     bottom: 0px ;
   }
 }
+
 %platformInfoTabLi {
   display: block;
   @extend %floatLeft ;
   @extend %link_in_div ;
   @extend %textSettingsOfLineNameInPlatformInfoTab ;
   list-style-type: none;
-  border: {
-    style: solid ;
-  }
   &.displayed {
     background-color: #fff ;
     border: {
@@ -140,8 +138,8 @@
     ul#platform_info_tabs {
       @extend %platformInfoTabUl ;
       li.platform_info_tab {
-        @extend %platformInfoTabLi ;
         @extend %platformInfoContentBorder ;
+        @extend %platformInfoTabLi ;
         border: {
           width: $border_width ;
         }

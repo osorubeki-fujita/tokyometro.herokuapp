@@ -14,7 +14,7 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
 
   has_many :barrier_free_facility_toilet_assistants , class: ::BarrierFreeFacilityToiletAssistant , foreign_key: :barrier_free_facility_info_id # 実際の個数は0または1
   has_many :barrier_free_facility_toilet_assistant_patterns , class: ::BarrierFreeFacilityToiletAssistantPattern , through: :barrier_free_facility_toilet_assistants
-  
+
   has_many :station_facility_platform_info_barrier_free_facility_infos , class: ::StationFacilityPlatformInfoBarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id
   has_many :station_facility_platform_infos , class: ::StationFacilityPlatformInfo
 
@@ -72,7 +72,7 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
       end
     DEF
   end
-  
+
   def barrier_free_facility_toilet_assistant_pattern
     _patterns = barrier_free_facility_toilet_assistant_patterns
     if _patterns.present?

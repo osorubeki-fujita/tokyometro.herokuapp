@@ -68,77 +68,77 @@ module TokyoMetro::ClassNameLibrary::Api::TrainTimetable
     # @!group Factory Pattern のクラスの情報
 
     # API からデータを取得するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Get::Api::DataSearch::TrainTimetable )]
+    # @return [Const ( ::TokyoMetro::Factory::Get::Api::DataSearch::TrainTimetable )]
     def factory_for_getting
-      ::TokyoMetro::Factories::Get::Api::DataSearch::TrainTimetable
+      ::TokyoMetro::Factory::Get::Api::DataSearch::TrainTimetable
     end
 
     # API から取得したデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::TrainTimetable::EachFile )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::TrainTimetable::EachFile )]
     def factory_for_saving_to_each_file
-      ::TokyoMetro::Factories::Save::Api::TrainTimetable::EachFile
+      ::TokyoMetro::Factory::Save::Api::TrainTimetable::EachFile
     end
 
     # グループ化されたデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::TrainTimetable::Group )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::TrainTimetable::Group )]
     def factory_for_saving_datas_of_each_group
-      ::TokyoMetro::Factories::Save::Api::TrainTimetable::Group
+      ::TokyoMetro::Factory::Save::Api::TrainTimetable::Group
     end
 
     def list_class_for_saving_grouped_infos
-      ::TokyoMetro::Factories::Save::Api::TrainTimetable::Group::List
+      ::TokyoMetro::Factory::Save::Api::TrainTimetable::Group::List
     end
 
     def file_info_class_for_saving
-      ::TokyoMetro::Factories::Save::Api::TrainTimetable::Group::FileInfo
+      ::TokyoMetro::Factory::Save::Api::TrainTimetable::Group::FileInfo
     end
 
     # JSON をパースして得られた配列の要素である Hash からインスタンスを作成するメソッドための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::TrainTimetable::Info )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::TrainTimetable::Info )]
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Api::TrainTimetable::Info
+      ::TokyoMetro::Factory::Generate::Api::TrainTimetable::Info
     end
 
     def factory_for_generating_station_time_from_hash
-      ::TokyoMetro::Factories::Generate::Api::TrainTimetable::Info::StationTime::Info
+      ::TokyoMetro::Factory::Generate::Api::TrainTimetable::Info::StationTime::Info
     end
 
     # 保存済みの情報を処理しインスタンスを復元するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::TrainTimetable::List )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::TrainTimetable::List )]
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Api::TrainTimetable::List
+      ::TokyoMetro::Factory::Generate::Api::TrainTimetable::List
     end
 
     def factory_for_seeding_list
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::List
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::List
     end
 
     def factory_for_seeding_train_relations
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::List::TrainRelations
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::List::TrainRelations
     end
 
     def factory_for_seeding_arrival_times_of_romance_car
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::List::ArrivalTimes::RomanceCar
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::List::ArrivalTimes::RomanceCar
     end
 
     def factory_for_seeding_arrival_times_of_last_station_in_tokyo_metro
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::List::ArrivalTimes::LastStationInTokyoMetro
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::List::ArrivalTimes::LastStationInTokyoMetro
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info
     end
 
     def factory_for_seeding_each_train_relation
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::TrainRelations
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::TrainRelations
     end
 
     def factory_for_seeding_each_arrival_time_of_romance_car
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::ArrivalTimes::RomanceCar
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::ArrivalTimes::RomanceCar
     end
 
     def factory_for_seeding_each_arrival_time_of_last_station_in_tokyo_metro
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::ArrivalTimes::LastStationInTokyoMetro
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::ArrivalTimes::LastStationInTokyoMetro
     end
 
     # API の情報（generate_instance が true のときの、インスタンスの配列）の各成分をディレクトリ分けするときに使用するキーの設定

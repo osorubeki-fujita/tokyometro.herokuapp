@@ -58,7 +58,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   def remark_to_a
     remark.gsub( /。([\(（].+?[\)）])/ ) { "#{$1}。" }.gsub( /(?<=。)\n?[ 　]?/ , "\n" ).gsub( "出きません" , "できません" ).gsub( "ＪＲ" , "JR" ).split( /\n/ )
   end
-  
+
   def self.inspect_image_filenames
     ary = ::Array.new
     ::BarrierFreeFacility::Info.all.each do | item |
@@ -208,7 +208,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
       ary << :wheel_chair
     end
   end
-  
+
   def available_to_wheel_chair?
     object.available_to_wheel_chair?
   end

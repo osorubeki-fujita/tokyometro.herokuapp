@@ -1,0 +1,22 @@
+#-------- 【半蔵門線】（銀座線）渋谷
+-
+    stations:
+        - odpt.Station:TokyoMetro.Ginza.Shibuya
+    railway_lines:
+        - odpt.Railway:TokyoMetro.Hanzomon
+
+#-------- 【銀座線】（半蔵門線）渋谷
+#-------- 【東急田園都市線】（半蔵門線）渋谷
+-
+    stations:
+        - odpt.Station:TokyoMetro.Hanzomon.Shibuya
+    railway_lines:
+        - odpt.Railway:TokyoMetro.Ginza
+        - odpt.Railway:Tokyu.DenEnToshi
+
+#-------- 【東急東横線】（副都心線）渋谷
+-
+    stations:
+        - odpt.Station:TokyoMetro.Fukutoshin.Shibuya
+    railway_lines:
+        - odpt.Railway:Tokyu.Toyoko

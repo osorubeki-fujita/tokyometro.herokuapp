@@ -274,7 +274,7 @@ class TokyoMetro::Api::StationTimetable::Info < TokyoMetro::Api::MetaClass::NotR
 
   # @param train_timetables [::TokyoMetro::Api::TrainTimetable::List <::TokyoMetro::Api::TrainTimetable::Info>]
   def seed_train_times( train_timetables )
-    station_timetable_info = ::TokyoMetro::Factories::Seed::Api::StationTrainTime::TrainInStationTimetable::StationTimetableInfo.new( self )
+    station_timetable_info = ::TokyoMetro::Factory::Seed::Api::StationTrainTime::TrainInStationTimetable::StationTimetableInfo.new( self )
 
     # 各曜日の時刻の処理〈ここから〉
     combination_of_timetable_types_and_operation_days.each do | station_timetable_in_a_day , operation_day_in_db |

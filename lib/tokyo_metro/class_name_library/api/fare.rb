@@ -43,49 +43,49 @@ module TokyoMetro::ClassNameLibrary::Api::Fare
     # @!group Factory Pattern のクラスの情報
 
     # API からデータを取得するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Get::Api::DataSearch::Fare )]
+    # @return [Const ( ::TokyoMetro::Factory::Get::Api::DataSearch::Fare )]
     def factory_for_getting
-      ::TokyoMetro::Factories::Get::Api::DataSearch::Fare
+      ::TokyoMetro::Factory::Get::Api::DataSearch::Fare
     end
 
     # API から取得したデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::Fare::EachFile )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::Fare::EachFile )]
     def factory_for_saving_to_each_file
-      ::TokyoMetro::Factories::Save::Api::Fare::EachFile
+      ::TokyoMetro::Factory::Save::Api::Fare::EachFile
     end
 
     # グループ化されたデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::Fare::Group )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::Fare::Group )]
     def factory_for_saving_datas_of_each_group
-      ::TokyoMetro::Factories::Save::Api::Fare::Group
+      ::TokyoMetro::Factory::Save::Api::Fare::Group
     end
 
     def list_class_for_saving_grouped_infos
-      ::TokyoMetro::Factories::Save::Api::Fare::Group::List
+      ::TokyoMetro::Factory::Save::Api::Fare::Group::List
     end
 
     def file_info_class_for_saving
-      ::TokyoMetro::Factories::Save::Api::Fare::Group::FileInfo
+      ::TokyoMetro::Factory::Save::Api::Fare::Group::FileInfo
     end
 
     # JSON をパースして得られた配列の要素である Hash からインスタンスを作成するメソッドための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::Fare::Info )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::Fare::Info )]
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Api::Fare::Info
+      ::TokyoMetro::Factory::Generate::Api::Fare::Info
     end
 
     # 保存済みの情報を処理しインスタンスを復元するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::Fare::List )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::Fare::List )]
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Api::Fare::List
+      ::TokyoMetro::Factory::Generate::Api::Fare::List
     end
 
     def factory_for_seeding_list
-      ::TokyoMetro::Factories::Seed::Api::Fare::List
+      ::TokyoMetro::Factory::Seed::Api::Fare::List
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Api::Fare::Info
+      ::TokyoMetro::Factory::Seed::Api::Fare::Info
     end
 
     # API の情報（generate_instance が true のときの、インスタンスの配列）の各成分をディレクトリ分けするときに使用するキーの設定

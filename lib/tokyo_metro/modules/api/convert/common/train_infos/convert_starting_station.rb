@@ -5,6 +5,7 @@ module TokyoMetro::Modules::Api::Convert::Common::TrainInfos::ConvertStartingSta
     ::TokyoMetro::Api::TrainTimetable::Info.class_eval do
       include ::TokyoMetro::Modules::Api::Convert::Common::TrainInfos::ConvertStartingStation::Info
     end
+
     ::TokyoMetro::Api::TrainLocation::Info.class_eval do
       include ::TokyoMetro::Modules::Api::Convert::Common::TrainInfos::ConvertStartingStation::Info
     end

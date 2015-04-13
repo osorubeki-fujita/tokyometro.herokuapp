@@ -74,13 +74,13 @@ $width_of_each_color_area: 160px ;
             font: {
                 size : 12pt ;
             }
-            @include text_en ;
+            @extend %text_en ;
         }
         .rgb_color {
             font: {
                 size : 8pt;
             }
-            @include text_en ;
+            @extend %text_en ;
         }
     }
 }

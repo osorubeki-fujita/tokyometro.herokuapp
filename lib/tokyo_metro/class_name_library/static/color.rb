@@ -9,7 +9,7 @@ module TokyoMetro::ClassNameLibrary::Static::Color
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::Color::Info
+      ::TokyoMetro::Factory::Generate::Static::Color::Info
     end
 
   end

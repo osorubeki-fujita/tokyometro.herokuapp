@@ -17,7 +17,7 @@ module TokyoMetro::Modules::Api::Convert::Customize::StationTimetable::ChiyodaBr
       @same_as = @same_as.gsub( regexp , "ChiyodaBranch" )
 
       class << @fundamental_infos
-        include ::TokyoMetro::Refinements::Api::StationTimetable::Info::Fundamental::List
+        include ::TokyoMetro::Refinement::Api::StationTimetable::Info::Fundamental::List
       end
 
       @fundamental_infos.convert_railway_lines!( /(?<=\Aodpt\.Railway\:TokyoMetro\.)Chiyoda(?:Branch)?\Z/ , "ChiyodaBranch" )

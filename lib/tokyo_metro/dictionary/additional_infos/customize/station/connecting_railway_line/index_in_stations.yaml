@@ -508,6 +508,14 @@
   "odpt.Railway:TokyoMetro.Marunouchi":
     index_in_station: 4
 
+# 【半蔵門線】三越前
+
+"odpt.Station:TokyoMetro.Hanzomon.Mitsukoshimae":
+  "odpt.Railway:TokyoMetro.Ginza":
+    index_in_station: 1
+  "odpt.Railway:JR-East.Sobu":
+    index_in_station: 2
+
 # 【半蔵門線】押上
 
 "odpt.Station:TokyoMetro.Hanzomon.Oshiage":

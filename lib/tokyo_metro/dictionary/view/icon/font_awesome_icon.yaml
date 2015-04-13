@@ -1,0 +1,70 @@
+#-------- 各コンテンツ（鉄道関連）
+
+"train_information": "info"
+"train_location": "location-arrow" # "map-marker"
+"railway_line": "code-fork"
+"station_facility": "folder-open-o" # 仮定義
+"railway_timetable": "folder-open-o" # 仮定義
+"station_timetable": "folder-open-o" # 仮定義
+"fare": "jpy" # "ticket"
+"passenger_survey": "users"
+"station": "folder-open-o" # 仮定義
+
+#-------- 運行・遅延情報
+
+"delay": "history"
+"remark": "exclamation-triangle"
+
+"no_train": "moon-o"
+"after_last_train_finished": "moon-o"
+"before_first_train_begin": "moon-o"
+
+"on_schedule": "check-square-o"
+"nearly_on_schedule": "check-square"
+"delayed": "exclamation-circle"
+"suspended": "exclamation-triangle"
+"other_status": "info-circle"
+
+#-------- コンテスト
+
+"contest": "trophy"
+"development": "wrench"
+
+#-------- ドキュメント
+
+"how_to_use": "book" # "font_awesome_icon"
+"development_document": "lightbulb-o" # "book"
+
+#-------- リアルタイム情報
+
+"updating": "refresh"
+"real_time_info": "spinner"
+"real_time_infos": "spinner"
+
+#-------- 表示・非表示 切り替え
+
+"display": "chevron-down"
+"minimize": "chevron-up"
+
+#-------- 矢印
+
+"caret_right": "caret-right"
+
+#-------- SNS
+
+"twitter": "twitter-square"
+"twitter_square": "twitter-square"
+
+#-------- Web サイトで広く用いられるもの
+
+"top": "home"
+"home": "home"
+
+"external_link_to_page_on_this_site": "external-link-square"
+"external_link_to_another_site": "external-link"
+
+#-------- 仮定義
+
+"temp": "folder-open-o"
+
+#-------- その他

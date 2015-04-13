@@ -7,6 +7,7 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 
   include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
   include ::TokyoMetro::Modules::Common::Info::Decision::ToeiMitaLine
+  include ::TokyoMetro::Modules::Common::Info::Decision::RomanceCar
 
   include ::TokyoMetro::Modules::Api::Info::Decision::RailwayLine
   include ::TokyoMetro::Modules::Api::Info::Decision::TrainType
@@ -105,6 +106,14 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 
   # @!endgroup
 
+  def decorate( railway_line )
+    ::TokyoMetro::Api::TrainLocation::Info::Decorator.new( self , railway_line )
+  end
+
+  def railway_direction_in_api_same_as
+    railway_direction
+  end
+
   # 定義されるメソッド
   #
   # to , to_sta
@@ -152,17 +161,20 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 
   # @!group 遅延情報に関するメソッド (For users)
 
-  def on_time?
-    @delay == 0
+  def actual_delay
+    @delay
   end
-  alias :now_on_time? :on_time?
+
+  def on_schedule?
+    actual_delay == 0
+  end
 
   # 遅延しているか否かを判定するメソッド
   # @param delay_minimum_second [Integer] 遅延とみなさない最大の秒数（遅延となる最小の秒数）
   # @return [Boolean]
   def delay_now?( delay_minimum_second )
     raise "Error" unless delay_minimum_second >= 0
-    @delay > delay_minimum_second
+    actual_delay > delay_minimum_second
   end
 
   # @!group 列車の現在位置に関するメソッド (For users)
@@ -177,6 +189,10 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
   # @return [Boolean]
   def between_station?
     !( now_at_station? )
+  end
+
+  def delay_instance
+    ::TokyoMetro::Api::TrainLocation::Info::Delay.new( actual_delay )
   end
 
 =begin

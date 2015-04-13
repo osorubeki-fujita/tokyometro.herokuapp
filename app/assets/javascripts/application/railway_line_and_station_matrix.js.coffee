@@ -1,5 +1,5 @@
 # 路線記号の操作
-class RailwayLineAndStationMatrix
+class RailwayLineMatrixes
 
   constructor: ( @domain = $( "#railway_line_matrixes" ) ) ->
 
@@ -101,14 +101,16 @@ class RailwayLineAndStationMatrix
     return
 
   process_station_matrixes = (v) ->
+
+    railway_line_domains = $( "#station_matrixes" ).children()
+
     _width_of_main_content_center = width_of_main_content_center(v)
     _width_of_each_normal_railway_line = width_of_each_normal_railway_line(v)
     _border_width = border_width(v)
 
-    railway_line_domains = $( "#station_matrixes" ).children()
     railway_line_domains.each ->
       railway_line_domain = $( this )
-      console.log 'RailwayLineAndStationMatrix\#process_station_matrixes' + ' ' + railway_line_domain.attr( 'class' )
+      # console.log 'RailwayLineMatrixes\#process_station_matrixes' + ' ' + railway_line_domain.attr( 'class' )
       station_matrix_row = new StationMatrixRow( railway_line_domain , _width_of_main_content_center , _width_of_each_normal_railway_line , _border_width )
       station_matrix_row.process()
       return
@@ -118,7 +120,7 @@ class RailwayLineAndStationMatrix
     return
 
   process: ->
-    # console.log 'RailwayLineAndStationMatrix\#process \(' + @domain.length + '\)'
+    # console.log 'RailwayLineMatrixes\#process \(' + @domain.length + '\)'
 
     # if @domain.length > 0
     process_normal_railway_lines(@)
@@ -130,4 +132,4 @@ class RailwayLineAndStationMatrix
     #return
     return
 
-window.RailwayLineAndStationMatrix = RailwayLineAndStationMatrix
+window.RailwayLineMatrixes = RailwayLineMatrixes

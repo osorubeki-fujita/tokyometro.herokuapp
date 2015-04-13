@@ -11,10 +11,6 @@ class FareDecorator < Draper::Decorator
     "Fares"
   end
 
-  def self.render_top_title( text_ja: common_title_ja , text_en: common_title_en , id: :fare_title )
-    super( text_ja: text_ja , text_en: text_en , id: id )
-  end
-
   def self.render_header_of_fare_table
     h.render inline: <<-HAML , type: :haml
 %tr{ class: :header }

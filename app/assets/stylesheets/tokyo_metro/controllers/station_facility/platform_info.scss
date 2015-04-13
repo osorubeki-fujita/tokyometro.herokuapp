@@ -8,26 +8,26 @@
 @import 'platform_info/tab_content.scss' ;
 
 %normalCellSettingsInPlatformInfo {
-    font: {
-        size: 8pt ;
-    }
-    vertical-align: bottom ;
+  font: {
+    size: 9pt ;
+  }
+  vertical-align: bottom ;
 }
 
 %smallTextInPlatformInfo {
-    font: {
-        size: 6pt ;
-    }
+  font: {
+    size: 7pt ;
+  }
 }
 
 %titleOfEachContentsInPlatformInfo {
-    min-width: 128px ;
+  min-width: 128px ;
 }
 
 %cellSettingsWhenInfoIsEmpty {
-    td.empty {
-        border-bottom: solid 2px #f6f6f6 ;
-    }
+  td.empty {
+    border-bottom: solid 2px #f6f6f6 ;
+  }
 }
 
 %cellSettingsWhenInfoIsPresent {
@@ -104,6 +104,15 @@
             $base_color: rgba( $operator_color , 0.4 ) ;
             @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
             @extend %titleOfEachContentsInPlatformInfo ;
+        }
+        .transfer_info {
+          padding: 4px ;
+          border: solid 1px #eee ;
+          @include border_radius( 4px ) ;
+        }
+        .text {
+          @extend %floatLeft ;
+          @extend %marginLeft4 ;
         }
         .railway_direction {
             @extend %smallTextInPlatformInfo ;
@@ -225,25 +234,25 @@
 
 
 #station_facility_platform_infos {
-    @extend %platformInfoTabContent ;
-    $border_width_of_title_of_railway_line: 8px ;
-    .title_of_railway_line {
-        border: {
-            left: solid $border_width_of_title_of_railway_line #999 ;
-        }
+  @extend %platformInfoTabContent ;
+  $border_width_of_title_of_railway_line: 8px ;
+  .title_of_railway_line {
+    border: {
+      left: solid $border_width_of_title_of_railway_line #999 ;
     }
-    @include settingsOfPlatformInfoOfEachRailway( $border_width_of_title_of_railway_line ) ;
+  }
+  @include settingsOfPlatformInfoOfEachRailway( $border_width_of_title_of_railway_line ) ;
+  margin: {
+    left: $border_width_of_title_of_railway_line ;
+  }
+  .info_of_railway_direction {
     margin: {
-        left: $border_width_of_title_of_railway_line ;
+      left: 8px ;
     }
-    .info_of_railway_direction {
-        margin: {
-            left: 8px ;
-        }
-        padding: 8px ;
-        @include titleOfDirectionInPlatformInfo ;
-        table.platform_info {
-            @extend %tableSettingsOfPlatformInfo ;
-        }
-    }
+    padding: 8px ;
+    @include titleOfDirectionInPlatformInfo ;
+  }
+  table.platform_info {
+    @extend %tableSettingsOfPlatformInfo ;
+  }
 }

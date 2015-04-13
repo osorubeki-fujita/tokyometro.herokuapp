@@ -36,7 +36,7 @@ class Station::Info < ActiveRecord::Base
   end
 
   def railway_lines_of_tokyo_metro
-    station_infos_including_other_railway_lines.includes( :railway_line ).order( railway_line_id: :asc ).map( &:railway_line ).select( &:tokyo_metro? )
+    ::RailwayLine.where( id: station_infos_including_other_railway_lines.pluck( :railway_line_id ) ).tokyo_metro
   end
 
   def latest_passenger_survey
@@ -55,6 +55,12 @@ class Station::Info < ActiveRecord::Base
     railway_lines_of_tokyo_metro.length > 1
   end
 
+  def tokyo_metro?
+    railway_line.tokyo_metro?
+  end
+
+  # @!group 「駅」の属性（路面電車については「停留場」）
+
   [ :attribute_ja , :attribute_hira , :attribute_en , :attribute_en_short ].each do | method_name |
     eval <<-DEF
       def #{ method_name }
@@ -62,6 +68,8 @@ class Station::Info < ActiveRecord::Base
       end
     DEF
   end
+
+  # @!endgroup
 
   default_scope {
    order( railway_line_id: :asc ).order( index_in_railway_line: :asc )
@@ -83,7 +91,7 @@ class Station::Info < ActiveRecord::Base
     end
     where( operator_id: tokyo_metro_id )
   }
-  
+
   scope :tokyo_metro , ->( tokyo_metro_id = nil ) {
     select_tokyo_metro( tokyo_metro_id )
   }

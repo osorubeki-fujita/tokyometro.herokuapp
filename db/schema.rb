@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325110524) do
+ActiveRecord::Schema.define(version: 20150413191029) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20150325110524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_on"
+    t.boolean  "hidden_on_railway_line_page"
   end
 
   create_table "fares", force: :cascade do |t|
@@ -472,9 +473,9 @@ ActiveRecord::Schema.define(version: 20150325110524) do
     t.datetime "time_of_origin"
     t.integer  "railway_line_id"
     t.integer  "train_information_status_id"
-    t.string   "train_information_text",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "train_information_text_id"
   end
 
   create_table "train_information_statuses", force: :cascade do |t|
@@ -485,6 +486,12 @@ ActiveRecord::Schema.define(version: 20150325110524) do
     t.datetime "updated_at"
   end
 
+  create_table "train_information_texts", force: :cascade do |t|
+    t.string   "in_api"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "train_informations", force: :cascade do |t|
     t.string   "id_urn",                      limit: 255
     t.datetime "dc_date"
@@ -493,9 +500,9 @@ ActiveRecord::Schema.define(version: 20150325110524) do
     t.datetime "time_of_origin"
     t.integer  "railway_line_id"
     t.integer  "train_information_status_id"
-    t.string   "train_information_text",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "train_information_text_id"
   end
 
   create_table "train_location_olds", force: :cascade do |t|

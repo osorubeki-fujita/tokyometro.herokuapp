@@ -8,6 +8,10 @@ module TokyoMetro::Modules::Api::Convert::Common::TrainInfos::ConvertTerminalSta
     ::TokyoMetro::Api::TrainTimetable::Info.class_eval do
       include ::TokyoMetro::Modules::Api::Convert::Common::TrainInfos::ConvertTerminalStation::Info
     end
+
+    ::TokyoMetro::Api::TrainLocation::Info.class_eval do
+      include ::TokyoMetro::Modules::Api::Convert::Common::TrainInfos::ConvertTerminalStation::Info
+    end
   end
 
 end

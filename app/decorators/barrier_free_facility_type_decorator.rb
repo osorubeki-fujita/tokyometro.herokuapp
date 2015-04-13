@@ -3,7 +3,7 @@ class BarrierFreeFacilityTypeDecorator < Draper::Decorator
 
   include SubTitleRenderer
   include BarrierFreeFacilityTypeAndLocatedAreaDecorator
-  
+
   def image_basename
     case name_en
     when "Link for mobility scooter"

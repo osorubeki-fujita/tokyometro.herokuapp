@@ -1,0 +1,101 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%linkToLineCommonSettings {
+    a {
+        %operatorColor {
+            color: $operator_color ;
+        }
+        %textDecorationNone {
+            text-decoration: none ;
+        }
+        &:link {
+            @extend %operatorColor ;
+            @extend %textDecorationNone ;
+        }
+        &:visited {
+            @extend %operatorColor ;
+            @extend %textDecorationNone ;
+        }
+        &:hover {
+            @extend %textDecorationNone ;
+        }
+        &:active {
+            text-decoration: underline ;
+        }
+    }
+}
+
+@mixin linkToLineColorSetting( $color ) {
+    a {
+        %lineColor {
+            color: $color ;
+        }
+        &:hover {
+            @extend %lineColor ;
+            background-color: rgba( $color , 0.2 ) ;
+        }
+        &:active {
+            @extend %lineColor ;
+        }
+    }
+}
+
+.links_to_railway_line_pages {
+    .ginza {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_ginza_bgcolor ) ;
+    }
+    .marunouchi {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_marunouchi_bgcolor ) ;
+    }
+    .marunouchi_branch {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_tokyo_metro_marunouchi_b_bgcolor ) ;
+    }
+    .hibiya {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_hibiya_bgcolor ) ;
+    }
+    .tozai {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_tozai_bgcolor ) ;
+    }
+    .chiyoda {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_chiyoda_bgcolor ) ;
+    }
+    .yurakucho {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_yurakucho_bgcolor ) ;
+    }
+    .hanzomon {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_hanzomon_bgcolor ) ;
+    }
+    .namboku {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_namboku_bgcolor ) ;
+    }
+    .fukutoshin {
+        @extend %linkToLineCommonSettings ;
+        @include linkToLineColorSetting( $line_fukutoshin_bgcolor ) ;
+    }
+}
+
+%listStyleNone {
+    list-style: none ;
+}
+
+ul.links {
+    @extend %listStyleNone ;
+    li {
+        @extend %listStyleNone ;
+        padding-left: 0px ;
+    }
+    ul {
+        @extend %listStyleNone ;
+    }   
+}

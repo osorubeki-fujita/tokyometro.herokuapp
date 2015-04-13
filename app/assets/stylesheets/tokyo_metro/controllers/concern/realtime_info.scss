@@ -62,72 +62,205 @@
 }
 
 #update {
-    $height_of_button : 32px ;
-    //
-    $width_of_update_whole : $width_main_content_center ;
-    //
-    $width_of_button : $height_of_button * $golden_ratio ;
-    //
-    $margin_right_of_input: 8px ;
-    $padding_left_of_time_info: 8px ;
-    //
-    $width_of_progress: $width_of_update_whole - ( $width_of_button + $margin_right_of_input ) - $padding_left_of_time_info ;
-    $width_of_title: 96px ;
-    $width_of_date: $width_of_progress - $width_of_title ;
-    //
-    $height_of_time_info : $height_of_button * 0.5 ;
-    $height_of_update_whole : $height_of_time_info * ( 3 + 1 ) ;
-    //
-    width: $width_of_update_whole ;
-    height: $height_of_update_whole ;
-    vertical-align: bottom ;
-    @extend %realtimeInfoBgcolor ;
-    #progress {
-		@extend %floatLeft ;
-        width: $width_of_progress ;
-        margin: {
-            left: $padding_left_of_time_info ;
-            top: $height_of_time_info ;
-        }
-        .time_info {
-            @include text_ja ;
-            height: $height_of_time_info ;
-            line-height: 1.1em ;
-            font: {
-                size: 9pt ;
-            }
-            .title {
-				@extend %floatLeft ;
-                width: $width_of_title ;
-            }
-            .time {
-				@extend %floatLeft ;
-                width: $width_of_date ;
-            }
-        }
+  $height_of_button: 32px ;
+  $width_of_button: ceil( $height_of_button * $golden_ratio ) ;
+  //
+  $width_of_update_whole : $width_main_content_center ;
+  //
+  //
+  $margin_right_of_input: 8px ;
+  $padding_left_of_time_info: 8px ;
+  //
+  $width_of_progress: $width_of_update_whole - ( $width_of_button + $margin_right_of_input ) - $padding_left_of_time_info ;
+  $width_of_title: 96px ;
+  $width_of_date: $width_of_progress - $width_of_title ;
+  //
+  $height_of_time_info : $height_of_button * 0.5 ;
+  $height_of_update_whole : $height_of_time_info * ( 3 + 1 ) ;
+  //
+  width: $width_of_update_whole ;
+  height: $height_of_update_whole ;
+  vertical-align: bottom ;
+  @extend %realtimeInfoBgcolor ;
+  //
+  #progress {
+    @extend %floatLeft ;
+    @extend %marginLeft8 ;
+    @extend %marginTop4 ;
+    @extend %marginBottom4 ;
+    .time_info {
+      @extend %text_ja ;
+      height: $height_of_time_info ;
+      line-height: 1.1em ;
+      font: {
+        size: 9pt ;
+      }
+      .title {
+        @extend %floatLeft ;
+        width: $width_of_title ;
+      }
+      .time {
+        @extend %floatLeft ;
+        width: $width_of_date ;
+      }
     }
-    input {
-        $margin_of_top_and_bottom: ( $height_of_update_whole - $height_of_button ) * 0.5 ;
-        float:right;
-        height: $height_of_button ;
-        width: $width_of_button ;
-        color: #fff;
-        font: {
-            size: 12pt ;
-        }
-        // text-shadow: 1px 1px 2px #000;
-        @include text_ja ;
-        @extend %inputBoxBgcolor ;
-        // @extend %inputBoxShadow ;
-        // @include border_radius( 5px ) ;
-        border: none;
-        margin: {
-            top : $margin_of_top_and_bottom ;
-            bottom: $margin_of_top_and_bottom ;
-            right: $margin_right_of_input * 2 ;
-        }
-        &:hover {
-            opacity: 0.8 ;
-        }
+  }
+  .button {
+    @extend %floatLeft ;
+    width: $width_of_button ;
+    height: $height_of_button ;
+  }
+  input {
+    $margin_of_top_and_bottom: ( $height_of_update_whole - $height_of_button ) * 0.5 ;
+    float:right;
+    color: #fff;
+    font: {
+      size: 12pt ;
     }
+    width: $width_of_button ;
+    height: $height_of_button ;
+    //
+    // text-shadow: 1px 1px 2px #000;
+    @extend %text_ja ;
+    @extend %inputBoxBgcolor ;
+    // @extend %inputBoxShadow ;
+    // @include border_radius( 5px ) ;
+    border: none;
+    margin: {
+      top : $margin_of_top_and_bottom ;
+      bottom: $margin_of_top_and_bottom ;
+      right: $margin_right_of_input * 2 ;
+    }
+    &:hover {
+      opacity: 0.8 ;
+    }
+  }
+}
+
+%backgroundOfEachRealTimeInfoTitle {
+  $color_top: rgba( $operator_color , 0.15 );
+  $color_middle: rgba( $color_top , 0.05 );
+  $color_bottom: $color_middle;
+  //
+  $color_stop_point_1_moz : 30% ;
+  $color_stop_point_1_webkit : 0.3 ;
+  $color_stop_point_2_moz : 70% ;
+  $color_stop_point_2_webkit : 0.7 ;
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_top} #{$color_stop_point_1_moz},
+    #{$color_middle} #{$color_stop_point_2_moz} ,
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_middle} ) ,
+    to( #{$color_bottom} )
+  );
+}
+
+#real_time_info_and_update_button {
+  border: solid 1px #333 ;
+  .content_header {
+    .text_ja {
+      font: {
+        size: 9pt ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 6.75pt ;
+      }
+    }
+  }
+  ul.titles {
+    padding: 4px ;
+    @extend %marginBottom8 ;
+    @extend %backgroundOfEachRealTimeInfoTitle ;
+    border: {
+      bottom: solid 1px $operator_color ;
+    }
+  }
+  li {
+    list-style-type: none;
+  }
+  li.title {
+    padding: 0px ;
+    .icon {
+      @extend %floatLeft ;
+      @extend %marginRight4 ;
+      width: 20px ;
+    }
+    .text {
+      @extend %floatLeft ;
+    }
+    .text_ja {
+      font: {
+        size: 10pt ;
+        weight: normal ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 7.5pt ;
+        weight: normal ;
+      }
+    }
+  }
+  li.train_information , li.train_locations {
+    margin: {
+      bottom: 8px ;
+    }
+  }
+  ul.time_infos {
+    margin: {
+      left: 16px ;
+      right: 16px ;
+      top: 16px ;
+    }
+    padding: {
+      left: 0px ;
+    }
+  }
+  ul.time_infos_of_category {
+    @extend %marginLeft16 ;
+    @extend %marginBottom8 ;
+    padding: 0px ;
+    font: {
+      size: 9pt ;
+    }
+    // .title_of_time_info {
+      // @extend %floatLeft ;
+    // }
+    .time {
+      // @extend %floatLeft ;
+      @extend %marginLeft16 ;
+    }
+  }
+  ul.en {
+    padding: {
+      left: 0px ;
+    }
+    color: #999 ;
+    font: {
+      size: 8pt ;
+    }
+    @extend %marginTop8 ;
+    @extend %marginBottom16 ;
+    li {
+      clear: left ;
+    }
+    .title_of_time_info_en {
+      @extend %floatLeft ;
+      @extend %marginRight8 ;
+    }
+    .time_en {
+      @extend %floatLeft ;
+    }
+  }
 }

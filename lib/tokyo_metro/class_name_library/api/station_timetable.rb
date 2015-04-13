@@ -71,89 +71,89 @@ module TokyoMetro::ClassNameLibrary::Api::StationTimetable
     # @!group Factory Pattern のクラスの情報
 
     # API からデータを取得するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Get::Api::DataSearch::StationTimetable )]
+    # @return [Const ( ::TokyoMetro::Factory::Get::Api::DataSearch::StationTimetable )]
     def factory_for_getting
-      ::TokyoMetro::Factories::Get::Api::DataSearch::StationTimetable
+      ::TokyoMetro::Factory::Get::Api::DataSearch::StationTimetable
     end
 
     # API から取得したデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::StationTimetable::EachFile )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::StationTimetable::EachFile )]
     def factory_for_saving_to_each_file
-      ::TokyoMetro::Factories::Save::Api::StationTimetable::EachFile
+      ::TokyoMetro::Factory::Save::Api::StationTimetable::EachFile
     end
 
     # グループ化されたデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::StationTimetable::Group )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::StationTimetable::Group )]
     def factory_for_saving_datas_of_each_group
-      ::TokyoMetro::Factories::Save::Api::StationTimetable::Group
+      ::TokyoMetro::Factory::Save::Api::StationTimetable::Group
     end
 
     def list_class_for_saving_grouped_infos
-      ::TokyoMetro::Factories::Save::Api::StationTimetable::Group::List
+      ::TokyoMetro::Factory::Save::Api::StationTimetable::Group::List
     end
 
     def file_info_class_for_saving
-      ::TokyoMetro::Factories::Save::Api::StationTimetable::Group::FileInfo
+      ::TokyoMetro::Factory::Save::Api::StationTimetable::Group::FileInfo
     end
 
     # JSON をパースして得られた配列の要素である Hash からインスタンスを作成するメソッドための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::StationTimetable::Info )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::StationTimetable::Info )]
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Api::StationTimetable::Info
+      ::TokyoMetro::Factory::Generate::Api::StationTimetable::Info
     end
 
     def factory_for_generating_fundamental_info_from_hash
-      ::TokyoMetro::Factories::Generate::Api::StationTimetable::Info::Fundamental::Info
+      ::TokyoMetro::Factory::Generate::Api::StationTimetable::Info::Fundamental::Info
     end
 
     def factory_for_generating_train_from_hash
-      ::TokyoMetro::Factories::Generate::Api::StationTimetable::Info::TrainTime::Info
+      ::TokyoMetro::Factory::Generate::Api::StationTimetable::Info::TrainTime::Info
     end
 
     # 保存済みの情報を処理しインスタンスを復元するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::StationTimetable::List )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::StationTimetable::List )]
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Api::StationTimetable::List
+      ::TokyoMetro::Factory::Generate::Api::StationTimetable::List
     end
 
     def factory_for_seeding_list
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::List
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::List
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info
     end
 
     def factory_for_seeding_fundamental_list
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::Fundamental::List
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::Fundamental::List
     end
 
     def factory_for_seeding_fundamental_info
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::Fundamental::Info
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::Fundamental::Info
     end
 
     def factory_for_seeding_fundamental_info_separeted_list
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::Fundamental::Info::Separated::List
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::Fundamental::Info::Separated::List
     end
 
     def factory_for_seeding_fundamental_info_separeted_info
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::Fundamental::Info::Separated::Info
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::Fundamental::Info::Separated::Info
     end
 
     def factory_for_seeding_train_times
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::List::TrainTimes
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::List::TrainTimes
     end
 
     def factory_for_seeding_train_times_in_each_station
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::List
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::TrainTime::List
     end
 
     def factory_for_seeding_station_train_time
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::TrainTime::Info
     end
 
     def factory_for_train_type
-      ::TokyoMetro::Factories::Seed::Api::StationTimetable::Info::TrainTime::Info::TrainType
+      ::TokyoMetro::Factory::Seed::Api::StationTimetable::Info::TrainTime::Info::TrainType
     end
 
     # API の情報（generate_instance が true のときの、インスタンスの配列）の各成分をディレクトリ分けするときに使用するキーの設定

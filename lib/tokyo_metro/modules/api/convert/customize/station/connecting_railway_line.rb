@@ -17,8 +17,8 @@ module TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayL
   #   {TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Info::ConnectingRailwayLine::Info} is prepend
   #     to {TokyoMetro::Api::Station::Info::ConnectingRailwayLine::Info} by this method.
   # @note
-  #   {TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Factories::Seed::Info::ConnectingRailwayLine::Info} is prepend
-  #     to {TokyoMetro::Factories::Seed::Api::Station::Info::ConnectingRailwayLine::Info} by this method.
+  #   {TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Factory::Seed::Info::ConnectingRailwayLine::Info} is prepend
+  #     to {TokyoMetro::Factory::Seed::Api::Station::Info::ConnectingRailwayLine::Info} by this method.
   def self.set_modules
 
     ::TokyoMetro::Api::Station::Info.class_eval do
@@ -29,8 +29,8 @@ module TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayL
       prepend ::TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Info::ConnectingRailwayLine::Info
     end
 
-    ::TokyoMetro::Factories::Seed::Api::Station::Info::ConnectingRailwayLine::Info.class_eval do
-      prepend ::TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Factories::Seed::Info::ConnectingRailwayLine::Info
+    ::TokyoMetro::Factory::Seed::Api::Station::Info::ConnectingRailwayLine::Info.class_eval do
+      prepend ::TokyoMetro::Modules::Api::Convert::Customize::Station::ConnectingRailwayLine::Factory::Seed::Info::ConnectingRailwayLine::Info
     end
 
   end

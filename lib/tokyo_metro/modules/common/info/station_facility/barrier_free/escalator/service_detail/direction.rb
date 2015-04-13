@@ -58,7 +58,7 @@ module TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::Escalato
       raise "Error"
     end
   end
-  
+
   def attribute
     if both?
       :both

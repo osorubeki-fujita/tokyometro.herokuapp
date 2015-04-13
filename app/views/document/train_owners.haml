@@ -1,6 +1,7 @@
 = render "common_content"
 
-= document_title_of_each_content( @title_ja , @title_en )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
 %div{ id: :train_owners }
   - @train_owners.each do | train_owner |
     = train_owner.decorate.render_document_info_box

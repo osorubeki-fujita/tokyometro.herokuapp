@@ -76,8 +76,8 @@
     }
 }
 
-#station_info_links {
-    .station_name {
+#links_to_station_info_pages {
+    .text {
         @extend %title_of_each_content ;
         @extend %title_of_each_content_background_color ;
     }

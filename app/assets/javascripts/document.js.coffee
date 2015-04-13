@@ -18,63 +18,75 @@ window.Document = Document
 
 class LinkToDocumentContents
 
-  constructor: ( @domain = $( '#links_to_datas' ) ) ->
+  constructor: ( @domain = $( 'ul#links_to_document_pages' ) ) ->
 
-  content_name_domains = (v) ->
-    return v.domain.find( '.content_name' )
+  text_domains = (v) ->
+    return v.domain.find( '.text' )
 
-  width_of_content_name = (v) ->
-    console.log 'LinkToDocumentContents\#width_of_content_name'
-    p = new DomainsCommonProcessor( content_name_domains(v).children() )
-    return p.max_width()
+  width_of_text = (v) ->
+    # console.log( 'LinkToDocumentContents\#width_of_text' )
+    p = new DomainsCommonProcessor( text_domains(v) )
+    return p.max_outer_width( true )
 
-  process_domain = (v) ->
-    # console.log 'LinkToDocumentContents\#process_domain'
-    _content_name_domains = content_name_domains(v)
-    p = new DomainsCommonProcessor( _content_name_domains )
-    p.set_css_attribute( 'width' , width_of_content_name(v) )
-    p.set_css_attribute( 'margin-right' , 16 )
+  model_name_domains = (v) ->
+    return v.domain.find( '.model_name.text_en' )
+
+  width_of_model_name = (v) ->
+    p = new DomainsCommonProcessor( model_name_domains(v) )
+    return p.max_outer_width( true )
+
+  process: ->
+    # console.log( 'LinkToDocumentContents\#process' )
+    process_domain(@)
+    process_each_link(@)
     return
 
-  process_each_content = (v) ->
-    console.log 'LinkToDocumentContents\#process_each_content'
+  process_each_link = (v) ->
+    # console.log( 'LinkToDocumentContents\#process_each_content' )
     v.domain.children().each ->
-      console.log $( this )
+      # console.log( $( this ) )
       d = new LinkToEachDocument( $( this ) )
       d.process()
       return
     return
 
-  process: ->
-    console.log 'LinkToDocumentContents\#process'
-    process_each_content(@)
-    process_domain(@)
+  process_domain = (v) ->
+    # console.log 'LinkToDocumentContents\#process_domain'
+    p1 = new DomainsCommonProcessor( text_domains(v) )
+    p1.set_css_attribute( 'width' , width_of_text(v) )
+    p2 = new DomainsCommonProcessor( model_name_domains(v) )
+    p2.set_css_attribute( 'width' , width_of_model_name(v) )
     return
 
 class LinkToEachDocument
 
   constructor: ( @domain ) ->
 
-  text = (v) ->
-    return v.domain.children( '.text' ).first()
+  domain_of_link_to_document = (v) ->
+    return v.domain.children( '.link_to_document' ).first()
 
-  content_name = (v) ->
-    return text(v).children( '.content_name' ).first()
+  text = (v) ->
+    return domain_of_link_to_document(v).children( '.text' ).first()
 
   model_name_text_en = (v) ->
-    return text(v).children( '.model_name.text_en' ).first()
+    return domain_of_link_to_document(v).children( '.model_name.text_en' ).first()
 
-  height_of_content_name = (v) ->
-    return content_name(v).innerHeight()
+  height_of_link_to_document_new = (v) ->
+    p = new DomainsCommonProcessor( domain_of_link_to_document(v).children() )
+    return p.max_outer_height( true )
 
-  margin_top_of_model_name_text_en = (v) ->
-    return height_of_content_name(v) - model_name_text_en(v).innerHeight()
+  sum_width_of_link_to_document_new = (v) ->
+    p = new DomainsCommonProcessor( domain_of_link_to_document(v).children() )
+    return p.sum_outer_width( true )
 
   process: ->
-    _text = text(@)
-    model_name_text_en(@).css( 'margin-top' , margin_top_of_model_name_text_en(@) )
-    _text.css( 'height' , height_of_content_name(@) )
-    @domain.css( 'height' , _text.outerHeight( true ) )
+    _w = sum_width_of_link_to_document_new(@)
+    _h = height_of_link_to_document_new(@)
+    p = new DomainsVerticalAlignProcessor( domain_of_link_to_document(@).children() , _h , 'bottom' )
+    p.process()
+    domain_of_link_to_document(@).css( 'width' , _w )
+    domain_of_link_to_document(@).css( 'height' , _h )
+    @domain.css( 'width' , domain_of_link_to_document(@).outerWidth( true ) )
     return
 
 #--------------------------------

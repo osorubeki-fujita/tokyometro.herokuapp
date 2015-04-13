@@ -1,6 +1,6 @@
 class StationTrainTimeDecorator < Draper::Decorator
   delegate_all
-  
+
   def departing_platform_info
     "#{ depart_from }番線発"
   end

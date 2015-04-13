@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-::TokyoMetro::Factories::Seed.process
-::TokyoMetro::Factories::Scss::TrainType.make
+::TokyoMetro::Factory::Seed.process
+::TokyoMetro::Factory::Scss::TrainType.make
 
 __END__
 

@@ -7,24 +7,11 @@ module ApplicationHelper
   end
 
   def self.common_title_ja
-    "Tokyo Metro Open Data Contest"
+    "Rails on Ruby"
   end
 
   def self.common_title_en
-    "Ruby for Rails"
-  end
-
-  def title_of_each_content( name_ja , name_en )
-    render inline: <<-HAML , type: :haml , locals: { name_ja: name_ja , name_en: name_en }
-%div{ class: :main_text }
-  %div{ class: :normal }
-    %div{ class: :text_ja }
-      %h2<
-        = name_ja
-    %div{ class: :text_en }
-      %h3<
-        = name_en
-    HAML
+    "Tokyo Metro Open Data Contest 2014"
   end
 
   def number_separated_by_comma( num )
@@ -40,6 +27,7 @@ module ApplicationHelper
   # @return [Regexp]
   def self.regexp_for_parentheses_normal
     /([\(（〈\|【].+[】\|〉）\)])$/
+    # /([\(（〈\|【].+[】\|〉）\)])\Z/
   end
 
   # 機種依存文字「麴」を処理するための正規表現
@@ -58,6 +46,10 @@ module ApplicationHelper
   def self.rgb_in_parentheses( web_color )
     str = web_color.to_rgb_color.join( " , " )
     "(#{str})"
+  end
+
+  def rgb_in_parentheses( web_color )
+    web_color.to_rgb_color
   end
 
 end

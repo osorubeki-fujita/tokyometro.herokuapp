@@ -14,11 +14,11 @@ module EachRailwayLine
 
     private
 
-    def each_railway_line_sub( title_base , controller , *railway_line_names , with_branch: false , including_chiyoda_branch: false , layout: "application" )
+    def each_railway_line_sub( title_base , controller , *railway_lines_same_as , with_branch: false , including_chiyoda_branch: false , layout: "application" )
       if with_branch
-        @railway_lines = ::RailwayLine.tokyo_metro( including_branch_line: true ).where( same_as: railway_line_names )
+        @railway_lines = ::RailwayLine.tokyo_metro.where( same_as: railway_lines_same_as )
       else
-        @railway_lines = ::RailwayLine.tokyo_metro.where( same_as: railway_line_names )
+        @railway_lines = ::RailwayLine.tokyo_metro.except_for_branch_lines.where( same_as: railway_lines_same_as )
       end
 
       if @railway_lines.where( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ).present? and !( including_chiyoda_branch )

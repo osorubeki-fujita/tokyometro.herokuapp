@@ -23,8 +23,8 @@ $background_color_of_holiday: $jp_traditional_akamurasaki ;
     thead.marunouchi {
         @include colorSettingsOfStationTimetableHeaderInEachLine( $line_marunouchi_bgcolor , #fff ) ;
     }
-    thead.tokyo_metro_marunouchi_b {
-        @include colorSettingsOfStationTimetableHeaderInEachLine( $line_tokyo_metro_marunouchi_b_bgcolor , #eee ) ;
+    thead.marunouchi_branch {
+        @include colorSettingsOfStationTimetableHeaderInEachLine( $line_tokyo_metro_marunouchi_b_bgcolor , #fff ) ;
     }
     thead.hibiya {
         @include colorSettingsOfStationTimetableHeaderInEachLine( $line_hibiya_bgcolor ) ;

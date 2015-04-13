@@ -18,19 +18,19 @@ module TokyoMetro::ClassNameLibrary::Static::OperationDay
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::OperationDay::List
+      ::TokyoMetro::Factory::Generate::Static::OperationDay::List
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::OperationDay::Info
+      ::TokyoMetro::Factory::Generate::Static::OperationDay::Info
     end
 
     def factory_for_seeding_list
-      ::TokyoMetro::Factories::Seed::Static::OperationDay::List
+      ::TokyoMetro::Factory::Seed::Static::OperationDay::List
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::OperationDay::Info
+      ::TokyoMetro::Factory::Seed::Static::OperationDay::Info
     end
 
     def db_instance_class

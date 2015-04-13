@@ -36,11 +36,11 @@ module TokyoMetro::ClassNameLibrary::Static::Fare
     end
 
     def factory_for_seeding_normal_table_list
-      ::TokyoMetro::Factories::Seed::Static::Fare::Normal::Table::List
+      ::TokyoMetro::Factory::Seed::Static::Fare::Normal::Table::List
     end
 
     def factory_for_seeding_normal_table_pattern
-      ::TokyoMetro::Factories::Seed::Static::Fare::Normal::Table::Pattern
+      ::TokyoMetro::Factory::Seed::Static::Fare::Normal::Table::Pattern
     end
 
     def db_instance_class_of_normal_table_pattern

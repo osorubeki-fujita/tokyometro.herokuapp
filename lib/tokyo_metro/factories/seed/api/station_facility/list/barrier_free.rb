@@ -1,9 +1,0 @@
-class TokyoMetro::Factories::Seed::Api::StationFacility::List::BarrierFree < TokyoMetro::Factories::Seed::Api::StationFacility::List::Common
-
-  private
-
-  def method_for_seeding_each_item
-    :seed_barrier_free_facilities
-  end
-
-end

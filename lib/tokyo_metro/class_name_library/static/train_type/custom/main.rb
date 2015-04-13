@@ -18,23 +18,23 @@ module TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::Main
     end
 
     def factory_for_generating_from_saved_files
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::Main::Hash
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::Main::Hash
     end
 
     def factory_for_generating_from_each_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::Main::Hash::EachFile
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::Main::Hash::EachFile
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainType::Custom::Main::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainType::Custom::Main::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::TrainType::Custom::Main::Hash
+      ::TokyoMetro::Factory::Seed::Static::TrainType::Custom::Main::Hash
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::TrainType::Custom::Main::Info
+      ::TokyoMetro::Factory::Seed::Static::TrainType::Custom::Main::Info
     end
 
     def db_instance_class
@@ -53,7 +53,7 @@ module TokyoMetro::ClassNameLibrary::Static::TrainType::Custom::Main
     # @note おそらく、もう使うことはない。
     # @todo 削除？
     def scss_color_factory
-      ::TokyoMetro::Factories::Scss::TrainTypes::Colors
+      ::TokyoMetro::Factory::Scss::TrainTypes::Colors
     end
 
     # Hash のインスタンスを作成するときに必要な YAML ファイルのリスト

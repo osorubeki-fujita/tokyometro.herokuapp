@@ -1,6 +1,7 @@
 = render "common_content"
 
-= document_title_of_each_content( @title_ja , @title_en )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
 %div{ id: :train_types }
   - # 鉄道事業者ごとに分類
   - # railway_line_id をもとに鉄道事業者を取得

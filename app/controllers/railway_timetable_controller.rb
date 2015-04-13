@@ -12,8 +12,8 @@ class RailwayTimetableController < ApplicationController
 
   private
 
-  def each_railway_line( *railway_line_name_codes )
-    each_railway_line_sub( "列車時刻表" , "railway_timetable" , *railway_line_name_codes )
+  def each_railway_line( *railway_lines_same_as )
+    each_railway_line_sub( "列車時刻表" , "railway_timetable" , *railway_lines_same_as )
   end
 
 end

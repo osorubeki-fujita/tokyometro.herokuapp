@@ -6,9 +6,7 @@
   - # %div{ id: :contents , class: "container-fluid" }
   %div{ id: :contents , class: :container }
     %div{ id: :left_contents , class: "col-md-3"}
-      = yield( :top_content )
       = yield( :side_menu )
-      = yield( :bottom_content )
     %div{ id: :main_content_center , class: "col-md-6"}
       = yield
     %div{ id: :right_contents , class: "col-md-3" }
@@ -20,4 +18,3 @@
 - #     = yield( :side_menu )
 - #     %div{ id: :main_content_center }
 - #       = yield
-- #   = yield( :bottom_content )

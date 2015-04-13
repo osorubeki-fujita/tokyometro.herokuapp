@@ -16,6 +16,10 @@ class TrainType < ActiveRecord::Base
     end
   }
 
+  def in_api
+    train_type_in_api
+  end
+
   def normal?
     /Normal/ === self.same_as
   end

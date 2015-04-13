@@ -1,19 +1,12 @@
 - content_for :header do
-  %span{ class: :top_title_of_ruby_for_rails }<>
-    = "Ruby for Rails"
-    %span{ class: :top_subtitle_of_ruby_for_rails }<
-      = "Tokyo Metro Open Data Contest 2014"
-    %span{ class: :top_title_to_fb }<
-      %span<>
-        != "By" + "&nbsp;"
-      = link_to( "Shu Foujita" , "http://ja-jp.facebook.com/shu.fujita.u" )
-- content_for :top_content do
-  = top_content
-- content_for :side_menu do
-  %div{ id: :side_menu }
-    = list_of_main_contents
-    = list_of_documents
-    = list_of_official_links
+  %div{ class: :top_title }<>
+    = ::ApplicationHelper.common_title_ja
+    %span{ class: :top_subtitle }<
+      = ::ApplicationHelper.common_title_en
+  %div{ class: :top_title_to_fb }<
+    != "By" + "&nbsp;"
+    = link_to( "Shu Foujita" , "http://ja-jp.facebook.com/shu.fujita.u" )
 
-- # - content_for :bottom_content do
-- #   = bottom_content
+- content_for :side_menu do
+  = ::TokyoMetro::App::Renderer::SideMenu::NowDeveloping.new( request ).render
+  = ::TokyoMetro::App::Renderer::SideMenu.render_all( request )

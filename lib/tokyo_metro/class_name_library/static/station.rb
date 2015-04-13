@@ -22,27 +22,27 @@ module TokyoMetro::ClassNameLibrary::Static::Station
     end
 
     def factory_for_generating_from_saved_files
-      ::TokyoMetro::Factories::Generate::Static::Station::RailwayLines
+      ::TokyoMetro::Factory::Generate::Static::Station::RailwayLines
     end
 
     def factory_for_generating_from_each_saved_file
-      ::TokyoMetro::Factories::Generate::Static::Station::InEachRailwayLine
+      ::TokyoMetro::Factory::Generate::Static::Station::InEachRailwayLine
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::Station::InEachRailwayLine::Info
+      ::TokyoMetro::Factory::Generate::Static::Station::InEachRailwayLine::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::Station::RailwayLines
+      ::TokyoMetro::Factory::Seed::Static::Station::RailwayLines
     end
 
     def factory_for_seeding_subhash
-      ::TokyoMetro::Factories::Seed::Static::Station::InEachRailwayLine
+      ::TokyoMetro::Factory::Seed::Static::Station::InEachRailwayLine
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::Station::Info
+      ::TokyoMetro::Factory::Seed::Static::Station::Info
     end
 
     def db_instance_class
@@ -53,7 +53,7 @@ module TokyoMetro::ClassNameLibrary::Static::Station
     # @return [Const (class)]
     # @note おそらく、もう使うことはない。
     def scss_color_factory
-      ::TokyoMetro::Factories::Scss::Station::Colors
+      ::TokyoMetro::Factory::Scss::Station::Colors
     end
 
     # タイトル

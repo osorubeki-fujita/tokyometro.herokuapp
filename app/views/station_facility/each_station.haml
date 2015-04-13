@@ -1,19 +1,23 @@
-= render "common_content"
-
 - station_info_decorated = @station_info.decorate
+
+- real_time_info = ::TokyoMetro::ApiDecorator::RealTimeInfos.new( request , @railway_lines.except_for_branch_lines )
+
+= render "common_content"
 
 = station_info_decorated.render_title_of_station_facility
 = station_info_decorated.render_latest_passenger_survey
 
+= real_time_info.render( include_train_locations: false )
+
 = station_info_decorated.render_tokyo_metro_railway_lines
 = station_info_decorated.render_railway_lines_except_for_tokyo_metro
-= station_info_decorated.render_links_to_infos
+= station_info_decorated.render_links_to_station_info_pages
 = render partial: "google_map"
 
 %div{ id: :station_facility_contents }
   %div{ id: :station_facility_platform_infos }
     = ::StationFacilityPlatformInfoDecorator.render_sub_top_title
-    = platform_infos_of_railway_lines
+    = ::TokyoMetro::App::Renderer::StationFacility::Platform.make_list( request , @station_facility ).render
   %div{ id: :station_facility_infos }
     = ::BarrierFreeFacility::InfoDecorator.render_sub_top_title
     = @station_facility.decorate.render_barrier_free_facility_infos

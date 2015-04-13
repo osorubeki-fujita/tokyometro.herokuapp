@@ -1,35 +1,35 @@
 @charset "utf-8" ;
 
 %titleSettingsOfDocument {
-    border: {
-        left: solid 8px #aaa;
-    }
-    padding: {
-        left: 8px ;
-    }
-    margin: {
-        bottom: 16px ;
-    }
+  border: {
+    left: solid 8px #aaa;
+  }
+  padding: {
+    left: 8px ;
+  }
+  margin: {
+    bottom: 16px ;
+  }
 }
-    
+
 
 .content_title {
-    @extend %titleSettingsOfDocument ;
-    h2 {
-        font: {
-            size: 20pt ;
-        }
-        line-height: 1.1em ;
+  @extend %titleSettingsOfDocument ;
+  h2 {
+    font: {
+      size: 20pt ;
     }
-    h3 {
-        font: {
-            size: 11pt ;
-            weight: normal ;
-        }
-        line-height: 1.1em ;
+    line-height: 1.1em ;
+  }
+  h3 {
+    font: {
+      size: 11pt ;
+      weight: normal ;
     }
+    line-height: 1.1em ;
+  }
 }
 
 h1#title {
-    @extend %titleSettingsOfDocument ;
+  @extend %titleSettingsOfDocument ;
 }

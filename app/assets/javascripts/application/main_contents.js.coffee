@@ -26,13 +26,13 @@ class MainContents
     return 8 # $( 'div#contents' ).paddingBottom
 
   max_height = (v) ->
-    console.log 'MainContents\#max_height'
+    # console.log 'MainContents\#max_height'
     ary = [ left_contents(v).outerHeight() , main_content_center(v).outerHeight() , main_content_wide(v).outerHeight() , right_contents(v).outerHeight() ]
-    console.log ary
+    # console.log ary
     return Math.max.apply( null , ary ) + added_to_max_height(v)
 
   process: ->
-    console.log 'MainContents\#process'
+    # console.log 'MainContents\#process'
 
     _max_height = max_height(@)
     # 各要素に高さを設定

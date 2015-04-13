@@ -21,8 +21,11 @@ class RailwayLine < ActiveRecord::Base
 
   has_many :train_locations
   has_many :train_location_olds
-  
+
   has_many :air_conditioner_infos
+
+  belongs_to :main_railway_line , class: ::RailwayLine
+  belongs_to :branch_railway_line , class: ::RailwayLine
 
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
@@ -44,11 +47,11 @@ class RailwayLine < ActiveRecord::Base
     where( operator_id: tokyo_metro_id ).includes( :station_infos )
   }
 
-  scope :select_branch_line , -> {
+  scope :select_branch_lines , -> {
     where( is_branch_railway_line: true )
   }
 
-  scope :select_not_branch_line , -> {
+  scope :except_for_branch_lines , -> {
     where( is_branch_railway_line: [ false , nil ] )
   }
 
@@ -59,7 +62,7 @@ class RailwayLine < ActiveRecord::Base
       select_tokyo_metro
     # 東京メトロの路線（支線を含まない）を取得する
     else
-      select_tokyo_metro.select_not_branch_line
+      select_tokyo_metro.except_for_branch_lines
     end
   }
 
@@ -156,6 +159,8 @@ class RailwayLine < ActiveRecord::Base
     yurakucho_and_fukutoshin
   }
 
+  # @!group 「駅」の属性（路面電車については「停留場」）
+
   def station_attribute_ja
     case same_as
     when "odpt.Railway:Toei.TodenArakawa"
@@ -182,6 +187,8 @@ class RailwayLine < ActiveRecord::Base
     "sta."
   end
 
+  # @!endgroup
+
   def railway_line
     self
   end
@@ -189,9 +196,13 @@ class RailwayLine < ActiveRecord::Base
   def name_ja_with_operator_name_precise_and_without_parentheses
     name_ja_with_operator_name_precise.gsub( /（.+）\Z/ , "" )
   end
-  
+
   def branch_railway_line_of?( railway_line )
     branch_railway_line? and railway_line.id == main_railway_line_id
+  end
+
+  def tokyo_metro?
+    operator.tokyo_metro?
   end
 
 end

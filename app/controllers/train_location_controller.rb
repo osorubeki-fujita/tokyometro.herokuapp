@@ -10,13 +10,14 @@ class TrainLocationController < ApplicationController
 
   def index
     @title = "現在運行中の列車"
+    @railway_lines = ::RailwayLine.tokyo_metro
     render 'train_location/index'
   end
 
   private
 
-  def each_railway_line( *railway_line_name_codes )
-    each_railway_line_sub( "現在運行中の列車" , "train_location" , *railway_line_name_codes )
+  def each_railway_line( *railway_lines_same_as )
+    each_railway_line_sub( "現在運行中の列車" , "train_location" , *railway_lines_same_as )
   end
 
 end

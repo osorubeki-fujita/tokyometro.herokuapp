@@ -1,0 +1,74 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%contentHeaderIconAndTextSettingsLarge {
+  // background-color: #666 ;
+  background-color: desaturate( $operator_color , 80% ) ;
+  color: #fff ;
+  padding: 8px ;
+  .icon {
+    width: 64px ;
+    @extend %floatLeft ;
+    @extend %marginRight8 ;
+  }
+  .icon , .icons {
+    @extend %floatLeft ;
+    @extend %marginRight8 ;
+  }
+  .icons {
+    .icon {
+      margin: 0px ;
+    }
+  }
+  .text {
+    @extend %floatLeft ;
+    @extend %marginRight16 ;
+  }
+}
+
+#train_informations {
+  .title_of_train_informations {
+    @extend %contentHeaderIconAndTextSettingsLarge ;
+  }
+  .title_of_train_locations {
+    @extend %contentHeaderIconAndTextSettingsLarge ;
+  }
+}
+.selection_header {
+  @extend %contentHeaderIconAndTextSettingsLarge ;
+}
+
+//--------
+
+.content_header , .selection_header {
+  @extend %contentHeaderIconAndTextSettingsLarge ;
+  .text_ja {
+    font: {
+      size: 12pt ;
+      weight: normal ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 9pt ;
+      weight: normal ;
+    }
+  }
+}
+
+//--------
+
+#real_time_info_and_update_button , #twitters {
+  border: solid 1px #333 ;
+  @extend %marginBottom8 ;
+  .content_header {
+    .icon {
+      width: 32px ;
+      @extend %marginRight8 ;
+    }
+    .update_button {
+      @extend %floatRight ;
+    }
+  }
+}

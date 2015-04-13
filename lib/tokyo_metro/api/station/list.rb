@@ -36,7 +36,7 @@ class TokyoMetro::Api::Station::List < TokyoMetro::Api::MetaClass::Hybrid::List
   # @note 各駅の基本情報をすべて流し込んでから、乗換路線情報のみを流し込む。（乗換駅の情報を流し込む際に ::Station.find_by を利用しており、既知のすべての駅の流し込みが済んでいなければならないため）
   # @example
   #   TokyoMetro::Api::Station::List.factory_for_seeding_connecting_railway_lines
-  #     => TokyoMetro::Factories::Seed::Api::Station::List::ConnectingRailwayLine
+  #     => TokyoMetro::Factory::Seed::Api::Station::List::ConnectingRailwayLine
   def seed_connecting_railway_lines
     seed_sub_infos( :factory_for_seeding_connecting_railway_lines , __method__ )
   end

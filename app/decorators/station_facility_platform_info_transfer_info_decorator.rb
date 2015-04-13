@@ -11,7 +11,7 @@ class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
 %div{ class: :transfer_info }
   %div{ class: info.railway_line.css_class_name }
     = info.railway_line.render_railway_line_code( must_display_line_color: true , small: true )
-  %div{ class: :string }
+  %div{ class: :text }
     %div{ class: :railway_line }<
       = info.railway_line.railway_line_in_station_facility_platform_info_transfer_info
     - if info.railway_direction.present?

@@ -1,7 +1,7 @@
 # 個別の路線情報を扱うクラス
 # @note
 #   DB への流し込みは、{TokyoMetro::Static::RailwayLine::Info}#seed （{TokyoMetro::Modules::Common::ToFactory::Seed::Info} で定義）で行う。
-#   関連： {TokyoMetro::Factories::Seed::Static::RailwayLine::Info}
+#   関連： {TokyoMetro::Factory::Seed::Static::RailwayLine::Info}
 class TokyoMetro::Api::RailwayLine::Info < TokyoMetro::Api::MetaClass::Hybrid::Info
 
   include ::TokyoMetro::ClassNameLibrary::Api::RailwayLine

@@ -46,59 +46,59 @@ module TokyoMetro::ClassNameLibrary::Api::Point
     # @!group Factory Pattern のクラスの情報
 
     # API からデータを取得するための Factory Pattern クラス（データ検索 API）
-    # @return [Const ( ::TokyoMetro::Factories::Get::Api::DataSearch::Point )]
+    # @return [Const ( ::TokyoMetro::Factory::Get::Api::DataSearch::Point )]
     def factory_for_getting
-      ::TokyoMetro::Factories::Get::Api::DataSearch::Point
+      ::TokyoMetro::Factory::Get::Api::DataSearch::Point
     end
 
     # API からデータを取得するための Factory Pattern クラス（地物検索 API）
-    # @return [Const ( ::TokyoMetro::Factories::Get::Api::Geo::Point )]
+    # @return [Const ( ::TokyoMetro::Factory::Get::Api::Geo::Point )]
     def factory_for_getting_geo
-      ::TokyoMetro::Factories::Get::Api::Geo::Point
+      ::TokyoMetro::Factory::Get::Api::Geo::Point
     end
 
     # API から取得したデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::Point::EachFile )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::Point::EachFile )]
     def factory_for_saving_to_each_file
-      ::TokyoMetro::Factories::Save::Api::Point::EachFile
+      ::TokyoMetro::Factory::Save::Api::Point::EachFile
     end
 
     # グループ化されたデータを保存するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Save::Api::Point::Group )]
+    # @return [Const ( ::TokyoMetro::Factory::Save::Api::Point::Group )]
     def factory_for_saving_datas_of_each_group
-      ::TokyoMetro::Factories::Save::Api::Point::Group
+      ::TokyoMetro::Factory::Save::Api::Point::Group
     end
 
     def list_class_for_saving_grouped_infos
-      ::TokyoMetro::Factories::Save::Api::Point::Group::List
+      ::TokyoMetro::Factory::Save::Api::Point::Group::List
     end
 
     def file_info_class_for_saving
-      ::TokyoMetro::Factories::Save::Api::Point::Group::FileInfo
+      ::TokyoMetro::Factory::Save::Api::Point::Group::FileInfo
     end
 
     # JSON をパースして得られた配列の要素である Hash からインスタンスを作成するメソッドための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::Point::Info )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::Point::Info )]
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Api::Point::Info
+      ::TokyoMetro::Factory::Generate::Api::Point::Info
     end
 
     def factory_for_generating_title_from_hash
-      ::TokyoMetro::Factories::Generate::Api::Point::Info::Title
+      ::TokyoMetro::Factory::Generate::Api::Point::Info::Title
     end
 
     # 保存済みの情報を処理しインスタンスを復元するための Factory Pattern クラス
-    # @return [Const ( ::TokyoMetro::Factories::Generate::Api::Point::List )]
+    # @return [Const ( ::TokyoMetro::Factory::Generate::Api::Point::List )]
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Api::Point::List
+      ::TokyoMetro::Factory::Generate::Api::Point::List
     end
 
     def factory_for_seeding_list
-      ::TokyoMetro::Factories::Seed::Api::Point::List
+      ::TokyoMetro::Factory::Seed::Api::Point::List
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Api::Point::Info
+      ::TokyoMetro::Factory::Seed::Api::Point::Info
     end
 
     # API の情報（generate_instance が true のときの、インスタンスの配列）の各成分をディレクトリ分けするときに使用するキーの設定

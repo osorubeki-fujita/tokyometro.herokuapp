@@ -3,80 +3,13 @@
 @import '../fundamental_settings.scss' ;
 
 %marginTopBottom8 {
-    margin: {
-        top: 8px ;
-        bottom: 8px ;
-    }
+  margin: {
+    top: 8px ;
+    bottom: 8px ;
+  }
 }
 
-// 現在不使用
-@mixin train_information_railway_line_name_bgcolor_base( $color_1 , $color_2 ) {
-    // 変数の定義
-    //
-    $color_top: $color_1;
-    $color_middle: rgba( $color_top , 0.5 );
-    $color_bottom: $color_2;
-    //
-    $color_stop_point_1_moz : 30% ;
-    $color_stop_point_1_webkit : 0.3 ;
-    $color_stop_point_2_moz : 79% ;
-    $color_stop_point_2_webkit : 0.79 ;
-    $color_stop_point_3_moz : 80% ;
-    $color_stop_point_3_webkit : 0.8 ;
-    //
-    background: #{ $color_top } ;
-    // Firefox
-    background: -moz-linear-gradient(top,
-        #{$color_top},
-        #{$color_top} #{$color_stop_point_1_moz},
-        #{$color_middle} #{$color_stop_point_2_moz} ,
-        #{$color_bottom} #{$color_stop_point_3_moz} ,
-        #{$color_bottom}
-    );
-    // Safari, Google Chrome
-    background: -webkit-gradient(linear, left top, left bottom,
-        from( #{$color_top} ),
-        color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
-        color-stop( #{$color_stop_point_2_webkit} , #{$color_middle} ) ,
-        color-stop( #{$color_stop_point_3_webkit} , #{$color_bottom} ) ,
-        to( #{$color_bottom} )
-    );
-}
-
-// 現在不使用
-@mixin train_information_railway_line_name_bgcolor_old( $bgcolor_base ) {
-    .ginza {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_ginza_bgcolor ) ;
-    }
-    .marunouchi {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_marunouchi_bgcolor ) ;
-    }
-    .hibiya {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_hibiya_bgcolor ) ;
-    }
-    .tozai {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_tozai_bgcolor ) ;
-    }
-    .chiyoda {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_chiyoda_bgcolor ) ;
-    }
-    .yurakucho {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_yurakucho_bgcolor ) ;
-    }
-    .hanzomon {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_hanzomon_bgcolor ) ;
-    }
-    .namboku {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_namboku_bgcolor ) ;
-    }
-    .fukutoshin {
-        @include train_information_railway_line_name_bgcolor_base( $bgcolor_base , $line_fukutoshin_bgcolor ) ;
-    }
-}
-
-@mixin train_information_status_bgcolor_base( $color_1 , $color_2 ) {
-    //
-    //
+@mixin train_information_status_bgcolor_base( $color_1 ) {
     $color_top: rgba( $color_1 , 0.25 );
     $color_middle: rgba( $color_top , 0.1 );
     $color_bottom: $color_middle;
@@ -103,102 +36,161 @@
     );
 }
 
-@mixin train_information_status_bgcolor( $bgcolor_base ) {
-    $color_2: rgba( $bgcolor_base , 0.2 ) ;
-    .on_time {
-        @include train_information_status_bgcolor_base( $jp_traditional_byakugun , $color_2 ) ;
-    }
-    .nearly_on_time {
-        @include train_information_status_bgcolor_base( $jp_traditional_moegi , $color_2 ) ;
-        // p.text_ja {
-            // font: {
-                // size: 14pt;
-            // }
-        // }
-    }
-    .delay {
-        @include train_information_status_bgcolor_base( $jp_traditional_kincha , $color_2 ) ;
-    }
-    .suspended {
-        @include train_information_status_bgcolor_base( $jp_traditional_jinzamomi , $color_2 ) ;
-    }
+@mixin train_information_status_icon_color_base( $color , $desaturation_rate: 5% ) {
+  .icon {
+    color: desaturate( $color , $desaturation_rate ) ;
+  }
 }
 
-.train_information {
-    $bgcolor_base: #666 ;
-    @include train_information_status_bgcolor( $bgcolor_base ) ;
-    //
-    $height_whole: 64px ;
-    $length_of_image :  $height_whole * $golden_ratio / ( 1 + $golden_ratio ) ;
-    //
-    $width_whole: $width_main_content_center - ( 1px * 2 ) ;
-    $width_of_line_domain : $width_whole * 1.0 / ( 1 + $silver_ratio ) ;
-    $width_of_status : $width_whole - $width_of_line_domain ;
-    //
-    $width_of_additional_info: $width_of_status * 1.0 / ( 1 + $golden_ratio ) ;
-    $width_of_image_and_text: $width_of_status * $golden_ratio / ( 1 + $golden_ratio ) ;
-    //
-    $width_of_image: $width_of_image_and_text * 1.0 / ( 1 + $golden_ratio ) ;
-    $width_of_text: $width_of_image_and_text * $golden_ratio / ( 1 + $golden_ratio ) ;
-    //
-    clear: both ;
+@mixin train_information_status_bgcolor {
+  .on_schedule {
+    @include train_information_status_bgcolor_base( $jp_traditional_byakugun ) ;
+    @include train_information_status_icon_color_base( $jp_traditional_byakugun , 10% )
+  }
+  .nearly_on_schedule {
+    @include train_information_status_bgcolor_base( $jp_traditional_moegi ) ;
+    @include train_information_status_icon_color_base( $jp_traditional_moegi )
+  }
+  .delayed {
+    @include train_information_status_bgcolor_base( $jp_traditional_kincha ) ;
+    @include train_information_status_icon_color_base( $jp_traditional_kincha )
+  }
+  .suspended {
+    @include train_information_status_bgcolor_base( $jp_traditional_jinzamomi ) ;
+    @include train_information_status_icon_color_base( $jp_traditional_jinzamomi )
+  }
+  .others {
+    @include train_information_status_bgcolor_base( #bbb ) ;
+    @include train_information_status_icon_color_base( #999 , 0% ) ;
+  }
+  .no_train , .after_last_train_finished , .before_first_train_begin{
+    @include train_information_status_bgcolor_base( #bbb ) ;
+    @include train_information_status_icon_color_base( #999 , 0% ) ;
+  }
+}
+
+.train_information , .train_information_precise_version , .train_information_test {
+  @include train_information_status_bgcolor ;
+  //
+  clear: both ;
+  p {
+    margin: {
+      top: 0px ;
+      bottom: 0px ;
+    }
+    line-height: 1.1em ;
+  }
+  .status {
+    @extend %floatLeft ;
+    .infos {
+      margin: 8px ;
+    }
+    border: solid 1px #333 ;
     margin-bottom: -1px;
-    //
-    .railway_line_matrixes_small {
-        height: $height_whole ;
-        margin-bottom: -1px;
+    .icon {
+      @extend %floatLeft ;
+      @extend %marginLeft8 ;
+      @extend %marginRight8 ;
+      text: {
+        align: center ;
+      }
     }
-    p {
-        margin: {
-            top: 0px ;
-            bottom: 0px ;
+    .text {
+      color: #333 ;
+      @extend %floatLeft ;
+      @extend %marginRight8 ;
+      .text_ja {
+        font: {
+          size: 20pt;
+          weight: bold ;
         }
-        line-height: 1.1em ;
+      }
+      .text_en {
+        font: {
+          size: 10pt ;
+        }
+      }
     }
-    .status {
-		@extend %floatLeft ;
-        width : $width_of_status ;
-        height: $height_whole ;
-        border: solid 1px #333 ;
-        margin-bottom: -1px;
-        .image {
-			@extend %floatLeft ;
-            width: $width_of_image ;
-            margin: {
-                top: 8px ;
-            }
-            text: {
-                align: center ;
-            }
-            img {
-                width: $length_of_image ;
-                height: $length_of_image ;
-            }
+    .additional_infos {
+      @extend %floatLeft ;
+      .text_en {
+        @extend %marginTop16 ;
+      }
+      .text_ja , .text_en {
+        .abstruct {
+          font: {
+            size: 12pt ;
+          }
         }
-        .text {
-            color: #333 ;
-            width: $width_of_text ;
-            @extend %marginTopBottom8 ;
-			@extend %floatLeft ;
-            .text_ja {
-                font: {
-                    size: 20pt;
-                    weight: bold ;
-                }
-            }
-            .text_en {
-                font: {
-                    size: 12pt ;
-                }
-            }
+        .max_delay {
+          @extend %marginTop4 ;
+          font: {
+            size: 9pt ;
+          }
         }
-        .additional_info {
-			@extend %floatLeft ;
-            width: $width_of_additional_info ;
-            font: {
-                size: 8pt ;
-            }
-            @extend %marginTopBottom8 ;
+        .precise {
+          @extend %marginTop8 ;
+          color: #333 ;
+          font: {
+            size: 9pt ;
+          }
         }
+      }
     }
+  }
+}
+
+.train_information , .train_information_precise_version , .train_information_test {
+  .no_train , .after_last_train_finished , .before_first_train_begin{
+    .text {
+      .text_ja {
+        font: {
+          size: 16pt ;
+        }
+      }
+    }
+  }
+}
+
+#train_informations {
+  .precise_version_title , .test_title {
+    padding: 4px ;
+    @extend %marginTop16 ;
+    background-color: #eee ;
+  }
+  .title_of_train_locations {
+    @extend %marginTop16 ;
+  }
+  .link_info_to_train_location_of_each_railway_line {
+    @extend %floatLeft ;
+    padding: 8px ;
+    border: solid 1px #fff ;
+    @include border_radius( 4px ) ;
+    .icon {
+      @extend %floatLeft ;
+      width: 32px ;
+    }
+    .text {
+      @extend %floatLeft ;
+      margin-right: 0px ;
+    }
+    .text_ja {
+      font: {
+        size: 10pt ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 7.5pt ;
+      }
+    }
+  }
+}
+
+.train_information_precise_version {
+  .infos {
+    font: {
+      size: 8pt ;
+    }
+  }
 }

@@ -1,12 +1,20 @@
 = render "common_content"
 
-= render_top_title( text_ja: ::DocumentHelper.common_title_ja , text_en: ::DocumentHelper.common_title_en , id: :document_title )
-%div{ id: :links_to_datas }
-  = link_to_each_document_page( "鉄道事業者" , "Operators" , "operators" , "Operator" )
-  = link_to_each_document_page( "車両所有事業者" , "Train owners" , "train_owners" , "TrainOwner" )
-  = link_to_each_document_page( "路線" , "Railway lines" , "railway_lines" , "RailwayLine" )
-  = link_to_each_document_page( "路線の行先（方面）" , "Railway directions" , "railway_directions" , "RailwayDirection" )
-  = link_to_each_document_page( "列車種別" , "Train types" , "train_types" , "TrainType" )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title.new( request , ::DocumentHelper.common_title_ja , ::DocumentHelper.common_title_en , domain_id_name: :document_title ).render
+
+:ruby
+  ary_of_documents = [
+    [ "鉄道事業者" , "Operators" , "operators" , "Operator" ] ,
+    [ "車両所有事業者" , "Train owners" , "train_owners" , "TrainOwner" ] ,
+    [ "路線" , "Railway lines" , "railway_lines" , "RailwayLine" ] ,
+    [ "路線の行先（方面）" , "Railway directions" , "railway_directions" , "RailwayDirection" ] ,
+    [ "列車種別" , "Train types" , "train_types" , "TrainType" ]
+  ]
+
+%ul{ id: :links_to_document_pages , class: :links }
+  - ary_of_documents.each do | text_ja , text_en , url_action , model_name |
+    = ::TokyoMetro::App::Renderer::Document::Link.new( request , text_ja , text_en , url_action , model_name ).render
+
 %div{ id: :infos_in_db }
   %table{ class: :text_en }
     %thead

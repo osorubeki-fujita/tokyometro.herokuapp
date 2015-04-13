@@ -1,0 +1,30 @@
+-
+  status_type: "on_schedule"
+  status_text_ja: "平常運転"
+  status_text_en: "Now on schedule"
+  additional_info_abstruct: ""
+  additional_info_precise: "現在、平常どおり運転しています。"
+-
+  status_type: "nearly_on_schedule"
+  status_text_ja: "ほぼ平常運転"
+  status_text_en: "Now on schedule"
+  additional_info_abstruct: "[Test] 遅れ：最大 1分30秒"
+  additional_info_precise: ""
+-
+  status_type: "delayed"
+  status_text_ja: "遅れあり"
+  status_text_en: "Delay"
+  additional_info_abstruct: "[Test] 遅れ：最大 15分"
+  additional_info_precise: ""
+-
+  status_type: "suspended"
+  status_text_ja: "運転見合わせ"
+  status_text_en: "Operation suspended"
+  additional_info_abstruct: "[Test] 運転再開予定：15:30"
+  additional_info_precise: "[Test] hh:mm頃 ○○駅で発生した人身事故の影響により、運転を見合わせています。運転再開時刻は15:30を見込んでいます。"
+-
+  status_type: "others"
+  status_text_ja: "お知らせ"
+  status_text_en: "Information"
+  additional_info_abstruct: "急行運転 中止"
+  additional_info_precise: "[Test] hh:mm頃 ○○駅で発生した人身事故の影響により、急行列車の運転を取りやめています。"

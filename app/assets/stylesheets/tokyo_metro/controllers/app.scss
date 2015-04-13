@@ -4,24 +4,24 @@
 @import 'app/sub_content_settings.scss' ;
 
 body {
-    border-collapse: collapse ;
-    background-color: rgba( $operator_color , 0.1 ) ;
-    margin: {
-        left: 16px ;
-        right: 16px ;
-        top: 0px ;
-        bottom: 0px ;
-    }
+  border-collapse: collapse ;
+  background-color: rgba( $operator_color , 0.1 ) ;
+  margin: {
+    left: 16px ;
+    right: 16px ;
+    top: 0px ;
+    bottom: 0px ;
+  }
 }
 
 //-------- text
 
 .text_ja {
-    @include text_ja ;
+    @extend %text_ja ;
 }
 
 .text_en {
-    @include text_en ;
+    @extend %text_en ;
 }
 
 //-------- link
@@ -35,25 +35,45 @@ body {
 
 //-------- contents
 
-#contents {
-    %mainContent {
-		@extend %floatLeft ;
-        height: auto ;
-    }
-    #main_content_center {
-        width: $width_main_content_center ;
-        @extend %mainContent ;
-    }
-    #main_content_wide {
-        width: $width_main_content_wide ;
-        @extend %mainContent ;
-    }
-    @include subContentSettings ;
+%mainContentSettings {
+  @extend %floatLeft ;
+  height: auto ;
+}
+
+%subContentSettings {
+  $padding: 16px ;
+  #left_contents {
+    width: $width_of_left_contents - $padding ;
+    @extend %floatLeft ;
     padding: {
-        top: 8px ;
-        bottom: 8px ;
-        left: 8px ;
-        right: 8px ;
+      right: $padding ;
     }
-    background-color: #fff ;
+  }
+  #right_contents {
+    @extend %floatLeft ;
+    width: $width_of_right_contents - $padding ;
+    padding: {
+      left: $padding ;
+    }
+  }
+}
+
+#contents {
+  @extend %subContentSettings ;
+  //
+  #main_content_center {
+    width: $width_main_content_center ;
+    @extend %mainContentSettings ;
+  }
+  #main_content_wide {
+    width: $width_main_content_wide ;
+    @extend %mainContentSettings ;
+  }
+  padding: {
+    top: 8px ;
+    bottom: 8px ;
+    left: 8px ;
+    right: 8px ;
+  }
+  background-color: #fff ;
 }

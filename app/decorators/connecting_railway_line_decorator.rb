@@ -53,13 +53,13 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
       HAML
     end
   end
-  
+
   private
-  
+
   def railway_line_decorated
     railway_line.decorate
   end
-  
+
   def railway_line_page_exists?
     object.railway_line.tokyo_metro?
   end

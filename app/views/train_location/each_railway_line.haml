@@ -1,14 +1,10 @@
+- real_time_info_processor = ::TokyoMetro::ApiDecorator::RealTimeInfos.new( request , @railway_lines )
+
 = render "common_content"
 
-- content_for :right_contents do
-  = twitter_railway_line_info
-
-- @time_now = Time.now
-- @last_update = Time.now
-- @next_update = Time.now
-
 = ::RailwayLineDecorator.render_title_of_train_location( @railway_lines )
-= render( 'ajax/get_new_info' , time_now: @time_now , last_update: @last_update , next_update: @next_update )
-%div{ id: "train_informations" }
-  - @railway_lines.each do | railway_line |
-    = railway_line.decorate.render_train_information_test
+= real_time_info_processor.render( include_train_locations: true )
+
+- content_for :right_contents do
+  = ::TokyoMetro::App::Renderer::Twitter.new( request , :railway_lines , @railway_lines ).render
+  = real_time_info_processor.render_real_time_info_and_update_button_of_train_informations( include_train_locations: true )

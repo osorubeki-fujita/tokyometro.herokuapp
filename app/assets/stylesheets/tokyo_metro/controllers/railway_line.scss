@@ -1,15 +1,16 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
+@import 'railway_line/travel_time_infos/common_settings.scss' ;
 
 td.transfer {
-    .connecting_railway_line {
-		@extend %floatLeft ;
-        margin: {
-            right: 8px ;
-        }
-        font: {
-            size: 9pt ;
-        }
+  padding: 8px ;
+  @extend %connectingRailwayLineInfo ;
+  .connecting_railway_line {
+    @extend %floatLeft ;
+    @extend %marginRight8 ;
+    font: {
+      size: 9pt ;
     }
+  }
 }

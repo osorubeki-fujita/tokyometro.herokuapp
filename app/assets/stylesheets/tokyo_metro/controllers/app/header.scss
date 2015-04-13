@@ -3,24 +3,31 @@
 @import '../../fundamental_settings.scss' ;
 
 #header {
-    background-color: $jp_traditional_yokan_iro ;
-    color: #fff ;
-    height: 48px ;
-    padding: 8px ;
-    .top_title_of_ruby_for_rails {
-        font-size: 24pt ;
-        .top_subtitle_of_ruby_for_rails {
-            @extend %marginLeft8 ;
-            font-size: 12pt;
-            @include text_en ;
-        }
-        .top_title_to_fb {
-            @extend %floatRight ;
-            font-size: 9pt;
-            @include text_en ;
-            a {
-                color: #fff ;
-            }
-        }
+  background-color: $jp_traditional_yokan_iro ;
+  color: #fff ;
+  height: 48px ;
+  padding: {
+    left: 16px ;
+    right: 16px ;
+    top: 4px ;
+  }
+  @extend %text_en ;
+  .top_title {
+    font-size: 24pt ;
+    @extend %floatLeft ;
+  }
+  .top_subtitle{
+    @extend %marginLeft8 ;
+    @extend %text_en ;
+    // @extend %floatLeft ;
+    font-size: 12pt;
+  }
+  .top_title_to_fb {
+    @extend %floatRight ;
+    font-size: 9pt;
+    @extend %text_en ;
+    a {
+      color: #fff ;
     }
+  }
 }

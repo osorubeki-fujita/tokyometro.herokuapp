@@ -9,7 +9,7 @@ module TokyoMetro::ClassNameLibrary::Api::StationTrainTime
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Api::StationTrainTime
+      ::TokyoMetro::Factory::Seed::Api::StationTrainTime
     end
 
   end

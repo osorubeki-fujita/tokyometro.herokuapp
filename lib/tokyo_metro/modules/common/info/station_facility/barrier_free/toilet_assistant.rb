@@ -71,9 +71,9 @@ module TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::ToiletAs
     end
     h
   end
-  
+
   private
-  
+
   def method_missing__valid_method( method_name )
     case method_name.to_s
     when /\Ahas_/

@@ -8,4 +8,4 @@ load 'C:/RubyPj/rails_tokyo_metro_dev/lib/tokyo_metro.rb'
 
 reset_train_types_20141118_0608
 
-TokyoMetro::Factories::Scss::TrainType.make
+TokyoMetro::Factory::Scss::TrainType.make

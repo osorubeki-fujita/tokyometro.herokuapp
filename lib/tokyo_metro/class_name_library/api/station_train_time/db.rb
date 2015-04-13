@@ -13,19 +13,19 @@ module TokyoMetro::ClassNameLibrary::Api::StationTrainTime::Db
     end
 
     def factory_for_seeding_previous_train_relation_list
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Previous::List
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Previous::List
     end
 
     def factory_for_seeding_previous_train_relation_info
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Previous::Info
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Previous::Info
     end
 
     def factory_for_seeding_following_train_relation_list
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Following::List
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Following::List
     end
 
     def factory_for_seeding_following_train_relation_info
-      ::TokyoMetro::Factories::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Following::Info
+      ::TokyoMetro::Factory::Seed::Api::TrainTimetable::Info::StationTime::Info::TrainRelation::Following::Info
     end
 
   end

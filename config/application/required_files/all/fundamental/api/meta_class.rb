@@ -1,9 +1,5 @@
 class RailsTokyoMetro::Application::RequiredFiles::All::Fundamental::Api::MetaClass < RailsTokyoMetro::Application::RequiredFiles
 
-  def initialize
-    super( set_all_files_under_the_top_namespace: true )
-  end
-
   def self.top_file
     ::File.join( ::Rails.root , "lib" , "tokyo_metro" , "api" , "meta_class" )
   end

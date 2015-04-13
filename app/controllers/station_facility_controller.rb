@@ -1,9 +1,8 @@
 class StationFacilityController < ApplicationController
 
   include EachRailwayLine
-  include YurakuchoAndFukutoshinLine
-
   include EachStation
+  include YurakuchoAndFukutoshinLine
 
   def index
     @title = "駅のご案内"
@@ -17,34 +16,20 @@ class StationFacilityController < ApplicationController
 
   private
 
-  def each_railway_line( *railway_line_name_codes )
-    each_railway_line_sub( "駅のご案内" , "station_facility" , *railway_line_name_codes , with_branch: true , layout: "application_wide" )
+  def each_railway_line( *railway_lines_same_as )
+    each_railway_line_sub( "駅のご案内" , "station_facility" , *railway_lines_same_as , with_branch: true , layout: "application_wide" )
   end
 
-  def each_station( station_name )
-    each_station_sub( "駅のご案内" , "station_facility" , station_name , layout: "application_wide" ) do
-      @display_google_map = true
+  def each_station( station_info_same_as )
+    each_station_sub( "駅のご案内" , "station_facility" , station_info_same_as , layout: "application_wide" ) do
       @station_facility = @station_info.station_facility
+      @railway_lines = ::RailwayLine.where( id: @station_facility.station_infos.pluck( :railway_line_id ) ).tokyo_metro.except_for_branch_lines
+      @display_google_map = true
 
       @points = @station_facility.points.includes( :point_category )
 
-      set_platform_info_tab
       set_station_info_for_google_map
       set_exit_info_for_google_map
-    end
-  end
-
-  def set_platform_info_tab
-    if %w( Wakoshi ChikatetsuNarimasu ChikatetsuAkatsuka Heiwadai Hikawadai KotakeMukaihara ).include?( @station_info.name_in_system )
-      @default_platform_info_tab = :platform_info_yurakucho_and_fukutoshin
-      @platform_info_tabs = [ @default_platform_info_tab ]
-    elsif %w( Meguro Shirokanedai ShirokaneTakanawa ).include?( @station_info.name_in_system )
-      @default_platform_info_tab = :platform_info_namboku_and_toei_mita
-      @platform_info_tabs = [ @default_platform_info_tab ]
-    else
-      railway_lines = @station_facility.station_infos.map { | station_info | station_info.railway_line }.sort_by { | railway_line | railway_line.id }
-      @platform_info_tabs =railway_lines.map { | railway_line | railway_line.css_class_name  }
-      @default_platform_info_tab = @platform_info_tabs.first
     end
   end
 

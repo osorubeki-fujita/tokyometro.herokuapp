@@ -16,12 +16,13 @@ class RailsTokyoMetro::Application::RequiredFiles::All::Fundamental < RailsTokyo
       ClassNameLibrary.files ,
       #
       Others.files ,
-      # Factories の下部のクラスは ApiModules::ClassNameLibrary を include している。
-      Factories.files ,
+      Factory.files ,
+      App.files ,
       #
       Static.files ,
       Api.files ,
-      Refinements.files
+      ApiDecorator.files ,
+      Refinement.files
     ]
   end
 

@@ -1,6 +1,6 @@
 = render "common_content"
 
 - content_for :right_contents do
-  = twitter_tokyo_metro
+  = ::TokyoMetro::App::Renderer::Twitter.new( request , :tokyo_metro ).render
 
-= render_top_title( text_ja: ::ApplicationHelper.common_title_ja , text_en: ::ApplicationHelper.common_title_en , id: :top_title )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title.new( request , ::ApplicationHelper.common_title_ja , ::ApplicationHelper.common_title_en , domain_id_name: :top_title ).render

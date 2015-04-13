@@ -18,19 +18,19 @@ module TokyoMetro::ClassNameLibrary::Static::Operator
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::Operator::Hash
+      ::TokyoMetro::Factory::Generate::Static::Operator::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::Operator::Info
+      ::TokyoMetro::Factory::Generate::Static::Operator::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::Operator::Hash
+      ::TokyoMetro::Factory::Seed::Static::Operator::Hash
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::Operator::Info
+      ::TokyoMetro::Factory::Seed::Static::Operator::Info
     end
 
     def db_instance_class
@@ -41,7 +41,7 @@ module TokyoMetro::ClassNameLibrary::Static::Operator
     # @return [Const (class)]
     # @note おそらく、もう使うことはない。
     def scss_color_factory
-      ::TokyoMetro::Factories::Scss::Operators::Colors
+      ::TokyoMetro::Factory::Scss::Operators::Colors
     end
 
     private

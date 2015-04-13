@@ -30,8 +30,8 @@ const goldenRatio = 1.618 ;
 $( document ).on( 'ready page:load' , function() { // Turbolinks 対策
   // $( function() {
   // $( document ).live( 'pageshow', function() {
-
-  initializeDo() ;
+  initializer = new Initializer() ;
+  initializer.process() ;
 });
 
 observer_of_station_facility_platform_info_tab = new ObserverOfStationFacilityPlatformInfoTab() ;

@@ -7,6 +7,10 @@ class ConnectingRailwayLine < ActiveRecord::Base
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
 
+  scope :display_on_railway_line_page , -> {
+    where( hidden_on_railway_line_page: [ false , nil ] )
+  }
+
   def note_instance
     connecting_railway_line_note
   end
@@ -40,8 +44,8 @@ class ConnectingRailwayLine < ActiveRecord::Base
       order( :index_in_station )
     elsif pluck( :index_in_station ).all?( &:blank? )
       order( :railway_line_id )
-    else
-      raise "Error"
+    # else
+      # raise "Error"
     end
   }
 

@@ -2,6 +2,7 @@ class TrainInformationController < ApplicationController
 
   include AjaxUpdate
   include EachStation
+  include EachRailwayLine
 
   def index
     @title = "各線の列車運行情報"
@@ -13,14 +14,13 @@ class TrainInformationController < ApplicationController
   end
 
   private
-=begin
-  def each_railway_line( *railway_line_name_codes )
-    each_railway_line_sub( "列車運行情報" , "train_information" , *railway_line_name_codes , with_branch: true )
-  end
-=end
 
-  def each_station( station_name )
-    each_station_sub( "駅からの列車運行情報" , "train_information" , station_name )
+  def each_railway_line( *railway_lines_same_as )
+    each_railway_line_sub( "列車運行情報" , "train_information" , *railway_lines_same_as , with_branch: true )
+  end
+
+  def each_station( station_info_same_as )
+    each_station_sub( "駅からの列車運行情報" , "train_information" , station_info_same_as )
   end
 
 end

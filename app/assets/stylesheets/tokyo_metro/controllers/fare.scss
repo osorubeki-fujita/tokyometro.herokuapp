@@ -1,341 +1,77 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
-
-%commonSettingsOfBottomOfHeaderInFareTables {
-    .header_bottom {
-        border: {
-            bottom: {
-                style: solid;
-                width: 6px ;
-            }
-        }
-    }
-}
-
-%fareCellCommonSettings {
-    @include text_en ;
-    font: {
-        size: 14pt ;
-        weight: bold ;
-    }
-    text-align: right ;
-    padding: {
-        right: 4px ;
-    }
-}
-
-@mixin colorSettingsOfBottomOfHeaderInFareTables( $color ) {
-    .header_bottom {
-        border: {
-            bottom: {
-                color: $color ;
-            }
-        }
-    }
-}
-
-@mixin fareCellColorSettingIcCard1( $ic_card_color_base ) {
-  background-color: rgba( $ic_card_color_base , 0.2 ) ;
-}
-@mixin fareCellColorSettingIcCard2( $ic_card_color_base ) {
-  background-color: rgba( $ic_card_color_base , 0.3 ) ;
-}
-@mixin fareCellColorSettingIcCard3( $ic_card_color_base ) {
-  background-color: rgba( $ic_card_color_base , 0.4 ) ;
-}
-@mixin fareCellColorSettingIcCard4( $ic_card_color_base ) {
-  background-color: rgba( $ic_card_color_base , 0.5 ) ;
-}
-@mixin fareCellColorSettingIcCard5( $ic_card_color_base ) {
-  background-color: rgba( $ic_card_color_base , 0.6 ) ;
-}
-@mixin fareCellColorSettingIcCard6( $ic_card_color_base ) {
-  background-color: rgba( $ic_card_color_base , 0.7 ) ;
-}
-
-@mixin fareCellColorSettingTicket1( $ticket_color_base ) {
-  background-color: rgba( $ticket_color_base , 0.3 ) ;
-}
-@mixin fareCellColorSettingTicket2( $ticket_color_base ) {
-  background-color: rgba( $ticket_color_base , 0.4 ) ;
-}
-@mixin fareCellColorSettingTicket3( $ticket_color_base ) {
-  background-color: rgba( $ticket_color_base , 0.5 ) ;
-}
-@mixin fareCellColorSettingTicket4( $ticket_color_base ) {
-  background-color: rgba( $ticket_color_base , 0.6 ) ;
-}
-@mixin fareCellColorSettingTicket5( $ticket_color_base ) {
-  background-color: rgba( $ticket_color_base , 0.7 ) ;
-}
-@mixin fareCellColorSettingTicket6( $ticket_color_base ) {
-  background-color: rgba( $ticket_color_base , 0.8 ) ;
-}
-
-@mixin fareCellColorSettings( $ic_card_color_base , $ticket_color_base ) {
-    td.ic_card_adult_1 { // 133 北千住 - 綾瀬
-        @include fareCellColorSettingIcCard1( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_adult_2 { // 165
-        @include fareCellColorSettingIcCard2( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_adult_3 { // 195
-        @include fareCellColorSettingIcCard3( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_adult_4 { // 237
-        @include fareCellColorSettingIcCard4( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_adult_5 { // 278
-        @include fareCellColorSettingIcCard5( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_adult_6 { // 308
-        @include fareCellColorSettingIcCard6( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_child_1 { // 133 北千住 - 綾瀬
-      @include fareCellColorSettingIcCard1( $ic_card_color_base ) ;
-      @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_child_2 { // 165
-        @include fareCellColorSettingIcCard2( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_child_3 { // 195
-        @include fareCellColorSettingIcCard3( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_child_4 { // 237
-        @include fareCellColorSettingIcCard4( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_child_5 { // 278
-        @include fareCellColorSettingIcCard5( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ic_card_child_6 { // 308
-        @include fareCellColorSettingIcCard6( $ic_card_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_adult_1 { // 140 北千住 - 綾瀬
-        @include fareCellColorSettingTicket1( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_adult_2 { // 170
-        @include fareCellColorSettingTicket2( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_adult_3 { // 200
-        @include fareCellColorSettingTicket3( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_adult_4 { // 240
-        @include fareCellColorSettingTicket4( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_adult_5 { // 280
-        @include fareCellColorSettingTicket5( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_adult_6 { // 310
-        @include fareCellColorSettingTicket6( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_child_1 { // 140 北千住 - 綾瀬
-        @include fareCellColorSettingTicket1( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_child_2 { // 170
-        @include fareCellColorSettingTicket2( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_child_3 { // 200
-        @include fareCellColorSettingTicket3( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_child_4 { // 240
-        @include fareCellColorSettingTicket4( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_child_5 { // 280
-        @include fareCellColorSettingTicket5( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-    td.ticket_child_6 { // 310
-        @include fareCellColorSettingTicket6( $ticket_color_base ) ;
-        @extend %fareCellCommonSettings ;
-    }
-}
+@import 'concern/station/in_table_cell.scss' ;
+@import 'fare/fare_cell.scss' ;
+@import 'fare/railway_line.scss' ;
+@import 'fare/starting_station.scss' ;
 
 #fare_tables {
-	table.fare_table {
-        $ic_card_color_base: mix( $operator_color , $jp_traditional_usuzakura , 0.6 ) ;
-        $ticket_color_base: mix( $operator_color , $jp_traditional_hakuji , 0.6 ) ;
-        @include fareCellColorSettings( $ic_card_color_base , $ticket_color_base ) ;
-        //
-		border: solid 1px #666 ;
-        border-collapse: collapse ;
-        border-spacing: 0px ;
-		margin: {
-			bottom: 32px ;
-		}
-        td {
-            border: solid 1px #ccc ;
-            padding: {
-                left: 8px ;
-                top: 2px ;
-                bottom: 2px ;
-            }
-        }
-        td.station_name {
-            clear: both ;
-            $station_name_height: 40px ;
-            $station_code_length: 24px ;
-            width: 192px ;
-            height: $station_name_height ;
-            &:hover {
-                background-color: #eee;
-            }
-            .station_name_domain {
-                height: $station_name_height ;
-				@extend %link_in_div ;
-                a {
-                    top: 0 ;
-                    left: 0 ;
-                }
-            }
-            .station_code_outer {
-				@extend %floatLeft ;
-                @extend %marginRight8 ;
-                $margin: 2px ;
-                $length_base: $station_code_length + $margin * 2 ;
-                width: $length_base ;
-                height: $length_base ;
-                background-color: #fff ;
-                @include border_radius( $length_base * 0.5 ) ;
-                .station_codes {
-					@extend %floatLeft ;
-                    margin: $margin ;
-                    img {
-                        width: $station_code_length ;
-                        height: $station_code_length ;
-                    }
-                }
-            }
-            .station_name_text {
-				@extend %floatLeft ;
-                .text_ja {
-                    font: {
-                        size: 12pt ;
-                    }
-                    .small {
-                        font: {
-                            size: 9pt ;
-                        }
-                    }
-                }
-                .text_en {
-                    font: {
-                        size: 7.2pt ;
-                    }
-                }
-            }
-        }
-        td.station_name.starting_station {
-            background-color: #f66 ;
-            color: #fff ;
-            .text_ja {
-                font: {
-                    size: 12pt ;
-                }
-            }
-            .text_en {
-                font: {
-                    size: 7.2pt ;
-                }
-            }
-        }
-        td.normal_fare {
-            background-color: $jp_traditional_geppaku ;
-        }
-        td.ic_card {
-            background-color: rgba( $ic_card_color_base , 0.8 ) ;
-        }
-        td.ticket {
-            background-color: rgba( $ticket_color_base , 0.8 ) ;
-        }
-        %widthOfAdultAndChild {
-            width: 64px ;
-        }
-        td.adult {
-            @extend %widthOfAdultAndChild ;
-        }
-        td.child {
-            @extend %widthOfAdultAndChild ;
-        }
-		td.no_fare {
-			background-color: #ccc ;
-		}
-        tr.empty_row {
-            height: 1px ;
-        }
-		td.starting_station {
-			background-color: #fcc ;
-            .text_ja {
-                font: {
-                    size: 10pt ;
-                }
-            }
-            .text_en {
-                font: {
-                    size: 6pt ;
-                }
-            }
-		}
-	}
-    .ginza {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_ginza_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+  @extend %fareTableSettingOfEachRailwayLine ;
+  table.fare_table {
+    $ic_card_color_base: mix( $operator_color , $jp_traditional_usuzakura , 0.6 ) ;
+    $ticket_color_base: mix( $operator_color , $jp_traditional_hakuji , 0.6 ) ;
+    @include fareCellColorSettings( $ic_card_color_base , $ticket_color_base ) ;
+    //
+    @extend %stationInfoInTableCommonSettings ;
+    @extend %tdStartingStation ;
+    td {
+      border: solid 1px #999 ;
     }
-    .marunouchi {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_marunouchi_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    //
+    border-collapse: collapse ;
+    border-spacing: 0px ;
+    margin: {
+      bottom: 32px ;
     }
-    .marunouchi_branch {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_tokyo_metro_marunouchi_b_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    td {
+      padding: {
+        top: 0px ;
+        bottom: 0px ;
+        left: 8px ;
+        right: 8px ;
+      }
     }
-    .hibiya {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_hibiya_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    //
+    td.station_info {
+      $station_name_height: 40px ;
+      width: 192px ;
+      height: $station_name_height ;
     }
-    .tozai {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_tozai_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    td.normal_fare {
+      background-color: $jp_traditional_geppaku ;
     }
-    .chiyoda {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_chiyoda_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    td.ic_card {
+      background-color: rgba( $ic_card_color_base , 0.8 ) ;
     }
-    .yurakucho {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_yurakucho_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    td.ticket {
+      background-color: rgba( $ticket_color_base , 0.8 ) ;
     }
-    .hanzomon {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_hanzomon_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    %widthOfAdultAndChild {
+      width: 64px ;
     }
-    .namboku {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_namboku_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    td.adult {
+      @extend %widthOfAdultAndChild ;
     }
-    .fukutoshin {
-        @include colorSettingsOfBottomOfHeaderInFareTables( $line_fukutoshin_bgcolor ) ;
-        @extend %commonSettingsOfBottomOfHeaderInFareTables ;
+    td.child {
+      @extend %widthOfAdultAndChild ;
     }
+    tr.empty_row {
+      height: 6px ;
+    }
+    td.no_fare {
+      background-color: #ccc ;
+    }
+    tr.header , tr.fares {
+      td {
+        padding: {
+          top: 2px ;
+          bottom: 2px ;
+        }
+        font: {
+          size: 10.5pt ;
+        }
+      }
+    }
+  }
 }

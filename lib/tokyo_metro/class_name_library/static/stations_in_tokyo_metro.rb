@@ -14,11 +14,11 @@ module TokyoMetro::ClassNameLibrary::Static::StationsInTokyoMetro
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::StationsInTokyoMetro::Hash
+      ::TokyoMetro::Factory::Generate::Static::StationsInTokyoMetro::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::StationsInTokyoMetro::Info
+      ::TokyoMetro::Factory::Generate::Static::StationsInTokyoMetro::Info
     end
 
     # タイトル

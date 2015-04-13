@@ -1,6 +1,7 @@
 = render "common_content"
 
-= document_title_of_each_content( @title_ja , @title_en )
+= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
 %div{ id: :railway_lines }
   - # operator = railway_line.operator ; raise "Error: " + railway_line.same_as if operator.nil? ; 
   - @railway_lines.select { | railway_line | railway_line.operator.present? }.group_by { | railway_line | railway_line.operator.id }.each do | operator_id , railway_lines |

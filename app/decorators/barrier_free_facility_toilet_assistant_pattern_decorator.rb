@@ -11,7 +11,7 @@ class BarrierFreeFacilityToiletAssistantPatternDecorator < Draper::Decorator
         = assistant
     HAML
   end
-  
+
   def image_basename
     ary = ::Array.new
     if object.available_to_wheel_chair?

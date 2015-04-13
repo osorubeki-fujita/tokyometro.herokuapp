@@ -1,0 +1,74 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%stationInfoTextInTableFontSizeSettings {
+  .text {
+    @extend %floatLeft ;
+    .text_ja {
+      font: {
+        size: 12pt ;
+        // weight: bold ;
+      }
+      .small {
+        font: {
+          size: 9pt ;
+          weight: normal ;
+        }
+      }
+      text-align: left ;
+    }
+    .text_en {
+      font: {
+        size: 7.2pt ;
+      }
+      text-align: left ;
+    }
+  }
+}
+
+%stationInfoCellLinkHover {
+  td.with_link:hover {
+    background: {
+      color: $jp_traditional_aijiro ;
+    }
+  }
+}
+
+
+%stationInfoInTableCommonSettings {
+  border: solid 1px #999 ;
+  @extend %stationInfoCellLinkHover ;
+  td.station_info {
+    @extend %stationInfoTextInTableFontSizeSettings ;
+    @extend %link_in_div ;
+    $station_code_img_length: 24px ;
+    padding: 0px ;
+    text-align: left ;
+    .station_info_domain {
+      margin: 8px ;
+    }
+    .station_codes {
+      @extend %floatLeft ;
+      @extend %marginRight8 ;
+      img.station_code {
+        @extend %floatLeft ;
+        width: $station_code_img_length ;
+        height: $station_code_img_length ;
+      }
+    }
+    .station_code_outer {
+      @extend %floatLeft ;
+      @extend %marginRight8 ;
+      background-color: #fff ;
+      $margin_of_inner_domain: 2px ;
+      $length_base: $station_code_img_length + $margin_of_inner_domain * 2 ;
+      width: $length_base ;
+      height: $length_base ;
+      @include border_radius( $length_base * 0.5 ) ;
+      .station_codes {
+        margin: $margin_of_inner_domain ;
+      }
+    }
+  }
+}

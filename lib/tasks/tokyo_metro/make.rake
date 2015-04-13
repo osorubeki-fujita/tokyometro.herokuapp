@@ -58,7 +58,7 @@ namespace :tokyo_metro do
 
     desc "駅名辞書の生成 (YAML <- CSV)"
     task :yaml_station_list => :load do
-      ::TokyoMetro::Factories::YamlStationList.process
+      ::TokyoMetro::Factory::YamlStationList.process
     end
     
     desc "Static Example の作成"

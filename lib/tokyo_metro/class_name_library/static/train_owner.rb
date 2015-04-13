@@ -18,19 +18,19 @@ module TokyoMetro::ClassNameLibrary::Static::TrainOwner
     end
 
     def factory_for_generating_from_saved_file
-      ::TokyoMetro::Factories::Generate::Static::TrainOwner::Hash
+      ::TokyoMetro::Factory::Generate::Static::TrainOwner::Hash
     end
 
     def factory_for_generating_from_hash
-      ::TokyoMetro::Factories::Generate::Static::TrainOwner::Info
+      ::TokyoMetro::Factory::Generate::Static::TrainOwner::Info
     end
 
     def factory_for_seeding_hash
-      ::TokyoMetro::Factories::Seed::Static::TrainOwner::Hash
+      ::TokyoMetro::Factory::Seed::Static::TrainOwner::Hash
     end
 
     def factory_for_seeding_info
-      ::TokyoMetro::Factories::Seed::Static::TrainOwner::Info
+      ::TokyoMetro::Factory::Seed::Static::TrainOwner::Info
     end
 
     def db_instance_class

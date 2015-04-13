@@ -1,8 +1,31 @@
 @charset "utf-8" ;
 
-@import 'font_settings.scss' ;
 @import '../../concern/connecting_railway_line_info.scss' ;
 @import 'color_settings_of_travel_time_info_through_operation.scss' ;
+
+%fontSettingsOfTravelTimeInfo {
+  $font_size_text_ja: 12pt ;
+  $font_size_text_small: $font_size_text_ja * 0.75 ;
+  .text_ja {
+    font: {
+      size: $font_size_text_ja ;
+      weight: bold ;
+    }
+    .small {
+      font: {
+        size: $font_size_text_small ;
+        weight: normal ;
+      }
+    }
+    line-height: 1.3em ;
+  }
+  .text_en {
+    font: {
+      size: $font_size_text_small ;
+    }
+    line-height: 1.2em ;
+  }
+}
 
 %settingsOfTravelTimeInfoRailwayColumn {
   $line_width: 48px ;
@@ -13,7 +36,7 @@
     padding: 0px ;
     text-align: center ;
     .travel_time_info_square {
-      @include text_en ;
+      @extend %text_en ;
       background-color: #fff ;
       color: $text_black_base_color ;
       width: $travel_time_square_length ;
@@ -29,26 +52,34 @@
 }
 
 %settingsOfTravelTimeInfoStationName {
-    td.station_name {
-        width: 192px ;
-        &:hover {
-            background-color: $jp_traditional_aijiro ;
-        }
-        @extend %link_in_div ;
-        .station_codes {
-            @extend %floatLeft ;
-            @extend %marginRight4 ;
-            img {
-                $length: 24px ;
-                width: $length ;
-                height: $length ;
-            }
-        }
-        .station {
-            @extend %floatLeft ;
-            @extend %fontSettingsOfTravelTimeInfo ;
-        }
+  td.station_info {
+    width: 256px ;
+    .station_info_domain {
+      margin: {
+        left: 8px ;
+        right: 16px ;
+        top: 8px ;
+        bottom: 8px ;
+      }
     }
+    @extend %link_in_div ;
+    &:hover {
+      background-color: $jp_traditional_aijiro ;
+    }
+    .station_codes {
+      @extend %floatLeft ;
+      @extend %marginRight4 ;
+      img {
+        $length: 24px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+    .text {
+      @extend %floatLeft ;
+      @extend %fontSettingsOfTravelTimeInfo ;
+    }
+  }
 }
 
 %commonSettingsOfTravelTimeInfo {
@@ -60,13 +91,10 @@
   border-collapse: separate ;
   border-spacing: 0px ;
   td {
-    padding: {
-      top: 0px ;
-      bottom: 0px ;
-    }
+    vertical-align: top ;
   }
   .travel_time {
-    @include text_en ;
+    @extend %text_en ;
     text-align: center ;
     height: 24px ;
     vertical-align: middle ;
@@ -74,14 +102,14 @@
       size: 8pt ;
     }
   }
-	tr.empty_row {
-		height: 4px ;
-	}
-	tr.through_operation {
-		td {
-			font: {
-				size: 10pt ;
-			}
-		}
-	}
+  tr.empty_row {
+    height: 4px ;
+  }
+  tr.through_operation {
+    td {
+      font: {
+        size: 10pt ;
+      }
+    }
+  }
 }
