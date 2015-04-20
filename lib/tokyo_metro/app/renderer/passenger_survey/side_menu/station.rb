@@ -16,7 +16,7 @@ class TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::Station < TokyoMetro
   def railway_lines_prior
     @all_railway_lines.where( id: @prior_railway_line_ids )
   end
-  
+
   def railway_lines_not_prior
     @all_railway_lines.where.not( id: @prior_railway_line_ids )
   end

@@ -526,7 +526,7 @@ class RailwayLineDecorator < Draper::Decorator
       %div{ class: div_classes }
         = this.render_railway_line_code( small: small_railway_line_code )
         = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
-    - survey_years.each do | survey_year |
+    - survey_years.sort.reverse.each do | survey_year |
       %li{ class: :survey_year }
         = link_to_unless_current( "" , url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: this.railway_line_page_name , survey_year: survey_year ) )
         %p{ class: :text_en }<

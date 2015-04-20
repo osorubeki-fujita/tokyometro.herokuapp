@@ -9,15 +9,8 @@ class TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::MetaClass < TokyoMet
   def render
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ class: :links , id: :links_to_passenger_survey_pages }
-  - # %div{ class: [ :title , :passenger_info_header ] }<
-  - #   = "路線別の乗降客数"
-  - #   %span{ class: :small }<
-  - #     != "（" + ::PassengerSurvey.latest_passenger_survey_year.to_s + "年度）"
   = proc_for_links_to_railway_line_pages.call
   = proc_for_links_to_year_pages.call
-  - # %li<
-  - #   %div{ class: [ :title , :passenger_info_header ] }<
-  - #     = "年度別の乗降客数（全駅）"
   = proc_for_links_to_station_pages.call
     HAML
   end
@@ -65,7 +58,7 @@ class TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::MetaClass < TokyoMet
             = "東京メトロ 全駅"
           %p{ class: :text_en }<
             = "All stations of Tokyo Metro"
-      - survey_years.each do | survey_year |
+      - survey_years.sort.reverse.each do | survey_year |
         = ::PassengerSurveyDecorator.render_link_to_year_page( survey_year )
       HAML
     }
