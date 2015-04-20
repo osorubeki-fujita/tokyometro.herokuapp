@@ -9,3 +9,5 @@ heroku run rake db:migrate
 
 heroku run bundle exec rake RAILS_ENV=production db:schema:load --app tokyometro
 heroku run rake db:schema:load --app tokyometro
+
+heroku run bundle exec rake RAILS_ENV=production db:data:load --app tokyometro

@@ -4,9 +4,10 @@ class TokyoMetro::Factory::Seed::Static::RailwayLine::Info < TokyoMetro::Factory
   include ::TokyoMetro::ClassNameLibrary::Static::RailwayLine
   include ::TokyoMetro::Factory::Seed::Reference::Operator
   include ::TokyoMetro::Factory::Seed::Reference::DcDate
+  include ::TokyoMetro::Factory::Seed::Common::Polymorphic::TwitterAccount
 
   def initialize( info )
-    super( info )
+    super( info , get_id: true )
 
     @id_urn = nil
     @geojson = nil
@@ -42,7 +43,7 @@ class TokyoMetro::Factory::Seed::Static::RailwayLine::Info < TokyoMetro::Factory
       :same_as ,
       :name_ja_normal , :name_ja_with_operator_name_precise , :name_ja_with_operator_name ,
       :name_en_normal , :name_en_with_operator_name_precise , :name_en_with_operator_name ,
-      :index , :css_class_name , :start_on , :twitter_widget_id , :twitter_account
+      :index , :css_class_name , :start_on # , :twitter_widget_id , :twitter_account
     ].each do | key_name |
       h[ key_name ] = @info.send( key_name )
     end
@@ -77,6 +78,10 @@ class TokyoMetro::Factory::Seed::Static::RailwayLine::Info < TokyoMetro::Factory
         super( whole , search_by: search_by )
       end
     DEF
+  end
+
+  def seed_optional_infos
+    seed_twitter_account
   end
 
 end

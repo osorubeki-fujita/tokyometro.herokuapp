@@ -27,6 +27,8 @@ class RailwayLine < ActiveRecord::Base
   belongs_to :main_railway_line , class: ::RailwayLine
   belongs_to :branch_railway_line , class: ::RailwayLine
 
+  has_many :twitter_accounts , as: :operator_or_railway_line
+
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
   include ::TokyoMetro::Modules::Db::Decision::Operator

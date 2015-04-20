@@ -10,6 +10,8 @@ class Operator < ActiveRecord::Base
   has_many :train_informations
   has_many :train_information_olds
 
+  has_many :twitter_accounts , as: :operator_or_railway_line
+
   include ::TokyoMetro::Modules::Common::Info::Operator
 
   # 指定された鉄道事業者の id を取得する

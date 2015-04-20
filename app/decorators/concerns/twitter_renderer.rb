@@ -1,30 +1,17 @@
 module TwitterRenderer
 
   def render_twitter_widget
-    raise "Error" unless twitter_widget_id.present?
-    h.content_tag( :div , class: :twitter ) do
-      h.concat( render_twitter_widget_domain + render_twitter_script )
+    _twitter_accounts = object.twitter_accounts
+    # raise "Error: " + object.to_s
+    # raise "Error: " + _twitter_accounts.to_s
+    if _twitter_accounts.present?
+      h.render inline: <<-HAML , type: :haml , locals: { twitter_accounts: _twitter_accounts , twitter_title: twitter_title }
+- twitter_accounts.each do | twitter_account |
+  %div{ class: :twitter }
+    - # = twitter_title
+    = twitter_account.decorate.render( twitter_title )
+      HAML
     end
-  end
-
-  private
-
-  def render_twitter_widget_domain
-    h.link_to( twitter_title , twitter_link_url ,
-      "data-widget-id" => twitter_widget_id ,
-      "data-chrome" => :nofooter ,
-      class: "twitter-timeline" ,
-      width: 240 ,
-      height: 320
-    )
-  end
-
-  def render_twitter_script
-    h.render( partial: "twitter_script" , type: :html )
-  end
-
-  def twitter_link_url
-    "https://twitter.com/#{ object.twitter_account }"
   end
 
 end

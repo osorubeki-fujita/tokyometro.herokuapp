@@ -25,7 +25,9 @@ class TokyoMetro::App::Renderer::Twitter < TokyoMetro::App::Renderer::MetaClass
       - if railway_lines.length == 1
         = railway_lines.first.decorate.render_twitter_widget
       - else
-        = railway_lines.map { | railway_line | railway_line.decorate.render_twitter_widget }.inject( :+ )
+        - railway_lines.each do | railway_line |
+          = railway_line.decorate.render_twitter_widget
+  = ::TwitterAccountDecorator.embed_twitter_script
     HAML
   end
 

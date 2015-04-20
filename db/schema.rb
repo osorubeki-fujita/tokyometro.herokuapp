@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413191029) do
+ActiveRecord::Schema.define(version: 20150420154542) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -196,8 +196,6 @@ ActiveRecord::Schema.define(version: 20150413191029) do
     t.string   "css_class_name",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "twitter_widget_id"
-    t.string   "twitter_account",           limit: 255
   end
 
   create_table "passenger_surveys", force: :cascade do |t|
@@ -265,8 +263,6 @@ ActiveRecord::Schema.define(version: 20150413191029) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_on"
-    t.integer  "twitter_widget_id"
-    t.string   "twitter_account",                    limit: 255
     t.boolean  "is_branch_railway_line"
     t.integer  "main_railway_line_id"
     t.boolean  "has_branch_railway_line"
@@ -641,6 +637,15 @@ ActiveRecord::Schema.define(version: 20150413191029) do
     t.integer  "necessary_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "twitter_accounts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "widget_id"
+    t.integer  "operator_or_railway_line_id"
+    t.string   "operator_or_railway_line_type"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "women_only_car_infos", force: :cascade do |t|

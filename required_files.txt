@@ -657,6 +657,8 @@ lib/tokyo_metro/factory/seed/common/hash.rb
 lib/tokyo_metro/factory/seed/common/info.rb
 lib/tokyo_metro/factory/seed/common/interruption.rb
 lib/tokyo_metro/factory/seed/common/list.rb
+lib/tokyo_metro/factory/seed/common/polymorphic.rb
+lib/tokyo_metro/factory/seed/common/polymorphic/twitter_account.rb
 lib/tokyo_metro/factory/seed/api.rb
 lib/tokyo_metro/factory/seed/api/meta_class.rb
 lib/tokyo_metro/factory/seed/api/meta_class/timetables.rb
