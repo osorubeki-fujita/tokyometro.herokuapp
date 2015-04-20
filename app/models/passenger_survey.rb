@@ -3,7 +3,7 @@ class PassengerSurvey < ActiveRecord::Base
   has_many :station_infos , through: :station_passenger_surveys , class: ::Station::Info
 
   def self.latest_passenger_survey_year
-    self.all.pluck( :survey_year ).max
+    all.pluck( :survey_year ).max
   end
 
   [ :journeys , :passenger_journey , :journey ].each do | method_name |
@@ -44,6 +44,11 @@ class PassengerSurvey < ActiveRecord::Base
   }
 
   def station_name_in_system
-    [ station_infos ].flatten.first.name_in_system.underscore
+    [ station_infos ].flatten.first.name_in_system
   end
+  
+  def station_page_name
+    station_name_in_system.underscore
+  end
+  
 end

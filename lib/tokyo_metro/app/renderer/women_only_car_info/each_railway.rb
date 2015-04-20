@@ -7,7 +7,7 @@ class TokyoMetro::App::Renderer::WomenOnlyCarInfo::EachRailwayLine < TokyoMetro:
   end
 
   def render( display_railway_line: false )
-    v.render inline: <<-HAML , type: :haml , locals: h_locals( display_railway_line )
+    h.render inline: <<-HAML , type: :haml , locals: h_locals( display_railway_line )
 - railway_line_decorated = railway_line.decorate
 - if display_railway_line
   %div{ class: [ railway_line_decorated.css_class_name , :in_railway_line_group ] }
@@ -20,7 +20,7 @@ class TokyoMetro::App::Renderer::WomenOnlyCarInfo::EachRailwayLine < TokyoMetro:
   end
 
   def render_each_women_only_car_info
-    v.render inline: <<-HAML , type: :haml , locals: { infos: @infos }
+    h.render inline: <<-HAML , type: :haml , locals: { infos: @infos }
 - infos.group_by( &:operation_day_id ).each do | operation_day_id , group_by_operation_day_id |
   %div{ class: :operation_day }<
     = ::OperationDay.find( operation_day_id ).decorate.render_in_women_only_car_info

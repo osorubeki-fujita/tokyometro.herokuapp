@@ -1,7 +1,7 @@
 class StationTimetableController < ApplicationController
 
-  # include EachStation
   include ActionBaseForStationPage
+  include RailwayLineByParams
 
   include EachRailwayLine
   include YurakuchoAndFukutoshinLine
@@ -30,15 +30,13 @@ class StationTimetableController < ApplicationController
     each_railway_line_sub( "各駅の時刻表" , "station_timetable" , *railway_lines_same_as , with_branch: true )
   end
 
-  private
-
   def base_of_station_page_title
     railway_line_name = [ @railway_line ].flatten.map( &:name_ja).join( "・" )
     "の時刻表（#{ railway_line_name }）"
   end
 
   def set_railway_line
-    @railway_line = railway_line_by_params( branch_railway_line: :no_process )
+    @railway_line = railway_line_by_params( branch_railway_line: :no_process , use_station_info: true )
   end
 
   def station_info_ids

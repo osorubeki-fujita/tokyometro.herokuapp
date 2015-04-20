@@ -8,7 +8,7 @@ class TokyoMetro::App::Renderer::WomenOnlyCarInfo < TokyoMetro::App::Renderer::M
 
   def render
     if @infos.present?
-      v.render inline: <<-HAML , type: :haml , locals: h_locals
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :women_only_car }
   = ::WomenOnlyCarInfoDecorator.render_sub_top_title
   - if infos.length > 1

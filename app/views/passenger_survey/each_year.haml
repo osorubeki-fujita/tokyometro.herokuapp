@@ -1,0 +1,9 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::Year.new( request , @survey_year ).render
+
+= ::PassengerSurveyDecorator.render_title_when_grouped_by_year( @survey_year )
+%div{ id: :passenger_survey_contents }
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::Table::Year.new( request , @passenger_survey_infos , @make_graph ).render
+  %div{ id: :passenge_survey_graph }

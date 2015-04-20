@@ -7,7 +7,7 @@ class TokyoMetro::App::Renderer::SideMenu::Link::List < TokyoMetro::App::Rendere
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: { ul_id: @ul_id , link_instances: @link_instances }
+    h.render inline: <<-HAML , type: :haml , locals: { ul_id: @ul_id , link_instances: @link_instances }
 %ul{ id: ul_id , class: :links }
   - link_instances.each do | link_instance |
     = link_instance.render

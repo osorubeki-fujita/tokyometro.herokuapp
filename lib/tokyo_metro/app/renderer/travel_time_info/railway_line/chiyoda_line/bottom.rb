@@ -7,7 +7,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::RailwayLine::ChiyodaLine::Botto
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: [ :through_operation_info_row , position ] , colspan: columns }
 %tr{ class: [ :through_operation_info_row , position ] }
   %td{ class: :through_operation_infos , colspan: ( left_columns + columns_next_to_railway_line ) , rowspan: 2 }

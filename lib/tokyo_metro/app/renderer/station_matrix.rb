@@ -10,7 +10,7 @@ class TokyoMetro::App::Renderer::StationMatrix < TokyoMetro::App::Renderer::Meta
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 = ::TokyoMetro::App::Renderer::Concern::Header::Selection.station_from_railway_line( request ).render
 %div{ id: :station_matrixes }
   - railway_lines.each do | railway_line |

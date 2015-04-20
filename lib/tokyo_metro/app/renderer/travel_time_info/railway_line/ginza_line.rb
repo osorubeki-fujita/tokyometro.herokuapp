@@ -4,7 +4,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::RailwayLine::GinzaLine < TokyoM
 
   def additional_info_bottom
     ::Proc.new {
-      v.render inline: <<-HAML , type: :haml , locals: { columns: columns }
+      h.render inline: <<-HAML , type: :haml , locals: { columns: columns }
 %tr{ class: :additional_info_bottom }
   %td{ colspan: columns }
     %div{ class: :info }

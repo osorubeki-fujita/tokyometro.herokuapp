@@ -4,7 +4,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::Normal::Whole 
 
   # 乗車位置情報のタブを作成
   def render_tab
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %li{ class: [ "tab_for_" + info.tab_name.to_s , :platform_info_tab ] }<
   %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTabByPageLink('" + info.tab_name.to_s + "' , true ) ; return false ; " ) }
     %div{ class: info.railway_line.css_class_name }

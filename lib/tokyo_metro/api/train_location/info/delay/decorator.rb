@@ -5,7 +5,7 @@ class TokyoMetro::Api::TrainLocation::Info::Delay::Decorator < TokyoMetro::Api::
   end
 
   def render_in_location_of_each_train
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :delay }
   %div{ class: :title_of_delay }
     %p{ class: :text_ja }<>
@@ -22,21 +22,21 @@ class TokyoMetro::Api::TrainLocation::Info::Delay::Decorator < TokyoMetro::Api::
   end
 
   def render_ja_in_train_information
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %p{ class: :max_delay }<
   = "現在の遅れ 最大 " + this.object.to_s_ja
     HAML
   end
 
   def render_en_in_train_information
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %p{ class: :max_delay }<
   = "Max delay: " + this.object.to_s_en
     HAML
   end
 
   def render_in_train_information_precise_version
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :max_delay }<
   = "最大遅れ：" + this.object.delay.to_s + "秒"
     HAML

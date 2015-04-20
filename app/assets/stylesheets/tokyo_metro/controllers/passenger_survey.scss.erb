@@ -1,0 +1,205 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'concern/station/in_table_cell.scss' ;
+
+%passengerSurveyTableCommonSettings {
+  #passenger_survey_table {
+    table {
+      @extend %stationInfoInTableCommonSettings ;
+      @extend %cycleOfRowColor ;
+      border-collapse: collapse ;
+      border-spacing: 0px ;
+      td {
+        padding: {
+          top: 0px ;
+          bottom: 0px ;
+          left: 8px ;
+          right: 8px ;
+        }
+      }
+      tr.passenger_survey_table_row {
+          border: {
+            top: dotted 1px #999 ;
+            bottom: dotted 1px #999 ;
+          }
+        td {
+          text-align: right ;
+        }
+        td.order {
+          min-width: 28px ;
+        }
+        td.order.railway_line {
+          padding: {
+            left: 16px ;
+            right: 4px ;
+          }
+        }
+        td.order.all {
+          padding: {
+            left: 4px ;
+            right: 8px ;
+          }
+          font: {
+            size: 8pt ;
+          }
+        }
+        td.survey_year {
+          color: #666 ;
+          font: {
+            size: 9pt ;
+          }
+          @extend %link_in_div ;
+        }
+        td.passenger_journey {
+          font: {
+            size: 12pt ;
+          }
+        }
+        td.graph {
+          svg {
+            height: <%= ::TokyoMetro::App::Renderer::PassengerSurvey::Table::MetaClass::Row.rectangle_height %>px ;
+            width: 0px ;
+          }
+        }
+      }
+      thead {
+        background-color: #e6e6e6 ;
+        font: {
+          size: 9pt ;
+        }
+        tr {
+          border: solid 1px #999 ;
+        }
+        td {
+          text-align: left ;
+          padding: {
+            top: 4px ;
+            bottom: 4px ;
+          }
+          border: {
+            bottom: solid 1px #999 ;
+          }
+          .small {
+            font: {
+              size: 7pt ;
+            }
+          }
+        }
+      }
+    }   
+  }
+}
+
+@mixin passengerSurveyTableSvgColorSettings( $color ) {
+  td.graph {
+    svg {
+      rect {
+        fill: $color ;
+      }
+   }
+  }
+}
+
+@mixin passengerSurveyTableRailwaySettings( $img_length , $img_margin_right ) {
+  .ginza {
+    @include passengerSurveyTableSvgColorSettings( $line_ginza_bgcolor ) ;
+  }
+  .marunouchi {
+    @include passengerSurveyTableSvgColorSettings( $line_marunouchi_bgcolor ) ;
+  }
+  .hibiya {
+    @include passengerSurveyTableSvgColorSettings( $line_hibiya_bgcolor ) ;
+  }
+  .tozai {
+    @include passengerSurveyTableSvgColorSettings( $line_tozai_bgcolor ) ;
+  }
+  .chiyoda {
+    @include passengerSurveyTableSvgColorSettings( $line_chiyoda_bgcolor ) ;
+  }
+  .yurakucho {
+    @include passengerSurveyTableSvgColorSettings( $line_yurakucho_bgcolor ) ;
+  }
+  .hanzomon {
+    @include passengerSurveyTableSvgColorSettings( $line_hanzomon_bgcolor ) ;
+  }
+  .namboku {
+    @include passengerSurveyTableSvgColorSettings( $line_namboku_bgcolor ) ;
+  }
+  .fukutoshin {
+    @include passengerSurveyTableSvgColorSettings( $line_fukutoshin_bgcolor ) ;
+  }
+}
+
+%bgcolorOfPassengerSurveyOfStation {
+  $color_top: rgba( $operator_color , 0.2 ) ;
+  $color_bottom: #f6f6f6 ;
+  //
+  background: $color_top ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    to( #{$color_bottom} )
+  );
+}
+
+#passenger_survey_contents {
+  $img_length: 24px ;
+  $img_margin_right: 4px ;
+  //
+  @extend %passengerSurveyTableCommonSettings ;
+  //
+  #passenger_survey_table {
+    td.station_info {
+      padding: 0px ;
+      .station_codes {
+        margin: {
+          right: $img_margin_right ;
+        }
+        img.station_code {
+          margin: {
+            right: $img_margin_right ;
+          }
+        }
+      }
+    }
+  }
+  .tokyo_metro , .station {
+    table {
+      @include passengerSurveyTableSvgColorSettings( $operator_color ) ;
+    }
+  }
+  @include passengerSurveyTableRailwaySettings( $img_length , $img_margin_right ) ;
+}
+
+#main_content_center {
+  .ranking {
+    clear: both ;
+  }
+}
+
+#passenger_survey_of_station {
+  @extend %bgcolorOfPassengerSurveyOfStation ;
+  text-align: right ;
+  padding: {
+    top: 2px ;
+    bottom: 2px ;
+    right: 8px ;
+  }
+  @extend %marginBottom8 ;
+  $font_size_base: 12px ;
+  $font_size_year: $font_size_base * 0.75 ;
+  font: {
+    size: $font_size_base ;
+  }
+  .year {
+    font: {
+      size: $font_size_year ;
+    }
+  }
+}

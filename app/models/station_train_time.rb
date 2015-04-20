@@ -63,5 +63,25 @@ class StationTrainTime < ActiveRecord::Base
   def has_additional_infos?
     last_train? or start_at_this_station? or has_departing_platform_info? or has_station_timetable_starting_station_info? or has_train_timetable_arrival_info?
   end
+  
+  def hour_in_station_timetable
+    if departure_time_hour.present?
+      departure_time_hour
+    elsif arrival_time_hour.present?
+      arrival_time_hour
+    else
+      raise "Error"
+    end
+  end
+
+  def min_in_station_timetable
+    if departure_time_min.present?
+      departure_time_min
+    elsif arrival_time_min.present?
+      arrival_time_min
+    else
+      raise "Error"
+    end
+  end
 
 end

@@ -16,3 +16,5 @@ $link_normal_base_color: $text_black_base_color ;
 $link_visited_color: desaturate( $operator_color , 10% ) ;
 $link_hover_color: $jp_traditional_jinzamomi ;
 $link_active_color: saturate( $operator_color , 30% ) ;
+
+$link_hover_domain_color: $jp_traditional_aijiro ;

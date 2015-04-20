@@ -39,7 +39,7 @@ class TokyoMetro::App::Renderer::FareTable::ToEachRailwayLine::StationInfos::Gro
 
   # normal_fare_group_id が定義されている場合
   def render_when_normal_fare_group_is_present
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 - normal_fare_decorated = normal_fare_group.decorate
 - station_infos.each.with_index(1) do | station_info , i |
   - case i
@@ -57,7 +57,7 @@ class TokyoMetro::App::Renderer::FareTable::ToEachRailwayLine::StationInfos::Gro
   end
 
   def render_when_normal_fare_group_is_not_present
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 - # normal_fare_group_id が定義されている場合
 - # （運賃が設定されていない場合）
 - station_infos.each do | station_info , i |

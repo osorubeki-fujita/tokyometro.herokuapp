@@ -6,7 +6,7 @@ class TokyoMetro::App::Renderer::StationLinkList::MetaClass < TokyoMetro::App::R
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ id: domain_id }
   - groups_of_letters.each do | group |
     %ul{ class: domain_class_name_of_column }

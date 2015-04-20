@@ -62,7 +62,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
       index_of_train_location: options.try( :include? , :index_of_train_location )
     }
 
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :train_informations }
   = info.render_title_of_train_informations( index_of_train_location: index_of_train_location )
   = info.render_train_informations( controller , index_of_train_location )
@@ -84,7 +84,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
       include_train_locations: include_train_locations
     }
 
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :real_time_info_and_update_button }
   = info.render_title_of_real_time_infos
   %ul{ class: :time_infos }
@@ -98,7 +98,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
   end
 
   def render_time_info_of_train_informations
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %li{ class: :train_information }
   %ul{ class: :titles }
     %li{ class: :title }<
@@ -158,7 +158,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
       include_train_locations: include_train_locations
     }
 
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 - frequency = info.frequency_of_train_location_info.sort.uniq.map( &:to_s ).join( " - " )
 %li{ class: :train_locations }
   %ul{ class: :titles }
@@ -232,14 +232,14 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
       index_of_train_location: index_of_train_location
     }
 
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 - info.infos_of_each_railway_line.each do | info_of_a_railway_line |
   = info_of_a_railway_line.render_train_information( controller )
     HAML
   end
 
   def render_train_informations_precise_version
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: [ :precise_version_title , :text_ja ] }<
   = ::TrainInformationDecorator.common_title_ja + " " + "詳細版"
 - info.infos_of_each_railway_line.each do | info_of_a_railway_line |
@@ -248,7 +248,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
   end
 
   def render_train_informations_test_version
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: [ :test_title , :text_ja ] }<
   = ::TrainInformationDecorator.common_title_ja + " " + "テスト"
 - info.infos_of_each_railway_line.each do | info_of_a_railway_line |
@@ -257,7 +257,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
   end
 
   def render_train_locations
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ id: :train_locations }
   - if info.has_one_railway_line?
     - info.infos_of_each_railway_line.each do | info_of_a_railway_line |
@@ -272,7 +272,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos < TokyoMetro::Factory::Decorate::M
 
   def render_title_of_train_informations( index_of_train_location: false )
     proc_for_additional_content = ::Proc.new {
-      v.render inline: <<-HAML , type: :haml , locals: { info: self , index_of_train_location: index_of_train_location }
+      h.render inline: <<-HAML , type: :haml , locals: { info: self , index_of_train_location: index_of_train_location }
 - if index_of_train_location and info.has_train_locations?
   %div{ class: :link_info_to_train_location_of_each_railway_line }
     %div{ class: :icon }<

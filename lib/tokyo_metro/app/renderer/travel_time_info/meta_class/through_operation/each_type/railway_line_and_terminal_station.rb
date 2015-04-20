@@ -7,8 +7,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::ThroughOperation::Ea
   end
 
   def render( suffix: nil )
-    h = h_locals( suffix )
-    v.render inline: <<-HAML , type: :haml , locals: h
+    h.render inline: <<-HAML , type: :haml , locals: h_locals( suffix )
 %span{ class: :railway_line }<
   = railway_line.name_ja_with_operator_name_precise_and_without_parentheses
 %span{ class: :terminal_station }<>

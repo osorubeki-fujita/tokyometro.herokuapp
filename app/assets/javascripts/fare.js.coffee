@@ -1,13 +1,28 @@
 class FareTables
   constructor: ( @domains = $( '#fare_tables' ) ) ->
+  
+  has_table = (v) ->
+    return tables(v).length > 0
 
   tables = (v) ->
     return v.domains.children( '.fare_table' )
 
   process: ->
-    tables(@).each ->
+    if has_table(@)
+      process_each_fare_table(@)
+      process_links_to_railway_line_pages(@)
+    return
+
+  process_each_fare_table = (v) ->
+    tables(v).each ->
       t = new FareTable( $( this ) )
       t.process()
+      return
+    return
+
+  process_links_to_railway_line_pages = (v) ->
+    l = new LinksToRailwayLinePages( $( '#links_to_railway_line_pages' ) , 'fare' )
+    l.process()
     return
 
 window.FareTables = FareTables

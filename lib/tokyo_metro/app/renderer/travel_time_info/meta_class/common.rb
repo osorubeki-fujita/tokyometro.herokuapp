@@ -1,7 +1,7 @@
 module TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Common
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: railway_line.decorate.travel_time_table_id }
   %table{ class: :travel_time_info }
     - if additional_info_top.present?

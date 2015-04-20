@@ -1,8 +1,7 @@
 class PassengerSurveyController < ApplicationController
 
-  include EachRailwayLine
-  include MarunouchiLineBranch
-
+  include RailwayLineByParams
+  
   include EachStation
 
   def index
@@ -14,55 +13,49 @@ class PassengerSurveyController < ApplicationController
     render 'passenger_survey/index'
   end
 
-  def marunouchi_line
-    each_railway_line( "odpt.Railway:TokyoMetro.Marunouchi" , "odpt.Railway:TokyoMetro.MarunouchiBranch" )
-  end
-
-  [ 2011 , 2012 , 2013 ].each do | year |
-    eval <<-DEF
-      def in_#{ year }
-        by_year( #{year} )
-      end
-    DEF
+  def action_for_railway_line_or_year_page
+    @survey_year = survey_year
+    if params[ :railway_line ].to_s == "all"
+      action_for_year_page
+    else
+      action_for_railway_line_page
+    end
   end
 
   private
 
-  def each_railway_line( *railway_line_names , railway_line_name_ja: nil , railway_line_name_en: nil )
-    @railway_lines , @railway_lines_including_branch = [
-      ::RailwayLine.tokyo_metro( including_branch_line: false ) ,
-      ::RailwayLine.tokyo_metro( including_branch_line: true )
-    ].map { | railway_lines |
-      railway_lines.select { | item | railway_line_names.include?( item.same_as ) }
-    }
+  def action_for_year_page
+    @title = "#{ @survey_year }年度 各駅の乗降客数"
+    @passenger_survey_infos = ::PassengerSurvey.in_year( @survey_year ).order( passenger_journeys: :desc ).includes( :station_infos )
+    @make_graph = true
+    render 'passenger_survey/each_year'
+  end
 
-    @title = @railway_lines.map( &:name_ja ).join( "・" ) + " 各駅の乗降客数"
-
-    # Helper で定義
-    @survey_year = ::PassengerSurvey.latest_passenger_survey_year
+  def action_for_railway_line_page
+    @railway_lines = [ railway_line_by_params( :railway_line , branch_railway_line: :exclude , use_station_info: false ) ].flatten
+    @railway_lines_including_branch = [ railway_line_by_params( :railway_line , branch_railway_line: :main_and_branch , use_station_info: false ) ].flatten
+    @title = @railway_lines.map( &:name_ja ).join( "・" ) + " 各駅の乗降客数（#{ @survey_year }年度）"
 
     # 設定された年・路線のデータを取得し、乗降人員が多い順に並び替える。
-    @passenger_survey_infos = ::PassengerSurvey.list_of_a_railway_line( survey_year: @survey_year , railway_lines: @railway_lines_including_branch ).includes( :station_infos )
-
-    @type = :railway_line
+    @passenger_survey_infos_of_the_same_railway_line = ::PassengerSurvey.list_of_a_railway_line( survey_year: @survey_year , railway_lines: @railway_lines_including_branch ).includes( :station_infos )
+    @passenger_survey_infos_of_the_same_operator = ::PassengerSurvey.in_year( @survey_year ).order( passenger_journeys: :desc )
     @make_graph = true
     render 'passenger_survey/each_railway_line'
   end
 
-  def by_year( year_i )
-    @year = year_i
-    @title = "#{@year}年度 各駅の乗降客数"
-    @passenger_survey_infos = ::PassengerSurvey.in_year( @year ).order( passenger_journeys: :desc ).includes( :station_infos )
-    @type = :year
-    @make_graph = true
-    render 'passenger_survey/by_year'
-  end
-
   def each_station( station_info_same_as )
     each_station_sub( "駅 各年度の乗降客数" , "passenger_survey" , station_info_same_as ) do
-      @passenger_survey_infos = @station_info.passenger_surveys
-      @type = :station
+      @passenger_survey_infos = @station_info.passenger_surveys.order( survey_year: :desc )
+      @passenger_survey_infos_all = ::PassengerSurvey.all.order( passenger_journeys: :desc )
       @make_graph = true
+    end
+  end
+
+  def survey_year
+    if params[ :survey_year ].present?
+      params[ :survey_year ].to_i
+    else
+      ::PassengerSurvey.latest_passenger_survey_year
     end
   end
 

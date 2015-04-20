@@ -1,4 +1,4 @@
-﻿class TokyoMetro::Api::TrainLocation::Info::Decorator < TokyoMetro::Api::MetaClass::RealTime::Info::Decorator
+class TokyoMetro::Api::TrainLocation::Info::Decorator < TokyoMetro::Api::MetaClass::RealTime::Info::Decorator
 
   def initialize( request , obj , railway_line )
     super( request , obj )
@@ -8,7 +8,7 @@
   attr_reader :railway_line
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - train_type_in_api = ::TrainTypeInApi.find_by( same_as: this.object.train_type )
 - starting_station = ::Station::Info.find_by( same_as: this.object.starting_station )
 - terminal_station = ::Station::Info.find_by( same_as: this.object.terminal_station )
@@ -27,7 +27,7 @@
   end
 
   def render_train_number
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :train_number }
   %div{ class: :title_of_train_number }
     %p{ class: :text_ja }<
@@ -53,7 +53,7 @@
       ::Station::Info.find_by( same_as: station_info_same_as )
     }
 
-    v.render inline: <<-HAML , type: :haml , locals: { stations: stations }
+    h.render inline: <<-HAML , type: :haml , locals: { request: request , stations: stations }
 %div{ class: :current_position }
   %div{ class: :title_of_current_position }
     %p{ class: :text_ja }<
@@ -70,7 +70,7 @@
   end
 
   def render_delay
-    object.delay_instance.decorate.render_in_location_of_each_train
+    object.delay_instance.decorate( request ).render_in_location_of_each_train
   end
 
 end

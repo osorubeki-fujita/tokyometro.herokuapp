@@ -8,7 +8,7 @@ class TokyoMetro::App::Renderer::FareTable::Group < TokyoMetro::App::Renderer::M
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :fare_tables }
   - railway_lines_of_terminal_station.each do | railway_line |
     = ::TokyoMetro::App::Renderer::FareTable::ToEachRailwayLine.new( request , railway_line , station_infos_including_other_railway_lines , starting_station_info , fares , normal_fare_groups ).render

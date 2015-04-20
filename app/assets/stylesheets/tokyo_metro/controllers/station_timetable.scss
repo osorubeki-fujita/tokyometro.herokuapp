@@ -136,6 +136,15 @@ table.station_timetable {
             size: 18pt ;
             weight: bold ;
           }
+          p.is_arrival {
+            font: {
+              size: 8pt ;
+              weight: normal ;
+            }
+            // color: 
+            background-color: #eee ;
+            padding: 2px ;
+          }
         }
         .precise {
           @extend %stationTrainTimePreciseInfos ;

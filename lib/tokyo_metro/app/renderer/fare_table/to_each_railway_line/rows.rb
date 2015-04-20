@@ -19,7 +19,7 @@ class TokyoMetro::App::Renderer::FareTable::ToEachRailwayLine::Rows < TokyoMetro
   private
 
   def render_empty_row_when_no_station
-    v.render inline: <<-HAML , type: :haml
+    h.render inline: <<-HAML , type: :haml
 %tr{ class: :empty_row }<
   %td{ colspan:5 }<
     HAML

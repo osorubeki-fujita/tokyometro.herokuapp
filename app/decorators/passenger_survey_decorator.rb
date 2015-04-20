@@ -10,8 +10,8 @@ class PassengerSurveyDecorator < Draper::Decorator
       str += "（路線別）"
     when :year
       str += "（年度別）"
-    when :station
-      str += "（駅別）"
+    # when :station
+      # str += "（駅別）"
     end
     str
   end
@@ -49,90 +49,17 @@ class PassengerSurveyDecorator < Draper::Decorator
     HAML
   end
 
-  def self.render_right_contents
-    h.render inline: <<-HAML , type: :haml
-%div{ id: :links_to_passenger_survey_pages }
-  %ul{ class: :links }
-    %li<
-      = "年度別の乗降客数"
-      %ul<
-        - [ 2011 , 2012 , 2013 ].each do |y|
-          %li<
-            = link_to_unless_current( y.to_s + "年度" , "in_" + y.to_s )
-    %li
-      = "路線別の乗降客数"
-      %ul{ class: :links_to_railway_line_pages }
-        - ::RailwayLine.tokyo_metro( including_branch_line: false ).each do | railway_line |
-          %li{ class: railway_line.css_class_name }
-            = link_to_unless_current( railway_line.name_ja  , railway_line.css_class_name + "_line" )
-    %li
-      = "各駅の乗降客数"
+  def self.render_link_to_year_page( survey_year )
+    h.render inline: <<-HAML , type: :haml , locals: { survey_year: survey_year }
+%li{ class: :survey_year }
+  = link_to_unless_current( "" , url_for( controller: :passenger_survey , action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: survey_year ) )
+  %p{ class: :text_en }<
+    = survey_year
     HAML
   end
 
-  def self.render_header_of_table( type , make_graph )
-    h.render inline: <<-HAML , type: :haml , locals: { type: type , make_graph: make_graph }
-%thead{ id: :header_of_passenger_survey_table }
-  - case type
-  - when :year , :railway_line
-    %td{ class: :order }<
-      = "順位"
-  %td{ class: :station }<
-    = "駅"
-  - case type
-  - when :railway_line , :station
-    = ::PassengerSurveyDecorator.render_year_header
-  - if make_graph
-    %td{ colspan: 2 , class: :passenger_journeys }<
-      = "乗降客数"
-  - else
-    %td{ class: :passenger_journeys }<
-      = "乗降客数"
-    HAML
-  end
-
-  def self.render_year_header
-    h.render inline: <<-HAML , type: :haml
-%td{ class: :survey_year }<
-  = "調査年度"
-    HAML
-  end
-
-  # Table を作成するメソッド
-  def self.render_table( passenger_survey_infos , type , make_graph , railway_lines_including_branch )
-    h_locals ={
-      passenger_survey_infos: passenger_survey_infos ,
-      type: type ,
-      make_graph: make_graph ,
-      class_name: css_class_name_of_table( type , railway_lines_including_branch )
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :passenger_survey_table , class: class_name }
-  %table{ class: [ :table , "table-striped" ] }
-    = ::PassengerSurveyDecorator.render_header_of_table( type , make_graph )
-    = ::PassengerSurveyDecorator.render_body_of_table( passenger_survey_infos , type , make_graph )
-    HAML
-  end
-
-  def self.render_body_of_table( passenger_survey_infos , type , make_graph )
-    h_locals = {
-      passenger_survey_infos: passenger_survey_infos ,
-      type: type ,
-      make_graph: make_graph
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%tbody
-  - passenger_journey_max = ::PassengerSurveyDecorator.max_journeys_in_multiple_datas( passenger_survey_infos )
-  - passenger_survey_infos.each.with_index(1) do | passenger_survey_info , i |
-    = passenger_survey_info.decorate.render_table_row( i , passenger_journey_max , type , make_graph )
-    HAML
-  end
-
-  def self.max_journeys_in_multiple_datas( passenger_surveys )
-    base = 20000
-    ( passenger_surveys.pluck( :passenger_journeys ).max * 1.0 / base ).ceil * base
+  def self.link_to_year_page( survey_year )
+    h.link_to_unless_current( "" , h.url_for( controller: :passenger_survey , action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: survey_year ) )
   end
 
   def passenger_journeys_separated_by_comma
@@ -140,90 +67,57 @@ class PassengerSurveyDecorator < Draper::Decorator
   end
 
   alias :journeys_separated_by_comma :passenger_journeys_separated_by_comma
-
-  def svg_id(i)
-    "passengers_#{i}_#{station_name_in_system}"
+  
+  def render_station_name_in_table( station_info = station_infos.first )
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , station_info: station_info }
+- url_of_station_page = url_for( controller: :passenger_survey , action: station_info.name_in_system.underscore )
+- class_name_of_cell = [ :station_info ]
+- unless current_page?( url_of_station_page )
+  - class_name_of_cell << :with_link
+- station_infos = this.station_infos
+%td{ class: class_name_of_cell }
+  = link_to_unless_current( "" , url_of_station_page )
+  %div{ class: :station_info_domain }
+    = ::TokyoMetro::App::Renderer::StationCode::Normal.new( request , station_infos , first_info: station_info ).render
+    %div{ class: :text }<
+      = station_infos.first.decorate.render_name_ja_and_en
+    HAML
   end
-
-  def width_of_svg_rectangle( passenger_journey_max )
-    width_max = 120
-    [ ( object.passenger_journeys * 1.0 / passenger_journey_max * width_max ).round , width_max ].min
+  
+  def render_survey_year_in_table
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+- url_of_year_page = url_for( controller: :passenger_survey , action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: this.survey_year )
+- class_name_of_cell = [ :survey_year , :text_en ]
+- unless current_page?( url_of_year_page )
+  - class_name_of_cell << :with_link
+%td{ class: class_name_of_cell }<
+  = link_to_unless_current( "" , url_of_year_page )
+  = this.survey_year
+    HAML
   end
-
-  def render_table_row( i , passenger_journey_max , type , make_graph )
-    h_locals = {
-      passenger_survey_info: self ,
-      i: i ,
-      passenger_journey_max: passenger_journey_max ,
-      type: type ,
-      make_graph: make_graph
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%tr{ class: [ :passenger_survey_table_row , cycle( :odd_row , :even_row ) ] , "data-href" => passenger_survey_info.station_name_in_system }
-  - case type
-  - when :railway_line , :year
-    %td{ class: [ :order , :text_en ] }<
-      = i
-  - station_infos = passenger_survey_info.station_infos
-  - url_of_station_page = url_for( controller: :passenger_survey , action: station_infos.first.name_in_system.underscore )
-  - class_name_of_cell = [ :station_info ]
-  - unless current_page?( url_of_station_page )
-    - class_name_of_cell << :with_link
-  %td{ class: class_name_of_cell }
-    = link_to_unless_current( "" , url_of_station_page )
-    %div{ class: :station_info_domain }
-      - case type
-      - when :railway_line , :year , :station
-        = ::Station::InfoDecorator.render_station_code_images_in_passenger_survey_table_row( station_infos )
-        %div{ class: :text }<
-          = station_infos.first.decorate.render_name_ja_and_en
-  - case type
-  - when :railway_line , :station
-    %td{ class: [ :survey_year , :text_en ] }<
-      = passenger_survey_info.survey_year
-  %td{ class: [ :passenger_journey , :text_en ] }<
-    = passenger_survey_info.journeys_separated_by_comma
-  - if make_graph
-    %td{ class: :graph }
-      %svg{ id: passenger_survey_info.svg_id(i) }
-        = tag( :rect , x: 0 , y: 0 , width: passenger_survey_info.width_of_svg_rectangle( passenger_journey_max ) , height: 20 )
-- # %td{ class: :comparison }
-- # = compare_with_other_year( data_of_station )
+  
+  def render_passenger_journeys
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%td{ class: [ :passenger_journey , :text_en ] }<
+  = this.journeys_separated_by_comma
     HAML
   end
 
   def render_journeys_of_each_station
-    h.render inline: <<-HAML , type: :haml , locals: { passenger_survey_info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ id: :passenger_survey_of_station }
   %span{ class: :title }<
     = "1日平均乗降人員"
   %span{ class: :passenger_journey }<
     %span{ class: :text_en }<>
-      = passenger_survey_info.journeys_separated_by_comma
+      = this.journeys_separated_by_comma
     = "人"
   %span{ class: :year }<
     = "（"
     %span{ class: :text_en }<>
-      = passenger_survey_info.survey_year
+      = this.survey_year
     = "年度）"
     HAML
-  end
-
-  class << self
-
-    def css_class_name_of_table( type , railway_lines_including_branch )
-      case type
-      when :year
-        :tokyo_metro
-      when :railway_line
-        raise "Error" unless railway_lines_including_branch.present?
-        railway_lines_including_branch.first.css_class_name
-      when :station
-        :station
-      end
-    end
-
   end
 
 end

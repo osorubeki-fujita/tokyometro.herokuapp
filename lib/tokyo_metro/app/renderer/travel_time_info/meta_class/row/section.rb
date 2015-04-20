@@ -19,8 +19,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Section < Tokyo
   end
 
   def render
-    h = h_locals
-    v.render inline: <<-HAML , type: :haml , locals: h
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: :between_stations }
   - if additional_info_left_between_stations.present? and additional_info_left_between_stations.has_procedure_of?( section_info )
     = additional_info_left_between_stations.render( section_info )

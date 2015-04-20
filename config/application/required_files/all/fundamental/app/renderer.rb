@@ -9,10 +9,11 @@ class RailsTokyoMetro::Application::RequiredFiles::All::Fundamental::App::Render
       ::File.join( ::Rails.root , "lib" , "tokyo_metro" , "app" , "renderer" , "meta_class" ) ,
       Concern.files ,
       Document.files ,
+      PassengerSurvey.files ,
       SideMenu.files ,
-      Twitter.files ,
-      StationLinkList.files ,
       StationFacility.files ,
+      StationLinkList.files ,
+      Twitter.files ,
       TravelTimeInfo.files
     ]
   end

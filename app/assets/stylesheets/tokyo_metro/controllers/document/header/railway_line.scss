@@ -36,14 +36,13 @@
         }
 }
 
-@mixin borderAndPaddingWidthOfRailwayLineHeaderInDocument( $padding_left_width ) {
-// %borderAndPaddingWidthOfRailwayLineHeaderInDocument( $border_left_width , $padding_left_width ) {
+@mixin borderAndPaddingWidthOfRailwayLineHeaderInDocument( $border_left_width , $padding_left_width ) {
   .railway_line_name {
-    // border: {
-    //   left: {
-    //     width: $border_left_width ;
-    //   }
-    // }
+    border: {
+      left: {
+        width: $border_left_width ;
+      }
+    }
     padding: {
       left: $padding_left_width ;
     }
@@ -118,10 +117,10 @@
     }
 }
 
-.railway_line {
+.document.railway_line {
     $border_left_width: 8px ;
     $padding_left_width: 8px ;
     @extend %railwayLineHeaderInDocumentCommonSettings ;
-    @include borderAndPaddingWidthOfRailwayLineHeaderInDocument( $padding_left_width ) ;
+    @include borderAndPaddingWidthOfRailwayLineHeaderInDocument( $border_left_width , $padding_left_width ) ;
 }
 @include borderColorOfRailwayLineHeaderInDocument ;

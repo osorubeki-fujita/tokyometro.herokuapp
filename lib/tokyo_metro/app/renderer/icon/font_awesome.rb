@@ -8,8 +8,8 @@ class TokyoMetro::App::Renderer::Icon::FontAwesome < TokyoMetro::App::Renderer::
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
-= h.content_tag( :i , "" , class: classes )
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
+= content_tag( :i , "" , class: classes )
     HAML
   end
 

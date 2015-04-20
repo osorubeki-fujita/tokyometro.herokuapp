@@ -2,10 +2,9 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MultipleRailwa
 
   include ::TokyoMetro::App::Renderer::StationFacility::Platform::Info::MultipleRailwayLines::Common
 
-
   # 乗車位置情報のタブを作成
   def render_tab
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %li{ class: [ "tab_for_" + info.tab_name , :platform_info_tab ] }<
   %div{ class: :railway_line_name , onclick: raw( "changeStationFacilityPlatformInfoTabByPageLink('" + info.tab_name.to_s + "' , true ) ; return false ; " ) }
     - info.railway_lines.each do | railway_line |

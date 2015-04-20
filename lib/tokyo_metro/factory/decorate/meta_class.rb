@@ -27,46 +27,6 @@ class TokyoMetro::Factory::Decorate::MetaClass
 
   attr_reader :request
 
-  def self.v
-    @@action_view_base
-  end
-
-  def v
-    @@action_view_base
-  end
-
-  def self.c
-    @@action_controller_base
-  end
-
-  def c
-    @@action_controller_base
-  end
-
-  def self.u
-    @@url_helpers
-  end
-
-  def u
-    @@url_helpers
-  end
-
-  def self.url_helpers
-    @@url_helpers
-  end
-
-  def url_helpers
-    @@url_helpers
-  end
-
-  def self.h
-    @@application_controller_helper
-  end
-
-  def h
-    @@application_controller_helper
-  end
-
   private
 
   def default_url_options
@@ -84,10 +44,56 @@ class TokyoMetro::Factory::Decorate::MetaClass
     }
   end
 
+  def path
+    ::Rails.application.routes.recognize_path( @request.referer )
+  end
+
+  def v
+    @@action_view_base
+  end
+
+  def c
+    @@action_controller_base
+  end
+
+  def u
+    @@url_helpers
+  end
+
+  def url_helpers
+    @@url_helpers
+  end
+
+  def h
+    @@application_controller_helper
+  end
+
   class << self
+
+    private
 
     def default_url_options
       ::ActionController::Base.default_url_options
+    end
+
+    def v
+      @@action_view_base
+    end
+  
+    def c
+      @@action_controller_base
+    end
+  
+    def u
+      @@url_helpers
+    end
+  
+    def url_helpers
+      @@url_helpers
+    end
+  
+    def h
+      @@application_controller_helper
     end
 
   end

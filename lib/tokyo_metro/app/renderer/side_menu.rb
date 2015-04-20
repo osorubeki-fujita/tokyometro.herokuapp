@@ -1,7 +1,7 @@
 class TokyoMetro::App::Renderer::SideMenu < TokyoMetro::App::Renderer::MetaClass
 
   def self.render_all( request )
-    v.render inline: <<-HAML , type: :haml , locals: { all_list: all_list( request ) }
+    h.render inline: <<-HAML , type: :haml , locals: { all_list: all_list( request ) }
 %div{ id: :side_menu }
   - all_list.each do | list |
     = list.render

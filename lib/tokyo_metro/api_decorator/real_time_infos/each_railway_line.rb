@@ -18,7 +18,7 @@ class TokyoMetro::ApiDecorator::RealTimeInfos::EachRailwayLine < TokyoMetro::Fac
   end
 
   def render_train_information_test
-    v.render inline: <<-HAML , type: :haml , locals: { railway_line: @railway_line , status_list_for_test: STATUS_LIST_FOR_TEST }
+    h.render inline: <<-HAML , type: :haml , locals: { railway_line: @railway_line , status_list_for_test: STATUS_LIST_FOR_TEST }
 - railway_line_decorated = railway_line.decorate
 - status_list_for_test.each do | test_status |
   %div{ class: [ :train_information_test , :railway_line ] }
@@ -48,8 +48,8 @@ class TokyoMetro::ApiDecorator::RealTimeInfos::EachRailwayLine < TokyoMetro::Fac
   end
 
   def render_train_locations
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
-= info.train_locations.exclude_toei_mita_line.decorate( info.railway_line ).render
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+= info.train_locations.exclude_toei_mita_line.decorate( request , info.railway_line ).render
     HAML
   end
 

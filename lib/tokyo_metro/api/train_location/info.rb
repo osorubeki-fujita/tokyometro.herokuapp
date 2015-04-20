@@ -83,7 +83,7 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
   # 方面 - odpt:RailDirection
   # @return [String]
   # @example
-  #  odpt.RailDirection:TokyoMetro.Shibuya（渋谷方面行きを表す）
+  #  odpt.RailDirection:TokyoMetro.Shibuya - 渋谷方面行きを表す
   attr_reader :railway_direction
 
   # @!group 遅延 (For users)
@@ -106,8 +106,8 @@ class TokyoMetro::Api::TrainLocation::Info < TokyoMetro::Api::MetaClass::RealTim
 
   # @!endgroup
 
-  def decorate( railway_line )
-    ::TokyoMetro::Api::TrainLocation::Info::Decorator.new( self , railway_line )
+  def decorate( request , railway_line )
+    ::TokyoMetro::Api::TrainLocation::Info::Decorator.new( request , self , railway_line )
   end
 
   def railway_direction_in_api_same_as

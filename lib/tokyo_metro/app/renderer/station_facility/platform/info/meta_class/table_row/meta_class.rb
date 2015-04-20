@@ -24,7 +24,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Tab
       end
     end
 
-    v.render inline: <<-HAML , type: :haml , locals: { ary: ary }
+    h.render inline: <<-HAML , type: :haml , locals: { ary: ary }
 - ary.each do | element |
   - if element.blank?
     = ::StationFacilityPlatformInfoDecorator.render_an_empty_cell

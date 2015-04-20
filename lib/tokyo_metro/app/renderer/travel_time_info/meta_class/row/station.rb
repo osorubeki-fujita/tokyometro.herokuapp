@@ -17,8 +17,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Station < Tokyo
   end
 
   def render
-    h = h_locals
-    v.render inline: <<-HAML , type: :haml , locals: h
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 - station_info_decorated = station_info.decorate
 
 %tr{ class: :station_info_row }

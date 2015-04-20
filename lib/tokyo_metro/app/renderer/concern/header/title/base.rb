@@ -1,7 +1,7 @@
 class TokyoMetro::App::Renderer::Concern::Header::Title::Base < TokyoMetro::App::Renderer::Concern::Header::Title::MetaClass
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: domain_class_name }
   %h1{ class: h1_class_name }<
     = text_ja

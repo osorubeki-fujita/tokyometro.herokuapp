@@ -4,13 +4,14 @@ class Initializer
     top_content = new TopContent()
     document = new Document()
 
-    railway_line_and_station_matrixes = new RailwayLineMatrixes()
+    railway_line_matrixes = new RailwayLineMatrixes()
+    station_matrixes = new StationMatrixes()
     railway_line_codes = new RailwayLineCodes()
 
     railway_line = new RailwayLine()
     station_timetables = new StationTimetables()
     station_facility = new StationFacility()
-    passenger_survey_table = new PassengerSurveyTable()
+    passenger_survey = new PassengerSurvey()
     fare_table = new FareTables()
 
     train_informations = new TrainInformations()
@@ -34,22 +35,23 @@ class Initializer
     top_content.process()
     document.process()
 
-    railway_line_and_station_matrixes.process()
+    railway_line_matrixes.process()
+    station_matrixes.process()
     railway_line_codes.process()
 
     railway_line.process()
     station_timetables.process()
     station_facility.process()
-    passenger_survey_table.process()
+    passenger_survey.process()
     fare_table.process()
 
     train_informations.process()
     train_locations.process()
 
-    console.log '\#--------'
-    console.log 'Initializer\#process (1)'
+    # console.log '\#--------'
+    # console.log 'Initializer\#process (1)'
     links_to_station_info_pages.process()
-    console.log 'Initializer\#process (2)'
+    # console.log 'Initializer\#process (2)'
     selection_header_processor.process()
     real_time_info_processor.process()
     twitters_processor.process()

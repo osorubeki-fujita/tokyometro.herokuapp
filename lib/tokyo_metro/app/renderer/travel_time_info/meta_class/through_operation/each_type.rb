@@ -5,7 +5,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::ThroughOperation::Ea
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :through_operation_info }
   - if train_type.present?
     = train_type.decorate.render_name_box_in_travel_time_info
@@ -17,7 +17,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::ThroughOperation::Ea
   end
 
   def render_precise_infos
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 - if from_station.present?
   %p{ class: :from }<
     = "〈" + from_station.name_ja + "から〉"

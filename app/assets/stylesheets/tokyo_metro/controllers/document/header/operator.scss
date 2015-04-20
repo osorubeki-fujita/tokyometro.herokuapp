@@ -121,7 +121,7 @@
     }
 }
 
-.operator {
+.document.operator {
     $border_left_width: 8px ;
     $padding_left_width: 8px ;
     @extend %operatorHeaderInDocumentCommonSettings ;

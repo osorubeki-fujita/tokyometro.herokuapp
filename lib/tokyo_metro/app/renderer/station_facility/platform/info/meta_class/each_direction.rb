@@ -14,7 +14,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
 
   def render
     if has_transfer_infos? or has_barrier_free_facility_infos? or has_surrounding_area_infos?
-      v.render inline: <<-HAML , type: :haml , locals: h_locals
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 = info.render_direction_info
 = info.render_infos_of_each_platform
       HAML
@@ -23,7 +23,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
 
   def render_direction_info
     if @railway_direction.present?
-      v.render inline: <<-HAML , type: :haml , locals: { railway_direction: @railway_direction }
+      h.render inline: <<-HAML , type: :haml , locals: { railway_direction: @railway_direction }
 %div{ class: :info_of_railway_direction }
   %div{ class: :title_of_direction }
     %h4{ class: :text_ja }<
@@ -36,7 +36,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
 
   def render_infos_of_each_platform
     if has_one_car_composition_type?
-      v.render inline: <<-HAML , type: :haml , locals: { this: self }
+      h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %table{ class: :platform_info }
   = this.render_car_number_array_if_one_car_composition_type
   - # 乗換路線がある場合は、乗換の情報を記述
@@ -53,7 +53,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
   end
 
   def render_car_number_array_if_one_car_composition_type
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: [ info.railway_line_css_class_name , :car_numbers , :text_en ] }
   = ::StationFacilityPlatformInfoDecorator.render_an_empty_cell
   - ( 1..( info.max_car_composition ) ).each do | n |
@@ -64,11 +64,11 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
 
   def render_transfer_infos
     if has_transfer_infos?
-      h = {
+      hl = {
         request: request ,
         transfer_infos: transfer_infos
       }
-      v.render inline: <<-HAML , type: :haml , locals: h
+      h.render inline: <<-HAML , type: :haml , locals: hl
 %tr{ class: :transfer_infos }
   = ::StationFacilityPlatformInfoDecorator.render_transfer_info_title
   = ::TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::TableRow::TransferInfos.new( request , transfer_infos ).render
@@ -79,13 +79,13 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
   def render_barrier_free_facility_infos
     if has_barrier_free_facility_infos?
       _barrier_free_facility_infos = barrier_free_facility_infos
-      h = {
+      hl = {
         request: request ,
         inside: _barrier_free_facility_infos.map { | infos_of_each_car | infos_of_each_car.select( &:inside? ) } ,
         outside: _barrier_free_facility_infos.map { | infos_of_each_car | infos_of_each_car.select( &:outside? ) }
       }
 
-      v.render inline: <<-HAML , type: :haml , locals: h
+      h.render inline: <<-HAML , type: :haml , locals: hl
 - if inside.any?( &:present? )
   %tr{ class: :barrier_free_infos_inside }
     = ::StationFacilityPlatformInfoDecorator.render_inside_barrier_free_facility_title
@@ -101,11 +101,11 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::Eac
 
   def render_surrounding_area_infos
     if has_surrounding_area_infos?
-      h = {
+      hl = {
         request: request ,
         surrounding_area_infos: surrounding_area_infos
       }
-      v.render inline: <<-HAML , type: :haml , locals: h
+      h.render inline: <<-HAML , type: :haml , locals: hl
 %tr{ class: :surrounding_areas }
   = ::StationFacilityPlatformInfoDecorator.render_surrounding_area_info_title
   = ::TokyoMetro::App::Renderer::StationFacility::Platform::Info::MetaClass::TableRow::SurroundingAreaInfos.new( request , surrounding_area_infos ).render

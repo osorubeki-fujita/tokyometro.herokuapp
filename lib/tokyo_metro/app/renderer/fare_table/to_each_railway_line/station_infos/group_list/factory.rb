@@ -48,8 +48,6 @@ class TokyoMetro::App::Renderer::FareTable::ToEachRailwayLine::StationInfos::Gro
     end
   end
 
-  private
-
   # fare , normal_fare_group_id が存在しない場合は、normal_fare_group_id を便宜上 0 とする。
   def normal_fare_group_id( fare )
     if fare.nil?

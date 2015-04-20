@@ -64,7 +64,7 @@
     }
     @extend %link_in_div ;
     &:hover {
-      background-color: $jp_traditional_aijiro ;
+      background-color: $link_hover_domain_color ;
     }
     .station_codes {
       @extend %floatLeft ;

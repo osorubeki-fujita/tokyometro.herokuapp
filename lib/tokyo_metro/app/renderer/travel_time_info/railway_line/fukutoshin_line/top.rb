@@ -1,7 +1,7 @@
 class TokyoMetro::App::Renderer::TravelTimeInfo::RailwayLine::FukutoshinLine::Top < TokyoMetro::App::Renderer::TravelTimeInfo::RailwayLine::YurakuchoAndFukutoshinLine::Top
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: [ :through_operation_info_row , position ] }
   %td{ class: :empty_column }<
     = " "

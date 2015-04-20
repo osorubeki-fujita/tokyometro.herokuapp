@@ -1,7 +1,7 @@
 class FareController < ApplicationController
 
-  # include EachStation
   include ActionBaseForStationPage
+  include RailwayLineByParams
 
   def index
     @title = "運賃のご案内"
@@ -25,7 +25,7 @@ class FareController < ApplicationController
   end
 
   def set_railway_line_of_terminal_station_in_station_page
-    @railway_line_of_terminal_station = railway_line_by_params( branch_railway_line: :main_and_branch )
+    @railway_line_of_terminal_station = railway_line_by_params( branch_railway_line: :main_and_branch , use_station_info: true )
   end
 
 end

@@ -10,7 +10,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::ThroughOperation < T
   include ::TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Columns
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %tr{ class: [ :through_operation_info_row , position ] }<
 
   - if left_columns > 1 and ary.present?

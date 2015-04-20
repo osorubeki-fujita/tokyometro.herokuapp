@@ -24,12 +24,14 @@ class TokyoMetro::App::Renderer::Concern::Link::MetaClass < TokyoMetro::App::Ren
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    _h_locals = h_locals
+    h.render inline: <<-HAML , type: :haml , locals: _h_locals
 %li{ class: li_class_name }<
   = v.link_to_unless( ( request.fullpath == url ) , "" , url , only_path_setting: false , class: class_name_of_link , target: target )
   %div{ class: class_name_of_text_domain }<
-    %div{ class: :icon }
-      = ::TokyoMetro::App::Renderer::Icon.send( icon_name , request ).render
+    - if icon_name.present?
+      %div{ class: :icon }
+        = ::TokyoMetro::App::Renderer::Icon.send( icon_name , request ).render
     - if title_ja.present? and title_en.present?
       %div{ class: :text }
         - if title_ja.instance_of?( ::Array )

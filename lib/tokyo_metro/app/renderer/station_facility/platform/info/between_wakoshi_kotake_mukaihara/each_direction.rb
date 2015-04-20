@@ -7,7 +7,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::BetweenWakoshi
   end
 
   def render_special_direction_ja
-    v.render inline: <<-HAML , type: :haml
+    h.render inline: <<-HAML , type: :haml
 = "白金高輪・"
 %span{ class: :railway_line_name }<>
   ="南北線"

@@ -1,7 +1,7 @@
 class TokyoMetro::App::Renderer::SideMenu::NowDeveloping < TokyoMetro::App::Renderer::MetaClass
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :now_developing }
   = ::TokyoMetro::App::Renderer::SideMenu::NowDeveloping::Header.new( request ).render
   %div{ class: :info_text }

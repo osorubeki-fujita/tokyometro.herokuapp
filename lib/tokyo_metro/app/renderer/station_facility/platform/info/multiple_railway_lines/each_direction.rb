@@ -4,7 +4,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MultipleRailwa
 
   def render_direction_info
     if @railway_direction.present?
-      v.render inline: <<-HAML , type: :haml , locals: h_locals
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :info_of_railway_direction }
   %div{ class: :title_of_direction }
     - if info.of_special_direction?
@@ -30,7 +30,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::Info::MultipleRailwa
   end
 
   def render_special_direction_en
-    v.render inline: <<-HAML , type: :haml , locals: { special_direction_en: special_direction_en }
+    h.render inline: <<-HAML , type: :haml , locals: { special_direction_en: special_direction_en }
 = special_direction_en
     HAML
   end

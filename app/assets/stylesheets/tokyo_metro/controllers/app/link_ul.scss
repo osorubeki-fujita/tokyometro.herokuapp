@@ -6,58 +6,11 @@ $icon_common_width: 32px ;
 $width_of_li_border_in_link: 1px ;
 $border_color_of_li_in_link: #ddd ;
 
-%liBorderSettingsOfSideMenu {
-    border: {
-      top: {
-        style: dotted ;
-        width: $width_of_li_border_in_link ;
-        color: $border_color_of_li_in_link ;
-      }
-      bottom: {
-        style: dotted ;
-        width: $width_of_li_border_in_link ;
-        color: $border_color_of_li_in_link ;
-      }
-    }
-}
-
-ul.links {
-  .link_to_content , .link_to_document , .link_to_other_website , .link_to_railway_line_page {
-    margin: 4px ;
-  }
-  height: auto ;
-  margin: {
-    top: 0px ;
-    bottom: 16px ;
-  }
-  padding: {
-    left: 0px ;
-  }
-  li:hover {
-    background: {
-      color: $jp_traditional_aijiro ;
-    }
-    .icon {
-      color: desaturate( $operator_color , 20% ) ;
-    }
-    .text_large , .text_en {
-      color: $operator_color ;
-    }
-  }
-  a {
-    top: 0;
-    left: 0px;
-    color: #333 ;
-    text-decoration: none ;
-  }
-}
-
-ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages , ul#links_to_railway_line_pages {
-  li {
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages , ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages , ul#links_to_station_pages {
+  li.normal , li.small {
     //
     @extend %link_in_div ;
     list-style: none ;
-    //
     //
     margin: {
       bottom: -1 * $width_of_li_border_in_link ;
@@ -101,11 +54,6 @@ ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents ,
     div.icon {
       width: $icon_common_width ;
       height: $icon_common_width ;
-      img {
-        $length: 18px ;
-        width: $length ;
-        height: $length ;
-      }
     }
     .text_large , .text_ja {
       font: {
@@ -118,15 +66,169 @@ ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents ,
       }
     }
   }
-}
-
-ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents {
-  width: $width_of_left_contents ;
-  li {
-    width: floor( $width_of_left_contents * $bronze_ratio / ( $bronze_ratio + 1 ) ) ;
-    @extend %liBorderSettingsOfSideMenu ;
+  .link_to_content , .link_to_document , .link_to_other_website {
+    margin: 4px ;
+  }
+  .link_to_railway_line_page {
+    margin: 8px ;
+  }
+  height: auto ;
+  margin: {
+    top: 0px ;
+  }
+  padding: {
+    left: 0px ;
+  }
+  a {
+    top: 0;
+    left: 0px;
+    color: #333 ;
+    text-decoration: none ;
   }
 }
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages {
+  li.small {
+    div.icon {
+      img {
+        $length: 18px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+  }
+}
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages , ul#links_to_station_pages {
+  li.small {
+    div.icon {
+      img {
+        $length: 32px ;
+        width: $length ;
+        height: $length ;
+      }
+      @extend %marginRight8 ;
+    }
+  }
+}
+
+ul#links_to_year_pages {
+  li.tokyo_metro {
+    .link_to_operator_page {
+      margin: 8px ;
+    }
+  }
+}
+
+//-------- 左側サイドメニューの大きさの設定
+
+//---- 境界線の設定
+
+%liBorderSettingsOfSideMenu {
+  border: {
+    top: {
+      style: dotted ;
+      width: $width_of_li_border_in_link ;
+      color: $border_color_of_li_in_link ;
+    }
+    bottom: {
+      style: dotted ;
+      width: $width_of_li_border_in_link ;
+      color: $border_color_of_li_in_link ;
+    }
+  }
+}
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages {
+  width: $width_of_left_contents ;
+  li {
+    // width: floor( $width_of_left_contents * $bronze_ratio / ( $bronze_ratio + 1 ) ) ;
+    width: ceil( $width_of_left_contents * 0.9 ) ;
+    @extend %liBorderSettingsOfSideMenu ;
+  }
+  @extend %marginBottom16 ;
+}
+
+//-------- 路線ページへのリンク
+
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages {
+  .railway_line_code_32 {
+    @extend %marginRight8 ;
+  }
+  li {
+    @extend %floatLeft ;
+    @extend %link_in_div ;
+    border: solid 1px #ccc ;
+    margin: {
+      right: -1 * $width_of_li_border_in_link ;
+    }
+  }
+  li.railway_line {
+    .railway_line_code_32 , .text {
+      @extend %floatLeft ;
+    }
+  }
+}
+
+#main_content_center {
+  ul#links_to_railway_line_pages {
+    @extend %marginBottom32 ;
+    li {
+      @extend %floatLeft ;
+    }
+  }
+}
+
+ul#links_to_passenger_survey_pages {
+  ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
+    margin: {
+      bottom: 0px ;
+    }
+  }
+  ul.each_railway_line {
+    clear: both ;
+  }
+  margin: {
+    top: 0px ;
+  }
+  padding: 0px ;
+  @extend %marginBottom32 ;
+  li.survey_year {
+    margin: {
+      bottom: -1px ;
+    }
+  }
+}
+
+//-------- マウスオーバー時の文字色・背景色の設定（一般）
+
+%liHoverInLinkUl {
+    background: {
+      color: $link_hover_domain_color ;
+    }
+    .icon {
+      color: saturate( $operator_color , 20% ) ;
+    }
+    .text_large , .text_en {
+      color: $operator_color ;
+    }
+}
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages {
+  li.hover {
+    @extend %liHoverInLinkUl ;
+  }
+}
+
+ul#links_to_year_pages {
+  li.tokyo_metro.hover {
+    @extend %liHoverInLinkUl ;
+  }
+}
+
+
+//-------- Top ページヘのリンクの文字サイズ
 
 ul#links_to_main_contents {
   .top {
@@ -136,18 +238,94 @@ ul#links_to_main_contents {
   }
 }
 
-ul#links_to_railway_line_pages {
-  li {
-    @extend %floatLeft ;
-    width: 160px ;
-    height: 60px ;
-    .railway_line_code_32 , .text {
-      @extend %floatLeft ;
+//-------- マウスオーバー時の文字色・背景色の設定（路線ページ）
+
+@mixin linkToRailwayLineColorSetting( $color , $rate: 1 ) {
+  //---- jQuery で設定 hover 属性を設定
+  &.hover {
+    background: {
+      color: rgba( $color , 0.1 * $rate ) ;
     }
-    border: solid 1px #ccc ;
-    margin: {
-      right: -1 * $width_of_li_border_in_link ;
+    .text_en {
+      color: desaturate( $color , 60% ) ;
     }
   }
-  height: 180px + 1px ;
+  &.this_page {
+    background: {
+      color: rgba( $color , 0.2 * $rate ) ;
+    }
+    .text_en {
+      color: desaturate( $color , 60% ) ;
+    }
+  }
+}
+
+@mixin linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $color , $rate: 1 ) {
+  @include linkToRailwayLineColorSetting( $color , $rate ) ;
+  &.survey_year {
+    @include linkToRailwayLineColorSetting( $color , $rate * 0.8 ) ;
+  }
+}
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
+  li.ginza {
+    @include linkToRailwayLineColorSetting( $line_ginza_bgcolor ) ;
+  }
+  li.marunouchi {
+    @include linkToRailwayLineColorSetting( $line_marunouchi_bgcolor , 0.75 ) ;
+  }
+  li.marunouchi_branch {
+    @include linkToRailwayLineColorSetting( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
+  }
+  li.hibiya {
+    @include linkToRailwayLineColorSetting( $line_hibiya_bgcolor , 1.6 ) ;
+  }
+  li.tozai {
+    @include linkToRailwayLineColorSetting( $line_tozai_bgcolor ) ;
+  }
+  li.chiyoda {
+    @include linkToRailwayLineColorSetting( $line_chiyoda_bgcolor ) ;
+  }
+  li.yurakucho {
+    @include linkToRailwayLineColorSetting( $line_yurakucho_bgcolor , 1.3 ) ;
+  }
+  li.hanzomon {
+    @include linkToRailwayLineColorSetting( $line_hanzomon_bgcolor , 1.2 ) ;
+  }
+  li.namboku {
+    @include linkToRailwayLineColorSetting( $line_namboku_bgcolor ) ;
+  }
+  li.fukutoshin {
+    @include linkToRailwayLineColorSetting( $line_fukutoshin_bgcolor ) ;
+  }
+  ul.each_railway_line.ginza li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_ginza_bgcolor ) ;
+  }
+  ul.each_railway_line.marunouchi li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_marunouchi_bgcolor , 0.75 ) ;
+  }
+  ul.each_railway_line.marunouchi_branch li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
+  }
+  ul.each_railway_line.hibiya li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_hibiya_bgcolor , 1.6 ) ;
+  }
+  ul.each_railway_line.tozai li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_tozai_bgcolor ) ;
+  }
+  ul.each_railway_line.chiyoda li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_chiyoda_bgcolor ) ;
+  }
+  ul.each_railway_line.yurakucho li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_yurakucho_bgcolor , 1.3 ) ;
+  }
+  ul.each_railway_line.hanzomon li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_hanzomon_bgcolor , 1.2 ) ;
+  }
+  ul.each_railway_line.namboku li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_namboku_bgcolor ) ;
+  }
+  ul.each_railway_line.fukutoshin li {
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_fukutoshin_bgcolor ) ;
+  }
 }

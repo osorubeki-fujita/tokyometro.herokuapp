@@ -8,7 +8,7 @@ class TokyoMetro::App::Renderer::TravelTimeInfo::RailwayLine::ChiyodaLine::Botto
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %td{ class: [ :railway_line_column , :chiyoda , :kita_ayase ] }
   %div{ class: :travel_time_info_square }<
     = " "

@@ -59,6 +59,19 @@ class Station::Info < ActiveRecord::Base
     railway_line.tokyo_metro?
   end
 
+  def connected_to?( railway_line_instance , only_tokyo_metro: false )
+    railway_line_ids = ::Array.new
+    if railway_line.branch_line?
+      railway_line_ids << railway_line.main_railway_line_id
+    end
+    if only_tokyo_metro
+      railway_line_ids += connecting_railway_lines.pluck( :railway_line_id )
+    else
+      railway_line_ids += station_infos_including_other_railway_lines.pluck( :railway_line_id )
+    end
+    railway_line_ids.include?( railway_line_instance.id )
+  end
+
   # @!group 「駅」の属性（路面電車については「停留場」）
 
   [ :attribute_ja , :attribute_hira , :attribute_en , :attribute_en_short ].each do | method_name |

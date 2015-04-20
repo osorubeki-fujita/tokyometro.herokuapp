@@ -8,7 +8,7 @@ class TokyoMetro::Api::MetaClass::RealTime::Info::Decorator < TokyoMetro::Factor
   attr_reader :object
 
   def render_railway_line_name
-    v.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :railway_line }
   - railway_line = ::RailwayLine.find_by( same_as: info.object.railway_line )
   %div{ class: :text_ja }
@@ -35,7 +35,7 @@ class TokyoMetro::Api::MetaClass::RealTime::Info::Decorator < TokyoMetro::Factor
       class_name_of_precise_info_domain: class_name_of_precise_info_domain ,
       precise_info: precise_info
     }
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %p{ class: class_name_of_whole_domain }
   %span{ class: :title }<
     = title

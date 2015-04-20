@@ -20,7 +20,7 @@ class TokyoMetro::App::Renderer::Concern::Header::Title < TokyoMetro::App::Rende
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 
 - if domain_id_name.present?
 

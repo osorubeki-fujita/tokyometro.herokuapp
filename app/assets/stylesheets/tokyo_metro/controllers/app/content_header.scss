@@ -2,7 +2,7 @@
 
 @import '../../fundamental_settings.scss' ;
 
-%contentHeaderIconAndTextSettingsLarge {
+%contentHeadeSettings {
   // background-color: #666 ;
   background-color: desaturate( $operator_color , 80% ) ;
   color: #fff ;
@@ -29,20 +29,17 @@
 
 #train_informations {
   .title_of_train_informations {
-    @extend %contentHeaderIconAndTextSettingsLarge ;
+    @extend %contentHeadeSettings ;
   }
   .title_of_train_locations {
-    @extend %contentHeaderIconAndTextSettingsLarge ;
+    @extend %contentHeadeSettings ;
   }
-}
-.selection_header {
-  @extend %contentHeaderIconAndTextSettingsLarge ;
 }
 
 //--------
 
 .content_header , .selection_header {
-  @extend %contentHeaderIconAndTextSettingsLarge ;
+  @extend %contentHeadeSettings ;
   .text_ja {
     font: {
       size: 12pt ;
@@ -52,6 +49,22 @@
   .text_en {
     font: {
       size: 9pt ;
+      weight: normal ;
+    }
+  }
+}
+
+.passenger_info_header {
+  @extend %contentHeadeSettings ;
+  .text_ja {
+    font: {
+      size: 8pt ;
+      weight: normal ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 6pt ;
       weight: normal ;
     }
   }

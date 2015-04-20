@@ -1,21 +1,21 @@
 = render "common_content"
 
 - content_for :right_contents do
-  = ::PassengerSurveyDecorator.render_right_contents
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::Index.new( request ).render
 
 = ::PassengerSurveyDecorator.render_top_title( request , domain_id_name: :passenger_survey_title )
 %div{ id: "years" }
   %h3<
     = "全線 年度別"
-  - [ 2011 , 2012 , 2013 ].each do | year |
+  - ::PassengerSurvey.all.pluck( :survey_year ).uniq.sort.each do | survey_year |
     %div
-      = link_to( "#{year}年度" , "in_#{year}" )
+      = link_to( "#{ survey_year }年度" , url_for( action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: survey_year ) )
 %div{ id: "ranking" }
   %h3<
     = "乗降客数ランキング"
   - [ "乗降客数が多い駅" , "乗降客数が少ない駅" , "乗降客数の増加率が高い駅" ].each do | title |
     %div<
-      = #{title}
+      = title
 %h3<
   = "各路線・各駅の乗降客数"
 %p<

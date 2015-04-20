@@ -6,7 +6,7 @@ class TokyoMetro::App::Renderer::StationFacility::Platform::List < TokyoMetro::A
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :platform_info_tab_menu }
   %ul{ id: :platform_info_tabs }
     - ary.each do | info |

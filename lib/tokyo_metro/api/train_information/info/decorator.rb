@@ -82,7 +82,7 @@ class TokyoMetro::Api::TrainInformation::Info::Decorator < TokyoMetro::Api::Meta
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: [ :train_information , :railway_line ] }
   = this.railway_line.decorate.render_matrix( make_link_to_railway_line: true , size: :small , link_controller_name: this.controller )
   %div{ class: [ :status , this.status_type ] }
@@ -93,7 +93,7 @@ class TokyoMetro::Api::TrainInformation::Info::Decorator < TokyoMetro::Api::Meta
   end
 
   def render_status_icon_and_text
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :icon }<
   = ::TokyoMetro::App::Renderer::Icon.send( this.status_type , request , 3 ).render
 %div{ class: :text }
@@ -105,7 +105,7 @@ class TokyoMetro::Api::TrainInformation::Info::Decorator < TokyoMetro::Api::Meta
   end
 
   def render_status_additional_infos
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - max_delay_decorator = this.max_delay_instance.decorate( request )
 %div{ class: :additional_infos }<
   - if [ this.additional_info_abstruct_ja , max_delay_decorator.displayed_in_train_information? , this.additional_info_precise_ja ].any?( &:present? )
@@ -132,7 +132,7 @@ class TokyoMetro::Api::TrainInformation::Info::Decorator < TokyoMetro::Api::Meta
   end
 
   def render_precise_version
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: [ :train_information_precise_version , :railway_line ] }
   = this.railway_line.decorate.render_matrix( make_link_to_railway_line: true , size: :small , link_controller_name: :train_information )
   %div{ class: [ :status , this.status_type ] }
@@ -146,7 +146,7 @@ class TokyoMetro::Api::TrainInformation::Info::Decorator < TokyoMetro::Api::Meta
   end
 
   def render_main_info_of_precise_version
-    v.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - max_delay_decorator = this.max_delay_instance.decorate
 %div{ class: :main_info }
   - train_information_status = this.object.train_information_status

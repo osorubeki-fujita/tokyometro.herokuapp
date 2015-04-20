@@ -7,7 +7,7 @@ class TokyoMetro::App::Renderer::ColorBox < TokyoMetro::App::Renderer::MetaClass
   end
 
   def render
-    v.render inline: <<-HAML , type: :haml , locals: h_locals
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_name }<
   - if text.present?
     = text
