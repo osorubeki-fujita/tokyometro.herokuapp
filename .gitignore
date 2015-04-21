@@ -17,3 +17,4 @@
 
 /config/application_memo.rb
 /lib/tokyo_metro/dictionary/access_token.txt
+/db/data.yml
