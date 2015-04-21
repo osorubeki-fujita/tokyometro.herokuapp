@@ -19,7 +19,7 @@ class RailwayLineDecorator < Draper::Decorator
   # タイトルのメイン部分（路線色・路線名）を記述するメソッド
   def self.name_main( railway_lines )
     class << railway_lines
-      include ForRails::RailwayLineArrayModule
+      include ::TokyoMetro::TempLib::RailwayLineArrayModule
     end
 
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }

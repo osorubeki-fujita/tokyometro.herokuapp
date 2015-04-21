@@ -86,11 +86,11 @@ class TokyoMetro::Api::StationFacility::Info::BarrierFree::ServiceDetail::Info
     h[ :service_end_after_last_train ] = service_end_after_last_train?
 
     if has_specific_service_start_time_info?
-      h[ :service_start_time_hour ] , h[ :service_start_time_min ] = @service_start_time.to_time_hm_array
+      h[ :service_start_time_hour ] , h[ :service_start_time_min ] = @service_start_time.to_array_of_hour_and_min
     end
 
     if has_specific_service_end_time_info?
-      h[ :service_end_time_hour ] , h[ :service_end_time_min ] = @service_end_time.to_time_hm_array
+      h[ :service_end_time_hour ] , h[ :service_end_time_min ] = @service_end_time.to_array_of_hour_and_min
     end
 
     h

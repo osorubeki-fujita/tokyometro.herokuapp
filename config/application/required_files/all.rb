@@ -9,16 +9,12 @@ class RailsTokyoMetro::Application::RequiredFiles::All < RailsTokyoMetro::Applic
   end
 
   def self.other_files
-    [
-      # 組み込みライブラリの拡張、共通して使用するモジュールなど
-      ForRails.files ,
-      #
-      Fundamental.files
-    ]
+    Fundamental.files
   end
 
   def self.files
     _files = self.new.files
+
     display_files_not_be_required
     output_required_files
 

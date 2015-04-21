@@ -1,3 +1,0 @@
-# 既存クラスの拡張を行う機能をもつモジュールを格納する名前空間
-module ForRails::ExtendBuiltinLibraries
-end

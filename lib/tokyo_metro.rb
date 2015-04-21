@@ -103,9 +103,9 @@ module TokyoMetro
   # 現在時刻
   # @note タイムゾーンは日本時間 (GMT+9)
   # @return [DateTime]
-  def self.time_now
-    time_zone = Rational( 9 , 24 )
-    ::DateTime.now.new_offset( time_zone )
+  def self.time_now( time_zone: "+09:00" )
+    rational_for_time_zone = ::Kernel.Rational(9,24)
+    ::DateTime.now.new_offset( rational_for_time_zone )
   end
 
   # @!group モジュールの組み込み

@@ -6,7 +6,7 @@ class TwitterAccountDecorator < Draper::Decorator
 = link_to( title , link_url , "data-widget-id" => widget_id , "data-chrome" => :nofooter , class: "twitter-timeline" , width: 240 , height: 320 )
     HAML
   end
-  
+
   def self.embed_twitter_script
     h.render( partial: "twitter_script" , type: :html )
   end

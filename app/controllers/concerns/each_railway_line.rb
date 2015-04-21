@@ -30,7 +30,7 @@ module EachRailwayLine
       end
 
       class << @railway_lines
-        include ForRails::RailwayLineArrayModule
+        include ::TokyoMetro::TempLib::RailwayLineArrayModule
       end
       @title = @railway_lines.to_railway_line_name_text_ja + " #{title_base}"
       render "#{controller}/each_railway_line" , layout: layout

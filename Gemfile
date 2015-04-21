@@ -8,6 +8,14 @@ ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 
+#-------- original gems
+
+gem 'positive_support'
+gem 'metalic_ratio'
+
+gem 'required_files' , '>= 0.1.2', group: [:development, :test]
+gem 'odpt_common' , '>= 0.1.2'
+
 #-------- development 環境
 
 # Use sqlite3 as the database for Active Record
@@ -28,6 +36,7 @@ group :development do
 
   # Use Capistrano for deployment
   # gem 'capistrano-rails'
+
 end
 
 #-------- production 環境
@@ -78,7 +87,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'haml-rails'
 gem 'httpclient'
-gem 'moji'
 gem 'holiday_jp'
 
 gem 'json' # JSONを扱うライブラリ

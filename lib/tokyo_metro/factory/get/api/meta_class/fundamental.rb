@@ -1,7 +1,7 @@
 # API からデータを取得するための Factory Pattern のクラス（最上位クラス）
 class TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
 
-  include ::ForRails::CommonModules::CalcTime
+  include ::OdptCommon::CalcTime
 
   # Constructor
   # @param perse_json [Boolean] JSON をパースするか否かの設定

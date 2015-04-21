@@ -1,4 +1,4 @@
-module ForRails::RailwayLineArrayModule
+module TokyoMetro::TempLib::RailwayLineArrayModule
 
   # タイトルの路線名（日本語表記）を取得するメソッド
   def to_railway_line_name_text_ja

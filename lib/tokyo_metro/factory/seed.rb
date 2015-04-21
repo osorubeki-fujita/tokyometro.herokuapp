@@ -1,6 +1,6 @@
 module TokyoMetro::Factory::Seed
 
-  extend ::ForRails::CommonModules::CalcTime
+  extend ::OdptCommon::CalcTime
 
   # @!group 各種設定
 

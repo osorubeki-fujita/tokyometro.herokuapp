@@ -3,14 +3,7 @@ lib/for_rails.rb
 lib/for_rails/common_modules.rb
 lib/for_rails/common_modules/calc_time.rb
 lib/for_rails/extend_builtin_libraries.rb
-lib/for_rails/extend_builtin_libraries/date_time_module.rb
-lib/for_rails/extend_builtin_libraries/hash_module.rb
-lib/for_rails/extend_builtin_libraries/integer_module.rb
-lib/for_rails/extend_builtin_libraries/namespace_module.rb
-lib/for_rails/extend_builtin_libraries/object_module.rb
 lib/for_rails/extend_builtin_libraries/string_module.rb
-lib/for_rails/extend_builtin_libraries/symbol_module.rb
-lib/for_rails/extend_builtin_libraries/time_module.rb
 lib/for_rails/railway_line_array_module.rb
 lib/for_rails/station_timetables.rb
 lib/for_rails/station_timetables/group_by_railway_direction.rb
