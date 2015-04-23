@@ -13,11 +13,11 @@ gem 'rails', '4.2.1'
 gem 'metalic_ratio'
 
 gem 'positive_support' , '>= 0.1.0'
-gem 'positive_web_support' , '>= 0.1.0'
+gem 'positive_web_support' , '>= 0.1.1'
 
 gem 'required_files' , '>= 0.2.1' , group: [:development, :test]
 
-gem 'tokyo_metro' , '>= 0.1.3'
+gem 'tokyo_metro' , '>= 0.1.5'
 
 #-------- development 環境
 

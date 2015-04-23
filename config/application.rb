@@ -41,6 +41,7 @@ module RailsTokyoMetro
 
     config.after_initialize do
 
+      ::TokyoMetro.set_access_token
       ::TokyoMetro::Factory::Decorate::MetaClass.initialize_in_rails_app
 
       #---------------- モジュールの組み込み
