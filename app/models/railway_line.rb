@@ -1,6 +1,7 @@
 class RailwayLine < ActiveRecord::Base
 
   include ::Association::To::Station::Infos
+
   belongs_to :operator
   has_many :station_facilities , through: :station_infos
   has_many :women_only_car_infos

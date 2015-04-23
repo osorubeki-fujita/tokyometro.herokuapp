@@ -15,6 +15,10 @@
 /log/*.log
 /tmp
 
-/config/application_memo.rb
 /lib/tokyo_metro/dictionary/access_token.txt
+
+/config/application_memo.rb
 /db/data.yml
+/rss_test.rb
+/memo_20150108.txt
+/ruby_for_rails.pdf

@@ -41,14 +41,7 @@ module RailsTokyoMetro
 
     config.after_initialize do
 
-      #---------------- ファイルの require
-      Dir.glob( "#{ ::Rails.root }/config/application/**/**.rb" ).sort.each do | f |
-        require f
-      end
-
-      RequiredFiles::All.files.each do | f |
-        require f
-      end
+      ::TokyoMetro::Factory::Decorate::MetaClass.initialize_in_rails_app
 
       #---------------- モジュールの組み込み
       ::TokyoMetro.set_modules

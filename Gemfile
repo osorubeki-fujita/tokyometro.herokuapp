@@ -10,11 +10,14 @@ gem 'rails', '4.2.1'
 
 #-------- original gems
 
-gem 'positive_support'
 gem 'metalic_ratio'
 
-gem 'required_files' , '>= 0.1.2', group: [:development, :test]
-gem 'odpt_common' , '>= 0.1.2'
+gem 'positive_support' , '>= 0.1.0'
+gem 'positive_web_support' , '>= 0.1.0'
+
+gem 'required_files' , '>= 0.2.1' , group: [:development, :test]
+
+gem 'tokyo_metro' , '>= 0.1.3'
 
 #-------- development 環境
 

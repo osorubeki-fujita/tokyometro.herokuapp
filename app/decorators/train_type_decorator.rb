@@ -75,12 +75,12 @@ class TrainTypeDecorator < Draper::Decorator
     %div{ class: :web_color }<
       = info.bgcolor
     %div{ class: :rgb_color }<
-      = ::ApplicationHelper.rgb_in_parentheses( info.bgcolor )
+      = info.bgcolor.to_rgb_color_in_parentheses
   %div{ class: :color_info }
     %div{ class: :web_color }<
       = info.color
     %div{ class: :rgb_color }<
-      = ::ApplicationHelper.rgb_in_parentheses( info.color )
+      = info.color.to_rgb_color_in_parentheses
     HAML
   end
 

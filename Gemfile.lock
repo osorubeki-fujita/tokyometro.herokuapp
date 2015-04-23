@@ -123,11 +123,18 @@ GEM
     multi_json (1.11.0)
     nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
-    odpt_common (0.1.2)
+    odpt_common (0.1.5)
+      activesupport (>= 4.2.1)
+    odpt_tokyo_metro_helper (0.1.1)
+      activesupport (>= 4.2.1)
+      odpt_common (>= 0.1.5)
     pg (0.17.1-x86-mingw32)
-    positive_support (0.0.1rc2)
+    positive_support (0.1.0)
       activesupport (>= 4.2.1)
       moji (>= 1.6)
+    positive_web_support (0.1.0)
+      activesupport (>= 4.2.1)
+      positive_support (>= 0.1.0)
     pry (0.10.1-x86-mingw32)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -181,7 +188,8 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     request_store (1.1.0)
-    required_files (0.1.0)
+    required_files (0.2.1)
+      activesupport (>= 4.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (3.1.0)
@@ -240,6 +248,13 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    tokyo_metro (0.1.3)
+      haml-rails
+      odpt_common (>= 0.1.5)
+      odpt_tokyo_metro_helper (>= 0.1.1)
+      positive_support (>= 0.0.2)
+      positive_web_support (>= 0.1.0)
+      required_files (>= 0.2.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -282,16 +297,16 @@ DEPENDENCIES
   json
   kaminari
   metalic_ratio
-  odpt_common (>= 0.1.2)
   pg
-  positive_support
+  positive_support (>= 0.1.0)
+  positive_web_support (>= 0.1.0)
   pry-byebug
   pry-rails
   quiet_assets (~> 1.0.3)
   rails (= 4.2.1)
   rails-erd
   rails_12factor
-  required_files
+  required_files (>= 0.2.1)
   rspec
   rspec-rails
   sass-rails (>= 5.0.0)
@@ -300,6 +315,7 @@ DEPENDENCIES
   sinatra
   sqlite3
   taps
+  tokyo_metro (>= 0.1.3)
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)

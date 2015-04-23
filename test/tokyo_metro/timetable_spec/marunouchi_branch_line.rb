@@ -1,2 +1,0 @@
-require_relative 'marunouchi_branch_line/station_timetable.rb'
-require_relative 'marunouchi_branch_line/train_timetable.rb'

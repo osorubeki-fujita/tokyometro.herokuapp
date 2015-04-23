@@ -55,7 +55,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_name_ja_or_hira( name_ja_or_hira , with_subname , suffix )
-    regexp = ::ApplicationHelper.regexp_for_parentheses_normal
+    regexp = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
     if regexp =~ name_ja_or_hira
       name_main = name_ja_or_hira.gsub( regexp , "" ).process_specific_letter
       name_sub = $1
@@ -79,7 +79,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_name_en( with_subname: true , prefix: nil , suffix: nil )
-    regexp = ::ApplicationHelper.regexp_for_parentheses_for_quotation
+    regexp = ::PositiveSupport::RegexpLibrary.regexp_for_quotation
     if regexp =~ name_en
       name_main = name_en.gsub( regexp , "" )
       name_sub = $1

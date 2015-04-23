@@ -424,13 +424,13 @@ class RailwayLineDecorator < Draper::Decorator
     = this.color
   - if this.color.present?
     %div{ class: :rgb_color }<
-      = ::ApplicationHelper.rgb_in_parentheses( this.color )
+      = this.color.to_rgb_color_in_parentheses
     HAML
   end
 
   def render_name_ja_in_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- regexp = ::ApplicationHelper.regexp_for_parentheses_normal
+- regexp = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
 - railway_line_name_ja = this.name_ja_with_operator_name_precise
 %div{ class: :text_ja }<
   - if regexp =~ railway_line_name_ja
@@ -447,7 +447,7 @@ class RailwayLineDecorator < Draper::Decorator
 
   def render_name_en_in_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- regexp = ApplicationHelper.regexp_for_parentheses_normal
+- regexp = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
 - railway_line_name_en = this.name_en_with_operator_name_precise
 %div{ class: :text_en }<
   - if regexp =~ railway_line_name_en

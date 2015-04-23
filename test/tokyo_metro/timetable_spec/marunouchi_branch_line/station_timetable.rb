@@ -1,2 +1,0 @@
-require_relative 'station_timetable/station_timetables_on_marunouchi_branch_line_stations.rb'
-require_relative 'station_timetable/nakano_sakaue_on_marunouchi_branch_line_in_station_timetables.rb'

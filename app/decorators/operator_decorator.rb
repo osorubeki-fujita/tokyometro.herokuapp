@@ -8,20 +8,20 @@ class OperatorDecorator < Draper::Decorator
   end
 
   def render_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: [ :document_info_box_normal , info.css_class_name ] }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%div{ class: [ :document_info_box_normal , this.css_class_name ] }
   = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
   %div{ class: :operator_name }
-    = info.render_name_ja_in_document_info_box
-    = info.render_name_en_in_document_info_box
-  = info.render_color_info_in_document_info_box
+    = this.render_name_ja_in_document_info_box
+    = this.render_name_en_in_document_info_box
+  = this.render_color_info_in_document_info_box
     HAML
   end
 
   def render_name_ja_in_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- regexp_of_parentheses = ::ApplicationHelper.regexp_for_parentheses_normal
-- operator_name_ja = info.name_ja_to_haml
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+- regexp_of_parentheses = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
+- operator_name_ja = this.name_ja_to_haml
 %div{ class: :text_ja}<
   - if regexp_of_parentheses =~ operator_name_ja
     - out_of_parentheses = operator_name_ja.gsub( regexp_of_parentheses , "" )
@@ -35,9 +35,9 @@ class OperatorDecorator < Draper::Decorator
   end
 
   def render_name_en_in_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- regexp_of_parentheses = ::ApplicationHelper.regexp_for_parentheses_for_quotation
-- operator_name_en = info.name_en_to_haml
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+- regexp_of_parentheses = ::PositiveSupport::RegexpLibrary.regexp_for_quotation
+- operator_name_en = this.name_en_to_haml
 %div{ class: :text_en }<
   - if regexp_of_parentheses =~ operator_name_en
     - out_of_parentheses = operator_name_en.gsub( regexp_of_parentheses , "" )
@@ -52,13 +52,13 @@ class OperatorDecorator < Draper::Decorator
   end
 
   def render_color_info_in_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :color_info }
   %div{ class: :web_color }<
-    = info.color
-  - if info.color.present?
+    = this.color
+  - if this.color.present?
     %div{ class: :rgb_color }<
-      = ::ApplicationHelper.rgb_in_parentheses( info.color )
+      = this.color.to_rgb_color_in_parentheses
     HAML
   end
 

@@ -1,7 +1,0 @@
-#-------- 【中央線特急】（丸ノ内線・南北線）四ツ谷
--
-    stations:
-        - odpt.Station:TokyoMetro.Marunouchi.Yotsuya
-        - odpt.Station:TokyoMetro.Namboku.Yotsuya
-    railway_lines:
-        - odpt.Railway:JR-East.Chuo
