@@ -16,7 +16,7 @@
 /tmp
 
 /config/application_memo.rb
-/db/data.yml
+# /db/data.yml
 /rss_test.rb
 /memo_20150108.txt
 /ruby_for_rails.pdf
