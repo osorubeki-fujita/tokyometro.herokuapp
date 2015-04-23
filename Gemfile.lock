@@ -128,7 +128,7 @@ GEM
       activesupport (>= 4.2.1)
       odpt_common (>= 0.1.6)
     pg (0.18.1-x86-mingw32)
-    positive_support (0.1.2)
+    positive_support (0.1.9)
       activesupport (>= 4.2.1)
       moji (>= 1.6)
     positive_web_support (0.1.2)
@@ -296,7 +296,7 @@ DEPENDENCIES
   kaminari
   metalic_ratio (>= 0.0.2)
   pg
-  positive_support (>= 0.1.2)
+  positive_support (>= 0.1.9)
   positive_web_support (>= 0.1.2)
   pry-byebug
   pry-rails
