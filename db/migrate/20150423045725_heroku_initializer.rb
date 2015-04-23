@@ -1,4 +1,4 @@
-class InitializeHeroku < ActiveRecord::Migration
+class HerokuInitializer < ActiveRecord::Migration
   def change
 
   create_table "air_conditioner_answers", force: :cascade do |t|
