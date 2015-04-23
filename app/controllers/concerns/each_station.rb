@@ -8,12 +8,14 @@ module EachStation
     # メソッドの動的な定義
     # @note 各駅の名称（英語名を underscore 形式に変換したもの）をメソッド名とし、
     #  each_station( 日本語名 ) を呼び出すように定義する。
-    ::Station::Info.tokyo_metro.pluck( :name_in_system , :same_as ).each do | name_in_system , same_as |
-      eval <<-DEF
-        def #{ name_in_system.underscore }
-          each_station( \"#{ same_as }\" )
-        end
-      DEF
+    if ::Station::Info.count > 0
+      ::Station::Info.tokyo_metro.pluck( :name_in_system , :same_as ).each do | name_in_system , same_as |
+        eval <<-DEF
+          def #{ name_in_system.underscore }
+            each_station( \"#{ same_as }\" )
+          end
+        DEF
+      end
     end
 
     private
