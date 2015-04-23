@@ -47,6 +47,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem "activerecord-postgresql-adapter"
+  gem "yui-compressor"
 end
 
 #-------- test 環境
