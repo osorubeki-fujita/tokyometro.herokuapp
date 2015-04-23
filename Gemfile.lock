@@ -113,7 +113,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    metalic_ratio (0.0.1rc4)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.2)
@@ -251,7 +250,7 @@ GEM
       odpt_common (>= 0.1.5)
       odpt_tokyo_metro_helper (>= 0.1.1)
       positive_support (>= 0.0.2)
-      positive_web_support (>= 0.1.1)
+      positive_web_support (>= 0.1.0)
       required_files (>= 0.2.1)
     turbolinks (2.5.3)
       coffee-rails
@@ -294,9 +293,8 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0.3)
   json
   kaminari
-  metalic_ratio
   pg
-  positive_support (>= 0.1.0)
+  positive_support (>= 0.0.2)
   positive_web_support (>= 0.1.1)
   pry-byebug
   pry-rails

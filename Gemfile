@@ -10,9 +10,9 @@ gem 'rails', '4.2.1'
 
 #-------- original gems
 
-gem 'metalic_ratio'
+# gem 'metalic_ratio'
 
-gem 'positive_support' , '>= 0.1.0'
+gem 'positive_support' , '>= 0.0.2'
 gem 'positive_web_support' , '>= 0.1.1'
 
 gem 'required_files' , '>= 0.2.1' , group: [:development, :test]
