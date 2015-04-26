@@ -13,11 +13,9 @@ gem 'rails', '4.2.1'
 
 #-------- original gems
 
-gem 'deployer' , '>= 0.2.4' , group: :development
-
 gem 'metalic_ratio' , '>= 0.1.6'
 
-gem 'positive_support' , '>= 0.2.2'
+gem 'positive_support' , '>= 0.2.3'
 gem 'positive_web_support' , '>= 0.2.2'
 
 gem 'required_files' , '>= 0.2.4' , group: [:development, :test]
@@ -28,6 +26,13 @@ gem 'tokyo_metro' , ">= 0.1.12.14"
 
 # Use sqlite3 as the database for Active Record
 group :development do
+
+  #-------- [begin] original gems
+
+  gem 'deployer' , '>= 0.3.2'
+
+  #-------- [end] original gems
+
   gem 'sqlite3'
   # gem 'pg'
 
