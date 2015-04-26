@@ -2,10 +2,10 @@
 lock '3.4.0'
 
 set :application, "tokyo_metro::heroku_app" # 'tokyometro.herokuapp'
-set :repo_url, "git@heroku.com:tokyometro.git" #heroku
+set :repo_url, "https://github.com/osorubeki-fujita/tokyometro.herokuapp.git"
 
 set :pj_dir , ::File.expand_path( "#{ ::File.dirname( __FILE__ ) }/.." )
-set :github_remote_name , :heroku # heroku
+set :github_remote_name , :origin
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
