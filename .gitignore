@@ -21,4 +21,6 @@
 
 /AccessToken
 # /db/data.yml
+/db/csv/**/**.csv
+
 /ruby_for_rails.pdf

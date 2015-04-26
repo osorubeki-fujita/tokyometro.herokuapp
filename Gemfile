@@ -13,7 +13,7 @@ gem 'rails', '4.2.1'
 
 #-------- original gems
 
-gem 'deployer' , '>= 0.2.4'
+gem 'deployer' , '>= 0.2.4' , group: :development
 
 gem 'metalic_ratio' , '>= 0.1.6'
 
