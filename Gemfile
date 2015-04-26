@@ -20,7 +20,7 @@ gem 'positive_web_support' , '>= 0.2.2'
 
 gem 'required_files' , '>= 0.2.4' , group: [:development, :test]
 
-gem 'tokyo_metro' , ">= 0.1.12.14"
+gem 'tokyo_metro' , ">= 0.1.13.0"
 
 #-------- development 環境
 
