@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420154542) do
+ActiveRecord::Schema.define(version: 20150426080313) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255

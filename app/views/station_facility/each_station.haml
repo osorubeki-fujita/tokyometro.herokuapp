@@ -12,7 +12,7 @@
 = station_info_decorated.render_tokyo_metro_railway_lines
 = station_info_decorated.render_railway_lines_except_for_tokyo_metro
 = station_info_decorated.render_links_to_station_info_pages
-= render partial: "google_map"
+- # = render partial: "google_map"
 
 %div{ id: :station_facility_contents }
   %div{ id: :station_facility_platform_infos }
@@ -21,3 +21,8 @@
   %div{ id: :station_facility_infos }
     = ::BarrierFreeFacility::InfoDecorator.render_sub_top_title
     = @station_facility.decorate.render_barrier_free_facility_infos
+
+- all_points = @station_info.points.order( :code )
+- [ all_points.not_closed , all_points.closed ].each do | category |
+  - category.each do | point |
+    = point.decorate.render_in_station_facility_page

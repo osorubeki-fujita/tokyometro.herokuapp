@@ -242,9 +242,6 @@
     }
   }
   @include settingsOfPlatformInfoOfEachRailway( $border_width_of_title_of_railway_line ) ;
-  margin: {
-    left: $border_width_of_title_of_railway_line ;
-  }
   .info_of_railway_direction {
     margin: {
       left: 8px ;

@@ -4,3 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+# require File.expand_path('../lib/tasks.rb' , __FILE__ )
+
+# set_tasks_to_deploy

@@ -9,7 +9,7 @@ class Station::Info < ActiveRecord::Base
   has_many :connecting_railway_lines , class: ::ConnectingRailwayLine , foreign_key: :station_info_id
   has_many :railway_lines , through: :connecting_railway_lines
 
-  has_many :station_points
+  has_many :station_points , class: ::StationPoint , foreign_key: :station_info_id
   has_many :points , through: :station_points
 
   has_many :station_stopping_patterns

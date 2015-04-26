@@ -284,7 +284,7 @@ class RailwayLineDecorator < Draper::Decorator
   def render_connecting_railway_line_info_in_station_facility
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: this.css_class_name_of_connecting_railway_line }<
-  = this.render_link_to_railway_line_page
+  = this.render_link_to_railway_line_page( controller: :railway_line , link_type: :standard )
     HAML
   end
 
@@ -505,21 +505,7 @@ class RailwayLineDecorator < Draper::Decorator
 - if current_page?( railway_line: this.css_class_name.to_s + "_line" )
   - li_classes << :this_page
 
-- unless controller == :passenger_survey
-
-  - case link_type
-  - when :railway_line_page_under_action_for_station
-    - url = url_for( railway_line: this.railway_line_page_name )
-  - when :action_for_station
-    - url = url_for( action: this.railway_line_page_name )
-  
-  %li{ class: li_classes }
-    = link_to_unless_current( "" , url )
-    %div{ class: div_classes }
-      = this.render_railway_line_code( small: small_railway_line_code )
-      = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
-
-- else
+- if controller == :passenger_survey
   %ul{ class: [ :each_railway_line , this.css_class_name ] }
     %li{ class: li_classes - [ this.css_class_name ] }
       = link_to_unless_current( "" , url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: this.railway_line_page_name ) )
@@ -531,6 +517,20 @@ class RailwayLineDecorator < Draper::Decorator
         = link_to_unless_current( "" , url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: this.railway_line_page_name , survey_year: survey_year ) )
         %p{ class: :text_en }<
           = survey_year
+
+- else
+
+  - case link_type
+  - when :railway_line_page_under_action_for_station
+    - url = url_for( controller: controller , railway_line: this.railway_line_page_name )
+  - when :action_for_station , :standard
+    - url = url_for( controller: controller , action: this.railway_line_page_name )
+  
+  %li{ class: li_classes }
+    = link_to_unless_current( "" , url )
+    %div{ class: div_classes }
+      = this.render_railway_line_code( small: small_railway_line_code )
+      = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
     HAML
   end
   

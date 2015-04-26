@@ -1,5 +1,8 @@
-# source 'http://rubygems.org'
 source 'https://rubygems.org'
+
+# source 'https://rubygems.org'
+# source "http://rubygems.org/"
+# source "http://production.cf.rubygems.org"
 
 ruby '2.1.5'
 
@@ -10,14 +13,16 @@ gem 'rails', '4.2.1'
 
 #-------- original gems
 
-gem 'metalic_ratio' , '>= 0.0.2'
+gem 'deployer' , '>= 0.2.4'
 
-gem 'positive_support' , '>= 0.1.9'
-gem 'positive_web_support' , '>= 0.1.2'
+gem 'metalic_ratio' , '>= 0.1.6'
 
-gem 'required_files' , '>= 0.2.1' , group: [:development, :test]
+gem 'positive_support' , '>= 0.2.2'
+gem 'positive_web_support' , '>= 0.2.2'
 
-gem 'tokyo_metro' , '>= 0.1.8'
+gem 'required_files' , '>= 0.2.4' , group: [:development, :test]
+
+gem 'tokyo_metro' , ">= 0.1.12.14"
 
 #-------- development 環境
 
@@ -38,7 +43,7 @@ group :development do
   gem 'yard', '0.8.7.6'
 
   # Use Capistrano for deployment
-  # gem 'capistrano-rails'
+  gem 'capistrano-rails'
 end
 
 #-------- production 環境
