@@ -4,8 +4,7 @@ require 'capistrano/setup'
 # Include default deployment tasks
 require 'capistrano/deploy'
 
-# The gem 'deployer' is not released on RubyGems
-require 'deployer'
+require 'deplo'
 
 # Include tasks from other gems included in your Gemfile
 #
@@ -31,4 +30,4 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 Rake::Task[:production].invoke
 invoke :production
-set_cap_tasks_from_deployer
+set_cap_tasks_from_deplo

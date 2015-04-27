@@ -13,14 +13,14 @@ gem 'rails', '4.2.1'
 
 #-------- original gems
 
-gem 'metalic_ratio' , '>= 0.1.6'
+gem 'metalic_ratio' , '>= 0.1.7'
 
-gem 'positive_support' , '>= 0.2.3'
-gem 'positive_web_support' , '>= 0.2.2'
+gem 'positive_support' , '>= 0.2.4'
+gem 'positive_web_support' , '>= 0.2.4'
 
-gem 'required_files' , '>= 0.2.4' , group: [:development, :test]
+gem 'required_files' , '>= 0.2.5' , group: [:development, :test]
 
-gem 'tokyo_metro' , ">= 0.1.13.0"
+gem 'tokyo_metro' , ">= 0.1.15.0"
 
 #-------- development 環境
 
@@ -29,7 +29,7 @@ group :development do
 
   #-------- [begin] original gems
 
-  gem 'deployer' , '>= 0.3.2'
+  gem 'deplo' , '>= 0.1.2'
 
   #-------- [end] original gems
 
