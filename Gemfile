@@ -1,10 +1,11 @@
-source 'https://rubygems.org'
+﻿source 'https://rubygems.org'
 
 # source 'https://rubygems.org'
 # source "http://rubygems.org/"
 # source "http://production.cf.rubygems.org"
 
-ruby '2.1.5'
+ruby '2.2.2'
+# ruby '2.1.5'
 
 # -------- Ruby on Rails
 
