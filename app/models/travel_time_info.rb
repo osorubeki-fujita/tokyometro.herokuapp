@@ -3,7 +3,7 @@ class TravelTimeInfo < ActiveRecord::Base
   include ::Association::To::ToStation::Info
 
   def to_s
-    "#{ from_station_info.name_ja } → #{ to_station_info.name_ja } (#{necessary_time})"
+    "#{ from_station_info.decorate.name_ja_actual } → #{ to_station_info.decorate.name_ja_actual } (#{necessary_time})"
   end
 
   scope :between , ->( station_a , station_b ) {

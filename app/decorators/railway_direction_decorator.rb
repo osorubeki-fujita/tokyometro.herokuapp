@@ -11,16 +11,16 @@ class RailwayDirectionDecorator < Draper::Decorator
 
   def render_in_station_facility_platform_info_transfer_info
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-= info.station_info.render_name_ja( with_subname: false , suffix: "方面" )
+= info.station_info.decorate.render_name_ja( with_subname: false , suffix: "方面" )
     HAML
   end
   
   def render_in_document
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- station_info = info.station_info
+- station_info = info.station_info.decorate
 %div{ class: :document_info_box_normal }
   %div{ class: :text_ja }<
-    = station_info.name_ja
+    = station_info.name_ja_actual
   %div{ class: :text_en }<
     = station_info.name_en
     HAML
@@ -28,10 +28,10 @@ class RailwayDirectionDecorator < Draper::Decorator
   
   def render_simple_title
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- station_info = info.station_info
+- station_info = info.station_info.decorate
 %div{ class: :title_of_a_railway_direction }
   %h4{ class: :text_ja }<
-    = station_info.name_ja + "方面"
+    = station_info.name_ja_actual + "方面"
   %h5{ class: :text_en }<
     = "for " + station_info.name_en
     HAML

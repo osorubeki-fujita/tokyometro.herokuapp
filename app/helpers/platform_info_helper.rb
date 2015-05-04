@@ -5,7 +5,7 @@ __END__
 
   def platform_infos_of_car_compositions( railway_line_name_ja , railway_line_name_en , car_composition_types )
 
-    str = "#{railway_line_name_ja}の列車は"
+    str = "#{ railway_line_name_ja }の列車は"
     case car_composition_types.length
     when 1
       str += "すべて#{car_composition_types.first}両編成です。"

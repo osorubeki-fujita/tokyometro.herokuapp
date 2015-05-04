@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 # source "http://rubygems.org/"
 # source "http://production.cf.rubygems.org"
 
-ruby '2.1.5'
+# ruby '2.2.2'
+ruby '2.1.6'
 
 # -------- Ruby on Rails
 
@@ -15,12 +16,11 @@ gem 'rails', '4.2.1'
 
 gem 'metalic_ratio' , '>= 0.1.7'
 
-gem 'positive_support' , '>= 0.2.4'
-gem 'positive_web_support' , '>= 0.2.4'
+gem 'positive_support' , '>= 0.3.0'
 
-gem 'required_files' , '>= 0.2.5' , group: [:development, :test]
+gem 'required_files' , '>= 0.2.6' , group: [:development, :test]
 
-gem 'tokyo_metro' , ">= 0.1.15.0"
+gem 'tokyo_metro' , ">= 0.1.16.0"
 
 #-------- development 環境
 
@@ -29,7 +29,7 @@ group :development do
 
   #-------- [begin] original gems
 
-  gem 'deplo' , '>= 0.1.2'
+  gem 'deplo' , '>= 0.1.4'
 
   #-------- [end] original gems
 
@@ -102,6 +102,8 @@ gem 'haml-rails'
 gem 'httpclient'
 gem 'holiday_jp'
 
+gem 'jquery-turbolinks'
+
 gem 'json' # JSONを扱うライブラリ
 
 gem 'jquery-ui-rails' , '~> 5.0.3'
@@ -110,7 +112,6 @@ gem 'gmaps4rails'
 gem 'whenever', :require => false
 
 gem 'draper'
-
 # gem 'feedjira'
 # gem 'geocoder'
 
@@ -147,3 +148,4 @@ gem 'hirb' , group: [ :development , :test ]
 gem 'hirb-unicode' , group: [ :development , :test ]
 gem 'better_errors' , group: [ :development , :test ]
 gem 'binding_of_caller' , group: [ :development , :test ]
+gem 'spring' , group: [ :development , :test ]

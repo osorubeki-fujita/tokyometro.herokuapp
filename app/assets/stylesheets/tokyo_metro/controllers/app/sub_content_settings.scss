@@ -2,7 +2,10 @@
 
 @import '../../fundamental_settings.scss' ;
 
+$side_menu_padding: 16px ;
+
 #side_menu {
   clear: both ;
   @extend %floatLeft ;
+  width: $width_of_left_contents - $side_menu_padding ;
 }

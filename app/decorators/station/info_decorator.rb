@@ -6,8 +6,12 @@ class Station::InfoDecorator < Draper::Decorator
 
   include SubTopTitleRenderer
 
+  def name_ja_actual
+    object.name_ja.revive_machine_dependent_character
+  end
+
   def name_ja_in_direction_info
-    "#{ name_ja }方面"
+    "#{ name_ja_actual }方面"
   end
 
   def name_en_in_direction_info
@@ -15,7 +19,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def name_ja_with_station_code
-    name_with_station_code( name_ja )
+    name_with_station_code( name_ja_actual )
   end
 
   def name_en_with_station_code
@@ -23,7 +27,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def name_ja_and_en_with_station_code
-    name_with_station_code( name_ja ) + " (#{name_en})"
+    name_ja_with_station_code + " (#{name_en})"
   end
 
   def connecting_railway_lines_of_tokyo_metro_in_another_station
@@ -39,15 +43,15 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def link_title_to_station_page_ja
-    "#{ station_codes_in_link_title } #{ name_ja } - #{ name_hira } (#{ name_en }) "
+    "#{ station_codes_in_link_title } #{ name_ja_actual } - #{ name_hira } (#{ name_en }) "
   end
 
   def link_title_to_station_page_en
-    "#{ station_codes_in_link_title } #{ name_en } - #{ name_ja } （#{ name_hira }）"
+    "#{ station_codes_in_link_title } #{ name_en } - #{ name_ja_actual } （#{ name_hira }）"
   end
 
   def render_name_ja( with_subname: true , suffix: nil )
-    render_name_ja_or_hira( name_ja , with_subname , suffix )
+    render_name_ja_or_hira( name_ja_actual , with_subname , suffix )
   end
 
   def render_name_hira( with_subname: true , suffix: nil )
@@ -55,12 +59,12 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_name_ja_or_hira( name_ja_or_hira , with_subname , suffix )
-    regexp = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
+    regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja
     if regexp =~ name_ja_or_hira
-      name_main = name_ja_or_hira.gsub( regexp , "" ).process_specific_letter
+      name_main = name_ja_or_hira.gsub( regexp , "" ).revive_machine_dependent_character
       name_sub = $1
     else
-      name_main = name_ja_or_hira.process_specific_letter
+      name_main = name_ja_or_hira.revive_machine_dependent_character
       name_sub = nil
     end
 
@@ -79,7 +83,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_name_en( with_subname: true , prefix: nil , suffix: nil )
-    regexp = ::PositiveSupport::RegexpLibrary.regexp_for_quotation
+    regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_quotation
     if regexp =~ name_en
       name_main = name_en.gsub( regexp , "" )
       name_sub = $1
@@ -88,36 +92,43 @@ class Station::InfoDecorator < Draper::Decorator
       name_sub = nil
     end
 
+    if prefix.present?
+      name_main = prefix + name_main
+    end
+
     h_locals = {
       name_main: name_main ,
       name_sub: name_sub ,
       with_subname: with_subname ,
-      prefix: prefix ,
       suffix: suffix
     }
 
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-- if prefix.present?
-  - name_main = prefix + name_main
-- if name_sub.present? and with_subname
+    if name_sub.present? and with_subname
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
   = raw( name_main + "&nbsp;" )
   %span{ class: :small }<>
     = name_sub
   - if suffix.present?
     = suffix
-- elsif suffix.present?
-  = ( name_main + " " + suffix )
-- else
-  = name_main
-    HAML
+      HAML
+
+    elsif suffix.present?
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+= ( name_main + " " + suffix )
+      HAML
+    else
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+= name_main
+      HAML
+    end
   end
 
   def render_name_ja_and_en( with_subname: true , suffix_ja: nil , suffix_en: nil )
-    h.render inline: <<-HAML , type: :haml , locals: { info: self , with_subname: with_subname , suffix_ja: suffix_ja , suffix_en: suffix_en }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , with_subname: with_subname , suffix_ja: suffix_ja , suffix_en: suffix_en }
 %p{ class: :text_ja }<>
-  = info.render_name_ja( with_subname: with_subname , suffix: suffix_ja )
+  = this.render_name_ja( with_subname: with_subname , suffix: suffix_ja )
 %p{ class: :text_en }<
-  = info.render_name_en( with_subname: with_subname , suffix: suffix_en )
+  = this.render_name_en( with_subname: with_subname , suffix: suffix_en )
     HAML
   end
 
@@ -127,31 +138,38 @@ class Station::InfoDecorator < Draper::Decorator
       raise "Error"
     end
 
-    h.render inline: <<-HAML , type: :haml , locals: { info: self , station_code: station_code , all_station_codes: all_station_codes }
+    h_locals = { this: self , station_code: station_code , all_station_codes: all_station_codes }
+
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :main_text }
   %div{ class: [ :station_name , :tokyo_metro ] }
     %h2{ class: :text_ja }<
-      = info.render_name_ja( with_subname: true )
+      = this.render_name_ja( with_subname: true )
     %h3<
       %span{ class: :text_hira }<>
-        = info.render_name_hira( with_subname: true )
+        = this.render_name_hira( with_subname: true )
       %span{ class: :text_en }<
-        = info.render_name_en( with_subname: true )
+        = this.render_name_en( with_subname: true )
   - if station_code
-    = info.render_station_code_image( all: all_station_codes )
+    = this.render_station_code_image( all: all_station_codes )
     HAML
   end
 
   # 東京メトロの路線情報を表示する method
   def render_tokyo_metro_railway_lines
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h_locals = {
+      railway_lines_of_tokyo_metro: railway_lines_of_tokyo_metro ,
+      connecting_railway_lines_in_another_station: connecting_railway_lines_in_another_station
+    }
+
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :tokyo_metro_railway_lines }
   = ::ConnectingRailwayLineDecorator.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
   %div{ class: :railway_lines }
     %ul{ class: :railway_lines_in_this_station }
-      - info.railway_lines_of_tokyo_metro.each do | railway_line |
+      - railway_lines_of_tokyo_metro.each do | railway_line |
         = railway_line.decorate.render_connecting_railway_line_info_in_station_facility
-    - connecting_railway_lines_in_another_station = info.connecting_railway_lines_of_tokyo_metro_in_another_station
+
     - if connecting_railway_lines_in_another_station.present?
       %ul{ class: :railway_lines_in_another_station }
         - connecting_railway_lines_in_another_station.each do | railway_line |
@@ -161,10 +179,15 @@ class Station::InfoDecorator < Draper::Decorator
 
   # 他事業者の乗り換え情報を表示する method
   def render_railway_lines_except_for_tokyo_metro
+    # @param connecting_railway_lines [Array <RailwayLine>] 東京メトロ以外の乗り入れ路線
     _connecting_railway_lines_except_for_tokyo_metro = connecting_railway_lines_except_for_tokyo_metro
+
     if _connecting_railway_lines_except_for_tokyo_metro.present?
-      h.render inline: <<-HAML , type: :haml , locals: { connecting_railway_lines_except_for_tokyo_metro: _connecting_railway_lines_except_for_tokyo_metro }
-- # @param connecting_railway_lines [Array <RailwayLine>] 東京メトロ以外の乗り入れ路線
+      h_locals = {
+        connecting_railway_lines_except_for_tokyo_metro: _connecting_railway_lines_except_for_tokyo_metro
+      }
+
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :other_railway_lines }
   = ::ConnectingRailwayLineDecorator.render_title_of_other_railway_lines_in_station_facility_info
   %ul{ class: :railway_lines }
@@ -175,84 +198,91 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_links_to_station_info_pages
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ id: :links_to_station_info_pages }
-  %div{ class: :text }
-    %h2{ class: :text_ja }<
-      = info.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
-    %h3{ class: :text_en }<
-      = "Other pages related to " + info.name_en + " Station"
-  %div{ class: :links }
-    :ruby
-      h = {
+    h_locals = {
+      this: self ,
+      contents:{
         train_information: "この駅からの列車運行情報" ,
         station_facility: "この駅の施設" ,
         station_timetable: "この駅の時刻表" ,
         fare: "この駅からの運賃"
       }
-    - h.each do | controller , title |
+    }
+
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ id: :links_to_station_info_pages }
+  %div{ class: :text }
+    %h2{ class: :text_ja }<
+      = this.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
+    %h3{ class: :text_en }<
+      = "Other pages related to " + this.name_en + " Station"
+  %div{ class: :links }
+    - contents.each do | controller , title |
       %div{ class: :link }<
-        = link_to_unless_current( title , url_for( controller: controller , action: info.name_in_system.underscore ) )
+        = link_to_unless_current( title , url_for( controller: controller , action: this.name_in_system.underscore ) )
     HAML
   end
 
   def render_connection_info_from_another_station
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :another_station }
   %div{ class: :text_ja }<
-    = info.decorate.render_name_ja( with_subname: false , suffix: info.attribute_ja )
+    = this.decorate.render_name_ja( with_subname: false , suffix: this.attribute_ja )
   %div{ class: :text_en }<
-    = info.decorate.render_name_en( with_subname: false , suffix: info.attribute_en_short.capitalize )
+    = this.decorate.render_name_en( with_subname: false , suffix: this.attribute_en_short.capitalize )
     HAML
   end
 
   def render_fare_title_of_this_station( *railway_lines )
     railway_line = railway_lines.flatten.first
-    render_sub_top_title( text_ja: "#{ name_ja }駅から#{ railway_line.name_ja }各駅までの運賃" , text_en: "Fares from #{ name_en } to stations on #{ railway_line.name_en }" )
+    render_sub_top_title( text_ja: "#{ name_ja_actual }駅から#{ railway_line.name_ja }各駅までの運賃" , text_en: "Fares from #{ name_en } to stations on #{ railway_line.name_en }" )
   end
 
   def render_direction_in_station_timetable_header
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :text_ja }<
-  = info.name_ja_in_direction_info
+  = this.name_ja_in_direction_info
 %div{ class: :text_en }<
-  = info.name_en_in_direction_info
+  = this.name_en_in_direction_info
     HAML
   end
 
   def render_in_station_timetable_header
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :additional_infos }
-  = info.render_station_code_image( all: false )
+  = this.render_station_code_image( all: false )
   %div{ class: :station_name }<
     %div{ class: :text_ja }<
-      = info.decorate.render_name_ja
+      = this.render_name_ja
     %div{ class: :text_en }<
-      = info.name_en
+      = this.name_en
     HAML
   end
 
   def render_in_fare_table( starting_station_info: false )
-    h.render inline: <<-HAML , type: :haml , locals: { info: self , starting_station_info: starting_station_info }
-- if starting_station_info
-  %td{ class: [ :station_info , :starting_station] }<
-    = info.render_in_fare_table_without_link
-- else
-  - linked_page_action = info.object.name_in_system.underscore
-  %td{ class: [ :station_info , :with_link ] , "data-href" => linked_page_action }<
-    - linked_page = url_for( action: linked_page_action ) + "/" + info.railway_line.css_class_name + "_line"
-    = link_to( "" , linked_page )
-    = info.render_in_fare_table_without_link
-    HAML
+    if starting_station_info
+      h_locals = { this: self }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%td{ class: [ :station_info , :starting_station] }<
+  = this.render_in_fare_table_without_link
+      HAML
+    else
+      h_locals = { this: self , linked_page_action: object.name_in_system.underscore }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%td{ class: [ :station_info , :with_link ] , "data-href" => linked_page_action }<
+  - linked_page = url_for( action: linked_page_action ) + "/" + this.railway_line.css_class_name + "_line"
+  = link_to( "" , linked_page )
+  = this.render_in_fare_table_without_link
+      HAML
+    end
   end
 
   def render_in_fare_table_without_link
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :station_info_domain }
   %div{ class: :station_code_outer }
-    = info.render_station_code_image( all: false )
+    = this.render_station_code_image( all: false )
   %div{ class: :text }
-    = info.render_name_ja_and_en
+    = this.render_name_ja_and_en
     HAML
   end
 
@@ -265,11 +295,12 @@ class Station::InfoDecorator < Draper::Decorator
       else
         ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , self ).render
       end
+
     else
 
-      h.render inline: <<-HAML , type: :haml , locals: { info: self }
+      h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :station_codes }<
-  = "\[" + info.station_code + "\]"
+  = "\[" + this.station_code + "\]"
       HAML
 
     end
@@ -360,7 +391,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_link_to_station_facility_page_ja
-    link_name = "#{ name_ja }駅のご案内へジャンプします。"
+    link_name = "#{ name_ja_actual }駅のご案内へジャンプします。"
     if add_anchor_to_link_to_station_facility_page_ja?
       h.link_to( "" , h.url_for( controller: :station_facility , action: station_page_name , anchor: anchor_added_to_link_of_station_faility_page ) , name: link_name )
     else
@@ -378,50 +409,68 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_name_in_travel_time_infos
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-= info.render_link_to_station_facility_page_ja
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+= this.render_link_to_station_facility_page_ja
 %div{ class: :station_info_domain }
-  = info.render_station_code_image( all: false )
+  = this.render_station_code_image( all: false )
   %div{ class: :text }<
-    = info.render_name_ja_and_en
+    = this.render_name_ja_and_en
     HAML
   end
 
   def render_connecting_railway_lines_in_travel_time_infos
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- info.object.connecting_railway_lines.display_on_railway_line_page.includes( :railway_line , railway_line: :operator ).each do | connecting_railway_line |
+    h_locals = {
+      connecting_railway_lines: object.connecting_railway_lines.display_on_railway_line_page.includes( :railway_line , railway_line: :operator )
+    }
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
+- connecting_railway_lines.each do | connecting_railway_line |
   = connecting_railway_line.decorate.render
     HAML
   end
-  
+
   def render_name_ja_in_station_timetable
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- if this.name_ja.length <= 4
-  %div{ class: :destination }<
-    = this.render_name_ja( with_subname: false )
-- else
-  = this.render_name_ja_long
-    HAML
+    h_locals = { this: self }
+    if name_ja_actual.length <= 4
+      h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%div{ class: :destination }<
+  = this.render_name_ja( with_subname: false )
+      HAML
+    else
+      h.render inline: <<-HAML , type: :haml , locals: { this: self }
+= this.render_name_ja_long
+      HAML
+    end
   end
 
   def render_name_ja_long
-    h.render inline: <<-HAML , type: :haml , locals: { splited_destination_name_ja: splited_destination_name_ja }
+    _splited_destination_name_ja = splited_destination_name_ja
+    keys = _splited_destination_name_ja.keys
+    h_locals = {
+      normal_size_part: _splited_destination_name_ja[ :normal_size ] ,
+      small_size_part: _splited_destination_name_ja[ :small_size ]
+    }
+
+    case keys
+    when [ :normal_size , :small_size ]
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :destination }<
-  - normal_size_part = splited_destination_name_ja[ :normal_size ]
-  - small_size_part = splited_destination_name_ja[ :small_size ]
-  - case splited_destination_name_ja.keys
-  - when [ :normal_size , :small_size ]
-    = normal_size_part
-    - if small_size_part.present?
-      %span{ class: :small }<>
-        = small_size_part
-  - when [ :small_size , :normal_size ]
+  = normal_size_part
+  - if small_size_part.present?
     %span{ class: :small }<>
       = small_size_part
-    = normal_size_part
-  - else
-    - raise "Error"
-    HAML
+      HAML
+
+    when [ :small_size , :normal_size ]
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ class: :destination }<
+  %span{ class: :small }<>
+    = small_size_part
+  = normal_size_part
+      HAML
+
+    else
+      raise "Error"
+    end
   end
 
   def train_location
@@ -429,6 +478,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   class TrainLocation
+
     def initialize( decorator )
       @decorator = decorator
     end
@@ -440,40 +490,40 @@ class Station::InfoDecorator < Draper::Decorator
     end
 
     def render_as_terminal_station
-      h.render inline: <<-HAML , type: :haml , locals: { info: decorator }
+      h.render inline: <<-HAML , type: :haml , locals: { this: decorator }
 %div{ class: :terminal_station }
-  - if info.object.station_code.present?
-    = info.render_station_code_image
+  - if this.object.station_code.present?
+    = this.render_station_code_image
   %div{ class: :text }
     %p{ class: :text_ja }<
-      = info.render_name_ja( with_subname: true , suffix: " 行き" )
+      = this.render_name_ja( with_subname: true , suffix: " 行き" )
     %p{ class: :text_en }<
-      = info.render_name_en( with_subname: true , prefix: "Bound for " )
+      = this.render_name_en( with_subname: true , prefix: "Bound for " )
       HAML
     end
 
     def render_as_starting_station
-      h.render inline: <<-HAML , type: :haml , locals: { info: self }
+      h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :starting_station }
   %div{ class: :starting_station_title }
     %p{ class: :text_ja }<
       = "始発駅"
     %p{ class: :text_en }<
       = "Started at"
-  = info.render_name
+  = this.render_name
       HAML
     end
 
     def render_name
-      h.render inline: <<-HAML , type: :haml , locals: { info: decorator }
+      h.render inline: <<-HAML , type: :haml , locals: { this: decorator }
 %div{ class: :station_info }
-  - if info.object.station_code.present?
-    = info.render_station_code_image
+  - if this.object.station_code.present?
+    = this.render_station_code_image
   %div{ class: :text }
     %p{ class: :text_ja }<
-      = info.render_name_ja( with_subname: true )
+      = this.render_name_ja( with_subname: true )
     %p{ class: :text_en }<
-      = info.render_name_en( with_subname: true )
+      = this.render_name_en( with_subname: true )
       HAML
     end
 
@@ -500,10 +550,6 @@ class Station::InfoDecorator < Draper::Decorator
     "\[ #{ station_codes.join(" , " ) } \]"
   end
 
-  def name_ja
-    object.name_ja.process_specific_letter
-  end
-
   def code_image_filename
     dirname = "provided_by_tokyo_metro/station_number"
     if /\Am(\d{2})\Z/ =~ station_code
@@ -522,9 +568,9 @@ class Station::InfoDecorator < Draper::Decorator
     when :must_link_to_railway_line_page , :must_link_to_railway_line_page_and_merge_yf
       true
     when :link_to_railway_line_page_if_containing_multiple_railway_lines
-     has_another_railway_lines_of_tokyo_metro?
+      has_another_railway_lines_of_tokyo_metro?
     when :link_to_railway_line_page_if_containing_multiple_railway_lines_and_merge_yf
-     has_another_railway_lines_of_tokyo_metro? and !( between_wakoshi_and_kotake_mukaihara? )
+      has_another_railway_lines_of_tokyo_metro? and !( between_wakoshi_and_kotake_mukaihara? )
     when nil
       false
     end
@@ -563,7 +609,8 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def splited_destination_name_ja
-    case name_ja.delete_station_subname
+    destination_name_ja = name_ja_actual.delete_station_subname
+    case destination_name_ja
     when "中野富士見町"
       { small_size: "中野" , normal_size: "富士見町" }
     when "東武動物公園"

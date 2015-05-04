@@ -4,7 +4,7 @@ class StationTimetableStartingStationInfo < ActiveRecord::Base
   include ::Association::To::Station::Info
 
   def to_s
-    "#{ station_info.name_ja }始発"
+    "#{ station_info.decorate.name_ja_actualname_ja }始発"
   end
 
 end

@@ -41,7 +41,7 @@ body {
 }
 
 %subContentSettings {
-  $padding: 16px ;
+  $padding: $side_menu_padding ;
   #left_contents {
     width: $width_of_left_contents - $padding ;
     @extend %floatLeft ;

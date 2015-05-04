@@ -37,13 +37,13 @@ class StationFacilityController < ApplicationController
     @station_info_for_google_map = Gmaps4rails.build_markers( @station_facility.station_infos ) do | station_info , marker |
       marker.lat( station_info.latitude )
       marker.lng( station_info.longitude )
-      marker.infowindow( "#{ station_info.name_ja }（#{ station_info.railway_line.name_ja }）" )
-      marker.json( { title: station_info.name_ja } )
+      marker.infowindow( "#{ station_info.decorate.name_ja_actual }（#{ station_info.railway_line.name_ja }）" )
+      marker.json( { title: station_info.decorate.name_ja_actual } )
     end
   end
 
   def set_exit_info_for_google_map
-    json_title = @station_info.name_ja  + " " + @station_info.name_en
+    json_title = @station_info.decorate.name_ja_actual  + " " + @station_info.name_en
     @exit_info_for_google_map = Gmaps4rails.build_markers( @points ) do | point , marker_of_this_station |
       point.set_to( marker_of_this_station , json_title )
     end

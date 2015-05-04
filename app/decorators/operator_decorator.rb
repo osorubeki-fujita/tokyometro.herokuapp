@@ -20,7 +20,7 @@ class OperatorDecorator < Draper::Decorator
 
   def render_name_ja_in_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- regexp_of_parentheses = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
+- regexp_of_parentheses = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja
 - operator_name_ja = this.name_ja_to_haml
 %div{ class: :text_ja}<
   - if regexp_of_parentheses =~ operator_name_ja
@@ -36,7 +36,7 @@ class OperatorDecorator < Draper::Decorator
 
   def render_name_en_in_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- regexp_of_parentheses = ::PositiveSupport::RegexpLibrary.regexp_for_quotation
+- regexp_of_parentheses = ::PositiveStringSupport::RegexpLibrary.regexp_for_quotation
 - operator_name_en = this.name_en_to_haml
 %div{ class: :text_en }<
   - if regexp_of_parentheses =~ operator_name_en

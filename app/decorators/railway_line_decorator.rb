@@ -151,7 +151,7 @@ class RailwayLineDecorator < Draper::Decorator
     else
       str = object.name_ja_with_operator_name
     end
-    
+
     if prefix.present?
       str = prefix + str
     end
@@ -172,7 +172,7 @@ class RailwayLineDecorator < Draper::Decorator
     else
       str = object.name_en_with_operator_name
     end
-    
+
     if prefix.present?
       str = "#{ prefix } #{ str }"
     end
@@ -199,7 +199,7 @@ class RailwayLineDecorator < Draper::Decorator
 
   def railway_line_page_name
     if object.branch_line?
-      "#{ css_class_name }_line".gsub( /_branch/ , "" ) 
+      "#{ css_class_name }_line".gsub( /_branch/ , "" )
     else
       "#{ css_class_name }_line"
     end
@@ -289,23 +289,23 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def render_railway_line_code( must_display_line_color: true , small: false )
-    h_locals = {
-      letter: railway_line_code_letter ,
-      must_display_line_color: must_display_line_color ,
-      class_name: css_class_name_of_railway_line_code( small ) ,
-      small: small
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-- if letter.present?
-  %div{ class: class_name }<
-    %p<
-      = letter
-- elsif must_display_line_color
-  = ::TokyoMetro::App::Renderer::ColorBox.new( request , size: :small ).render
-- else
-  %div{ class: class_name }<
-    HAML
+    if railway_line_code_letter.present?
+      h_locals = {
+        letter: railway_line_code_letter ,
+        class_name: css_class_name_of_railway_line_code( small )
+      }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ class: class_name }<
+  %p<
+    = letter
+      HAML
+    elsif must_display_line_color
+      ::TokyoMetro::App::Renderer::ColorBox.new( request , size: :small ).render
+    else
+      h.render inline: <<-HAML , type: :haml
+%div{ class: class_name }<
+      HAML
+    end
   end
 
   def render_railway_line_code_with_outer_domain
@@ -326,32 +326,45 @@ class RailwayLineDecorator < Draper::Decorator
       class_names = [ :railway_line_matrix_small , :each_line , css_class_name ]
     end
 
+    url = nil
+
+    if make_link_to_railway_line
+      if link_controller_name.present?
+        url = h.url_for( controller: link_controller_name , action: railway_line_page_name )
+      else
+        url = h.url_for( action: railway_line_page_name )
+      end
+    end
+
     h_locals = {
       this: self ,
+      class_names: class_names ,
       make_link_to_railway_line: make_link_to_railway_line ,
-      link_controller_name: link_controller_name ,
-      size: size ,
-      class_names: class_names
+      url: url
     }
 
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
+    case size
+    when :normal
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_names }
   - if make_link_to_railway_line
-    - if link_controller_name.present?
-      - url = url_for( controller: link_controller_name , action: this.railway_line_page_name )
-    - else
-      - url = url_for( action: this.railway_line_page_name )
     = link_to_unless_current( "" , url )
-  - case size
-  - when :normal
-    %div{ class: :info }
-      = this.render_railway_line_code_with_outer_domain
-      = this.render_name_base( process_special_railway_line: true )
-  - when :small
-    %div{ class: :info }
-      = this.render_railway_line_code_with_outer_domain
-      = this.render_name( process_special_railway_line: true )
-    HAML
+  %div{ class: :info }
+    = this.render_railway_line_code_with_outer_domain
+    = this.render_name_base( process_special_railway_line: true )
+      HAML
+
+    when :small
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ class: class_names }
+  - if make_link_to_railway_line
+    = link_to_unless_current( "" , url )
+  %div{ class: :info }
+    = this.render_railway_line_code_with_outer_domain
+    = this.render_name( process_special_railway_line: true )
+      HAML
+
+    end
   end
 
   def render_matrix_and_links_to_stations( make_link_to_railway_line , type_of_link_to_station , set_anchor )
@@ -379,12 +392,12 @@ class RailwayLineDecorator < Draper::Decorator
   # 通常の路線の駅一覧を書き出す
   def render_matrix_and_links_to_stations_of_normal_railway_line( type_of_link_to_station: @type_of_link_to_station , set_anchor: set_anchor )
     h_locals = {
-      this: self ,
+      station_infos: station_infos ,
       type_of_link_to_station: type_of_link_to_station ,
       set_anchor: set_anchor
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-- this.station_infos.each do | station_info |
+- station_infos.each do | station_info |
   = station_info.decorate.render_link_to_station_in_matrix( type_of_link_to_station , set_anchor: set_anchor )
     HAML
   end
@@ -392,7 +405,8 @@ class RailwayLineDecorator < Draper::Decorator
   # 支線を含む路線の駅一覧を書き出す
   def render_matrix_and_links_to_stations_of_railway_line_including_branch( branch_line , set_anchor )
     h_locals = {
-      this: self , branch_line: branch_line ,
+      this: self ,
+      branch_line: branch_line ,
       type_of_link_to_station: @type_of_link_to_station ,
       set_anchor: set_anchor
     }
@@ -418,48 +432,75 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def render_color_info_in_document
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h_locals = {
+      color: color
+    }
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :color_info }
   %div{ class: :web_color }<
-    = this.color
-  - if this.color.present?
+    = color
+  - if color.present?
     %div{ class: :rgb_color }<
-      = this.color.to_rgb_color_in_parentheses
+      = color.to_rgb_color_in_parentheses
     HAML
   end
 
   def render_name_ja_in_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- regexp = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
-- railway_line_name_ja = this.name_ja_with_operator_name_precise
+    regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja ,
+    name_ja = name_ja_with_operator_name_precise
+
+    if regexp =~ name_ja
+      h_locals = {
+        out_of_parentheses: name_ja.gsub( regexp , "" ) ,
+        in_parentheses: $1
+      }
+
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :text_ja }<
-  - if regexp =~ railway_line_name_ja
-    - out_of_parentheses = railway_line_name_ja.gsub( regexp , "" )
-    - in_parentheses =  $1
-    %div{ class: :main }<
-      = out_of_parentheses
-    %div{ class: :sub }<
-      = in_parentheses
-  - else
-    = railway_line_name_ja
-    HAML
+  %div{ class: :main }<
+    = out_of_parentheses
+  %div{ class: :sub }<
+    = in_parentheses
+      HAML
+
+    else
+      h_locals = {
+        name_ja: name_ja
+      }
+
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ class: :text_ja }<
+  = name_ja
+      HAML
+    end
   end
 
   def render_name_en_in_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- regexp = ::PositiveSupport::RegexpLibrary.regexp_for_parentheses_ja
-- railway_line_name_en = this.name_en_with_operator_name_precise
+    regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja
+    name_en = name_en_with_operator_name_precise
+
+    if regexp =~ name_en
+      h_locals = {
+        out_of_parentheses: name_en.gsub( regexp , "" ) ,
+        in_parentheses: $1
+      }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :text_en }<
-  - if regexp =~ railway_line_name_en
-    - out_of_parentheses = railway_line_name_en.gsub( regexp , "" )
-    - in_parentheses =  $1
-    %div{ class: :main }<
-      = out_of_parentheses
-    %div{ class: :sub }<
-      = in_parentheses
-  - else
-    = railway_line_name_en
-    HAML
+  %div{ class: :main }<
+    = out_of_parentheses
+  %div{ class: :sub }<
+    = in_parentheses
+      HAML
+
+    else
+      h_locals = {
+        name_en: name_en
+      }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ class: :text_en }<
+  = name_en
+      HAML
+    end
   end
 
   def render_link_to_railway_line_page(
@@ -477,6 +518,10 @@ class RailwayLineDecorator < Draper::Decorator
     raise "Error" if controller == :passenger_survey and survey_years.blank?
     raise "Error" if controller != :passenger_survey and survey_years.present?
 
+    if survey_years.present?
+      survey_years = survey_years.sort.reverse
+    end
+
     h_locals = {
       this: self ,
       small_railway_line_code: small_railway_line_code ,
@@ -491,49 +536,70 @@ class RailwayLineDecorator < Draper::Decorator
       controller: controller ,
       survey_years: survey_years
     }
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
 
-- li_classes = [ :railway_line , :small , this.css_class_name ]
-- div_classes = [ :link_to_railway_line_page ]
+    li_classes = [ :railway_line , :small ]
+    div_classes = [ :link_to_railway_line_page ]
 
-- if add_connection_info_to_class and station_info.connected_to?( this.object , only_tokyo_metro: true )
-  - li_classes << :this_station
+    unless controller == :passenger_survey
+      li_classes << css_class_name
+    end
 
-- if additional_class_of_li.present?
-  - li_classes << additional_class_of_li
+    if add_connection_info_to_class and station_info.connected_to?( object , only_tokyo_metro: true )
+      li_classes << :this_station
+    end
 
-- if current_page?( railway_line: this.css_class_name.to_s + "_line" )
-  - li_classes << :this_page
+    if additional_class_of_li.present?
+      li_classes << additional_class_of_li
+    end
 
-- if controller == :passenger_survey
-  %ul{ class: [ :each_railway_line , this.css_class_name ] }
-    %li{ class: li_classes - [ this.css_class_name ] }
-      = link_to_unless_current( "" , url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: this.railway_line_page_name ) )
-      %div{ class: div_classes }
-        = this.render_railway_line_code( small: small_railway_line_code )
-        = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
-    - survey_years.sort.reverse.each do | survey_year |
-      %li{ class: :survey_year }
-        = link_to_unless_current( "" , url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: this.railway_line_page_name , survey_year: survey_year ) )
-        %p{ class: :text_en }<
-          = survey_year
+    if current_page?( railway_line: "#{ css_class_name }_line" )
+      li_classes << :this_page
+    end
 
-- else
-
-  - case link_type
-  - when :railway_line_page_under_action_for_station
-    - url = url_for( controller: controller , railway_line: this.railway_line_page_name )
-  - when :action_for_station , :standard
-    - url = url_for( controller: controller , action: this.railway_line_page_name )
-  
+    case controller
+    when :passenger_survey
+      h_locals = h_locals.merge({
+        url_for_railway_line_page: h.url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: railway_line_page_name ) ,
+        common_setting_of_url_for_year_page: {
+          controller: controller ,
+          action: :action_for_railway_line_or_year_page ,
+          railway_line: railway_line_page_name
+        }
+      })
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%ul{ class: [ :each_railway_line , this.css_class_name ] }
   %li{ class: li_classes }
-    = link_to_unless_current( "" , url )
+    = link_to_unless_current( "" , url_for_railway_line_page )
     %div{ class: div_classes }
       = this.render_railway_line_code( small: small_railway_line_code )
       = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
-    HAML
+  - survey_years.each do | survey_year |
+    - url = url_for( common_setting_of_url_for_year_page.marge({ survey_year: survey_year } )
+    %li{ class: :survey_year }
+      = link_to_unless_current( "" , url )
+      %p{ class: :text_en }<
+        = survey_year
+      HAML
+
+    else
+      case link_type
+      when :railway_line_page_under_action_for_station
+        url = h.url_for( controller: controller , railway_line: railway_line_page_name )
+      when :action_for_station , :standard
+        url = h.url_for( controller: controller , action: railway_line_page_name )
+      end
+
+      h_locals = h_locals.merge({ url: url })
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%li{ class: li_classes }
+  = link_to_unless_current( "" , url )
+  %div{ class: div_classes }
+    = this.render_railway_line_code( small: small_railway_line_code )
+    = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
+      HAML
+    end
   end
-  
+
   def render_link_to_railway_line_page_of_fare( station_info )
     render_link_to_railway_line_page(
       small_railway_line_code: true ,
@@ -543,7 +609,7 @@ class RailwayLineDecorator < Draper::Decorator
       controller: :fare
     )
   end
-  
+
   def render_link_to_railway_line_page_of_passenger_survey( survey_years , additional_class_of_li: nil )
     render_link_to_railway_line_page(
       small_railway_line_code: true ,

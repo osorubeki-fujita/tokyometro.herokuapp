@@ -2,7 +2,7 @@
 - url = "https://www.google.com/maps/embed/v1/search"
 - url += "?key=AIzaSyBszacA0SfENmaT-fonU0cGK-tWyScUFV4"
 - url += "&q="
-- url += ::ERB::Util.url_encode( @station_info.name_ja )
+- url += ::ERB::Util.url_encode( @station_info.decorate.name_ja_actual )
 - url += "&center="
 - url += ( @station_info.latitude.to_s + "," + @station_info.longitude.to_s )
 - url += "&zoom=16"

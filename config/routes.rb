@@ -83,6 +83,9 @@ Rails.application.routes.draw do
     
   get 'passenger_survey(/index)' , to: 'passenger_survey#index'
 
+  #-------- Twitter
+  post 'twitter/minimize' , to: 'twitter#minimize'
+
   #-------- その他
 
   match ':controller/:action', via: [ :get , :post , :patch ]

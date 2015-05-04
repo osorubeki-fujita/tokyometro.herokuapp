@@ -28,7 +28,7 @@ module EachStation
     # @param layout [String or Symbol] 使用するレイアウトの名称
     def each_station_sub( title_base , controller_name , station_info_same_as , layout: :application )
       @station_info = ::Station::Info.select_tokyo_metro.find_by( same_as: station_info_same_as )
-      @title = "#{ @station_info.name_ja.station_name_in_title }#{title_base}"
+      @title = "#{ @station_info.decorate.name_ja_actual }#{title_base}"
       if block_given?
         yield
       end

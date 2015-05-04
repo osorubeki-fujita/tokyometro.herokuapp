@@ -99,6 +99,18 @@ ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents ,
   }
 }
 
+ul#links_to_other_websites , ul#links_to_documents {
+  .link_to_another_website , .open_another_window {
+    float: right ;
+  }
+  .open_another_window {
+    color: #ddd ;
+  }
+  .link_to_another_website {
+    color: #aaa ;
+  }
+}
+
 ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages , ul#links_to_station_pages {
   li.small {
     div.icon {
@@ -140,10 +152,10 @@ ul#links_to_year_pages {
 }
 
 ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages {
-  width: $width_of_left_contents ;
   li {
     // width: floor( $width_of_left_contents * $bronze_ratio / ( $bronze_ratio + 1 ) ) ;
-    width: ceil( $width_of_left_contents * 0.9 ) ;
+    // width: ceil( $width_of_left_contents * 0.9 ) ;
+    // width: $width_of_left_contents ;
     @extend %liBorderSettingsOfSideMenu ;
   }
   @extend %marginBottom16 ;
@@ -204,25 +216,168 @@ ul#links_to_passenger_survey_pages {
 //-------- マウスオーバー時の文字色・背景色の設定（一般）
 
 %liHoverInLinkUl {
-    background: {
-      color: $link_hover_domain_color ;
-    }
-    .icon {
-      color: saturate( $operator_color , 20% ) ;
-    }
-    .text_large , .text_en {
-      color: $operator_color ;
-    }
+  .icon {
+    color: saturate( $operator_color , 20% ) ;
+  }
+  .text_large , .text_en {
+    color: $operator_color ;
+  }
 }
 
-ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages {
+%liHoverBgNormalInLinkUl {
+  $rate: 0.75 ;
+  $color_base: rgba( $link_hover_domain_color , $rate ) ;
+  //
+  // 変数の定義
+  //
+  $color_left: $color_base ;
+  $color_1: rgba( $color_base , 0.972 * $rate );
+  $color_2: rgba( $color_base , 0.896 * $rate );
+  $color_3: rgba( $color_base , 0.784 * $rate );
+  $color_4: rgba( $color_base , 0.648 * $rate );
+  $color_5: rgba( $color_base , 0.5 * $rate );
+  $color_6: rgba( $color_base , 0.352 * $rate );
+  $color_7: rgba( $color_base , 0.216 * $rate );
+  $color_8: rgba( $color_base , 0.104 * $rate );
+  $color_9: rgba( $color_base , 0.028 * $rate );
+  $color_right: rgba( $color_base , 0 * $rate );
+  //
+  $color_stop_point_1_moz : 10% ;
+  $color_stop_point_1_webkit : 0.1 ;
+  $color_stop_point_2_moz : 20% ;
+  $color_stop_point_2_webkit : 0.2 ;
+  $color_stop_point_3_moz : 30% ;
+  $color_stop_point_3_webkit : 0.3 ;
+  $color_stop_point_4_moz : 40% ;
+  $color_stop_point_4_webkit : 0.4 ;
+  $color_stop_point_5_moz : 50% ;
+  $color_stop_point_5_webkit : 0.5 ;
+  $color_stop_point_6_moz : 60% ;
+  $color_stop_point_6_webkit : 0.6 ;
+  $color_stop_point_7_moz : 70% ;
+  $color_stop_point_7_webkit : 0.7 ;
+  $color_stop_point_8_moz : 80% ;
+  $color_stop_point_8_webkit : 0.8 ;
+  $color_stop_point_9_moz : 90% ;
+  $color_stop_point_9_webkit : 0.9 ;
+  //
+  background: #{ $color_7 } ;
+  // Firefox
+  background: -moz-linear-gradient(left,
+    #{$color_left},
+    #{$color_1} #{$color_stop_point_1_moz},
+    #{$color_2} #{$color_stop_point_2_moz},
+    #{$color_3} #{$color_stop_point_3_moz},
+    #{$color_4} #{$color_stop_point_4_moz},
+    #{$color_5} #{$color_stop_point_5_moz},
+    #{$color_6} #{$color_stop_point_6_moz},
+    #{$color_7} #{$color_stop_point_7_moz},
+    #{$color_8} #{$color_stop_point_8_moz},
+    #{$color_9} #{$color_stop_point_9_moz},
+    #{$color_right}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, right top,
+    from( #{$color_left} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+    color-stop( #{$color_stop_point_3_webkit} , #{$color_3} ) ,
+    color-stop( #{$color_stop_point_4_webkit} , #{$color_4} ) ,
+    color-stop( #{$color_stop_point_5_webkit} , #{$color_5} ) ,
+    color-stop( #{$color_stop_point_6_webkit} , #{$color_6} ) ,
+    color-stop( #{$color_stop_point_7_webkit} , #{$color_7} ) ,
+    color-stop( #{$color_stop_point_8_webkit} , #{$color_8} ) ,
+    color-stop( #{$color_stop_point_9_webkit} , #{$color_9} ) ,
+    to( #{$color_right} )
+  );
+}
+
+%liHoverBgSameCategoryInLinkUl {
+  $color_base: $link_hover_domain_color ;
+  //
+  // 変数の定義
+  //
+  $color_left: $color_base ;
+  $color_60: $color_base ;
+  $color_65: rgba( $color_base , 0.957 );
+  $color_70: rgba( $color_base , 0.844 );
+  $color_75: rgba( $color_base , 0.684 );
+  $color_80: rgba( $color_base , 0.5 );
+  $color_85: rgba( $color_base , 0.316 );
+  $color_90: rgba( $color_base , 0.156 );
+  $color_95: rgba( $color_base , 0.043 );
+  $color_right: rgba( $color_base , 0 );
+  //
+  $color_stop_point_60_moz : 60% ;
+  $color_stop_point_60_webkit : 0.6 ;
+  $color_stop_point_65_moz : 65% ;
+  $color_stop_point_65_webkit : 0.65 ;
+  $color_stop_point_70_moz : 70% ;
+  $color_stop_point_70_webkit : 0.7 ;
+  $color_stop_point_75_moz : 75% ;
+  $color_stop_point_75_webkit : 0.75 ;
+  $color_stop_point_80_moz : 80% ;
+  $color_stop_point_80_webkit : 0.8 ;
+  $color_stop_point_85_moz : 85% ;
+  $color_stop_point_85_webkit : 0.85 ;
+  $color_stop_point_90_moz : 90% ;
+  $color_stop_point_90_webkit : 0.9 ;
+  $color_stop_point_95_moz : 95% ;
+  $color_stop_point_95_webkit : 0.95 ;
+  //
+  background: #{ $color_65 } ;
+  // Firefox
+  background: -moz-linear-gradient(left,
+    #{$color_left},
+    #{$color_60} #{$color_stop_point_60_moz},
+    #{$color_65} #{$color_stop_point_65_moz},
+    #{$color_70} #{$color_stop_point_70_moz},
+    #{$color_75} #{$color_stop_point_75_moz},
+    #{$color_80} #{$color_stop_point_80_moz},
+    #{$color_85} #{$color_stop_point_85_moz},
+    #{$color_90} #{$color_stop_point_90_moz},
+    #{$color_95} #{$color_stop_point_95_moz},
+    #{$color_right}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, right top,
+    from( #{$color_left} ),
+    color-stop( #{$color_stop_point_60_webkit} , #{$color_60} ) ,
+    color-stop( #{$color_stop_point_65_webkit} , #{$color_65} ) ,
+    color-stop( #{$color_stop_point_70_webkit} , #{$color_70} ) ,
+    color-stop( #{$color_stop_point_75_webkit} , #{$color_75} ) ,
+    color-stop( #{$color_stop_point_80_webkit} , #{$color_80} ) ,
+    color-stop( #{$color_stop_point_85_webkit} , #{$color_85} ) ,
+    color-stop( #{$color_stop_point_90_webkit} , #{$color_90} ) ,
+    color-stop( #{$color_stop_point_95_webkit} , #{$color_95} ) ,
+    to( #{$color_right} )
+  );
+}
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents {
   li.hover {
+    @extend %liHoverBgNormalInLinkUl ;
+    @extend %liHoverInLinkUl ;
+  }
+}
+
+ul#links_to_document_pages {
+  li.hover {
+    @extend %liHoverBgNormalInLinkUl ;
+    @extend %liHoverInLinkUl ;
+  }
+}
+
+ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents {
+  li.same_category {
+    @extend %liHoverBgSameCategoryInLinkUl ;
     @extend %liHoverInLinkUl ;
   }
 }
 
 ul#links_to_year_pages {
   li.tokyo_metro.hover {
+    @extend %liHoverBgNormalInLinkUl ;
     @extend %liHoverInLinkUl ;
   }
 }

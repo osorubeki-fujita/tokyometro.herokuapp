@@ -4,3 +4,10 @@
   = ::TokyoMetro::App::Renderer::Twitter.new( request , :tokyo_metro ).render
 
 = ::TokyoMetro::App::Renderer::Concern::Header::Title.new( request , ::ApplicationHelper.common_title_ja , ::ApplicationHelper.common_title_en , domain_id_name: :top_title ).render
+
+- # %p<
+- #   = "Controller: " + ::Rails.application.routes.recognize_path( request.fullpath )[ :controller ].to_s
+- # %p<
+- #   = "Action: " + ::Rails.application.routes.recognize_path( request.fullpath )[ :action ].to_s
+- # %p<
+- #   = "Host: " + request.host

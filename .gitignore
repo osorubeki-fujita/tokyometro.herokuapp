@@ -16,11 +16,10 @@
 /tmp
 
 /config/application_memo.rb
-/rss_test.rb
-/memo_20150108.txt
 
 /AccessToken
 # /db/data.yml
-/db/csv/**/*.csv
-
-/ruby_for_rails.pdf
+/db/csv/
+/db/json/
+/dev/
+/provided_by_tokyo_metro/

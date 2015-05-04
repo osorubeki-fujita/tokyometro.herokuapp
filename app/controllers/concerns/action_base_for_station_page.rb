@@ -27,7 +27,7 @@ module ActionBaseForStationPage
     end
 
     def set_title_of_station_page
-      @title = "#{ @station_info.name_ja.station_name_in_title }駅#{ base_of_station_page_title }"
+      @title = "#{ @station_info.decorate.name_ja_actual }駅#{ base_of_station_page_title }"
     end
 
   end

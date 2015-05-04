@@ -24,7 +24,7 @@ class WomenOnlyCarInfoDecorator < Draper::Decorator
   end
 
   def section_to_s_ja
-    object.section.map( &:name_ja ).join( " → " )
+    object.section.map { | station_info | station_info.decorate.name_ja_actual }.join( " → " )
   end
 
   def section_to_s_en

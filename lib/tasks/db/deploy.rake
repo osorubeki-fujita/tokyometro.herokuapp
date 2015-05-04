@@ -31,7 +31,7 @@ namespace :tokyo_metro do
         end
 
         desc "Migrate Db on Heroku"
-        task :migrate do
+        task :migrate => :environment do
           system( "heroku run bundle exec rake RAILS_ENV=production db:migrate" )
           # system( "heroku run rake db:migrate" )
         end

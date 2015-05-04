@@ -30,12 +30,13 @@ namespace :tokyo_metro do
           puts ""
           commands = ::TokyoMetro::Rake::Rails::Deploy::Heroku::Csv::Command.to_import_to_postgresql( time_dirname )
           puts "-" * 32 + " " + "[Begin] Import Csv Files to PostgreSql on Heroku (as of #{ time_dirname })"
+          puts commands
 
-          open( "| heroku pg:psql" , "r+" ) do |f|
-            commands.each do | command |
-              f.puts( command )
-            end
-          end
+          # open( "| heroku pg:psql" , "r+" ) do |f|
+            # commands.each do | command |
+              # f.puts( command )
+            # end
+          # end
           puts ""
           puts "-" * 32 + " " + "[End] Import Csv Files to PostgreSql on Heroku"
           puts ""
