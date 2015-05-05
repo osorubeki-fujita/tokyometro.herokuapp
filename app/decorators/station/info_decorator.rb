@@ -105,11 +105,11 @@ class Station::InfoDecorator < Draper::Decorator
 
     if name_sub.present? and with_subname
       h.render inline: <<-HAML , type: :haml , locals: h_locals
-  = raw( name_main + "&nbsp;" )
-  %span{ class: :small }<>
-    = name_sub
-  - if suffix.present?
-    = suffix
+= raw( name_main + "&nbsp;" )
+%span{ class: :small }<>
+  = name_sub
+- if suffix.present?
+  = suffix
       HAML
 
     elsif suffix.present?
@@ -156,24 +156,24 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   # 東京メトロの路線情報を表示する method
-  def render_tokyo_metro_railway_lines
+  def render_tokyo_metro_railway_lines( request )
     h_locals = {
+      request: request ,
       railway_lines_of_tokyo_metro: railway_lines_of_tokyo_metro ,
-      connecting_railway_lines_in_another_station: connecting_railway_lines_in_another_station
+      connecting_railway_lines_of_tokyo_metro_in_another_station: connecting_railway_lines_of_tokyo_metro_in_another_station
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :tokyo_metro_railway_lines }
+%div{ id: :tokyo_metro_railway_lines }
   = ::ConnectingRailwayLineDecorator.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
   %div{ class: :railway_lines }
     %ul{ class: :railway_lines_in_this_station }
       - railway_lines_of_tokyo_metro.each do | railway_line |
-        = railway_line.decorate.render_connecting_railway_line_info_in_station_facility
-
-    - if connecting_railway_lines_in_another_station.present?
+        = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::FromStationFacilityPage.new( request , railway_line.decorate ).render
+    - if connecting_railway_lines_of_tokyo_metro_in_another_station.present?
       %ul{ class: :railway_lines_in_another_station }
-        - connecting_railway_lines_in_another_station.each do | railway_line |
-          = railway_line.decorate.render
+        - connecting_railway_lines_of_tokyo_metro_in_another_station.each do | connecting_railway_line |
+          = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine.new( request , connecting_railway_line.decorate ).render
     HAML
   end
 
@@ -188,11 +188,11 @@ class Station::InfoDecorator < Draper::Decorator
       }
 
       h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :other_railway_lines }
+%div{ id: :other_railway_lines }
   = ::ConnectingRailwayLineDecorator.render_title_of_other_railway_lines_in_station_facility_info
   %ul{ class: :railway_lines }
     - connecting_railway_lines_except_for_tokyo_metro.each do | connecting_railway_line |
-      = connecting_railway_line.decorate.render
+      = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine.new( request , connecting_railway_line.decorate ).render
       HAML
     end
   end
@@ -200,11 +200,23 @@ class Station::InfoDecorator < Draper::Decorator
   def render_links_to_station_info_pages
     h_locals = {
       this: self ,
-      contents:{
-        train_information: "この駅からの列車運行情報" ,
-        station_facility: "この駅の施設" ,
-        station_timetable: "この駅の時刻表" ,
-        fare: "この駅からの運賃"
+      contents: {
+        train_information: {
+          text_ja: "この駅からの列車運行情報" ,
+          text_en: "Train information"
+        } ,
+        station_facility: {
+          text_ja: "この駅の施設" ,
+          text_en: "Facilities"
+        } ,
+        station_timetable: {
+          text_ja: "この駅の時刻表" ,
+          text_en: "Timetable"
+        } ,
+        fare: {
+          text_ja: "この駅からの運賃" ,
+          text_en: "Fare"
+        }
       }
     }
 
@@ -215,13 +227,18 @@ class Station::InfoDecorator < Draper::Decorator
       = this.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
     %h3{ class: :text_en }<
       = "Other pages related to " + this.name_en + " Station"
-  %div{ class: :links }
-    - contents.each do | controller , title |
-      %div{ class: :link }<
-        = link_to_unless_current( title , url_for( controller: controller , action: this.name_in_system.underscore ) )
+  %ul{ class: :links }
+    - contents.each do | controller , text_set |
+      %li{ class: :link }<
+        = link_to_unless_current( "" , url_for( controller: controller , action: this.name_in_system.underscore ) )
+        %div{ class: :text }
+          - text_set.each do | k , v |
+            %p{ class: k }<
+              = v
     HAML
   end
 
+  # @note {ConnectingRailwayLineDecorator#render} から呼び出される。
   def render_connection_info_from_another_station
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :another_station }
@@ -424,7 +441,7 @@ class Station::InfoDecorator < Draper::Decorator
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - connecting_railway_lines.each do | connecting_railway_line |
-  = connecting_railway_line.decorate.render
+  = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine.new( request , connecting_railway_line.decorate , display_additional_infos: true ).render
     HAML
   end
 

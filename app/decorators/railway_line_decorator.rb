@@ -5,8 +5,6 @@ class RailwayLineDecorator < Draper::Decorator
   extend SubTopTitleRenderer
 
   include TwitterRenderer
-  include CssClassNameOfConnectingRailwayLine
-  include RenderLinkToRailwayLinePage
 
   def self.common_title_ja
     "路線のご案内"
@@ -186,7 +184,7 @@ class RailwayLineDecorator < Draper::Decorator
     "Twitter #{ object.name_ja } 運行情報"
   end
 
-  def railway_line_in_station_facility_platform_info_transfer_info
+  def name_ja_in_station_facility_platform_info_transfer_info
     case same_as
     when "odpt.Railway:Tobu.SkyTreeIsesaki"
       "東武線"
@@ -272,22 +270,6 @@ class RailwayLineDecorator < Draper::Decorator
     HAML
   end
 
-  def render_in_pages_related_to_station
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-= this.render_railway_line_code( must_display_line_color: true , small: true )
-= this.render_name( process_special_railway_line: true )
-    HAML
-  end
-
-  alias :render_in_station_info_of_travel_time_info :render_in_pages_related_to_station
-
-  def render_connecting_railway_line_info_in_station_facility
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: this.css_class_name_of_connecting_railway_line }<
-  = this.render_link_to_railway_line_page( controller: :railway_line , link_type: :standard )
-    HAML
-  end
-
   def render_railway_line_code( must_display_line_color: true , small: false )
     if railway_line_code_letter.present?
       h_locals = {
@@ -300,7 +282,12 @@ class RailwayLineDecorator < Draper::Decorator
     = letter
       HAML
     elsif must_display_line_color
-      ::TokyoMetro::App::Renderer::ColorBox.new( request , size: :small ).render
+      if small
+        size = :small
+      else
+        size = :normal
+      end
+      ::TokyoMetro::App::Renderer::ColorBox.new( h.request , size: size ).render
     else
       h.render inline: <<-HAML , type: :haml
 %div{ class: class_name }<
@@ -501,124 +488,6 @@ class RailwayLineDecorator < Draper::Decorator
   = name_en
       HAML
     end
-  end
-
-  def render_link_to_railway_line_page(
-    small_railway_line_code: true ,
-    add_connection_info_to_class: false , station_info: nil ,
-    prefix_ja: nil , prefix_en: nil , suffix_ja: nil , suffix_en: nil ,
-    additional_class_of_li: nil ,
-    link_type: :railway_line_page_under_action_for_station ,
-    controller: nil ,
-    survey_years: nil
-  )
-    raise "Error" if add_connection_info_to_class and station_info.blank?
-    raise "Error" if !( add_connection_info_to_class ) and station_info.present?
-    raise "Error" if controller.blank?
-    raise "Error" if controller == :passenger_survey and survey_years.blank?
-    raise "Error" if controller != :passenger_survey and survey_years.present?
-
-    if survey_years.present?
-      survey_years = survey_years.sort.reverse
-    end
-
-    h_locals = {
-      this: self ,
-      small_railway_line_code: small_railway_line_code ,
-      add_connection_info_to_class: add_connection_info_to_class ,
-      station_info: station_info ,
-      prefix_ja: prefix_ja ,
-      prefix_en: prefix_en ,
-      suffix_ja: suffix_ja ,
-      suffix_en: suffix_en ,
-      additional_class_of_li: additional_class_of_li ,
-      link_type: link_type ,
-      controller: controller ,
-      survey_years: survey_years
-    }
-
-    li_classes = [ :railway_line , :small ]
-    div_classes = [ :link_to_railway_line_page ]
-
-    unless controller == :passenger_survey
-      li_classes << css_class_name
-    end
-
-    if add_connection_info_to_class and station_info.connected_to?( object , only_tokyo_metro: true )
-      li_classes << :this_station
-    end
-
-    if additional_class_of_li.present?
-      li_classes << additional_class_of_li
-    end
-
-    if current_page?( railway_line: "#{ css_class_name }_line" )
-      li_classes << :this_page
-    end
-
-    case controller
-    when :passenger_survey
-      h_locals = h_locals.merge({
-        url_for_railway_line_page: h.url_for( controller: controller , action: :action_for_railway_line_or_year_page , railway_line: railway_line_page_name ) ,
-        common_setting_of_url_for_year_page: {
-          controller: controller ,
-          action: :action_for_railway_line_or_year_page ,
-          railway_line: railway_line_page_name
-        }
-      })
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%ul{ class: [ :each_railway_line , this.css_class_name ] }
-  %li{ class: li_classes }
-    = link_to_unless_current( "" , url_for_railway_line_page )
-    %div{ class: div_classes }
-      = this.render_railway_line_code( small: small_railway_line_code )
-      = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
-  - survey_years.each do | survey_year |
-    - url = url_for( common_setting_of_url_for_year_page.marge({ survey_year: survey_year } )
-    %li{ class: :survey_year }
-      = link_to_unless_current( "" , url )
-      %p{ class: :text_en }<
-        = survey_year
-      HAML
-
-    else
-      case link_type
-      when :railway_line_page_under_action_for_station
-        url = h.url_for( controller: controller , railway_line: railway_line_page_name )
-      when :action_for_station , :standard
-        url = h.url_for( controller: controller , action: railway_line_page_name )
-      end
-
-      h_locals = h_locals.merge({ url: url })
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%li{ class: li_classes }
-  = link_to_unless_current( "" , url )
-  %div{ class: div_classes }
-    = this.render_railway_line_code( small: small_railway_line_code )
-    = this.render_name( prefix_ja: prefix_ja , prefix_en: prefix_en , suffix_ja: suffix_ja , suffix_en: suffix_en )
-      HAML
-    end
-  end
-
-  def render_link_to_railway_line_page_of_fare( station_info )
-    render_link_to_railway_line_page(
-      small_railway_line_code: true ,
-      station_info: station_info , add_connection_info_to_class: true ,
-      suffix_ja: "の各駅まで" , prefix_en: "To stations / on" ,
-      link_type: :railway_line_page_under_action_for_station ,
-      controller: :fare
-    )
-  end
-
-  def render_link_to_railway_line_page_of_passenger_survey( survey_years , additional_class_of_li: nil )
-    render_link_to_railway_line_page(
-      small_railway_line_code: true ,
-      suffix_ja: "の各駅" , prefix_en: "Stations on" ,
-      additional_class_of_li: additional_class_of_li ,
-      link_type: :action_for_station ,
-      controller: :passenger_survey ,
-      survey_years: survey_years
-    )
   end
 
   private

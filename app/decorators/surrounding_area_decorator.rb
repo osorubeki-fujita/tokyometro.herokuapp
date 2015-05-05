@@ -2,9 +2,8 @@ class SurroundingAreaDecorator < Draper::Decorator
   delegate_all
 
   def render
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: :surrounding_area }<
-  = info.name
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+= this.name
     HAML
   end
 

@@ -7,6 +7,16 @@ class ConnectingRailwayLine < ActiveRecord::Base
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
 
+  default_scope {
+    if pluck( :index_in_station ).all?( &:present? )
+      order( :index_in_station )
+    elsif pluck( :index_in_station ).all?( &:blank? )
+      order( :railway_line_id )
+    # else
+      # raise "Error"
+    end
+  }
+
   scope :display_on_railway_line_page , -> {
     where( hidden_on_railway_line_page: [ false , nil ] )
   }
@@ -39,14 +49,8 @@ class ConnectingRailwayLine < ActiveRecord::Base
     super or railway_line.not_operated_yet?
   end
 
-  default_scope {
-    if pluck( :index_in_station ).all?( &:present? )
-      order( :index_in_station )
-    elsif pluck( :index_in_station ).all?( &:blank? )
-      order( :railway_line_id )
-    # else
-      # raise "Error"
-    end
-  }
+  def css_class_name
+    railway_line.send( __method__ )
+  end
 
 end

@@ -4,8 +4,8 @@
 @import 'concern/connecting_railway_line_info.scss' ;
 
 %lineCodeAndColorBoxInStationFacilityRailwayLineInfo {
-    @extend %floatLeft ;
-    @extend %margin4 ;
+  @extend %floatLeft ;
+  @extend %margin4 ;
 }
 
 %stationFacilityRailwayLineInfo {
@@ -96,12 +96,14 @@
   }
 }
 
-.tokyo_metro_railway_lines {
+#tokyo_metro_railway_lines {
   @extend %stationFacilityRailwayLineInfo ;
   @extend %tokyoMetroRailwayLinesTitle ;
   .railway_lines {
-    .railway_line {
+    li.railway_line {
       @extend %link_in_div ;
+      @extend %floatLeft ;
+      list-style: none ;
       border: {
         color: #ddd ;
       }
@@ -119,11 +121,12 @@
   }
 }
 
-.other_railway_lines {
+#other_railway_lines {
   @extend %stationFacilityRailwayLineInfo ;
   @extend %connectingRailwayLinesTitle ;
   .railway_lines {
-    .railway_line {
+    li.railway_line {
+      list-style: none ;
       border: {
           color: #eee ;
       }

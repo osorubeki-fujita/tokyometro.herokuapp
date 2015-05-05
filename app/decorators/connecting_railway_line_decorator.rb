@@ -3,9 +3,6 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
 
   decorates_association :railway_line
 
-  include CssClassNameOfConnectingRailwayLine
-  include RenderLinkToRailwayLinePage
-
   def self.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
     h.render inline: <<-HAML , type: :haml
 %div{ class: :title }
@@ -26,38 +23,28 @@ class ConnectingRailwayLineDecorator < Draper::Decorator
     HAML
   end
 
-  def css_class_name_of_connecting_railway_line
-    ary = super
-    if not_recommended?
-      ary << :not_recommended
+  def url_for_railway_line_page
+    unless railway_line_page_exists?
+      return nil
     end
-    if cleared?
-      ary << :cleared
-    end
-    ary
-  end
 
-  alias :css_class_names :css_class_name_of_connecting_railway_line
+    _railway_line_decorated = railway_line_decorated
 
-  def render
-    unless object.railway_line.not_operated_yet?
-      h_locals = {
-        info: self
-      }
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: info.css_class_names }<
-  = info.render_link_to_railway_line_page
-  = info.railway_line.render_in_station_info_of_travel_time_info
-  - if info.connecting_to_another_station?
-    = info.connecting_station_info.decorate.render_connection_info_from_another_station
-      HAML
+    if set_anchor_in_travel_time_info_table?
+      return h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name , anchor: _railway_line_decorated.travel_time_table_id )
     end
+
+    h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name )
   end
 
   private
 
   def railway_line_decorated
     railway_line.decorate
+  end
+
+  def railway_line_page_name
+    railway_line_decorated.send( __method__ )
   end
 
   def railway_line_page_exists?

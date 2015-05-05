@@ -2,80 +2,80 @@
 @import '../../fundamental_settings.scss' ;
 
 %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
-	@extend %floatLeft ;
+  @extend %floatLeft ;
 }
 
 %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 {
-    margin: {
-        right: 9px ;
-    }
+  margin: {
+    right: 9px ;
+  }
 }
 %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 {
-    margin: {
-        right: 6px ;
-    }
+  margin: {
+    right: 6px ;
+  }
 }
 
 %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
-    $font_size_ja: 10pt ;
-    .text_ja {
-        font: {
-            size: $font_size_ja ;
-        }
+  $font_size_ja: 10pt ;
+  .text_ja {
+    font: {
+      size: $font_size_ja ;
     }
-    .text_en {
-        font: {
-            size: $font_size_ja * 0.75 ;
-        }
+  }
+  .text_en {
+    font: {
+      size: $font_size_ja * 0.75 ;
     }
+  }
 }
 
 %railwayLineConnectingToAnotherStation {
-    .another_station {
-        @extend %floatLeft ;
-        @extend %marginLeft4 ;
-        @include border_radius( 2px ) ;
-        background-color: #eee ;
-        padding: 2px ;
-        $font_size_ja: 8pt ;
-        .text_ja {
-            font-size: $font_size_ja ;
-        }
-        .text_en {
-            font-size: $font_size_ja * 0.6 ;
-        }
+  .another_station {
+    @extend %floatLeft ;
+    @extend %marginLeft4 ;
+    @include border_radius( 2px ) ;
+    background-color: #eee ;
+    padding: 2px ;
+    $font_size_ja: 8pt ;
+    .text_ja {
+      font-size: $font_size_ja ;
     }
+    .text_en {
+      font-size: $font_size_ja * 0.6 ;
+    }
+  }
 }
 
 %connectingRailwayLineCleared {
-    .cleared {
-        clear: both ;
-    }
+  .cleared {
+    clear: both ;
+  }
 }
 
 %connectingRailwayLineNotRecommended {
-    .not_recommended {
-        border: {
-            style: dotted ;
-        }
+  .not_recommended {
+    border: {
+      style: dotted ;
     }
+  }
 }
 
 %connectingRailwayLineOfTokyoMetro {
-    .tokyo_metro {
-        @extend %link_in_div ;
-        border: {
-            color: #ccc ;
-        }
-        &:hover {
-            background-color: $link_hover_domain_color ;
-        }
-        a {
-            background-color: transparent ;
-        }
-        @extend %connectingRailwayLineCleared ;
-        @extend %connectingRailwayLineNotRecommended ;
+  .tokyo_metro {
+    @extend %link_in_div ;
+    border: {
+      color: #ccc ;
     }
+    &:hover {
+      background-color: $link_hover_domain_color ;
+    }
+    a {
+      background-color: transparent ;
+    }
+    @extend %connectingRailwayLineCleared ;
+    @extend %connectingRailwayLineNotRecommended ;
+  }
 }
 
 %connectingRailwayLineOfOtherOperator {

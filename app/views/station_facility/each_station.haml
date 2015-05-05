@@ -9,7 +9,7 @@
 
 = real_time_info.render( include_train_locations: false )
 
-= station_info_decorated.render_tokyo_metro_railway_lines
+= station_info_decorated.render_tokyo_metro_railway_lines( request )
 = station_info_decorated.render_railway_lines_except_for_tokyo_metro
 = station_info_decorated.render_links_to_station_info_pages
 - # = render partial: "google_map"
