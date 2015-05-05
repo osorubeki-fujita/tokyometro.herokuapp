@@ -1,11 +1,16 @@
-source 'https://rubygems.org'
+﻿source 'https://rubygems.org'
 
 # source 'https://rubygems.org'
 # source "http://rubygems.org/"
 # source "http://production.cf.rubygems.org"
 
+<<<<<<< HEAD
 # ruby '2.2.2'
 ruby '2.1.6'
+=======
+ruby '2.2.2'
+# ruby '2.1.5'
+>>>>>>> cbb83d6670ac3367cf86064475a094177d5a0e84
 
 # -------- Ruby on Rails
 
