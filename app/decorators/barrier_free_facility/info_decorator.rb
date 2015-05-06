@@ -103,7 +103,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: :facility }
+%li{ class: :facility }
   %div{ class: :image_and_number }
     = image_tag( info.image_filename , class: :barrier_free_facility , title: info.title_added_to_image )
     = info.render_place_name_number
@@ -135,7 +135,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     _root_infos_to_s = root_infos_to_s
     if _root_infos_to_s.present?
       h.render inline: <<-HAML , type: :haml , locals: { root_infos_to_s: _root_infos_to_s }
-%div{ class: :place }<
+%p{ class: :place }<
   = root_infos_to_s
       HAML
     end
@@ -156,7 +156,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   def render_wheel_chair_info
     if escalator_available_to_wheel_chair?
       h.render inline: <<-HAML , type: :haml
-%div{ class: :wheel_chair }<
+%span{ class: :wheel_chair }<
   = "車いす対応"
       HAML
     end

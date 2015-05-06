@@ -7,6 +7,10 @@
 @import 'platform_info/title_cell.scss' ;
 @import 'platform_info/tab_content.scss' ;
 
+#station_facility_platform_infos {
+  @extend %marginBottom16 ;
+}
+
 %normalCellSettingsInPlatformInfo {
   font: {
     size: 9pt ;

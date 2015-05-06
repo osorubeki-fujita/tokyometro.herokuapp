@@ -3,6 +3,9 @@
 - station_info_decorated = @station_info.decorate
 
 = station_info_decorated.render_title_of_station_timetable
-= station_info_decorated.render_links_to_station_info_pages
+
+%div{ id: :links_to_station_info_pages }
+  = station_info_decorated.render_title_of_links_to_station_info_pages
+  = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request ).render
 
 = make_station_timetables

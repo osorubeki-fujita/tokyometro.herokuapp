@@ -197,44 +197,13 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def render_links_to_station_info_pages
-    h_locals = {
-      this: self ,
-      contents: {
-        train_information: {
-          text_ja: "この駅からの列車運行情報" ,
-          text_en: "Train information"
-        } ,
-        station_facility: {
-          text_ja: "この駅の施設" ,
-          text_en: "Facilities"
-        } ,
-        station_timetable: {
-          text_ja: "この駅の時刻表" ,
-          text_en: "Timetable"
-        } ,
-        fare: {
-          text_ja: "この駅からの運賃" ,
-          text_en: "Fare"
-        }
-      }
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :links_to_station_info_pages }
-  %div{ class: :text }
-    %h2{ class: :text_ja }<
-      = this.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
-    %h3{ class: :text_en }<
-      = "Other pages related to " + this.name_en + " Station"
-  %ul{ class: :links }
-    - contents.each do | controller , text_set |
-      %li{ class: :link }<
-        = link_to_unless_current( "" , url_for( controller: controller , action: this.name_in_system.underscore ) )
-        %div{ class: :text }
-          - text_set.each do | k , v |
-            %p{ class: k }<
-              = v
+  def render_title_of_links_to_station_info_pages
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%div{ class: :title }
+  %h2{ class: :text_ja }<
+    = this.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
+  %h3{ class: :text_en }<
+    = "Other pages related to " + this.name_en + " Station"
     HAML
   end
 

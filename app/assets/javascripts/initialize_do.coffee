@@ -23,7 +23,8 @@ class Initializer
     twitters_processor = new TwittersProcessor()
 
     now_developing_processor = new NowDevelopingProcessor()
-    side_menu_processor = new SideMenuProcessor()
+    ul_side_menu_links = new UlSideMenuLinks()
+    ul_station_related_links = new UlStationRelatedLinks()
 
     main_contents = new MainContents()
 
@@ -57,7 +58,8 @@ class Initializer
     twitters_processor.process()
 
     now_developing_processor.process()
-    side_menu_processor.process()
+    ul_side_menu_links.process()
+    ul_station_related_links.process()
 
     main_contents.process()
 

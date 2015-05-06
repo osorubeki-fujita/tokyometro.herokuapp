@@ -1,4 +1,4 @@
-class SideMenuProcessor
+class UlSideMenuLinks
 
   constructor: ( @domain = $( '#side_menu' ) ) ->
 
@@ -18,27 +18,124 @@ class SideMenuProcessor
     return
 
   process_links_to_main_contents = (v) ->
-    links_to_main_contents(v).children( 'li' ).each ->
-      li = new SideMenuEachLink( $( this ) , '.link_to_content' )
-      li.process()
-      return
+    process_links( v , links_to_main_contents(v) , '.link_to_content' )
     return
 
   process_links_to_documents = (v) ->
-    links_to_documents(v).children( 'li' ).each ->
-      li = new SideMenuEachLink( $( this ) , '.link_to_document' )
-      li.process()
-      return
+    process_links( v , links_to_documents(v) , '.link_to_document' )
     return
 
   process_links_to_other_websites = (v) ->
-    links_to_other_websites(v).children( 'li' ).each ->
-      li = new SideMenuEachLink( $( this ) , '.link_to_other_website' )
+    process_links( v , links_to_other_websites(v) , '.link_to_other_website' )
+    return
+
+  process_links = ( v , ul_domain , class_name ) ->
+    li_domains = ul_domain.children( 'li' )
+    li_domains.each ->
+      li = new SideMenuEachLink( $( this ) , class_name )
       li.process()
+      return
+    p = new DomainsCommonProcessor( li_domains )
+    ul_domain.css( 'height' , p.sum_outer_height( true ) )
+    return
+
+window.UlSideMenuLinks = UlSideMenuLinks
+
+class UlStationRelatedLinks
+
+  constructor: ( @domain = $( '#links_to_station_info_pages' ) ) ->
+
+  links_to_station_info_pages_are_present = (v) ->
+    return ( v.domain.length > 0 )
+
+  links = (v) ->
+    return v.domain.children( 'ul#links' )
+
+  li_domains = (v) ->
+    return links(v).children( 'li' )
+  
+  number_of_li_domains = (v) ->
+    return li_domains(v).length
+
+  max_width_of_li = (v) ->
+    p = new DomainsCommonProcessor( li_domains(v) )
+    return p.max_width()
+
+  process: ->
+    if links_to_station_info_pages_are_present(@)
+      li_domains(@).each ->
+        li = new SideMenuEachLink( $( this ) , '.link_to_content' )
+        li.process()
+        return
+      set_width_to_li(@)
+      set_height_to_ul(@)
+      set_clear_to_li(@)
+    return
+
+  set_width_to_li = (v) ->
+    w = max_width_of_li(v)
+    li_domains(v).each ->
+      $( this ).css( 'width' , w )
       return
     return
 
-window.SideMenuProcessor = SideMenuProcessor
+  set_height_to_ul = (v) ->
+    links(v).css( 'height' , height_of_ul(v) )
+    return
+
+  set_clear_to_li = (v) ->
+    if v.li_rows > 1
+      i = v.actual_in_a_row
+      while i < number_of_li_domains(v)
+        li_domains(v).eq(i).css( 'clear' , 'both' )
+        i += v.actual_in_a_row
+    return
+
+  height_of_ul = (v) ->
+    get_li_rows(v)
+    p = new DomainsCommonProcessor( li_domains(v) )
+    border_width = 1
+    rows = v.li_rows
+    return p.max_outer_height( true ) * rows - ( rows - 1 ) * border_width
+
+  get_li_rows = (v) ->
+    if in_a_single_row(v)
+      r = 1
+      actual_in_a_row = number_of_li_domains(v)
+    else
+      max_in_a_row = Math.floor( outer_main_domain_width(v) * 1.0 / max_width_of_li(v) )
+      r = Math.ceil( number_of_li_domains(v) * 1.0 / max_in_a_row )
+      actual_in_a_row = max_in_a_row
+      while ( actual_in_a_row - 1 ) * r >= number_of_li_domains(v)
+        actual_in_a_row -= 1
+    v.li_rows = r
+    v.actual_in_a_row = actual_in_a_row
+    console.log actual_in_a_row
+    return
+
+  in_main_content_center = (v) ->
+    return ( $( '#main_content_center' ).length > 0 )
+
+  in_main_content_wide = (v) ->
+    return ( $( '#main_content_wide' ).length > 0 )
+
+  outer_main_domain = (v) ->
+    if in_main_content_center(v)
+      d = $( '#main_content_center' )
+    else if in_main_content_wide(v)
+      d = $( '#main_content_wide' )
+    else
+      d = false
+    return d
+
+  outer_main_domain_width = (v) ->
+    return outer_main_domain(v).width()
+
+  in_a_single_row = (v) ->
+    return ( max_width_of_li(v) * number_of_li_domains(v) + 1 <= outer_main_domain_width(v) )
+
+
+window.UlStationRelatedLinks = UlStationRelatedLinks
 
 class SideMenuEachLink
 

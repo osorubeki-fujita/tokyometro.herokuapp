@@ -8,7 +8,7 @@ module BarrierFreeFacilityTypeAndLocatedAreaDecorator
     object.name_en
   end
 
-  def div_class_name
+  def ul_class_name
     object.name_en.underscore
   end
 

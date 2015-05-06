@@ -184,17 +184,6 @@ class RailwayLineDecorator < Draper::Decorator
     "Twitter #{ object.name_ja } 運行情報"
   end
 
-  def name_ja_in_station_facility_platform_info_transfer_info
-    case same_as
-    when "odpt.Railway:Tobu.SkyTreeIsesaki"
-      "東武線"
-    when "odpt.Railway:Seibu.SeibuYurakucho"
-      "西武線"
-    else
-      object.name_ja_with_operator_name
-    end
-  end
-
   def railway_line_page_name
     if object.branch_line?
       "#{ css_class_name }_line".gsub( /_branch/ , "" )
@@ -204,7 +193,7 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def travel_time_table_id
-    css_class_name + "_travel_time"
+    "#{ css_class_name }_travel_time"
   end
 
   def render_name( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil )
@@ -236,7 +225,38 @@ class RailwayLineDecorator < Draper::Decorator
     = str
     HAML
   end
+  
+  def render_name_in_station_facility_platform_info_transfer_info
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%div{ class: :text }
+  %p{ class: :text_ja }<
+    = this.name_ja_in_station_facility_platform_info_transfer_info
+  %p{ class: :text_en }<
+    = this.name_en_in_station_facility_platform_info_transfer_info
+    HAML
+  end
 
+  def name_ja_in_station_facility_platform_info_transfer_info
+    case same_as
+    when "odpt.Railway:Tobu.SkyTreeIsesaki"
+      "東武線"
+    when "odpt.Railway:Seibu.SeibuYurakucho"
+      "西武線"
+    else
+      object.name_ja_with_operator_name
+    end
+  end
+
+  def name_en_in_station_facility_platform_info_transfer_info
+    case same_as
+    when "odpt.Railway:Tobu.SkyTreeIsesaki"
+      "Tobu Skytree Line"
+    when "odpt.Railway:Seibu.SeibuYurakucho"
+      "Seibu Line"
+    else
+      object.name_en_with_operator_name
+    end
+  end
 
   def render_simple_title
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
