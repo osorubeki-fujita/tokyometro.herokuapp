@@ -7,6 +7,11 @@ class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
   end
 
   def render
+    ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine::FromPlatfromInfo.new( h.request , self ).render
+  end
+
+=begin
+  def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 = this.railway_line.render_railway_line_code( must_display_line_color: true , small: true )
 %div{ class: :text }
@@ -16,6 +21,7 @@ class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
   = this.render_necessary_time
     HAML
   end
+=end
 
   def render_railway_direction
     if railway_direction.present?
@@ -34,8 +40,3 @@ class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
   end
 
 end
-
-__END__
-    ::Proc.new { | info |
-      [ :transfer_info , info.railway_line.css_class_name ]
-    }

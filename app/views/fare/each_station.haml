@@ -12,5 +12,5 @@
     = station_info_decorated.render_fare_title_of_this_station( @railway_line_of_terminal_station )
   %ul{ id: :links_to_railway_line_pages , class: :links }
     - ::RailwayLine.tokyo_metro( including_branch_line: false ).each do | railway_line |
-      = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::Fare.new( request , railway_line.decorate , @station_info ).render
+      = ::TokyoMetro::App::Renderer::FareTable::LinkToRailwayLinePage.new( request , railway_line.decorate , @station_info ).render
   = ::TokyoMetro::App::Renderer::FareTable::Group.new( request , @station_info , @railway_line_of_terminal_station ).render

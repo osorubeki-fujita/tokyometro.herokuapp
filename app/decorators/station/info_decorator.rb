@@ -169,11 +169,11 @@ class Station::InfoDecorator < Draper::Decorator
   %div{ class: :railway_lines }
     %ul{ class: :railway_lines_in_this_station }
       - railway_lines_of_tokyo_metro.each do | railway_line |
-        = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::FromStationFacilityPage.new( request , railway_line.decorate ).render
+        = ::TokyoMetro::App::Renderer::RailwayLine::LinkToPage.new( request , railway_line.decorate ).render
     - if connecting_railway_lines_of_tokyo_metro_in_another_station.present?
       %ul{ class: :railway_lines_in_another_station }
         - connecting_railway_lines_of_tokyo_metro_in_another_station.each do | connecting_railway_line |
-          = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine.new( request , connecting_railway_line.decorate ).render
+          = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
     HAML
   end
 
@@ -192,7 +192,7 @@ class Station::InfoDecorator < Draper::Decorator
   = ::ConnectingRailwayLineDecorator.render_title_of_other_railway_lines_in_station_facility_info
   %ul{ class: :railway_lines }
     - connecting_railway_lines_except_for_tokyo_metro.each do | connecting_railway_line |
-      = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine.new( request , connecting_railway_line.decorate ).render
+      = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
       HAML
     end
   end
@@ -441,7 +441,7 @@ class Station::InfoDecorator < Draper::Decorator
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - connecting_railway_lines.each do | connecting_railway_line |
-  = ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine.new( request , connecting_railway_line.decorate , display_additional_infos: true ).render
+  = ::TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Station::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
     HAML
   end
 
