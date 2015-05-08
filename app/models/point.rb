@@ -18,47 +18,70 @@ class Point < ActiveRecord::Base
   scope :closed , -> {
     where( closed: true )
   }
+  scope :close , -> {
+    closed
+  }
+  scope :not_opened , -> {
+    closed
+  }
+  scope :not_open , -> {
+    closed
+  }
   scope :not_closed , -> {
     where( closed: [ false , nil ] )
   }
-  
-  def closed?
-    closed
+  scope :not_close , -> {
+    not_closed
+  }
+  scope :opened , -> {
+    not_closed
+  }
+  scope :open , -> {
+    not_closed
+  }
+
+  def category
+    point_category
+  end
+
+  [ :closed? , :close? , :close ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        closed
+      end
+    DEF
+  end
+
+  [ :opened? , :opened , :open? , :open ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        !( closed )
+      end
+    DEF
   end
   
+  def has_code?
+    code.present?
+  end
+
   def has_elevator?
     elevator
   end
-  
-  def text_ja
-    str = ::String.new
-    if closed?
-      str << "【現在閉鎖中】"
-    end
-    str << category_name_ja
-    str << " "
-    str << code.to_s
-    if has_elevator?
-      str << "（エレベーターあり）"
-    end
-    if additional_info.present?
-      str << "（#{ additional_info }）"
-    end
-    str
+
+  def exit?
+    category.exit?
   end
 
-  def text_en
-    str = ::String.new
-    if closed?
-      str << "[Closed] "
-    end
-    str << category_name_en
-    str << " "
-    str << code.to_s
-    if has_elevator?
-      str << " (With an elevator)"
-    end
-    str
+  def has_additional_info?
+    additional_info_ja.present? or additional_info_en.present?
+  end
+  
+  def invalid?
+    !( has_code? ) and has_additional_info?
+  end
+  
+  def code_of_number_and_alphabet?
+    /\A[a-zA-z\d]+\Z/ === code
   end
 
   [ :ja , :en ].each do | lang |
@@ -72,8 +95,12 @@ class Point < ActiveRecord::Base
   def set_to( marker , json_title )
     marker.lat( latitude )
     marker.lng( longitude )
-    marker.infowindow( [ text_ja , text_en ].join( " " ) )
+    marker.infowindow( [ code ].join( " " ) )
     marker.json( { title: json_title } )
+  end
+
+  def code_as_instance
+    ::TokyoMetro::Api::Point::Info::Title::Code.new( code , additional_info_ja )
   end
 
 end

@@ -44,7 +44,12 @@ module RailsTokyoMetro
     config.after_initialize do
 
       ::TokyoMetro.set_rails_consts
+      # ::TokyoMetro.set_modules
+      # ::TokyoMetro.set_fundamental_constants
+
       ::TokyoMetro.set_access_token
+      ::TokyoMetro.set_google_map_api_key
+
       ::TokyoMetro::Factory::Decorate::MetaClass.initialize_in_rails_app
 
       ::TokyoMetro::Document::Gviz.set_dir

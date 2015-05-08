@@ -458,6 +458,17 @@ class Station::InfoDecorator < Draper::Decorator
       raise "Error"
     end
   end
+  
+  # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
+  def google_map_url
+    str = ::String.new
+    str << "https://www.google.com/maps/embed/v1/search?key=#{ ::TokyoMetro::GOOGLE_MAP_API_KEY }&q=#{ station_name_url_encoded }"
+    str << "&center=#{ latitude },#{ longitude }"
+    str << "&zoom=16"
+    str << "&maptype=roadmap"
+    str << "&language=ja"
+    str
+  end
 
   def train_location
     TrainLocation.new( self )
@@ -614,6 +625,10 @@ class Station::InfoDecorator < Draper::Decorator
     else
       { normal_size: destination_name_ja , small_size: nil }
     end
+  end
+  
+  def station_name_url_encoded
+    ::ERB::Util.url_encode( name_ja_actual )
   end
 
 end

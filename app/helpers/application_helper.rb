@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def self.time_strf( h , m )
-    m_2 = sprintf( "%2.2d" , m)
+    m_2 = sprintf( "%2.2d" , m )
     "#{h}:#{m_2}"
   end
 

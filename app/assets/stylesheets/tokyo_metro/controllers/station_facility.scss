@@ -136,22 +136,29 @@
 
 %stationFacilityInsideAndOutside {
   @extend %floatLeft ;
+  padding: {
+    left: 0px ;
+  }
+  margin: {
+    top: 0px ;
+  }
+  @extend %marginLeft32 ;
+  @extend %marginBottom8 ;
   clear: both ;
   // width: 360px ;
-  @extend %marginLeft16 ;
-  @extend %marginBottom8 ;
+  li {
+    list-style: none ;
+  }
   .title {
     @extend %marginBottom8 ;
+    @extend %floatLeft ;
     border: {
       bottom: dotted 1px $operator_color ;
     }
     $font_size_ja: 12pt ;
     $font_size_en: $font_size_ja * 0.75 ;
-    .text_ja {
-      @extend %floatLeft ;
-      font: {
-        size: $font_size_ja ;
-      }
+    font: {
+      size: $font_size_ja ;
     }
     .text_en {
       // @extend %floatLeft ;
@@ -256,12 +263,17 @@
 }
 
 %stationFacilityInfoServiceDetailToiletAssistants {
-  .toilet_assistants {
+  ul.toilet_assistants {
     @extend %marginBottom4 ;
-    div.toilet_assistant {
+    padding: {
+      left: 0px ;
+    }
+    li.toilet_assistant {
       @extend %serviceDetailPreciseInfo ;
       border: solid 1px $jp_traditional_kamenozoki ;
       background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
+      
+      list-style: none ;
     }
   }
   img.toilet_assistant {
@@ -287,6 +299,20 @@
 }
 
 #station_facility_infos {
+  ul#station_facility_info {
+    padding: {
+      left: 0px ;
+    }
+    margin: {
+      top: 0px ;
+      bottom: 0px ;
+    }
+    li {
+      &.elevator , &.escalator , &.toilet , &.link_for_mobility_scooter , &.stairlift {
+        list-style: none ;
+      }
+    }
+  }
   .title {
     clear: both ;
     @extend %marginBottom8 ;
@@ -295,11 +321,9 @@
     }
     $font_size_ja: 14pt ;
     $font_size_en: $font_size_ja * 0.75 ;
-    .text_ja {
-      @extend %floatLeft ;
-      font: {
-        size: $font_size_ja ;
-      }
+    @extend %floatLeft ;
+    font: {
+      size: $font_size_ja ;
     }
     .text_en {
       // @extend %floatLeft ;
@@ -311,10 +335,7 @@
       }
     }
   }
-  .inside {
-    @extend %stationFacilityInsideAndOutside ;
-  }
-  .outside {
+  ul.inside , ul.outside {
     @extend %stationFacilityInsideAndOutside ;
   }
   .facility {
@@ -340,17 +361,32 @@
         @extend %marginBottom4 ;
         display: block ;
       }
+      %commonSettingsOfUlServiceDetail {
+        padding: {
+          left: 0px ;
+        }
+      }
+      //
+      ul.service_details {
+        @extend %commonSettingsOfUlServiceDetail ;
+        ul.service_detail {
+          @extend %commonSettingsOfUlServiceDetail ;
+          list-style: none ;
+          li {
+            list-style: none ;
+          }
+        }
+        .service_time {
+          @include colorSettingsOfServiceDetail( $jp_traditional_moegi ) ;
+        }
+      }
       @extend %stationFacilityInfoServiceDetailOperationDay ;
       @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
       @extend %stationFacilityInfoServiceDetailServiceTime ;
       @extend %stationFacilityInfoServiceDetailToiletAssistants ;
       @extend %stationFacilityInfoServiceDetailWheelChair ;
       @extend %stationFacilityInfoServiceDetailRemark ;
-      .service_details {
-        .service_time {
-          @include colorSettingsOfServiceDetail( $jp_traditional_moegi ) ;
-        }
-      }
+      //
       .remark {
         @include colorSettingsOfServiceDetail( $jp_traditional_jinzamomi ) ;
       }

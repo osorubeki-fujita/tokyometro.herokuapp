@@ -38,10 +38,10 @@
     td.present {
         border-bottom: solid 2px #999 ;
         ul {
-          list-style:none ;
           li {
             display: block ;
             float: left ;
+            list-style:none ;
             a {
               img {
                 $length: 32px ;
@@ -101,29 +101,39 @@
         }
     }
     tr.transfer_infos {
-        @extend %normalCellSettingsInPlatformInfo ;
-        @extend %cellSettingsWhenInfoIsEmpty ;
-        @extend %cellSettingsWhenInfoIsPresent ;
-        td.title {
-            $base_color: rgba( $operator_color , 0.4 ) ;
-            @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
-            @extend %titleOfEachContentsInPlatformInfo ;
+      @extend %normalCellSettingsInPlatformInfo ;
+      @extend %cellSettingsWhenInfoIsEmpty ;
+      @extend %cellSettingsWhenInfoIsPresent ;
+      td.title {
+          $base_color: rgba( $operator_color , 0.4 ) ;
+          @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
+          @extend %titleOfEachContentsInPlatformInfo ;
+      }
+      ul.transfer_infos_for_this_position {
+        padding: {
+          left: 0px ;
         }
-        .transfer_info {
-          padding: 4px ;
-          border: solid 1px #eee ;
-          @include border_radius( 4px ) ;
+        margin: {
+          bottom: 2px ;
         }
-        .text {
+        height: auto ;
+      }
+      li.transfer_info {
+        .railway_line {
           @extend %floatLeft ;
           @extend %marginLeft4 ;
-        }
-        .railway_direction {
+          .text_en {
             @extend %smallTextInPlatformInfo ;
-        }
-        .time {
+          }
+          .railway_direction {
             @extend %smallTextInPlatformInfo ;
+          }
+          .time {
+            @extend %smallTextInPlatformInfo ;
+            @extend %marginTop4 ;
+          }
         }
+      }
     }
     tr.barrier_free_infos_inside {
         @extend %normalCellSettingsInPlatformInfo ;
@@ -133,6 +143,11 @@
             $base_color: rgba( $operator_color , 0.3 ) ;
             @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
             @extend %titleOfEachContentsInPlatformInfo ;
+        }
+        ul {
+          padding: {
+            left: 0px ;
+          }
         }
     }
     tr.barrier_free_infos_outside {
@@ -146,6 +161,11 @@
             $base_color: rgba( $operator_color , 0.2 ) ;
             @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
             @extend %titleOfEachContentsInPlatformInfo ;
+        }
+        ul.surrounding_areas_for_this_position {
+          padding: {
+            left: 0px ;
+          }
         }
         li {
           clear: both ;

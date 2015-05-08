@@ -110,7 +110,7 @@ class UlStationRelatedLinks
         actual_in_a_row -= 1
     v.li_rows = r
     v.actual_in_a_row = actual_in_a_row
-    console.log actual_in_a_row
+    # console.log actual_in_a_row
     return
 
   in_main_content_center = (v) ->

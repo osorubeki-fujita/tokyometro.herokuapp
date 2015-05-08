@@ -22,7 +22,7 @@ class BarrierFreeFacilityServiceDetailPattern < ActiveRecord::Base
   end
 
   def has_service_time_info?
-    ( service_start_before_first_train? or has_specific_service_start_time_info? ) and ( has_specific_service_end_time_info? or service_end_after_last_train? )
+    !( service_start_before_first_train? and service_end_after_last_train? )
   end
 
   def has_any_info?

@@ -1,0 +1,135 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%closeInfoOfLiInUlExits {
+  .close {
+    @extend %floatLeft ;
+    @extend %marginLeft8 ;
+    background-color: $jp_traditional_kinariiro ;
+    border: solid 1px #ccc ;
+    padding: 4px ;
+    .icon {
+      @extend %floatLeft ;
+      @extend %marginRight4 ;
+      padding: 2px ;
+      @include border_radius( 2px ) ;
+      i {
+        color: #f00 ;
+      }
+    }
+    .text {
+      @extend %floatLeft ;
+      background-color: transparent ;
+      padding: 2px ;
+    }
+    .text_ja {
+      font-size: 9pt ;
+      background-color: transparent ;
+    }
+    .text_en {
+      font-size: 7pt ;
+      background-color: transparent ;
+    }
+  }
+}
+
+%elevatorInfoOfLiInUlExits {
+  .elevator {
+    img.elevator_outside {
+      width: 32px ;
+      height: 32px ;
+      @extend %floatLeft ;
+    }
+    .ev.text_en {
+      @extend %floatLeft ;
+      @include border_radius( 2px ) ;
+      @extend %marginLeft4 ;
+      padding: 4px ;
+      display: inline ;
+      background-color: #fff ;
+      font: {
+        size: 9pt ;
+      }
+    }
+  }
+}
+
+%liInUlExits {
+  list-style: none ;
+  @extend %link_in_div ;
+  padding: 4px ;
+  margin: {
+    bottom: -1px ;
+  }
+  background-color: #fff ;
+  border: {
+    top: solid 1px #999 ;
+    bottom: solid 1px #999 ;
+  }
+  &:first-of-type {
+    margin: {
+      top: -1px ;
+    }
+  }
+  @extend %closeInfoOfLiInUlExits ;
+  @extend %elevatorInfoOfLiInUlExits ;
+  .code {
+    @extend %floatLeft ;
+    padding: 4px ;
+    background-color: $jp_traditional_tanko_blight ;
+    display: inline ;
+  }
+  .text {
+    @extend %floatLeft ;
+    boder: solid 1px #eeba00 ; // DIC-N805
+    background-color: #f9d36e ; // DIC-N802
+    padding: 2px ;
+  }
+  .main {
+    @extend %floatLeft ;
+  }
+  .additional_info {
+    @extend %floatLeft ;
+    @extend %marginLeft4 ;
+    font: {
+      size: 9pt ;
+    }
+    border: solid 1px #ccc ;
+    background-color: #fff ;
+    padding: 2px ;
+  }
+  &.close {
+    background-color: #f3f3f3 ;
+    .code {
+      background-color: #e6e6e6 ;
+    }
+  }
+}
+
+#exits_and_map {
+  @extend %marginBottom32 ;
+  ul#exits {
+    @extend %floatLeft ;
+    margin: {
+      top: 0px ;
+      right: -1px ;
+    }
+    padding: {
+      left: 0px ;
+    }
+    height: 480px ;
+    overflow-x: visible;
+    overflow-y: auto;
+    border: solid 1px #999 ;
+    background-color: #ccc ;
+    //
+    li {
+      @extend %liInUlExits ;
+    }
+  }
+  iframe#map {
+    @extend %floatLeft ;
+    border: solid 1px #999 ;
+  }
+}

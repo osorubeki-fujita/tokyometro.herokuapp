@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426080313) do
+ActiveRecord::Schema.define(version: 20150508044954) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(version: 20150426080313) do
     t.string   "name_ja",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_en"
   end
 
   create_table "points", force: :cascade do |t|
@@ -224,11 +225,12 @@ ActiveRecord::Schema.define(version: 20150426080313) do
     t.string   "geo_json",            limit: 255
     t.integer  "floor"
     t.string   "code",                limit: 255
-    t.string   "additional_info",     limit: 255
+    t.string   "additional_info_ja",  limit: 255
     t.boolean  "elevator"
     t.boolean  "closed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "additional_info_en"
   end
 
   create_table "railway_directions", force: :cascade do |t|

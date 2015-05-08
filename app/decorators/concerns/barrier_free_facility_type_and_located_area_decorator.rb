@@ -9,7 +9,7 @@ module BarrierFreeFacilityTypeAndLocatedAreaDecorator
   end
 
   def ul_class_name
-    object.name_en.underscore
+    object.name_en.underscore.gsub( " " , "_" )
   end
 
 end

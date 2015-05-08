@@ -10,8 +10,12 @@ class RailwayDirectionDecorator < Draper::Decorator
   end
 
   def render_in_station_facility_platform_info_transfer_info
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-= info.station_info.decorate.render_name_ja( with_subname: false , suffix: "方面" )
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%div{ class: :railway_direction }
+  %p{ class: :text_ja }
+    = this.station_info.decorate.render_name_ja( with_subname: false , suffix: "方面" )
+  %p{ class: :text_en }
+    = this.station_info.decorate.render_name_en( with_subname: false , prefix: "for " )
     HAML
   end
   

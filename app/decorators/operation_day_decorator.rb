@@ -13,7 +13,7 @@ class OperationDayDecorator < Draper::Decorator
 
   def render_in_barrier_free_facility_service_detail_pattern
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
-%div{ class: :operation_day }<
+%li{ class: :operation_day }<
   = info.name_ja
     HAML
   end

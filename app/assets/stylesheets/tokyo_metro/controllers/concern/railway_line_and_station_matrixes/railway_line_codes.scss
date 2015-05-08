@@ -5,8 +5,8 @@
 
 // 外枠の共通設定
 %commonSettingsOfRailwayLineCodeInRailwayLineMatrix {
-    background-color: #fff ;
-    text-align: center ;
+  background-color: #fff ;
+  text-align: center ;
 }
 
 @mixin sizeSettingsOfOuterDomainOfRailwayLineCodeInRailwayLineMatrix( $inner_length , $outer_border ) {

@@ -21,6 +21,25 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     "Information of station facilities"
   end
 
+  def self.inspect_image_filenames
+    ary = ::Array.new
+    ::BarrierFreeFacility::Info.all.each do | item |
+      filename = item.decorate.image_filename
+      if filename.blank?
+        raise "Error: ● #{ item.same_as }"
+      else
+        ary << filename
+        if /stairlift/ =~ filename
+          puts "○ " + item.same_as
+        elsif /slope/ =~ filename
+          puts "△ " + item.same_as
+        end
+      end
+    end
+    puts ""
+    puts ary.uniq.sort
+  end
+
   # 個々の駅施設の記号を返すメソッド
   # @return [Hash]
   def id_and_code_hash
@@ -56,26 +75,11 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   end
 
   def remark_to_a
-    remark.gsub( /。([\(（].+?[\)）])/ ) { "#{$1}。" }.gsub( /(?<=。)\n?[ 　]?/ , "\n" ).gsub( "出きません" , "できません" ).gsub( "ＪＲ" , "JR" ).split( /\n/ )
-  end
-
-  def self.inspect_image_filenames
-    ary = ::Array.new
-    ::BarrierFreeFacility::Info.all.each do | item |
-      filename = item.decorate.image_filename
-      if filename.blank?
-        raise "Error: ● #{ item.same_as }"
-      else
-        ary << filename
-        if /stairlift/ =~ filename
-          puts "○ " + item.same_as
-        elsif /slope/ =~ filename
-          puts "△ " + item.same_as
-        end
-      end
+    str = remark
+    class << str
+      include ::TokyoMetro::Factory::Convert::Patch::ForString::BarrierFreeFacility::Info::Remark
     end
-    puts ""
-    puts ary.uniq.sort
+    str.process.split( /\n/ )
   end
 
   def image_filename
@@ -146,7 +150,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     _service_details = service_details
     if _service_details.present?
       h.render inline: <<-HAML , type: :haml , locals: { service_details: _service_details }
-%div{ class: :service_details }
+%ul{ class: :service_details }
   - service_details.each do | item |
     = item.decorate.render
       HAML

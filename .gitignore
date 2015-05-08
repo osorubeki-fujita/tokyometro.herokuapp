@@ -18,6 +18,8 @@
 /config/application_memo.rb
 
 /AccessToken
+/GoogleMapApiKey
+
 # /db/data.yml
 /db/csv/
 /db/json/
