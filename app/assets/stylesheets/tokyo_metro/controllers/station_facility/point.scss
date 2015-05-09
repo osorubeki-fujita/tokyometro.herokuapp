@@ -48,6 +48,7 @@
       padding: 4px ;
       display: inline ;
       background-color: #fff ;
+      text-align: center ;
       font: {
         size: 9pt ;
       }
@@ -109,14 +110,12 @@
 
 #exits_and_map {
   @extend %marginBottom32 ;
+  clear:both ;
   ul#exits {
     @extend %floatLeft ;
+    @extend %clearUlDefaultSettings ;
     margin: {
-      top: 0px ;
       right: -1px ;
-    }
-    padding: {
-      left: 0px ;
     }
     height: 480px ;
     overflow-x: visible;

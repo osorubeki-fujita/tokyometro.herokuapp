@@ -27,7 +27,7 @@ $(document).on 'page:change', ->
       .hover( add_class_hover , remove_class_hover )
 
     $( '#links_to_station_info_pages' )
-      .children( 'ul#links' )
+      .children( 'ul#links , ul#links_to_station_facility_info_of_connecting_other_stations' )
       .children( 'li' )
       .hover( add_class_hover , remove_class_hover )
 

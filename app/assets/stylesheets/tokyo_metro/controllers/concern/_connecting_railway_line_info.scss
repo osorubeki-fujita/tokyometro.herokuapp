@@ -62,7 +62,7 @@
 }
 
 %connectingRailwayLineOfTokyoMetro {
-  .tokyo_metro {
+  li.tokyo_metro {
     @extend %link_in_div ;
     border: {
       color: #ccc ;
@@ -73,18 +73,19 @@
     a {
       background-color: transparent ;
     }
-    @extend %connectingRailwayLineCleared ;
-    @extend %connectingRailwayLineNotRecommended ;
+    // @extend %connectingRailwayLineCleared ;
+    // @extend %connectingRailwayLineNotRecommended ;
   }
 }
 
 %connectingRailwayLineOfOtherOperator {
-  .other_operators {
+  li.other_operators {
     border: {
-      color: #ddd ;
+      color: #ccc ;
+      // color: #ddd ;
     }
-    @extend %connectingRailwayLineCleared ;
-    @extend %connectingRailwayLineNotRecommended ;
+    // @extend %connectingRailwayLineCleared ;
+    // @extend %connectingRailwayLineNotRecommended ;
   }
 }
 
@@ -93,37 +94,38 @@
   @extend %connectingRailwayLineOfTokyoMetro ;
   @extend %connectingRailwayLineOfOtherOperator ;
   @extend %railwayLineConnectingToAnotherStation ;
-  .connecting_railway_line {
+  li.railway_line {
     @extend %floatLeft ;
-    @include border_radius( 4px ) ;
+    @extend %link_in_div ;
     padding: 6px ;
     margin: {
-        right: 12px ;
-        top: 4px ;
-        bottom: 4px ;
+      right: -1px ;
+      bottom: -1px ;
     }
     border: {
-        style: solid ;
-        width: 1px ;
+      style: solid ;
+      width: 1px ;
     }
+    list-style: none ;
+    //
     .railway_line_code_48 {
-        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
     }
     .color_box_48 {
-        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
     }
     .railway_line_code_32 {
-        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
     }
     .color_box_32 {
-        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
-        @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
     }
     .text {
-        @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
     }
   }
 }

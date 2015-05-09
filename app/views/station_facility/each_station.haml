@@ -16,10 +16,9 @@
 
 %div{ id: :links_to_station_info_pages }
   = station_info_decorated.render_title_of_links_to_station_info_pages
-  = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request ).render
+  = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , station_info: @station_info ).render
 
-
-%div{ id: :exits_and_map }
+%div{ id: :exits_and_map , class: :clearfix }
   %ul{ id: :exits }
     - [ all_exit_infos.select( &:opened? ) , all_exit_infos.select( &:closed? ) ].each do | group |
       - group.each do | exit_info |

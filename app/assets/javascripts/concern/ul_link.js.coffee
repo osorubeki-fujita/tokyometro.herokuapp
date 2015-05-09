@@ -49,11 +49,11 @@ class UlStationRelatedLinks
     return ( v.domain.length > 0 )
 
   links = (v) ->
-    return v.domain.children( 'ul#links' )
+    return v.domain.children( 'ul' + v.ul_id )
 
   li_domains = (v) ->
     return links(v).children( 'li' )
-  
+
   number_of_li_domains = (v) ->
     return li_domains(v).length
 
@@ -62,14 +62,20 @@ class UlStationRelatedLinks
     return p.max_width()
 
   process: ->
-    if links_to_station_info_pages_are_present(@)
-      li_domains(@).each ->
-        li = new SideMenuEachLink( $( this ) , '.link_to_content' )
+    process_each( @ , '#links' )
+    process_each( @ , '#links_to_station_facility_info_of_connecting_other_stations' )
+    return
+
+  process_each = ( v , ul_id = '#links' ) ->
+    v.ul_id = ul_id
+    if links_to_station_info_pages_are_present(v)
+      li_domains(v).each ->
+        li = new SideMenuEachLink( $(@) , '.link_to_content' )
         li.process()
         return
-      set_width_to_li(@)
-      set_height_to_ul(@)
-      set_clear_to_li(@)
+      set_width_to_li(v)
+      set_height_to_ul(v)
+      set_clear_to_li(v)
     return
 
   set_width_to_li = (v) ->

@@ -15,20 +15,32 @@ class FareDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml
 %tr{ class: :header }
   %td{ rowspan: 3 , class: [ :station_name_top , :header_bottom ] }<
-    = "駅名"
+    != "駅名"
+    %span{ class: [ :small , :text_en ] }<
+      = "Station"
   %td{ colspan: 4 , class: :normal_fare }<
-    = "普通運賃"
+    != "普通運賃"
+    %span{ class: [ :small , :text_en ] }<
+      = "Normal fare"
 %tr{ class: [ :header , :fare_type ] }
   %td{ colspan: 2 , class: :ic_card }<
-    = "ICカード利用"
+    != "ICカード利用"
+    %span{ class: [ :small , :text_en ] }<
+      = "IC card"
   %td{ colspan: 2 , class: :ticket }<
-    = "切符"
+    != "切符"
+    %span{ class: [ :small , :text_en ] }<
+      = "Ticket"
 %tr{ class: :header , class: :fares }
   - [ :ic_card , :ticket ].each do | group |
     %td{ class: [ group , :adult , :header_bottom ] }<
-      = "大人"
+      != "大人"
+      %span{ class: [ :small , :text_en ] }<
+        = "Adult"
     %td{ class: [ group , :child , :header_bottom ] }<
-      = "小児"
+      != "小児"
+      %span{ class: [ :small , :text_en ] }<
+        = "Child"
     HAML
   end
 

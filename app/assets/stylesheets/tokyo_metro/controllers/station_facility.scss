@@ -9,6 +9,12 @@
 }
 
 %stationFacilityRailwayLineInfo {
+  ul {
+    @extend %clearUlDefaultSettings ;
+    @extend %marginBottom16 ;
+    @extend %connectingRailwayLineInfo ;
+    height: auto ;
+  }
   clear: both ;
   padding: {
     bottom: 4px ;
@@ -30,11 +36,6 @@
         size: $font_size_en ;
       }
     }
-  }
-  .railway_lines {
-    height: auto ;
-    @extend %marginBottom16 ;
-    @extend %connectingRailwayLineInfo ;
   }
 }
 
@@ -99,11 +100,8 @@
 #tokyo_metro_railway_lines {
   @extend %stationFacilityRailwayLineInfo ;
   @extend %tokyoMetroRailwayLinesTitle ;
-  .railway_lines {
+  ul.railway_lines {
     li.railway_line {
-      @extend %link_in_div ;
-      @extend %floatLeft ;
-      list-style: none ;
       border: {
         color: #ddd ;
       }
@@ -124,7 +122,7 @@
 #other_railway_lines {
   @extend %stationFacilityRailwayLineInfo ;
   @extend %connectingRailwayLinesTitle ;
-  .railway_lines {
+  ul.railway_lines {
     li.railway_line {
       list-style: none ;
       border: {
@@ -133,6 +131,7 @@
     }
   }
 }
+
 
 %stationFacilityInsideAndOutside {
   @extend %floatLeft ;

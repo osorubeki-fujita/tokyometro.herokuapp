@@ -56,13 +56,13 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
         number = nil
       end
     else
-      raise "Error: " + same_as
+      raise "Error: #{ same_as }"
     end
 
     facility_id = [ place.downcase , category.downcase , number ].select( &:present? ).map( &:to_s ).join( "_" )
     facility_code = [ railway_line_code_letter , number ].map( &:to_s ).join
     platform = [ place , category , number ].select( &:present? ).map( &:to_s ).join( "." )
-    { :id => facility_id , :code => facility_code , :platform => platform }
+    { id: facility_id , code: facility_code , platform: platform }
   end
 
   def root_infos_to_s
@@ -106,20 +106,20 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   end
 
   def render
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %li{ class: :facility }
   %div{ class: :image_and_number }
-    = image_tag( info.image_filename , class: :barrier_free_facility , title: info.title_added_to_image )
-    = info.render_place_name_number
+    = image_tag( this.image_filename , class: :barrier_free_facility , title: this.title_added_to_image )
+    = this.render_place_name_number
   %div{ class: :info }
-    = info.render_place_name
-    = info.render_service_details
+    = this.render_place_name
+    = this.render_service_details
     - # 車いす対応か否かの情報
-    = info.render_wheel_chair_info
+    = this.render_wheel_chair_info
     - # トイレ設備
-    = info.render_toilet_assistant
+    = this.render_toilet_assistant
     - # 特記事項
-    = info.render_remark
+    = this.render_remark
     HAML
   end
 

@@ -50,15 +50,15 @@ class Station::InfoDecorator < Draper::Decorator
     "#{ station_codes_in_link_title } #{ name_en } - #{ name_ja_actual } （#{ name_hira }）"
   end
 
-  def render_name_ja( with_subname: true , suffix: nil )
-    render_name_ja_or_hira( name_ja_actual , with_subname , suffix )
+  def render_name_ja( with_subname: true , prefix: nil , suffix: nil )
+    render_name_ja_or_hira( name_ja_actual , with_subname , prefix , suffix )
   end
 
-  def render_name_hira( with_subname: true , suffix: nil )
-    render_name_ja_or_hira( name_hira , with_subname , suffix )
+  def render_name_hira( with_subname: true , prefix: nil , suffix: nil )
+    render_name_ja_or_hira( name_hira , with_subname , prefix , suffix )
   end
 
-  def render_name_ja_or_hira( name_ja_or_hira , with_subname , suffix )
+  def render_name_ja_or_hira( name_ja_or_hira , with_subname , prefix , suffix )
     regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja
     if regexp =~ name_ja_or_hira
       name_main = name_ja_or_hira.gsub( regexp , "" ).revive_machine_dependent_character
@@ -66,6 +66,10 @@ class Station::InfoDecorator < Draper::Decorator
     else
       name_main = name_ja_or_hira.revive_machine_dependent_character
       name_sub = nil
+    end
+
+    if prefix.present?
+      name_main = prefix.to_s + name_main
     end
 
     h.render inline: <<-HAML , type: :haml , locals: { name_main: name_main , name_sub: name_sub , with_subname: with_subname , suffix: suffix }
@@ -123,12 +127,12 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def render_name_ja_and_en( with_subname: true , suffix_ja: nil , suffix_en: nil )
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , with_subname: with_subname , suffix_ja: suffix_ja , suffix_en: suffix_en }
+  def render_name_ja_and_en( with_subname: true , suffix_ja: nil , prefix_en: nil , suffix_en: nil )
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , with_subname: with_subname , suffix_ja: suffix_ja , prefix_en: prefix_en , suffix_en: suffix_en }
 %p{ class: :text_ja }<>
   = this.render_name_ja( with_subname: with_subname , suffix: suffix_ja )
 %p{ class: :text_en }<
-  = this.render_name_en( with_subname: with_subname , suffix: suffix_en )
+  = this.render_name_en( with_subname: with_subname , prefix: prefix_en , suffix: suffix_en )
     HAML
   end
 
@@ -158,6 +162,7 @@ class Station::InfoDecorator < Draper::Decorator
   # 東京メトロの路線情報を表示する method
   def render_tokyo_metro_railway_lines( request )
     h_locals = {
+      this: self ,
       request: request ,
       railway_lines_of_tokyo_metro: railway_lines_of_tokyo_metro ,
       connecting_railway_lines_of_tokyo_metro_in_another_station: connecting_railway_lines_of_tokyo_metro_in_another_station
@@ -166,15 +171,37 @@ class Station::InfoDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :tokyo_metro_railway_lines }
   = ::ConnectingRailwayLineDecorator.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
-  %div{ class: :railway_lines }
-    %ul{ class: :railway_lines_in_this_station }
-      - railway_lines_of_tokyo_metro.each do | railway_line |
-        = ::TokyoMetro::App::Renderer::RailwayLine::LinkToPage.new( request , railway_line.decorate ).render
-    - if connecting_railway_lines_of_tokyo_metro_in_another_station.present?
-      %ul{ class: :railway_lines_in_another_station }
-        - connecting_railway_lines_of_tokyo_metro_in_another_station.each do | connecting_railway_line |
-          = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
+  %ul{ id: :railway_lines_in_this_station , class: [ :railway_lines , :clearfix ] }
+    - railway_lines_of_tokyo_metro.each do | railway_line |
+      = ::TokyoMetro::App::Renderer::RailwayLine::LinkToPage.new( request , railway_line.decorate ).render
+  - if connecting_railway_lines_of_tokyo_metro_in_another_station.present?
+    %ul{ id: :railway_lines_in_another_station , class: [ :railway_lines , :clearfix ] }
+      - connecting_railway_lines_of_tokyo_metro_in_another_station.each do | connecting_railway_line |
+        = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
     HAML
+  end
+
+  def render_link_to_station_facility_info_of_connecting_other_stations
+    _connecting_railway_lines_of_tokyo_metro_in_another_station = connecting_railway_lines_of_tokyo_metro_in_another_station
+    if _connecting_railway_lines_of_tokyo_metro_in_another_station.present?
+      station_facility_ids = _connecting_railway_lines_of_tokyo_metro_in_another_station.map( &:connecting_station_info ).uniq.map( &:station_facility_id ).uniq
+      station_infos = station_facility_ids.map { | station_facility_id | ::StationFacility.find( station_facility_id ).station_infos.first }
+      h_locals = {
+        request: h.request ,
+        station_infos: station_infos
+      }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%ul{ id: :links_to_station_facility_info_of_connecting_other_stations , class: :clearfix }
+  - station_infos.each do | station_info |
+    %li{ class: [ :link_to_station_facility , :normal ] }
+      = link_to( "" , url_for( controller: :station_facility , action: station_info.station_page_name ) , class: :link )
+      %div{ class: :link_to_content }
+        %div{ class: :icon }
+          = ::TokyoMetro::App::Renderer::Icon.tokyo_metro( request , 1 ).render
+        %div{ class: :text }
+          = station_info.decorate.render_name_ja_and_en( suffix_ja: "駅のご案内" , prefix_en: "Information of " , suffix_en: " Sta." )
+      HAML
+    end
   end
 
   # 他事業者の乗り換え情報を表示する method
@@ -190,7 +217,7 @@ class Station::InfoDecorator < Draper::Decorator
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :other_railway_lines }
   = ::ConnectingRailwayLineDecorator.render_title_of_other_railway_lines_in_station_facility_info
-  %ul{ class: :railway_lines }
+  %ul{ id: :railway_lines_except_for_tokyo_metro , class: [ :railway_lines , :clearfix ] }
     - connecting_railway_lines_except_for_tokyo_metro.each do | connecting_railway_line |
       = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
       HAML
@@ -409,8 +436,9 @@ class Station::InfoDecorator < Draper::Decorator
       connecting_railway_lines: object.connecting_railway_lines.display_on_railway_line_page.includes( :railway_line , railway_line: :operator )
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-- connecting_railway_lines.each do | connecting_railway_line |
-  = ::TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Station::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
+%ul{ class: [ :railway_lines , :clearfix ] }
+  - connecting_railway_lines.each do | connecting_railway_line |
+    = ::TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Station::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
     HAML
   end
 

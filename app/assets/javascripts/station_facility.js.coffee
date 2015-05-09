@@ -88,211 +88,298 @@ class StationFacilityPointUl
   
   codes_in_li_domains = (v) ->
     return li_domains(v).children( '.code' )
-
-  max_height_of_li_children = (v) ->
-    p = new DomainsCommonProcessor( li_domains(v).children() )
-    return Math.ceil( p.max_outer_height( false ) )
-
-  max_width_of_codes_in_li_domains = (v) ->
-    w = 0
-    codes_in_li_domains(v).each ->
-      p = new StationFacilityPointCode( $(@) )
-      w_of_this_code = p.width_of_code()
-      w = Math.max( w , w_of_this_code )
-      return
-    return Math.ceil(w)
+    
+  elevator_domains = (v) ->
+    return li_domains(v).find( '.code.elevator' )
+  
+  has_elevator_domains = (v) ->
+    return elevator_domains(v).length > 0
+  
+  normal_code_domains = (v) ->
+    return li_domains(v).find( '.code' ).not( '.elevator' )
+  
+  has_normal_code_domains = (v) ->
+    return normal_code_domains(v).length > 0
+  
+  has_close_infos = (v) ->
+    return close_infos(v).length > 0
+  
+  close_infos = (v) ->
+    return li_domains(v).find( '.close' )
 
   process: ->
-    process_height_of_li_domains(@)
+    set_length_of_elevator_domains(@)
+    set_length_of_normal_code_domains(@)
+    set_length_of_close_info(@)
+    process_height_of_li_children(@)
     process_width_of_codes_in_li_domains(@)
-    process_width_of_li_domains_and_ul(@)
+    #
+    process_width_of_li_domain(@)
+    process_height_of_li_domain(@)
+    process_width_of_ul_domain(@)
     return
 
-  # それぞれの li の高さの設定
-  process_height_of_li_domains = (v) ->
-    h = max_height_of_li_children(v)
-    console.log 'max_height_of_li_children: ' + h
-    li_domains(v).each ->
-      $(@).css( 'height' , h )
-      p = new StationFacilityPointLi( $(@) , {height: h} )
-      p.process_height()
+  set_length_of_elevator_domains = (v) ->
+    if has_elevator_domains(v)
+      elevator_domains(v).each ->
+        p = new StationFacilityPointElevator( $(@) )
+        p.set_length()
+        return
+    return
+
+  set_length_of_normal_code_domains = (v) ->
+    if has_normal_code_domains(v)
+      normal_code_domains(v).each ->
+        p = new StationFacilityPointCode( $(@) )
+        p.set_length()
+        return
+    return
+
+  set_length_of_close_info = (v) ->
+    if has_close_infos(v)
+      close_infos(v).each ->
+        p = new StationFacilityPointCloseInfo( $(@) )
+        p.process()
+        return
+    return
+
+  process_height_of_li_children = (v) ->
+    h = max_outer_height_of_li_children(v)
+    li_domains(v).children().each ->
+      padding_top_or_bottom = ( h - $(@).height() ) * 0.5
+      $(@).css( 'padding-top' , padding_top_or_bottom )
+      $(@).css( 'padding-bottom' , padding_top_or_bottom )
       return
     return
 
-  # それぞれの li の内部の .code の幅の設定
   process_width_of_codes_in_li_domains = (v) ->
-    w = max_width_of_codes_in_li_domains(v)
-    console.log 'max_width_of_codes_in_li_domains: ' + w
-    codes_in_li_domains(v).each ->
-      console.log 'process_width_of_codes_in_li_domains'
-      p = new StationFacilityPointCode( $(@) , {width: w} )
-      p.process_width()
-    return
-
-  width_of_each_li_domain = (v) ->
-    w = 0
+    w = max_sum_outer_width_of_code_in_li_domains(v)
+    # console.log 'max_sum_outer_width_of_code_in_li_domains: ' + w
     li_domains(v).each ->
-      p = new DomainsCommonProcessor( $(@).children() )
-      w_of_this_li = Math.ceil( p.sum_outer_width( true ) )
-      w = Math.max( w , w_of_this_li )
+      p = new StationFacilityPointCode( $(@).children( '.code' ).first() )
+      p.set_padding_left_and_right(w)
       return
-    return w + 1
-
-  process_width_of_li_domains_and_ul = (v) ->
-    process_width_of_li_domains(v)
-    process_width_of_ul(v)
     return
 
-  process_width_of_li_domains = (v) ->
-    w = width_of_each_li_domain(v)
-    console.log 'width_of_li_domains: ' + w
+  process_width_of_li_domain = (v) ->
+    w = max_sum_outer_width_of_li_children(v)
     li_domains(v).each ->
       $(@).css( 'width' , w )
       return
     return
 
-  process_width_of_ul = (v) ->
-    console.log 'process_width_of_ul'
-    v.domain.css( 'width' , width_of_ul(v) )
+  process_height_of_li_domain = (v) ->
+    h = max_outer_height_of_li_children(v)
+    # console.log 'max_outer_height_of_li_children: ' + h
+    li_domains(v).each ->
+      $(@).css( 'height' , h )
+      return
     return
-    
-  width_of_ul = (v) ->
-    p = new DomainsCommonProcessor( li_domains(v) )
-    w_base = p.max_outer_width( true )
-    if to_scroll(v)
-      w = w_base + 18
-      console.log 'scroll'
-    else
-      w = w_base
-      console.log 'not scroll'
-    return w
   
-  to_scroll = (v) ->
+  process_width_of_ul_domain = (v) ->
+    w_ul = width_of_ul(v)
+    v.domain.css( 'width' , w_ul )
+    return
+
+  max_outer_height_of_li_children = ( v , setting = false ) ->
+    p = new DomainsCommonProcessor( li_domains(v).children() )
+    return p.max_outer_height( setting )
+
+  max_sum_outer_width_of_code_in_li_domains = (v) ->
+    w = 0
+    li_domains(v).each ->
+      p = new StationFacilityPointCode( $(@).children( '.code' ).first() )
+      w_of_this_li = p.width()
+      # console.log 'w_of_this_li: ' + w_of_this_li
+      w = Math.max( w , w_of_this_li )
+      return
+    return w
+
+  max_sum_outer_width_of_li_children = (v) ->
+    w = 0
+    li_domains(v).each ->
+      p = new DomainsCommonProcessor( $(@).children() )
+      w_of_this_li = p.sum_outer_width( true )
+      w = Math.max( w , w_of_this_li )
+      return
+    return w
+
+  max_outer_width_of_li = (v) ->
     p = new DomainsCommonProcessor( li_domains(v) )
-    height_of_ul_whole = p.sum_outer_height( true )
-    height_of_ul_domain = parseInt( v.domain.css( 'height' ) , 10 )
-    # console.log height_of_ul_whole
-    # console.log height_of_ul_domain
-    return height_of_ul_domain < height_of_ul_whole
+    return p.max_outer_width( true )
 
-class StationFacilityPointLi
+  width_of_ul = (v,w) ->
+    if to_scroll_ul(v)
+      # console.log 'scroll'
+      w_of_ul = max_outer_width_of_li(v) + 18
+    else
+      w_of_ul = max_outer_width_of_li(v)
+    return w_of_ul
 
-  constructor: ( @domain , @length ) ->
+  to_scroll_ul = (v) ->
+    return height_of_ul_domain(v) < height_of_ul_whole(v)
 
-  child_code = (v) ->
+  height_of_ul_whole = (v) ->
+    p = new DomainsCommonProcessor( li_domains(v) )
+    return p.sum_outer_height( true )
+
+  height_of_ul_domain = (v) ->
+    return parseInt( v.domain.css( 'height' ) , 10 )
+
+class StationFacilityPointElevator
+
+  constructor: ( @domain ) ->
+
+  ev_domains = (v) ->
+    return v.domain.children( '.ev' )
+
+  has_ev_domains = (v) ->
+    return ev_domains(v).length > 0
+
+  ev_domain = (v) ->
+    return ev_domains(v).first()
+  
+  codes = (v) ->
     return v.domain.children( '.code' )
 
-  child_code_of_elevator = (v) ->
-    return v.domain.children( '.code.elevator' )
+  has_codes = (v) ->
+    return codes(v).length > 0
 
-  close_info = (v) ->
-    return v.domain.children( '.close' )
+  code = (v) ->
+    return codes(v).first()
 
-  has_child_code = (v) ->
-    return ( child_code(v).length is 1 )
-
-  has_code_of_elevator = (v) ->
-    return ( child_code_of_elevator(v).length is 1 )
-
-  has_close_info = (v) ->
-    return ( close_info(v).length is 1 )
-
-  process_height: ->
-    if has_child_code(@)
-      p = new StationFacilityPointCode( child_code(@).first() , @length )
-      p.process_height()
-
-    if has_code_of_elevator(@)
-      p = new StationFacilityPointElevatorCode( child_code_of_elevator(@).first() , @length )
-      p.process_height()
-
-    if has_close_info(@)
-      p = new StationFacilityPointCloseInfo( close_info(@).first() , @length )
-      p.process()
+  set_length: ->
+    # console.log 'StationFacilityPointEv'
+    set_length_of_ev_domain(@)
+    set_length_of_code(@)
+    set_length_of_this_domain(@)
     return
+
+  set_length_of_ev_domain = (v) ->
+    if has_ev_domains(v)
+      p = new LengthToEven( ev_domain(v) )
+      p.set()
+    return
+
+  set_length_of_code = (v) ->
+    if has_codes(v)
+      # console.log '---- set_length_of_code'
+      # console.log code(v)
+      p = new StationFacilityPointCode( code(v) )
+      p.set_length()
+    return
+
+  set_length_of_this_domain = (v) ->
+    h = max_outer_height_of_children(v)
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
+    p.process()
+    return
+
+  max_outer_height_of_children = (v) ->
+    p = new DomainsCommonProcessor( v.domain.children() )
+    return p.max_outer_height( false )
 
 class StationFacilityPointCode
 
-  constructor: ( @domain , @length ) ->
-  
-  width_of_code: ->
-    if has_children(@)
-      p = new DomainsCommonProcessor( @domain.children() )
-      w = p.sum_outer_width( true )
-    else
-      w = @domain.width()
-    return w
+  constructor: ( @domain ) ->
 
-  padding_top_or_bottom = (v) ->
-    return Math.ceil( ( v.length.height - v.domain.height() ) * 0.5 )
+  has_class_text_en = (v) ->
+    return v.domain.hasClass( 'text_en' )
   
-  padding_left_or_right = (v) ->
-    default_padding = 4
-    return Math.ceil( ( v.length.width - v.domain.width() ) * 0.5 ) + default_padding
-
   has_children = (v) ->
     return v.domain.children().length > 0
 
-  process_height: ->
-    p = padding_top_or_bottom(@)
-    @domain.css( 'padding-top' , p )
-    @domain.css( 'padding-bottom' , p )
-    process_height_of_children(@)
-    return
-  
-  process_height_of_children = (v) ->
-    if has_children(v)
-      h = v.domain.height()
-      p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
-      p.process()
+  has_no_child = (v) ->
+    return not has_children(v)
+
+  set_length: ->
+    if has_class_text_en(@) and has_no_child(@)
+      # console.log @domain
+      p = new LengthToEven( @domain )
+      p.set()
+    else if has_children(@)
+      set_length_of_children(@)
+      set_width_of_domain(@)
+      set_vertical_align_of_children(@)
     return
 
-  process_width: ->
-    if has_children(@)
-      w_of_code = @.width_of_code()
-      console.log 'process_width: ' + w_of_code
-      @domain.children().each ->
-        console.log '  outer_width(true)' + $(@).outerWidth( true )
-        console.log '  outer_width(false)' + $(@).outerWidth( false )
-        console.log '  inner_width(false)' + $(@).innerWidth(  )
-        console.log '  width(false)' + $(@).width(  )
-        console.log ''
-        return
-      @domain.css( 'width' , w_of_code )
+  set_length_of_children = (v) ->
+    v.domain.children().each ->
+      p = new LengthToEven($(@))
+      p.set()
       return
-    p = padding_left_or_right(@)
-    @domain.css( 'padding-left' , p )
-    @domain.css( 'padding-right' , p )
     return
 
-class StationFacilityPointElevatorCode
+  set_width_of_domain = (v) ->
+    p = new DomainsCommonProcessor( v.domain.children() )
+    w = p.sum_outer_width( true )
+    v.domain.css( 'width' , w )
+    return
 
-  constructor: ( @domain , @length ) ->
-
-  process_height: ->
-    p = new DomainsVerticalAlignProcessor( @domain.children() ,  @domain.height() )
+  set_vertical_align_of_children = (v) ->
+    h = max_outer_height_of_children(v)
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
     p.process()
+    return
+
+  max_outer_height_of_children = (v) ->
+    p = new DomainsCommonProcessor( v.domain.children() )
+    return p.max_outer_height( false )
+
+  width: ->
+    if has_no_child(@)
+      w = @domain.width()
+    else
+      p = new DomainsCommonProcessor( @domain.children() )
+      w = p.sum_outer_width( true )
+    return w
+
+  set_padding_left_and_right: (w) ->
+    default_padding_left = parseInt( @domain.css( 'padding-left' ) , 10 )
+    default_padding_right = parseInt( @domain.css( 'padding-right' ) , 10 )
+    padding_left_or_right = ( w - @domain.width() ) * 0.5 + Math.max( default_padding_left , default_padding_right )
+    # console.log padding_left_or_right
+    @domain.css( 'padding-left' , padding_left_or_right )
+    @domain.css( 'padding-right' , padding_left_or_right )
     return
 
 class StationFacilityPointCloseInfo
 
-  constructor: ( @domain , @length ) ->
+  constructor: ( @domain ) ->
+  
+  icon = (v) ->
+    return v.domain.children( '.icon' ).first()
+  
+  text = (v) ->
+    return v.domain.children( '.text' ).first()
+    
+  max_outer_height_of_children = (v) ->
+    p = new DomainsCommonProcessor( v.domain.children() )
+    return p.max_outer_height( false )
 
   process: ->
-    process_height(@)
-    process_child_infos(@)
+    process_icon_size(@)
+    process_text_size(@)
+    set_vertical_align(@)
     return
 
-  process_height = (v) ->
-    p = new DomainsVerticalAlignProcessor( v.domain ,  v.length.height )
+  process_icon_size = (v) ->
+    p = new LengthToEven( icon(v) )
+    p.set()
+    return
+
+  process_text_size = (v) ->
+    text(v).children().each ->
+      # console.log 'width: ' + $(@).width()
+      p = new LengthToEven( $(@) , true )
+      p.set()
+      return
+    return
+
+  set_vertical_align = (v) ->
+    h = max_outer_height_of_children(v)
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
     p.process()
-    return
-
-  process_child_infos = (v) ->
-    p1 = new DomainsCommonProcessor( v.domain.children() )
-    h = p1.max_outer_height( false )
-    p2 = new DomainsVerticalAlignProcessor( v.domain.children() , h )
-    p2.process()
     return
 
 #-------------------------------- Google Map の処理

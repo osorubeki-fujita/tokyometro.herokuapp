@@ -513,7 +513,7 @@ class RailwayLineDecorator < Draper::Decorator
   private
 
   def railway_line_code_letter
-    if name_code.instance_of?( ::String )
+    if name_code.string?
       name_code
     else
       nil

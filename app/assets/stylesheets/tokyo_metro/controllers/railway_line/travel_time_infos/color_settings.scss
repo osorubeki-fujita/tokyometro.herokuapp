@@ -1,6 +1,6 @@
 @charset "utf-8" ;
 
-@import 'common_settings.scss' ;
+@import '../../../fundamental_settings.scss' ;
 
 @mixin colorSettingsOfTravelTimeInfo( $background_color , $text_color_on_background: #fff , $text_color_on_travel_time_square: $text_black_base_color ) {
   .railway_line_column {
@@ -11,10 +11,6 @@
     background-color: $background_color ;
     color: $text_color_on_background ;
   }
-}
-
-table.travel_time_info , table.travel_time_info_main , table.travel_time_info_branch {
-  @extend %commonSettingsOfTravelTimeInfo ;
 }
 
 

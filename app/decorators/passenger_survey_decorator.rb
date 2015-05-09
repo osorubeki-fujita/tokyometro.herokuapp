@@ -113,7 +113,7 @@ class PassengerSurveyDecorator < Draper::Decorator
       = this.journeys_separated_by_comma
     = "人"
   %span{ class: :year }<
-    = "（"
+    != "（"
     %span{ class: :text_en }<>
       = this.survey_year
     = "年度）"

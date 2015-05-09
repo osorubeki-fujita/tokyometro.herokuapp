@@ -33,6 +33,14 @@ $border_color_of_li_in_link: #ddd ;
 //-------- 共通設定
 
 %commonSettingsOfLiInLinkUl {
+  height: auto ;
+  margin: {
+    top: 0px ;
+  }
+  padding: {
+    left: 0px ;
+  }
+  //
   li.normal , li.small {
     @extend %liBaseSettingsInLinkUl ;
     //
@@ -54,15 +62,6 @@ $border_color_of_li_in_link: #ddd ;
     }
   }
   li.normal {
-    div.icon {
-      width: $icon_common_width ;
-      height: $icon_common_width ;
-      img {
-        $length: 32px ;
-        width: $length ;
-        height: $length ;
-      }
-    }
     .text_large , .text_ja {
       font: {
         size: 12pt ;
@@ -93,6 +92,16 @@ $border_color_of_li_in_link: #ddd ;
 }
 
 //-------- 左側サイドメニューの大きさの設定
+
+//---- 幅の設定
+
+%liWidthSettingsOfLeftSideMenu {
+  li {
+    // width: floor( $width_of_left_contents * $bronze_ratio / ( $bronze_ratio + 1 ) ) ;
+    // width: ceil( $width_of_left_contents * 0.9 ) ;
+    width: $width_of_left_contents - $side_menu_padding ;
+  }
+}
 
 //---- 境界線の設定
 
@@ -138,6 +147,18 @@ $border_color_of_li_in_link: #ddd ;
 }
 
 //-------- アイコンの設定
+
+%smallImageIconInLinkLiWithoutClassName {
+  li {
+    div.icon {
+      img {
+        $length: 18px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+  }
+}
 
 %smallImageIconInLinkLi {
   li.small {
@@ -225,29 +246,18 @@ $border_color_of_li_in_link: #ddd ;
 
 //--------------------------------
 
-ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages {
-  li {
-    // width: floor( $width_of_left_contents * $bronze_ratio / ( $bronze_ratio + 1 ) ) ;
-    // width: ceil( $width_of_left_contents * 0.9 ) ;
-    width: $width_of_left_contents - $side_menu_padding ;
+%marginOfDivLinkToContent {
+  .link_to_content {
+    margin: 4px ;
   }
-  @extend %liBorderSettingsOfLeftSideMenu ;
-  @extend %marginBottom16 ;
 }
 
 ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages , ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages , ul#links_to_station_pages , #links_to_station_info_pages ul#links {
-  .link_to_content , .link_to_document , .link_to_other_website {
+  .link_to_document , .link_to_other_website {
     margin: 4px ;
   }
   .link_to_railway_line_page {
     margin: 8px ;
-  }
-  height: auto ;
-  margin: {
-    top: 0px ;
-  }
-  padding: {
-    left: 0px ;
   }
 }
 
@@ -275,35 +285,59 @@ ul#links_to_passenger_survey_pages {
 //-------- サイドメニュー
 
 ul#links_to_main_contents {
+  @extend %liWidthSettingsOfLeftSideMenu ;
+  @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %linksToMainContentsTop ;
   @extend %smallImageIconInLinkLi ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
+  @extend %marginBottom16 ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 ul#links_to_other_websites {
+  @extend %liWidthSettingsOfLeftSideMenu ;
+  @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %iconToExternalPageInLinkLi ;
   @extend %smallImageIconInLinkLi ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
+  @extend %marginBottom16 ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 ul#links_to_documents {
+  @extend %liWidthSettingsOfLeftSideMenu ;
+  @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %iconToExternalPageInLinkLi ;
   @extend %smallImageIconInLinkLi ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
+  @extend %marginBottom16 ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 //-------- ドキュメントへのリンク
 
 ul#links_to_document_pages {
+  //
+  //---- 準用
+  @extend %liWidthSettingsOfLeftSideMenu ;
+  @extend %liBorderSettingsOfLeftSideMenu ;
+  //----
+  //
   @extend %smallImageIconInLinkLi ;
   @extend %linkHoverSettingsOfLinkToDocumentPages ;
   @extend %commonSettingsOfLiInLinkUl ;
+  @extend %marginBottom16 ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 //-------- 路線ページヘのリンク
@@ -312,12 +346,16 @@ ul#links_to_railway_line_pages {
   @extend %largeImageIconInLinkLi ;
   @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
   @extend %commonSettingsOfLiInLinkUl ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 ul#links_to_railway_line_pages_of_this_station {
   @extend %largeImageIconInLinkLi ;
   @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
   @extend %commonSettingsOfLiInLinkUl ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 //-------- 乗降客数 年度別ページヘのリンク
@@ -326,6 +364,8 @@ ul#links_to_year_pages {
   @extend %largeImageIconInLinkLi ;
   @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
   @extend %commonSettingsOfLiInLinkUl ;
+  //
+  @extend %marginOfDivLinkToContent ;
   //
   //--------
   //
@@ -345,15 +385,25 @@ ul#links_to_year_pages {
 ul#links_to_station_pages {
   @extend %largeImageIconInLinkLi ;
   @extend %commonSettingsOfLiInLinkUl ;
+  //
+  @extend %marginOfDivLinkToContent ;
 }
 
 #links_to_station_info_pages {
   ul#links {
     @extend %largeImageIconInLinkLi ;
+  }
+  ul#links_to_station_facility_info_of_connecting_other_stations {
+    @extend %smallImageIconInLinkLiWithoutClassName ;
+    @extend %floatLeft ;
+  }
+  ul#links , ul#links_to_station_facility_info_of_connecting_other_stations {
     @extend %domainBaseSettingsOfHorizontalLinks ;
     @extend %linkHoverSettingsOfLinkToStationInfoPages ;
     @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
     @extend %commonSettingsOfLiInLinkUl ;
+    //
+    @extend %marginOfDivLinkToContent ;
   }
 }
 
