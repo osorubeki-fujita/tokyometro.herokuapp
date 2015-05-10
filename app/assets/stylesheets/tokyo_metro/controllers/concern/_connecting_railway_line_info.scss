@@ -34,9 +34,10 @@
   .another_station {
     @extend %floatLeft ;
     @extend %marginLeft4 ;
-    @include border_radius( 2px ) ;
+    // @include border_radius( 2px ) ;
     background-color: #eee ;
-    padding: 2px ;
+    border: solid 1px #999 ;
+    padding: 4px ;
     $font_size_ja: 8pt ;
     .text_ja {
       font-size: $font_size_ja ;
@@ -64,12 +65,9 @@
 %connectingRailwayLineOfTokyoMetro {
   li.tokyo_metro {
     @extend %link_in_div ;
-    border: {
-      color: #ccc ;
-    }
-    &:hover {
-      background-color: $link_hover_domain_color ;
-    }
+    // border: {
+      // color: #ccc ;
+    // }
     a {
       background-color: transparent ;
     }
@@ -81,7 +79,7 @@
 %connectingRailwayLineOfOtherOperator {
   li.other_operators {
     border: {
-      color: #ccc ;
+      // color: #ccc ;
       // color: #ddd ;
     }
     // @extend %connectingRailwayLineCleared ;
@@ -92,7 +90,7 @@
 %connectingRailwayLineInfo {
   @extend %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
   @extend %connectingRailwayLineOfTokyoMetro ;
-  @extend %connectingRailwayLineOfOtherOperator ;
+  // @extend %connectingRailwayLineOfOtherOperator ;
   @extend %railwayLineConnectingToAnotherStation ;
   li.railway_line {
     @extend %floatLeft ;

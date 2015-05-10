@@ -83,7 +83,8 @@ class ContentHeader
   process: ->
     if has_link_info_to_train_location_of_each_railway_line(@)
       process_link_info(@)
-    process_height(@)
+    set_vertical_align(@)
+    # set_height(@)
     process_buttons(@)
     return
 
@@ -102,12 +103,16 @@ class ContentHeader
     p.process( width_of_link_info(v) )
     return
 
-  process_height = (v) ->
-    _max_height = max_height_of_icon_and_text(v)
-    p = new DomainsVerticalAlignProcessor( v.domain.children() , _max_height , 'middle' )
+  set_vertical_align = (v) ->
+    h = max_height_of_icon_and_text(v)
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , h , 'middle' )
     p.process()
-    v.domain.css( 'height' , _max_height )
     return
+
+  # set_height = (v) ->
+    # h = max_height_of_icon_and_text(v)
+    # v.domain.css( 'height' , h )
+    # return
 
   process_buttons = (v) ->
     if has_buttons(v)
@@ -118,6 +123,7 @@ class ContentHeader
     return
 
 class LinkInfoToTrainLocation
+
   constructor: ( @domain ) ->
 
   icon = (v) ->

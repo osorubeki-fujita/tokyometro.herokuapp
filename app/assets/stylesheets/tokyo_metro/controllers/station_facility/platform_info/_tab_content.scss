@@ -3,54 +3,20 @@
 @import '../../../fundamental_settings.scss' ;
 
 %baseOfLineCodeInPlatformInfoTab {
-  @extend %floatLeft ;
-  margin: {
-    right: 6px ;
+  .railway_line_code_32 {
+    @extend %floatLeft ;
+    margin: {
+      right: 6px ;
+    }
   }
-}
-
-%lineCodeInPlatformInfoTab {
-  .ginza {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .marunouchi {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .marunouchi_branch {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .hibiya {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .tozai {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .chiyoda {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .chiyoda_branch {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .yurakucho {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .hanzomon {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .namboku {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .fukutoshin {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
-  }
-  .toei_mita {
-    @extend %baseOfLineCodeInPlatformInfoTab ;
+  .yurakucho , .fukutoshin , .namboku , .toei_mita {
+    @extend %floatLeft ;
   }
 }
 
 %textSettingsOfLineNameInPlatformInfoTab {
   .railway_line_name {
-    @extend %lineCodeInPlatformInfoTab ;
+    @extend %baseOfLineCodeInPlatformInfoTab ;
     margin: {
       left: 8px ;
       right: 8px ;
@@ -90,21 +56,16 @@
   @extend %textSettingsOfLineNameInPlatformInfoTab ;
   list-style-type: none;
   &.displayed {
-    background-color: #fff ;
     border: {
       bottom: {
-        style: dotted ;
-        color: #eee ;
+        style: solid ;
+        color: #fff ;
       }
     }
   }
   &.hidden {
-    background-color: #f6f6f6 ;
     cursor: pointer;
     cursor: hand;
-    &:hover {
-      background-color: $link_hover_domain_color ;
-    }
   }
 }
 
@@ -139,13 +100,13 @@
       @extend %platformInfoTabUl ;
       li.platform_info_tab {
         @extend %platformInfoContentBorder ;
-        @extend %platformInfoTabLi ;
         border: {
           width: $border_width ;
         }
         margin: {
           right: -1 * $border_width ;
         }
+        @extend %platformInfoTabLi ;
       }
     }
   }

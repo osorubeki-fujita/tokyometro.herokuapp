@@ -196,17 +196,22 @@ class RailwayLineDecorator < Draper::Decorator
     "#{ css_class_name }_travel_time"
   end
 
-  def render_name( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil )
+  def render_name( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil , clearfix: false )
+    div_classes = [ :text ]
+    if clearfix
+      div_classes << :clearfix
+    end
     h_locals = {
       this: self ,
       process_special_railway_line: process_special_railway_line ,
       prefix_ja: prefix_ja ,
       suffix_ja: suffix_ja ,
       prefix_en: prefix_en ,
-      suffix_en: suffix_en
+      suffix_en: suffix_en ,
+      div_classes: div_classes
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :text }<
+%div{ class: div_classes }<
   = this.render_name_base( process_special_railway_line: true , prefix_ja: prefix_ja , suffix_ja: suffix_ja , prefix_en: prefix_en , suffix_en: suffix_en )
     HAML
   end
@@ -290,11 +295,11 @@ class RailwayLineDecorator < Draper::Decorator
     HAML
   end
 
-  def render_railway_line_code( must_display_line_color: true , small: false )
+  def render_railway_line_code( must_display_line_color: true , small: false , clearfix: false )
     if railway_line_code_letter.present?
       h_locals = {
         letter: railway_line_code_letter ,
-        class_name: css_class_name_of_railway_line_code( small )
+        class_name: css_class_name_of_railway_line_code( small , clearfix )
       }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_name }<
@@ -356,7 +361,7 @@ class RailwayLineDecorator < Draper::Decorator
 %div{ class: class_names }
   - if make_link_to_railway_line
     = link_to_unless_current( "" , url )
-  %div{ class: :info }
+  %div{ class: [ :info , :clearfix ] }
     = this.render_railway_line_code_with_outer_domain
     = this.render_name_base( process_special_railway_line: true )
       HAML
@@ -366,7 +371,7 @@ class RailwayLineDecorator < Draper::Decorator
 %div{ class: class_names }
   - if make_link_to_railway_line
     = link_to_unless_current( "" , url )
-  %div{ class: :info }
+  %div{ class: [ :info , :clearfix ] }
     = this.render_railway_line_code_with_outer_domain
     = this.render_name( process_special_railway_line: true )
       HAML
@@ -520,12 +525,17 @@ class RailwayLineDecorator < Draper::Decorator
     end
   end
 
-  def css_class_name_of_railway_line_code( small )
+  def css_class_name_of_railway_line_code( small , clearfix )
+    ary = ::Array.new
     if small
-      :railway_line_code_32
+      ary << :railway_line_code_32
     else
-      :railway_line_code_48
+      ary << :railway_line_code_48
     end
+    if clearfix
+      ary << :clearfix
+    end
+    ary
   end
 
   def railway_line_decorated

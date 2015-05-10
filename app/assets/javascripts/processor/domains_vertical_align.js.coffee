@@ -24,52 +24,50 @@ class DomainsVerticalAlignProcessor
 
 window.DomainsVerticalAlignProcessor = DomainsVerticalAlignProcessor
 
-class DomainVerticalAlignMiddleProcessor
+class DomainVerticalAlignCommonProcessor
 
   constructor: ( @domain , @outer_height_of_external_domain ) ->
 
   outer_height: ->
     h = @domain.outerHeight( false )
     return h
+
+  margin: ->
+    return @outer_height_of_external_domain - @.outer_height()
+  
+  margin_is_zero = (v) ->
+    return v.margin is 0
+
+  process: ->
+    unless margin_is_zero(@)
+      _margin = @.margin()
+      _domain = @domain
+      _attributes = @.attributes()
+      for i in [ 0..( _attributes.length - 1 ) ]
+        _attr = _attributes[i]
+        if i is 0
+          m = Math.floor( _margin )
+        else
+          m = Math.ceil( _margin )
+        _domain.css( _attr , m )
+        i += 1
+    return
+
+class DomainVerticalAlignMiddleProcessor extends DomainVerticalAlignCommonProcessor
 
   margin: ->
     p = ( @outer_height_of_external_domain - @.outer_height() ) * 0.5
     return p
 
-  process: ->
-    _margin = @.margin()
-    @domain.css( 'margin-top' , _margin )
-    @domain.css( 'margin-bottom' , _margin )
-    return
+  attributes: ->
+    return [ 'margin-top' , 'margin-bottom' ]
 
-class DomainVerticalAlignTopProcessor
+class DomainVerticalAlignTopProcessor extends DomainVerticalAlignCommonProcessor
 
-  constructor: ( @domain , @outer_height_of_external_domain ) ->
+  attributes: ->
+    return [ 'margin-bottom' ]
 
-  outer_height: ->
-    h = @domain.outerHeight( false )
-    return h
+class DomainVerticalAlignBottomProcessor extends DomainVerticalAlignCommonProcessor
 
-  margin: ->
-    return @outer_height_of_external_domain - @.outer_height()
-
-  process: ->
-    _margin = @.margin()
-    @domain.css( 'margin-bottom' , _margin )
-    return
-
-class DomainVerticalAlignBottomProcessor
-
-  constructor: ( @domain , @outer_height_of_external_domain ) ->
-
-  outer_height: ->
-    h = @domain.outerHeight( false )
-    return h
-
-  margin: ->
-    return @outer_height_of_external_domain - @.outer_height()
-
-  process: ->
-    _margin = @.margin()
-    @domain.css( 'margin-top' , _margin )
-    return
+  attributes: ->
+    return [ 'margin-top' ]

@@ -35,8 +35,8 @@ class UlSideMenuLinks
       li = new SideMenuEachLink( $( this ) , class_name )
       li.process()
       return
-    p = new DomainsCommonProcessor( li_domains )
-    ul_domain.css( 'height' , p.sum_outer_height( true ) )
+    # p = new DomainsCommonProcessor( li_domains )
+    # ul_domain.css( 'height' , p.sum_outer_height( true ) )
     return
 
 window.UlSideMenuLinks = UlSideMenuLinks
@@ -74,7 +74,7 @@ class UlStationRelatedLinks
         li.process()
         return
       set_width_to_li(v)
-      set_height_to_ul(v)
+      # set_height_to_ul(v)
       set_clear_to_li(v)
     return
 
@@ -85,9 +85,9 @@ class UlStationRelatedLinks
       return
     return
 
-  set_height_to_ul = (v) ->
-    links(v).css( 'height' , height_of_ul(v) )
-    return
+  # set_height_to_ul = (v) ->
+    # links(v).css( 'height' , height_of_ul(v) )
+    # return
 
   set_clear_to_li = (v) ->
     if v.li_rows > 1
@@ -97,12 +97,12 @@ class UlStationRelatedLinks
         i += v.actual_in_a_row
     return
 
-  height_of_ul = (v) ->
-    get_li_rows(v)
-    p = new DomainsCommonProcessor( li_domains(v) )
-    border_width = 1
-    rows = v.li_rows
-    return p.max_outer_height( true ) * rows - ( rows - 1 ) * border_width
+  # height_of_ul = (v) ->
+    # get_li_rows(v)
+    # p = new DomainsCommonProcessor( li_domains(v) )
+    # border_width = 1
+    # rows = v.li_rows
+    # return p.max_outer_height( true ) * rows - ( rows - 1 ) * border_width
 
   get_li_rows = (v) ->
     if in_a_single_row(v)
@@ -209,6 +209,9 @@ class SideMenuEachLink
   set_position_of_icon = (v) ->
     if has_icon_content(v)
       _icon = icon(v)
+      p0 = new LengthToEven( _icon )
+      p0.set()
+      
       p1 = new DomainsVerticalAlignProcessor( icon(v).children() , _icon.outerHeight( false ) , 'middle' )
       p1.process()
 
@@ -218,13 +221,13 @@ class SideMenuEachLink
 
   process_text = (v) ->
     if has_text(v) or has_text_large(v)
-      set_height_of_text(v)
+      # set_height_of_text(v)
 
       _max_outer_height_of_sub_domains = max_outer_height_of_sub_domains(v)
       set_vertical_align_of_sub_domains( v , _max_outer_height_of_sub_domains )
-      set_height_of_link_domain( v , _max_outer_height_of_sub_domains )
+      # set_height_of_link_domain( v , _max_outer_height_of_sub_domains )
 
-      set_height_of_whole_domain(v)
+      # set_height_of_whole_domain(v)
     return
 
   sum_outer_height_of_text = (v) ->
@@ -235,12 +238,12 @@ class SideMenuEachLink
     p = new DomainsCommonProcessor( sub_domains_of_text_large(v) )
     return p.sum_outer_height( true )
 
-  set_height_of_text = (v) ->
-    if has_text(v) and has_sub_domains_of_text(v)
-      text(v).css( 'height' , sum_outer_height_of_text(v) )
-    else if has_text_large(v) and has_sub_domains_of_text_large(v)
-      text_large(v).css( 'height' , sum_outer_height_of_text_large(v) )
-    return
+  # set_height_of_text = (v) ->
+    # if has_text(v) and has_sub_domains_of_text(v)
+      # text(v).css( 'height' , sum_outer_height_of_text(v) )
+    # else if has_text_large(v) and has_sub_domains_of_text_large(v)
+      # text_large(v).css( 'height' , sum_outer_height_of_text_large(v) )
+    # return
 
   max_outer_height_of_sub_domains = (v) ->
     p = new DomainsCommonProcessor( sub_domains_of_link_domain(v) )
@@ -251,10 +254,10 @@ class SideMenuEachLink
     p.process()
     return
 
-  set_height_of_link_domain = ( v , _max_outer_height_of_sub_domains ) ->
-    link_domain(v).css( 'height' , _max_outer_height_of_sub_domains )
-    return
+  # set_height_of_link_domain = ( v , _max_outer_height_of_sub_domains ) ->
+    # link_domain(v).css( 'height' , _max_outer_height_of_sub_domains )
+    # return
 
-  set_height_of_whole_domain = (v) ->
-    v.domain.css( 'height' , link_domain(v).outerHeight( true ) )
-    return
+  # set_height_of_whole_domain = (v) ->
+    # v.domain.css( 'height' , link_domain(v).outerHeight( true ) )
+    # return

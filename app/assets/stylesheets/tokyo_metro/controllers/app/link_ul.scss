@@ -148,11 +148,13 @@ $border_color_of_li_in_link: #ddd ;
 
 //-------- アイコンの設定
 
-%smallImageIconInLinkLiWithoutClassName {
-  li {
+%smallImageIconInLinkLi {
+  li.small {
     div.icon {
+      $length: 18px ;
+      width: $length ;
+      height: $length ;
       img {
-        $length: 18px ;
         width: $length ;
         height: $length ;
       }
@@ -160,23 +162,28 @@ $border_color_of_li_in_link: #ddd ;
   }
 }
 
-%smallImageIconInLinkLi {
-  li.small {
+%smallImageIconInLinkLiWithDomainOfNormalWidth {
+  li {
     div.icon {
+      $width: 32px ;
+      $height: 18px ;
+      width: $width ;
+      height: $height ;
       img {
-        $length: 18px ;
-        width: $length ;
-        height: $length ;
+        width: $height ;
+        height: $height ;
       }
     }
   }
 }
 
 %largeImageIconInLinkLi {
-  li.small {
+  li.normal {
     div.icon {
+      $length: 32px ;
+      width: $length ;
+      height: $length ;
       img {
-        $length: 32px ;
         width: $length ;
         height: $length ;
       }
@@ -288,7 +295,7 @@ ul#links_to_main_contents {
   @extend %liWidthSettingsOfLeftSideMenu ;
   @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %linksToMainContentsTop ;
-  @extend %smallImageIconInLinkLi ;
+  @extend %largeImageIconInLinkLi ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
@@ -301,7 +308,7 @@ ul#links_to_other_websites {
   @extend %liWidthSettingsOfLeftSideMenu ;
   @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %iconToExternalPageInLinkLi ;
-  @extend %smallImageIconInLinkLi ;
+  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
@@ -314,7 +321,7 @@ ul#links_to_documents {
   @extend %liWidthSettingsOfLeftSideMenu ;
   @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %iconToExternalPageInLinkLi ;
-  @extend %smallImageIconInLinkLi ;
+  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
@@ -344,7 +351,6 @@ ul#links_to_document_pages {
 
 ul#links_to_railway_line_pages {
   @extend %largeImageIconInLinkLi ;
-  @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
   @extend %commonSettingsOfLiInLinkUl ;
   //
   @extend %marginOfDivLinkToContent ;
@@ -352,7 +358,6 @@ ul#links_to_railway_line_pages {
 
 ul#links_to_railway_line_pages_of_this_station {
   @extend %largeImageIconInLinkLi ;
-  @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
   @extend %commonSettingsOfLiInLinkUl ;
   //
   @extend %marginOfDivLinkToContent ;
@@ -394,7 +399,7 @@ ul#links_to_station_pages {
     @extend %largeImageIconInLinkLi ;
   }
   ul#links_to_station_facility_info_of_connecting_other_stations {
-    @extend %smallImageIconInLinkLiWithoutClassName ;
+    @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
     @extend %floatLeft ;
   }
   ul#links , ul#links_to_station_facility_info_of_connecting_other_stations {
@@ -404,16 +409,5 @@ ul#links_to_station_pages {
     @extend %commonSettingsOfLiInLinkUl ;
     //
     @extend %marginOfDivLinkToContent ;
-  }
-}
-
-//--------------------------------
-
-#main_content_center {
-  ul#links_to_railway_line_pages {
-    @extend %marginBottom32 ;
-    li {
-      @extend %floatLeft ;
-    }
   }
 }

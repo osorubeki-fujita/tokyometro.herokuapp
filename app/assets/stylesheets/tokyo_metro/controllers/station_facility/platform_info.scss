@@ -84,21 +84,21 @@
     padding: $margin_and_padding ;
     border: solid 1px #eee ;
     tr.car_numbers {
-        td.empty {
-            border-style: none ;
+      td.empty {
+        border-style: none ;
+      }
+      td.car_number {
+        @extend %titleOfEachContentsInPlatformInfo ;
+        border: solid 1px #999 ;
+        font: {
+          size: 24pt ;
+          weight: bold ;
         }
-        td.car_number {
-            @extend %titleOfEachContentsInPlatformInfo ;
-            border: solid 1px #999 ;
-            font: {
-                size: 24pt ;
-                weight: bold ;
-            }
-            text: {
-                align: center;
-            }
-            color: #333 ;
+        text: {
+          align: center;
         }
+        color: #333 ;
+      }
     }
     tr.transfer_infos {
       @extend %normalCellSettingsInPlatformInfo ;
@@ -113,9 +113,8 @@
         padding: {
           left: 0px ;
         }
-        margin: {
-          bottom: 2px ;
-        }
+        @extend %marginTop4 ;
+        @extend %marginBottom4 ;
         height: auto ;
       }
       li.transfer_info {
@@ -136,19 +135,21 @@
       }
     }
     tr.barrier_free_infos_inside {
-        @extend %normalCellSettingsInPlatformInfo ;
-        @extend %cellSettingsWhenInfoIsEmpty ;
-        @extend %cellSettingsWhenInfoIsPresent ;
-        td.title {
-            $base_color: rgba( $operator_color , 0.3 ) ;
-            @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
-            @extend %titleOfEachContentsInPlatformInfo ;
+      @extend %normalCellSettingsInPlatformInfo ;
+      @extend %cellSettingsWhenInfoIsEmpty ;
+      @extend %cellSettingsWhenInfoIsPresent ;
+      td.title {
+        $base_color: rgba( $operator_color , 0.3 ) ;
+        @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
+        @extend %titleOfEachContentsInPlatformInfo ;
+      }
+      ul {
+        padding: {
+          left: 0px ;
         }
-        ul {
-          padding: {
-            left: 0px ;
-          }
-        }
+        @extend %marginTop4 ;
+        @extend %marginBottom4 ;
+      }
     }
     tr.barrier_free_infos_outside {
         @extend tr.barrier_free_infos_inside ;

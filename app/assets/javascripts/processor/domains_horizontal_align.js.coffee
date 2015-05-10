@@ -24,7 +24,7 @@ class DomainsHorizontalAlignProcessor
 
 window.DomainsHorizontalAlignProcessor = DomainsHorizontalAlignProcessor
 
-class DomainHorizontalAlignCenterProcessor
+class DomainHorizontalAlignCommonProcessor
 
   constructor: ( @domain , @outer_width_of_external_domain ) ->
 
@@ -33,43 +33,34 @@ class DomainHorizontalAlignCenterProcessor
     return w
 
   margin: ->
+    return @outer_width_of_external_domain - @.outer_width()
+
+  process: ->
+    _margin = @.margin()
+    _domain = @domain
+    _attributes = @.attributes()
+    unless _margin is 0
+      $.each _attributes , ->
+        _attr = @
+        _domain.css( _attr , _margin )
+        return
+    return
+
+class DomainHorizontalAlignCenterProcessor extends DomainHorizontalAlignCommonProcessor
+
+  margin: ->
     m = ( @outer_width_of_external_domain - @.outer_width() ) * 0.5
     return m
 
-  process: ->
-    _margin = @.margin()
-    @domain.css( 'margin-left' , _margin )
-    @domain.css( 'margin-right' , _margin )
-    return
+  attributes: ->
+    return [ 'margin-left' , 'margin-right' ]
 
-class DomainHorizontalAlignLeftProcessor
+class DomainHorizontalAlignLeftProcessor extends DomainHorizontalAlignCommonProcessor
 
-  constructor: ( @domain , @outer_width_of_external_domain ) ->
+  attributes: ->
+    return [ 'margin-right' ]
 
-  outer_width: ->
-    m = @domain.outerWidth( false )
-    return m
+class DomainHorizontalAlignRightProcessor extends DomainHorizontalAlignCommonProcessor
 
-  margin: ->
-    return @outer_width_of_external_domain - @.outer_width()
-
-  process: ->
-    _margin = @.margin()
-    @domain.css( 'margin-right' , _margin )
-    return
-
-class DomainHorizontalAlignRightProcessor
-
-  constructor: ( @domain , @outer_width_of_external_domain ) ->
-
-  outer_width: ->
-    m = @domain.outerWidth( false )
-    return m
-
-  margin: ->
-    return @outer_width_of_external_domain - @.outer_width()
-
-  process: ->
-    _margin = @.margin()
-    @domain.css( 'margin-left' , _margin )
-    return
+  attributes: ->
+    return [ 'margin-left' ]

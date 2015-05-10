@@ -411,8 +411,8 @@ class GoogleMapInStationFacility
     return height_of_ul_exits(v)
 
   process: ->
-    @domain.attr( 'width' , width_of_google_map(@) + 'px' )
-    @domain.attr( 'height' , height_of_google_map(@) + 'px' )
+    @domain.css( 'width' , width_of_google_map(@) )
+    @domain.css( 'height' , height_of_google_map(@) )
 
 #-------------------------------- プラットホーム情報の処理
 
@@ -508,6 +508,9 @@ class StationFacilityTransferInfoInPlatformInfo
 
 class StationFacilityPlatformInfoTabUl extends TabUl
   constructor: ( @ul = $( 'ul#platform_info_tabs' ) ) ->
+  
+  has_ul = (v) ->
+    return v.ul.length > 0
 
   # li_contents: ->
     # console.log 'StationFacilityPlatformInfoTabUl\#li_contents'
@@ -519,20 +522,43 @@ class StationFacilityPlatformInfoTabUl extends TabUl
     # console.log(v)
     # console.log( v.li_contents() )
     v.li_contents().each ->
-      platform_info_tab = $(@)
-      railway_line_name = platform_info_tab.children( '.railway_line_name' ).first()
-      children_of_railway_line_name = railway_line_name.children()
-      p = new DomainsCommonProcessor( children_of_railway_line_name )
-      railway_line_name.css( 'width' , Math.ceil( p.sum_outer_width( true ) * 1.2 ) )
-      railway_line_name.css( 'height' , p.max_outer_height( true ) )
+      tab_li = new StationFacilityPlatformInfoTabLi( $(@) )
+      tab_li.process()
       return
     return
 
   process: ->
-    if @ul.length > 0
+    if has_ul(@)
       process_railway_line_name(@)
       super()
       return
+    return
+
+
+class StationFacilityPlatformInfoTabLi
+
+  constructor: ( @domain ) ->
+  
+  railway_line_name_domain = (v) ->
+    return v.domain.children( '.railway_line_name' ).first()
+  
+  children_of_railway_line_name_domain = (v) ->
+    return railway_line_name_domain(v).children()
+  
+  text = (v) ->
+    return railway_line_name_domain(v).children( '.text' ).first()
+  
+  process: ->
+    process_text(@)
+    _railway_line_name_domain = railway_line_name_domain(@)
+    p = new DomainsCommonProcessor( children_of_railway_line_name_domain(@) )
+    _railway_line_name_domain.css( 'width' , Math.ceil( p.sum_outer_width( true ) * 1.2 ) )
+    # _railway_line_name_domain.css( 'height' , p.max_outer_height( true ) )
+    return
+  
+  process_text = (v) ->
+    p = new LengthToEven( text(v) , true )
+    p.set()
     return
 
 #--------------------------------

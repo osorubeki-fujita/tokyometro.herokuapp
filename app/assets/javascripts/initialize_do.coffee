@@ -26,7 +26,7 @@ class Initializer
     ul_side_menu_links = new UlSideMenuLinks()
     ul_station_related_links = new UlStationRelatedLinks()
 
-    main_contents = new MainContents()
+    # main_contents = new MainContents()
 
     # 不使用
     # bottom_content = new BottomContent()
@@ -61,7 +61,7 @@ class Initializer
     ul_side_menu_links.process()
     ul_station_related_links.process()
 
-    main_contents.process()
+    # main_contents.process()
 
     # 不使用
     # bottom_content.process()

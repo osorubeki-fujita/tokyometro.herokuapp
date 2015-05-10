@@ -1,14 +1,18 @@
 #-------- [class] StationFacilityPlatformInfoTabTarget
 
 class StationFacilityPlatformInfoTabTarget
+
   constructor: ( @anchor , @tab_id ) ->
     # console.log 'StationFacilityPlatformInfoTabTarget\#constructor'
     # console.log( 'anchor: ' + @anchor + ' / ' + 'tab_id: ' + @tab_id )
+  
+  tab_id_with_anchor_char = (v) ->
+    return '\#' + v.tab_id
 
   is_included_in: ( contents ) ->
     # console.log 'StationFacilityPlatformInfoTabTarget\#is_included_in'
     # console.log( 'search_by: ' + '#' + @tab_id )
-    return contents.is( '\#' + @tab_id )
+    return contents.is( tab_id_with_anchor_char(@) )
 
   is_not_included_in: ( contents ) ->
     # console.log 'StationFacilityPlatformInfoTabTarget\#is_not_included_in'
@@ -33,16 +37,18 @@ class StationFacilityPlatformInfoTabProcessor
   hide = (v) ->
     # console.log 'StationFacilityPlatformInfoTabProcessor\#hide'
     $.each [ v.tab , v.content ] , ->
-      $( this ).removeClass( 'displayed' )
-      $( this ).addClass( 'hidden' )
+      $(@).addClass( 'hidden' )
+      $(@).removeClass( 'displayed' )
+      $(@).removeClass( 'this_page' )
       return
     return
 
   display = (v) ->
     # console.log 'StationFacilityPlatformInfoTabProcessor\#display'
     $.each [ v.tab , v.content ] , ->
-      $( this ).removeClass( 'hidden' )
-      $( this ).addClass( 'displayed' )
+      $(@).addClass( 'this_page' )
+      $(@).addClass( 'displayed' )
+      $(@).removeClass( 'hidden' )
       return
     return
 
@@ -124,10 +130,12 @@ class StationFacilityTabsAndContents
     # console.log 'StationFacilityTabsAndContents\#anchor'
     return window.location.hash.replace( "\#" , "" )
 
+  #-------- アンカーが設定されていないことを判定するメソッド
   anchor_is_not_defined = (v) ->
     # console.log 'StationFacilityTabsAndContents\#anchor_is_not_defined'
     return anchor(v) is ''
 
+  #-------- アンカーが設定されていることを判定するメソッド
   anchor_is_defined = (v) ->
     # console.log 'StationFacilityTabsAndContents\#anchor_is_defined'
     return !( anchor_is_not_defined(v) )
@@ -141,7 +149,7 @@ class StationFacilityTabsAndContents
     # console.log 'StationFacilityTabsAndContents\#process_platform_info_tabs'
     # console.log v
     v.platform_info_tab_contents.each ->
-      content = $( this )
+      content = $(@)
       tab = v.platform_info_tabs.filter( '.tab_for_' + content.attr( 'id' ) )
       processor = new StationFacilityPlatformInfoTabProcessor( tab , content , target )
       processor.process()
@@ -168,14 +176,14 @@ class StationFacilityTabsAndContents
     console.log '_first_tab_id: ' + _first_tab_id
     _anchor_name = anchor_name_of_platform_info( v , _first_tab_id )
     console.log '_anchor_name: ' + _anchor_name
-    unless _anchor_name == null
+    unless _anchor_name is null
       target =new StationFacilityPlatformInfoTabTarget( _anchor_name , _first_tab_id )
       display_platform_info_tab_of( v , target , change_location )
       return
     return
 
   anchor_name_of_platform_info = ( v , tab_id ) ->
-    unless tab_id == null
+    unless tab_id is null
       anchor_name = tab_id.replace( /\#?platform_info_/ , "" )
     else
       anchor_name = null

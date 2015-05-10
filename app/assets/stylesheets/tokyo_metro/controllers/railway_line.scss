@@ -14,5 +14,10 @@ td.transfer {
   ul.railway_lines {
     @extend %floatLeft ;
     @extend %clearUlDefaultSettings ;
+    li.railway_line {
+      border: {
+        color: #fff ;
+      }
+    }
   }
 }

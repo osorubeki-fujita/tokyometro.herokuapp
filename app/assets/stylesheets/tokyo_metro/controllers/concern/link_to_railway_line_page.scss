@@ -10,7 +10,7 @@
     right: -1px ;
     bottom: -1px ;
   }
-  border: solid 1px #eee ;
+  border: solid 1px #fff ;
   // @include border_radius( 4px ) ;
 }
 
@@ -31,9 +31,9 @@
 #station_facility_platform_infos {
   table.platform_info {
     tr.transfer_infos {
-      li.transfer_info.tokyo_metro {
-        @extend %hoverSettingsOfLinkToRailwayLine ;
-      }
+      // li.transfer_info.tokyo_metro {
+        // @extend %hoverSettingsOfLinkToRailwayLine ;
+      // }
       li.transfer_info {
         @extend %domainBaseSettingsOfLinkToRailwayLine ;
         @extend %colorBoxSettingsOfLinkToRailwayLine ;

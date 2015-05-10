@@ -10,16 +10,20 @@
     background: {
       color: rgba( $color , 0.1 * $rate ) ;
     }
-    .text_en {
-      color: desaturate( $color , 60% ) ;
+    .text , .railway_direction {
+      .text_en {
+        color: desaturate( $color , 60% ) ;
+      }
     }
   }
   &.this_page {
     background: {
       color: rgba( $color , 0.2 * $rate ) ;
     }
-    .text_en {
-      color: desaturate( $color , 60% ) ;
+    .text , .railway_direction {
+      .text_en {
+        color: desaturate( $color , 60% ) ;
+      }
     }
   }
 }
@@ -31,7 +35,7 @@
   }
 }
 
-ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#railway_lines_in_this_station , ul#railway_lines_in_another_station , ul.transfer_infos_for_this_position , #travel_time td.transfer ul.railway_lines , ul#platform_info_tabs {
   li.ginza {
     @include linkToRailwayLineColorSetting( $line_ginza_bgcolor ) ;
   }
@@ -42,7 +46,7 @@ ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station 
     @include linkToRailwayLineColorSetting( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
   }
   li.hibiya {
-    @include linkToRailwayLineColorSetting( $line_hibiya_bgcolor , 1.6 ) ;
+    @include linkToRailwayLineColorSetting( $line_hibiya_bgcolor , 1.7 ) ;
   }
   li.tozai {
     @include linkToRailwayLineColorSetting( $line_tozai_bgcolor ) ;
@@ -51,7 +55,7 @@ ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station 
     @include linkToRailwayLineColorSetting( $line_chiyoda_bgcolor ) ;
   }
   li.yurakucho {
-    @include linkToRailwayLineColorSetting( $line_yurakucho_bgcolor , 1.3 ) ;
+    @include linkToRailwayLineColorSetting( $line_yurakucho_bgcolor , 1.5 ) ;
   }
   li.hanzomon {
     @include linkToRailwayLineColorSetting( $line_hanzomon_bgcolor , 1.2 ) ;
@@ -87,9 +91,18 @@ ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station 
     @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_hanzomon_bgcolor , 1.2 ) ;
   }
   ul.each_railway_line.namboku li {
-    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_namboku_bgcolor ) ;
+    @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_namboku_bgcolor , 0.8 ) ;
   }
   ul.each_railway_line.fukutoshin li {
     @include linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $line_fukutoshin_bgcolor ) ;
+  }
+}
+
+ul#platform_info_tabs {
+  li.tab_for_platform_info_yurakucho_and_fukutoshin_line {
+    @include linkToRailwayLineColorSetting( mix( $line_yurakucho_bgcolor , $line_fukutoshin_bgcolor ) , 1 ) ;
+  }
+  li.tab_for_platform_info_namboku_and_toei_mita_line {
+    @include linkToRailwayLineColorSetting( mix( $line_namboku_bgcolor , $line_toei_mita_bgcolor ) , 0.6 ) ;
   }
 }

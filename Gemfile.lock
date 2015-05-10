@@ -47,7 +47,7 @@ GEM
       debug_inspector (>= 0.0.1)
     blockenspiel (0.4.5)
     builder (3.2.2)
-    bullet (4.14.6)
+    bullet (4.14.7)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
     byebug (4.0.5)

@@ -1,4 +1,5 @@
 class MainContents
+
   constructor: ->
 
   contents = (v) ->
