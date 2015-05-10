@@ -31,7 +31,7 @@ class RailwayLine < ActiveRecord::Base
   has_many :twitter_accounts , as: :operator_or_railway_line
 
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
-  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine
   include ::TokyoMetro::Modules::Db::Decision::Operator
 
   default_scope {

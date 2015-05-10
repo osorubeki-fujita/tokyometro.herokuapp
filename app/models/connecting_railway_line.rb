@@ -5,7 +5,7 @@ class ConnectingRailwayLine < ActiveRecord::Base
   belongs_to :connecting_railway_line_note
 
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
-  include ::TokyoMetro::Modules::Common::Info::NewRailwayLine
+  include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine
 
   default_scope {
     if pluck( :index_in_station ).all?( &:present? )
@@ -47,6 +47,14 @@ class ConnectingRailwayLine < ActiveRecord::Base
 
   def not_operated_yet?
     super or railway_line.not_operated_yet?
+  end
+
+  def ended_already?
+    super or railway_line.ended_already?
+  end
+
+  def operated_now?
+    !( not_operated_yet? or ended_already? )
   end
 
   def css_class_name
