@@ -9,4 +9,4 @@
 
 - content_for :right_contents do
   = ::TokyoMetro::App::Renderer::Twitter.new( request , :tokyo_metro ).render
-  = real_time_info_processor.render_real_time_info_and_update_button_of_train_informations( include_train_locations: false )
+  = real_time_info_processor.render_meta_datum( include_train_locations: false )

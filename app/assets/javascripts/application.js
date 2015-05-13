@@ -29,12 +29,5 @@
 
 const goldenRatio = 1.618 ;
 
-$( document ).on( 'ready page:load' , function() { // Turbolinks 対策
-  // $( function() {
-  // $( document ).live( 'pageshow', function() {
-  initializer = new Initializer() ;
-  initializer.process() ;
-});
-
 observer_of_station_facility_platform_info_tab = new ObserverOfStationFacilityPlatformInfoTab() ;
 window.setInterval( 'observer_of_station_facility_platform_info_tab.listen()' , observer_of_station_facility_platform_info_tab.duration() ) ;

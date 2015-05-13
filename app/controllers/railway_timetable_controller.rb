@@ -1,19 +1,25 @@
 class RailwayTimetableController < ApplicationController
 
-  # require 'each_railway_line'
-  # require 'yurakucho_and_fukutoshin_line'
-  include EachRailwayLine
-  include YurakuchoAndFukutoshinLine
+  include ActionBaseForRailwayLinePage
+  include RailwayLineByParams
 
   def index
     @title = "各線の時刻表"
     render 'railway_timetable/index'
   end
 
+  def action_for_railway_line_page
+    action_base_for_railway_line_page( :railway_timetable , layout: :application )
+  end
+
   private
 
-  def each_railway_line( *railway_lines_same_as )
-    each_railway_line_sub( "列車時刻表" , "railway_timetable" , *railway_lines_same_as )
+  def set_railway_lines_of_railway_line_page_by_params
+    @railway_lines = railway_line_by_params( branch_railway_line: :no_process , yurakucho_and_fukutoshin: true )
+  end
+
+  def base_of_railway_line_page_title
+    " 列車時刻表"
   end
 
 end

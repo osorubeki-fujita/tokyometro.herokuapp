@@ -16,6 +16,7 @@ class RailwayLineDecorator < Draper::Decorator
 
   # タイトルのメイン部分（路線色・路線名）を記述するメソッド
   def self.name_main( railway_lines )
+    railway_lines = [ railway_lines ].flatten
     class << railway_lines
       include ::TokyoMetro::TempLib::RailwayLineArrayModule
     end
@@ -109,7 +110,7 @@ class RailwayLineDecorator < Draper::Decorator
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :railway_line_matrixes }
+%div{ id: :railway_line_matrixes , class: :clearfix }
   - ::RailwayLine.tokyo_metro( including_branch_line: false ).each do | railway_line |
     = railway_line.decorate.render_matrix( make_link_to_railway_line: make_link_to_railway_line )
   - if including_yurakucho_and_fukutoshin
@@ -191,6 +192,8 @@ class RailwayLineDecorator < Draper::Decorator
       "#{ css_class_name }_line"
     end
   end
+  
+  alias :page_name :railway_line_page_name
 
   def travel_time_table_id
     "#{ css_class_name }_travel_time"

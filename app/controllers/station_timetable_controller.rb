@@ -1,11 +1,8 @@
 class StationTimetableController < ApplicationController
 
   include ActionBaseForStationPage
+  include ActionBaseForRailwayLinePage
   include RailwayLineByParams
-
-  include EachRailwayLine
-  include YurakuchoAndFukutoshinLine
-  include MarunouchiLineBranch
 
   def index
     @title = "駅の時刻表"
@@ -18,16 +15,24 @@ class StationTimetableController < ApplicationController
 
   def action_for_station_page
     action_base_for_station_page( :station_timetable , layout: :application_wide ) do
-      set_railway_line
+      set_railway_line_for_station_page
       set_station_timetables
-      set_railway_lines
+      set_railway_lines_for_station_page
     end
   end
 
-  private
+  def action_for_railway_line_page
+    action_base_for_railway_line_page( :station_timetable , layout: :application )
+  end
 
-  def each_railway_line( *railway_lines_same_as )
-    each_railway_line_sub( "各駅の時刻表" , "station_timetable" , *railway_lines_same_as , with_branch: true )
+  private
+  
+  def set_railway_lines_of_railway_line_page_by_params
+    @railway_lines = railway_line_by_params( branch_railway_line: :main_and_branch , yurakucho_and_fukutoshin: true )
+  end
+  
+  def base_of_railway_line_page_title
+    " 各駅の時刻表"
   end
 
   def base_of_station_page_title
@@ -35,7 +40,7 @@ class StationTimetableController < ApplicationController
     "の時刻表（#{ railway_line_name }）"
   end
 
-  def set_railway_line
+  def set_railway_line_for_station_page
     @railway_line = railway_line_by_params( branch_railway_line: :no_process , use_station_info: true )
   end
 
@@ -51,7 +56,7 @@ class StationTimetableController < ApplicationController
     ::Station::Info.where( id: :station_info_ids ).pluck( :railway_line_id ).uniq.sort
   end
 
-  def set_railway_lines
+  def set_railway_lines_for_station_page
     @railway_lines = ::RailwayLine.where( id: railway_line_ids_of_this_station )
   end
 

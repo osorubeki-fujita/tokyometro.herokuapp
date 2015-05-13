@@ -71,3 +71,9 @@
     to( #{$color_right} )
   );
 }
+
+%liHoverBgOperatorSurveyYearInLinkUl {
+ background: {
+    color: rgba( $link_hover_domain_color , 0.9 ) ;
+  }
+}

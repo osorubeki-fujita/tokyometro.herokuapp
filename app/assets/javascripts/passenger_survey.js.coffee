@@ -2,21 +2,28 @@ class PassengerSurvey
 
   constructor: ( @domain = $( '#passenger_survey_table' ) ) ->
 
+  tables = (v) ->
+    return  $( '#passenger_survey_table' ).children( 'table' )
+
   table = (v) ->
-    return $( '#passenger_survey_table' ).children( 'table' ).first()
+    return tables(v).first()
 
   has_table = (v) ->
-    return $( '#passenger_survey_table' ).children( 'table' ).length > 0
-
-  passenger_survey_page = (v) ->
-    return $( '#passenger_survey_title' ).length > 0
+    return tables(v).length > 0
+  
+  links_to_year_pages_on_index_page = (v) ->
+    return $( 'ul#links_to_year_pages.on_index_page' )
+    
+  on_passenger_survey_index_page = (v) ->
+    return links_to_year_pages_on_index_page(v).length > 0
 
   process: ->
     if has_table(@)
       process_table(@)
-      process_links_to_railway_line_pages(@)
-    # else if passenger_survey_page(@)
-      # process_links_to_railway_line_pages(@)
+      process_links_to_pages(@)
+    if on_passenger_survey_index_page(@)
+      process_links_to_pages(@)
+      process_icon_of_operator_on_index_page(@)
     return
   
   process_table = (v) ->
@@ -24,13 +31,20 @@ class PassengerSurvey
     t.process()
     return
 
-  process_links_to_railway_line_pages = (v) ->
+  process_links_to_pages = (v) ->
     l = new LinksToPassengerSurveyPages( $( '#links_to_passenger_survey_pages' ) )
     l.process()
     return
+  
+  process_icon_of_operator_on_index_page = (v) ->
+    links_to_year_pages_on_index_page(v).children( 'li.survey_year' ).each ->
+      l = new LinksToPassengerSurveyPagesOnIndexPage( $(@) )
+      l.process()
+      return
+    return
+      
 
 window.PassengerSurvey = PassengerSurvey
-
 
 class PassengerSurveyTable
 
@@ -430,4 +444,44 @@ class LinksToPassengerSurveyPages
     console.log p1.sum_width()
     console.log sum_w
     console.log current_margin_right
+    return
+
+class LinksToPassengerSurveyPagesOnIndexPage
+
+  constructor: ( @domain ) ->
+  
+  icon = (v) ->
+    return v.domain.children( '.icon' ).first()
+  
+  icon_img = (v) ->
+    return icon(v).children( 'img' ).first()
+    
+  text = (v) ->
+    return v.domain.children( '.text' ).first()
+  
+  process: ->
+    set_position_of_icon(@)
+    process_text(@)
+    set_vertical_align(@)
+    return
+  
+  set_position_of_icon = (v) ->
+    p1 = new DomainsVerticalAlignProcessor( icon_img(v) , icon(v).height() )
+    p1.process()
+    p2 = new DomainsHorizontalAlignProcessor( icon_img(v) , icon(v).width() )
+    p2.process()
+    return
+  
+  process_text = (v) ->
+    l = new LengthToEven( text(v) )
+    l.set()
+    return
+
+  set_vertical_align = (v) ->
+    _children = v.domain.children().not( 'a' )
+    p1 = new DomainsCommonProcessor( _children )
+    h = p1.max_outer_height( false )
+    console.log h
+    p2 = new DomainsVerticalAlignProcessor( _children , h )
+    p2.process()
     return

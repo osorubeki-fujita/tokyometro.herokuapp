@@ -29465,32 +29465,23 @@ $('#progress').html(
       return Math.ceil(railway_line_code_outer(this).outerWidth(true)) + Math.ceil(text(this).outerWidth(true));
     };
 
-    RailwayLineMatrixSmallInfo.prototype.set_height_and_vertical_align_center = function() {
-      var _max_height;
-      _max_height = this.max_height_of_railway_line_code_outer_and_text();
-      $([railway_line_code_outer(this), text(this)]).each(function() {
-        var margin;
-        margin = (_max_height - $(this).outerHeight(true)) * 0.5;
-        $(this).css('margin-top', margin);
-        $(this).css('margin-bottom', margin);
-      });
-      this.set_max_height();
-    };
-
-    RailwayLineMatrixSmallInfo.prototype.set_max_height = function() {
-      this.domain.css('height', this.max_height_of_railway_line_code_outer_and_text());
+    RailwayLineMatrixSmallInfo.prototype.set_vertical_align_center = function() {
+      var p;
+      this.initialize_text_size();
+      p = new DomainsVerticalAlignProcessor(this.domain.children(), this.max_height_of_railway_line_code_outer_and_text());
+      p.process();
     };
 
     RailwayLineMatrixSmallInfo.prototype.set_margin_top_and_bottom = function(railway_line_matrix_small_inner_height) {
-      var margin_top_and_bottom;
-      margin_top_and_bottom = (railway_line_matrix_small_inner_height - this.domain.outerHeight()) * 0.5;
-      this.domain.css('margin-top', margin_top_and_bottom).css('margin-bottom', margin_top_and_bottom);
+      var p;
+      p = new DomainsVerticalAlignProcessor(this.domain, railway_line_matrix_small_inner_height);
+      p.process();
     };
 
     RailwayLineMatrixSmallInfo.prototype.initialize_text_size = function() {
       var p;
-      p = new DomainsCommonProcessor(text(this).children());
-      return text(this).css('width', Math.ceil(p.max_outer_width(true)) + 1);
+      p = new LengthToEven(text(this));
+      p.set();
     };
 
     return RailwayLineMatrixSmallInfo;
@@ -29612,7 +29603,7 @@ $('#progress').html(
     process_elements_in_railway_line_info_in_railway_line_matrix_small = function(v) {
       var matrix;
       matrix = new RailwayLineMatrixSmallInfo(info_domain_in_railway_line_matrix_small(v));
-      matrix.set_height_and_vertical_align_center();
+      matrix.set_vertical_align_center();
     };
 
     sum_height_of_station_domains_of_railway_line_including_branch_line = function(v) {
@@ -29738,54 +29729,10 @@ $('#progress').html(
 
 }).call(this);
 (function() {
-  var TopContent;
-
-  TopContent = (function() {
-    var margin_top_and_bottom_of_text, margin_top_of_now_developing, now_developing, text, title;
-
-    function TopContent(domain) {
-      this.domain = domain != null ? domain : $('div#top_content');
-    }
-
-    text = function(v) {
-      return v.domain.children('.text').first();
-    };
-
-    title = function(v) {
-      return text(v).children('.title').first();
-    };
-
-    now_developing = function(v) {
-      return text(v).children('.now_developing').first();
-    };
-
-    margin_top_of_now_developing = function(v) {
-      return title(v).outerHeight() - now_developing(v).outerHeight();
-    };
-
-    margin_top_and_bottom_of_text = function(v) {
-      return (v.domain.innerHeight() - title(v).outerHeight()) * 0.5;
-    };
-
-    TopContent.prototype.process = function() {
-      var _margin_top_and_bottom_of_text;
-      now_developing(this).css('margin-top', margin_top_of_now_developing(this));
-      _margin_top_and_bottom_of_text = margin_top_and_bottom_of_text(this);
-      text(this).css('margin-top', _margin_top_and_bottom_of_text).css('margin-bottom', _margin_top_and_bottom_of_text);
-    };
-
-    return TopContent;
-
-  })();
-
-  window.TopContent = TopContent;
-
-}).call(this);
-(function() {
-  var AnimationForRailwayLineDomains, LinkToRailwayLinePage, LinksToRailwayLinePages;
+  var LinkToRailwayLinePage, LinksToRailwayLinePages;
 
   LinksToRailwayLinePages = (function() {
-    var border_width, link_domains, max_height_of_link_domains, number_of_normal_railway_lines, process_each_link_domain, set_height_of_domain, set_height_of_link_domains, set_width_of_each_fare_link_domain, title_domains, whole_height_of_link_domains, whole_height_of_title_domains;
+    var border_width, link_domains, max_height_of_link_domains, number_of_normal_railway_lines, on_fare_controller, process_each_link_domain, set_height_of_link_domains, set_width_of_each_fare_link_domain, title_domains, whole_height_of_link_domains, whole_height_of_title_domains;
 
     function LinksToRailwayLinePages(domain, controller) {
       this.domain = domain;
@@ -29800,23 +29747,26 @@ $('#progress').html(
       return v.domain.children('li.title');
     };
 
+    on_fare_controller = function(v) {
+      return v.controller === 'fare';
+    };
+
     LinksToRailwayLinePages.prototype.process = function() {
       set_width_of_each_fare_link_domain(this);
       process_each_link_domain(this);
       set_height_of_link_domains(this);
-      set_height_of_domain(this);
     };
 
     set_width_of_each_fare_link_domain = function(v) {
       var p;
-      if (v.controller === 'fare') {
+      if (on_fare_controller(v)) {
         p = new RailwayLineAndStationMatrix();
         v.width_of_each_link_domain = p.width_of_each_normal_railway_line();
       }
     };
 
     process_each_link_domain = function(v) {
-      if (v.controller === 'fare') {
+      if (on_fare_controller(v)) {
         link_domains(v).each(function() {
           var d;
           d = new LinkToRailwayLinePage($(this), v.controller, v.width_of_each_link_domain);
@@ -29866,17 +29816,6 @@ $('#progress').html(
       return p1.sum_inner_height() + border_width(v) * num;
     };
 
-    set_height_of_domain = function(v) {
-      var h, h_whole, p, rows;
-      if (v.controller === 'fare') {
-        h = max_height_of_link_domains(v);
-        p = new RailwayLineAndStationMatrix();
-        rows = p.number_of_rows_of_normal_railway_lines_in_railway_line_matrix();
-        h_whole = h * rows + p.border_width * (rows + 1);
-        v.domain.css('height', h_whole);
-      }
-    };
-
     return LinksToRailwayLinePages;
 
   })();
@@ -29910,7 +29849,6 @@ $('#progress').html(
 
     LinkToRailwayLinePage.prototype.process = function() {
       set_height_of_contents(this);
-      set_height_of_domain(this);
       set_width(this);
     };
 
@@ -29921,7 +29859,6 @@ $('#progress').html(
       h = p1.max_outer_height(true);
       p2 = new DomainsVerticalAlignProcessor(c, h, 'middle');
       p2.process();
-      domain_of_content(v).css('height', h);
     };
 
     set_height_of_domain = function(v) {
@@ -29943,79 +29880,6 @@ $('#progress').html(
   })();
 
   window.LinkToRailwayLinePage = LinkToRailwayLinePage;
-
-  AnimationForRailwayLineDomains = (function() {
-    var process_for_hover, railway_line_domain_for_survey_year_domain, survey_year_domains;
-
-    function AnimationForRailwayLineDomains(domains) {
-      this.domains = domains;
-      console.log('constructor');
-      return;
-    }
-
-    survey_year_domains = function(v) {
-      return v.domains.children('li.survey_year');
-    };
-
-    railway_line_domain_for_survey_year_domain = function(survey_year_domain) {
-      return survey_year_domain.parent().children('li.railway_line');
-    };
-
-    AnimationForRailwayLineDomains.prototype.process = function() {
-      console.log('process');
-      process_for_hover(this);
-    };
-
-    process_for_hover = function(v) {
-      console.log('process_for_hover');
-      survey_year_domains(v).hover(function() {
-        console.log('onMouse begin');
-        railway_line_domain_for_survey_year_domain($(this)).queue(function() {
-          console.log('add_class');
-          console.log('  classes: ' + $(this).attr('class'));
-          if ($(this).hasClass('hover')) {
-            console.log('  has_class \'hover\'');
-            $(this).addClass('hover_x');
-          } else {
-            $(this).addClass('hover', {
-              duration: 2000,
-              children: true
-            });
-          }
-        });
-        railway_line_domain_for_survey_year_domain($(this)).dequeue();
-        console.log('onMouse end (2000ms)');
-      }, function() {
-        console.log('outMouse');
-        window.setInterval(function() {}, 2000);
-        railway_line_domain_for_survey_year_domain($(this)).queue(function() {
-          console.log('remove_class begin');
-          console.log('  classes: ' + $(this).attr('class'));
-          $(this).addClass('hover_x');
-          $(this).removeClass('hover', {
-            duration: 8000,
-            children: true
-          });
-          if ($(this).hasClass('hover_x')) {
-            console.log('  has_class \'hover_x\'');
-            $(this).removeClass('hover_x');
-          } else {
-            $(this).removeClass('hover', {
-              duration: 8000,
-              children: true
-            });
-          }
-          console.log('remove_class end');
-        });
-        railway_line_domain_for_survey_year_domain($(this)).dequeue();
-      });
-    };
-
-    return AnimationForRailwayLineDomains;
-
-  })();
-
-  window.AnimationForRailwayLineDomains = AnimationForRailwayLineDomains;
 
 }).call(this);
 (function() {
@@ -30120,7 +29984,7 @@ $('#progress').html(
   var EachRealTimeInfo, RealTimeInfoProcessor;
 
   RealTimeInfoProcessor = (function() {
-    var content_header, domain_of_time_infos, has_real_time_info_and_update_button, new_domain_height, process_content_header, process_time_infos, set_domain_height, time_infos;
+    var content_header, domain_of_time_infos, has_real_time_info_and_update_button, process_content_header, process_time_infos, time_infos;
 
     function RealTimeInfoProcessor(domain) {
       this.domain = domain != null ? domain : $("#real_time_info_and_update_button");
@@ -30146,7 +30010,6 @@ $('#progress').html(
       if (has_real_time_info_and_update_button(this)) {
         process_content_header(this);
         process_time_infos(this);
-        set_domain_height(this);
       }
     };
 
@@ -30164,14 +30027,6 @@ $('#progress').html(
       });
     };
 
-    new_domain_height = function(v) {
-      return content_header(v).outerHeight(true) + domain_of_time_infos(v).outerHeight(true);
-    };
-
-    set_domain_height = function(v) {
-      v.domain.css('height', new_domain_height(v));
-    };
-
     return RealTimeInfoProcessor;
 
   })();
@@ -30179,7 +30034,7 @@ $('#progress').html(
   window.RealTimeInfoProcessor = RealTimeInfoProcessor;
 
   EachRealTimeInfo = (function() {
-    var dc_date_and_validity, domain_of_time_infos_of_category, domain_of_titles, en, process_each_precise_info, process_titles, time_infos_of_category, titles;
+    var domain_of_titles, process_titles, titles;
 
     function EachRealTimeInfo(domain) {
       this.domain = domain;
@@ -30193,55 +30048,16 @@ $('#progress').html(
       return domain_of_titles(v).children('li.title');
     };
 
-    domain_of_time_infos_of_category = function(v) {
-      return v.domain.children('ul.time_infos_of_category').first();
-    };
-
-    time_infos_of_category = function(v) {
-      return domain_of_time_infos_of_category(v).children('li');
-    };
-
-    dc_date_and_validity = function(v) {
-      return domain_of_time_infos_of_category(v).children('li.dc_date , li.validity');
-    };
-
-    en = function(v) {
-      return domain_of_time_infos_of_category(v).children('ul.en').first();
-    };
-
     EachRealTimeInfo.prototype.process = function() {
       process_titles(this);
-      process_each_precise_info(this);
     };
 
     process_titles = function(v) {
-      var p;
       titles(v).each(function() {
         var t;
         t = new ContentHeaderProcessor($(this));
         t.process();
       });
-      p = new DomainsCommonProcessor(titles(v));
-      domain_of_titles(v).css('height', p.sum_outer_height(true));
-    };
-
-    process_each_precise_info = function(v) {
-      var lis;
-      dc_date_and_validity(v).each(function() {
-        var p, time_info;
-        time_info = $(this);
-        p = new DomainsCommonProcessor(time_info.children());
-        time_info.css('height', p.sum_outer_height(true));
-      });
-      en(v).children('li.dc_date , li.validity').each(function() {
-        var li, p;
-        li = $(this);
-        p = new DomainsCommonProcessor(li.children());
-        li.css('height', p.max_outer_height(true));
-        li.css('width', p.sum_outer_width(true));
-      });
-      lis = new DomainsCommonProcessor(en(v).children('li'));
-      en(v).css('width', lis.max_outer_width(true));
     };
 
     return EachRealTimeInfo;
@@ -30253,7 +30069,7 @@ $('#progress').html(
   var StationInfoProcessor;
 
   StationInfoProcessor = (function() {
-    var has_station_code, process_station_codes, process_text, set_height_of_domain, set_width_of_domain, station_code_image, station_codes, text_domain, text_en, text_ja, texts;
+    var has_station_code, process_station_codes, process_text, set_vertical_align_of_domain, set_width_of_domain, station_code_image, station_codes, text_domain, text_en, text_ja, texts;
 
     function StationInfoProcessor(domain) {
       this.domain = domain;
@@ -30293,7 +30109,7 @@ $('#progress').html(
       }
       process_station_codes(this);
       process_text(this);
-      set_height_of_domain(this, margin);
+      set_vertical_align_of_domain(this);
       set_width_of_domain(this);
     };
 
@@ -30305,22 +30121,18 @@ $('#progress').html(
     };
 
     process_text = function(v) {
-      var p, w;
-      p = new DomainsCommonProcessor(texts(v));
-      w = p.max_outer_width(true) + 2;
       texts(v).each(function() {
-        $(this).css('width', w);
+        var l;
+        l = new LengthToEven($(this));
+        l.set();
       });
-      text_domain(v).css('width', w);
-      text_domain(v).css('height', p.sum_outer_height(true));
     };
 
-    set_height_of_domain = function(v, margin) {
+    set_vertical_align_of_domain = function(v) {
       var _max_outer_height, p1, p2;
       if (has_station_code(v)) {
         p1 = new DomainsCommonProcessor(v.domain.children());
-        _max_outer_height = p1.max_outer_height(true) + margin;
-        v.domain.css('height', _max_outer_height);
+        _max_outer_height = p1.max_outer_height(true);
         p2 = new DomainsVerticalAlignProcessor(v.domain.children(), _max_outer_height, 'middle');
         p2.process();
         return;
@@ -30393,15 +30205,13 @@ $('#progress').html(
     };
 
     process_links = function(v, ul_domain, class_name) {
-      var li_domains, p;
+      var li_domains;
       li_domains = ul_domain.children('li');
       li_domains.each(function() {
         var li;
         li = new SideMenuEachLink($(this), class_name);
         li.process();
       });
-      p = new DomainsCommonProcessor(li_domains);
-      ul_domain.css('height', p.sum_outer_height(true));
     };
 
     return UlSideMenuLinks;
@@ -30411,7 +30221,7 @@ $('#progress').html(
   window.UlSideMenuLinks = UlSideMenuLinks;
 
   UlStationRelatedLinks = (function() {
-    var get_li_rows, height_of_ul, in_a_single_row, in_main_content_center, in_main_content_wide, li_domains, links, links_to_station_info_pages_are_present, max_width_of_li, number_of_li_domains, outer_main_domain, outer_main_domain_width, set_clear_to_li, set_height_to_ul, set_width_to_li;
+    var get_li_rows, in_a_single_row, in_main_content_center, in_main_content_wide, li_domains, links, links_to_station_info_pages_are_present, max_width_of_li, number_of_li_domains, outer_main_domain, outer_main_domain_width, process_each, set_clear_to_li, set_width_to_li;
 
     function UlStationRelatedLinks(domain) {
       this.domain = domain != null ? domain : $('#links_to_station_info_pages');
@@ -30422,7 +30232,7 @@ $('#progress').html(
     };
 
     links = function(v) {
-      return v.domain.children('ul#links');
+      return v.domain.children('ul' + v.ul_id);
     };
 
     li_domains = function(v) {
@@ -30440,15 +30250,23 @@ $('#progress').html(
     };
 
     UlStationRelatedLinks.prototype.process = function() {
-      if (links_to_station_info_pages_are_present(this)) {
-        li_domains(this).each(function() {
+      process_each(this, '#links');
+      process_each(this, '#links_to_station_facility_info_of_connecting_other_stations');
+    };
+
+    process_each = function(v, ul_id) {
+      if (ul_id == null) {
+        ul_id = '#links';
+      }
+      v.ul_id = ul_id;
+      if (links_to_station_info_pages_are_present(v)) {
+        li_domains(v).each(function() {
           var li;
           li = new SideMenuEachLink($(this), '.link_to_content');
           li.process();
         });
-        set_width_to_li(this);
-        set_height_to_ul(this);
-        set_clear_to_li(this);
+        set_width_to_li(v);
+        set_clear_to_li(v);
       }
     };
 
@@ -30460,10 +30278,6 @@ $('#progress').html(
       });
     };
 
-    set_height_to_ul = function(v) {
-      links(v).css('height', height_of_ul(v));
-    };
-
     set_clear_to_li = function(v) {
       var i;
       if (v.li_rows > 1) {
@@ -30473,15 +30287,6 @@ $('#progress').html(
           i += v.actual_in_a_row;
         }
       }
-    };
-
-    height_of_ul = function(v) {
-      var border_width, p, rows;
-      get_li_rows(v);
-      p = new DomainsCommonProcessor(li_domains(v));
-      border_width = 1;
-      rows = v.li_rows;
-      return p.max_outer_height(true) * rows - (rows - 1) * border_width;
     };
 
     get_li_rows = function(v) {
@@ -30499,7 +30304,6 @@ $('#progress').html(
       }
       v.li_rows = r;
       v.actual_in_a_row = actual_in_a_row;
-      console.log(actual_in_a_row);
     };
 
     in_main_content_center = function(v) {
@@ -30537,7 +30341,7 @@ $('#progress').html(
   window.UlStationRelatedLinks = UlStationRelatedLinks;
 
   SideMenuEachLink = (function() {
-    var has_font_awesome_icon, has_icon_content, has_image_icon, has_sub_domains_of_text, has_sub_domains_of_text_large, has_text, has_text_large, icon, icon_content, link, link_domain, max_outer_height_of_sub_domains, process_text, set_height_of_link_domain, set_height_of_text, set_height_of_whole_domain, set_position_of_icon, set_vertical_align_of_sub_domains, sub_domains_of_link_domain, sub_domains_of_text, sub_domains_of_text_large, sum_outer_height_of_text, sum_outer_height_of_text_large, text, text_en, text_ja, text_large;
+    var has_font_awesome_icon, has_icon_content, has_image_icon, has_sub_domains_of_text, has_sub_domains_of_text_large, has_text, has_text_large, icon, icon_content, link, link_domain, max_outer_height_of_sub_domains, process_text, set_position_of_icon, set_vertical_align_of_sub_domains, sub_domains_of_link_domain, sub_domains_of_text, sub_domains_of_text_large, sum_outer_height_of_text, sum_outer_height_of_text_large, text, text_en, text_ja, text_large;
 
     function SideMenuEachLink(domain, class_name1) {
       this.domain = domain;
@@ -30622,9 +30426,11 @@ $('#progress').html(
     };
 
     set_position_of_icon = function(v) {
-      var _icon, p1, p2;
+      var _icon, p0, p1, p2;
       if (has_icon_content(v)) {
         _icon = icon(v);
+        p0 = new LengthToEven(_icon);
+        p0.set();
         p1 = new DomainsVerticalAlignProcessor(icon(v).children(), _icon.outerHeight(false), 'middle');
         p1.process();
         p2 = new DomainsHorizontalAlignProcessor(icon(v).children(), _icon.outerWidth(false), 'center');
@@ -30635,11 +30441,8 @@ $('#progress').html(
     process_text = function(v) {
       var _max_outer_height_of_sub_domains;
       if (has_text(v) || has_text_large(v)) {
-        set_height_of_text(v);
         _max_outer_height_of_sub_domains = max_outer_height_of_sub_domains(v);
         set_vertical_align_of_sub_domains(v, _max_outer_height_of_sub_domains);
-        set_height_of_link_domain(v, _max_outer_height_of_sub_domains);
-        set_height_of_whole_domain(v);
       }
     };
 
@@ -30655,14 +30458,6 @@ $('#progress').html(
       return p.sum_outer_height(true);
     };
 
-    set_height_of_text = function(v) {
-      if (has_text(v) && has_sub_domains_of_text(v)) {
-        text(v).css('height', sum_outer_height_of_text(v));
-      } else if (has_text_large(v) && has_sub_domains_of_text_large(v)) {
-        text_large(v).css('height', sum_outer_height_of_text_large(v));
-      }
-    };
-
     max_outer_height_of_sub_domains = function(v) {
       var p;
       p = new DomainsCommonProcessor(sub_domains_of_link_domain(v));
@@ -30673,14 +30468,6 @@ $('#progress').html(
       var p;
       p = new DomainsVerticalAlignProcessor(sub_domains_of_link_domain(v), _max_outer_height_of_sub_domains, 'middle');
       p.process();
-    };
-
-    set_height_of_link_domain = function(v, _max_outer_height_of_sub_domains) {
-      link_domain(v).css('height', _max_outer_height_of_sub_domains);
-    };
-
-    set_height_of_whole_domain = function(v) {
-      v.domain.css('height', link_domain(v).outerHeight(true));
     };
 
     return SideMenuEachLink;
@@ -30912,9 +30699,125 @@ $('#progress').html(
 
 }).call(this);
 (function() {
-  $(document).on('page:change', function() {
-    $(function() {
-      var add_class_hover, animation_for_railway_line_domain, railway_line_domains_in_links_to_passenger_survey, remove_class_hover;
+  var LinkDomainsToSetHoverEvent;
+
+  LinkDomainsToSetHoverEvent = (function() {
+    var hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey, hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey, li_domains_in_left_side_menu, li_domains_of_link_to_fare_contents_of_railway_lines, li_domains_of_links_to_document_pages, li_domains_of_links_to_railway_line_pages_from_platform_info, li_domains_of_links_to_railway_line_pages_from_railway_line_info, li_domains_of_links_to_railway_line_pages_from_station_facility_page, li_domains_of_links_to_station_info_pages, li_domains_of_platform_info_tabs, li_domains_to_operator_each_year_page_of_passenger_survey, li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page, li_domains_to_operator_page_of_passenger_survey, li_domains_to_railway_line_each_year_page_of_passenger_survey, li_domains_to_railway_line_page_of_passenger_survey, list, operator_domains_in_links_to_passenger_survey, railway_line_domains_in_links_to_passenger_survey, set_hover_event_of_escaping_class, set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey, set_hover_main_event;
+
+    function LinkDomainsToSetHoverEvent() {}
+
+    li_domains_in_left_side_menu = function(v) {
+      return $('ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents').children('li');
+    };
+
+    li_domains_of_links_to_document_pages = function(v) {
+      return $('ul#links_to_document_pages').children('li');
+    };
+
+    li_domains_of_link_to_fare_contents_of_railway_lines = function(v) {
+      return $('#fare_contents').children('ul#links_to_railway_line_pages').find('li.railway_line').not('.title');
+    };
+
+    li_domains_of_links_to_station_info_pages = function(v) {
+      return $('#links_to_station_info_pages').children('ul#links , ul#links_to_station_facility_info_of_connecting_other_stations').children('li');
+    };
+
+    li_domains_of_links_to_railway_line_pages_from_station_facility_page = function(v) {
+      return $('#tokyo_metro_railway_lines').children('ul#railway_lines_in_this_station , ul#railway_lines_in_another_station').children('li');
+    };
+
+    li_domains_of_links_to_railway_line_pages_from_platform_info = function(v) {
+      return $('ul.transfer_infos_for_this_position').children('li.transfer_info');
+    };
+
+    li_domains_of_links_to_railway_line_pages_from_railway_line_info = function(v) {
+      return $('#travel_time').find('td.transfer').children('ul.railway_lines').children('li.railway_line');
+    };
+
+    li_domains_of_platform_info_tabs = function(v) {
+      return $('ul#platform_info_tabs').children('li');
+    };
+
+    li_domains_to_railway_line_page_of_passenger_survey = function(v) {
+      return railway_line_domains_in_links_to_passenger_survey(v).children('li.railway_line');
+    };
+
+    li_domains_to_railway_line_each_year_page_of_passenger_survey = function(v) {
+      return railway_line_domains_in_links_to_passenger_survey(v).children('li.survey_year');
+    };
+
+    li_domains_to_operator_page_of_passenger_survey = function(v) {
+      return operator_domains_in_links_to_passenger_survey(v).children('li.tokyo_metro');
+    };
+
+    li_domains_to_operator_each_year_page_of_passenger_survey = function(v) {
+      return operator_domains_in_links_to_passenger_survey(v).children('li.survey_year');
+    };
+
+    li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page = function(v) {
+      return $('div#links_to_passenger_survey').children('ul#links_to_year_pages').children('li.survey_year');
+    };
+
+    railway_line_domains_in_links_to_passenger_survey = function(v) {
+      return $('ul#links_to_passenger_survey_pages').children('ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station').children('ul.each_railway_line');
+    };
+
+    operator_domains_in_links_to_passenger_survey = function(v) {
+      return $('ul#links_to_passenger_survey_pages').children('ul#links_to_year_pages').children('ul.operator');
+    };
+
+    list = function(v) {
+      var ary;
+      ary = [];
+      ary.push(li_domains_in_left_side_menu(v));
+      ary.push(li_domains_of_links_to_document_pages(v));
+      ary.push(li_domains_of_link_to_fare_contents_of_railway_lines(v));
+      ary.push(li_domains_of_links_to_station_info_pages(v));
+      ary.push(li_domains_of_links_to_railway_line_pages_from_station_facility_page(v));
+      ary.push(li_domains_of_links_to_railway_line_pages_from_platform_info(v));
+      ary.push(li_domains_of_links_to_railway_line_pages_from_railway_line_info(v));
+      ary.push(li_domains_of_platform_info_tabs(v));
+      ary.push(li_domains_to_railway_line_page_of_passenger_survey(v));
+      ary.push(li_domains_to_railway_line_each_year_page_of_passenger_survey(v));
+      ary.push(li_domains_to_operator_page_of_passenger_survey(v));
+      ary.push(li_domains_to_operator_each_year_page_of_passenger_survey(v));
+      ary.push(li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page(v));
+      return ary;
+    };
+
+    LinkDomainsToSetHoverEvent.prototype.process = function() {
+      set_hover_event_of_escaping_class(this, 'this_station');
+      set_hover_main_event(this);
+      set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey(this);
+    };
+
+    set_hover_event_of_escaping_class = function(v, class_name) {
+      var escaping, reviving;
+      escaping = function() {
+        if ($(this).hasClass(class_name)) {
+          $(this).removeClass(class_name, {
+            duration: 10,
+            children: true
+          });
+          $(this).addClass("_" + class_name);
+        }
+      };
+      reviving = function() {
+        if ($(this).hasClass("_" + class_name)) {
+          $(this).removeClass("_" + class_name, {
+            duration: 10,
+            children: true
+          });
+          $(this).addClass(class_name);
+        }
+      };
+      $.each(list(v), function() {
+        this.hover(escaping, reviving);
+      });
+    };
+
+    set_hover_main_event = function(v) {
+      var add_class_hover, remove_class_hover;
       add_class_hover = function() {
         $(this).addClass('hover', {
           duration: 200,
@@ -30923,22 +30826,146 @@ $('#progress').html(
       };
       remove_class_hover = function() {
         $(this).removeClass('hover', {
-          duration: 800,
+          duration: 300,
           children: true
         });
       };
-      $('ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages').children('li').hover(add_class_hover, remove_class_hover);
-      $('ul#links_to_year_pages').find('li.tokyo_metro').hover(add_class_hover, remove_class_hover);
-      $('#fare_contents').children('ul#links_to_railway_line_pages').find('li.railway_line').not('.title').hover(add_class_hover, remove_class_hover);
-      $('#links_to_station_info_pages').children('ul#links').children('li').hover(add_class_hover, remove_class_hover);
-      railway_line_domains_in_links_to_passenger_survey = $('ul#links_to_passenger_survey_pages').children('ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station').children('ul.each_railway_line');
-      railway_line_domains_in_links_to_passenger_survey.children('li.railway_line , li.survey_year').hover(add_class_hover, remove_class_hover);
-      if (railway_line_domains_in_links_to_passenger_survey.length > 0) {
-        animation_for_railway_line_domain = new AnimationForRailwayLineDomains(railway_line_domains_in_links_to_passenger_survey);
-        animation_for_railway_line_domain.process();
-        return;
-      }
-    });
+      $.each(list(v), function() {
+        this.not('.same_category, .this_page').hover(add_class_hover, remove_class_hover);
+      });
+    };
+
+    set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey = function(v) {
+      var hover_off_operator, hover_off_railway_line, hover_on_operator, hover_on_railway_line;
+      hover_on_railway_line = hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey(v, 'li.railway_line');
+      hover_off_railway_line = hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey(v, 'li.railway_line');
+      li_domains_to_railway_line_each_year_page_of_passenger_survey(v).each(function() {
+        $(this).hover(hover_on_railway_line, hover_off_railway_line);
+      });
+      hover_on_operator = hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey(v, 'li.tokyo_metro');
+      hover_off_operator = hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey(v, 'li.tokyo_metro');
+      li_domains_to_operator_each_year_page_of_passenger_survey(v).each(function() {
+        $(this).hover(hover_on_operator, hover_off_operator);
+      });
+    };
+
+    hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey = function(v, selector) {
+      var e;
+      e = function() {
+        $(this).prevAll(selector).addClass('_hover', {
+          duration: 200,
+          children: true
+        });
+      };
+      return e;
+    };
+
+    hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey = function(v, selector) {
+      var e;
+      e = function() {
+        $(this).prevAll(selector).removeClass('_hover', {
+          duration: 300,
+          children: true
+        });
+      };
+      return e;
+    };
+
+    return LinkDomainsToSetHoverEvent;
+
+  })();
+
+  window.LinkDomainsToSetHoverEvent = LinkDomainsToSetHoverEvent;
+
+}).call(this);
+(function() {
+  var OnPageChangeHandler;
+
+  OnPageChangeHandler = (function() {
+    function OnPageChangeHandler() {}
+
+    OnPageChangeHandler.prototype.process = function() {
+      var p;
+      console.log('OnPageChangeHandler');
+      p = new LinkDomainsToSetHoverEvent();
+      p.process();
+    };
+
+    return OnPageChangeHandler;
+
+  })();
+
+  $(document).on('page:change', function() {
+    var h;
+    h = new OnPageChangeHandler();
+    h.process();
+  });
+
+}).call(this);
+(function() {
+  var OnPageLoadHandler;
+
+  OnPageLoadHandler = (function() {
+    var list;
+
+    function OnPageLoadHandler() {}
+
+    list = function(v) {
+      var ary, document, fare_table, links_to_station_info_pages, now_developing_processor, passenger_survey, railway_line, railway_line_codes, railway_line_matrixes, real_time_info_processor, selection_header_processor, station_facility, station_matrixes, station_timetables, train_informations, train_locations, twitters_processor, ul_side_menu_links, ul_station_related_links;
+      ary = [];
+      document = new Document();
+      ary.push(document);
+      railway_line_matrixes = new RailwayLineMatrixes();
+      station_matrixes = new StationMatrixes();
+      railway_line_codes = new RailwayLineCodes();
+      ary.push(railway_line_matrixes);
+      ary.push(station_matrixes);
+      ary.push(railway_line_codes);
+      railway_line = new RailwayLine();
+      station_timetables = new StationTimetables();
+      station_facility = new StationFacility();
+      passenger_survey = new PassengerSurvey();
+      fare_table = new FareTables();
+      ary.push(railway_line);
+      ary.push(station_timetables);
+      ary.push(station_facility);
+      ary.push(passenger_survey);
+      ary.push(fare_table);
+      train_informations = new TrainInformations();
+      train_locations = new TrainLocations();
+      ary.push(train_informations);
+      ary.push(train_locations);
+      links_to_station_info_pages = new LinksToStationInfoPages();
+      selection_header_processor = new SelectionHeaderProcessor();
+      real_time_info_processor = new RealTimeInfoProcessor();
+      twitters_processor = new TwittersProcessor();
+      now_developing_processor = new NowDevelopingProcessor();
+      ul_side_menu_links = new UlSideMenuLinks();
+      ul_station_related_links = new UlStationRelatedLinks();
+      ary.push(links_to_station_info_pages);
+      ary.push(selection_header_processor);
+      ary.push(real_time_info_processor);
+      ary.push(twitters_processor);
+      ary.push(now_developing_processor);
+      ary.push(ul_side_menu_links);
+      ary.push(ul_station_related_links);
+      return ary;
+    };
+
+    OnPageLoadHandler.prototype.process = function() {
+      $.each(list(this), function() {
+        this.process();
+      });
+    };
+
+    return OnPageLoadHandler;
+
+  })();
+
+  $(document).on('ready page:load', function() {
+    var h;
+    h = new OnPageLoadHandler();
+    h.process();
   });
 
 }).call(this);
@@ -31043,63 +31070,6 @@ $('#progress').html(
     return FareTableRow;
 
   })();
-
-}).call(this);
-(function() {
-  var Initializer;
-
-  Initializer = (function() {
-    function Initializer() {}
-
-    Initializer.prototype.process = function() {
-      var document, fare_table, links_to_station_info_pages, main_contents, now_developing_processor, passenger_survey, railway_line, railway_line_codes, railway_line_matrixes, real_time_info_processor, selection_header_processor, station_facility, station_matrixes, station_timetables, top_content, train_informations, train_locations, twitters_processor, ul_side_menu_links, ul_station_related_links;
-      top_content = new TopContent();
-      document = new Document();
-      railway_line_matrixes = new RailwayLineMatrixes();
-      station_matrixes = new StationMatrixes();
-      railway_line_codes = new RailwayLineCodes();
-      railway_line = new RailwayLine();
-      station_timetables = new StationTimetables();
-      station_facility = new StationFacility();
-      passenger_survey = new PassengerSurvey();
-      fare_table = new FareTables();
-      train_informations = new TrainInformations();
-      train_locations = new TrainLocations();
-      links_to_station_info_pages = new LinksToStationInfoPages();
-      selection_header_processor = new SelectionHeaderProcessor();
-      real_time_info_processor = new RealTimeInfoProcessor();
-      twitters_processor = new TwittersProcessor();
-      now_developing_processor = new NowDevelopingProcessor();
-      ul_side_menu_links = new UlSideMenuLinks();
-      ul_station_related_links = new UlStationRelatedLinks();
-      main_contents = new MainContents();
-      top_content.process();
-      document.process();
-      railway_line_matrixes.process();
-      station_matrixes.process();
-      railway_line_codes.process();
-      railway_line.process();
-      station_timetables.process();
-      station_facility.process();
-      passenger_survey.process();
-      fare_table.process();
-      train_informations.process();
-      train_locations.process();
-      links_to_station_info_pages.process();
-      selection_header_processor.process();
-      real_time_info_processor.process();
-      twitters_processor.process();
-      now_developing_processor.process();
-      ul_side_menu_links.process();
-      ul_station_related_links.process();
-      main_contents.process();
-    };
-
-    return Initializer;
-
-  })();
-
-  window.Initializer = Initializer;
 
 }).call(this);
 /*
@@ -31757,14 +31727,18 @@ $('#progress').html(
       return Math.ceil(Math.max(width_of_icon_domains(v), max_width_of_font_awesome_icons(v)));
     };
 
+    ContentHeaderProcessor.prototype.process = function() {
+      process_each_icon(this);
+      process_each_domain(this);
+    };
+
     process_each_icon = function(v) {
       var _width_of_icon_domains_new;
       _width_of_icon_domains_new = width_of_icon_domains_new(v);
       font_awesome_icons(v).each(function() {
-        var _m;
-        _m = (_width_of_icon_domains_new - $(this).outerWidth(true)) * 0.5;
-        $(this).css('margin-left', _m);
-        $(this).css('margin-right', _m);
+        var p;
+        p = new DomainsHorizontalAlignProcessor($(this), _width_of_icon_domains_new);
+        p.process();
       });
       icon_domains(v).each(function() {
         $(this).css('width', _width_of_icon_domains_new);
@@ -31779,11 +31753,6 @@ $('#progress').html(
       });
     };
 
-    ContentHeaderProcessor.prototype.process = function() {
-      process_each_icon(this);
-      process_each_domain(this);
-    };
-
     return ContentHeaderProcessor;
 
   })();
@@ -31791,7 +31760,7 @@ $('#progress').html(
   window.ContentHeaderProcessor = ContentHeaderProcessor;
 
   ContentHeader = (function() {
-    var buttons, child_domains_except_for_link_info, font_awesome_icon, has_buttons, has_link_info_to_train_location_of_each_railway_line, icon_domain, link_info_to_train_location_of_each_railway_line, max_height_of_icon_and_text, process_buttons, process_height, process_link_info, text_domain, text_en_top_domain, width_of_link_info;
+    var buttons, child_domains_except_for_link_info, font_awesome_icon, has_buttons, has_link_info_to_train_location_of_each_railway_line, icon_domain, link_info_to_train_location_of_each_railway_line, max_height_of_icon_text_button, process_buttons, process_link_info, process_text_domains, set_vertical_align, text_domain, text_en_top_domain, width_of_link_info;
 
     function ContentHeader(domain) {
       this.domain = domain;
@@ -31829,22 +31798,14 @@ $('#progress').html(
       return v.domain.children('.link_info_to_train_location_of_each_railway_line').length === 1;
     };
 
-    max_height_of_icon_and_text = function(v) {
+    max_height_of_icon_text_button = function(v) {
       var p;
       p = new DomainsCommonProcessor(v.domain.children());
-      return p.max_outer_height(true);
+      return p.max_outer_height(false);
     };
 
     child_domains_except_for_link_info = function(v) {
       return v.domain.children().not('.link_info_to_train_location_of_each_railway_line');
-    };
-
-    ContentHeader.prototype.process = function() {
-      if (has_link_info_to_train_location_of_each_railway_line(this)) {
-        process_link_info(this);
-      }
-      process_height(this);
-      process_buttons(this);
     };
 
     width_of_link_info = function(v) {
@@ -31856,18 +31817,29 @@ $('#progress').html(
       return w;
     };
 
-    process_link_info = function(v) {
-      var p;
-      p = new LinkInfoToTrainLocation(link_info_to_train_location_of_each_railway_line(v));
-      p.process(width_of_link_info(v));
+    ContentHeader.prototype.process = function() {
+      process_link_info(this);
+      process_text_domains(this);
+      process_buttons(this);
+      set_vertical_align(this);
     };
 
-    process_height = function(v) {
-      var _max_height, p;
-      _max_height = max_height_of_icon_and_text(v);
-      p = new DomainsVerticalAlignProcessor(v.domain.children(), _max_height, 'middle');
-      p.process();
-      v.domain.css('height', _max_height);
+    process_link_info = function(v) {
+      var p;
+      if (has_link_info_to_train_location_of_each_railway_line(v)) {
+        p = new LinkInfoToTrainLocation(link_info_to_train_location_of_each_railway_line(v));
+        p.process(width_of_link_info(v));
+      }
+    };
+
+    process_text_domains = function(v) {
+      $.each([text_domain(v), text_en_top_domain(v)], function() {
+        var p;
+        if ($(this).length > 0) {
+          p = new LengthToEven($(this));
+          p.set();
+        }
+      });
     };
 
     process_buttons = function(v) {
@@ -31878,6 +31850,13 @@ $('#progress').html(
           b.process();
         });
       }
+    };
+
+    set_vertical_align = function(v) {
+      var h, p;
+      h = max_height_of_icon_text_button(v);
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), h, 'middle');
+      p.process();
     };
 
     return ContentHeader;
@@ -32094,7 +32073,9 @@ $('#progress').html(
 
 }).call(this);
 (function() {
-  var DomainHorizontalAlignCenterProcessor, DomainHorizontalAlignLeftProcessor, DomainHorizontalAlignRightProcessor, DomainsHorizontalAlignProcessor;
+  var DomainHorizontalAlignCenterProcessor, DomainHorizontalAlignCommonProcessor, DomainHorizontalAlignLeftProcessor, DomainHorizontalAlignRightProcessor, DomainsHorizontalAlignProcessor,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
 
   DomainsHorizontalAlignProcessor = (function() {
     function DomainsHorizontalAlignProcessor(domains, outer_width_of_external_domain, setting) {
@@ -32136,17 +32117,46 @@ $('#progress').html(
 
   window.DomainsHorizontalAlignProcessor = DomainsHorizontalAlignProcessor;
 
-  DomainHorizontalAlignCenterProcessor = (function() {
-    function DomainHorizontalAlignCenterProcessor(domain, outer_width_of_external_domain) {
+  DomainHorizontalAlignCommonProcessor = (function() {
+    function DomainHorizontalAlignCommonProcessor(domain, outer_width_of_external_domain) {
       this.domain = domain;
       this.outer_width_of_external_domain = outer_width_of_external_domain;
     }
 
-    DomainHorizontalAlignCenterProcessor.prototype.outer_width = function() {
+    DomainHorizontalAlignCommonProcessor.prototype.outer_width = function() {
       var w;
       w = this.domain.outerWidth(false);
       return w;
     };
+
+    DomainHorizontalAlignCommonProcessor.prototype.margin = function() {
+      return this.outer_width_of_external_domain - this.outer_width();
+    };
+
+    DomainHorizontalAlignCommonProcessor.prototype.process = function() {
+      var _attributes, _domain, _margin;
+      _margin = this.margin();
+      _domain = this.domain;
+      _attributes = this.attributes();
+      if (_margin !== 0) {
+        $.each(_attributes, function() {
+          var _attr;
+          _attr = this;
+          _domain.css(_attr, _margin);
+        });
+      }
+    };
+
+    return DomainHorizontalAlignCommonProcessor;
+
+  })();
+
+  DomainHorizontalAlignCenterProcessor = (function(superClass) {
+    extend(DomainHorizontalAlignCenterProcessor, superClass);
+
+    function DomainHorizontalAlignCenterProcessor() {
+      return DomainHorizontalAlignCenterProcessor.__super__.constructor.apply(this, arguments);
+    }
 
     DomainHorizontalAlignCenterProcessor.prototype.margin = function() {
       var m;
@@ -32154,72 +32164,49 @@ $('#progress').html(
       return m;
     };
 
-    DomainHorizontalAlignCenterProcessor.prototype.process = function() {
-      var _margin;
-      _margin = this.margin();
-      this.domain.css('margin-left', _margin);
-      this.domain.css('margin-right', _margin);
+    DomainHorizontalAlignCenterProcessor.prototype.attributes = function() {
+      return ['margin-left', 'margin-right'];
     };
 
     return DomainHorizontalAlignCenterProcessor;
 
-  })();
+  })(DomainHorizontalAlignCommonProcessor);
 
-  DomainHorizontalAlignLeftProcessor = (function() {
-    function DomainHorizontalAlignLeftProcessor(domain, outer_width_of_external_domain) {
-      this.domain = domain;
-      this.outer_width_of_external_domain = outer_width_of_external_domain;
+  DomainHorizontalAlignLeftProcessor = (function(superClass) {
+    extend(DomainHorizontalAlignLeftProcessor, superClass);
+
+    function DomainHorizontalAlignLeftProcessor() {
+      return DomainHorizontalAlignLeftProcessor.__super__.constructor.apply(this, arguments);
     }
 
-    DomainHorizontalAlignLeftProcessor.prototype.outer_width = function() {
-      var m;
-      m = this.domain.outerWidth(false);
-      return m;
-    };
-
-    DomainHorizontalAlignLeftProcessor.prototype.margin = function() {
-      return this.outer_width_of_external_domain - this.outer_width();
-    };
-
-    DomainHorizontalAlignLeftProcessor.prototype.process = function() {
-      var _margin;
-      _margin = this.margin();
-      this.domain.css('margin-right', _margin);
+    DomainHorizontalAlignLeftProcessor.prototype.attributes = function() {
+      return ['margin-right'];
     };
 
     return DomainHorizontalAlignLeftProcessor;
 
-  })();
+  })(DomainHorizontalAlignCommonProcessor);
 
-  DomainHorizontalAlignRightProcessor = (function() {
-    function DomainHorizontalAlignRightProcessor(domain, outer_width_of_external_domain) {
-      this.domain = domain;
-      this.outer_width_of_external_domain = outer_width_of_external_domain;
+  DomainHorizontalAlignRightProcessor = (function(superClass) {
+    extend(DomainHorizontalAlignRightProcessor, superClass);
+
+    function DomainHorizontalAlignRightProcessor() {
+      return DomainHorizontalAlignRightProcessor.__super__.constructor.apply(this, arguments);
     }
 
-    DomainHorizontalAlignRightProcessor.prototype.outer_width = function() {
-      var m;
-      m = this.domain.outerWidth(false);
-      return m;
-    };
-
-    DomainHorizontalAlignRightProcessor.prototype.margin = function() {
-      return this.outer_width_of_external_domain - this.outer_width();
-    };
-
-    DomainHorizontalAlignRightProcessor.prototype.process = function() {
-      var _margin;
-      _margin = this.margin();
-      this.domain.css('margin-left', _margin);
+    DomainHorizontalAlignRightProcessor.prototype.attributes = function() {
+      return ['margin-left'];
     };
 
     return DomainHorizontalAlignRightProcessor;
 
-  })();
+  })(DomainHorizontalAlignCommonProcessor);
 
 }).call(this);
 (function() {
-  var DomainVerticalAlignBottomProcessor, DomainVerticalAlignMiddleProcessor, DomainVerticalAlignTopProcessor, DomainsVerticalAlignProcessor;
+  var DomainVerticalAlignBottomProcessor, DomainVerticalAlignCommonProcessor, DomainVerticalAlignMiddleProcessor, DomainVerticalAlignTopProcessor, DomainsVerticalAlignProcessor,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
 
   DomainsVerticalAlignProcessor = (function() {
     function DomainsVerticalAlignProcessor(domains, outer_height_of_external_domain, setting) {
@@ -32261,17 +32248,57 @@ $('#progress').html(
 
   window.DomainsVerticalAlignProcessor = DomainsVerticalAlignProcessor;
 
-  DomainVerticalAlignMiddleProcessor = (function() {
-    function DomainVerticalAlignMiddleProcessor(domain, outer_height_of_external_domain) {
+  DomainVerticalAlignCommonProcessor = (function() {
+    var margin_is_zero;
+
+    function DomainVerticalAlignCommonProcessor(domain, outer_height_of_external_domain) {
       this.domain = domain;
       this.outer_height_of_external_domain = outer_height_of_external_domain;
     }
 
-    DomainVerticalAlignMiddleProcessor.prototype.outer_height = function() {
+    DomainVerticalAlignCommonProcessor.prototype.outer_height = function() {
       var h;
       h = this.domain.outerHeight(false);
       return h;
     };
+
+    DomainVerticalAlignCommonProcessor.prototype.margin = function() {
+      return this.outer_height_of_external_domain - this.outer_height();
+    };
+
+    margin_is_zero = function(v) {
+      return v.margin === 0;
+    };
+
+    DomainVerticalAlignCommonProcessor.prototype.process = function() {
+      var _attr, _attributes, _domain, _margin, i, j, m, ref;
+      if (!margin_is_zero(this)) {
+        _margin = this.margin();
+        _domain = this.domain;
+        _attributes = this.attributes();
+        for (i = j = 0, ref = _attributes.length - 1; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+          _attr = _attributes[i];
+          if (i === 0) {
+            m = Math.floor(_margin);
+          } else {
+            m = Math.ceil(_margin);
+          }
+          _domain.css(_attr, m);
+          i += 1;
+        }
+      }
+    };
+
+    return DomainVerticalAlignCommonProcessor;
+
+  })();
+
+  DomainVerticalAlignMiddleProcessor = (function(superClass) {
+    extend(DomainVerticalAlignMiddleProcessor, superClass);
+
+    function DomainVerticalAlignMiddleProcessor() {
+      return DomainVerticalAlignMiddleProcessor.__super__.constructor.apply(this, arguments);
+    }
 
     DomainVerticalAlignMiddleProcessor.prototype.margin = function() {
       var p;
@@ -32279,68 +32306,89 @@ $('#progress').html(
       return p;
     };
 
-    DomainVerticalAlignMiddleProcessor.prototype.process = function() {
-      var _margin;
-      _margin = this.margin();
-      this.domain.css('margin-top', _margin);
-      this.domain.css('margin-bottom', _margin);
+    DomainVerticalAlignMiddleProcessor.prototype.attributes = function() {
+      return ['margin-top', 'margin-bottom'];
     };
 
     return DomainVerticalAlignMiddleProcessor;
 
-  })();
+  })(DomainVerticalAlignCommonProcessor);
 
-  DomainVerticalAlignTopProcessor = (function() {
-    function DomainVerticalAlignTopProcessor(domain, outer_height_of_external_domain) {
-      this.domain = domain;
-      this.outer_height_of_external_domain = outer_height_of_external_domain;
+  DomainVerticalAlignTopProcessor = (function(superClass) {
+    extend(DomainVerticalAlignTopProcessor, superClass);
+
+    function DomainVerticalAlignTopProcessor() {
+      return DomainVerticalAlignTopProcessor.__super__.constructor.apply(this, arguments);
     }
 
-    DomainVerticalAlignTopProcessor.prototype.outer_height = function() {
-      var h;
-      h = this.domain.outerHeight(false);
-      return h;
-    };
-
-    DomainVerticalAlignTopProcessor.prototype.margin = function() {
-      return this.outer_height_of_external_domain - this.outer_height();
-    };
-
-    DomainVerticalAlignTopProcessor.prototype.process = function() {
-      var _margin;
-      _margin = this.margin();
-      this.domain.css('margin-bottom', _margin);
+    DomainVerticalAlignTopProcessor.prototype.attributes = function() {
+      return ['margin-bottom'];
     };
 
     return DomainVerticalAlignTopProcessor;
 
-  })();
+  })(DomainVerticalAlignCommonProcessor);
 
-  DomainVerticalAlignBottomProcessor = (function() {
-    function DomainVerticalAlignBottomProcessor(domain, outer_height_of_external_domain) {
-      this.domain = domain;
-      this.outer_height_of_external_domain = outer_height_of_external_domain;
+  DomainVerticalAlignBottomProcessor = (function(superClass) {
+    extend(DomainVerticalAlignBottomProcessor, superClass);
+
+    function DomainVerticalAlignBottomProcessor() {
+      return DomainVerticalAlignBottomProcessor.__super__.constructor.apply(this, arguments);
     }
 
-    DomainVerticalAlignBottomProcessor.prototype.outer_height = function() {
-      var h;
-      h = this.domain.outerHeight(false);
-      return h;
-    };
-
-    DomainVerticalAlignBottomProcessor.prototype.margin = function() {
-      return this.outer_height_of_external_domain - this.outer_height();
-    };
-
-    DomainVerticalAlignBottomProcessor.prototype.process = function() {
-      var _margin;
-      _margin = this.margin();
-      this.domain.css('margin-top', _margin);
+    DomainVerticalAlignBottomProcessor.prototype.attributes = function() {
+      return ['margin-top'];
     };
 
     return DomainVerticalAlignBottomProcessor;
 
+  })(DomainVerticalAlignCommonProcessor);
+
+}).call(this);
+(function() {
+  var LengthToEven;
+
+  LengthToEven = (function() {
+    var height_new, width_new;
+
+    function LengthToEven(domain, text) {
+      this.domain = domain;
+      this.text = text != null ? text : false;
+      return;
+    }
+
+    width_new = function(v) {
+      var w;
+      w = Math.ceil(v.domain.width() * 1.0 / 2) * 2;
+      if (v.text) {
+        w += 2;
+      }
+      return w;
+    };
+
+    height_new = function(v) {
+      return Math.ceil(v.domain.height() * 1.0 / 2) * 2;
+    };
+
+    LengthToEven.prototype.length_to_even = function() {
+      return {
+        width: width_new(this),
+        height: height_new(this)
+      };
+    };
+
+    LengthToEven.prototype.set = function() {
+      var length_info;
+      length_info = this.length_to_even();
+      this.domain.css('width', length_info.width);
+      this.domain.css('height', length_info.height);
+    };
+
+    return LengthToEven;
+
   })();
+
+  window.LengthToEven = LengthToEven;
 
 }).call(this);
 (function() {
@@ -32415,13 +32463,19 @@ $('#progress').html(
   var StationFacilityPlatformInfoTabProcessor, StationFacilityPlatformInfoTabTarget, StationFacilityTabsAndContents;
 
   StationFacilityPlatformInfoTabTarget = (function() {
+    var tab_id_with_anchor_char;
+
     function StationFacilityPlatformInfoTabTarget(anchor1, tab_id1) {
       this.anchor = anchor1;
       this.tab_id = tab_id1;
     }
 
+    tab_id_with_anchor_char = function(v) {
+      return '\#' + v.tab_id;
+    };
+
     StationFacilityPlatformInfoTabTarget.prototype.is_included_in = function(contents) {
-      return contents.is('\#' + this.tab_id);
+      return contents.is(tab_id_with_anchor_char(this));
     };
 
     StationFacilityPlatformInfoTabTarget.prototype.is_not_included_in = function(contents) {
@@ -32451,15 +32505,17 @@ $('#progress').html(
 
     hide = function(v) {
       $.each([v.tab, v.content], function() {
-        $(this).removeClass('displayed');
         $(this).addClass('hidden');
+        $(this).removeClass('displayed');
+        $(this).removeClass('this_page');
       });
     };
 
     display = function(v) {
       $.each([v.tab, v.content], function() {
-        $(this).removeClass('hidden');
+        $(this).addClass('this_page');
         $(this).addClass('displayed');
+        $(this).removeClass('hidden');
       });
     };
 
@@ -32941,20 +32997,28 @@ $('#progress').html(
 
 }).call(this);
 (function() {
-  var StationFacility, StationFacilityBarrierFreeFacilityInfos, StationFacilityBarrierFreeFacilityTitle, StationFacilityInfosOfEachSpecificFacility, StationFacilityInfosOfEachType, StationFacilityInfosOfEachTypeAndLocatedArea, StationFacilityPlatformInfoTabUl, StationFacilityPlatformInfoTable, StationFacilityTransferInfoInPlatformInfo, StationFacilityTransferInfosInPlatformInfos,
+  var GoogleMapInStationFacility, StationFacility, StationFacilityBarrierFreeFacilityInfos, StationFacilityBarrierFreeFacilityTitle, StationFacilityInfosOfEachSpecificFacility, StationFacilityInfosOfEachType, StationFacilityInfosOfEachTypeAndLocatedArea, StationFacilityPlatformInfoTabLi, StationFacilityPlatformInfoTabUl, StationFacilityPlatformInfoTable, StationFacilityPointCloseInfo, StationFacilityPointCode, StationFacilityPointElevator, StationFacilityPointUl, StationFacilityTransferInfoInPlatformInfo, StationFacilityTransferInfosInPlatformInfos,
     extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     hasProp = {}.hasOwnProperty;
 
   StationFacility = (function() {
-    var process_barrier_free_facility_infos, process_platform_infos, process_railway_lines_related_to_this_station, process_tables_of_platform_info_tab_contents, tables_of_platform_info_tab_contents;
+    var in_station_facility_station_page, process_barrier_free_facility_infos, process_google_map, process_platform_infos, process_point_ul, process_railway_lines_related_to_this_station, process_tables_of_platform_info_tab_contents, tables_of_platform_info_tab_contents;
 
     function StationFacility() {
+      this.station_facility_title = $('#station_facility_title');
       this.tab_contents = $('#platform_info_tab_contents');
-      this.tokyo_metro_railway_lines = $('.tokyo_metro_railway_lines').first().children('.railway_lines').first();
-      this.tokyo_metro_railway_lines_in_this_station = this.tokyo_metro_railway_lines.children('.railway_lines_in_this_station').first();
-      this.tokyo_metro_railway_lines_in_another_stations = this.tokyo_metro_railway_lines.children('.railway_lines_in_another_station').first();
-      this.railway_lines_operated_by_other_operators = $('.other_railway_lines').first().children('.railway_lines').first();
+      if (in_station_facility_station_page(this)) {
+        this.tokyo_metro_railway_lines = $('.tokyo_metro_railway_lines').first().children('.railway_lines').first();
+        this.tokyo_metro_railway_lines_in_this_station = this.tokyo_metro_railway_lines.children('.railway_lines_in_this_station').first();
+        this.tokyo_metro_railway_lines_in_another_stations = this.tokyo_metro_railway_lines.children('.railway_lines_in_another_station').first();
+        this.railway_lines_operated_by_other_operators = $('.other_railway_lines').first().children('.railway_lines').first();
+      }
+      return;
     }
+
+    in_station_facility_station_page = function(v) {
+      return v.station_facility_title.length > 0;
+    };
 
     tables_of_platform_info_tab_contents = function(v) {
       return v.tab_contents.find('table.platform_info');
@@ -32970,6 +33034,18 @@ $('#progress').html(
       });
       p = new DomainsCommonProcessor(v.tokyo_metro_railway_lines.children());
       v.tokyo_metro_railway_lines.css('height', p.sum_outer_height(true));
+    };
+
+    process_point_ul = function(v) {
+      var p;
+      p = new StationFacilityPointUl();
+      p.process();
+    };
+
+    process_google_map = function(v) {
+      var p;
+      p = new GoogleMapInStationFacility();
+      p.process();
     };
 
     process_platform_infos = function(v) {
@@ -32997,9 +33073,13 @@ $('#progress').html(
     };
 
     StationFacility.prototype.process = function() {
-      process_railway_lines_related_to_this_station(this);
-      process_platform_infos(this);
-      return process_barrier_free_facility_infos(this);
+      if (in_station_facility_station_page(this)) {
+        process_railway_lines_related_to_this_station(this);
+        process_point_ul(this);
+        process_google_map(this);
+        process_platform_infos(this);
+        process_barrier_free_facility_infos(this);
+      }
     };
 
     return StationFacility;
@@ -33008,15 +33088,456 @@ $('#progress').html(
 
   window.StationFacility = StationFacility;
 
+  StationFacilityPointUl = (function() {
+    var close_infos, codes_in_li_domains, elevator_domains, has_close_infos, has_elevator_domains, has_normal_code_domains, height_of_ul_domain, height_of_ul_whole, li_domains, max_outer_height_of_li_children, max_outer_width_of_li, max_sum_outer_width_of_code_in_li_domains, max_sum_outer_width_of_li_children, normal_code_domains, process_height_of_li_children, process_height_of_li_domain, process_width_of_codes_in_li_domains, process_width_of_li_domain, process_width_of_ul_domain, set_length_of_close_info, set_length_of_elevator_domains, set_length_of_normal_code_domains, to_scroll_ul, width_of_ul;
+
+    function StationFacilityPointUl(domain) {
+      this.domain = domain != null ? domain : $('ul#exits');
+    }
+
+    li_domains = function(v) {
+      return v.domain.children('li');
+    };
+
+    codes_in_li_domains = function(v) {
+      return li_domains(v).children('.code');
+    };
+
+    elevator_domains = function(v) {
+      return li_domains(v).find('.code.elevator');
+    };
+
+    has_elevator_domains = function(v) {
+      return elevator_domains(v).length > 0;
+    };
+
+    normal_code_domains = function(v) {
+      return li_domains(v).find('.code').not('.elevator');
+    };
+
+    has_normal_code_domains = function(v) {
+      return normal_code_domains(v).length > 0;
+    };
+
+    has_close_infos = function(v) {
+      return close_infos(v).length > 0;
+    };
+
+    close_infos = function(v) {
+      return li_domains(v).find('.close');
+    };
+
+    StationFacilityPointUl.prototype.process = function() {
+      set_length_of_elevator_domains(this);
+      set_length_of_normal_code_domains(this);
+      set_length_of_close_info(this);
+      process_height_of_li_children(this);
+      process_width_of_codes_in_li_domains(this);
+      process_width_of_li_domain(this);
+      process_height_of_li_domain(this);
+      process_width_of_ul_domain(this);
+    };
+
+    set_length_of_elevator_domains = function(v) {
+      if (has_elevator_domains(v)) {
+        elevator_domains(v).each(function() {
+          var p;
+          p = new StationFacilityPointElevator($(this));
+          p.set_length();
+        });
+      }
+    };
+
+    set_length_of_normal_code_domains = function(v) {
+      if (has_normal_code_domains(v)) {
+        normal_code_domains(v).each(function() {
+          var p;
+          p = new StationFacilityPointCode($(this));
+          p.set_length();
+        });
+      }
+    };
+
+    set_length_of_close_info = function(v) {
+      if (has_close_infos(v)) {
+        close_infos(v).each(function() {
+          var p;
+          p = new StationFacilityPointCloseInfo($(this));
+          p.process();
+        });
+      }
+    };
+
+    process_height_of_li_children = function(v) {
+      var h;
+      h = max_outer_height_of_li_children(v);
+      li_domains(v).children().each(function() {
+        var padding_top_or_bottom;
+        padding_top_or_bottom = (h - $(this).height()) * 0.5;
+        $(this).css('padding-top', padding_top_or_bottom);
+        $(this).css('padding-bottom', padding_top_or_bottom);
+      });
+    };
+
+    process_width_of_codes_in_li_domains = function(v) {
+      var w;
+      w = max_sum_outer_width_of_code_in_li_domains(v);
+      li_domains(v).each(function() {
+        var p;
+        p = new StationFacilityPointCode($(this).children('.code').first());
+        p.set_padding_left_and_right(w);
+      });
+    };
+
+    process_width_of_li_domain = function(v) {
+      var w;
+      w = max_sum_outer_width_of_li_children(v);
+      li_domains(v).each(function() {
+        $(this).css('width', w);
+      });
+    };
+
+    process_height_of_li_domain = function(v) {
+      var h;
+      h = max_outer_height_of_li_children(v);
+      li_domains(v).each(function() {
+        $(this).css('height', h);
+      });
+    };
+
+    process_width_of_ul_domain = function(v) {
+      var w_ul;
+      w_ul = width_of_ul(v);
+      v.domain.css('width', w_ul);
+    };
+
+    max_outer_height_of_li_children = function(v, setting) {
+      var p;
+      if (setting == null) {
+        setting = false;
+      }
+      p = new DomainsCommonProcessor(li_domains(v).children());
+      return p.max_outer_height(setting);
+    };
+
+    max_sum_outer_width_of_code_in_li_domains = function(v) {
+      var w;
+      w = 0;
+      li_domains(v).each(function() {
+        var p, w_of_this_li;
+        p = new StationFacilityPointCode($(this).children('.code').first());
+        w_of_this_li = p.width();
+        w = Math.max(w, w_of_this_li);
+      });
+      return w;
+    };
+
+    max_sum_outer_width_of_li_children = function(v) {
+      var w;
+      w = 0;
+      li_domains(v).each(function() {
+        var p, w_of_this_li;
+        p = new DomainsCommonProcessor($(this).children());
+        w_of_this_li = p.sum_outer_width(true);
+        w = Math.max(w, w_of_this_li);
+      });
+      return w;
+    };
+
+    max_outer_width_of_li = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(li_domains(v));
+      return p.max_outer_width(true);
+    };
+
+    width_of_ul = function(v, w) {
+      var w_of_ul;
+      if (to_scroll_ul(v)) {
+        w_of_ul = max_outer_width_of_li(v) + 18;
+      } else {
+        w_of_ul = max_outer_width_of_li(v);
+      }
+      return w_of_ul;
+    };
+
+    to_scroll_ul = function(v) {
+      return height_of_ul_domain(v) < height_of_ul_whole(v);
+    };
+
+    height_of_ul_whole = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(li_domains(v));
+      return p.sum_outer_height(true);
+    };
+
+    height_of_ul_domain = function(v) {
+      return parseInt(v.domain.css('height'), 10);
+    };
+
+    return StationFacilityPointUl;
+
+  })();
+
+  StationFacilityPointElevator = (function() {
+    var code, codes, ev_domain, ev_domains, has_codes, has_ev_domains, max_outer_height_of_children, set_length_of_code, set_length_of_ev_domain, set_length_of_this_domain;
+
+    function StationFacilityPointElevator(domain) {
+      this.domain = domain;
+    }
+
+    ev_domains = function(v) {
+      return v.domain.children('.ev');
+    };
+
+    has_ev_domains = function(v) {
+      return ev_domains(v).length > 0;
+    };
+
+    ev_domain = function(v) {
+      return ev_domains(v).first();
+    };
+
+    codes = function(v) {
+      return v.domain.children('.code');
+    };
+
+    has_codes = function(v) {
+      return codes(v).length > 0;
+    };
+
+    code = function(v) {
+      return codes(v).first();
+    };
+
+    StationFacilityPointElevator.prototype.set_length = function() {
+      set_length_of_ev_domain(this);
+      set_length_of_code(this);
+      set_length_of_this_domain(this);
+    };
+
+    set_length_of_ev_domain = function(v) {
+      var p;
+      if (has_ev_domains(v)) {
+        p = new LengthToEven(ev_domain(v));
+        p.set();
+      }
+    };
+
+    set_length_of_code = function(v) {
+      var p;
+      if (has_codes(v)) {
+        p = new StationFacilityPointCode(code(v));
+        p.set_length();
+      }
+    };
+
+    set_length_of_this_domain = function(v) {
+      var h, p;
+      h = max_outer_height_of_children(v);
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), h);
+      p.process();
+    };
+
+    max_outer_height_of_children = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.domain.children());
+      return p.max_outer_height(false);
+    };
+
+    return StationFacilityPointElevator;
+
+  })();
+
+  StationFacilityPointCode = (function() {
+    var has_children, has_class_text_en, has_no_child, max_outer_height_of_children, set_length_of_children, set_vertical_align_of_children, set_width_of_domain;
+
+    function StationFacilityPointCode(domain) {
+      this.domain = domain;
+    }
+
+    has_class_text_en = function(v) {
+      return v.domain.hasClass('text_en');
+    };
+
+    has_children = function(v) {
+      return v.domain.children().length > 0;
+    };
+
+    has_no_child = function(v) {
+      return !has_children(v);
+    };
+
+    StationFacilityPointCode.prototype.set_length = function() {
+      var p;
+      if (has_class_text_en(this) && has_no_child(this)) {
+        p = new LengthToEven(this.domain);
+        p.set();
+      } else if (has_children(this)) {
+        set_length_of_children(this);
+        set_width_of_domain(this);
+        set_vertical_align_of_children(this);
+      }
+    };
+
+    set_length_of_children = function(v) {
+      v.domain.children().each(function() {
+        var p;
+        p = new LengthToEven($(this));
+        p.set();
+      });
+    };
+
+    set_width_of_domain = function(v) {
+      var p, w;
+      p = new DomainsCommonProcessor(v.domain.children());
+      w = p.sum_outer_width(true);
+      v.domain.css('width', w);
+    };
+
+    set_vertical_align_of_children = function(v) {
+      var h, p;
+      h = max_outer_height_of_children(v);
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), h);
+      p.process();
+    };
+
+    max_outer_height_of_children = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.domain.children());
+      return p.max_outer_height(false);
+    };
+
+    StationFacilityPointCode.prototype.width = function() {
+      var p, w;
+      if (has_no_child(this)) {
+        w = this.domain.width();
+      } else {
+        p = new DomainsCommonProcessor(this.domain.children());
+        w = p.sum_outer_width(true);
+      }
+      return w;
+    };
+
+    StationFacilityPointCode.prototype.set_padding_left_and_right = function(w) {
+      var default_padding_left, default_padding_right, padding_left_or_right;
+      default_padding_left = parseInt(this.domain.css('padding-left'), 10);
+      default_padding_right = parseInt(this.domain.css('padding-right'), 10);
+      padding_left_or_right = (w - this.domain.width()) * 0.5 + Math.max(default_padding_left, default_padding_right);
+      this.domain.css('padding-left', padding_left_or_right);
+      this.domain.css('padding-right', padding_left_or_right);
+    };
+
+    return StationFacilityPointCode;
+
+  })();
+
+  StationFacilityPointCloseInfo = (function() {
+    var icon, max_outer_height_of_children, process_icon_size, process_text_size, set_vertical_align, text;
+
+    function StationFacilityPointCloseInfo(domain) {
+      this.domain = domain;
+    }
+
+    icon = function(v) {
+      return v.domain.children('.icon').first();
+    };
+
+    text = function(v) {
+      return v.domain.children('.text').first();
+    };
+
+    max_outer_height_of_children = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.domain.children());
+      return p.max_outer_height(false);
+    };
+
+    StationFacilityPointCloseInfo.prototype.process = function() {
+      process_icon_size(this);
+      process_text_size(this);
+      set_vertical_align(this);
+    };
+
+    process_icon_size = function(v) {
+      var p;
+      p = new LengthToEven(icon(v));
+      p.set();
+    };
+
+    process_text_size = function(v) {
+      text(v).children().each(function() {
+        var p;
+        p = new LengthToEven($(this), true);
+        p.set();
+      });
+    };
+
+    set_vertical_align = function(v) {
+      var h, p;
+      h = max_outer_height_of_children(v);
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), h);
+      p.process();
+    };
+
+    return StationFacilityPointCloseInfo;
+
+  })();
+
+  GoogleMapInStationFacility = (function() {
+    var border_width_of_map, height_of_google_map, height_of_ul_exits, ul_exits, width_of_domain, width_of_google_map, width_of_ul_exits;
+
+    function GoogleMapInStationFacility(domain) {
+      this.domain = domain != null ? domain : $('iframe#map');
+    }
+
+    ul_exits = function(v) {
+      return $('ul#exits');
+    };
+
+    width_of_domain = function(v) {
+      var p;
+      p = new DomainsCommonProcessor($('#main_content_wide , #main_content_center'));
+      return p.max_width();
+    };
+
+    width_of_ul_exits = function(v) {
+      return ul_exits(v).outerWidth(true);
+    };
+
+    height_of_ul_exits = function(v) {
+      return ul_exits(v).height();
+    };
+
+    border_width_of_map = function(v) {
+      return parseInt(v.domain.css('border-width'), 10);
+    };
+
+    width_of_google_map = function(v) {
+      return width_of_domain(v) - (width_of_ul_exits(v) + border_width_of_map(v) * 2);
+    };
+
+    height_of_google_map = function(v) {
+      return height_of_ul_exits(v);
+    };
+
+    GoogleMapInStationFacility.prototype.process = function() {
+      this.domain.css('width', width_of_google_map(this));
+      return this.domain.css('height', height_of_google_map(this));
+    };
+
+    return GoogleMapInStationFacility;
+
+  })();
+
   StationFacilityPlatformInfoTable = (function() {
     var process_transfer_infos, transfer_infos;
 
-    function StationFacilityPlatformInfoTable(domain1) {
-      this.domain = domain1;
+    function StationFacilityPlatformInfoTable(domain) {
+      this.domain = domain;
     }
 
     transfer_infos = function(v) {
-      return v.domain.find('.transfer_info');
+      return v.domain.find('li.transfer_info');
     };
 
     process_transfer_infos = function(v) {
@@ -33051,26 +33572,37 @@ $('#progress').html(
   })();
 
   StationFacilityTransferInfoInPlatformInfo = (function() {
-    var process_railway_line_code, process_text, railway_line_code, railway_line_code_main, set_height_of_outer_domain, set_height_of_transfer_additional_info, set_width_of_outer_domain, text_domain, transfer_additional_info;
+    var div_domain, process_railway_line_code, process_railway_line_main_domain, railway_line_code, railway_line_code_main, railway_line_main_domain, set_height_of_outer_domain, set_height_of_transfer_additional_info, set_width_of_outer_domain, text_domain;
 
-    function StationFacilityTransferInfoInPlatformInfo(domain1) {
-      this.domain = domain1;
+    function StationFacilityTransferInfoInPlatformInfo(domain) {
+      this.domain = domain;
     }
 
+    div_domain = function(v) {
+      return v.domain.children('.link_to_railway_line_page , .railway_line_with_no_link');
+    };
+
     railway_line_code = function(v) {
-      return v.domain.children().first();
+      return div_domain(v).children().first();
     };
 
     railway_line_code_main = function(v) {
       return railway_line_code(v).children().first();
     };
 
-    text_domain = function(v) {
-      return v.domain.children('.text').first();
+    railway_line_main_domain = function(v) {
+      return div_domain(v).children('.railway_line').first();
     };
 
-    transfer_additional_info = function(v) {
-      return text_domain(v).children('.additional_info').first();
+    text_domain = function(v) {
+      return railway_line_main_domain(v).children('.text').first();
+    };
+
+    StationFacilityTransferInfoInPlatformInfo.prototype.process = function() {
+      process_railway_line_code(this);
+      process_railway_line_main_domain(this);
+      set_height_of_outer_domain(this);
+      set_width_of_outer_domain(this);
     };
 
     process_railway_line_code = function(v) {
@@ -33078,15 +33610,14 @@ $('#progress').html(
       _railway_line_code_main = railway_line_code_main(v);
       railway_line_code(v).css('height', _railway_line_code_main.outerHeight(true));
       railway_line_code(v).css('width', _railway_line_code_main.outerWidth(true));
-      railway_line_code(v).css('float', 'left');
     };
 
-    process_text = function(v) {
-      var _text_domain, p;
-      _text_domain = text_domain(v);
-      p = new DomainsCommonProcessor(_text_domain.children());
-      _text_domain.css('height', p.sum_outer_height(true));
-      _text_domain.css('width', Math.ceil(p.max_outer_width(true) * 1.1));
+    process_railway_line_main_domain = function(v) {
+      var _railway_line_main_domain, p;
+      _railway_line_main_domain = railway_line_main_domain(v);
+      p = new DomainsCommonProcessor(_railway_line_main_domain.children());
+      _railway_line_main_domain.css('height', p.sum_outer_height(true));
+      _railway_line_main_domain.css('width', Math.ceil(p.max_outer_width(true)));
     };
 
     set_height_of_transfer_additional_info = function(v) {
@@ -33098,28 +33629,20 @@ $('#progress').html(
 
     set_height_of_outer_domain = function(v) {
       var doms, h, p1, p2;
-      doms = v.domain.children();
+      doms = div_domain(v).children();
       p1 = new DomainsCommonProcessor(doms);
       h = p1.max_outer_height(true);
-      p2 = new DomainsVerticalAlignProcessor(doms, h, 'middle');
+      p2 = new DomainsVerticalAlignProcessor(doms, h, 'top');
       p2.process();
       v.domain.css('height', h);
     };
 
     set_width_of_outer_domain = function(v) {
       var doms, p1, w;
-      doms = v.domain.children();
+      doms = div_domain(v).children();
       p1 = new DomainsCommonProcessor(doms);
-      w = p1.sum_outer_width(true) + (v.domain.innerWidth() - v.domain.width());
+      w = Math.max(100, p1.sum_outer_width(true) + (v.domain.innerWidth() - v.domain.width()));
       return v.domain.css('width', w);
-    };
-
-    StationFacilityTransferInfoInPlatformInfo.prototype.process = function() {
-      process_railway_line_code(this);
-      process_text(this);
-      set_height_of_transfer_additional_info(this);
-      set_height_of_outer_domain(this);
-      set_width_of_outer_domain(this);
     };
 
     return StationFacilityTransferInfoInPlatformInfo;
@@ -33127,7 +33650,7 @@ $('#progress').html(
   })();
 
   StationFacilityPlatformInfoTabUl = (function(superClass) {
-    var process_railway_line_name;
+    var has_ul, process_railway_line_name;
 
     extend(StationFacilityPlatformInfoTabUl, superClass);
 
@@ -33135,20 +33658,20 @@ $('#progress').html(
       this.ul = ul != null ? ul : $('ul#platform_info_tabs');
     }
 
+    has_ul = function(v) {
+      return v.ul.length > 0;
+    };
+
     process_railway_line_name = function(v) {
       v.li_contents().each(function() {
-        var children_of_railway_line_name, p, platform_info_tab, railway_line_name;
-        platform_info_tab = $(this);
-        railway_line_name = platform_info_tab.children('.railway_line_name').first();
-        children_of_railway_line_name = railway_line_name.children();
-        p = new DomainsCommonProcessor(children_of_railway_line_name);
-        railway_line_name.css('width', Math.ceil(p.sum_outer_width(true) * 1.2));
-        railway_line_name.css('height', p.max_outer_height(true));
+        var tab_li;
+        tab_li = new StationFacilityPlatformInfoTabLi($(this));
+        tab_li.process();
       });
     };
 
     StationFacilityPlatformInfoTabUl.prototype.process = function() {
-      if (this.ul.length > 0) {
+      if (has_ul(this)) {
         process_railway_line_name(this);
         StationFacilityPlatformInfoTabUl.__super__.process.call(this);
         return;
@@ -33159,54 +33682,69 @@ $('#progress').html(
 
   })(TabUl);
 
-  StationFacilityBarrierFreeFacilityInfos = (function() {
-    var contents_grouped_by_located_area, process_each_types, set_margins_to_each_infos_grouped_by_type_and_located_area, set_title_width;
+  StationFacilityPlatformInfoTabLi = (function() {
+    var children_of_railway_line_name_domain, process_text, railway_line_name_domain, text;
 
-    function StationFacilityBarrierFreeFacilityInfos(domain1) {
-      this.domain = domain1 != null ? domain1 : $('#station_facility_info');
+    function StationFacilityPlatformInfoTabLi(domain) {
+      this.domain = domain;
     }
 
-    StationFacilityBarrierFreeFacilityInfos.prototype.contents_grouped_by_type = function() {
-      return this.domain.children();
+    railway_line_name_domain = function(v) {
+      return v.domain.children('.railway_line_name').first();
+    };
+
+    children_of_railway_line_name_domain = function(v) {
+      return railway_line_name_domain(v).children();
+    };
+
+    text = function(v) {
+      return railway_line_name_domain(v).children('.text').first();
+    };
+
+    StationFacilityPlatformInfoTabLi.prototype.process = function() {
+      var _railway_line_name_domain, p;
+      process_text(this);
+      _railway_line_name_domain = railway_line_name_domain(this);
+      p = new DomainsCommonProcessor(children_of_railway_line_name_domain(this));
+      _railway_line_name_domain.css('width', Math.ceil(p.sum_outer_width(true) * 1.2));
+    };
+
+    process_text = function(v) {
+      var p;
+      p = new LengthToEven(text(v), true);
+      p.set();
+    };
+
+    return StationFacilityPlatformInfoTabLi;
+
+  })();
+
+  StationFacilityBarrierFreeFacilityInfos = (function() {
+    var contents_grouped_by_located_area, contents_grouped_by_type, process_each_types;
+
+    function StationFacilityBarrierFreeFacilityInfos(domain) {
+      this.domain = domain != null ? domain : $('ul#station_facility_info');
+    }
+
+    contents_grouped_by_type = function(v) {
+      return v.domain.children('li');
+    };
+
+    contents_grouped_by_located_area = function(v) {
+      return contents_grouped_by_type(v).find('.inside , .outside');
     };
 
     StationFacilityBarrierFreeFacilityInfos.prototype.process = function() {
       process_each_types(this);
-      set_title_width(this);
-      set_margins_to_each_infos_grouped_by_type_and_located_area(this);
-    };
-
-    contents_grouped_by_located_area = function(v) {
-      return v.domain.find('.inside , .outside');
     };
 
     process_each_types = function(v) {
-      v.contents_grouped_by_type().each(function() {
+      var w;
+      w = v.domain.width();
+      contents_grouped_by_type(v).each(function() {
         var t;
-        t = new StationFacilityInfosOfEachType($(this));
+        t = new StationFacilityInfosOfEachType($(this), v.domain.width());
         t.process();
-      });
-    };
-
-    set_title_width = function(v) {
-      var c, p1, p2, title_width;
-      c = contents_grouped_by_located_area(v);
-      p1 = new DomainsCommonProcessor(c);
-      title_width = p1.max_outer_width(true);
-      p2 = new DomainsCommonProcessor(c.find('.title'));
-      p2.set_css_attribute('width', title_width);
-    };
-
-    set_margins_to_each_infos_grouped_by_type_and_located_area = function(v) {
-      var c, p, title_width;
-      c = contents_grouped_by_located_area(v);
-      p = new DomainsCommonProcessor(c);
-      title_width = p.max_outer_width();
-      c.each(function() {
-        var margin_left;
-        margin_left = $(this).marginLeft;
-        $(this).css('margin-right', 0);
-        $(this).css('width', title_width - margin_left);
       });
     };
 
@@ -33215,22 +33753,12 @@ $('#progress').html(
   })();
 
   StationFacilityInfosOfEachType = (function() {
-    var domain_height, inside, operation_day_domains, outside, process_each_side_domain, remark_domains, service_time_domains, set_title_height_of_each_station_facility_type, title_domain;
+    var domain_height, escalator_direction_domains, icons, inside, inside_and_outside, is_toilet, operation_day_domains, outside, process_each_side_domain, process_specific_infos, process_toilet_icons, remark_domains, service_time_domains, set_domain_height, set_title_height, set_title_width, title_domain;
 
-    function StationFacilityInfosOfEachType(domain1) {
-      this.domain = domain1;
+    function StationFacilityInfosOfEachType(domain, width) {
+      this.domain = domain;
+      this.width = width;
     }
-
-    StationFacilityInfosOfEachType.prototype.process = function() {
-      set_title_height_of_each_station_facility_type(this);
-      process_each_side_domain(this);
-      $.each([operation_day_domains(this), service_time_domains(this), remark_domains(this)], function() {
-        var length_processor;
-        length_processor = new DomainsCommonProcessor($(this));
-        length_processor.set_all_of_uniform_width_to_max();
-      });
-      this.domain.css('height', domain_height(this));
-    };
 
     domain_height = function(v) {
       return title_domain(v).outerHeight(true) + inside(v).outerHeight(true) + outside(v).outerHeight(true);
@@ -33241,26 +33769,55 @@ $('#progress').html(
     };
 
     inside = function(v) {
-      return v.domain.children('.inside').first();
+      return v.domain.children('ul.inside').first();
     };
 
     outside = function(v) {
-      return v.domain.children('.outside').first();
+      return v.domain.children('ul.outside').first();
+    };
+
+    inside_and_outside = function(v) {
+      return v.domain.children('ul.inside , ul.outside');
     };
 
     operation_day_domains = function(v) {
-      return v.domain.find('.operation_day');
+      return v.domain.find('li.operation_day');
+    };
+
+    escalator_direction_domains = function(v) {
+      return v.domain.find('li.escalator_direction');
     };
 
     service_time_domains = function(v) {
-      return v.domain.find('.service_time');
+      return v.domain.find('li.service_time');
     };
 
     remark_domains = function(v) {
       return v.domain.find('.remark');
     };
 
-    set_title_height_of_each_station_facility_type = function(v) {
+    icons = function(v) {
+      return v.domain.find('img.barrier_free_facility');
+    };
+
+    is_toilet = function(v) {
+      return v.domain.hasClass('toilet');
+    };
+
+    StationFacilityInfosOfEachType.prototype.process = function() {
+      set_title_width(this);
+      set_title_height(this);
+      process_each_side_domain(this);
+      process_specific_infos(this);
+      process_toilet_icons(this);
+      set_domain_height(this);
+    };
+
+    set_title_width = function(v) {
+      title_domain(v).css('width', v.width);
+    };
+
+    set_title_height = function(v) {
       var t;
       t = new StationFacilityBarrierFreeFacilityTitle(title_domain(v));
       t.process();
@@ -33269,9 +33826,45 @@ $('#progress').html(
     process_each_side_domain = function(v) {
       $.each([inside(v), outside(v)], function() {
         var instance_of_each_area;
-        instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea($(this));
+        instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea($(this), v.width);
         instance_of_each_area.process();
       });
+    };
+
+    process_specific_infos = function(v) {
+      $.each([operation_day_domains(v), escalator_direction_domains(v), service_time_domains(v), remark_domains(v)], function() {
+        var length_processor;
+        if ($(this).length > 0) {
+          length_processor = new DomainsCommonProcessor($(this));
+          length_processor.set_all_of_uniform_width_to_max();
+        }
+      });
+    };
+
+    process_toilet_icons = function(v) {
+      var _icons, i, icon, j, loaded_icons, max_width, number_of_icons, ref;
+      if (is_toilet(v)) {
+        _icons = icons(v);
+        max_width = 0;
+        number_of_icons = _icons.length;
+        loaded_icons = 0;
+        for (i = j = 0, ref = number_of_icons; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+          icon = _icons.eq(i);
+          icon.on('load.toilet_icon', function() {
+            var p;
+            loaded_icons += 1;
+            max_width = Math.max(max_width, $(this).width());
+            if (loaded_icons === number_of_icons) {
+              p = new DomainsHorizontalAlignProcessor(_icons, max_width, 'left');
+              p.process();
+            }
+          });
+        }
+      }
+    };
+
+    set_domain_height = function(v) {
+      v.domain.css('height', domain_height(v));
     };
 
     return StationFacilityInfosOfEachType;
@@ -33279,17 +33872,13 @@ $('#progress').html(
   })();
 
   StationFacilityInfosOfEachTypeAndLocatedArea = (function() {
-    var domain_height, facilities, process_facilities, process_title_domain, title_domain;
+    var domain_height, facilities, margin_left, process_facilities, set_height_of_title_domain, set_width_of_title_domain, title_domain;
 
-    function StationFacilityInfosOfEachTypeAndLocatedArea(domain1) {
-      this.domain = domain1;
+    function StationFacilityInfosOfEachTypeAndLocatedArea(domain, width) {
+      this.domain = domain;
+      this.width = width;
+      return;
     }
-
-    StationFacilityInfosOfEachTypeAndLocatedArea.prototype.process = function() {
-      process_title_domain(this);
-      process_facilities(this);
-      this.domain.css('height', domain_height(this));
-    };
 
     domain_height = function(v) {
       var p;
@@ -33305,7 +33894,22 @@ $('#progress').html(
       return v.domain.children('.facility');
     };
 
-    process_title_domain = function(v) {
+    margin_left = function(v) {
+      return parseInt(v.domain.css('margin-left'), 10);
+    };
+
+    StationFacilityInfosOfEachTypeAndLocatedArea.prototype.process = function() {
+      set_width_of_title_domain(this);
+      set_height_of_title_domain(this);
+      process_facilities(this);
+      this.domain.css('height', domain_height(this));
+    };
+
+    set_width_of_title_domain = function(v) {
+      title_domain(v).css('width', v.width - margin_left(v));
+    };
+
+    set_height_of_title_domain = function(v) {
       var t;
       t = new StationFacilityBarrierFreeFacilityTitle(title_domain(v));
       t.process();
@@ -33326,8 +33930,8 @@ $('#progress').html(
   StationFacilityInfosOfEachSpecificFacility = (function() {
     var facility_height, image_and_number, info, margin_top_of_number, number, process_image_and_number, process_info, process_service_details, process_toilet_assistants, service_details, set_margin_top_to_number, toilet_assistants;
 
-    function StationFacilityInfosOfEachSpecificFacility(domain1) {
-      this.domain = domain1;
+    function StationFacilityInfosOfEachSpecificFacility(domain) {
+      this.domain = domain;
     }
 
     image_and_number = function(v) {
@@ -33409,40 +34013,28 @@ $('#progress').html(
   })();
 
   StationFacilityBarrierFreeFacilityTitle = (function() {
-    var title_height, title_text_en, title_text_en_margin_top, title_text_ja, title_text_ja_margin_top, title_text_margin_top;
+    var set_title_height_new, title_text_en;
 
-    function StationFacilityBarrierFreeFacilityTitle(domain1) {
-      this.domain = domain1;
+    function StationFacilityBarrierFreeFacilityTitle(domain) {
+      this.domain = domain;
     }
 
-    title_text_ja = function(v) {
-      return v.domain.children().eq(0);
-    };
-
     title_text_en = function(v) {
-      return v.domain.children().eq(1);
+      return v.domain.children('.text_en').first();
     };
 
-    title_height = function(v) {
-      return Math.max(title_text_ja(v).height(), title_text_en(v).height());
-    };
-
-    title_text_margin_top = function(v, domain) {
-      return title_height(v) - domain.height();
-    };
-
-    title_text_ja_margin_top = function(v) {
-      return title_text_margin_top(v, title_text_ja(v));
-    };
-
-    title_text_en_margin_top = function(v) {
-      return title_text_margin_top(v, title_text_en(v));
+    set_title_height_new = function(v) {
+      v.title_height_new = Math.max(v.domain.height(), title_text_en(v).height());
     };
 
     StationFacilityBarrierFreeFacilityTitle.prototype.process = function() {
-      title_text_ja(this).css('margin-top', title_text_ja_margin_top(this));
-      title_text_en(this).css('margin-top', title_text_en_margin_top(this));
-      this.domain.css('height', title_height(this));
+      var _title_height_new;
+      set_title_height_new(this);
+      _title_height_new = this.title_height_new;
+      $([this.domain, title_text_en(this)]).each(function() {
+        $(this).css('height', _title_height_new);
+        $(this).css('margin-top', _title_height_new - $(this).height());
+      });
     };
 
     return StationFacilityBarrierFreeFacilityTitle;
@@ -33913,6 +34505,18 @@ $('#progress').html(
       return h;
     };
 
+    max_width_of_icon_body = function(v) {
+      var w;
+      w = 0;
+      informations(v).each(function() {
+        var _icon_body_width, train_information;
+        train_information = new TrainInformation($(this));
+        _icon_body_width = train_information.status().icon_body_width();
+        w = Math.max(w, _icon_body_width);
+      });
+      return w;
+    };
+
     TrainInformations.prototype.process = function() {
       if (has_titles(this)) {
         process_titles(this);
@@ -33924,18 +34528,6 @@ $('#progress').html(
         initialize_size_of_railway_line_matrix_and_status(this);
         set_attributes(this);
       }
-    };
-
-    max_width_of_icon_body = function(v) {
-      var w;
-      w = 0;
-      informations(v).each(function() {
-        var _icon_body_width, train_information;
-        train_information = new TrainInformation($(this));
-        _icon_body_width = train_information.status().icon_body_width();
-        w = Math.max(w, _icon_body_width);
-      });
-      return w;
     };
 
     process_titles = function(v) {
@@ -34171,7 +34763,7 @@ $('#progress').html(
   })();
 
   TrainInformationRailwayLineMatrix = (function(superClass) {
-    var info_margin_top_and_bottom, set_height_and_vertical_align_center, set_height_to_info, set_height_to_railway_line_matrix, set_width_to_info;
+    var info_margin_top_and_bottom, set_height_to_railway_line_matrix, set_vertical_align_center, set_width_to_info;
 
     extend(TrainInformationRailwayLineMatrix, superClass);
 
@@ -34180,20 +34772,15 @@ $('#progress').html(
     }
 
     TrainInformationRailwayLineMatrix.prototype.set_attributes = function() {
-      set_height_to_info(this);
       set_height_to_railway_line_matrix(this);
       set_width_to_info(this);
-      set_height_and_vertical_align_center(this);
+      set_vertical_align_center(this);
     };
 
     TrainInformationRailwayLineMatrix.prototype.info = function() {
       var _info;
       _info = new RailwayLineMatrixSmallInfo(this.domain.children('.info').first());
       return _info;
-    };
-
-    set_height_to_info = function(v) {
-      v.info().set_max_height();
     };
 
     set_height_to_railway_line_matrix = function(v) {
@@ -34210,8 +34797,8 @@ $('#progress').html(
       v.info().domain.css('width', v.info().sum_outer_width_of_railway_line_code_outer_and_text());
     };
 
-    set_height_and_vertical_align_center = function(v) {
-      v.info().set_height_and_vertical_align_center();
+    set_vertical_align_center = function(v) {
+      v.info().set_vertical_align_center();
     };
 
     info_margin_top_and_bottom = function(v) {
@@ -34260,12 +34847,10 @@ $('#progress').html(
     };
 
     TrainInformationStatus.prototype.initialize_icon_size = function(_max_width) {
-      var _icon_body_width, margin_left_and_right;
-      _icon_body_width = this.icon_body_width();
-      margin_left_and_right = (_max_width - _icon_body_width) * 0.5;
+      var p;
       this.icon().css('width', _max_width);
-      this.icon_body().css('margin-left', margin_left_and_right);
-      this.icon_body().css('margin-right', margin_left_and_right);
+      p = new DomainsHorizontalAlignProcessor(this.icon_body(), _max_width);
+      p.process();
     };
 
     TrainInformationStatus.prototype.initialize_text_size = function(_width) {
@@ -34653,13 +35238,6 @@ $('#progress').html(
 // require_tree .
 
 const goldenRatio = 1.618 ;
-
-$( document ).on( 'ready page:load' , function() { // Turbolinks 対策
-  // $( function() {
-  // $( document ).live( 'pageshow', function() {
-  initializer = new Initializer() ;
-  initializer.process() ;
-});
 
 observer_of_station_facility_platform_info_tab = new ObserverOfStationFacilityPlatformInfoTab() ;
 window.setInterval( 'observer_of_station_facility_platform_info_tab.listen()' , observer_of_station_facility_platform_info_tab.duration() ) ;

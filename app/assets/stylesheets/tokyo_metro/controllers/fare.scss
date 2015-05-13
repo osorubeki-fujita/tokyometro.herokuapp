@@ -6,6 +6,45 @@
 @import 'fare/railway_line.scss' ;
 @import 'fare/starting_station.scss' ;
 
+%tdStationNameTopInFareTable {
+  .station_codes {
+    $length: 24px ;
+    @extend %floatLeft ;
+    @extend %marginRight4 ;
+    img.station_code {
+      @extend %floatLeft ;
+      @extend %marginRight4 ;
+      width: $length ;
+      height: $length ;
+    }
+  }
+  .text {
+    @extend %floatLeft ;
+    .text_ja {
+      font: {
+        size: 9pt ;
+      }
+      .small {
+        font: {
+          size: 6.75pt ;
+          weight: normal ;
+        }
+      }
+      text-align: left ;
+    }
+    .text_en {
+      font: {
+        size: 6.3pt ;
+      }
+      text-align: left ;
+    }
+  }
+  .arrow {
+    @extend %marginTop4 ;
+    text-align: center ;
+  }
+}
+
 #fare_tables {
   @extend %fareTableSettingOfEachRailwayLine ;
   table.fare_table {
@@ -33,6 +72,9 @@
       }
     }
     //
+    td.station_name_top {
+      @extend %tdStationNameTopInFareTable ;
+    }
     td.station_info {
       $station_name_height: 40px ;
       width: 192px ;

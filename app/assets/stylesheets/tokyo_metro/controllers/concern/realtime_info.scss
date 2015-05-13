@@ -4,61 +4,61 @@
 
 // 現在不使用
 %inputBoxShadow {
-    $width: 1px ;
-    $height: 1px ;
-    $bokeh: 1px ;
-    $widen: 1px ;
-    $color: #666 ;
-    @include box_shadow( $width , $height , $bokeh , $widen , $color ) ;
+  $width: 1px ;
+  $height: 1px ;
+  $bokeh: 1px ;
+  $widen: 1px ;
+  $color: #666 ;
+  @include box_shadow( $width , $height , $bokeh , $widen , $color ) ;
 }
 
 %realtimeInfoBgcolor {
-    // 変数の定義
-    //
-    $color_top: #fff;
-    $color_bottom_base: $operator_color;
-    //
-    $color_bottom: rgba( $color_bottom_base , 0.1 );
-    //
-    background: #{ $color_top } ;
-    // Firefox
-    background: -moz-linear-gradient(top,
-        #{$color_top},
-        #{$color_bottom}
-    );
-    // Safari, Google Chrome
-    background: -webkit-gradient(linear, left top, left bottom,
-        from( #{$color_top} ),
-        to( #{$color_bottom} )
-    );
+  // 変数の定義
+  //
+  $color_top: #fff;
+  $color_bottom_base: $operator_color;
+  //
+  $color_bottom: rgba( $color_bottom_base , 0.1 );
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    to( #{$color_bottom} )
+  );
 }
 
 %inputBoxBgcolor {
-    // 変数の定義
-    //
-    $color_top: $operator_color;
-    $color_bottom: darken( $color_top , 20% );
-    //
-    $color_stop_point_1_moz : 5% ;
-    $color_stop_point_1_webkit : 0.05 ;
-    $color_stop_point_2_moz : 90% ;
-    $color_stop_point_2_webkit : 0.9 ;
-    //
-    background: #{ $color_bottom } ;
-    // Firefox
-    background: -moz-linear-gradient(top,
-        #{$color_top},
-        #{$color_top} #{$color_stop_point_1_moz},
-        #{$color_bottom} #{$color_stop_point_2_moz} ,
-        #{$color_bottom}
-    );
-    // Safari, Google Chrome
-    background: -webkit-gradient(linear, left top, left bottom,
-        from( #{$color_top} ),
-        color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
-        color-stop( #{$color_stop_point_2_webkit} , #{$color_bottom} ) ,
-        to( #{$color_bottom} )
-    );
+  // 変数の定義
+  //
+  $color_top: $operator_color;
+  $color_bottom: darken( $color_top , 20% );
+  //
+  $color_stop_point_1_moz : 5% ;
+  $color_stop_point_1_webkit : 0.05 ;
+  $color_stop_point_2_moz : 90% ;
+  $color_stop_point_2_webkit : 0.9 ;
+  //
+  background: #{ $color_bottom } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_top} #{$color_stop_point_1_moz},
+    #{$color_bottom} #{$color_stop_point_2_moz} ,
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_bottom} ) ,
+    to( #{$color_bottom} )
+  );
 }
 
 #update {
@@ -257,10 +257,10 @@
     }
     .title_of_time_info_en {
       @extend %floatLeft ;
-      @extend %marginRight8 ;
     }
     .time_en {
       @extend %floatLeft ;
+      @extend %marginLeft4 ;
     }
   }
 }

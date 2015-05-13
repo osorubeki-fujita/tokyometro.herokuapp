@@ -7,9 +7,16 @@
 @import 'common_mixins/color.scss' ;
 @import 'common_mixins/text.scss' ;
 
-@import 'common_mixins/link.scss' ;
-
 @import 'common_mixins/float.scss' ;
+@import 'common_mixins/link.scss' ;
 @import 'common_mixins/margin.scss' ;
 @import 'common_mixins/padding.scss' ;
 @import 'common_mixins/clearfix.scss' ;
+
+//-------- リストの基本設定 (list-style)
+
+%liBaseSettingsInLinkUl {
+  @extend %floatLeft ;
+  @extend %link_in_div ;
+  list-style: none ;
+}

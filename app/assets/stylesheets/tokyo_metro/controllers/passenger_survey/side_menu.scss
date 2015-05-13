@@ -2,6 +2,14 @@
 
 @import '../../fundamental_settings.scss' ;
 
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages {
+  li.survey_year {
+    margin: {
+      bottom: -1px ;
+    }
+  }
+}
+
 %listStyleOfLinksRelatedToPassengerSurvey {
   li {
     list-style: none ;
@@ -12,32 +20,41 @@
   clear: both ;
 }
 
-
 ul#links_to_passenger_survey_pages {
+
   list-style: none ;
-  //
+
   ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
     @extend %listStyleOfLinksRelatedToPassengerSurvey ;
+    margin: {
+      bottom: 0px ;
+    }
     ul.each_railway_line {
       @extend %listStyleOfLinksRelatedToPassengerSurvey ;
       @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
       padding: 0px ;
     }
   }
-  //
-  ul#links_to_year_pages , ul#links_to_station_pages {
-    @extend %listStyleOfLinksRelatedToPassengerSurvey ;
-    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
-  }
-  //
+
   ul#links_to_year_pages {
     ul {
       @extend %listStyleOfLinksRelatedToPassengerSurvey ;
       @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
       padding: 0px ;
     }
+    @extend %listStyleOfLinksRelatedToPassengerSurvey ;
+    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
   }
-  //
+
+  ul#links_to_station_pages {
+    @extend %listStyleOfLinksRelatedToPassengerSurvey ;
+    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
+  }
+
+  ul.each_railway_line {
+    clear: both ;
+  }
+
   .title {
     @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
     border: none ;
@@ -58,7 +75,17 @@ ul#links_to_passenger_survey_pages {
       }
     }
   }
+
   .title.in_station_page , .title.to_year_pages {
     background-color: #ddd ;
   }
+
+  margin: {
+    top: 0px ;
+  }
+
+  padding: 0px ;
+
+  @extend %marginBottom32 ;
+
 }

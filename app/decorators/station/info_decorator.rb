@@ -4,8 +4,6 @@ class Station::InfoDecorator < Draper::Decorator
 
   decorates_association :station_facility
 
-  include SubTopTitleRenderer
-
   def name_ja_actual
     object.name_ja.revive_machine_dependent_character
   end
@@ -230,7 +228,7 @@ class Station::InfoDecorator < Draper::Decorator
   %h2{ class: :text_ja }<
     = this.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
   %h3{ class: :text_en }<
-    = "Other pages related to " + this.name_en + " Station"
+    = this.render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: "Station" )
     HAML
   end
 
@@ -247,7 +245,13 @@ class Station::InfoDecorator < Draper::Decorator
 
   def render_fare_title_of_this_station( *railway_lines )
     railway_line = railway_lines.flatten.first
-    render_sub_top_title( text_ja: "#{ name_ja_actual }駅から#{ railway_line.name_ja }各駅までの運賃" , text_en: "Fares from #{ name_en } to stations on #{ railway_line.name_en }" )
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , railway_line: railway_line }
+%div{ class: :top_title }
+  %h2{ class: :text_ja }<
+    = this.render_name_ja( with_subname: true , suffix: "駅から#{ railway_line.name_ja }各駅までの運賃" )
+  %h3{ class: :text_en }<
+    = this.render_name_en( with_subname: true , prefix: "Fares from " , suffix: " to stations on #{ railway_line.name_en }" )
+    HAML
   end
 
   def render_direction_in_station_timetable_header
@@ -294,7 +298,7 @@ class Station::InfoDecorator < Draper::Decorator
 %div{ class: :station_info_domain }
   %div{ class: :station_code_outer }
     = this.render_station_code_image( all: false )
-  %div{ class: :text }
+  %div{ class: [ :text , :clearfix ] }
     = this.render_name_ja_and_en
     HAML
   end
@@ -424,7 +428,7 @@ class Station::InfoDecorator < Draper::Decorator
   def render_name_in_travel_time_infos
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 = this.render_link_to_station_facility_page_ja
-%div{ class: :station_info_domain }
+%div{ class: [ :station_info_domain , :clearfix ] }
   = this.render_station_code_image( all: false )
   %div{ class: :text }<
     = this.render_name_ja_and_en
@@ -485,6 +489,10 @@ class Station::InfoDecorator < Draper::Decorator
     else
       raise "Error"
     end
+  end
+  
+  def json_title_on_google_map
+    "#{ name_ja_actual } #{ name_en }"
   end
   
   # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e

@@ -89,7 +89,7 @@ class StationMatrixRow
     # console.log 'StationMatrixRow\#process_elements_in_railway_line_info_in_railway_line_matrix_small'
     # console.log info_domain_in_railway_line_matrix_small(v).attr( 'class' )
     matrix = new RailwayLineMatrixSmallInfo( info_domain_in_railway_line_matrix_small(v) )
-    matrix.set_height_and_vertical_align_center()
+    matrix.set_vertical_align_center()
     return
 
   sum_height_of_station_domains_of_railway_line_including_branch_line = (v) ->

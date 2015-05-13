@@ -8,22 +8,24 @@ class LinksToRailwayLinePages
 
   title_domains = (v) ->
     return v.domain.children( 'li.title' )
+  
+  on_fare_controller = (v) ->
+    return v.controller is 'fare'
 
   process: ->
     set_width_of_each_fare_link_domain(@)
     process_each_link_domain(@)
     set_height_of_link_domains(@)
-    set_height_of_domain(@)
     return
 
   set_width_of_each_fare_link_domain = (v) ->
-    if v.controller is 'fare'
+    if on_fare_controller(v)
       p = new RailwayLineAndStationMatrix()
       v.width_of_each_link_domain = p.width_of_each_normal_railway_line()
     return
 
   process_each_link_domain = (v) ->
-    if v.controller is 'fare'
+    if on_fare_controller(v)
       link_domains(v).each ->
         d = new LinkToRailwayLinePage( $( this ) , v.controller , v.width_of_each_link_domain )
         d.process()
@@ -60,15 +62,6 @@ class LinksToRailwayLinePages
     return p1.sum_inner_height() + border_width(v) * num
     # return p1.sum_inner_height() + border_width(v) * ( num + 1 )
 
-  set_height_of_domain = (v) ->
-    if v.controller is 'fare'
-      h = max_height_of_link_domains(v)
-      p = new RailwayLineAndStationMatrix()
-      rows = p.number_of_rows_of_normal_railway_lines_in_railway_line_matrix()
-      h_whole = h * rows + p.border_width * ( rows + 1 )
-      v.domain.css( 'height' , h_whole )
-    return
-
 window.LinksToRailwayLinePages = LinksToRailwayLinePages
 
 class LinkToRailwayLinePage
@@ -88,7 +81,7 @@ class LinkToRailwayLinePage
 
   process: ->
     set_height_of_contents(@)
-    set_height_of_domain(@)
+    # set_height_of_domain(@)
     set_width(@)
     return
 
@@ -98,7 +91,7 @@ class LinkToRailwayLinePage
     h = p1.max_outer_height( true )
     p2 = new DomainsVerticalAlignProcessor( c , h , 'middle' )
     p2.process()
-    domain_of_content(v).css( 'height' , h )
+    # domain_of_content(v).css( 'height' , h )
     return
 
   set_height_of_domain = (v) ->
@@ -114,65 +107,3 @@ class LinkToRailwayLinePage
     return
 
 window.LinkToRailwayLinePage = LinkToRailwayLinePage
-
-class AnimationForRailwayLineDomains
-
-  constructor: ( @domains ) ->
-    console.log 'constructor'
-    return
-  
-  survey_year_domains = (v) ->
-    return v.domains.children( 'li.survey_year' )
-  
-  railway_line_domain_for_survey_year_domain = ( survey_year_domain ) ->
-    return survey_year_domain.parent().children( 'li.railway_line' )
-
-  process: ->
-    console.log 'process'
-    process_for_hover(@)
-    return
-
-  process_for_hover = (v) ->
-    console.log 'process_for_hover'
-
-    survey_year_domains(v).hover ->
-      console.log 'onMouse begin'
-      railway_line_domain_for_survey_year_domain( $( this ) ).queue -> # 'add_class' , ->
-        console.log 'add_class'
-        console.log '  classes: ' + $( this ).attr( 'class' )
-        if $( this ).hasClass( 'hover' )
-          console.log '  has_class \'hover\''
-          $( this ).addClass( 'hover_x' )
-        else
-          $( this ).addClass( 'hover' , { duration: 2000 , children: true } )
-        return
-      # console.log railway_line_domain_for_survey_year_domain( $( this ) ).queue( 'add_class' )
-      railway_line_domain_for_survey_year_domain( $( this ) ).dequeue()
-      console.log 'onMouse end (2000ms)'
-      return
-
-    , ->
-      console.log 'outMouse'
-
-      window.setInterval ->
-        return
-      , 2000
-
-      railway_line_domain_for_survey_year_domain( $( this ) ).queue -> # 'remove_class' , ->
-        console.log 'remove_class begin'
-        console.log '  classes: ' + $( this ).attr( 'class' )
-        $( this ).addClass( 'hover_x' )
-        $( this ).removeClass( 'hover' , { duration: 8000 , children: true } )
-        if $( this ).hasClass( 'hover_x' )
-          console.log '  has_class \'hover_x\''
-          $( this ).removeClass( 'hover_x' )
-        else
-          $( this ).removeClass( 'hover' , { duration: 8000 , children: true } )
-        console.log 'remove_class end'
-        return
-      # console.log railway_line_domain_for_survey_year_domain( $( this ) ).queue( 'remove_class' )
-      railway_line_domain_for_survey_year_domain( $( this ) ).dequeue()
-      return
-    return
-
-window.AnimationForRailwayLineDomains = AnimationForRailwayLineDomains

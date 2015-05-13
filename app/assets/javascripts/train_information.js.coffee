@@ -1,4 +1,5 @@
 class TrainInformations
+
   constructor: ( @domain = $( "#train_informations" ) ) ->
 
   # 運行情報がページ内に存在するか否かの判定
@@ -65,6 +66,15 @@ class TrainInformations
     # console.log h
     return h
 
+  max_width_of_icon_body = (v) ->
+    w = 0
+    informations(v).each ->
+      train_information = new TrainInformation( $( this ) )
+      _icon_body_width = train_information.status().icon_body_width()
+      w = Math.max( w , _icon_body_width )
+      return
+    return w
+
   process: ->
     if has_titles(@)
       process_titles(@)
@@ -79,15 +89,6 @@ class TrainInformations
       initialize_size_of_railway_line_matrix_and_status(@)
       set_attributes(@)
     return
-
-  max_width_of_icon_body = (v) ->
-    w = 0
-    informations(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      _icon_body_width = train_information.status().icon_body_width()
-      w = Math.max( w , _icon_body_width )
-      return
-    return w
 
   process_titles = (v) ->
     _titles = new ContentHeaderProcessor( titles(v) )
@@ -272,6 +273,7 @@ class TrainInformation
     return
 
 class TrainInformationMatrixBase
+
   constructor: ( @domain ) ->
 
   outer_width: ( b = false ) ->
@@ -293,20 +295,15 @@ class TrainInformationMatrixBase
 class TrainInformationRailwayLineMatrix extends TrainInformationMatrixBase
 
   set_attributes: ->
-    set_height_to_info(@)
     set_height_to_railway_line_matrix(@)
     set_width_to_info(@)
-    set_height_and_vertical_align_center(@)
+    set_vertical_align_center(@)
     return
 
   info: ->
     # console.log 'RailwayLineMatrixSmallBase\#info'
     _info = new RailwayLineMatrixSmallInfo( @domain.children( '.info' ).first() )
     return _info
-
-  set_height_to_info = (v) ->
-    v.info().set_max_height()
-    return
 
   set_height_to_railway_line_matrix = (v) ->
     _info_margin_top_and_bottom = info_margin_top_and_bottom(v)
@@ -322,8 +319,8 @@ class TrainInformationRailwayLineMatrix extends TrainInformationMatrixBase
     v.info().domain.css( 'width' , v.info().sum_outer_width_of_railway_line_code_outer_and_text() )
     return
 
-  set_height_and_vertical_align_center = (v) ->
-    v.info().set_height_and_vertical_align_center()
+  set_vertical_align_center = (v) ->
+    v.info().set_vertical_align_center()
     return
 
   info_margin_top_and_bottom = (v) ->
@@ -355,11 +352,9 @@ class TrainInformationStatus extends TrainInformationMatrixBase
     return Math.ceil( @.icon_body().width() )
 
   initialize_icon_size: ( _max_width ) ->
-    _icon_body_width = @.icon_body_width()
-    margin_left_and_right = ( _max_width - _icon_body_width ) * 0.5
     @.icon().css( 'width' , _max_width )
-    @.icon_body().css( 'margin-left' , margin_left_and_right )
-    @.icon_body().css( 'margin-right' , margin_left_and_right )
+    p= new DomainsHorizontalAlignProcessor( @.icon_body() , _max_width )
+    p.process()
     return
 
   # 個別の運行状況ステータスのテキスト領域の大きさを初期化するメソッド

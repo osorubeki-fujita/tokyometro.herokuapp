@@ -1,23 +1,26 @@
 class TrainLocationController < ApplicationController
 
-  # require 'ajax_update'
-  # require 'each_railway_line'
-  # require 'yurakucho_and_fukutoshin_line'
-
-  include AjaxUpdate
-  include EachRailwayLine
-  include YurakuchoAndFukutoshinLine
+  include ActionBaseForRailwayLinePage
+  include RailwayLineByParams
 
   def index
     @title = "現在運行中の列車"
     @railway_lines = ::RailwayLine.tokyo_metro
     render 'train_location/index'
   end
+  
+  def action_for_railway_line_page
+    action_base_for_railway_line_page( :train_location )
+  end
 
   private
-
-  def each_railway_line( *railway_lines_same_as )
-    each_railway_line_sub( "現在運行中の列車" , "train_location" , *railway_lines_same_as )
+  
+  def set_railway_lines_of_railway_line_page_by_params
+    @railway_lines = railway_line_by_params( branch_railway_line: :main_and_branch , yurakucho_and_fukutoshin: true )
+  end
+  
+  def base_of_railway_line_page_title
+    " 現在運行中の列車"
   end
 
 end

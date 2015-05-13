@@ -1,8 +1,7 @@
 class PassengerSurveyController < ApplicationController
 
+  include ActionBaseForStationPage
   include RailwayLineByParams
-  
-  include EachStation
 
   def index
     @title = "各駅の乗降客数"
@@ -19,6 +18,14 @@ class PassengerSurveyController < ApplicationController
       action_for_year_page
     else
       action_for_railway_line_page
+    end
+  end
+
+  def action_for_station_page
+    action_base_for_station_page( :passenger_survey ) do
+      @passenger_survey_infos = @station_info.passenger_surveys.order( survey_year: :desc )
+      @passenger_survey_infos_all = ::PassengerSurvey.all.order( passenger_journeys: :desc )
+      @make_graph = true
     end
   end
 
@@ -42,13 +49,9 @@ class PassengerSurveyController < ApplicationController
     @make_graph = true
     render 'passenger_survey/each_railway_line'
   end
-
-  def each_station( station_info_same_as )
-    each_station_sub( "駅 各年度の乗降客数" , "passenger_survey" , station_info_same_as ) do
-      @passenger_survey_infos = @station_info.passenger_surveys.order( survey_year: :desc )
-      @passenger_survey_infos_all = ::PassengerSurvey.all.order( passenger_journeys: :desc )
-      @make_graph = true
-    end
+  
+  def base_of_station_page_title
+    " " + "各年度の乗降客数"
   end
 
   def survey_year

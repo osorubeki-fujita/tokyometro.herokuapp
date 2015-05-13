@@ -1,8 +1,8 @@
 class TrainInformationController < ApplicationController
 
-  include AjaxUpdate
-  include EachStation
-  include EachRailwayLine
+  include ActionBaseForStationPage
+  include ActionBaseForRailwayLinePage
+  include RailwayLineByParams
 
   def index
     @title = "各線の列車運行情報"
@@ -13,14 +13,26 @@ class TrainInformationController < ApplicationController
     render 'train_information/index'
   end
 
-  private
-
-  def each_railway_line( *railway_lines_same_as )
-    each_railway_line_sub( "列車運行情報" , "train_information" , *railway_lines_same_as , with_branch: true )
+  def action_for_station_page
+    action_base_for_station_page( :train_information )
   end
 
-  def each_station( station_info_same_as )
-    each_station_sub( "駅からの列車運行情報" , "train_information" , station_info_same_as )
+  def action_for_railway_line_page
+    action_base_for_railway_line_page( :train_information )
+  end
+
+  private
+  
+  def base_of_station_page_title
+    "からの列車運行情報"
+  end
+  
+  def base_of_railway_line_page_title
+    " 列車運行情報"
+  end
+  
+  def set_railway_lines_of_railway_line_page_by_params
+    @railway_lines = railway_line_by_params( branch_railway_line: :exclude )
   end
 
 end

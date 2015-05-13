@@ -19,13 +19,16 @@ class ContentHeaderProcessor
   width_of_icon_domains_new = (v) ->
     return Math.ceil( Math.max( width_of_icon_domains(v) , max_width_of_font_awesome_icons(v) ) )
 
+  process: ->
+    process_each_icon(@)
+    process_each_domain(@)
+    return
+
   process_each_icon = (v) ->
     _width_of_icon_domains_new = width_of_icon_domains_new(v)
-    # console.log _width_of_icon_domains_new
     font_awesome_icons(v).each ->
-      _m = ( _width_of_icon_domains_new - $( this ).outerWidth( true ) ) * 0.5
-      $( this ).css( 'margin-left' , _m )
-      $( this ).css( 'margin-right' , _m )
+      p = new DomainsHorizontalAlignProcessor( $( this ) , _width_of_icon_domains_new )
+      p.process()
       return
     icon_domains(v).each ->
       $( this ).css( 'width' , _width_of_icon_domains_new )
@@ -39,14 +42,10 @@ class ContentHeaderProcessor
       return
     return
 
-  process: ->
-    process_each_icon(@)
-    process_each_domain(@)
-    return
-
 window.ContentHeaderProcessor = ContentHeaderProcessor
 
 class ContentHeader
+
   constructor: ( @domain ) ->
 
   icon_domain = (v) ->
@@ -73,20 +72,12 @@ class ContentHeader
   has_link_info_to_train_location_of_each_railway_line = (v) ->
     return ( v.domain.children( '.link_info_to_train_location_of_each_railway_line' ).length == 1 )
 
-  max_height_of_icon_and_text = (v) ->
+  max_height_of_icon_text_button = (v) ->
     p = new DomainsCommonProcessor( v.domain.children() )
-    return p.max_outer_height( true )
+    return p.max_outer_height( false )
 
   child_domains_except_for_link_info = (v) ->
     return v.domain.children().not( '.link_info_to_train_location_of_each_railway_line' )
-
-  process: ->
-    if has_link_info_to_train_location_of_each_railway_line(@)
-      process_link_info(@)
-    set_vertical_align(@)
-    # set_height(@)
-    process_buttons(@)
-    return
 
   width_of_link_info = (v) ->
     p = new DomainsCommonProcessor( child_domains_except_for_link_info(v) )
@@ -98,21 +89,27 @@ class ContentHeader
     # console.log 'w: ' + w
     return w
 
+  process: ->
+    process_link_info(@)
+    process_text_domains(@)
+    process_buttons(@)
+    set_vertical_align(@)
+    # set_height(@)
+    return
+
   process_link_info = (v) ->
-    p = new LinkInfoToTrainLocation( link_info_to_train_location_of_each_railway_line(v) )
-    p.process( width_of_link_info(v) )
+    if has_link_info_to_train_location_of_each_railway_line(v)
+      p = new LinkInfoToTrainLocation( link_info_to_train_location_of_each_railway_line(v) )
+      p.process( width_of_link_info(v) )
     return
 
-  set_vertical_align = (v) ->
-    h = max_height_of_icon_and_text(v)
-    p = new DomainsVerticalAlignProcessor( v.domain.children() , h , 'middle' )
-    p.process()
+  process_text_domains = (v) ->
+    $.each [ text_domain(v) , text_en_top_domain(v) ] , ->
+      if $(@).length > 0
+        p = new LengthToEven( $(@) )
+        p.set()
+      return
     return
-
-  # set_height = (v) ->
-    # h = max_height_of_icon_and_text(v)
-    # v.domain.css( 'height' , h )
-    # return
 
   process_buttons = (v) ->
     if has_buttons(v)
@@ -121,6 +118,17 @@ class ContentHeader
         b.process()
         return
     return
+
+  set_vertical_align = (v) ->
+    h = max_height_of_icon_text_button(v)
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , h , 'middle' )
+    p.process()
+    return
+
+  # set_height = (v) ->
+    # h = max_height_of_icon_and_text(v)
+    # v.domain.css( 'height' , h )
+    # return
 
 class LinkInfoToTrainLocation
 

@@ -10,20 +10,11 @@ $icon_common_width: 32px ;
 $width_of_li_border_in_link: 1px ;
 $border_color_of_li_in_link: #ddd ;
 
-//-------- リストの基本設定 (list-style)
-
-%liBaseSettingsInLinkUl {
-  @extend %floatLeft ;
-  @extend %link_in_div ;
-  list-style: none ;
-}
-
 //-------- 領域の基本設定 (float, list-style, border, margin)
 
 %domainBaseSettingsOfHorizontalLinks {
   li {
     @extend %liBaseSettingsInLinkUl ;
-    border: solid 1px #ccc ;
     margin: {
       right: -1 * $width_of_li_border_in_link ;
     }
@@ -148,17 +139,34 @@ $border_color_of_li_in_link: #ddd ;
 
 //-------- アイコンの設定
 
-%smallImageIconInLinkLi {
-  li.small {
-    div.icon {
-      $length: 18px ;
+%imageInLinkLi18 {
+  div.icon {
+    $length: 18px ;
+    width: $length ;
+    height: $length ;
+    img {
       width: $length ;
       height: $length ;
-      img {
-        width: $length ;
-        height: $length ;
-      }
     }
+  }
+}
+
+%imageInLinkLi32 {
+  div.icon {
+    $length: 32px ;
+    width: $length ;
+    height: $length ;
+    img {
+      width: $length ;
+      height: $length ;
+    }
+    @extend %marginRight8 ;
+  }
+}
+
+%smallImageIconInLinkLi {
+  li.small {
+    @extend %imageInLinkLi18 ;
   }
 }
 
@@ -179,25 +187,19 @@ $border_color_of_li_in_link: #ddd ;
 
 %largeImageIconInLinkLi {
   li.normal {
-    div.icon {
-      $length: 32px ;
-      width: $length ;
-      height: $length ;
-      img {
-        width: $length ;
-        height: $length ;
-      }
-      @extend %marginRight8 ;
-    }
+    @extend %imageInLinkLi32 ;
   }
 }
 
 //-------- マウスオーバー時の文字色・背景色の設定（一般）
 
-%liHoverCommonSettingsInLinkUl {
+%liHoverIconSettingsInLinkUl {
   .icon {
     color: saturate( mix( #aaa , $operator_color ) , 20% ) ;
   }
+}
+
+%liHoverTextSettingsInLinkUl {
   .text_large , .text_en {
     color: mix( #aaa , $operator_color ) ;
   }
@@ -215,14 +217,16 @@ $border_color_of_li_in_link: #ddd ;
 %linkHoverSettingsOfLeftSideMenu {
   li.hover {
     @extend %liHoverBgNormalInLinkUl ;
-    @extend %liHoverCommonSettingsInLinkUl ;
+    @extend %liHoverIconSettingsInLinkUl ;
+    @extend %liHoverTextSettingsInLinkUl ;
   }
 }
 
 %linkHoverSettingsOfLinkToDocumentPages {
   li.hover {
     @extend %liHoverBgNormalInLinkUl ;
-    @extend %liHoverCommonSettingsInLinkUl ;
+    @extend %liHoverIconSettingsInLinkUl ;
+    @extend %liHoverTextSettingsInLinkUl ;
   }
 }
 
@@ -244,6 +248,7 @@ $border_color_of_li_in_link: #ddd ;
     @extend %marginRight8 ;
   }
   @extend %domainBaseSettingsOfHorizontalLinks ;
+  border: solid 1px #ccc ;
   li.railway_line {
     .railway_line_code_32 , .text {
       @extend %floatLeft ;
@@ -265,27 +270,6 @@ ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents ,
   }
   .link_to_railway_line_page {
     margin: 8px ;
-  }
-}
-
-ul#links_to_passenger_survey_pages {
-  ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
-    margin: {
-      bottom: 0px ;
-    }
-  }
-  ul.each_railway_line {
-    clear: both ;
-  }
-  margin: {
-    top: 0px ;
-  }
-  padding: 0px ;
-  @extend %marginBottom32 ;
-  li.survey_year {
-    margin: {
-      bottom: -1px ;
-    }
   }
 }
 
@@ -365,22 +349,38 @@ ul#links_to_railway_line_pages_of_this_station {
 
 //-------- 乗降客数 年度別ページヘのリンク
 
-ul#links_to_year_pages {
-  @extend %largeImageIconInLinkLi ;
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages {
+  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
   @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
   @extend %commonSettingsOfLiInLinkUl ;
   //
   @extend %marginOfDivLinkToContent ;
-  //
-  //--------
-  //
+}
+
+ul#links_to_year_pages {
   li.tokyo_metro {
+    @extend %imageInLinkLi32 ;
     .link_to_operator_page {
       margin: 8px ;
     }
     &.hover {
       @extend %liHoverBgNormalInLinkUl ;
-      @extend %liHoverCommonSettingsInLinkUl ;
+      @extend %liHoverIconSettingsInLinkUl ;
+      @extend %liHoverTextSettingsInLinkUl ;
+    }
+  }
+  li.survey_year {
+    &.hover {
+      @extend %liHoverBgOperatorSurveyYearInLinkUl ;
+      @extend %liHoverIconSettingsInLinkUl ;
+    }
+  }
+}
+
+ul#links_to_year_pages.on_index_page {
+  li.survey_year {
+    &.hover {
+      @extend %liHoverBgOperatorSurveyYearInLinkUl ;
     }
   }
 }
@@ -403,6 +403,7 @@ ul#links_to_station_pages {
     @extend %floatLeft ;
   }
   ul#links , ul#links_to_station_facility_info_of_connecting_other_stations {
+    border: dotted 1px #ccc ;
     @extend %domainBaseSettingsOfHorizontalLinks ;
     @extend %linkHoverSettingsOfLinkToStationInfoPages ;
     @extend %linkHoverSettingsOfLinkToSameCategoryPage ;

@@ -49,15 +49,6 @@ class PassengerSurveyDecorator < Draper::Decorator
     HAML
   end
 
-  def self.render_link_to_year_page( survey_year )
-    h.render inline: <<-HAML , type: :haml , locals: { survey_year: survey_year }
-%li{ class: :survey_year }
-  = link_to_unless_current( "" , url_for( controller: :passenger_survey , action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: survey_year ) )
-  %p{ class: :text_en }<
-    = survey_year
-    HAML
-  end
-
   def self.link_to_year_page( survey_year )
     h.link_to_unless_current( "" , h.url_for( controller: :passenger_survey , action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: survey_year ) )
   end
@@ -70,7 +61,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   
   def render_station_name_in_table( station_info = station_infos.first )
     h.render inline: <<-HAML , type: :haml , locals: { this: self , station_info: station_info }
-- url_of_station_page = url_for( controller: :passenger_survey , action: station_info.name_in_system.underscore )
+- url_of_station_page = url_for( controller: :passenger_survey , action: :action_for_station_page , station: station_info.name_in_system.underscore )
 - class_name_of_cell = [ :station_info ]
 - unless current_page?( url_of_station_page )
   - class_name_of_cell << :with_link
@@ -83,7 +74,7 @@ class PassengerSurveyDecorator < Draper::Decorator
       = station_infos.first.decorate.render_name_ja_and_en
     HAML
   end
-  
+
   def render_survey_year_in_table
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - url_of_year_page = url_for( controller: :passenger_survey , action: :action_for_railway_line_or_year_page , railway_line: :all , survey_year: this.survey_year )
