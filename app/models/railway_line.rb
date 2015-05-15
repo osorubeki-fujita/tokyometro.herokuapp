@@ -207,5 +207,9 @@ class RailwayLine < ActiveRecord::Base
   def tokyo_metro?
     operator.tokyo_metro?
   end
+  
+  def except_for_branch_lines
+    self
+  end
 
 end
