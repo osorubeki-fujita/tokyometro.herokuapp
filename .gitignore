@@ -16,6 +16,7 @@
 /tmp
 
 /config/application_memo.rb
+/config/database.yml
 
 /AccessToken
 /GoogleMapApiKey

@@ -1,6 +1,26 @@
 class PassengerSurvey
 
   constructor: ( @domain = $( '#passenger_survey_table' ) ) ->
+  
+  main_title = (v) ->
+    return $('#passenger_survey_title')
+
+  has_main_title = (v) ->
+    return main_title(v).length > 0
+
+  main_text_domain_in_main_title = (v) ->
+    return main_title(v).children( '.main_text' )
+
+  children_of_main_text_domain_in_main_title = (v) ->
+    return main_text_domain_in_main_title(v).children()
+
+  survey_year_domain_in_main_title = (v) ->
+    return children_of_main_text_domain_in_main_title(v).filter( '.survey_year' )
+
+  has_survey_year_domain_in_main_title = (v) ->
+    return has_main_title(v) and survey_year_domain_in_main_title(v).length > 0
+    
+  #--------
 
   tables = (v) ->
     return  $( '#passenger_survey_table' ).children( 'table' )
@@ -18,12 +38,23 @@ class PassengerSurvey
     return links_to_year_pages_on_index_page(v).length > 0
 
   process: ->
+    if has_survey_year_domain_in_main_title(@)
+      process_survey_year_domain_in_main_title(@)
     if has_table(@)
       process_table(@)
       process_links_to_pages(@)
     if on_passenger_survey_index_page(@)
       process_links_to_pages(@)
       process_icon_of_operator_on_index_page(@)
+    return
+  
+  process_survey_year_domain_in_main_title = (v) ->
+    p0 = new LengthToEven( survey_year_domain_in_main_title(v) )
+    p0.set()
+    _domains = children_of_main_text_domain_in_main_title(v)
+    p1 = new DomainsCommonProcessor( _domains )
+    p2 = new DomainsVerticalAlignProcessor( _domains , p1.max_outer_height( false ) )
+    p2.process()
     return
   
   process_table = (v) ->

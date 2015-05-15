@@ -15,20 +15,23 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   # タイトルのメイン部分（路線色・路線名）を記述するメソッド
-  def self.name_main( railway_lines )
+  def self.name_main( railway_lines , survey_year: nil )
     railway_lines = [ railway_lines ].flatten
     class << railway_lines
       include ::TokyoMetro::TempLib::RailwayLineArrayModule
     end
 
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
+    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines , survey_year: survey_year }
 %div{ class: :main_text }
   - # タイトルの路線名を記述
-  %div{ class: infos.to_title_color_class }
+  %div{ class: [ infos.to_title_color_class , :railway_line ] }
     %h2{ class: :text_ja }<
       = infos.to_railway_line_name_text_ja
     %h3{ class: :text_en }<
       = infos.to_railway_line_name_text_en
+  - if survey_year.present?
+    %div{ class: [ :survey_year , :text_en ] }<
+      = survey_year
     HAML
   end
 
@@ -45,11 +48,12 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   # タイトルを記述するメソッド（路線別）
-  def self.render_title_of_passenger_survey( railway_lines )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
+  def self.render_title_of_passenger_survey( railway_lines , survey_year )
+    h_locals = { infos: railway_lines , survey_year: survey_year }
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :passenger_survey_title }
   = ::PassengerSurveyDecorator.render_common_title( request , :railway_line )
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::RailwayLineDecorator.name_main( infos , survey_year: survey_year )
     HAML
   end
 

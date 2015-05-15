@@ -4,7 +4,7 @@ namespace :tokyo_metro do
     desc "Make list of tables"
     task :make_list_of_tables => :environment do
       ::File.open( "#{ ::Rails.root }/db/tables.txt" , "w:utf-8" ) do |f|
-        f.print( ::ActiveRecord::Base.connection.tables.join( "\n" ) )
+        f.print( ::ActiveRecord::Base.connection.tables.sort.join( "\n" ) )
       end
     end
 

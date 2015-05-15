@@ -240,3 +240,25 @@ ul#links_to_year_pages.on_index_page {
   }
   @include passengerSurveyTableRailwaySettings( $img_length , $img_margin_right ) ;
 }
+
+#passenger_survey_title {
+  .main_text {
+    .railway_line {
+      @extend %floatLeft ;
+    }
+    .survey_year {
+      @extend %floatRight ;
+      font: {
+        size: 18pt ;
+      }
+      @include border_radius( 4px ) ;
+      @extend %paddingTop8 ;
+      @extend %paddingBottom8 ;
+      @extend %paddingLeft16 ;
+      @extend %paddingRight16 ;
+      @extend %marginRight16 ;
+      background-color: #666 ;
+      color: #fff ;
+    }
+  }
+}

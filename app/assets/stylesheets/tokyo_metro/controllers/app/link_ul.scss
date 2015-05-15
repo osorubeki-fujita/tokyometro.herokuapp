@@ -248,7 +248,6 @@ $border_color_of_li_in_link: #ddd ;
     @extend %marginRight8 ;
   }
   @extend %domainBaseSettingsOfHorizontalLinks ;
-  border: solid 1px #ccc ;
   li.railway_line {
     .railway_line_code_32 , .text {
       @extend %floatLeft ;
@@ -349,15 +348,7 @@ ul#links_to_railway_line_pages_of_this_station {
 
 //-------- 乗降客数 年度別ページヘのリンク
 
-ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages {
-  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
-  @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
-  @extend %commonSettingsOfLiInLinkUl ;
-  //
-  @extend %marginOfDivLinkToContent ;
-}
-
-ul#links_to_year_pages {
+%commonSettingsOfLinksToYearPages {
   li.tokyo_metro {
     @extend %imageInLinkLi32 ;
     .link_to_operator_page {
@@ -377,7 +368,38 @@ ul#links_to_year_pages {
   }
 }
 
+%borderNormalSettingsOfLinksToRailwayLinePages {
+    border: solid 1px #ccc ;
+}
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages.in_side_menu {
+  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
+  @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
+  @extend %commonSettingsOfLiInLinkUl ;
+  //
+  @extend %marginOfDivLinkToContent ;
+  li.railway_line , li.survey_year {
+    @extend %borderNormalSettingsOfLinksToRailwayLinePages ;
+  }
+}
+
+ul#links_to_year_pages {
+  @extend %commonSettingsOfLinksToYearPages ;
+}
+
+ul#links_to_year_pages.in_side_menu {
+  li.tokyo_metro {
+    @extend %borderNormalSettingsOfLinksToRailwayLinePages ;
+  }
+}
+
 ul#links_to_year_pages.on_index_page {
+  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
+  @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;
+  @extend %commonSettingsOfLiInLinkUl ;
+  //
+  @extend %marginOfDivLinkToContent ;
+  //
   li.survey_year {
     &.hover {
       @extend %liHoverBgOperatorSurveyYearInLinkUl ;
@@ -403,7 +425,9 @@ ul#links_to_station_pages {
     @extend %floatLeft ;
   }
   ul#links , ul#links_to_station_facility_info_of_connecting_other_stations {
-    border: dotted 1px #ccc ;
+    li {
+      border: dotted 1px #ccc ;
+    }
     @extend %domainBaseSettingsOfHorizontalLinks ;
     @extend %linkHoverSettingsOfLinkToStationInfoPages ;
     @extend %linkHoverSettingsOfLinkToSameCategoryPage ;

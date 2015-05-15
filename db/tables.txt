@@ -1,4 +1,3 @@
-schema_migrations
 air_conditioner_answers
 air_conditioner_infos
 barrier_free_facility_escalator_direction_patterns
@@ -25,6 +24,7 @@ railway_directions
 railway_lines
 rss_categories
 rsses
+schema_migrations
 station_facilities
 station_facility_aliases
 station_facility_platform_info_barrier_free_facility_infos
