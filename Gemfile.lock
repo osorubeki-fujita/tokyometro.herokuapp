@@ -150,7 +150,7 @@ GEM
     odpt_tokyo_metro_helper (0.1.16)
       activesupport (>= 4.2.1)
       odpt_common (>= 0.1.16)
-    pg (0.18.2)
+    pg (0.18.2-x86-mingw32)
     positive_basic_support (0.1.2)
       activesupport (>= 4.2.1)
     positive_group_support (0.1.2)

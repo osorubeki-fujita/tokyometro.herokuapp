@@ -4,6 +4,7 @@ namespace :tokyo_metro do
       namespace :sqlite do
 
         desc "Export SqLite3 file on development environment to CSV"
+        # :environment は モデルにアクセスするのに必須
         task :to_csv => :environment do
           # system( "heroku run bundle exec rake RAILS_ENV=production db:data:load --app tokyometro" )
           puts "=" * 64
