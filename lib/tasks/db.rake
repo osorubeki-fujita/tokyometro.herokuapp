@@ -32,3 +32,21 @@ namespace :db do
     end
   end
 end
+
+__END__
+
+rake tokyo_metro:db:deploy:heroku:make_migration_file
+rake db:vacuum
+rake assets:precompile --trace
+
+rake tokyo_metro:db:export:sqlite:to_csv
+rake tokyo_metro:db:convert:csv:to_shift_jis 20150515235244
+
+cap git:commit
+git push github master
+git push heroku master
+
+rake tokyo_metro:db:deploy:heroku:reset
+rake tokyo_metro:db:deploy:heroku:migrate
+rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150515225626
+rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process

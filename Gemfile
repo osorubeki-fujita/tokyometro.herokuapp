@@ -41,7 +41,6 @@ group :development do
   gem 'bullet'
   gem "rails-erd"
   gem 'quiet_assets' , '~> 1.0.3'
-
   gem 'rspec'
   gem 'rspec-rails'
 
