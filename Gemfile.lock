@@ -145,7 +145,7 @@ GEM
     net-ssh (2.9.2)
     nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
-    odpt_common (0.1.16)
+    odpt_common (0.1.17)
       activesupport (>= 4.2.1)
     odpt_tokyo_metro_helper (0.1.16)
       activesupport (>= 4.2.1)

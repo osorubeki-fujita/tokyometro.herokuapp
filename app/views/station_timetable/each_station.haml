@@ -1,7 +1,6 @@
-= render "common_content"
-
 - station_info_decorated = @station_info.decorate
 
+= render( "common_content" )
 = station_info_decorated.render_title_of_station_timetable
 
 %div{ id: :links_to_station_info_pages }

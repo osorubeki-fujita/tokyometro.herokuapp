@@ -10,8 +10,8 @@ module StationTimetableHelper
     @station_timetables.group_by_railway_line.each do | railway_line_id , station_timetables_of_a_railway_line |
       # 路線別の時刻表（複数）を取得
       railway_line = ::RailwayLine.find_by( id: railway_line_id )
-      class <<station_timetables_of_a_railway_line
-        include OdptCommon::StationTimetables::GroupByRailwayDirection
+      class << station_timetables_of_a_railway_line
+        include ::OdptCommon::StationTimetables::GroupByRailwayDirection
       end
       station_timetables_grouped_by_direction = station_timetables_of_a_railway_line.group_by_railway_direction
       railway_direction_ids = station_timetables_grouped_by_direction.keys.sort_by { | railway_direction_id |
