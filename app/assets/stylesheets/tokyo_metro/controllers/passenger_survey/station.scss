@@ -19,6 +19,18 @@
   );
 }
 
+%fontSizeNormalInPassengerSurveyOfStation {
+  font: {
+    size: 12px ;
+  }
+}
+
+%fontSizeSmallInPassengerSurveyOfStation {
+  font: {
+    size: 9px ;
+  }
+}
+
 #passenger_survey_of_station {
   @extend %bgcolorOfPassengerSurveyOfStation ;
   text-align: right ;
@@ -28,14 +40,36 @@
     right: 8px ;
   }
   @extend %marginBottom8 ;
+  .data {
+    @extend %floatRight ;
+  }
+  .icon {
+    @extend %link_in_div ;
+    @extend %floatLeft ;
+    @extend %marginRight4 ;
+    i {
+      @extend %floatLeft ;
+    }
+  }
+  .text_ja {
+    @extend %floatLeft ;
+  }
+  //
   $font_size_base: 12px ;
-  $font_size_year: $font_size_base * 0.75 ;
-  font: {
-    size: $font_size_base ;
+  @extend %fontSizeNormalInPassengerSurveyOfStation ;
+  .title {
+    @extend %fontSizeNormalInPassengerSurveyOfStation ;
+  }
+  .passenger_survey {
+    @extend %fontSizeNormalInPassengerSurveyOfStation ;
+    .text_en {
+      @extend %fontSizeNormalInPassengerSurveyOfStation ;
+    }
   }
   .year {
-    font: {
-      size: $font_size_year ;
+    @extend %fontSizeSmallInPassengerSurveyOfStation ;
+    .text_en {
+      @extend %fontSizeSmallInPassengerSurveyOfStation ;
     }
   }
 }

@@ -193,7 +193,7 @@ class Station::InfoDecorator < Draper::Decorator
   - station_infos.each do | station_info |
     %li{ class: [ :link_to_station_facility , :normal ] }
       = link_to( "" , url_for( controller: :station_facility , action: station_info.station_page_name ) , class: :link )
-      %div{ class: :link_to_content }
+      %div{ class: [ :link_to_content , :clearfix ] }
         %div{ class: :icon }
           = ::TokyoMetro::App::Renderer::Icon.tokyo_metro( request , 1 ).render
         %div{ class: :text }
@@ -417,7 +417,14 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_latest_passenger_survey
-    latest_passenger_survey.decorate.render_journeys_of_each_station
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+%div{ id: :passenger_survey_of_station , class: :clearfix }
+  %div{ class: :data }
+    - icon_instance_of_passenger_survey = ::TokyoMetro::App::Renderer::Icon.passenger_survey( request , 1 )
+    = link_to( icon_instance_of_passenger_survey.render , url_for( controller: :passenger_survey , action: :action_for_station_page , station: this.object.name_in_system.underscore , anchor: nil ) , class: :icon )
+    %div{ class: :text_ja }
+      = this.latest_passenger_survey.decorate.render_journeys_of_each_station
+    HAML
   end
 
   def render_travel_time_info_square

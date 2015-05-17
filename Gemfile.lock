@@ -145,11 +145,11 @@ GEM
     net-ssh (2.9.2)
     nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
-    odpt_common (0.1.17)
+    odpt_common (0.2.0)
       activesupport (>= 4.2.1)
-    odpt_tokyo_metro_helper (0.1.16)
+    odpt_tokyo_metro_helper (0.2.0)
       activesupport (>= 4.2.1)
-      odpt_common (>= 0.1.16)
+      odpt_common (>= 0.2.0)
     pg (0.18.2-x86-mingw32)
     positive_basic_support (0.1.2)
       activesupport (>= 4.2.1)
@@ -299,12 +299,12 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.1.23)
+    tokyo_metro (0.2.0)
       haml
-      odpt_common (>= 0.1.16)
-      odpt_tokyo_metro_helper (>= 0.1.16)
+      odpt_common (>= 0.2.0)
+      odpt_tokyo_metro_helper (>= 0.2.0)
       positive_support (>= 0.3.2)
-      rails_decorate_factory
+      rails_decorate_factory (>= 0.1.0)
       required_files (>= 0.2.6)
       with_default_value (>= 0.1.0)
     turbolinks (2.5.3)
@@ -375,7 +375,7 @@ DEPENDENCIES
   spring
   sqlite3
   taps
-  tokyo_metro (>= 0.1.23)
+  tokyo_metro (>= 0.2.0)
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)

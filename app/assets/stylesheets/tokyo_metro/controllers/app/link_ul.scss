@@ -263,15 +263,6 @@ $border_color_of_li_in_link: #ddd ;
   }
 }
 
-ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents , ul#links_to_document_pages , ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages , ul#links_to_station_pages , #links_to_station_info_pages ul#links {
-  .link_to_document , .link_to_other_website {
-    margin: 4px ;
-  }
-  .link_to_railway_line_page {
-    margin: 8px ;
-  }
-}
-
 //-------- サイドメニュー
 
 ul#links_to_main_contents {
@@ -279,19 +270,6 @@ ul#links_to_main_contents {
   @extend %liBorderSettingsOfLeftSideMenu ;
   @extend %linksToMainContentsTop ;
   @extend %largeImageIconInLinkLi ;
-  @extend %linkHoverSettingsOfLeftSideMenu ;
-  @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
-  @extend %commonSettingsOfLiInLinkUl ;
-  @extend %marginBottom16 ;
-  //
-  @extend %marginOfDivLinkToContent ;
-}
-
-ul#links_to_other_websites {
-  @extend %liWidthSettingsOfLeftSideMenu ;
-  @extend %liBorderSettingsOfLeftSideMenu ;
-  @extend %iconToExternalPageInLinkLi ;
-  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
   @extend %linkHoverSettingsOfLeftSideMenu ;
   @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
   @extend %commonSettingsOfLiInLinkUl ;
@@ -310,7 +288,24 @@ ul#links_to_documents {
   @extend %commonSettingsOfLiInLinkUl ;
   @extend %marginBottom16 ;
   //
-  @extend %marginOfDivLinkToContent ;
+  .link_to_document {
+    margin: 4px ;
+  }
+}
+
+ul#links_to_other_websites {
+  @extend %liWidthSettingsOfLeftSideMenu ;
+  @extend %liBorderSettingsOfLeftSideMenu ;
+  @extend %iconToExternalPageInLinkLi ;
+  @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
+  @extend %linkHoverSettingsOfLeftSideMenu ;
+  @extend %linkHoverSettingsOfLinkToSameCategoryPage ;
+  @extend %commonSettingsOfLiInLinkUl ;
+  @extend %marginBottom16 ;
+  //
+  .link_to_other_website {
+    margin: 4px ;
+  }
 }
 
 //-------- ドキュメントへのリンク
@@ -328,6 +323,10 @@ ul#links_to_document_pages {
   @extend %marginBottom16 ;
   //
   @extend %marginOfDivLinkToContent ;
+  //
+  .link_to_document {
+    margin: 4px ;
+  }
 }
 
 //-------- 路線ページヘのリンク
@@ -337,6 +336,10 @@ ul#links_to_railway_line_pages {
   @extend %commonSettingsOfLiInLinkUl ;
   //
   @extend %marginOfDivLinkToContent ;
+  //
+  div.link_to_railway_line_page , div.railway_line , div.railway_line_with_no_link {
+    margin: 8px ;
+  }
 }
 
 ul#links_to_railway_line_pages_of_this_station {
@@ -344,6 +347,10 @@ ul#links_to_railway_line_pages_of_this_station {
   @extend %commonSettingsOfLiInLinkUl ;
   //
   @extend %marginOfDivLinkToContent ;
+  //
+  div.railway_line , div.railway_line_with_no_link {
+    margin: 8px ;
+  }
 }
 
 //-------- 乗降客数 年度別ページヘのリンク

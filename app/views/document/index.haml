@@ -11,7 +11,7 @@
     [ "列車種別" , "Train types" , "train_types" , "TrainType" ]
   ]
 
-%ul{ id: :links_to_document_pages , class: :links }
+%ul{ id: :links_to_document_pages , class: [ :links , :clearfix ] }
   - ary_of_documents.each do | text_ja , text_en , url_action , model_name |
     = ::TokyoMetro::App::Renderer::Document::Link.new( request , text_ja , text_en , url_action , model_name ).render
 

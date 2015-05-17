@@ -96,18 +96,17 @@ class PassengerSurveyDecorator < Draper::Decorator
 
   def render_journeys_of_each_station
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ id: :passenger_survey_of_station }
-  %span{ class: :title }<
-    = "1日平均乗降人員"
-  %span{ class: :passenger_journey }<
-    %span{ class: :text_en }<>
-      = this.journeys_separated_by_comma
-    = "人"
-  %span{ class: :year }<
-    != "（"
-    %span{ class: :text_en }<>
-      = this.survey_year
-    = "年度）"
+%span{ class: :title }<
+  = "平均乗降人員"
+%span{ class: :passenger_journey }<
+  %span{ class: :text_en }<>
+    = this.journeys_separated_by_comma
+  = "人/日"
+%span{ class: :year }<
+  != "（"
+  %span{ class: :text_en }<>
+    = this.survey_year
+  = "年度）"
     HAML
   end
 
