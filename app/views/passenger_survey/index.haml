@@ -12,7 +12,7 @@
     != "全路線 全駅の乗降客数"
     %span{ class: :small }<
       = "（年度別）"
-  %ul{ id: :links_to_year_pages , class: [ :on_index_page , :clearfix ] }
+  %ul{ id: :links_to_year_pages_on_index_page , class: :clearfix }
     - passenger_survey_years.reverse.each do | survey_year |
       = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::MetaClass::EachYear.new( request , survey_year , nil , :all , only_year: false , with_operator_icon: true ).render
 

@@ -21,7 +21,7 @@ class FareTables
     return
 
   process_links_to_railway_line_pages = (v) ->
-    l = new LinksToRailwayLinePages( $( '#links_to_railway_line_pages' ) , 'fare' )
+    l = new LinksToRailwayLinePages( $( 'ul#links_to_railway_line_pages' ) , 'fare' )
     l.process()
     return
 

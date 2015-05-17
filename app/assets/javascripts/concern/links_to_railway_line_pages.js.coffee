@@ -3,7 +3,6 @@ class LinksToRailwayLinePages
   constructor: ( @domain , @controller ) ->
 
   link_domains = (v) ->
-    # return v.domain.children( 'li.link_to_railway_line_page' )
     return v.domain.children( 'li' ).not( '.title' )
 
   title_domains = (v) ->
@@ -28,6 +27,7 @@ class LinksToRailwayLinePages
     if on_fare_controller(v)
       link_domains(v).each ->
         d = new LinkToRailwayLinePage( $( this ) , v.controller , v.width_of_each_link_domain )
+        d.set_text_width()
         d.process()
       return
     return
@@ -60,28 +60,32 @@ class LinksToRailwayLinePages
     num = _t.length
     p1 = new DomainsCommonProcessor( _t )
     return p1.sum_inner_height() + border_width(v) * num
-    # return p1.sum_inner_height() + border_width(v) * ( num + 1 )
 
 window.LinksToRailwayLinePages = LinksToRailwayLinePages
 
 class LinkToRailwayLinePage
 
-  constructor: ( @domain , @controller , @width , @content_domain_name = '.link_to_railway_line_page' ) ->
+  constructor: ( @domain , @controller , @width , @content_domain_name = '.railway_line_without_link , .with_link_to_railway_line_page' ) ->
 
   domain_of_content = (v) ->
     return v.domain.children( v.content_domain_name ).first()
 
   children_of_domain_of_content = (v) ->
     return domain_of_content(v).children()
-  
+
   sum_outer_width_of_children_of_domain_of_content = (v) ->
     c = children_of_domain_of_content(v)
     p = new DomainsCommonProcessor(c)
     return p.sum_outer_width( true )
 
+  set_text_width: ->
+    text = children_of_domain_of_content(@).filter( '.text' )
+    p = new LengthToEven( text , true )
+    p.set()
+    return
+
   process: ->
     set_height_of_contents(@)
-    # set_height_of_domain(@)
     set_width(@)
     return
 
@@ -91,11 +95,6 @@ class LinkToRailwayLinePage
     h = p1.max_outer_height( true )
     p2 = new DomainsVerticalAlignProcessor( c , h , 'middle' )
     p2.process()
-    # domain_of_content(v).css( 'height' , h )
-    return
-
-  set_height_of_domain = (v) ->
-    v.domain.css( 'height' , domain_of_content(v).outerHeight( true ) )
     return
 
   set_width = (v) ->

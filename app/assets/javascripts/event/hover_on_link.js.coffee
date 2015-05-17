@@ -62,7 +62,7 @@ class LinkDomainsToSetHoverEvent
 
   li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page = (v) ->
     return $( 'div.links_to_passenger_survey' )
-      .children( 'ul#links_to_year_pages' )
+      .children( 'ul#links_to_year_pages_on_index_page' )
       .children( 'li.survey_year' )
 
   railway_line_domains_in_links_to_passenger_survey = (v) ->

@@ -87,6 +87,13 @@ class DomainsCommonProcessor
       len = len + $( this ).innerHeight()
       return
     return Math.ceil( len )
+  
+  max_border_width: ->
+    len = 0
+    $.each @domains , ->
+      len = Math.max( len , parseInt( $( this ).css( 'border-width' ) , 10 ) )
+      return
+    return Math.ceil( len )
 
   set_all_of_uniform_width_to_max: ->
     _w = @.max_outer_width( false )

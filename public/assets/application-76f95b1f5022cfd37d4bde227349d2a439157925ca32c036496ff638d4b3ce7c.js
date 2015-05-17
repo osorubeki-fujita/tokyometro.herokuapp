@@ -29805,6 +29805,7 @@ $('#progress').html(
         link_domains(v).each(function() {
           var d;
           d = new LinkToRailwayLinePage($(this), v.controller, v.width_of_each_link_domain);
+          d.set_text_width();
           return d.process();
         });
         return;
@@ -29858,13 +29859,13 @@ $('#progress').html(
   window.LinksToRailwayLinePages = LinksToRailwayLinePages;
 
   LinkToRailwayLinePage = (function() {
-    var children_of_domain_of_content, domain_of_content, set_height_of_contents, set_height_of_domain, set_width, sum_outer_width_of_children_of_domain_of_content;
+    var children_of_domain_of_content, domain_of_content, set_height_of_contents, set_width, sum_outer_width_of_children_of_domain_of_content;
 
     function LinkToRailwayLinePage(domain, controller, width, content_domain_name) {
       this.domain = domain;
       this.controller = controller;
       this.width = width;
-      this.content_domain_name = content_domain_name != null ? content_domain_name : '.link_to_railway_line_page';
+      this.content_domain_name = content_domain_name != null ? content_domain_name : '.railway_line_without_link , .with_link_to_railway_line_page';
     }
 
     domain_of_content = function(v) {
@@ -29882,6 +29883,13 @@ $('#progress').html(
       return p.sum_outer_width(true);
     };
 
+    LinkToRailwayLinePage.prototype.set_text_width = function() {
+      var p, text;
+      text = children_of_domain_of_content(this).filter('.text');
+      p = new LengthToEven(text, true);
+      p.set();
+    };
+
     LinkToRailwayLinePage.prototype.process = function() {
       set_height_of_contents(this);
       set_width(this);
@@ -29894,10 +29902,6 @@ $('#progress').html(
       h = p1.max_outer_height(true);
       p2 = new DomainsVerticalAlignProcessor(c, h, 'middle');
       p2.process();
-    };
-
-    set_height_of_domain = function(v) {
-      v.domain.css('height', domain_of_content(v).outerHeight(true));
     };
 
     set_width = function(v) {
@@ -30790,7 +30794,7 @@ $('#progress').html(
     };
 
     li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page = function(v) {
-      return $('div.links_to_passenger_survey').children('ul#links_to_year_pages').children('li.survey_year');
+      return $('div.links_to_passenger_survey').children('ul#links_to_year_pages_on_index_page').children('li.survey_year');
     };
 
     railway_line_domains_in_links_to_passenger_survey = function(v) {
@@ -31038,7 +31042,7 @@ $('#progress').html(
 
     process_links_to_railway_line_pages = function(v) {
       var l;
-      l = new LinksToRailwayLinePages($('#links_to_railway_line_pages'), 'fare');
+      l = new LinksToRailwayLinePages($('ul#links_to_railway_line_pages'), 'fare');
       l.process();
     };
 
@@ -31192,10 +31196,10 @@ $('#progress').html(
 })(jQuery);
 
 (function() {
-  var LinksToPassengerSurveyPages, LinksToPassengerSurveyPagesOnIndexPage, PassengerSurvey, PassengerSurveyTable, PassengerSurveyTableRow;
+  var LinkToPassengerSurveyPagesInEachUl, LinksToPassengerSurveyPages, LinksToPassengerSurveyPagesOnIndexPage, PassengerSurvey, PassengerSurveyTable, PassengerSurveyTableRow;
 
   PassengerSurvey = (function() {
-    var children_of_main_text_domain_in_main_title, has_main_title, has_survey_year_domain_in_main_title, has_table, links_to_year_pages_on_index_page, main_text_domain_in_main_title, main_title, on_passenger_survey_index_page, process_icon_of_operator_on_index_page, process_links_to_pages, process_survey_year_domain_in_main_title, process_table, survey_year_domain_in_main_title, table, tables;
+    var children_of_main_text_domain_in_main_title, has_main_title, has_survey_year_domain_in_main_title, has_table, main_text_domain_in_main_title, main_title, on_passenger_survey_index_page, process_icon_of_operator_on_index_page, process_links_to_pages, process_survey_year_domain_in_main_title, process_table, survey_year_domain_in_main_title, table, tables, ul_links_to_year_pages_on_index_page;
 
     function PassengerSurvey(domain) {
       this.domain = domain != null ? domain : $('#passenger_survey_table');
@@ -31237,12 +31241,12 @@ $('#progress').html(
       return tables(v).length > 0;
     };
 
-    links_to_year_pages_on_index_page = function(v) {
-      return $('ul#links_to_year_pages.on_index_page');
+    ul_links_to_year_pages_on_index_page = function(v) {
+      return $('ul#links_to_year_pages_on_index_page');
     };
 
     on_passenger_survey_index_page = function(v) {
-      return links_to_year_pages_on_index_page(v).length > 0;
+      return ul_links_to_year_pages_on_index_page(v).length > 0;
     };
 
     PassengerSurvey.prototype.process = function() {
@@ -31277,12 +31281,12 @@ $('#progress').html(
 
     process_links_to_pages = function(v) {
       var l;
-      l = new LinksToPassengerSurveyPages($('#links_to_passenger_survey_pages'));
+      l = new LinksToPassengerSurveyPages($('ul#links_to_passenger_survey_pages'));
       l.process();
     };
 
     process_icon_of_operator_on_index_page = function(v) {
-      links_to_year_pages_on_index_page(v).children('li.survey_year').each(function() {
+      ul_links_to_year_pages_on_index_page(v).children('li.survey_year').each(function() {
         var l;
         l = new LinksToPassengerSurveyPagesOnIndexPage($(this));
         l.process();
@@ -31511,7 +31515,7 @@ $('#progress').html(
   })();
 
   LinksToPassengerSurveyPages = (function() {
-    var contents_of_railway_line_or_operator_domain, has_links_to_railway_line_pages, has_links_to_railway_line_pages_of_this_station, has_links_to_year_pages, li_railway_line_domains, li_survey_year_domains, li_tokyo_metro_domain, link_domains_to_operator_page, link_domains_to_railway_line_pages, links_to_railway_line_pages, links_to_railway_line_pages_of_this_station, links_to_year_pages, process_railway_line_and_operator_domain, process_titles, process_width_of_cells, set_height_of_survey_year_domain, set_width_of_railway_line_and_operator_domain_to_instance, set_width_of_survey_year_domain, titles, ul_each_railway_line_domains, ul_operator_domains, width_of_whole_domain;
+    var contents_of_railway_line_or_operator_domain, has_links_to_railway_line_pages, has_links_to_railway_line_pages_of_this_station, has_links_to_year_pages, li_domains, li_railway_line_domains, li_survey_year_domains, li_tokyo_metro_domain, links_to_railway_line_pages, links_to_railway_line_pages_of_this_station, links_to_year_pages, main_content_in_link_to_operator_page, main_contents_in_link_to_railway_line_pages, max_border_width_of_li_domains, max_number_of_li_domains_for_each_ul, max_outer_width_of_railway_line_and_operator_domains, max_width_of_li_survey_year_domains, process_railway_line_and_operator_domain, process_titles, set_border_width_of_li_domains_to_this_object, set_length_of_survey_year_domain, set_max_number_of_li_domains_for_each_ul_to_this_object, set_width_of_li_survey_year_domains_to_this_object, set_width_of_railway_line_and_operator_domains_to_this_object, set_width_of_text_domain_in_railway_line_and_operator_domain, set_width_of_whole_domain_to_this_object, titles, ul_each_railway_line_domains, ul_operator_domains, width_of_whole_domain;
 
     function LinksToPassengerSurveyPages(domain) {
       this.domain = domain;
@@ -31549,6 +31553,10 @@ $('#progress').html(
       return links_to_year_pages(v).length > 0;
     };
 
+    li_domains = function(v) {
+      return v.domain.find('li.railway_line , li.tokyo_metro , li.survey_year');
+    };
+
     ul_each_railway_line_domains = function(v) {
       var ary;
       ary = [];
@@ -31577,11 +31585,11 @@ $('#progress').html(
       return ary;
     };
 
-    link_domains_to_railway_line_pages = function(v) {
+    main_contents_in_link_to_railway_line_pages = function(v) {
       var ary;
       ary = [];
       $.each(li_railway_line_domains(v), function() {
-        $(this).children('.link_to_railway_line_page').each(function() {
+        $(this).children('.railway_line_without_link , .with_link_to_railway_line_page').each(function() {
           ary.push($(this));
         });
       });
@@ -31609,7 +31617,7 @@ $('#progress').html(
       return d;
     };
 
-    link_domains_to_operator_page = function(v) {
+    main_content_in_link_to_operator_page = function(v) {
       var _li_tokyo_metro_domain, d;
       _li_tokyo_metro_domain = li_tokyo_metro_domain(v);
       if (_li_tokyo_metro_domain === null) {
@@ -31621,14 +31629,14 @@ $('#progress').html(
     };
 
     contents_of_railway_line_or_operator_domain = function(v) {
-      var _link_domains_to_operator_page, ary;
+      var _main_content_in_link_to_operator_page, ary;
       ary = [];
-      $.each(link_domains_to_railway_line_pages(v), function() {
+      $.each(main_contents_in_link_to_railway_line_pages(v), function() {
         ary.push($(this));
       });
-      _link_domains_to_operator_page = link_domains_to_operator_page(v);
-      if (_link_domains_to_operator_page !== null) {
-        _link_domains_to_operator_page.each(function() {
+      _main_content_in_link_to_operator_page = main_content_in_link_to_operator_page(v);
+      if (_main_content_in_link_to_operator_page !== null) {
+        _main_content_in_link_to_operator_page.each(function() {
           ary.push($(this));
         });
       }
@@ -31654,94 +31662,196 @@ $('#progress').html(
       return ary;
     };
 
-    LinksToPassengerSurveyPages.prototype.process = function() {
-      process_titles(this);
-      set_width_of_railway_line_and_operator_domain_to_instance(this);
-      process_railway_line_and_operator_domain(this);
-      set_height_of_survey_year_domain(this);
-      set_width_of_survey_year_domain(this);
-      process_width_of_cells(this);
+    max_number_of_li_domains_for_each_ul = function(v) {
+      var n;
+      n = 0;
+      $.each([ul_each_railway_line_domains(v), ul_operator_domains(v)], function() {
+        var ul_group;
+        ul_group = $(this);
+        ul_group.each(function() {
+          var ul;
+          ul = $(this);
+          n = Math.max(n, ul.children('li').length);
+        });
+      });
+      return n;
     };
 
-    process_titles = function(v) {
-      var w;
-      w = width_of_whole_domain(v);
-      titles(v).each(function() {
-        var paddings_left_and_right;
-        paddings_left_and_right = $(this).innerWidth() - $(this).width();
-        $(this).css('width', w - paddings_left_and_right);
+    max_border_width_of_li_domains = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(li_domains(v));
+      return p.max_border_width();
+    };
+
+    max_width_of_li_survey_year_domains = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(li_survey_year_domains(v));
+      return p.max_inner_width();
+    };
+
+    max_outer_width_of_railway_line_and_operator_domains = function(v) {
+      var _contents, p;
+      _contents = contents_of_railway_line_or_operator_domain(v);
+      p = new DomainsCommonProcessor($(_contents));
+      return p.max_outer_width(true);
+    };
+
+    LinksToPassengerSurveyPages.prototype.process = function() {
+      set_width_of_text_domain_in_railway_line_and_operator_domain(this);
+      set_width_of_whole_domain_to_this_object(this);
+      set_max_number_of_li_domains_for_each_ul_to_this_object(this);
+      set_border_width_of_li_domains_to_this_object(this);
+      set_width_of_li_survey_year_domains_to_this_object(this);
+      set_width_of_railway_line_and_operator_domains_to_this_object(this);
+      process_titles(this);
+      process_railway_line_and_operator_domain(this);
+      set_length_of_survey_year_domain(this);
+    };
+
+    set_width_of_text_domain_in_railway_line_and_operator_domain = function(v) {
+      $.each([li_railway_line_domains(v), li_tokyo_metro_domain(v)], function() {
+        var li_domain_group;
+        li_domain_group = $(this);
+        $.each(li_domain_group, function() {
+          var l;
+          l = new LinkToRailwayLinePage($(this), 'passenger_survey');
+          l.set_text_width();
+        });
       });
     };
 
-    set_width_of_railway_line_and_operator_domain_to_instance = function(v) {
-      var p, w;
-      p = new DomainsCommonProcessor($(contents_of_railway_line_or_operator_domain(v)));
-      w = p.max_outer_width(true);
-      v.width_of_railway_line_and_operator_domain = w;
+    set_width_of_whole_domain_to_this_object = function(v) {
+      var w;
+      w = width_of_whole_domain(v);
+      v.width_of_whole_domain = w;
+      console.log('width_of_whole_domain: ' + w);
+    };
+
+    set_max_number_of_li_domains_for_each_ul_to_this_object = function(v) {
+      var n;
+      n = max_number_of_li_domains_for_each_ul(v);
+      v.max_number_of_li_domains = n;
+      console.log('max_number_of_li_domains: ' + n);
+    };
+
+    set_border_width_of_li_domains_to_this_object = function(v) {
+      var w;
+      w = max_border_width_of_li_domains(v);
+      v.border_width_of_li_domains = w;
+      console.log('border_width_of_li_domains: ' + w);
+    };
+
+    set_width_of_li_survey_year_domains_to_this_object = function(v) {
+      var w;
+      w = max_width_of_li_survey_year_domains(v);
+      v.width_of_li_survey_year_domains = w;
+      console.log('width_of_li_survey_year_domains: ' + w);
+    };
+
+    set_width_of_railway_line_and_operator_domains_to_this_object = function(v) {
+      var w, w1, w2;
+      w1 = max_outer_width_of_railway_line_and_operator_domains(v);
+      w2 = v.width_of_whole_domain - (v.width_of_li_survey_year_domains * (v.max_number_of_li_domains - 1) + v.border_width_of_li_domains * (v.max_number_of_li_domains + 1));
+      w = Math.max(w1, w2);
+      v.width_of_railway_line_and_operator_domains = w;
+      console.log('width_of_railway_line_and_operator_domains: ' + w);
+    };
+
+    process_titles = function(v) {
+      titles(v).each(function() {
+        var paddings_left_and_right;
+        paddings_left_and_right = $(this).innerWidth() - $(this).width();
+        $(this).css('width', v.width_of_whole_domain - paddings_left_and_right);
+      });
     };
 
     process_railway_line_and_operator_domain = function(v) {
       var _li_tokyo_metro_domain;
       $.each(li_railway_line_domains(v), function() {
         var p;
-        p = new LinkToRailwayLinePage($(this), 'passenger_survey', v.width_of_railway_line_and_operator_domain, '.link_to_railway_line_page');
+        p = new LinkToRailwayLinePage($(this), 'passenger_survey', v.width_of_railway_line_and_operator_domains, '.with_link_to_railway_line_page , .railway_line_without_link');
         p.process();
       });
       _li_tokyo_metro_domain = li_tokyo_metro_domain(v);
       if (_li_tokyo_metro_domain !== null) {
         $.each(_li_tokyo_metro_domain, function() {
           var p;
-          p = new LinkToRailwayLinePage($(this), 'passenger_survey', v.width_of_railway_line_and_operator_domain, '.link_to_operator_page');
+          p = new LinkToRailwayLinePage($(this), 'passenger_survey', v.width_of_railway_line_and_operator_domains, '.link_to_operator_page');
           p.process();
         });
       }
     };
 
-    set_height_of_survey_year_domain = function(v) {
+    set_length_of_survey_year_domain = function(v) {
       var _ul_operator_domains;
       $.each(ul_each_railway_line_domains(v), function() {
-        var height_of_railway_line, p;
-        height_of_railway_line = $(this).children('li.railway_line').height();
-        p = new DomainsCommonProcessor($(this).children('li.survey_year'));
-        p.set_css_attribute('height', height_of_railway_line);
+        var p;
+        p = new LinkToPassengerSurveyPagesInEachUl($(this), 'railway_line', v.width_of_li_survey_year_domains);
+        p.process();
       });
       _ul_operator_domains = ul_operator_domains(v);
       if (_ul_operator_domains !== null) {
         _ul_operator_domains.each(function() {
-          var height_of_operator, p;
-          height_of_operator = $(this).children('li.tokyo_metro').height();
-          p = new DomainsCommonProcessor($(this).children('li.survey_year'));
-          p.set_css_attribute('height', height_of_operator);
+          var p;
+          p = new LinkToPassengerSurveyPagesInEachUl($(this), 'tokyo_metro', v.width_of_li_survey_year_domains);
+          p.process();
         });
       }
     };
 
-    set_width_of_survey_year_domain = function(v) {
-      var _li_survey_year_domains, p, w;
-      _li_survey_year_domains = li_survey_year_domains(v);
-      p = new DomainsCommonProcessor(_li_survey_year_domains);
-      w = Math.ceil(p.max_width());
-      p.set_css_attribute('width', w);
-    };
-
-    process_width_of_cells = function(v) {
-      var current_margin_right, first_railway_line_domain, number_of_children, p1, p2, sum_w, w;
-      w = width_of_whole_domain(v);
-      console.log(w);
-      first_railway_line_domain = ul_each_railway_line_domains(v)[0];
-      console.log(first_railway_line_domain);
-      console.log(first_railway_line_domain.attr('class'));
-      number_of_children = first_railway_line_domain.children().length;
-      p1 = new DomainsCommonProcessor(first_railway_line_domain.children());
-      p2 = new RailwayLineAndStationMatrix();
-      sum_w = p1.sum_width() + p2.border_width * (number_of_children + 1);
-      current_margin_right = w - sum_w;
-      console.log(p1.sum_width());
-      console.log(sum_w);
-      console.log(current_margin_right);
-    };
-
     return LinksToPassengerSurveyPages;
+
+  })();
+
+  LinkToPassengerSurveyPagesInEachUl = (function() {
+    var height_of_name_domain, name_domain, set_height_of_each_li_domain_to_this_object, set_height_to_survey_year_domains, set_vertical_align_of_texts_and_width, survey_year_domains;
+
+    function LinkToPassengerSurveyPagesInEachUl(domain, name_of_li_main_content, width_of_survey_year_domains) {
+      this.domain = domain;
+      this.name_of_li_main_content = name_of_li_main_content;
+      this.width_of_survey_year_domains = width_of_survey_year_domains;
+    }
+
+    name_domain = function(v) {
+      return v.domain.children("li." + v.name_of_li_main_content).first();
+    };
+
+    height_of_name_domain = function(v) {
+      return name_domain(v).height();
+    };
+
+    survey_year_domains = function(v) {
+      return v.domain.children('li.survey_year');
+    };
+
+    LinkToPassengerSurveyPagesInEachUl.prototype.process = function() {
+      set_height_of_each_li_domain_to_this_object(this);
+      set_height_to_survey_year_domains(this);
+      set_vertical_align_of_texts_and_width(this);
+    };
+
+    set_height_of_each_li_domain_to_this_object = function(v) {
+      v.height_of_each_li_domain = height_of_name_domain(v);
+    };
+
+    set_height_to_survey_year_domains = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(survey_year_domains(v));
+      p.set_css_attribute('height', v.height_of_each_li_domain);
+    };
+
+    set_vertical_align_of_texts_and_width = function(v) {
+      survey_year_domains(v).each(function() {
+        var p, p_domain, survey_year;
+        survey_year = $(this);
+        p_domain = $(this).children('p.text_en').first();
+        p = new DomainsVerticalAlignProcessor(p_domain, v.height_of_each_li_domain);
+        p.process();
+        survey_year.css('width', v.width_of_survey_year_domains);
+      });
+    };
+
+    return LinkToPassengerSurveyPagesInEachUl;
 
   })();
 
@@ -32187,6 +32297,15 @@ $('#progress').html(
       len = 0;
       $.each(this.domains, function() {
         len = len + $(this).innerHeight();
+      });
+      return Math.ceil(len);
+    };
+
+    DomainsCommonProcessor.prototype.max_border_width = function() {
+      var len;
+      len = 0;
+      $.each(this.domains, function() {
+        len = Math.max(len, parseInt($(this).css('border-width'), 10));
       });
       return Math.ceil(len);
     };

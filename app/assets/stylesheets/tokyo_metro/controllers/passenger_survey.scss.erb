@@ -6,8 +6,9 @@
 li.survey_year {
   .text_en {
     font-size: 12pt ;
+    @extend %marginLeft8 ;
+    @extend %marginRight8 ;
   }
-  padding: 8px ;
 }
 
 .links_to_passenger_survey {
@@ -21,7 +22,7 @@ li.survey_year {
   }
 }
 
-ul#links_to_year_pages.on_index_page {
+ul#links_to_year_pages_on_index_page {
   @extend %clearUlDefaultSettings ;
   li.survey_year {
     @extend %liBaseSettingsInLinkUl ;
@@ -29,6 +30,7 @@ ul#links_to_year_pages.on_index_page {
     margin: {
       right: -1px ;
     }
+    padding: 8px ;
     .icon {
       @extend %floatLeft ;
       @extend %marginRight4 ;
@@ -49,11 +51,13 @@ ul#links_to_year_pages.on_index_page {
   @extend %marginBottom32 ;
 }
 
-.infos {
-  p.text_ja.info {
-    font-size: 9pt ;
+.links_to_passenger_survey {
+  .infos {
+    p.text_ja.info {
+      font-size: 9pt ;
+    }
+    @extend %marginBottom8 ;
   }
-  @extend %marginBottom8 ;
 }
 
 %passengerSurveyTable_TableDomainSettings {
