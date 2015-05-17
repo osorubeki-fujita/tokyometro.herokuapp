@@ -16,14 +16,4 @@
       }
     }
   }
-  &.this_page {
-    background: {
-      color: rgba( $color , 0.2 * $rate ) ;
-    }
-    .text {
-      .text_en {
-        color: desaturate( $color , 60% ) ;
-      }
-    }
-  }
 }

@@ -5,10 +5,33 @@
 
 //---- 乗降客数（年度別）
 
+@mixin linkToRailwayLineColorSettingInLinksToThisPassengerSurveyPage( $color , $rate ) {
+  background: {
+    color: rgba( $color , 0.2 * $rate ) ;
+  }
+  .text {
+    .text_en {
+      color: desaturate( $color , 60% ) ;
+    }
+  }
+}
+
 @mixin linkToRailwayLineColorSettingInLinksToPassengerSurveyPages( $color , $rate: 1 ) {
-  @include linkToRailwayLineColorSetting( $color , $rate ) ;
+  &.railway_line {
+    @include linkToRailwayLineColorSetting( $color , $rate ) ;
+  }
   &.survey_year {
-    @include linkToRailwayLineColorSetting( $color , $rate * 0.8 ) ;
+    @include linkToRailwayLineColorSetting( $color , $rate * 0.6 ) ;
+  }
+
+  &.railway_line.this_page {
+    @include linkToRailwayLineColorSettingInLinksToThisPassengerSurveyPage( $color , $rate * 0.8 ) ;
+  }
+  &.railway_line._hover {
+    @include linkToRailwayLineColorSettingInLinksToThisPassengerSurveyPage( $color , $rate * 0.6 ) ;
+  }
+  &.survey_year.this_year {
+    @include linkToRailwayLineColorSettingInLinksToThisPassengerSurveyPage( $color , $rate * 0.8 ) ;
   }
 }
 

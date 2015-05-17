@@ -1,24 +1,34 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
-@import 'concern/station/in_table_cell.scss' ;
+@import 'concerns/station/in_table_cell.scss' ;
+@import 'concerns/background_of_menu.scss' ;
+
+#main_content_center {
+  .links_to_passenger_survey {
+    .title {
+      @extend %backgroundOfMenu ;
+      @extend %borderBottomOfMenu ;
+      @extend %marginBottom16 ;
+      @extend %paddingLeft8 ;
+      @extend %paddingTop4 ;
+      @extend %paddingBottom4 ;
+      font: {
+        weight: normal ;
+        size: 12pt ;
+      }
+      .small {
+        font-size: 9pt ;
+      }
+    }
+  }
+}
 
 li.survey_year {
   .text_en {
     font-size: 12pt ;
     @extend %marginLeft8 ;
     @extend %marginRight8 ;
-  }
-}
-
-.links_to_passenger_survey {
-  .title {
-    font: {
-      weight: normal ;
-    }
-    .small {
-      font-size: 12pt ;
-    }
   }
 }
 
@@ -59,6 +69,8 @@ ul#links_to_year_pages_on_index_page {
     @extend %marginBottom8 ;
   }
 }
+
+//--------
 
 %passengerSurveyTable_TableDomainSettings {
   @extend %stationInfoInTableCommonSettings ;
@@ -146,6 +158,10 @@ ul#links_to_year_pages_on_index_page {
       }
     }
     td.graph {
+      padding: {
+        top: 0px ;
+        bottom: 0px ;
+      }
       svg {
         height: <%= ::TokyoMetro::App::Renderer::PassengerSurvey::Table::MetaClass::Row.rectangle_height %>px ;
         width: 0px ;

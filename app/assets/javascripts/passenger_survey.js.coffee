@@ -1,7 +1,7 @@
 class PassengerSurvey
 
   constructor: ( @domain = $( '#passenger_survey_table' ) ) ->
-  
+
   main_title = (v) ->
     return $('#passenger_survey_title')
 
@@ -19,7 +19,7 @@ class PassengerSurvey
 
   has_survey_year_domain_in_main_title = (v) ->
     return has_main_title(v) and survey_year_domain_in_main_title(v).length > 0
-    
+
   #--------
 
   tables = (v) ->
@@ -97,7 +97,6 @@ class PassengerSurveyTable
       row = new PassengerSurveyTableRow( $( this ) )
       n = Math.max( n , row.number_of_station_code_images() )
       return
-    # console.log ( 'max_number_of_station_code: ' + n )
     return n
 
   max_width_of_station_codes = (v) ->
@@ -113,8 +112,6 @@ class PassengerSurveyTable
     return 8
 
   svg_width = (v) ->
-    # console.log margin_right_of_table(v)
-    # console.log max_td_graph_width(v)
     return Math.min( margin_right_of_table(v) - min_additional_width_of_td_station_info(v) , max_td_graph_width(v) )
 
   additional_width_of_td_station_info = (v) ->
@@ -140,22 +137,15 @@ class PassengerSurveyTable
   process: ->
     process_station_infos(@)
 
-    # console.log 'margin_right_of_table: '+ margin_right_of_table(@)
-    # console.log 'min_additional_width_of_td_station_info: '+ min_additional_width_of_td_station_info(@)
-
     _svg_width = svg_width(@)
     _additional_width_of_td_station_info = additional_width_of_td_station_info(@)
 
-    # console.log 'svg_width: ' + _svg_width
-    # console.log 'additional_width_of_td_station_info: ' + _additional_width_of_td_station_info
-    
     process_graphs( @ , _svg_width )
     set_width_of_td_station_info( @ , _additional_width_of_td_station_info )
     return
 
   process_station_infos = (v) ->
     _max_width_of_station_codes = max_width_of_station_codes(v)
-    # console.log 'max_width_of_station_codes: '+ _max_width_of_station_codes
 
     tr_rows(v).each ->
       row = new PassengerSurveyTableRow( $( this ) ) 
@@ -165,7 +155,6 @@ class PassengerSurveyTable
 
   process_graphs = ( v , _svg_width ) ->
     _max_passenger_journeys = max_passenger_journeys(v)
-    # console.log 'max_passenger_journeys: ' + _max_passenger_journeys
 
     tr_rows(v).each ->
       row = new PassengerSurveyTableRow( $( this ) )
@@ -174,7 +163,6 @@ class PassengerSurveyTable
     return
 
   set_width_of_td_station_info = ( v , _additional_width_of_td_station_info ) ->
-    # console.log _additional_width_of_td_station_info
     first_row = new PassengerSurveyTableRow( tr_rows(v).first() )
     first_row.set_width_of_td_station_info( _additional_width_of_td_station_info )
     return
@@ -234,6 +222,7 @@ class PassengerSurveyTableRow
     w = width_of_svg_rectangle( @ , svg_width , max_passenger_journeys )
     set_width_of_svg( @ , svg_width )
     set_width_of_rect( @ , w )
+    # set_vertical_align_of_svg(@)
     return
 
   width_of_svg_rectangle = ( v , svg_width , max_passenger_journeys )->
@@ -241,7 +230,6 @@ class PassengerSurveyTableRow
       w = svg_width
     else
       w = Math.ceil( ( v.passenger_journeys() * 1.0 / max_passenger_journeys ) * svg_width )
-    # console.log 'width_of_svg_rectangle: ' + w
     return w
 
   set_width_of_svg = ( v , svg_width ) ->
@@ -252,11 +240,14 @@ class PassengerSurveyTableRow
     rect(v).attr( 'width' , w )
     return
 
+  set_vertical_align_of_svg = (v) ->
+    p = new DomainsVerticalAlignProcessor( svg(v) , graph(v).height() )
+    p.process()
+    return
+
   set_width_of_td_station_info: ( _additional_width_of_td_station_info ) ->
     _station_info = station_info(@)
     current_width = _station_info.width()
-    # console.log 'current_width: ' + current_width
-    # console.log 'additional_width_of_td_station_info: ' + _additional_width_of_td_station_info
     _station_info.css( 'width' , current_width + _additional_width_of_td_station_info )
     return
 
@@ -311,7 +302,6 @@ class LinksToPassengerSurveyPages
         ary.push( $( this ) )
         return
       return
-    # console.log 'li_railway_line_domains size: ' + ary.length
     return ary
 
   main_contents_in_link_to_railway_line_pages = (v) ->
@@ -353,31 +343,22 @@ class LinksToPassengerSurveyPages
       ary.push( $( this ) )
       return
 
-    # console.log 'contents_of_railway_line_or_operator_domain size: ' + ary.length
-
     _main_content_in_link_to_operator_page = main_content_in_link_to_operator_page(v)
     unless _main_content_in_link_to_operator_page is null
       _main_content_in_link_to_operator_page.each ->
         ary.push( $( this ) )
         return
 
-    # console.log 'contents_of_railway_line_or_operator_domain size: ' + ary.length
     return ary
 
   li_survey_year_domains = (v) ->
     ary = []
 
-    # console.log ul_each_railway_line_domains(v).length
-
     $.each ul_each_railway_line_domains(v) , ->
-      # console.log $( this )
       $( this ).children( 'li.survey_year' ).each ->
-        # console.log $( this )
         ary.push( $( this ) )
         return
       return
-
-    # console.log ary.length
 
     _ul_operator_domains = ul_operator_domains(v)
     unless _ul_operator_domains is null
@@ -386,8 +367,6 @@ class LinksToPassengerSurveyPages
           ary.push( $( this ) )
           return
         return
-
-    # console.log ary.length
 
     return ary
 
@@ -442,25 +421,25 @@ class LinksToPassengerSurveyPages
   set_width_of_whole_domain_to_this_object = (v) ->
     w = width_of_whole_domain(v)
     v.width_of_whole_domain = w
-    console.log 'width_of_whole_domain: ' + w
+    # console.log 'width_of_whole_domain: ' + w
     return
-  
+
   set_max_number_of_li_domains_for_each_ul_to_this_object = (v) ->
     n = max_number_of_li_domains_for_each_ul(v)
     v.max_number_of_li_domains = n
-    console.log 'max_number_of_li_domains: ' + n
+    # console.log 'max_number_of_li_domains: ' + n
     return
-  
+
   set_border_width_of_li_domains_to_this_object = (v) ->
     w = max_border_width_of_li_domains(v)
     v.border_width_of_li_domains = w
-    console.log 'border_width_of_li_domains: ' + w
+    # console.log 'border_width_of_li_domains: ' + w
     return
-  
+
   set_width_of_li_survey_year_domains_to_this_object = (v) ->
     w = max_width_of_li_survey_year_domains(v)
     v.width_of_li_survey_year_domains = w
-    console.log 'width_of_li_survey_year_domains: ' + w
+    # console.log 'width_of_li_survey_year_domains: ' + w
     return
 
   set_width_of_railway_line_and_operator_domains_to_this_object = (v) ->
@@ -468,7 +447,7 @@ class LinksToPassengerSurveyPages
     w2 = v.width_of_whole_domain - ( v.width_of_li_survey_year_domains * ( v.max_number_of_li_domains - 1 ) + v.border_width_of_li_domains * ( v.max_number_of_li_domains + 1 ) )
     w = Math.max( w1 , w2 )
     v.width_of_railway_line_and_operator_domains = w
-    console.log 'width_of_railway_line_and_operator_domains: ' + w
+    # console.log 'width_of_railway_line_and_operator_domains: ' + w
     return
 
   process_titles = (v) ->
@@ -480,16 +459,13 @@ class LinksToPassengerSurveyPages
 
   process_railway_line_and_operator_domain = (v) ->
     $.each li_railway_line_domains(v) , ->
-      # console.log $( this )
       p = new LinkToRailwayLinePage( $( this ) , 'passenger_survey' , v.width_of_railway_line_and_operator_domains , '.with_link_to_railway_line_page , .railway_line_without_link' )
       p.process()
       return
 
     _li_tokyo_metro_domain = li_tokyo_metro_domain(v)
     unless _li_tokyo_metro_domain is null
-      # console.log 'process_railway_line_and_operator_domain - operator'
       $.each _li_tokyo_metro_domain , ->
-        # console.log $( this )
         p = new LinkToRailwayLinePage( $( this ) , 'passenger_survey' , v.width_of_railway_line_and_operator_domains , '.link_to_operator_page' )
         p.process()
         return
@@ -511,24 +487,24 @@ class LinksToPassengerSurveyPages
     return
 
 class LinkToPassengerSurveyPagesInEachUl
-  
+
   constructor: ( @domain , @name_of_li_main_content , @width_of_survey_year_domains ) ->
-  
+
   name_domain = (v) ->
     return v.domain.children( "li.#{ v.name_of_li_main_content }" ).first()
-  
+
   height_of_name_domain = (v) ->
     return name_domain(v).height()
-  
+
   survey_year_domains = (v) ->
     return v.domain.children( 'li.survey_year' )
-  
+
   process: ->
     set_height_of_each_li_domain_to_this_object(@)
     set_height_to_survey_year_domains(@)
     set_vertical_align_of_texts_and_width(@)
     return
-  
+
   set_height_of_each_li_domain_to_this_object = (v) ->
     v.height_of_each_li_domain = height_of_name_domain(v)
     return
@@ -537,7 +513,7 @@ class LinkToPassengerSurveyPagesInEachUl
     p = new DomainsCommonProcessor( survey_year_domains(v) )
     p.set_css_attribute( 'height' , v.height_of_each_li_domain )
     return
-  
+
   set_vertical_align_of_texts_and_width = (v) ->
     survey_year_domains(v).each ->
       survey_year = $(@)
@@ -551,29 +527,29 @@ class LinkToPassengerSurveyPagesInEachUl
 class LinksToPassengerSurveyPagesOnIndexPage
 
   constructor: ( @domain ) ->
-  
+
   icon = (v) ->
     return v.domain.children( '.icon' ).first()
-  
+
   icon_img = (v) ->
     return icon(v).children( 'img' ).first()
-    
+
   text = (v) ->
     return v.domain.children( '.text' ).first()
-  
+
   process: ->
     set_position_of_icon(@)
     process_text(@)
     set_vertical_align(@)
     return
-  
+
   set_position_of_icon = (v) ->
     p1 = new DomainsVerticalAlignProcessor( icon_img(v) , icon(v).height() )
     p1.process()
     p2 = new DomainsHorizontalAlignProcessor( icon_img(v) , icon(v).width() )
     p2.process()
     return
-  
+
   process_text = (v) ->
     l = new LengthToEven( text(v) )
     l.set()
@@ -583,7 +559,6 @@ class LinksToPassengerSurveyPagesOnIndexPage
     _children = v.domain.children().not( 'a' )
     p1 = new DomainsCommonProcessor( _children )
     h = p1.max_outer_height( false )
-    console.log h
     p2 = new DomainsVerticalAlignProcessor( _children , h )
     p2.process()
     return

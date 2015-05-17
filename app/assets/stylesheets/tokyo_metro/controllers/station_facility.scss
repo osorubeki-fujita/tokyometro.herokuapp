@@ -1,7 +1,7 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
-@import 'concern/connecting_railway_line_info.scss' ;
+@import 'concerns/connecting_railway_line_info.scss' ;
 
 %lineCodeAndColorBoxInStationFacilityRailwayLineInfo {
   @extend %floatLeft ;

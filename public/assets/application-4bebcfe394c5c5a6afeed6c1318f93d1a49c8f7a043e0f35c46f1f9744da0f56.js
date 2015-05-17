@@ -30870,7 +30870,7 @@ $('#progress').html(
         });
       };
       $.each(list(v), function() {
-        this.not('.same_category, .this_page').hover(add_class_hover, remove_class_hover);
+        this.not('.same_category, .this_page , .this_year').hover(add_class_hover, remove_class_hover);
       });
     };
 
@@ -30891,7 +30891,7 @@ $('#progress').html(
     hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey = function(v, selector) {
       var e;
       e = function() {
-        $(this).prevAll(selector).addClass('_hover', {
+        $(this).prevAll(selector).not('.this_page').addClass('_hover', {
           duration: 200,
           children: true
         });
@@ -30902,7 +30902,7 @@ $('#progress').html(
     hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey = function(v, selector) {
       var e;
       e = function() {
-        $(this).prevAll(selector).removeClass('_hover', {
+        $(this).prevAll(selector).not('.this_page').removeClass('_hover', {
           duration: 300,
           children: true
         });
@@ -31416,7 +31416,7 @@ $('#progress').html(
   })();
 
   PassengerSurveyTableRow = (function() {
-    var graph, rect, set_attributes_of_station_info, set_width_of_rect, set_width_of_station_codes, set_width_of_svg, station_code_images, station_codes, station_info, station_info_domain, svg, width_of_svg_rectangle;
+    var graph, rect, set_attributes_of_station_info, set_vertical_align_of_svg, set_width_of_rect, set_width_of_station_codes, set_width_of_svg, station_code_images, station_codes, station_info, station_info_domain, svg, width_of_svg_rectangle;
 
     function PassengerSurveyTableRow(row1) {
       this.row = row1;
@@ -31501,6 +31501,12 @@ $('#progress').html(
 
     set_width_of_rect = function(v, w) {
       rect(v).attr('width', w);
+    };
+
+    set_vertical_align_of_svg = function(v) {
+      var p;
+      p = new DomainsVerticalAlignProcessor(svg(v), graph(v).height());
+      p.process();
     };
 
     PassengerSurveyTableRow.prototype.set_width_of_td_station_info = function(_additional_width_of_td_station_info) {
@@ -31724,28 +31730,24 @@ $('#progress').html(
       var w;
       w = width_of_whole_domain(v);
       v.width_of_whole_domain = w;
-      console.log('width_of_whole_domain: ' + w);
     };
 
     set_max_number_of_li_domains_for_each_ul_to_this_object = function(v) {
       var n;
       n = max_number_of_li_domains_for_each_ul(v);
       v.max_number_of_li_domains = n;
-      console.log('max_number_of_li_domains: ' + n);
     };
 
     set_border_width_of_li_domains_to_this_object = function(v) {
       var w;
       w = max_border_width_of_li_domains(v);
       v.border_width_of_li_domains = w;
-      console.log('border_width_of_li_domains: ' + w);
     };
 
     set_width_of_li_survey_year_domains_to_this_object = function(v) {
       var w;
       w = max_width_of_li_survey_year_domains(v);
       v.width_of_li_survey_year_domains = w;
-      console.log('width_of_li_survey_year_domains: ' + w);
     };
 
     set_width_of_railway_line_and_operator_domains_to_this_object = function(v) {
@@ -31754,7 +31756,6 @@ $('#progress').html(
       w2 = v.width_of_whole_domain - (v.width_of_li_survey_year_domains * (v.max_number_of_li_domains - 1) + v.border_width_of_li_domains * (v.max_number_of_li_domains + 1));
       w = Math.max(w1, w2);
       v.width_of_railway_line_and_operator_domains = w;
-      console.log('width_of_railway_line_and_operator_domains: ' + w);
     };
 
     process_titles = function(v) {
@@ -31899,7 +31900,6 @@ $('#progress').html(
       _children = v.domain.children().not('a');
       p1 = new DomainsCommonProcessor(_children);
       h = p1.max_outer_height(false);
-      console.log(h);
       p2 = new DomainsVerticalAlignProcessor(_children, h);
       p2.process();
     };

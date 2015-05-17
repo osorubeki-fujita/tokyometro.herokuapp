@@ -3,10 +3,10 @@
 @import '../../../fundamental_settings.scss' ;
 
 %liHoverBgNormalInLinkUl {
-  $rate: 0.75 ;
+  $rate: 0.9 ;
   // $color_base: rgba( $link_hover_domain_color , $rate ) ;
   // $color_base: rgba( #f0f0f0 , $rate ) ;
-  $color_base: rgba( mix( #f0f0f0 , $link_hover_domain_color ) , $rate ) ;
+  $color_base: rgba( mix( #f0f0f0 , $link_hover_domain_color , 10% ) , $rate ) ;
   //
   // 変数の定義
   //
@@ -74,6 +74,12 @@
 
 %liHoverBgOperatorSurveyYearInLinkUl {
  background: {
-    color: rgba( $link_hover_domain_color , 0.9 ) ;
+    color: rgba( desaturate( $link_hover_domain_color , 5% ) , 0.7 ) ;
+  }
+}
+
+%liEmphasizeBgOperatorSurveyYearInLinkUl {
+ background: {
+    color: rgba( saturate( $link_hover_domain_color , 30% ) , 0.9 ) ;
   }
 }

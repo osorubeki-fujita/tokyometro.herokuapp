@@ -4,7 +4,7 @@
 @import 'sub_content_settings.scss' ;
 
 @import 'link_ul/li_hover_bg_normal.scss' ;
-@import 'link_ul/li_hover_bg_same_category.scss' ;
+@import 'link_ul/li_same_category_bg.scss' ;
 
 $icon_common_width: 32px ;
 $width_of_li_border_in_link: 1px ;
@@ -205,13 +205,20 @@ $border_color_of_li_in_link: #ddd ;
   }
 }
 
+%liSameCategoryTextSettingsInLinkUl {
+  .text_en {
+    color: $operator_color ;
+  }
+}
+
 %liSameCategoryColorSettingsInLinkUl {
   .icon {
     color: saturate( $operator_color , 20% ) ;
   }
-  .text_large , .text_en {
+  .text_large {
     color: $operator_color ;
   }
+  @extend %liSameCategoryTextSettingsInLinkUl ;
 }
 
 %linkHoverSettingsOfLeftSideMenu {
@@ -236,7 +243,7 @@ $border_color_of_li_in_link: #ddd ;
 
 %linkHoverSettingsOfLinkToSameCategoryPage {
   li.same_category {
-    @extend %liHoverBgSameCategoryInLinkUl ;
+    @extend %liSameCategoryBgInLinkUl ;
     @extend %liSameCategoryColorSettingsInLinkUl ;
   }
 }
@@ -355,18 +362,7 @@ ul#links_to_railway_line_pages_of_this_station {
 
 //-------- 乗降客数 年度別ページヘのリンク
 
-%commonSettingsOfLinksToYearPages {
-  li.tokyo_metro {
-    @extend %imageInLinkLi32 ;
-    .link_to_operator_page {
-      margin: 8px ;
-    }
-    &.hover {
-      @extend %liHoverBgNormalInLinkUl ;
-      @extend %liHoverIconSettingsInLinkUl ;
-      @extend %liHoverTextSettingsInLinkUl ;
-    }
-  }
+%commonSettingsOfLinksToSurveyYearPages {
   li.survey_year {
     &.hover {
       @extend %liHoverBgOperatorSurveyYearInLinkUl ;
@@ -385,20 +381,52 @@ ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station 
   @extend %commonSettingsOfLiInLinkUl ;
   //
   @extend %marginOfDivLinkToContent ;
-  li.railway_line , li.survey_year {
+  li.survey_year {
+    @extend %borderNormalSettingsOfLinksToRailwayLinePages ;
+  }
+}
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages.in_side_menu {
+  @extend %marginBottom16 ;
+}
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
+  li.railway_line {
     @extend %borderNormalSettingsOfLinksToRailwayLinePages ;
   }
 }
 
 ul#links_to_year_pages.in_side_menu {
-  @extend %commonSettingsOfLinksToYearPages ;
+  @extend %commonSettingsOfLinksToSurveyYearPages ;
   li.tokyo_metro {
     @extend %borderNormalSettingsOfLinksToRailwayLinePages ;
+    @extend %imageInLinkLi32 ;
+    .link_to_operator_page {
+      margin: 8px ;
+    }
+    &.this_page {
+      @extend %liSameCategoryBgInLinkUl ;
+      @extend %liSameCategoryTextSettingsInLinkUl ;
+      @extend %liHoverIconSettingsInLinkUl ;
+    }
+    &._hover {
+      @extend %liHoverBgNormalInLinkUl ;
+      @extend %liHoverTextSettingsInLinkUl ;
+      @extend %liHoverIconSettingsInLinkUl ;
+    }
+    &.hover {
+      @extend %liHoverBgNormalInLinkUl ;
+      @extend %liHoverTextSettingsInLinkUl ;
+      @extend %liHoverIconSettingsInLinkUl ;
+    }
+  }
+  li.survey_year.this_year {
+    @extend %liEmphasizeBgOperatorSurveyYearInLinkUl ;
   }
 }
 
 ul#links_to_year_pages_on_index_page {
-  @extend %commonSettingsOfLinksToYearPages ;
+  @extend %commonSettingsOfLinksToSurveyYearPages ;
   //
   @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
   @extend %commonSettingsOfLinkLiToRailwayLineRelatedPages ;

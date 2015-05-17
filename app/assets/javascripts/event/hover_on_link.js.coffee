@@ -138,7 +138,7 @@ class LinkDomainsToSetHoverEvent
 
     $.each list(v) , ->
       # '.this_station' は除外しない
-      @.not( '.same_category, .this_page' ).hover( add_class_hover , remove_class_hover )
+      @.not( '.same_category, .this_page , .this_year' ).hover( add_class_hover , remove_class_hover )
       return
 
     return
@@ -164,6 +164,7 @@ class LinkDomainsToSetHoverEvent
     e = ->
       $(@)
         .prevAll( selector )
+        .not( '.this_page' )
         .addClass( '_hover' , { duration: 200 , children: true } )
       return
     return e
@@ -172,6 +173,7 @@ class LinkDomainsToSetHoverEvent
     e = ->
       $(@)
         .prevAll( selector )
+        .not( '.this_page' )
         .removeClass( '_hover' , { duration: 300 , children: true } )
       return
     return e

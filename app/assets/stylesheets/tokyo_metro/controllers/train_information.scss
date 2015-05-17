@@ -73,13 +73,6 @@
   @include train_information_status_bgcolor ;
   //
   clear: both ;
-  p {
-    margin: {
-      top: 0px ;
-      bottom: 0px ;
-    }
-    line-height: 1.1em ;
-  }
   .status {
     @extend %floatLeft ;
     .infos {
