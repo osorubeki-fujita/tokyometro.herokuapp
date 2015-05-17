@@ -34,7 +34,7 @@ class TrainInformationText < ActiveRecord::Base
   def self.review!
     ::TrainInformationText.all.each do | text |
       text_in_api = text.in_api
-      text_in_api_new = text.in_api.process_train_information_text
+      text_in_api_new = text.in_api.process_train_operation_info_text
       text.update( in_api: text_in_api_new )
     end
     return nil

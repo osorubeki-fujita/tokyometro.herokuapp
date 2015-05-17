@@ -111,7 +111,7 @@
   }
 }
 
-#railway_lines , #train_informations {
+#railway_lines , #train_operation_infos {
   @extend %contentsIncludedInRailwayLineMatrixes ;
   .railway_line_matrix {
     height: 128px ;
@@ -184,7 +184,7 @@
   }
 }
 
-#station_matrixes , #train_informations {
+#station_matrixes , #train_operation_infos {
   .railway_line {
     clear: both ;
     @extend %railwayLineMatrixSmall ;

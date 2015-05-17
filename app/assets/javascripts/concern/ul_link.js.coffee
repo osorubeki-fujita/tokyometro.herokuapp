@@ -211,7 +211,7 @@ class SideMenuEachLink
       _icon = icon(v)
       p0 = new LengthToEven( _icon )
       p0.set()
-      
+
       p1 = new DomainsVerticalAlignProcessor( icon(v).children() , _icon.outerHeight( false ) , 'middle' )
       p1.process()
 

@@ -31,10 +31,10 @@ class OnPageLoadHandler
     ary.push passenger_survey
     ary.push fare_table
 
-    train_informations = new TrainInformations()
+    train_operation_infos = new TrainOperationInfos()
     train_locations = new TrainLocations()
 
-    ary.push train_informations
+    ary.push train_operation_infos
     ary.push train_locations
 
     #---- concerns (2)

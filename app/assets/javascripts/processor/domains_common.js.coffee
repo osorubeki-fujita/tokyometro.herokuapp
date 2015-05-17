@@ -87,7 +87,7 @@ class DomainsCommonProcessor
       len = len + $( this ).innerHeight()
       return
     return Math.ceil( len )
-  
+
   max_border_width: ->
     len = 0
     $.each @domains , ->

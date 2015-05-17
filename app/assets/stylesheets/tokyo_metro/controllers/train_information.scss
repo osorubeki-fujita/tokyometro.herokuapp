@@ -9,7 +9,7 @@
   }
 }
 
-@mixin train_information_status_bgcolor_base( $color_1 ) {
+@mixin train_operation_info_status_bgcolor_base( $color_1 ) {
     $color_top: rgba( $color_1 , 0.25 );
     $color_middle: rgba( $color_top , 0.1 );
     $color_bottom: $color_middle;
@@ -36,41 +36,41 @@
     );
 }
 
-@mixin train_information_status_icon_color_base( $color , $desaturation_rate: 5% ) {
+@mixin train_operation_info_status_icon_color_base( $color , $desaturation_rate: 5% ) {
   .icon {
     color: desaturate( $color , $desaturation_rate ) ;
   }
 }
 
-@mixin train_information_status_bgcolor {
+@mixin train_operation_info_status_bgcolor {
   .on_schedule {
-    @include train_information_status_bgcolor_base( $jp_traditional_byakugun ) ;
-    @include train_information_status_icon_color_base( $jp_traditional_byakugun , 10% )
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_byakugun ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_byakugun , 10% )
   }
   .nearly_on_schedule {
-    @include train_information_status_bgcolor_base( $jp_traditional_moegi ) ;
-    @include train_information_status_icon_color_base( $jp_traditional_moegi )
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_moegi ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_moegi )
   }
   .delayed {
-    @include train_information_status_bgcolor_base( $jp_traditional_kincha ) ;
-    @include train_information_status_icon_color_base( $jp_traditional_kincha )
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_kincha ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_kincha )
   }
   .suspended {
-    @include train_information_status_bgcolor_base( $jp_traditional_jinzamomi ) ;
-    @include train_information_status_icon_color_base( $jp_traditional_jinzamomi )
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_jinzamomi ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_jinzamomi )
   }
   .others {
-    @include train_information_status_bgcolor_base( #bbb ) ;
-    @include train_information_status_icon_color_base( #999 , 0% ) ;
+    @include train_operation_info_status_bgcolor_base( #bbb ) ;
+    @include train_operation_info_status_icon_color_base( #999 , 0% ) ;
   }
   .no_train , .after_last_train_finished , .before_first_train_begin{
-    @include train_information_status_bgcolor_base( #bbb ) ;
-    @include train_information_status_icon_color_base( #999 , 0% ) ;
+    @include train_operation_info_status_bgcolor_base( #bbb ) ;
+    @include train_operation_info_status_icon_color_base( #999 , 0% ) ;
   }
 }
 
-.train_information , .train_information_precise_version , .train_information_test {
-  @include train_information_status_bgcolor ;
+.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test {
+  @include train_operation_info_status_bgcolor ;
   //
   clear: both ;
   .status {
@@ -133,7 +133,7 @@
   }
 }
 
-.train_information , .train_information_precise_version , .train_information_test {
+.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test {
   .no_train , .after_last_train_finished , .before_first_train_begin{
     .text {
       .text_ja {
@@ -145,11 +145,11 @@
   }
 }
 
-li.train_information.railway_line {
+li.train_operation_info.railway_line {
   list-style: none ;
 }
 
-#train_informations {
+#train_operation_infos {
   .precise_version_title , .test_title {
     padding: 4px ;
     @extend %marginTop16 ;
@@ -184,7 +184,7 @@ li.train_information.railway_line {
   }
 }
 
-.train_information_precise_version {
+.train_operation_info_precise_version {
   .infos {
     font: {
       size: 8pt ;

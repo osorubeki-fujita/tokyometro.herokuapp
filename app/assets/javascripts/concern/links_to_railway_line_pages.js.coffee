@@ -7,7 +7,7 @@ class LinksToRailwayLinePages
 
   title_domains = (v) ->
     return v.domain.children( 'li.title' )
-  
+
   on_fare_controller = (v) ->
     return v.controller is 'fare'
 
@@ -40,21 +40,21 @@ class LinksToRailwayLinePages
     p = new DomainsCommonProcessor( link_domains(v) )
     p.set_css_attribute( 'height' , p.max_height() )
     return
-  
+
   number_of_normal_railway_lines = (v) ->
     p = new RailwayLineAndStationMatrix()
     return p.number_of_normal_railway_lines
-  
+
   border_width = (v) ->
     p = new RailwayLineAndStationMatrix()
     return p.border_width
-  
+
   whole_height_of_link_domains = (v) ->
     h = max_height_of_link_domains(v)
     num = number_of_normal_railway_lines(v)
     b_width = border_width(v)
     return h * num + b_width * ( num + 1 )
-  
+
   whole_height_of_title_domains = (v) ->
     _t = title_domains(v)
     num = _t.length

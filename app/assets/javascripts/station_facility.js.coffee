@@ -31,7 +31,7 @@ class StationFacility
     p = new StationFacilityPointUl()
     p.process()
     return
-  
+
   process_google_map = (v) ->
     p = new GoogleMapInStationFacility()
     p.process()
@@ -85,25 +85,25 @@ class StationFacilityPointUl
 
   li_domains = (v) ->
     return v.domain.children( 'li' )
-  
+
   codes_in_li_domains = (v) ->
     return li_domains(v).children( '.code' )
-    
+
   elevator_domains = (v) ->
     return li_domains(v).find( '.code.elevator' )
-  
+
   has_elevator_domains = (v) ->
     return elevator_domains(v).length > 0
-  
+
   normal_code_domains = (v) ->
     return li_domains(v).find( '.code' ).not( '.elevator' )
-  
+
   has_normal_code_domains = (v) ->
     return normal_code_domains(v).length > 0
-  
+
   has_close_infos = (v) ->
     return close_infos(v).length > 0
-  
+
   close_infos = (v) ->
     return li_domains(v).find( '.close' )
 
@@ -175,7 +175,7 @@ class StationFacilityPointUl
       $(@).css( 'height' , h )
       return
     return
-  
+
   process_width_of_ul_domain = (v) ->
     w_ul = width_of_ul(v)
     v.domain.css( 'width' , w_ul )
@@ -238,7 +238,7 @@ class StationFacilityPointElevator
 
   ev_domain = (v) ->
     return ev_domains(v).first()
-  
+
   codes = (v) ->
     return v.domain.children( '.code' )
 
@@ -285,7 +285,7 @@ class StationFacilityPointCode
 
   has_class_text_en = (v) ->
     return v.domain.hasClass( 'text_en' )
-  
+
   has_children = (v) ->
     return v.domain.children().length > 0
 
@@ -346,13 +346,13 @@ class StationFacilityPointCode
 class StationFacilityPointCloseInfo
 
   constructor: ( @domain ) ->
-  
+
   icon = (v) ->
     return v.domain.children( '.icon' ).first()
-  
+
   text = (v) ->
     return v.domain.children( '.text' ).first()
-    
+
   max_outer_height_of_children = (v) ->
     p = new DomainsCommonProcessor( v.domain.children() )
     return p.max_outer_height( false )
@@ -397,7 +397,7 @@ class GoogleMapInStationFacility
 
   width_of_ul_exits = (v) ->
     return ul_exits(v).outerWidth( true )
-  
+
   height_of_ul_exits = (v) ->
     return ul_exits(v).height()
 
@@ -446,7 +446,7 @@ class StationFacilityTransferInfosInPlatformInfos
 class StationFacilityTransferInfoInPlatformInfo
 
   constructor: ( @domain ) ->
-  
+
   div_domain = (v) ->
     return v.domain.children( '.link_to_railway_line_page , .railway_line_with_no_link' )
 
@@ -455,7 +455,7 @@ class StationFacilityTransferInfoInPlatformInfo
 
   railway_line_code_main = (v) ->
     return railway_line_code(v).children().first()
-  
+
   railway_line_main_domain = (v) ->
     return div_domain(v).children( '.railway_line' ).first()
 
@@ -497,7 +497,7 @@ class StationFacilityTransferInfoInPlatformInfo
     p2.process()
     v.domain.css( 'height' , h )
     return
-    
+
   set_width_of_outer_domain = (v) ->
     doms = div_domain(v).children()
     p1 = new DomainsCommonProcessor( doms )
@@ -508,7 +508,7 @@ class StationFacilityTransferInfoInPlatformInfo
 
 class StationFacilityPlatformInfoTabUl extends TabUl
   constructor: ( @ul = $( 'ul#platform_info_tabs' ) ) ->
-  
+
   has_ul = (v) ->
     return v.ul.length > 0
 
@@ -538,16 +538,16 @@ class StationFacilityPlatformInfoTabUl extends TabUl
 class StationFacilityPlatformInfoTabLi
 
   constructor: ( @domain ) ->
-  
+
   railway_line_name_domain = (v) ->
     return v.domain.children( '.railway_line_name' ).first()
-  
+
   children_of_railway_line_name_domain = (v) ->
     return railway_line_name_domain(v).children()
-  
+
   text = (v) ->
     return railway_line_name_domain(v).children( '.text' ).first()
-  
+
   process: ->
     process_text(@)
     _railway_line_name_domain = railway_line_name_domain(@)
@@ -555,7 +555,7 @@ class StationFacilityPlatformInfoTabLi
     _railway_line_name_domain.css( 'width' , Math.ceil( p.sum_outer_width( true ) * 1.2 ) )
     # _railway_line_name_domain.css( 'height' , p.max_outer_height( true ) )
     return
-  
+
   process_text = (v) ->
     p = new LengthToEven( text(v) , true )
     p.set()
@@ -605,13 +605,13 @@ class StationFacilityInfosOfEachType
 
   outside = (v) ->
     return v.domain.children( 'ul.outside' ).first()
-  
+
   inside_and_outside = (v) ->
     return v.domain.children( 'ul.inside , ul.outside' )
 
   operation_day_domains = (v) ->
     return v.domain.find( 'li.operation_day' )
-  
+
   escalator_direction_domains = (v) ->
     return v.domain.find( 'li.escalator_direction' )
 
@@ -623,7 +623,7 @@ class StationFacilityInfosOfEachType
 
   icons = (v) ->
     return v.domain.find( 'img.barrier_free_facility' )
-  
+
   is_toilet = (v) ->
     return v.domain.hasClass( 'toilet' )
 
@@ -704,7 +704,7 @@ class StationFacilityInfosOfEachTypeAndLocatedArea
 
   facilities = (v) ->
     return v.domain.children( '.facility' )
-  
+
   margin_left = (v) ->
     return parseInt( v.domain.css( 'margin-left' ) , 10 )
 
@@ -714,11 +714,11 @@ class StationFacilityInfosOfEachTypeAndLocatedArea
     process_facilities(@)
     @domain.css( 'height' , domain_height(@) )
     return
-  
+
   set_width_of_title_domain = (v) ->
     title_domain(v).css( 'width' , v.width - margin_left(v) )
     return
-  
+
   set_height_of_title_domain = (v) ->
     t = new StationFacilityBarrierFreeFacilityTitle( title_domain(v) )
     t.process()
@@ -813,7 +813,7 @@ class StationFacilityBarrierFreeFacilityTitle
 
   title_text_en = (v) ->
     return v.domain.children( '.text_en' ).first()
-  
+
   set_title_height_new = (v) ->
     v.title_height_new = Math.max( v.domain.height() , title_text_en(v).height() )
     return

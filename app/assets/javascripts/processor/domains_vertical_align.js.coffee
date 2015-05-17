@@ -34,7 +34,7 @@ class DomainVerticalAlignCommonProcessor
 
   margin: ->
     return @outer_height_of_external_domain - @.outer_height()
-  
+
   margin_is_zero = (v) ->
     return v.margin is 0
 

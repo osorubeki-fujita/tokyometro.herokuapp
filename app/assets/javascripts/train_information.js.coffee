@@ -1,6 +1,6 @@
-class TrainInformations
+class TrainOperationInfos
 
-  constructor: ( @domain = $( "#train_informations" ) ) ->
+  constructor: ( @domain = $( "#train_operation_infos" ) ) ->
 
   # 運行情報がページ内に存在するか否かの判定
   has_informations = (v) ->
@@ -10,30 +10,30 @@ class TrainInformations
     return ( titles(v).length > 0 )
 
   informations_including_precise_version = (v) ->
-    return v.domain.children( '.train_information , .train_information_precise_version , .train_information_test' )
+    return v.domain.children( '.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test' )
 
   informations = (v) ->
-    return v.domain.children( '.train_information , .train_information_test' )
+    return v.domain.children( '.train_operation_info , .train_operation_info_test' )
 
   titles = (v) ->
-    return v.domain.find( '.title_of_train_informations , .title_of_train_locations' )
+    return v.domain.find( '.title_of_train_operation_infos , .title_of_train_locations' )
 
   informations_of_precise_version = (v) ->
-    return v.domain.children( '.train_information_precise_version' )
+    return v.domain.children( '.train_operation_info_precise_version' )
 
   width_of_railway_line_matrix = (v) ->
     w = 0
     informations_including_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      w = Math.max( w , train_information.railway_line_matrix_outer_width( true ) )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      w = Math.max( w , train_operation_info.railway_line_matrix_outer_width( true ) )
       return
     return w
 
   height_of_railway_line_matrix = (v) ->
     h = 0
     informations_including_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      h = Math.max( h , train_information.railway_line_matrix_inner_height() )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      h = Math.max( h , train_operation_info.railway_line_matrix_inner_height() )
       return
     return h
 
@@ -43,34 +43,34 @@ class TrainInformations
   height_of_status = (v) ->
     h = 0
     informations_including_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      w = Math.max( w , train_information.status_inner_height() )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      w = Math.max( w , train_operation_info.status_inner_height() )
       return
     return h
 
   height_of_railway_line_matrix_and_status = (v) ->
     h = Math.max( height_of_railway_line_matrix(v) , height_of_status(v) )
-    # console.log 'TrainInformations\#height_of_railway_line_matrix_and_status: '
+    # console.log 'TrainOperationInfos\#height_of_railway_line_matrix_and_status: '
     # console.log h
     return h
 
   size_of_railway_line_matrix = (v,h) ->
     h = { width: width_of_railway_line_matrix(v) , height: h }
-    # console.log 'TrainInformations\#size_of_railway_line_matrix: '
+    # console.log 'TrainOperationInfos\#size_of_railway_line_matrix: '
     # console.log h
     return h
 
   size_of_status = (v,h) ->
     h = { width: width_of_status(v) , height: h }
-    # console.log 'TrainInformations\#size_of_status: '
+    # console.log 'TrainOperationInfos\#size_of_status: '
     # console.log h
     return h
 
   max_width_of_icon_body = (v) ->
     w = 0
     informations(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      _icon_body_width = train_information.status().icon_body_width()
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      _icon_body_width = train_operation_info.status().icon_body_width()
       w = Math.max( w , _icon_body_width )
       return
     return w
@@ -98,24 +98,24 @@ class TrainInformations
   initialize_icon_size = (v) ->
     _max_width_of_icon_body = max_width_of_icon_body(v)
     informations(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      train_information.initialize_icon_size( _max_width_of_icon_body )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info.initialize_icon_size( _max_width_of_icon_body )
       return
     return
 
   # それぞれの路線名のテキスト領域の大きさを初期化するメソッド
   initialize_railway_line_matrix_text_size = (v) ->
     informations_including_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      train_information.initialize_railway_line_matrix_text_size()
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info.initialize_railway_line_matrix_text_size()
       return
     return
 
   max_width_of_status_text = (v) ->
     w = 0
     informations(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      p = new DomainsCommonProcessor( train_information.status().text().children() )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      p = new DomainsCommonProcessor( train_operation_info.status().text().children() )
       outer_width = p.max_outer_width( true )
       w = Math.max( w , Math.ceil( outer_width ) )
       return
@@ -125,8 +125,8 @@ class TrainInformations
   initialize_status_text_size = (v) ->
     _max_width_of_status_text = max_width_of_status_text(v)
     informations_including_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      train_information.initialize_status_text_size( _max_width_of_status_text )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info.initialize_status_text_size( _max_width_of_status_text )
       return
     return
 
@@ -137,34 +137,34 @@ class TrainInformations
     _size_of_status = size_of_status(v,h)
 
     informations_including_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      train_information.initialize_size( _size_of_railway_line_matrix , _size_of_status )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info.initialize_size( _size_of_railway_line_matrix , _size_of_status )
       return
     return
 
   set_attributes = (v) ->
     informations(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      train_information.set_attributes()
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info.set_attributes()
       return
     informations_of_precise_version(v).each ->
-      train_information = new TrainInformation( $( this ) )
-      train_information.set_attributes( true )
+      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info.set_attributes( true )
       return
     return
 
-window.TrainInformations = TrainInformations
+window.TrainOperationInfos = TrainOperationInfos
 
-class TrainInformation
+class TrainOperationInfo
   constructor: ( @domain ) ->
 
   railway_line_matrix: ->
-    r = new TrainInformationRailwayLineMatrix( @domain.children( '.railway_line_matrix_small' ).first() )
+    r = new TrainOperationInfoRailwayLineMatrix( @domain.children( '.railway_line_matrix_small' ).first() )
     return r
 
   status: ->
-    # console.log 'TrainInformation\#status'
-    s = new TrainInformationStatus( @domain.children( '.status' ).first() )
+    # console.log 'TrainOperationInfo\#status'
+    s = new TrainOperationInfoStatus( @domain.children( '.status' ).first() )
     return s
 
   railway_line_matrix_outer_width: ( b = false ) ->
@@ -201,7 +201,7 @@ class TrainInformation
     return
 
   initialize_size_of_status = ( v , size_of_status ) ->
-    # console.log 'TrainInformation\#initialize_size_of_status'
+    # console.log 'TrainOperationInfo\#initialize_size_of_status'
     _status = v.status()
     # console.log _status
     _status.initialize_size( size_of_status )
@@ -222,7 +222,7 @@ class TrainInformation
     return
 
   domain_height_new = (v) ->
-    # console.log 'TrainInformation\#domain_height_new'
+    # console.log 'TrainOperationInfo\#domain_height_new'
     _railway_line_matrix = v.railway_line_matrix().domain
     border = ( _railway_line_matrix.outerHeight( false ) - _railway_line_matrix.innerHeight() ) * 0.5
     _h = _railway_line_matrix.innerHeight() + border
@@ -230,13 +230,13 @@ class TrainInformation
     return _h
 
   arrange_height_of_railway_line_matrix_and_status = ( v , _max_outer_height ) ->
-    # console.log 'TrainInformation\#arrange_height_of_railway_line_matrix_and_status'
+    # console.log 'TrainOperationInfo\#arrange_height_of_railway_line_matrix_and_status'
     v.railway_line_matrix().domain.css( 'height' , _max_outer_height )
     v.status().domain.css( 'height' , _max_outer_height )
     return
 
   set_height_of_domain = (v) ->
-    # console.log 'TrainInformation\#set_height_of_domain'
+    # console.log 'TrainOperationInfo\#set_height_of_domain'
     v.domain.css( 'height' , domain_height_new(v) )
     return
 
@@ -246,18 +246,18 @@ class TrainInformation
     return Math.ceil( Math.max( railway_line_matrix_outer_height , status_outer_height ) )
 
   set_height_of_railway_line_matrix_and_status = (v) ->
-    # console.log 'TrainInformation\#set_height_of_railway_line_matrix_and_status'
+    # console.log 'TrainOperationInfo\#set_height_of_railway_line_matrix_and_status'
     _max_outer_height = max_outer_height_of_railway_line_matrix_and_status(v)
     arrange_height_of_railway_line_matrix_and_status( v , _max_outer_height )
     set_height_of_domain(v)
     return
 
   set_height_of_railway_line_matrix_and_status_and_set_margin = (v) ->
-    # console.log 'TrainInformation\#set_height_of_railway_line_matrix_and_status_and_set_margin \#1'
+    # console.log 'TrainOperationInfo\#set_height_of_railway_line_matrix_and_status_and_set_margin \#1'
     _max_outer_height = max_outer_height_of_railway_line_matrix_and_status(v)
     arrange_height_of_railway_line_matrix_and_status( v , _max_outer_height )
     #
-    # console.log 'TrainInformation\#set_height_of_railway_line_matrix_and_status_and_set_margin \#2'
+    # console.log 'TrainOperationInfo\#set_height_of_railway_line_matrix_and_status_and_set_margin \#2'
     #
     status_outer_height = v.status().infos().outerHeight()
     if status_outer_height < _max_outer_height
@@ -268,11 +268,11 @@ class TrainInformation
       v.status().infos().css( 'margin-top' , margin_top_and_bottom_of_status_info )
       v.status().infos().css( 'margin-bottom' , margin_top_and_bottom_of_status_info )
     #
-    # console.log 'TrainInformation\#set_height_of_railway_line_matrix_and_status_and_set_margin \#3'
+    # console.log 'TrainOperationInfo\#set_height_of_railway_line_matrix_and_status_and_set_margin \#3'
     set_height_of_domain(v)
     return
 
-class TrainInformationMatrixBase
+class TrainOperationInfoMatrixBase
 
   constructor: ( @domain ) ->
 
@@ -292,7 +292,7 @@ class TrainInformationMatrixBase
     @.set_size( size )
     return
 
-class TrainInformationRailwayLineMatrix extends TrainInformationMatrixBase
+class TrainOperationInfoRailwayLineMatrix extends TrainOperationInfoMatrixBase
 
   set_attributes: ->
     set_height_to_railway_line_matrix(@)
@@ -331,7 +331,7 @@ class TrainInformationRailwayLineMatrix extends TrainInformationMatrixBase
     @.info().initialize_text_size()
     return
 
-class TrainInformationStatus extends TrainInformationMatrixBase
+class TrainOperationInfoStatus extends TrainOperationInfoMatrixBase
 
   infos: ->
     return @domain.children( '.infos' )

@@ -14,7 +14,7 @@ class LengthToEven
 
   length_to_even: ->
     return { width: width_new(@) , height: height_new(@) }
-  
+
   set: ->
     length_info = @.length_to_even()
     @domain.css( 'width' , length_info.width )

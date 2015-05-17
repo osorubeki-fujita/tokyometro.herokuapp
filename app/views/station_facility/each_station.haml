@@ -1,14 +1,14 @@
 - station_info_decorated = @station_info.decorate
 - all_exit_infos = @station_info.points.select( &:exit? ).sort_by( &:code_as_instance )
 
-- real_time_info = ::TokyoMetro::ApiDecorator::RealTimeInfos.new( request , @railway_lines.except_for_branch_lines )
+- real_time_info = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , @railway_lines.except_for_branch_lines )
 
 = render "common_content"
 
 = station_info_decorated.render_title_of_station_facility
 = station_info_decorated.render_latest_passenger_survey
 
-= real_time_info.render( include_train_locations: false )
+= real_time_info.render( include_train_location_infos: false )
 
 = station_info_decorated.render_tokyo_metro_railway_lines( request )
 = station_info_decorated.render_railway_lines_except_for_tokyo_metro

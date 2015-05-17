@@ -329,7 +329,7 @@ $title_height: $title_common_height + $title_main_text_height ;
   @extend %titleDomainMainTextColorBase ;
 }
 
-#train_information_title {
+#train_operation_info_title {
   // @include title_domain ;
   @extend %titleDomainBase ;
   @extend %titleDomainCommonBase ;

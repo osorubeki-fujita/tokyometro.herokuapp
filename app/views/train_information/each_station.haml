@@ -3,19 +3,19 @@
 
 - station_info_decorated = @station_info.decorate
 
-- real_time_info_processor = ::TokyoMetro::ApiDecorator::RealTimeInfos.new( request , @railway_lines )
+- real_time_info_processor = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , @railway_lines )
 
 = render "common_content"
 
 - content_for :right_contents do
   = ::TokyoMetro::App::Renderer::Twitter.new( request , :railway_lines , @railway_lines ).render
-  = real_time_info_processor.render_meta_datum( include_train_locations: false )
+  = real_time_info_processor.render_meta_datum( include_train_location_infos: false )
 
-= station_info_decorated.render_title_of_train_information
+= station_info_decorated.render_title_of_train_operation_info
 = station_info_decorated.render_latest_passenger_survey
 
 %div{ id: :links_to_station_info_pages }
   = station_info_decorated.render_title_of_links_to_station_info_pages
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request ).render
 
-= real_time_info_processor.render( include_train_locations: false )
+= real_time_info_processor.render( include_train_location_infos: false )

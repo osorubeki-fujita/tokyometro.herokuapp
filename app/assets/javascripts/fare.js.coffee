@@ -1,6 +1,6 @@
 class FareTables
   constructor: ( @domains = $( '#fare_tables' ) ) ->
-  
+
   has_table = (v) ->
     return tables(v).length > 0
 

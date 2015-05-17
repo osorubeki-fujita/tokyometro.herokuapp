@@ -66,11 +66,11 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   # 列車運行情報のタイトルを記述するメソッド
-  def self.render_title_of_train_information( railway_lines )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
-%div{ id: :train_information_title }
+  def self.render_title_of_train_operation_info( railway_lines )
+    h.render inline: <<-HAML , type: :haml , locals: { railway_lines: railway_lines }
+%div{ id: :train_operation_info_title }
   = ::TrainInformationDecorator.render_common_title( request )
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::RailwayLineDecorator.name_main( railway_lines )
     HAML
   end
 

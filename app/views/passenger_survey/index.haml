@@ -30,12 +30,12 @@
     != "各路線 各駅の乗降客数"
     %span{ class: :small }<
       = "（年度別）"
-  
+
   %div{ class: :infos }
     %p{ class: [ :text_ja , :info ] }<
       = "路線名をクリックすると、各路線のすべての駅の乗降客数（" + passenger_survey_years.max.to_s + "年）をご覧いただけます。"
     %p{ class: [ :text_ja , :info ] }<
       = "駅名をクリックすると、各駅の乗降客数の推移（" + duration + "）をご覧いただけます。"
-  
+
   = ::TokyoMetro::App::Renderer::StationMatrix.new( request , @railway_lines , make_link_to_railway_line: true ).render
   = ::TokyoMetro::App::Renderer::StationLinkList.new( request , @tokyo_metro_station_dictionary_including_main_info ).render

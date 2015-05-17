@@ -5,7 +5,7 @@ class StationFacilityPlatformInfoTabTarget
   constructor: ( @anchor , @tab_id ) ->
     # console.log 'StationFacilityPlatformInfoTabTarget\#constructor'
     # console.log( 'anchor: ' + @anchor + ' / ' + 'tab_id: ' + @tab_id )
-  
+
   tab_id_with_anchor_char = (v) ->
     return '\#' + v.tab_id
 

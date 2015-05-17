@@ -43,7 +43,7 @@ class StationInfoProcessor
       l.set()
       return
     return
-  
+
   set_vertical_align_of_domain = (v) ->
     if has_station_code(v)
       p1 = new DomainsCommonProcessor( v.domain.children() )
