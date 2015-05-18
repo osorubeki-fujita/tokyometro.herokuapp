@@ -21,7 +21,7 @@ class StationFacilityController < ApplicationController
       @railway_lines = ::RailwayLine.where( id: @station_facility.station_infos.pluck( :railway_line_id ) ).tokyo_metro.except_for_branch_lines
       # @display_google_map = true
 
-      @points = @station_facility.points.includes( :point_category )
+      @point_infos = @station_facility.point_infos.includes( :category )
 
       # set_station_info_for_google_map
       set_exit_info_for_google_map
@@ -51,13 +51,13 @@ class StationFacilityController < ApplicationController
 
   def set_exit_info_for_google_map
     json_title = @station_info.decorate.json_title_on_google_map
-    @exit_info_for_google_map = ::Gmaps4rails.build_markers( @points ) do | point , marker_of_this_station |
-      point.set_to( marker_of_this_station , json_title )
+    @exit_info_for_google_map = ::Gmaps4rails.build_markers( @point_infos ) do | point_info , marker_of_this_station |
+      point_info.set_to( marker_of_this_station , json_title )
     end
   end
 
 =begin
-  
+
   def set_railway_lines_of_railway_line_page_by_params
     @railway_lines = railway_line_by_params( branch_railway_line: :main_and_branch , yurakucho_and_fukutoshin: true )
   end

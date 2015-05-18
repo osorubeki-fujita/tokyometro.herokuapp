@@ -14,7 +14,7 @@ class StationFacility < ActiveRecord::Base
   has_many :station_facility_aliases
 
   has_many :barrier_free_facility_infos , class: ::BarrierFreeFacility::Info , foreign_key: :station_facility_id
-  has_many :points
+  has_many :point_infos , class: ::Point::Info , foreign_key: :station_facility_id
 
   def platform_infos
     station_facility_platform_infos

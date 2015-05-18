@@ -1,4 +1,4 @@
 class StationPoint < ActiveRecord::Base
   include ::Association::To::Station::Info
-  belongs_to :point
+  include ::Association::To::Point::Info
 end

@@ -1,5 +1,5 @@
 - station_info_decorated = @station_info.decorate
-- all_exit_infos = @station_info.points.select( &:exit? ).sort_by( &:code_as_instance )
+- all_exit_infos = @point_infos.select( &:exit? ).sort_by( &:code_as_instance )
 
 - real_time_info = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , @railway_lines.except_for_branch_lines )
 

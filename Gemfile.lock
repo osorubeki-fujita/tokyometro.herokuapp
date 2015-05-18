@@ -143,6 +143,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    nokogiri (1.6.6.2-x64-mingw32)
+      mini_portile (~> 0.6.0)
     nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
     odpt_common (0.2.1)
@@ -150,6 +152,7 @@ GEM
     odpt_tokyo_metro_helper (0.2.1)
       activesupport (>= 4.2.1)
       odpt_common (>= 0.2.1)
+    pg (0.18.2-x64-mingw32)
     pg (0.18.2-x86-mingw32)
     positive_basic_support (0.1.2)
       activesupport (>= 4.2.1)
@@ -181,6 +184,11 @@ GEM
     positive_web_support (0.3.2)
       activesupport (>= 4.2.1)
       positive_basic_support (>= 0.1.2)
+    pry (0.10.1-x64-mingw32)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     pry (0.10.1-x86-mingw32)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -286,6 +294,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.10-x64-mingw32)
     sqlite3 (1.3.10-x86-mingw32)
     sshkit (1.7.1)
       colorize (>= 0.7.0)
@@ -299,10 +308,10 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.2.3)
+    tokyo_metro (0.2.2)
       haml
-      odpt_common (>= 0.2.1)
-      odpt_tokyo_metro_helper (>= 0.2.1)
+      odpt_common (>= 0.2.0)
+      odpt_tokyo_metro_helper (>= 0.2.0)
       positive_support (>= 0.3.2)
       rails_decorate_factory (>= 0.1.0)
       required_files (>= 0.2.6)
@@ -322,6 +331,7 @@ GEM
       blockenspiel (>= 0.4.5)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     with_default_value (0.1.0)
       activesupport (>= 4.2.1)
@@ -332,6 +342,7 @@ GEM
     yui-compressor (0.12.0)
 
 PLATFORMS
+  x64-mingw32
   x86-mingw32
 
 DEPENDENCIES
