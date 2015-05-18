@@ -1,4 +1,4 @@
-class PointDecorator < Draper::Decorator
+class Point::InfoDecorator < Draper::Decorator
 
   delegate_all
 
@@ -68,7 +68,7 @@ class PointDecorator < Draper::Decorator
   - raise "Error: The variable \'additional_info_en\' is defined but \'additional_info_ja\' is not defined."
     HAML
   end
-  
+
   def render_exit
     h.render inline: <<-HAML , type: :haml
 %p{ class: :text_ja }<
@@ -79,7 +79,7 @@ class PointDecorator < Draper::Decorator
   end
 
   #--------
-  
+
   def has_only_info_to_display_as_main_info?
     has_code? and !( has_additional_info? )
   end
@@ -99,7 +99,7 @@ class PointDecorator < Draper::Decorator
   end
 
   #--------
-  
+
   def li_classes_of_exit_with_elevator
     raise "Error: #{ code } in \"#{ object.station_facility.same_as}\"" unless has_elevator?
     if has_only_info_to_display_as_main_info?
@@ -111,13 +111,13 @@ class PointDecorator < Draper::Decorator
     else
       :text
     end
-    
+
   end
 
   def render_elevator_icon
     h.image_tag( "barrier_free_facility/elevator_outside.svg" , class: :elevator_outside , title: "Elevator Outside" )
   end
-  
+
   def render_close_info
     if closed?
       h.render inline: <<-HAML , type: :haml , locals: { this: self }
