@@ -6,7 +6,7 @@
 #-------- ページ内のタブをクリックすることによる処理
 
 changeStationFacilityPlatformInfoTabByPageLink = ( tab_id , change_location = true ) ->
-  s = new StationFacilityTabsAndContents()
+  s = new StationFacilityPlatformInfoTabsAndContents()
   s.display_platform_info_tab_of_id( tab_id , change_location )
   return
 

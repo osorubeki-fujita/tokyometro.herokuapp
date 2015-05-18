@@ -5,12 +5,12 @@ class Point::InfoDecorator < Draper::Decorator
   def render_in_station_facility_page
     h.render inline: <<-HAML , type: :haml , locals: { this: self , li_classes: li_classes }
 %li{ class: li_classes , geo_lat: this.latitude , geo_long: this.longitude }
-  = this.render_name_in_station_facility_page
+  = this.render_main_in_station_facility_page
   = this.render_close_info
     HAML
   end
 
-  def render_name_in_station_facility_page
+  def render_main_in_station_facility_page
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - if this.has_elevator?
   %div{ class: [ :code , :elevator ] }
@@ -20,7 +20,7 @@ class Point::InfoDecorator < Draper::Decorator
         = "EV"
     - else
       %div{ class: [ :code , this.li_classes_of_exit_with_elevator ].flatten }<
-        = this.render_code
+        = this.render_name
 - else
   - if this.has_only_info_to_display_as_main_info?
     - if this.code_of_number_and_alphabet?
@@ -28,45 +28,27 @@ class Point::InfoDecorator < Draper::Decorator
     - else
       - class_name = :text_ja
     %div{ class: [ :code , class_name ].flatten }<
-      = this.render_code
+      = this.render_name
   - else
-    = this.render_code
+    = this.render_name
     HAML
   end
 
-  def render_code
+  def render_name
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- if this.to_render_exit?
-  = this.render_exit
-
-- elsif this.invalid?
-  - raise "Error"
-
-- elsif this.has_info_to_display_as_sub_info?
-  %div{ class: :code }
-    %div{ class: [ :main , :text_en ] }<
-      = this.code
-    = this.render_additional_info_in_station_facility_page
-
+- if this.has_code?
+  = this.code.decorate.render
 - else
-  = this.code
+  = this.render_exit
     HAML
   end
 
-  def render_additional_info_in_station_facility_page
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- if this.additional_info_ja.present? and this.additional_info_en.present?
-  %div{ class: [ :additional_info , :text ] }
-    %p{ class: :text_ja }<
-      = this.additional_info_ja
-    %p{ class: :text_en }<
-      = this.additional_info_en
-- elsif this.additional_info_ja.present?
-  %div{ class: [ :additional_info , :text_ja ] }<
-    = this.additional_info_ja
-- elsif this.additional_info_en.present?
-  - raise "Error: The variable \'additional_info_en\' is defined but \'additional_info_ja\' is not defined."
-    HAML
+  #--------
+
+  # 「出口」と表示するか否かを判定するメソッド
+  # @return [Boolean]
+  def to_render_exit?
+    !( has_code? ) and !( has_additional_name? )
   end
 
   def render_exit
@@ -81,21 +63,15 @@ class Point::InfoDecorator < Draper::Decorator
   #--------
 
   def has_only_info_to_display_as_main_info?
-    has_code? and !( has_additional_info? )
+    has_code? and !( has_additional_name? )
   end
 
   def has_info_to_display_as_sub_info?
-    b = ( has_code? and has_additional_info? )
+    b = ( has_code? and has_additional_name? )
     if b and !( code_of_number_and_alphabet? )
       raise "Error"
     end
     b
-  end
-
-  # 「出口」と表示するか否かを判定するメソッド
-  # @return [Boolean]
-  def to_render_exit?
-    !( has_code? ) and !( has_additional_info? )
   end
 
   #--------
@@ -155,7 +131,7 @@ class Point::InfoDecorator < Draper::Decorator
     # code あり
     if has_code?
       # additional_info あり
-      if has_additional_info?
+      if has_additional_name?
         if has_elevator?
           :elevator_exit_with_code_and_additional_info
         else
@@ -172,7 +148,7 @@ class Point::InfoDecorator < Draper::Decorator
     # code なし
     else
       # additional_info あり
-      if has_additional_info?
+      if has_additional_name?
         if has_elevator?
           :elevator_exit_with_additional_info
         else

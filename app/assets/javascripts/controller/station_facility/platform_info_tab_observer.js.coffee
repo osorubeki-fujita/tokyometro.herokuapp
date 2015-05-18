@@ -1,6 +1,6 @@
-#-------- ObserverOfStationFacilityPlatformInfoTab
+#-------- StationFacilityPlatformInfoTabObserver
 
-class ObserverOfStationFacilityPlatformInfoTab
+class StationFacilityPlatformInfoTabObserver
 
   constructor: ( @anchor = window.location.hash.replace( "\#" , "" ) ) ->
 
@@ -8,13 +8,13 @@ class ObserverOfStationFacilityPlatformInfoTab
     return( window.location.hash.replace( "\#" , "" ) isnt value.anchor )
 
   hook = ( value ) ->
-    # console.log 'ObserverOfStationFacilityPlatformInfoTab#hook'
-    s = new StationFacilityTabsAndContents()
+    # console.log 'StationFacilityPlatformInfoTabObserver#hook'
+    s = new StationFacilityPlatformInfoTabsAndContents()
     s.hook_while_observing_platform_infos()
     return
 
   listen: ->
-    # console.log 'ObserverOfStationFacilityPlatformInfoTab#listen'
+    # console.log 'StationFacilityPlatformInfoTabObserver#listen'
     if location_hash_was_changed( @ )
       # console.log @anchor
       @anchor = window.location.hash.replace( "\#" , "" )
@@ -24,4 +24,4 @@ class ObserverOfStationFacilityPlatformInfoTab
   duration: ->
     return 1500
 
-window.ObserverOfStationFacilityPlatformInfoTab = ObserverOfStationFacilityPlatformInfoTab
+window.StationFacilityPlatformInfoTabObserver = StationFacilityPlatformInfoTabObserver

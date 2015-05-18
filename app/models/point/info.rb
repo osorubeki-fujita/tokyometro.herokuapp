@@ -1,9 +1,15 @@
 class Point::Info < ActiveRecord::Base
   belongs_to :station_facility
-  belongs_to :category , class: ::Point::Category
 
   has_many :station_points
   has_many :station_infos , through: :station_points
+
+  belongs_to :category , class: ::Point::Category
+  belongs_to :code , class: ::Point::Code
+
+  def additional_name
+    code.try( __method__ )
+  end
 
   # geocoded_by :code
   # after_validation :geocode
@@ -43,6 +49,14 @@ class Point::Info < ActiveRecord::Base
   def point_category
     category
   end
+  
+  def point_code
+    code
+  end
+  
+  def point_additional_name
+    additional_name
+  end
 
   [ :closed? , :close? , :close ].each do | method_name |
     eval <<-DEF
@@ -59,9 +73,13 @@ class Point::Info < ActiveRecord::Base
       end
     DEF
   end
-  
+
   def has_code?
     code.present?
+  end
+
+  def has_additional_name?
+    additional_name.present?
   end
 
   def has_elevator?
@@ -72,22 +90,22 @@ class Point::Info < ActiveRecord::Base
     category.exit?
   end
 
-  def has_additional_info?
-    additional_info_ja.present? or additional_info_en.present?
-  end
-  
   def invalid?
-    !( has_code? ) and has_additional_info?
+    !( has_code? ) and has_additional_name?
   end
-  
+
   def code_of_number_and_alphabet?
-    /\A[a-zA-z\d]+\Z/ === code
+    has_code? and code.send( __method__ )
   end
 
   [ :ja , :en ].each do | lang |
     eval <<-DEF
       def category_name_#{ lang }
         category.name_#{ lang }
+      end
+
+      def additional_name_#{ lang }
+        additional_name.try( :#{ lang } )
       end
     DEF
   end
@@ -99,8 +117,12 @@ class Point::Info < ActiveRecord::Base
     marker.json( { title: json_title } )
   end
 
+  def code_to_s
+    code.try( :main_to_s )
+  end
+
   def code_as_instance
-    ::TokyoMetro::Api::Point::Info::Title::Code.new( code , additional_info_ja )
+    ::TokyoMetro::Api::Point::Info::Title::Code.new( code_to_s , additional_name_ja )
   end
 
 end

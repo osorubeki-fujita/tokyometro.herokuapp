@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518141317) do
+ActiveRecord::Schema.define(version: 20150518183730) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -211,11 +211,25 @@ ActiveRecord::Schema.define(version: 20150518141317) do
     t.datetime "updated_at"
   end
 
+  create_table "point_additional_names", force: :cascade do |t|
+    t.string   "ja"
+    t.string   "en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "point_categories", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name_en"
+  end
+
+  create_table "point_codes", force: :cascade do |t|
+    t.string   "main"
+    t.integer  "additional_name_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "point_infos", force: :cascade do |t|
@@ -226,13 +240,11 @@ ActiveRecord::Schema.define(version: 20150518141317) do
     t.float    "longitude"
     t.string   "geo_json",            limit: 255
     t.integer  "floor"
-    t.string   "code",                limit: 255
-    t.string   "additional_info_ja",  limit: 255
     t.boolean  "elevator"
     t.boolean  "closed"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "additional_info_en"
+    t.integer  "code_id"
   end
 
   create_table "railway_directions", force: :cascade do |t|

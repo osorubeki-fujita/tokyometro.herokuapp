@@ -29,5 +29,5 @@
 
 const goldenRatio = 1.618 ;
 
-observer_of_station_facility_platform_info_tab = new ObserverOfStationFacilityPlatformInfoTab() ;
-window.setInterval( 'observer_of_station_facility_platform_info_tab.listen()' , observer_of_station_facility_platform_info_tab.duration() ) ;
+station_facility_platform_info_tab_observer = new StationFacilityPlatformInfoTabObserver() ;
+window.setInterval( 'station_facility_platform_info_tab_observer.listen()' , station_facility_platform_info_tab_observer.duration() ) ;
