@@ -137,5 +137,6 @@ Rails.application.routes.draw do
   #-------- その他
 
   match ':controller/:action', via: [ :get , :post , :patch ]
+  get '/index' , to: 'application#index'
   root to: 'application#index'
 end

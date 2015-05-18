@@ -1,20 +1,20 @@
-class TrainLocations
+class TrainLocationInfos
 
-  constructor: ( @domains = $( '#train_locations' ) ) ->
+  constructor: ( @domains = $( '#train_location_infos' ) ) ->
 
-  train_locations = (v) ->
+  train_location_infos = (v) ->
     return v.domains.children( '.train_location' )
 
   process: ->
-    train_locations(@).each ->
-      t = new TrainLocation( $( this ) )
+    train_location_infos(@).each ->
+      t = new TrainLocationInfo( $( this ) )
       t.process()
       return
     return
 
-window.TrainLocations = TrainLocations
+window.TrainLocationInfos = TrainLocationInfos
 
-class TrainLocation
+class TrainLocationInfo
 
   constructor: ( @domain ) ->
 
@@ -103,7 +103,7 @@ class TrainLocation
     return
 
   process_current_position = (v) ->
-    _current_position = new TrainLocationCurrentPosition( current_position(v) )
+    _current_position = new TrainLocationInfoCurrentPosition( current_position(v) )
     _current_position.process()
     return
 
@@ -112,7 +112,7 @@ class TrainLocation
     v.domain.css( 'height' , p.sum_outer_height( true ) )
     return
 
-class TrainLocationCurrentPosition
+class TrainLocationInfoCurrentPosition
 
   constructor: ( @domain ) ->
 

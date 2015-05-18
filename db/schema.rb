@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518092912) do
+ActiveRecord::Schema.define(version: 20150518115131) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(version: 20150518092912) do
 
   create_table "air_conditioner_infos", force: :cascade do |t|
     t.integer  "railway_line_id"
-    t.integer  "train_id"
     t.integer  "car_number"
     t.datetime "post_time"
-    t.integer  "air_conditioner_answer_id"
+    t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "train_location_data_id"
+    t.string   "train_location_data_type"
   end
 
   create_table "barrier_free_facility_escalator_direction_patterns", force: :cascade do |t|
@@ -280,13 +281,13 @@ ActiveRecord::Schema.define(version: 20150518092912) do
     t.datetime "updated_at"
   end
 
-  create_table "rsses", force: :cascade do |t|
-    t.string   "title",           limit: 255
-    t.string   "url",             limit: 255
-    t.string   "feed_url",        limit: 255
-    t.string   "etag",            limit: 255
+  create_table "rss_infos", force: :cascade do |t|
+    t.string   "title",         limit: 255
+    t.string   "url",           limit: 255
+    t.string   "feed_url",      limit: 255
+    t.string   "etag",          limit: 255
     t.datetime "last_modified"
-    t.integer  "rss_category_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -465,7 +466,7 @@ ActiveRecord::Schema.define(version: 20150518092912) do
     t.datetime "updated_at"
   end
 
-  create_table "train_location_olds", force: :cascade do |t|
+  create_table "train_location_infos", force: :cascade do |t|
     t.string   "id_urn",               limit: 255
     t.string   "same_as",              limit: 255
     t.datetime "dc_date"
@@ -486,7 +487,7 @@ ActiveRecord::Schema.define(version: 20150518092912) do
     t.datetime "updated_at"
   end
 
-  create_table "train_locations", force: :cascade do |t|
+  create_table "train_location_old_infos", force: :cascade do |t|
     t.string   "id_urn",               limit: 255
     t.string   "same_as",              limit: 255
     t.datetime "dc_date"

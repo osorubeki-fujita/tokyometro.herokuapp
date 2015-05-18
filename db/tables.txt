@@ -23,7 +23,7 @@ points
 railway_directions
 railway_lines
 rss_categories
-rsses
+rss_infos
 schema_migrations
 station_facilities
 station_facility_aliases
@@ -44,12 +44,12 @@ station_timetables
 station_train_times
 stopping_patterns
 surrounding_areas
-train_information_olds
-train_information_statuses
-train_information_texts
-train_informations
-train_location_olds
-train_locations
+train_location_infos
+train_location_old_infos
+train_operation_infos
+train_operation_old_infos
+train_operation_statuses
+train_operation_texts
 train_owners
 train_relations
 train_timetable_arrival_infos

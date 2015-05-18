@@ -1,3 +1,5 @@
-class Rss < ActiveRecord::Base
-  belongs_to :rss_category
+module Rss
+  def self.table_name_prefix
+    'rss_'
+  end
 end

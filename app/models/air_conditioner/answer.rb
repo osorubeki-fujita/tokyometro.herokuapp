@@ -1,3 +1,3 @@
 class AirConditioner::Answer < ActiveRecord::Base
-  has_many :air_conditioner_infos
+  has_many :infos , class: ::AirConditioner::Info
 end

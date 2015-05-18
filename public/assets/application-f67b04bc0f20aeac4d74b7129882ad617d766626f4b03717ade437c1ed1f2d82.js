@@ -30949,7 +30949,7 @@ $('#progress').html(
     function OnPageLoadHandler() {}
 
     list = function(v) {
-      var ary, document, fare_table, links_to_station_info_pages, now_developing_processor, passenger_survey, railway_line, railway_line_codes, railway_line_matrixes, real_time_info_processor, selection_header_processor, station_facility, station_matrixes, station_timetables, train_informations, train_locations, twitters_processor, ul_side_menu_links, ul_station_related_links;
+      var ary, document, fare_table, links_to_station_info_pages, now_developing_processor, passenger_survey, railway_line, railway_line_codes, railway_line_matrixes, real_time_info_processor, selection_header_processor, station_facility, station_matrixes, station_timetables, train_location_infos, train_operation_infos, twitters_processor, ul_side_menu_links, ul_station_related_links;
       ary = [];
       document = new Document();
       ary.push(document);
@@ -30969,10 +30969,10 @@ $('#progress').html(
       ary.push(station_facility);
       ary.push(passenger_survey);
       ary.push(fare_table);
-      train_informations = new TrainInformations();
-      train_locations = new TrainLocations();
-      ary.push(train_informations);
-      ary.push(train_locations);
+      train_operation_infos = new TrainOperationInfos();
+      train_location_infos = new TrainLocationInfos();
+      ary.push(train_operation_infos);
+      ary.push(train_location_infos);
       links_to_station_info_pages = new LinksToStationInfoPages();
       selection_header_processor = new SelectionHeaderProcessor();
       real_time_info_processor = new RealTimeInfoProcessor();
@@ -34674,561 +34674,37 @@ $('#progress').html(
 
 }).call(this);
 (function() {
-  var TrainInformation, TrainInformationMatrixBase, TrainInformationRailwayLineMatrix, TrainInformationStatus, TrainInformations,
-    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    hasProp = {}.hasOwnProperty;
+  var TrainLocationInfo, TrainLocationInfoCurrentPosition, TrainLocationInfos;
 
-  TrainInformations = (function() {
-    var has_informations, has_titles, height_of_railway_line_matrix, height_of_railway_line_matrix_and_status, height_of_status, informations, informations_including_precise_version, informations_of_precise_version, initialize_icon_size, initialize_railway_line_matrix_text_size, initialize_size_of_railway_line_matrix_and_status, initialize_status_text_size, max_width_of_icon_body, max_width_of_status_text, process_titles, set_attributes, size_of_railway_line_matrix, size_of_status, titles, width_of_railway_line_matrix, width_of_status;
+  TrainLocationInfos = (function() {
+    var train_location_infos;
 
-    function TrainInformations(domain) {
-      this.domain = domain != null ? domain : $("#train_informations");
+    function TrainLocationInfos(domains) {
+      this.domains = domains != null ? domains : $('#train_location_infos');
     }
 
-    has_informations = function(v) {
-      return informations(v).length > 0;
-    };
-
-    has_titles = function(v) {
-      return titles(v).length > 0;
-    };
-
-    informations_including_precise_version = function(v) {
-      return v.domain.children('.train_information , .train_information_precise_version , .train_information_test');
-    };
-
-    informations = function(v) {
-      return v.domain.children('.train_information , .train_information_test');
-    };
-
-    titles = function(v) {
-      return v.domain.find('.title_of_train_informations , .title_of_train_locations');
-    };
-
-    informations_of_precise_version = function(v) {
-      return v.domain.children('.train_information_precise_version');
-    };
-
-    width_of_railway_line_matrix = function(v) {
-      var w;
-      w = 0;
-      informations_including_precise_version(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        w = Math.max(w, train_information.railway_line_matrix_outer_width(true));
-      });
-      return w;
-    };
-
-    height_of_railway_line_matrix = function(v) {
-      var h;
-      h = 0;
-      informations_including_precise_version(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        h = Math.max(h, train_information.railway_line_matrix_inner_height());
-      });
-      return h;
-    };
-
-    width_of_status = function(v) {
-      return v.domain.innerWidth() - width_of_railway_line_matrix(v) - 3;
-    };
-
-    height_of_status = function(v) {
-      var h;
-      h = 0;
-      informations_including_precise_version(v).each(function() {
-        var train_information, w;
-        train_information = new TrainInformation($(this));
-        w = Math.max(w, train_information.status_inner_height());
-      });
-      return h;
-    };
-
-    height_of_railway_line_matrix_and_status = function(v) {
-      var h;
-      h = Math.max(height_of_railway_line_matrix(v), height_of_status(v));
-      return h;
-    };
-
-    size_of_railway_line_matrix = function(v, h) {
-      h = {
-        width: width_of_railway_line_matrix(v),
-        height: h
-      };
-      return h;
-    };
-
-    size_of_status = function(v, h) {
-      h = {
-        width: width_of_status(v),
-        height: h
-      };
-      return h;
-    };
-
-    max_width_of_icon_body = function(v) {
-      var w;
-      w = 0;
-      informations(v).each(function() {
-        var _icon_body_width, train_information;
-        train_information = new TrainInformation($(this));
-        _icon_body_width = train_information.status().icon_body_width();
-        w = Math.max(w, _icon_body_width);
-      });
-      return w;
-    };
-
-    TrainInformations.prototype.process = function() {
-      if (has_titles(this)) {
-        process_titles(this);
-      }
-      if (has_informations(this)) {
-        initialize_icon_size(this);
-        initialize_railway_line_matrix_text_size(this);
-        initialize_status_text_size(this);
-        initialize_size_of_railway_line_matrix_and_status(this);
-        set_attributes(this);
-      }
-    };
-
-    process_titles = function(v) {
-      var _titles;
-      _titles = new ContentHeaderProcessor(titles(v));
-      _titles.process();
-    };
-
-    initialize_icon_size = function(v) {
-      var _max_width_of_icon_body;
-      _max_width_of_icon_body = max_width_of_icon_body(v);
-      informations(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        train_information.initialize_icon_size(_max_width_of_icon_body);
-      });
-    };
-
-    initialize_railway_line_matrix_text_size = function(v) {
-      informations_including_precise_version(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        train_information.initialize_railway_line_matrix_text_size();
-      });
-    };
-
-    max_width_of_status_text = function(v) {
-      var w;
-      w = 0;
-      informations(v).each(function() {
-        var outer_width, p, train_information;
-        train_information = new TrainInformation($(this));
-        p = new DomainsCommonProcessor(train_information.status().text().children());
-        outer_width = p.max_outer_width(true);
-        w = Math.max(w, Math.ceil(outer_width));
-      });
-      return w;
-    };
-
-    initialize_status_text_size = function(v) {
-      var _max_width_of_status_text;
-      _max_width_of_status_text = max_width_of_status_text(v);
-      informations_including_precise_version(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        train_information.initialize_status_text_size(_max_width_of_status_text);
-      });
-    };
-
-    initialize_size_of_railway_line_matrix_and_status = function(v) {
-      var _size_of_railway_line_matrix, _size_of_status, h;
-      h = height_of_railway_line_matrix_and_status(v);
-      _size_of_railway_line_matrix = size_of_railway_line_matrix(v, h);
-      _size_of_status = size_of_status(v, h);
-      informations_including_precise_version(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        train_information.initialize_size(_size_of_railway_line_matrix, _size_of_status);
-      });
-    };
-
-    set_attributes = function(v) {
-      informations(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        train_information.set_attributes();
-      });
-      informations_of_precise_version(v).each(function() {
-        var train_information;
-        train_information = new TrainInformation($(this));
-        train_information.set_attributes(true);
-      });
-    };
-
-    return TrainInformations;
-
-  })();
-
-  window.TrainInformations = TrainInformations;
-
-  TrainInformation = (function() {
-    var arrange_height_of_railway_line_matrix_and_status, domain_height_new, initialize_size_of_railway_line_matrix, initialize_size_of_status, max_outer_height_of_railway_line_matrix_and_status, set_attributes_of_railway_line_matrix, set_attributes_of_status, set_height_of_domain, set_height_of_railway_line_matrix_and_status, set_height_of_railway_line_matrix_and_status_and_set_margin;
-
-    function TrainInformation(domain) {
-      this.domain = domain;
-    }
-
-    TrainInformation.prototype.railway_line_matrix = function() {
-      var r;
-      r = new TrainInformationRailwayLineMatrix(this.domain.children('.railway_line_matrix_small').first());
-      return r;
-    };
-
-    TrainInformation.prototype.status = function() {
-      var s;
-      s = new TrainInformationStatus(this.domain.children('.status').first());
-      return s;
-    };
-
-    TrainInformation.prototype.railway_line_matrix_outer_width = function(b) {
-      if (b == null) {
-        b = false;
-      }
-      return this.railway_line_matrix().outer_width(b);
-    };
-
-    TrainInformation.prototype.railway_line_matrix_inner_height = function() {
-      return this.railway_line_matrix().inner_height();
-    };
-
-    TrainInformation.prototype.status_inner_height = function() {
-      return this.status().inner_height();
-    };
-
-    TrainInformation.prototype.initialize_icon_size = function(_max_width) {
-      this.status().initialize_icon_size(_max_width);
-    };
-
-    TrainInformation.prototype.initialize_railway_line_matrix_text_size = function() {
-      this.railway_line_matrix().initialize_text_size();
-    };
-
-    TrainInformation.prototype.initialize_status_text_size = function(_width) {
-      return this.status().initialize_text_size(_width);
-    };
-
-    TrainInformation.prototype.initialize_size = function(size_of_railway_line_matrix, size_of_status) {
-      initialize_size_of_railway_line_matrix(this, size_of_railway_line_matrix);
-      initialize_size_of_status(this, size_of_status);
-    };
-
-    initialize_size_of_railway_line_matrix = function(v, size_of_railway_line_matrix) {
-      v.railway_line_matrix().initialize_size(size_of_railway_line_matrix);
-    };
-
-    initialize_size_of_status = function(v, size_of_status) {
-      var _status;
-      _status = v.status();
-      _status.initialize_size(size_of_status);
-    };
-
-    TrainInformation.prototype.set_attributes = function(precise_version) {
-      if (precise_version == null) {
-        precise_version = false;
-      }
-      set_attributes_of_railway_line_matrix(this);
-      set_attributes_of_status(this, precise_version);
-      set_height_of_railway_line_matrix_and_status_and_set_margin(this);
-    };
-
-    set_attributes_of_railway_line_matrix = function(v) {
-      v.railway_line_matrix().set_attributes();
-    };
-
-    set_attributes_of_status = function(v, precise_version) {
-      v.status().set_attributes(precise_version);
-    };
-
-    domain_height_new = function(v) {
-      var _h, _railway_line_matrix, border;
-      _railway_line_matrix = v.railway_line_matrix().domain;
-      border = (_railway_line_matrix.outerHeight(false) - _railway_line_matrix.innerHeight()) * 0.5;
-      _h = _railway_line_matrix.innerHeight() + border;
-      return _h;
-    };
-
-    arrange_height_of_railway_line_matrix_and_status = function(v, _max_outer_height) {
-      v.railway_line_matrix().domain.css('height', _max_outer_height);
-      v.status().domain.css('height', _max_outer_height);
-    };
-
-    set_height_of_domain = function(v) {
-      v.domain.css('height', domain_height_new(v));
-    };
-
-    max_outer_height_of_railway_line_matrix_and_status = function(v) {
-      var railway_line_matrix_outer_height, status_outer_height;
-      railway_line_matrix_outer_height = v.railway_line_matrix().domain.outerHeight(false);
-      status_outer_height = v.status().domain.outerHeight(false);
-      return Math.ceil(Math.max(railway_line_matrix_outer_height, status_outer_height));
-    };
-
-    set_height_of_railway_line_matrix_and_status = function(v) {
-      var _max_outer_height;
-      _max_outer_height = max_outer_height_of_railway_line_matrix_and_status(v);
-      arrange_height_of_railway_line_matrix_and_status(v, _max_outer_height);
-      set_height_of_domain(v);
-    };
-
-    set_height_of_railway_line_matrix_and_status_and_set_margin = function(v) {
-      var _max_outer_height, margin_top_and_bottom_of_status_info, status_outer_height;
-      _max_outer_height = max_outer_height_of_railway_line_matrix_and_status(v);
-      arrange_height_of_railway_line_matrix_and_status(v, _max_outer_height);
-      status_outer_height = v.status().infos().outerHeight();
-      if (status_outer_height < _max_outer_height) {
-        margin_top_and_bottom_of_status_info = (_max_outer_height - status_outer_height) * 0.5;
-        v.status().infos().css('margin-top', margin_top_and_bottom_of_status_info);
-        v.status().infos().css('margin-bottom', margin_top_and_bottom_of_status_info);
-      }
-      set_height_of_domain(v);
-    };
-
-    return TrainInformation;
-
-  })();
-
-  TrainInformationMatrixBase = (function() {
-    function TrainInformationMatrixBase(domain) {
-      this.domain = domain;
-    }
-
-    TrainInformationMatrixBase.prototype.outer_width = function(b) {
-      if (b == null) {
-        b = false;
-      }
-      return Math.ceil(this.domain.outerWidth(b));
-    };
-
-    TrainInformationMatrixBase.prototype.inner_height = function() {
-      return Math.ceil(this.domain.innerHeight());
-    };
-
-    TrainInformationMatrixBase.prototype.set_size = function(size) {
-      this.domain.css('width', size.width).css('height', size.height);
-    };
-
-    TrainInformationMatrixBase.prototype.initialize_size = function(size) {
-      this.set_size(size);
-    };
-
-    return TrainInformationMatrixBase;
-
-  })();
-
-  TrainInformationRailwayLineMatrix = (function(superClass) {
-    var info_margin_top_and_bottom, set_height_to_railway_line_matrix, set_vertical_align_center, set_width_to_info;
-
-    extend(TrainInformationRailwayLineMatrix, superClass);
-
-    function TrainInformationRailwayLineMatrix() {
-      return TrainInformationRailwayLineMatrix.__super__.constructor.apply(this, arguments);
-    }
-
-    TrainInformationRailwayLineMatrix.prototype.set_attributes = function() {
-      set_height_to_railway_line_matrix(this);
-      set_width_to_info(this);
-      set_vertical_align_center(this);
-    };
-
-    TrainInformationRailwayLineMatrix.prototype.info = function() {
-      var _info;
-      _info = new RailwayLineMatrixSmallInfo(this.domain.children('.info').first());
-      return _info;
-    };
-
-    set_height_to_railway_line_matrix = function(v) {
-      var _h, _info_margin_top_and_bottom;
-      _info_margin_top_and_bottom = info_margin_top_and_bottom(v);
-      _h = v.info().max_height_of_railway_line_code_outer_and_text() + _info_margin_top_and_bottom * 2;
-      v.domain.css('height', _h);
-      $.each(['margin-top', 'margin-bottom'], function(i, attr) {
-        v.info().domain.css(attr, _info_margin_top_and_bottom);
-      });
-    };
-
-    set_width_to_info = function(v) {
-      v.info().domain.css('width', v.info().sum_outer_width_of_railway_line_code_outer_and_text());
-    };
-
-    set_vertical_align_center = function(v) {
-      v.info().set_vertical_align_center();
-    };
-
-    info_margin_top_and_bottom = function(v) {
-      return 8;
-    };
-
-    TrainInformationRailwayLineMatrix.prototype.initialize_text_size = function() {
-      this.info().initialize_text_size();
-    };
-
-    return TrainInformationRailwayLineMatrix;
-
-  })(TrainInformationMatrixBase);
-
-  TrainInformationStatus = (function(superClass) {
-    var additional_infos, max_height_of_children, max_height_of_icon_and_text, set_height_of_domain, set_height_of_infos, set_margin_bottom_of_children, set_margin_top_of_icon_and_text, set_width_of_additional_infos, width_of_additional_infos;
-
-    extend(TrainInformationStatus, superClass);
-
-    function TrainInformationStatus() {
-      return TrainInformationStatus.__super__.constructor.apply(this, arguments);
-    }
-
-    TrainInformationStatus.prototype.infos = function() {
-      return this.domain.children('.infos');
-    };
-
-    TrainInformationStatus.prototype.icon = function() {
-      return this.infos().children('.icon').first();
-    };
-
-    TrainInformationStatus.prototype.icon_body = function() {
-      return this.icon().children().first();
-    };
-
-    TrainInformationStatus.prototype.text = function() {
-      return this.infos().children('.text').first();
-    };
-
-    additional_infos = function(v) {
-      return v.infos().children('.additional_infos').first();
-    };
-
-    TrainInformationStatus.prototype.icon_body_width = function() {
-      return Math.ceil(this.icon_body().width());
-    };
-
-    TrainInformationStatus.prototype.initialize_icon_size = function(_max_width) {
-      var p;
-      this.icon().css('width', _max_width);
-      p = new DomainsHorizontalAlignProcessor(this.icon_body(), _max_width);
-      p.process();
-    };
-
-    TrainInformationStatus.prototype.initialize_text_size = function(_width) {
-      var p;
-      p = new DomainsCommonProcessor(this.text().children());
-      this.text().css('width', _width);
-      this.text().css('height', p.sum_outer_height(true));
-    };
-
-    max_height_of_icon_and_text = function(v) {
-      var p;
-      p = new DomainsCommonProcessor($([v.icon(), v.text()]));
-      return p.max_outer_height(true);
-    };
-
-    max_height_of_children = function(v) {
-      var p;
-      p = new DomainsCommonProcessor(v.infos().children());
-      return p.max_outer_height(true);
-    };
-
-    TrainInformationStatus.prototype.set_attributes = function(precise_version) {
-      if (precise_version == null) {
-        precise_version = false;
-      }
-      set_width_of_additional_infos(this);
-      set_margin_top_of_icon_and_text(this);
-      if (!precise_version) {
-        set_margin_bottom_of_children(this);
-      }
-      set_height_of_infos(this, precise_version);
-      set_height_of_domain(this);
-    };
-
-    width_of_additional_infos = function(v) {
-      var p;
-      p = new DomainsCommonProcessor($([v.icon(), v.text()]));
-      return v.infos().width() - p.sum_outer_width(true);
-    };
-
-    set_width_of_additional_infos = function(v) {
-      additional_infos(v).css('width', width_of_additional_infos(v));
-    };
-
-    set_margin_top_of_icon_and_text = function(v) {
-      var _max_height_of_icon_and_text;
-      _max_height_of_icon_and_text = max_height_of_icon_and_text(v);
-      $([v.icon(), v.text()]).each(function() {
-        var _margin_top;
-        _margin_top = (_max_height_of_icon_and_text - $(this).outerHeight(true)) * 0.5;
-        $(this).css('margin-top', _margin_top);
-      });
-    };
-
-    set_margin_bottom_of_children = function(v) {
-      var _max_height_of_children;
-      _max_height_of_children = max_height_of_children(v);
-      v.infos().children().each(function() {
-        var _margin_bottom;
-        _margin_bottom = _max_height_of_children - $(this).outerHeight(true);
-        $(this).css('margin-bottom', _margin_bottom);
-      });
-    };
-
-    set_height_of_infos = function(v, precise_version) {
-      var p;
-      p = new DomainsCommonProcessor(v.infos().children());
-      if (precise_version) {
-        v.infos().css('height', p.sum_outer_height(true));
-      } else {
-        v.infos().css('height', p.max_outer_height(true));
-      }
-    };
-
-    set_height_of_domain = function(v) {
-      v.domain.css('height', v.infos().outerHeight(true));
-    };
-
-    return TrainInformationStatus;
-
-  })(TrainInformationMatrixBase);
-
-}).call(this);
-(function() {
-  var TrainLocation, TrainLocationCurrentPosition, TrainLocations;
-
-  TrainLocations = (function() {
-    var train_locations;
-
-    function TrainLocations(domains) {
-      this.domains = domains != null ? domains : $('#train_locations');
-    }
-
-    train_locations = function(v) {
+    train_location_infos = function(v) {
       return v.domains.children('.train_location');
     };
 
-    TrainLocations.prototype.process = function() {
-      train_locations(this).each(function() {
+    TrainLocationInfos.prototype.process = function() {
+      train_location_infos(this).each(function() {
         var t;
-        t = new TrainLocation($(this));
+        t = new TrainLocationInfo($(this));
         t.process();
       });
     };
 
-    return TrainLocations;
+    return TrainLocationInfos;
 
   })();
 
-  window.TrainLocations = TrainLocations;
+  window.TrainLocationInfos = TrainLocationInfos;
 
-  TrainLocation = (function() {
+  TrainLocationInfo = (function() {
     var current_position, delay, process_current_position, process_delay, process_starting_station, process_sub_infos, process_train_fundamental_infos, process_train_number, set_domain_height, set_height_of_sub_infos, starting_station, sub_infos, train_fundamental_infos, train_infos, train_number;
 
-    function TrainLocation(domain) {
+    function TrainLocationInfo(domain) {
       this.domain = domain;
     }
 
@@ -35260,7 +34736,7 @@ $('#progress').html(
       return v.domain.children('.current_position').first();
     };
 
-    TrainLocation.prototype.process = function() {
+    TrainLocationInfo.prototype.process = function() {
       process_train_fundamental_infos(this);
       process_sub_infos(this);
       process_current_position(this);
@@ -35326,7 +34802,7 @@ $('#progress').html(
 
     process_current_position = function(v) {
       var _current_position;
-      _current_position = new TrainLocationCurrentPosition(current_position(v));
+      _current_position = new TrainLocationInfoCurrentPosition(current_position(v));
       _current_position.process();
     };
 
@@ -35336,14 +34812,14 @@ $('#progress').html(
       v.domain.css('height', p.sum_outer_height(true));
     };
 
-    return TrainLocation;
+    return TrainLocationInfo;
 
   })();
 
-  TrainLocationCurrentPosition = (function() {
+  TrainLocationInfoCurrentPosition = (function() {
     var arrow, domain_of_station_infos, process_arrow, process_each_station_info, process_station_infos, set_height_of_children, set_height_of_domain_of_station_infos, station_infos, title;
 
-    function TrainLocationCurrentPosition(domain) {
+    function TrainLocationInfoCurrentPosition(domain) {
       this.domain = domain;
     }
 
@@ -35406,14 +34882,538 @@ $('#progress').html(
       v.domain.css('height', p.max_outer_height(true));
     };
 
-    TrainLocationCurrentPosition.prototype.process = function() {
+    TrainLocationInfoCurrentPosition.prototype.process = function() {
       process_station_infos(this);
       set_height_of_children(this);
     };
 
-    return TrainLocationCurrentPosition;
+    return TrainLocationInfoCurrentPosition;
 
   })();
+
+}).call(this);
+(function() {
+  var TrainOperationInfo, TrainOperationInfoMatrixBase, TrainOperationInfoRailwayLineMatrix, TrainOperationInfoStatus, TrainOperationInfos,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  TrainOperationInfos = (function() {
+    var has_informations, has_titles, height_of_railway_line_matrix, height_of_railway_line_matrix_and_status, height_of_status, informations, informations_including_precise_version, informations_of_precise_version, initialize_icon_size, initialize_railway_line_matrix_text_size, initialize_size_of_railway_line_matrix_and_status, initialize_status_text_size, max_width_of_icon_body, max_width_of_status_text, process_titles, set_attributes, size_of_railway_line_matrix, size_of_status, titles, width_of_railway_line_matrix, width_of_status;
+
+    function TrainOperationInfos(domain) {
+      this.domain = domain != null ? domain : $("#train_operation_infos");
+    }
+
+    has_informations = function(v) {
+      return informations(v).length > 0;
+    };
+
+    has_titles = function(v) {
+      return titles(v).length > 0;
+    };
+
+    informations_including_precise_version = function(v) {
+      return v.domain.children('.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test');
+    };
+
+    informations = function(v) {
+      return v.domain.children('.train_operation_info , .train_operation_info_test');
+    };
+
+    titles = function(v) {
+      return v.domain.find('.title_of_train_operation_infos , .title_of_train_location_infos');
+    };
+
+    informations_of_precise_version = function(v) {
+      return v.domain.children('.train_operation_info_precise_version');
+    };
+
+    width_of_railway_line_matrix = function(v) {
+      var w;
+      w = 0;
+      informations_including_precise_version(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        w = Math.max(w, train_operation_info.railway_line_matrix_outer_width(true));
+      });
+      return w;
+    };
+
+    height_of_railway_line_matrix = function(v) {
+      var h;
+      h = 0;
+      informations_including_precise_version(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        h = Math.max(h, train_operation_info.railway_line_matrix_inner_height());
+      });
+      return h;
+    };
+
+    width_of_status = function(v) {
+      return v.domain.innerWidth() - width_of_railway_line_matrix(v) - 3;
+    };
+
+    height_of_status = function(v) {
+      var h;
+      h = 0;
+      informations_including_precise_version(v).each(function() {
+        var train_operation_info, w;
+        train_operation_info = new TrainOperationInfo($(this));
+        w = Math.max(w, train_operation_info.status_inner_height());
+      });
+      return h;
+    };
+
+    height_of_railway_line_matrix_and_status = function(v) {
+      var h;
+      h = Math.max(height_of_railway_line_matrix(v), height_of_status(v));
+      return h;
+    };
+
+    size_of_railway_line_matrix = function(v, h) {
+      h = {
+        width: width_of_railway_line_matrix(v),
+        height: h
+      };
+      return h;
+    };
+
+    size_of_status = function(v, h) {
+      h = {
+        width: width_of_status(v),
+        height: h
+      };
+      return h;
+    };
+
+    max_width_of_icon_body = function(v) {
+      var w;
+      w = 0;
+      informations(v).each(function() {
+        var _icon_body_width, train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        _icon_body_width = train_operation_info.status().icon_body_width();
+        w = Math.max(w, _icon_body_width);
+      });
+      return w;
+    };
+
+    TrainOperationInfos.prototype.process = function() {
+      if (has_titles(this)) {
+        process_titles(this);
+      }
+      if (has_informations(this)) {
+        initialize_icon_size(this);
+        initialize_railway_line_matrix_text_size(this);
+        initialize_status_text_size(this);
+        initialize_size_of_railway_line_matrix_and_status(this);
+        set_attributes(this);
+      }
+    };
+
+    process_titles = function(v) {
+      var _titles;
+      _titles = new ContentHeaderProcessor(titles(v));
+      _titles.process();
+    };
+
+    initialize_icon_size = function(v) {
+      var _max_width_of_icon_body;
+      _max_width_of_icon_body = max_width_of_icon_body(v);
+      informations(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        train_operation_info.initialize_icon_size(_max_width_of_icon_body);
+      });
+    };
+
+    initialize_railway_line_matrix_text_size = function(v) {
+      informations_including_precise_version(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        train_operation_info.initialize_railway_line_matrix_text_size();
+      });
+    };
+
+    max_width_of_status_text = function(v) {
+      var w;
+      w = 0;
+      informations(v).each(function() {
+        var outer_width, p, train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        p = new DomainsCommonProcessor(train_operation_info.status().text().children());
+        outer_width = p.max_outer_width(true);
+        w = Math.max(w, Math.ceil(outer_width));
+      });
+      return w;
+    };
+
+    initialize_status_text_size = function(v) {
+      var _max_width_of_status_text;
+      _max_width_of_status_text = max_width_of_status_text(v);
+      informations_including_precise_version(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        train_operation_info.initialize_status_text_size(_max_width_of_status_text);
+      });
+    };
+
+    initialize_size_of_railway_line_matrix_and_status = function(v) {
+      var _size_of_railway_line_matrix, _size_of_status, h;
+      h = height_of_railway_line_matrix_and_status(v);
+      _size_of_railway_line_matrix = size_of_railway_line_matrix(v, h);
+      _size_of_status = size_of_status(v, h);
+      informations_including_precise_version(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        train_operation_info.initialize_size(_size_of_railway_line_matrix, _size_of_status);
+      });
+    };
+
+    set_attributes = function(v) {
+      informations(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        train_operation_info.set_attributes();
+      });
+      informations_of_precise_version(v).each(function() {
+        var train_operation_info;
+        train_operation_info = new TrainOperationInfo($(this));
+        train_operation_info.set_attributes(true);
+      });
+    };
+
+    return TrainOperationInfos;
+
+  })();
+
+  window.TrainOperationInfos = TrainOperationInfos;
+
+  TrainOperationInfo = (function() {
+    var arrange_height_of_railway_line_matrix_and_status, domain_height_new, initialize_size_of_railway_line_matrix, initialize_size_of_status, max_outer_height_of_railway_line_matrix_and_status, set_attributes_of_railway_line_matrix, set_attributes_of_status, set_height_of_domain, set_height_of_railway_line_matrix_and_status, set_height_of_railway_line_matrix_and_status_and_set_margin;
+
+    function TrainOperationInfo(domain) {
+      this.domain = domain;
+    }
+
+    TrainOperationInfo.prototype.railway_line_matrix = function() {
+      var r;
+      r = new TrainOperationInfoRailwayLineMatrix(this.domain.children('.railway_line_matrix_small').first());
+      return r;
+    };
+
+    TrainOperationInfo.prototype.status = function() {
+      var s;
+      s = new TrainOperationInfoStatus(this.domain.children('.status').first());
+      return s;
+    };
+
+    TrainOperationInfo.prototype.railway_line_matrix_outer_width = function(b) {
+      if (b == null) {
+        b = false;
+      }
+      return this.railway_line_matrix().outer_width(b);
+    };
+
+    TrainOperationInfo.prototype.railway_line_matrix_inner_height = function() {
+      return this.railway_line_matrix().inner_height();
+    };
+
+    TrainOperationInfo.prototype.status_inner_height = function() {
+      return this.status().inner_height();
+    };
+
+    TrainOperationInfo.prototype.initialize_icon_size = function(_max_width) {
+      this.status().initialize_icon_size(_max_width);
+    };
+
+    TrainOperationInfo.prototype.initialize_railway_line_matrix_text_size = function() {
+      this.railway_line_matrix().initialize_text_size();
+    };
+
+    TrainOperationInfo.prototype.initialize_status_text_size = function(_width) {
+      return this.status().initialize_text_size(_width);
+    };
+
+    TrainOperationInfo.prototype.initialize_size = function(size_of_railway_line_matrix, size_of_status) {
+      initialize_size_of_railway_line_matrix(this, size_of_railway_line_matrix);
+      initialize_size_of_status(this, size_of_status);
+    };
+
+    initialize_size_of_railway_line_matrix = function(v, size_of_railway_line_matrix) {
+      v.railway_line_matrix().initialize_size(size_of_railway_line_matrix);
+    };
+
+    initialize_size_of_status = function(v, size_of_status) {
+      var _status;
+      _status = v.status();
+      _status.initialize_size(size_of_status);
+    };
+
+    TrainOperationInfo.prototype.set_attributes = function(precise_version) {
+      if (precise_version == null) {
+        precise_version = false;
+      }
+      set_attributes_of_railway_line_matrix(this);
+      set_attributes_of_status(this, precise_version);
+      set_height_of_railway_line_matrix_and_status_and_set_margin(this);
+    };
+
+    set_attributes_of_railway_line_matrix = function(v) {
+      v.railway_line_matrix().set_attributes();
+    };
+
+    set_attributes_of_status = function(v, precise_version) {
+      v.status().set_attributes(precise_version);
+    };
+
+    domain_height_new = function(v) {
+      var _h, _railway_line_matrix, border;
+      _railway_line_matrix = v.railway_line_matrix().domain;
+      border = (_railway_line_matrix.outerHeight(false) - _railway_line_matrix.innerHeight()) * 0.5;
+      _h = _railway_line_matrix.innerHeight() + border;
+      return _h;
+    };
+
+    arrange_height_of_railway_line_matrix_and_status = function(v, _max_outer_height) {
+      v.railway_line_matrix().domain.css('height', _max_outer_height);
+      v.status().domain.css('height', _max_outer_height);
+    };
+
+    set_height_of_domain = function(v) {
+      v.domain.css('height', domain_height_new(v));
+    };
+
+    max_outer_height_of_railway_line_matrix_and_status = function(v) {
+      var railway_line_matrix_outer_height, status_outer_height;
+      railway_line_matrix_outer_height = v.railway_line_matrix().domain.outerHeight(false);
+      status_outer_height = v.status().domain.outerHeight(false);
+      return Math.ceil(Math.max(railway_line_matrix_outer_height, status_outer_height));
+    };
+
+    set_height_of_railway_line_matrix_and_status = function(v) {
+      var _max_outer_height;
+      _max_outer_height = max_outer_height_of_railway_line_matrix_and_status(v);
+      arrange_height_of_railway_line_matrix_and_status(v, _max_outer_height);
+      set_height_of_domain(v);
+    };
+
+    set_height_of_railway_line_matrix_and_status_and_set_margin = function(v) {
+      var _max_outer_height, margin_top_and_bottom_of_status_info, status_outer_height;
+      _max_outer_height = max_outer_height_of_railway_line_matrix_and_status(v);
+      arrange_height_of_railway_line_matrix_and_status(v, _max_outer_height);
+      status_outer_height = v.status().infos().outerHeight();
+      if (status_outer_height < _max_outer_height) {
+        margin_top_and_bottom_of_status_info = (_max_outer_height - status_outer_height) * 0.5;
+        v.status().infos().css('margin-top', margin_top_and_bottom_of_status_info);
+        v.status().infos().css('margin-bottom', margin_top_and_bottom_of_status_info);
+      }
+      set_height_of_domain(v);
+    };
+
+    return TrainOperationInfo;
+
+  })();
+
+  TrainOperationInfoMatrixBase = (function() {
+    function TrainOperationInfoMatrixBase(domain) {
+      this.domain = domain;
+    }
+
+    TrainOperationInfoMatrixBase.prototype.outer_width = function(b) {
+      if (b == null) {
+        b = false;
+      }
+      return Math.ceil(this.domain.outerWidth(b));
+    };
+
+    TrainOperationInfoMatrixBase.prototype.inner_height = function() {
+      return Math.ceil(this.domain.innerHeight());
+    };
+
+    TrainOperationInfoMatrixBase.prototype.set_size = function(size) {
+      this.domain.css('width', size.width).css('height', size.height);
+    };
+
+    TrainOperationInfoMatrixBase.prototype.initialize_size = function(size) {
+      this.set_size(size);
+    };
+
+    return TrainOperationInfoMatrixBase;
+
+  })();
+
+  TrainOperationInfoRailwayLineMatrix = (function(superClass) {
+    var info_margin_top_and_bottom, set_height_to_railway_line_matrix, set_vertical_align_center, set_width_to_info;
+
+    extend(TrainOperationInfoRailwayLineMatrix, superClass);
+
+    function TrainOperationInfoRailwayLineMatrix() {
+      return TrainOperationInfoRailwayLineMatrix.__super__.constructor.apply(this, arguments);
+    }
+
+    TrainOperationInfoRailwayLineMatrix.prototype.set_attributes = function() {
+      set_height_to_railway_line_matrix(this);
+      set_width_to_info(this);
+      set_vertical_align_center(this);
+    };
+
+    TrainOperationInfoRailwayLineMatrix.prototype.info = function() {
+      var _info;
+      _info = new RailwayLineMatrixSmallInfo(this.domain.children('.info').first());
+      return _info;
+    };
+
+    set_height_to_railway_line_matrix = function(v) {
+      var _h, _info_margin_top_and_bottom;
+      _info_margin_top_and_bottom = info_margin_top_and_bottom(v);
+      _h = v.info().max_height_of_railway_line_code_outer_and_text() + _info_margin_top_and_bottom * 2;
+      v.domain.css('height', _h);
+      $.each(['margin-top', 'margin-bottom'], function(i, attr) {
+        v.info().domain.css(attr, _info_margin_top_and_bottom);
+      });
+    };
+
+    set_width_to_info = function(v) {
+      v.info().domain.css('width', v.info().sum_outer_width_of_railway_line_code_outer_and_text());
+    };
+
+    set_vertical_align_center = function(v) {
+      v.info().set_vertical_align_center();
+    };
+
+    info_margin_top_and_bottom = function(v) {
+      return 8;
+    };
+
+    TrainOperationInfoRailwayLineMatrix.prototype.initialize_text_size = function() {
+      this.info().initialize_text_size();
+    };
+
+    return TrainOperationInfoRailwayLineMatrix;
+
+  })(TrainOperationInfoMatrixBase);
+
+  TrainOperationInfoStatus = (function(superClass) {
+    var additional_infos, max_height_of_children, max_height_of_icon_and_text, set_height_of_domain, set_height_of_infos, set_margin_bottom_of_children, set_margin_top_of_icon_and_text, set_width_of_additional_infos, width_of_additional_infos;
+
+    extend(TrainOperationInfoStatus, superClass);
+
+    function TrainOperationInfoStatus() {
+      return TrainOperationInfoStatus.__super__.constructor.apply(this, arguments);
+    }
+
+    TrainOperationInfoStatus.prototype.infos = function() {
+      return this.domain.children('.infos');
+    };
+
+    TrainOperationInfoStatus.prototype.icon = function() {
+      return this.infos().children('.icon').first();
+    };
+
+    TrainOperationInfoStatus.prototype.icon_body = function() {
+      return this.icon().children().first();
+    };
+
+    TrainOperationInfoStatus.prototype.text = function() {
+      return this.infos().children('.text').first();
+    };
+
+    additional_infos = function(v) {
+      return v.infos().children('.additional_infos').first();
+    };
+
+    TrainOperationInfoStatus.prototype.icon_body_width = function() {
+      return Math.ceil(this.icon_body().width());
+    };
+
+    TrainOperationInfoStatus.prototype.initialize_icon_size = function(_max_width) {
+      var p;
+      this.icon().css('width', _max_width);
+      p = new DomainsHorizontalAlignProcessor(this.icon_body(), _max_width);
+      p.process();
+    };
+
+    TrainOperationInfoStatus.prototype.initialize_text_size = function(_width) {
+      var p;
+      p = new DomainsCommonProcessor(this.text().children());
+      this.text().css('width', _width);
+      this.text().css('height', p.sum_outer_height(true));
+    };
+
+    max_height_of_icon_and_text = function(v) {
+      var p;
+      p = new DomainsCommonProcessor($([v.icon(), v.text()]));
+      return p.max_outer_height(true);
+    };
+
+    max_height_of_children = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.infos().children());
+      return p.max_outer_height(true);
+    };
+
+    TrainOperationInfoStatus.prototype.set_attributes = function(precise_version) {
+      if (precise_version == null) {
+        precise_version = false;
+      }
+      set_width_of_additional_infos(this);
+      set_margin_top_of_icon_and_text(this);
+      if (!precise_version) {
+        set_margin_bottom_of_children(this);
+      }
+      set_height_of_infos(this, precise_version);
+      set_height_of_domain(this);
+    };
+
+    width_of_additional_infos = function(v) {
+      var p;
+      p = new DomainsCommonProcessor($([v.icon(), v.text()]));
+      return v.infos().width() - p.sum_outer_width(true);
+    };
+
+    set_width_of_additional_infos = function(v) {
+      additional_infos(v).css('width', width_of_additional_infos(v));
+    };
+
+    set_margin_top_of_icon_and_text = function(v) {
+      var _max_height_of_icon_and_text;
+      _max_height_of_icon_and_text = max_height_of_icon_and_text(v);
+      $([v.icon(), v.text()]).each(function() {
+        var _margin_top;
+        _margin_top = (_max_height_of_icon_and_text - $(this).outerHeight(true)) * 0.5;
+        $(this).css('margin-top', _margin_top);
+      });
+    };
+
+    set_margin_bottom_of_children = function(v) {
+      var _max_height_of_children;
+      _max_height_of_children = max_height_of_children(v);
+      v.infos().children().each(function() {
+        var _margin_bottom;
+        _margin_bottom = _max_height_of_children - $(this).outerHeight(true);
+        $(this).css('margin-bottom', _margin_bottom);
+      });
+    };
+
+    set_height_of_infos = function(v, precise_version) {
+      var p;
+      p = new DomainsCommonProcessor(v.infos().children());
+      if (precise_version) {
+        v.infos().css('height', p.sum_outer_height(true));
+      } else {
+        v.infos().css('height', p.max_outer_height(true));
+      }
+    };
+
+    set_height_of_domain = function(v) {
+      v.domain.css('height', v.infos().outerHeight(true));
+    };
+
+    return TrainOperationInfoStatus;
+
+  })(TrainOperationInfoMatrixBase);
 
 }).call(this);
 (function() {

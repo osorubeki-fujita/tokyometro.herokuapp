@@ -16,7 +16,7 @@ class TrainOperationInfos
     return v.domain.children( '.train_operation_info , .train_operation_info_test' )
 
   titles = (v) ->
-    return v.domain.find( '.title_of_train_operation_infos , .title_of_train_locations' )
+    return v.domain.find( '.title_of_train_operation_infos , .title_of_train_location_infos' )
 
   informations_of_precise_version = (v) ->
     return v.domain.children( '.train_operation_info_precise_version' )

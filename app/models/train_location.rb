@@ -1,6 +1,5 @@
-class TrainLocation < ActiveRecord::Base
-  include TrainLocationCommonSettings
-  include ::Association::To::FromStation::Info
-  include ::Association::To::ToStation::Info
-  has_many :air_conditioner_infos
+module TrainLocation
+  def self.table_name_prefix
+    'train_location_'
+  end
 end
