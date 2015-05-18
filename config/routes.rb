@@ -58,15 +58,15 @@ Rails.application.routes.draw do
 
   #-------- 列車運行情報
 
-  get 'train_information(/index)' ,
-    to: 'train_information#index'
+  get 'train_operation(/index)' ,
+    to: 'train_operation#index'
 
-  get 'train_information/:railway_line' ,
+  get 'train_operation/:railway_line' ,
     constraints: { railway_line: /[a-z]+_line/ } ,
-    to: 'train_information#action_for_railway_line_page'
+    to: 'train_operation#action_for_railway_line_page'
 
-  get 'train_information/:station' ,
-    to: 'train_information#action_for_station_page'
+  get 'train_operation/:station' ,
+    to: 'train_operation#action_for_station_page'
 
   #-------- 列車位置情報
 

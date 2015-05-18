@@ -17,8 +17,8 @@ class RailwayLine < ActiveRecord::Base
   has_many :train_timetables
   has_many :train_types
 
-  has_many :train_informations
-  has_many :train_information_olds
+  has_many :train_operation_infos
+  has_many :train_operation_old_infos
 
   has_many :train_locations
   has_many :train_location_olds
@@ -207,7 +207,7 @@ class RailwayLine < ActiveRecord::Base
   def tokyo_metro?
     operator.tokyo_metro?
   end
-  
+
   def except_for_branch_lines
     self
   end

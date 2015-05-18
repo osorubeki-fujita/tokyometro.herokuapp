@@ -1,3 +1,3 @@
 class TrainInformationOld < ActiveRecord::Base
-  include TrainInformationCommonSettings
+  include TrainOperationCommonSettings
 end
