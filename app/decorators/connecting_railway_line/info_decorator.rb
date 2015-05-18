@@ -1,4 +1,4 @@
-class ConnectingRailwayLineDecorator < Draper::Decorator
+class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
   delegate_all
 
   decorates_association :railway_line
