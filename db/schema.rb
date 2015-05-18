@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150510161900) do
+ActiveRecord::Schema.define(version: 20150518092912) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -465,46 +465,6 @@ ActiveRecord::Schema.define(version: 20150510161900) do
     t.datetime "updated_at"
   end
 
-  create_table "train_information_olds", force: :cascade do |t|
-    t.string   "id_urn",                      limit: 255
-    t.datetime "dc_date"
-    t.datetime "valid"
-    t.integer  "operator_id"
-    t.datetime "time_of_origin"
-    t.integer  "railway_line_id"
-    t.integer  "train_information_status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "train_information_text_id"
-  end
-
-  create_table "train_information_statuses", force: :cascade do |t|
-    t.string   "name_ja",    limit: 255
-    t.string   "name_en",    limit: 255
-    t.string   "in_api",     limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "train_information_texts", force: :cascade do |t|
-    t.string   "in_api"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "train_informations", force: :cascade do |t|
-    t.string   "id_urn",                      limit: 255
-    t.datetime "dc_date"
-    t.datetime "valid"
-    t.integer  "operator_id"
-    t.datetime "time_of_origin"
-    t.integer  "railway_line_id"
-    t.integer  "train_information_status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "train_information_text_id"
-  end
-
   create_table "train_location_olds", force: :cascade do |t|
     t.string   "id_urn",               limit: 255
     t.string   "same_as",              limit: 255
@@ -545,6 +505,46 @@ ActiveRecord::Schema.define(version: 20150510161900) do
     t.integer  "now_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "train_operation_infos", force: :cascade do |t|
+    t.string   "id_urn",          limit: 255
+    t.datetime "dc_date"
+    t.datetime "valid"
+    t.integer  "operator_id"
+    t.datetime "time_of_origin"
+    t.integer  "railway_line_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "text_id"
+  end
+
+  create_table "train_operation_old_infos", force: :cascade do |t|
+    t.string   "id_urn",          limit: 255
+    t.datetime "dc_date"
+    t.datetime "valid"
+    t.integer  "operator_id"
+    t.datetime "time_of_origin"
+    t.integer  "railway_line_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "text_id"
+  end
+
+  create_table "train_operation_statuses", force: :cascade do |t|
+    t.string   "name_ja",    limit: 255
+    t.string   "name_en",    limit: 255
+    t.string   "in_api",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "train_operation_texts", force: :cascade do |t|
+    t.string   "in_api"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "train_owners", force: :cascade do |t|

@@ -1,7 +1,7 @@
-class TrainInformationText < ActiveRecord::Base
+class TrainOperation::Text < ActiveRecord::Base
 
-  has_many :train_operation_infos
-  has_many :train_operation_old_infos
+  has_many :train_operation_infos , class: ::TrainOperation::Info
+  has_many :train_operation_old_infos , class: ::TrainOperation::OldInfo
 
   def on_schedule?
     in_api == "現在、平常どおり運転しています。"
@@ -32,10 +32,10 @@ class TrainInformationText < ActiveRecord::Base
   end
 
   def self.review!
-    ::TrainInformationText.all.each do | text |
-      text_in_api = text.in_api
-      text_in_api_new = text.in_api.process_train_operation_info_text
-      text.update( in_api: text_in_api_new )
+    self.all.each do | item |
+      text_in_api = item.in_api
+      text_in_api_new = item.in_api.process_train_operation_info_text
+      item.update( in_api: text_in_api_new )
     end
     return nil
   end

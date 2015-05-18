@@ -1,6 +1,7 @@
-class TrainInformationStatus < ActiveRecord::Base
-  has_many :train_operation_infos
-  has_many :train_operation_old_infos
+class TrainOperation::Status < ActiveRecord::Base
+
+  has_many :train_operation_infos , class: ::TrainOperation::Info
+  has_many :train_operation_old_infos , class: ::TrainOperation::OldInfo
 
   def name_ja_for_display
     if name_ja.present?

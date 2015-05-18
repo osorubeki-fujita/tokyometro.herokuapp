@@ -1,4 +1,4 @@
-class TrainInformationDecorator < Draper::Decorator
+class TrainOperation::InfoDecorator < Draper::Decorator
 
   delegate_all
 
