@@ -1,6 +1,6 @@
-class Point < ActiveRecord::Base
+class Point::Info < ActiveRecord::Base
   belongs_to :station_facility
-  belongs_to :point_category
+  belongs_to :category , class: ::Point::Category
 
   has_many :station_points
   has_many :station_infos , through: :station_points
@@ -40,8 +40,8 @@ class Point < ActiveRecord::Base
     not_closed
   }
 
-  def category
-    point_category
+  def point_category
+    category
   end
 
   [ :closed? , :close? , :close ].each do | method_name |
@@ -87,7 +87,7 @@ class Point < ActiveRecord::Base
   [ :ja , :en ].each do | lang |
     eval <<-DEF
       def category_name_#{ lang }
-        point_category.name_#{ lang }
+        category.name_#{ lang }
       end
     DEF
   end

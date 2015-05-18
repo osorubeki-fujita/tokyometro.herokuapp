@@ -1,5 +1,6 @@
-class PointCategory < ActiveRecord::Base
-  has_many :points
+class Point::Category < ActiveRecord::Base
+
+  has_many :infos , class: ::Point::Info
 
   def name_en
     case name_ja

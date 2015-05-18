@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518115131) do
+ActiveRecord::Schema.define(version: 20150518141317) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -218,10 +218,10 @@ ActiveRecord::Schema.define(version: 20150518115131) do
     t.string   "name_en"
   end
 
-  create_table "points", force: :cascade do |t|
+  create_table "point_infos", force: :cascade do |t|
     t.string   "id_urn",              limit: 255
     t.integer  "station_facility_id"
-    t.integer  "point_category_id"
+    t.integer  "category_id"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "geo_json",            limit: 255
@@ -380,7 +380,7 @@ ActiveRecord::Schema.define(version: 20150518115131) do
 
   create_table "station_points", force: :cascade do |t|
     t.integer  "station_info_id"
-    t.integer  "point_id"
+    t.integer  "point_info_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
