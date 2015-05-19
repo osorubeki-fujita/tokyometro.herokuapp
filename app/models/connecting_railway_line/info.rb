@@ -1,7 +1,6 @@
 class ConnectingRailwayLine::Info < ActiveRecord::Base
   include ::Association::To::Station::Info
   belongs_to :railway_line , class: ::RailwayLine
-  belongs_to :station_info , class_name: ::Station::Info
   belongs_to :note , class: ::ConnectingRailwayLine::Note
   belongs_to :connecting_station_info , class_name: ::Station::Info
 
