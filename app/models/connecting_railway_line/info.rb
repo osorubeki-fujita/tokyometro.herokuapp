@@ -3,6 +3,7 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
   belongs_to :railway_line , class: ::RailwayLine
   belongs_to :station_info , class_name: ::Station::Info
   belongs_to :note , class: ::ConnectingRailwayLine::Note
+  belongs_to :connecting_station_info , class_name: ::Station::Info
 
   include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine

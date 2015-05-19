@@ -50,7 +50,7 @@ class StationFacilityController < ApplicationController
   end
 
   def set_exit_info_for_google_map
-    json_title = @station_info.decorate.json_title_on_google_map
+    json_title = @station_info.decorate.google_map.json_title
     @exit_info_for_google_map = ::Gmaps4rails.build_markers( @point_infos ) do | point_info , marker_of_this_station |
       point_info.set_to( marker_of_this_station , json_title )
     end

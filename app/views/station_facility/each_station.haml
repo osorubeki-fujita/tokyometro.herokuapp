@@ -23,7 +23,7 @@
     - [ all_exit_infos.select( &:opened? ) , all_exit_infos.select( &:closed? ) ].each do | group |
       - group.each do | exit_info |
         = exit_info.decorate.render_in_station_facility_page
-  %iframe{ id: :map , src: @station_info.decorate.google_map_url , frameborder: 0 }
+  %iframe{ id: :map , src: @station_info.decorate.google_map.url , frameborder: 0 }
 
 %div{ id: :station_facility_contents }
 

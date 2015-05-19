@@ -498,81 +498,12 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def json_title_on_google_map
-    "#{ name_ja_actual } #{ name_en }"
-  end
-
-  # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
-  def google_map_url
-    str = ::String.new
-    str << "https://www.google.com/maps/embed/v1/search?key=#{ ::TokyoMetro::GOOGLE_MAP_API_KEY }&q=#{ station_name_url_encoded }"
-    str << "&center=#{ latitude },#{ longitude }"
-    str << "&zoom=16"
-    str << "&maptype=roadmap"
-    str << "&language=ja"
-    str
+  def google_map
+    GoogleMap.new( self )
   end
 
   def train_location
     TrainLocation.new( self )
-  end
-
-  class TrainLocation
-
-    def initialize( decorator )
-      @decorator = decorator
-    end
-
-    attr_reader :decorator
-
-    def object
-      @decorator.object
-    end
-
-    def render_as_terminal_station
-      h.render inline: <<-HAML , type: :haml , locals: { this: decorator }
-%div{ class: :terminal_station }
-  - if this.object.station_code.present?
-    = this.render_station_code_image
-  %div{ class: :text }
-    %p{ class: :text_ja }<
-      = this.render_name_ja( with_subname: true , suffix: " 行き" )
-    %p{ class: :text_en }<
-      = this.render_name_en( with_subname: true , prefix: "Bound for " )
-      HAML
-    end
-
-    def render_as_starting_station
-      h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :starting_station }
-  %div{ class: :starting_station_title }
-    %p{ class: :text_ja }<
-      = "始発駅"
-    %p{ class: :text_en }<
-      = "Started at"
-  = this.render_name
-      HAML
-    end
-
-    def render_name
-      h.render inline: <<-HAML , type: :haml , locals: { this: decorator }
-%div{ class: :station_info }
-  - if this.object.station_code.present?
-    = this.render_station_code_image
-  %div{ class: :text }
-    %p{ class: :text_ja }<
-      = this.render_name_ja( with_subname: true )
-    %p{ class: :text_en }<
-      = this.render_name_en( with_subname: true )
-      HAML
-    end
-
-    private
-
-    def h
-      ::ActionView::Base.new
-    end
-
   end
 
   private
