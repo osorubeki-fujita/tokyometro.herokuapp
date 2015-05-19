@@ -8,7 +8,7 @@ class TravelTimeInfo < ActiveRecord::Base
 
   scope :between , ->( station_a , station_b ) {
     if [ station_a , station_b ].all?( &:integer? )
-      station_a , station_b = [ station_a , station_b ].map { | station_id | ::Station::Info.find_by_id( station_id ) }
+      station_a , station_b = [ station_a , station_b ].map { | station_info_id | ::Station::Info.find_by_id( station_info_id ) }
     elsif [ station_a , station_b ].all? { | item | item.instance_of?( ::String ) }
       station_a , station_b = [ station_a , station_b ].map { | station_same_as | ::Station::Info.find_by_same_as( station_same_as ) }
     end
