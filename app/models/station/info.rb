@@ -6,8 +6,8 @@ class Station::Info < ActiveRecord::Base
   belongs_to :railway_line
   belongs_to :operator
 
-  has_many :connecting_railway_lines , class: ::ConnectingRailwayLine , foreign_key: :station_info_id
-  has_many :railway_lines , through: :connecting_railway_lines
+  has_many :connecting_railway_line_infos , class: ::ConnectingRailwayLine::Info , foreign_key: :station_info_id
+  has_many :railway_lines , through: :connecting_railway_line_infos
 
   has_many :station_points , class: ::StationPoint , foreign_key: :station_info_id
   has_many :point_infos , through: :station_points
@@ -69,7 +69,7 @@ class Station::Info < ActiveRecord::Base
       railway_line_ids << railway_line.main_railway_line_id
     end
     if only_tokyo_metro
-      railway_line_ids += connecting_railway_lines.pluck( :railway_line_id )
+      railway_line_ids += connecting_railway_line_infos.pluck( :railway_line_id )
     else
       railway_line_ids += station_infos_including_other_railway_lines.pluck( :railway_line_id )
     end

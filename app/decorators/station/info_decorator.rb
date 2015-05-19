@@ -28,14 +28,14 @@ class Station::InfoDecorator < Draper::Decorator
     name_ja_with_station_code + " (#{name_en})"
   end
 
-  def connecting_railway_lines_of_tokyo_metro_in_another_station
-    connecting_railway_lines.includes( :railway_line ).order( :railway_line_id ).select { | item |
+  def connecting_railway_lines_of_the_same_operator_connected_to_another_station
+    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_id ).select { | item |
       item.railway_line.tokyo_metro? and item.connecting_to_another_station?
     }
   end
 
   def connecting_railway_lines_except_for_tokyo_metro
-    connecting_railway_lines.includes( :railway_line ).order( :railway_line_id ).select { | item |
+    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_id ).select { | item |
       item.railway_line.not_tokyo_metro?
     }
   end
@@ -163,26 +163,26 @@ class Station::InfoDecorator < Draper::Decorator
       this: self ,
       request: request ,
       railway_lines_of_tokyo_metro: railway_lines_of_tokyo_metro ,
-      connecting_railway_lines_of_tokyo_metro_in_another_station: connecting_railway_lines_of_tokyo_metro_in_another_station
+      c_railway_lines: connecting_railway_lines_of_the_same_operator_connected_to_another_station
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :tokyo_metro_railway_lines }
-  = ::ConnectingRailwayLineDecorator.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
+  = ::ConnectingRailwayLine::InfoDecorator.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
   %ul{ id: :railway_lines_in_this_station , class: [ :railway_lines , :clearfix ] }
     - railway_lines_of_tokyo_metro.each do | railway_line |
       = ::TokyoMetro::App::Renderer::RailwayLine::LinkToPage.new( request , railway_line.decorate ).render
-  - if connecting_railway_lines_of_tokyo_metro_in_another_station.present?
+  - if c_railway_lines.present?
     %ul{ id: :railway_lines_in_another_station , class: [ :railway_lines , :clearfix ] }
-      - connecting_railway_lines_of_tokyo_metro_in_another_station.each do | connecting_railway_line |
-        = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
+      - c_railway_lines.each do | connecting_railway_line_info |
+        = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line_info.decorate ).render
     HAML
   end
 
   def render_link_to_station_facility_info_of_connecting_other_stations
-    _connecting_railway_lines_of_tokyo_metro_in_another_station = connecting_railway_lines_of_tokyo_metro_in_another_station
-    if _connecting_railway_lines_of_tokyo_metro_in_another_station.present?
-      station_facility_ids = _connecting_railway_lines_of_tokyo_metro_in_another_station.map( &:connecting_station_info ).uniq.map( &:station_facility_id ).uniq
+    _c_railway_lines = connecting_railway_lines_of_the_same_operator_connected_to_another_station
+    if _c_railway_lines.present?
+      station_facility_ids = _c_railway_lines.map( &:connecting_station_info ).uniq.map( &:station_facility_id ).uniq
       station_infos = station_facility_ids.map { | station_facility_id | ::StationFacility.find( station_facility_id ).station_infos.first }
       h_locals = {
         request: h.request ,
@@ -204,20 +204,20 @@ class Station::InfoDecorator < Draper::Decorator
 
   # 他事業者の乗り換え情報を表示する method
   def render_railway_lines_except_for_tokyo_metro
-    # @param connecting_railway_lines [Array <RailwayLine>] 東京メトロ以外の乗り入れ路線
+    # @param c_railway_lines [Array <RailwayLine>] 東京メトロ以外の乗り入れ路線
     _connecting_railway_lines_except_for_tokyo_metro = connecting_railway_lines_except_for_tokyo_metro
 
     if _connecting_railway_lines_except_for_tokyo_metro.present?
       h_locals = {
-        connecting_railway_lines_except_for_tokyo_metro: _connecting_railway_lines_except_for_tokyo_metro
+        c_railway_lines: _connecting_railway_lines_except_for_tokyo_metro
       }
 
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :other_railway_lines }
-  = ::ConnectingRailwayLineDecorator.render_title_of_other_railway_lines_in_station_facility_info
+  = ::ConnectingRailwayLine::InfoDecorator.render_title_of_other_railway_lines_in_station_facility_info
   %ul{ id: :railway_lines_except_for_tokyo_metro , class: [ :railway_lines , :clearfix ] }
-    - connecting_railway_lines_except_for_tokyo_metro.each do | connecting_railway_line |
-      = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
+    - c_railway_lines.each do | connecting_railway_line_info |
+      = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line_info.decorate ).render
       HAML
     end
   end
@@ -444,12 +444,12 @@ class Station::InfoDecorator < Draper::Decorator
 
   def render_connecting_railway_lines_in_travel_time_infos
     h_locals = {
-      connecting_railway_lines: object.connecting_railway_lines.display_on_railway_line_page.includes( :railway_line , railway_line: :operator )
+      c_railway_line_infos: object.connecting_railway_line_infos.display_on_railway_line_page.includes( :railway_line , railway_line: :operator )
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ class: [ :railway_lines , :clearfix ] }
-  - connecting_railway_lines.each do | connecting_railway_line |
-    = ::TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Station::LinkToRailwayLinePage.new( request , connecting_railway_line.decorate ).render
+  - c_railway_line_infos.each do | connecting_railway_line_info |
+    = ::TokyoMetro::App::Renderer::TravelTimeInfo::MetaClass::Row::Station::LinkToRailwayLinePage.new( request , connecting_railway_line_info.decorate ).render
     HAML
   end
 
@@ -497,11 +497,11 @@ class Station::InfoDecorator < Draper::Decorator
       raise "Error"
     end
   end
-  
+
   def json_title_on_google_map
     "#{ name_ja_actual } #{ name_en }"
   end
-  
+
   # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
   def google_map_url
     str = ::String.new
@@ -669,7 +669,7 @@ class Station::InfoDecorator < Draper::Decorator
       { normal_size: destination_name_ja , small_size: nil }
     end
   end
-  
+
   def station_name_url_encoded
     ::ERB::Util.url_encode( name_ja_actual )
   end

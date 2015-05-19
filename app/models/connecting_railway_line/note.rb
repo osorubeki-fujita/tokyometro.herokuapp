@@ -1,7 +1,7 @@
 class ConnectingRailwayLine::Note < ActiveRecord::Base
   has_many :infos , class: ::ConnectingRailwayLine::Info
-  
-  def connecting_railway_lines
+
+  def connecting_railway_line_infos
     infos
   end
 
