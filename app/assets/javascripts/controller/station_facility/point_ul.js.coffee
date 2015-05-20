@@ -11,7 +11,7 @@ class StationFacilityPointUl
 
   codes_in_li_domains = (v) ->
     return li_domains(v).children( '.code' )
-  
+
   #-------- EV
 
   elevator_domains = (v) ->
@@ -42,7 +42,7 @@ class StationFacilityPointUl
     set_length_of_close_info(@)
     process_height_of_li_children(@)
     process_width_of_codes_in_li_domains(@)
-    
+
     process_width_of_li_domain(@)
     process_height_of_li_domain(@)
     process_width_of_ul_domain(@)
@@ -76,8 +76,8 @@ class StationFacilityPointUl
     h = max_outer_height_of_li_children(v)
     li_domains(v).children().each ->
       padding_top_or_bottom = ( h - $(@).height() ) * 0.5
-      $(@).css( 'padding-top' , padding_top_or_bottom )
-      $(@).css( 'padding-bottom' , padding_top_or_bottom )
+      $(@).css( 'padding-top' , Math.ceil( padding_top_or_bottom ) )
+      $(@).css( 'padding-bottom' , Math.floor( padding_top_or_bottom ) )
       return
     return
 
@@ -171,7 +171,7 @@ class StationFacilityPointElevator
 
   ev_domain = (v) ->
     return ev_domains(v).first()
-  
+
   #-------- code
 
   codes = (v) ->
@@ -187,7 +187,8 @@ class StationFacilityPointElevator
     # console.log 'StationFacilityPointEv'
     set_length_of_ev_domain(@)
     set_length_of_code(@)
-    set_length_of_this_domain(@)
+    set_height_of_this_domain(@)
+    set_width_of_this_domain(@)
     return
 
   set_length_of_ev_domain = (v) ->
@@ -204,11 +205,19 @@ class StationFacilityPointElevator
       p.set_length()
     return
 
-  set_length_of_this_domain = (v) ->
+  set_height_of_this_domain = (v) ->
     h = max_outer_height_of_children(v)
     p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
     p.process()
     return
+
+  set_width_of_this_domain = (v) ->
+    v.domain.css( 'width' , sum_outer_height_of_children(v) )
+    return
+
+  sum_outer_height_of_children = (v) ->
+    p = new DomainsCommonProcessor( v.domain.children() )
+    return p.sum_outer_width( true )
 
   max_outer_height_of_children = (v) ->
     p = new DomainsCommonProcessor( v.domain.children() )
@@ -274,8 +283,8 @@ class StationFacilityPointCode
     default_padding_right = parseInt( @domain.css( 'padding-right' ) , 10 )
     padding_left_or_right = ( w - @domain.width() ) * 0.5 + Math.max( default_padding_left , default_padding_right )
     # console.log padding_left_or_right
-    @domain.css( 'padding-left' , padding_left_or_right )
-    @domain.css( 'padding-right' , padding_left_or_right )
+    @domain.css( 'padding-left' , Math.ceil( padding_left_or_right ) )
+    @domain.css( 'padding-right' , Math.floor( padding_left_or_right ) )
     return
 
 class StationFacilityPointCloseInfo

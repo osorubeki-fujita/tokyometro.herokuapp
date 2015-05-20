@@ -29924,7 +29924,6 @@ $('#progress').html(
       if (has_station_code_image(v)) {
         station_codes(v).css('height', station_code_image(v).outerHeight(true));
       } else if (has_station_code(v)) {
-        console.log(station_codes(v));
         p = new LengthToEven(station_codes(v), true);
         p.set();
       }
@@ -32845,8 +32844,8 @@ $('#progress').html(
       li_domains(v).children().each(function() {
         var padding_top_or_bottom;
         padding_top_or_bottom = (h - $(this).height()) * 0.5;
-        $(this).css('padding-top', padding_top_or_bottom);
-        $(this).css('padding-bottom', padding_top_or_bottom);
+        $(this).css('padding-top', Math.ceil(padding_top_or_bottom));
+        $(this).css('padding-bottom', Math.floor(padding_top_or_bottom));
       });
     };
 
@@ -32952,7 +32951,7 @@ $('#progress').html(
   window.StationFacilityPointUl = StationFacilityPointUl;
 
   StationFacilityPointElevator = (function() {
-    var code, codes, ev_domain, ev_domains, has_codes, has_ev_domains, max_outer_height_of_children, set_length_of_code, set_length_of_ev_domain, set_length_of_this_domain;
+    var code, codes, ev_domain, ev_domains, has_codes, has_ev_domains, max_outer_height_of_children, set_height_of_this_domain, set_length_of_code, set_length_of_ev_domain, set_width_of_this_domain, sum_outer_height_of_children;
 
     function StationFacilityPointElevator(domain) {
       this.domain = domain;
@@ -32985,7 +32984,8 @@ $('#progress').html(
     StationFacilityPointElevator.prototype.set_length = function() {
       set_length_of_ev_domain(this);
       set_length_of_code(this);
-      set_length_of_this_domain(this);
+      set_height_of_this_domain(this);
+      set_width_of_this_domain(this);
     };
 
     set_length_of_ev_domain = function(v) {
@@ -33004,11 +33004,21 @@ $('#progress').html(
       }
     };
 
-    set_length_of_this_domain = function(v) {
+    set_height_of_this_domain = function(v) {
       var h, p;
       h = max_outer_height_of_children(v);
       p = new DomainsVerticalAlignProcessor(v.domain.children(), h);
       p.process();
+    };
+
+    set_width_of_this_domain = function(v) {
+      v.domain.css('width', sum_outer_height_of_children(v));
+    };
+
+    sum_outer_height_of_children = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(v.domain.children());
+      return p.sum_outer_width(true);
     };
 
     max_outer_height_of_children = function(v) {
@@ -33096,8 +33106,8 @@ $('#progress').html(
       default_padding_left = parseInt(this.domain.css('padding-left'), 10);
       default_padding_right = parseInt(this.domain.css('padding-right'), 10);
       padding_left_or_right = (w - this.domain.width()) * 0.5 + Math.max(default_padding_left, default_padding_right);
-      this.domain.css('padding-left', padding_left_or_right);
-      this.domain.css('padding-right', padding_left_or_right);
+      this.domain.css('padding-left', Math.ceil(padding_left_or_right));
+      this.domain.css('padding-right', Math.floor(padding_left_or_right));
     };
 
     return StationFacilityPointCode;

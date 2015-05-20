@@ -37,7 +37,6 @@ class StationInfoProcessor
     if has_station_code_image(v)
       station_codes(v).css( 'height' , station_code_image(v).outerHeight( true ) )
     else if has_station_code(v)
-      console.log station_codes(v)
       p = new LengthToEven( station_codes(v) , true )
       p.set()
     return
