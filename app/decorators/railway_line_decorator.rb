@@ -327,11 +327,23 @@ class RailwayLineDecorator < Draper::Decorator
     end
   end
 
-  def render_railway_line_code_with_outer_domain
-    if name_code.present?
-      h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :railway_line_code_outer }
-  = this.render_railway_line_code
+  def render_railway_line_code_with_outer_domain( must_display_line_color: true , small: false , clearfix: false )
+    if must_display_line_color or name_code.present?
+      if small
+        div_classes = [ :railway_line_code_outer_small ]
+      else
+        div_classes = [ :railway_line_code_outer ]
+      end
+      h_locals = {
+        this: self ,
+        must_display_line_color: must_display_line_color ,
+        small: small ,
+        clearfix: clearfix  ,
+        div_classes: div_classes
+      }
+      h.render inline: <<-HAML , type: :haml , locals: h_locals
+%div{ class: div_classes }
+  = this.render_railway_line_code( must_display_line_color: must_display_line_color , small: small , clearfix: clearfix )
       HAML
     end
   end
@@ -343,6 +355,10 @@ class RailwayLineDecorator < Draper::Decorator
       class_names = [ :railway_line_matrix , :each_line , css_class_name ]
     when :small
       class_names = [ :railway_line_matrix_small , :each_line , css_class_name ]
+    when :very_small
+      class_names = [ :railway_line_matrix_very_small , :each_line , css_class_name ]
+    else
+      raise "Error: size settings \' :#{ size } \' is not valid."
     end
 
     url = nil
@@ -359,30 +375,20 @@ class RailwayLineDecorator < Draper::Decorator
       this: self ,
       class_names: class_names ,
       make_link_to_railway_line: make_link_to_railway_line ,
-      url: url
+      url: url ,
+      small_railway_line_code: ( size == :very_small )
     }
 
     case size
-    when :normal
+    when :normal , :small , :very_small
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_names }
   - if make_link_to_railway_line
     = link_to_unless_current( "" , url )
   %div{ class: [ :info , :clearfix ] }
-    = this.render_railway_line_code_with_outer_domain
-    = this.render_name_base( process_special_railway_line: true )
-      HAML
-
-    when :small
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: class_names }
-  - if make_link_to_railway_line
-    = link_to_unless_current( "" , url )
-  %div{ class: [ :info , :clearfix ] }
-    = this.render_railway_line_code_with_outer_domain
+    = this.render_railway_line_code_with_outer_domain( small: small_railway_line_code )
     = this.render_name( process_special_railway_line: true )
       HAML
-
     end
   end
 

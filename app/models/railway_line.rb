@@ -165,8 +165,7 @@ class RailwayLine < ActiveRecord::Base
   # @!group 「駅」の属性（路面電車については「停留場」）
 
   def station_attribute_ja
-    case same_as
-    when "odpt.Railway:Toei.TodenArakawa"
+    if toden_arakawa_line?
       "停留場"
     else
       "駅"
@@ -174,8 +173,7 @@ class RailwayLine < ActiveRecord::Base
   end
 
   def station_attribute_hira
-    case same_as
-    when "odpt.Railway:Toei.TodenArakawa"
+    if toden_arakawa_line?
       "ていりゅうじょう"
     else
       "えき"
@@ -210,6 +208,14 @@ class RailwayLine < ActiveRecord::Base
 
   def except_for_branch_lines
     self
+  end
+
+  def jr_lines?
+    same_as == "odpt.Railway:JR-East"
+  end
+  
+  def toden_arakawa_line?
+    same_as == "odpt.Railway:Toei.TodenArakawa"
   end
 
 end

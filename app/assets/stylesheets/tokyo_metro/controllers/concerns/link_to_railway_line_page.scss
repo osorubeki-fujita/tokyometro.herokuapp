@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-@import '../../fundamental_settings.scss' ;
+@import 'link_to_railway_line_page/note_and_remark.scss' ;
 
 %domainBaseSettingsOfLinkToRailwayLine {
   @extend %link_in_div ;
@@ -37,6 +37,8 @@
       li.transfer_info {
         @extend %domainBaseSettingsOfLinkToRailwayLine ;
         @extend %colorBoxSettingsOfLinkToRailwayLine ;
+        //
+        @extend %infoAndRemarkSettingsInLinkToRailwayLine ;
       }
     }
   }

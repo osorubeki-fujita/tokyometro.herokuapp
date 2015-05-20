@@ -41,7 +41,7 @@
 %settingsOfRailwayLineCodeInRailwayLineMatrix_32 {
   $inner_length: 32px ;
   $outer_border: 2px ;
-  .railway_line_code_outer {
+  .railway_line_code_outer_small {
     @extend %commonSettingsOfRailwayLineCodeInRailwayLineMatrix ;
     @include sizeSettingsOfOuterDomainOfRailwayLineCodeInRailwayLineMatrix( $inner_length , $outer_border ) ;
     .railway_line_code_32 {

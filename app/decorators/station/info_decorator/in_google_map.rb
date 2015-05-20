@@ -1,4 +1,4 @@
-class Station::InfoDecorator::GoogleMap < ::TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InGoogleMap < ::TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def json_title
     "#{ name_ja_actual } #{ name_en }"

@@ -61,13 +61,14 @@
 
 %trainTypeInTrainLocation {
   .train_type {
-    @extend %floatLeft ;
+    // @extend %floatLeft ;
+    @extend %marginBottom4 ;
   }
 }
 
 %terminalStationInTrainLocation {
   .terminal_station {
-    @extend %floatLeft ;
+    // @extend %floatLeft ;
     @extend %marginLeft8 ;
     @extend %trainLocationContentFontSizeLarge ;
     .station_codes {
@@ -89,7 +90,7 @@
 
 %startingStationInTrainLocation {
   .starting_station {
-    @extend %floatLeft ;
+    // @extend %floatLeft ;
     @extend %marginRight16 ;
     .starting_station_title {
       @extend %floatLeft ;
@@ -119,7 +120,7 @@
 
 %trainNumberInTrainLocation {
   .train_number {
-    @extend %floatLeft ;
+    // @extend %floatLeft ;
     @extend %marginRight16 ;
     .title_of_train_number {
       @extend %floatLeft ;
@@ -137,7 +138,7 @@
 
 %delayInTrainLocation {
   .delay {
-    @extend %floatLeft ;
+    // @extend %floatLeft ;
     .title_of_delay {
       @extend %floatLeft ;
       @extend %trainLocationContentFontSizeLarge ;
@@ -154,55 +155,64 @@
 
 // --------
 
-.train_location {
-  border: solid 1px #999 ;
-  margin: {
-    bottom: -1px ;
-  }
-  @extend %railwayLineMatrixInTrainLocation ;
-  //
-  .train_infos {
-    padding: 8px ;
-    @extend %floatLeft ;
-    //
-    @extend %trainTypeInTrainLocation ;
-    @extend %terminalStationInTrainLocation ;
-  }
-  .sub_infos {
-    padding: 8px ;
-    @extend %startingStationInTrainLocation ;
-    @extend %trainNumberInTrainLocation ;
-    @extend %delayInTrainLocation ;
-  }
-  .current_position {
-    padding: 8px ;
-    @extend %floatLeft ;
-    .title_of_current_position {
-      @extend %floatLeft ;
-      @extend %trainLocationContentFontSizeLarge ;
-      @extend %marginRight16 ;
+ul.train_locations_of_each_direction {
+  @extend %clearUlDefaultSettings ;
+  li.train_location {
+    list-style: none ;
+    border: solid 1px #999 ;
+    margin: {
+      bottom: -1px ;
     }
-    .station_infos {
+    @extend %railwayLineMatrixInTrainLocation ;
+    //
+    .train_fundamental_infos {
       @extend %floatLeft ;
-      .arrow {
-        @extend %floatLeft ;
-        @extend %marginLeft8 ;
-        @extend %marginRight8 ;
+    }
+    .train_infos {
+      // padding: 8px ;
+      @extend %floatLeft ;
+      //
+      @extend %trainTypeInTrainLocation ;
+      @extend %terminalStationInTrainLocation ;
+    }
+    .sub_infos {
+      // padding: 8px ;
+      @extend %floatLeft ;
+      @extend %startingStationInTrainLocation ;
+      @extend %trainNumberInTrainLocation ;
+      @extend %delayInTrainLocation ;
+    }
+    .current_position {
+      @extend %floatLeft ;
+      .title_of_current_position {
+        // @extend %floatLeft ;
+        @extend %trainLocationContentFontSizeLarge ;
+        @extend %marginRight16 ;
+        background-color: #eee ;
+        // display: inline ;
+        @extend %marginBottom8 ;
       }
-      .station_info {
-        @extend %floatLeft ;
-        .station_codes {
-          @extend %floatLeft ;
-          @extend %marginRight4 ;
+      .station_infos {
+        // @extend %floatLeft ;
+        .arrow {
+          @extend %marginTop4 ;
+          @extend %marginBottom4 ;
         }
-        .text {
-          @extend %floatLeft ;
-          @extend %trainLocationContentFontSizeLarge ;
-        }
-        img {
-          $length: 30px ;
-          width: $length ;
-          height: $length ;
+        .station_info {
+          // @extend %floatLeft ;
+          .station_codes {
+            @extend %floatLeft ;
+            @extend %marginRight4 ;
+          }
+          .text {
+            @extend %floatLeft ;
+            @extend %trainLocationContentFontSizeLarge ;
+          }
+          img {
+            $length: 30px ;
+            width: $length ;
+            height: $length ;
+          }
         }
       }
     }
@@ -226,9 +236,15 @@
   .title_of_a_railway_line {
     background-color: #ddd ;
     @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
+    @extend %marginBottom4 ;
   }
   .title_of_a_railway_direction {
     background-color: #eee ;
     @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
+    @extend %marginBottom4 ;
   }
+}
+
+li.train_location {
+  height: 240px ;
 }

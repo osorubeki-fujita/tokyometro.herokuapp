@@ -2,6 +2,7 @@
 
 @import '../fundamental_settings.scss' ;
 @import 'concerns/connecting_railway_line_info.scss' ;
+@import 'concerns/link_to_railway_line_page/note_and_remark.scss' ;
 @import 'railway_line/travel_time_infos/common_settings.scss' ;
 
 table.travel_time_info , table.travel_time_info_main , table.travel_time_info_branch {
@@ -18,6 +19,7 @@ td.transfer {
       border: {
         color: #fff ;
       }
+      @extend %infoAndRemarkSettingsInLinkToRailwayLine ;
     }
   }
 }

@@ -499,11 +499,11 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def google_map
-    GoogleMap.new( self )
+    ::Station::InfoDecorator::InGoogleMap.new( self )
   end
 
   def train_location
-    TrainLocation.new( self )
+    ::Station::InfoDecorator::InTrainLocation.new( self )
   end
 
   private
