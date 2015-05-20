@@ -1,15 +1,58 @@
 class TrainLocationInfos
 
-  constructor: ( @domains = $( '#train_location_infos' ) ) ->
+  constructor: ( @domain = $( '#train_location_infos' ) ) ->
 
-  train_location_infos = (v) ->
-    return v.domains.children( '.train_location' )
+  has_train_location_infos = (v) ->
+    return v.domain.length > 0
+  
+  has_train_type_infos = (v) ->
+    return train_type_domains(v).length > 0
+
+  ul_domains_of_train_locations_of_each_direction = (v) ->
+    return v.domain.children( 'ul.train_locations_of_each_direction' )
+
+  li_domains_of_train_locations = (v) ->
+    return ul_domains_of_train_locations_of_each_direction(v).children( 'li.train_location' )
+
+  domains_of_train_fundamental_infos = (v) ->
+    return li_domains_of_train_locations(v).children( '.train_fundamental_infos' )
+
+  train_type_domains = (v) ->
+    return domains_of_train_fundamental_infos(v).children( '.train_type' )
 
   process: ->
-    train_location_infos(@).each ->
-      t = new TrainLocationInfo( $( this ) )
-      t.process()
+    if has_train_location_infos(@)
+      process_each_train_location_info(@)
+      if has_train_type_infos(@)
+        set_width_of_train_type_domains(@)
+      process_each_ul_domain(@)
+      set_height_of_each_li_domain(@)
+    return
+
+  process_each_train_location_info = (v) ->
+    li_domains_of_train_locations(v).each ->
+      p = new TrainLocationInfo( $(@) )
+      p.process_vertical_align_of_each_content()
       return
+    return
+
+  set_width_of_train_type_domains = (v) ->
+    p = new DomainsCommonProcessor( train_type_domains(v) )
+    w = p.max_width() + 4
+    p.set_css_attribute( 'width' , w )
+    return
+  
+  process_each_ul_domain = (v) ->
+    ul_domains_of_train_locations_of_each_direction(v).each ->
+      ul_domain = $(@)
+      p = new TrainLocationUlDomain( ul_domain )
+      p.process()
+      return
+    return
+
+  set_height_of_each_li_domain = (v) ->
+    p = new li_domains_of_train_locations(v).children()
+    return p.set_all_of_uniform_height_to_max
     return
 
 window.TrainLocationInfos = TrainLocationInfos
@@ -21,11 +64,26 @@ class TrainLocationInfo
   train_fundamental_infos = (v) ->
     return v.domain.children( '.train_fundamental_infos' ).first()
 
-  train_infos = (v) ->
-    return train_fundamental_infos(v).children( '.train_infos' ).first()
+  railway_line_matrix_very_small = (v) ->
+    return train_fundamental_infos(v).children( '.railway_line_matrix_very_small' ).first()
+
+  terminal_info = (v) ->
+    return train_fundamental_infos(v).children( '.terminal_station' ).first()
+
+  current_position = (v) ->
+    return v.domain.children( '.current_position' ).first()
 
   sub_infos = (v) ->
     return v.domain.children( '.sub_infos' ).first()
+
+  domain_of_station_infos_in_current_position = (v) ->
+    return current_position(v).children( '.station_infos' ).first()
+
+  station_infos = (v) ->
+    return v.domain.find( '.station_info' )
+
+  time_info = (v) ->
+    return sub_infos(v).children( '.time_info' ).first()
 
   starting_station = (v) ->
     return sub_infos(v).children( '.starting_station' ).first()
@@ -33,141 +91,131 @@ class TrainLocationInfo
   train_number = (v) ->
     return sub_infos(v).children( '.train_number' ).first()
 
-  delay = (v) ->
-    return sub_infos(v).children( '.delay' ).first()
-
-  current_position = (v) ->
-    return v.domain.children( '.current_position' ).first()
-
-  process: ->
-    process_train_fundamental_infos(@)
-    process_sub_infos(@)
-    process_current_position(@)
-    set_domain_height(@)
+  process_vertical_align_of_each_content: ->
+    # console.log 'TrainLocationInfo\#process_vertical_align_of_each_content'
+    set_height_and_vertical_align_of_railway_line_matrix(@)
+    set_vertical_align_of_terminal_station_infos(@)
+    set_vertical_align_of_station_infos(@)
+    set_vertical_align_of_time_info(@)
+    set_width_of_title_in_sub_infos(@)
+    set_vertical_align_of_starting_station_and_train_number(@)
     return
 
-  process_train_fundamental_infos = (v) ->
-    _train_infos = train_infos(v)
-    terminal_station = _train_infos.children( '.terminal_station' )
-    _terminal_station = new StationInfoProcessor( terminal_station )
-    _terminal_station.process()
+  set_height_and_vertical_align_of_railway_line_matrix = (v) ->
+    r_matrix =  railway_line_matrix_very_small(v)
+    info = r_matrix.children( '.info' ).first()
+    p1 = new DomainsVerticalAlignProcessor( info.children() )
+    p1.process()
 
-    _train_fundamental_infos = train_fundamental_infos(v)
-    p = new DomainsCommonProcessor( _train_fundamental_infos.children() )
-    p.set_all_of_uniform_width_to_max()
-    _train_fundamental_infos.css( 'height' , p.max_outer_height( true ) )
+    p2 = new DomainsCommonProcessor( info.children() )
+    info.css( 'height' , p2.max_outer_height( true ) )
+    r_matrix.css( 'height' , info.outerHeight( true ) )
     return
 
-  process_sub_infos = (v) ->
-    process_starting_station(v)
-    process_train_number(v)
-    process_delay(v)
-    set_height_of_sub_infos(v)
-    return
-
-  process_starting_station = (v) ->
-    _starting_station = starting_station(v)
-
-    station_info = _starting_station.children( '.station_info' ).first()
-    ps = new StationInfoProcessor( station_info )
-    ps.process()
-
-    p1 = new DomainsCommonProcessor( _starting_station.children() )
-    _starting_station.css( 'height' , p1.max_outer_height( true ) )
-
-    p2 = new DomainsVerticalAlignProcessor( _starting_station.children() , p1.max_outer_height( true ) , 'middle' )
+  set_vertical_align_of_terminal_station_infos = (v) ->
+    text = terminal_info(v).children( '.text' )
+    p1 = new LengthToEven( text , true )
+    p1.set()
+    p2 = new DomainsVerticalAlignProcessor( terminal_info(v).children() )
     p2.process()
     return
 
-  process_train_number = (v) ->
-    _train_number = train_number(v)
-    p = new DomainsCommonProcessor( _train_number.children() )
-    p.set_all_of_uniform_width_to_max()
-    _train_number.css( 'height' , p.max_outer_height( true ) )
-    return
-
-  process_delay = (v) ->
-    _delay = delay(v)
-    p = new DomainsCommonProcessor( _delay.children() )
-    w = p.max_outer_width( true ) + 2
-    _delay.children().each ->
-      $( this ).css( 'width' , w )
-      return
-    _delay.css( 'height' , p.max_outer_height( true ) )
-    return
-
-  set_height_of_sub_infos = (v) ->
-    _sub_infos = sub_infos(v)
-    p = new DomainsCommonProcessor( _sub_infos.children() )
-    _sub_infos.css( 'height' , p.max_outer_height( true ) )
-    return
-
-  process_current_position = (v) ->
-    _current_position = new TrainLocationInfoCurrentPosition( current_position(v) )
-    _current_position.process()
-    return
-
-  set_domain_height = (v) ->
-    p = new DomainsCommonProcessor( v.domain.children() )
-    v.domain.css( 'height' , p.sum_outer_height( true ) )
-    return
-
-class TrainLocationInfoCurrentPosition
-
-  constructor: ( @domain ) ->
-
-  title = (v) ->
-    return v.domain.children( '.title_of_current_position' )
-
-  domain_of_station_infos = (v) ->
-    return v.domain.children( '.station_infos' ).first()
-
-  station_infos = (v) ->
-    return domain_of_station_infos(v).children( '.station_info' )
-
-  arrow = (v) ->
-    return domain_of_station_infos(v).children( '.arrow' )
-
-  process_station_infos = (v) ->
-    process_each_station_info(v)
-
-    p = new DomainsCommonProcessor( station_infos(v) )
-    p.set_all_of_uniform_height_to_max()
-    max_outer_height = p.max_outer_height( true )
-
-    process_arrow( v , max_outer_height )
-    set_height_of_domain_of_station_infos( v , max_outer_height )
-    return
-
-  process_each_station_info = (v) ->
+  set_vertical_align_of_station_infos = (v) ->
     station_infos(v).each ->
-      p = new StationInfoProcessor( $( this ) )
+      station_info = new StationInfoProcessor( $(@) )
+      station_info.process()
+      return
+    return
+
+  set_vertical_align_of_time_info = (v) ->
+    time_info(v).children( '.icon' ).each ->
+      content = $(@)
+      p = new LengthToEven( content )
+      p.set()
+    time_info(v).children().not( '.icon' ).each ->
+      content = $(@)
+      p = new LengthToEven( content , true )
+      p.set()
+    p = new DomainsVerticalAlignProcessor( time_info(v).children() )
+    p.process()
+    return
+
+  set_width_of_title_in_sub_infos = (v) ->
+    titles = sub_infos(v).find( '.starting_station_title , .title_of_train_number' )
+    p = new DomainsCommonProcessor( titles )
+    p.set_all_of_uniform_width_to_max()
+    return
+
+  set_vertical_align_of_starting_station_and_train_number = (v) ->
+    $.each [ starting_station(v) , train_number(v) ] , ->
+      content = $(@)
+      p = new DomainsVerticalAlignProcessor( content.children() )
       p.process()
       return
     return
 
-  process_arrow = ( v , _max_outer_height ) ->
-    switch arrow(v).length
-      when 1
-        p = new DomainsVerticalAlignProcessor( arrow(v) , _max_outer_height , 'middle' )
-        p.process()
-      when 0
-        # console.log 'Nothing to do'
-      else
-        console.log 'Error'
-    return
+class TrainLocationUlDomain
 
-  set_height_of_domain_of_station_infos = ( v , max_outer_height ) ->
-    domain_of_station_infos(v).css( 'height' , max_outer_height )
+  constructor: ( @ul_domain ) ->
+    set_max_outer_width_of_domains_of_train_fundamental_infos(@)
+    set_max_outer_width_of_sub_infos(@)
     return
-
-  set_height_of_children = (v) ->
-    p = new DomainsCommonProcessor( v.domain.children() )
-    p.set_all_of_uniform_height_to_max()
-    v.domain.css( 'height' , p.max_outer_height( true ) )
+  
+  li_train_locations = (v) ->
+    return v.ul_domain.children( 'li.train_location' )
+  
+  domains_of_train_fundamental_infos = (v) ->
+    return li_train_locations(v).children( '.train_fundamental_infos' )
+  
+  railway_line_matrixes = (v) ->
+    return domains_of_train_fundamental_infos(v).children( '.railway_line_matrix_very_small' )
+  
+  current_positions = (v) ->
+    return li_train_locations(v).children( '.current_position' )
+  
+  sub_infos = (v) ->
+    return li_train_locations(v).children( '.sub_infos' )
+  
+  set_max_outer_width_of_domains_of_train_fundamental_infos = (v) ->
+    p = new DomainsCommonProcessor( domains_of_train_fundamental_infos(v) )
+    v.max_outer_width_of_domains_of_train_fundamental_infos = p.max_inner_width()
     return
+  
+  set_max_outer_width_of_sub_infos = (v) ->
+    p = new DomainsCommonProcessor( sub_infos(v) )
+    v.max_outer_width_of_sub_infos = p.max_inner_width()
+    return
+  
+  max_width_of_li_train_location = (v) ->
+    p = new DomainsCommonProcessor( li_train_locations(v) )
+    return p.max_inner_width()
+  
+  border_left_and_bottom_of_current_position = (v) ->
+    p = new DomainsCommonProcessor( current_positions(v) )
+    return p.max_outer_width( false ) - p.max_inner_width()
+  
+  width_of_current_position = (v) ->
+    width_of_li = max_width_of_li_train_location(v)
+    return width_of_li - ( v.max_outer_width_of_sub_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v) )
 
   process: ->
-    process_station_infos(@)
-    set_height_of_children(@)
+    process_domains_of_train_fundamental_infos(@)
+    process_sub_infos(@)
+    process_current_position(@)
+    return
+
+  process_domains_of_train_fundamental_infos = (v) ->
+    w = v.max_outer_width_of_domains_of_train_fundamental_infos
+    domains_of_train_fundamental_infos(v).css( 'width' , w )
+    railway_line_matrixes(v).css( 'width' , w )
+    return
+
+  process_sub_infos = (v) ->
+    w = v.max_outer_width_of_sub_infos
+    sub_infos(v).css( 'width' , w )
+    return
+  
+  process_current_position = (v) ->
+    w = width_of_current_position(v)
+    current_positions(v).css( 'width' , w )
     return

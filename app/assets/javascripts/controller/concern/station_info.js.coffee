@@ -4,6 +4,9 @@ class StationInfoProcessor
 
   has_station_code = (v) ->
     return v.domain.children( '.station_codes , .station_code_outer' ).length is 1
+  
+  has_station_code_image = (v) ->
+    return station_code_image(v).length > 0
 
   station_codes = (v) ->
     return v.domain.children( '.station_codes , .station_code_outer' ).first()
@@ -26,22 +29,26 @@ class StationInfoProcessor
   process: ( margin = 0 ) ->
     process_station_codes(@)
     process_text(@)
-    # set_height_of_domain( @ , margin )
     set_vertical_align_of_domain(@)
     set_width_of_domain(@)
     return
 
   process_station_codes = (v) ->
-    if has_station_code(v)
+    if has_station_code_image(v)
       station_codes(v).css( 'height' , station_code_image(v).outerHeight( true ) )
-      return
+    else if has_station_code(v)
+      console.log station_codes(v)
+      p = new LengthToEven( station_codes(v) , true )
+      p.set()
     return
 
   process_text = (v) ->
     texts(v).each ->
-      l = new LengthToEven( $(@) )
+      l = new LengthToEven( $(@) , true )
       l.set()
       return
+    l_whole = new LengthToEven( text_domain(v) , true )
+    l_whole.set()
     return
 
   set_vertical_align_of_domain = (v) ->

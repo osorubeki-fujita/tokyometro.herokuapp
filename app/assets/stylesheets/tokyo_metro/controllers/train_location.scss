@@ -1,11 +1,17 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
+@import 'concerns/background_of_menu.scss' ;
 
 %trainLocationContentFontSizeSmall {
   .text_ja {
     font: {
       size: 10pt ;
+    }
+    .small {
+      font: {
+        size: 7pt ;
+      }
     }
   }
   .text_en {
@@ -19,14 +25,31 @@
   @extend %trainLocationContentFontSizeSmall ;
 }
 
+%trainLocationContentTitleSmallInARow {
+  font: {
+    size: 10pt ;
+  }
+  .small {
+    font: {
+      size: 7pt ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 7pt ;
+    }
+    @extend %marginLeft4 ;
+  }
+}
+
 %trainLocationContentFontSizeLarge {
   .text_ja {
     font: {
-      size: 12.5pt ;
+      size: 12pt ;
     }
     .small {
       font: {
-        size: 10pt ;
+        size: 8.4pt ;
       }
     }
   }
@@ -41,8 +64,26 @@
     }
   }
 }
+
 %trainLocationContentTitleLarge {
   @extend %trainLocationContentFontSizeLarge ;
+}
+
+%trainLocationContentTitleLargeInARow {
+  font: {
+    size: 12pt ;
+  }
+  .small {
+    font: {
+      size: 8.4pt ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 9pt ;
+    }
+    @extend %marginLeft4 ;
+  }
 }
 
 %trainLocationStartingStation {
@@ -61,21 +102,34 @@
 
 %trainTypeInTrainLocation {
   .train_type {
-    // @extend %floatLeft ;
-    @extend %marginBottom4 ;
+    @extend %floatLeft ;
+    @extend %marginBottom8 ;
+    @extend %marginLeft8 ;
+    @extend %marginRight8 ;
+    @extend %paddingTop4 ;
+    @extend %paddingBottom4 ;
+    @extend %paddingLeft8 ;
+    @extend %paddingRight8 ;
+    clear: both ;
+    @extend %trainLocationContentTitleSmallInARow ;
   }
 }
 
 %terminalStationInTrainLocation {
   .terminal_station {
-    // @extend %floatLeft ;
+    @extend %marginBottom8 ;
     @extend %marginLeft8 ;
+    @extend %marginRight8 ;
     @extend %trainLocationContentFontSizeLarge ;
+    clear: both ;
     .station_codes {
-        @extend %floatLeft ;
-        margin: {
-          right: 5px ;
-        }
+      @extend %floatLeft ;
+      margin: {
+        right: 5px ;
+      }
+      font: {
+        size: 8pt ;
+      }
       img {
         $length: 30px ;
         width: $length ;
@@ -90,8 +144,9 @@
 
 %startingStationInTrainLocation {
   .starting_station {
-    // @extend %floatLeft ;
-    @extend %marginRight16 ;
+    @extend %marginBottom8 ;
+    @extend %paddingLeft8 ;
+    @extend %paddingRight8 ;
     .starting_station_title {
       @extend %floatLeft ;
       @extend %trainLocationContentTitleSmall ;
@@ -101,6 +156,9 @@
       @extend %floatLeft ;
       .station_codes {
         @extend %floatLeft ;
+        font: {
+          size: 8pt ;
+        }
         margin: {
           right: 4px ;
         }
@@ -120,8 +178,9 @@
 
 %trainNumberInTrainLocation {
   .train_number {
-    // @extend %floatLeft ;
-    @extend %marginRight16 ;
+    @extend %marginBottom8 ;
+    @extend %paddingLeft8 ;
+    @extend %paddingRight8 ;
     .title_of_train_number {
       @extend %floatLeft ;
       @extend %trainLocationContentTitleSmall ;
@@ -136,18 +195,64 @@
   }
 }
 
-%delayInTrainLocation {
-  .delay {
-    // @extend %floatLeft ;
+%timeInfoInTrainLocation {
+  .time_info {
+    @extend %marginBottom32 ;
+    @extend %paddingTop4 ;
+    @extend %paddingBottom4 ;
+    @extend %paddingLeft8 ;
+    @extend %paddingRight8 ;
     .title_of_delay {
       @extend %floatLeft ;
-      @extend %trainLocationContentFontSizeLarge ;
+      @extend %trainLocationContentTitleSmall ;
       @extend %marginRight8 ;
     }
     .time {
       @extend %floatLeft ;
       font: {
         size: 12pt ;
+        weight: bold ;
+      }
+    }
+  }
+}
+
+%currentPositionInTrainLocation {
+  .current_position {
+    @extend %floatLeft ;
+    @extend %backgroundOfMenuVague ;
+    border: {
+      left: solid 4px #fff ;
+      right: solid 4px #fff ;
+    }
+    .title_of_current_position {
+      @extend %trainLocationContentTitleSmallInARow ;
+      background-color: #666 ;
+      color: #fff ;
+      padding: 8px ;
+    }
+    .station_infos {
+      padding: 16px ;
+      .arrow {
+        @extend %marginTop4 ;
+        @extend %marginBottom4 ;
+        text-align: center ;
+      }
+      .station_info {
+        // @extend %floatLeft ;
+        .station_codes {
+          @extend %floatLeft ;
+          @extend %marginRight4 ;
+        }
+        .text {
+          @extend %floatLeft ;
+          @extend %trainLocationContentFontSizeLarge ;
+        }
+        img {
+          $length: 30px ;
+          width: $length ;
+          height: $length ;
+        }
       }
     }
   }
@@ -157,6 +262,7 @@
 
 ul.train_locations_of_each_direction {
   @extend %clearUlDefaultSettings ;
+  @extend %marginBottom16 ;
   li.train_location {
     list-style: none ;
     border: solid 1px #999 ;
@@ -166,56 +272,21 @@ ul.train_locations_of_each_direction {
     @extend %railwayLineMatrixInTrainLocation ;
     //
     .train_fundamental_infos {
+      background-color: #f9f9f9 ;
       @extend %floatLeft ;
+      .railway_line_matrix_very_small {
+        @extend %marginBottom8 ;
+      }
     }
-    .train_infos {
-      // padding: 8px ;
-      @extend %floatLeft ;
-      //
-      @extend %trainTypeInTrainLocation ;
-      @extend %terminalStationInTrainLocation ;
-    }
+    @extend %trainTypeInTrainLocation ;
+    @extend %terminalStationInTrainLocation ;
     .sub_infos {
-      // padding: 8px ;
       @extend %floatLeft ;
       @extend %startingStationInTrainLocation ;
       @extend %trainNumberInTrainLocation ;
-      @extend %delayInTrainLocation ;
+      @extend %timeInfoInTrainLocation ;
     }
-    .current_position {
-      @extend %floatLeft ;
-      .title_of_current_position {
-        // @extend %floatLeft ;
-        @extend %trainLocationContentFontSizeLarge ;
-        @extend %marginRight16 ;
-        background-color: #eee ;
-        // display: inline ;
-        @extend %marginBottom8 ;
-      }
-      .station_infos {
-        // @extend %floatLeft ;
-        .arrow {
-          @extend %marginTop4 ;
-          @extend %marginBottom4 ;
-        }
-        .station_info {
-          // @extend %floatLeft ;
-          .station_codes {
-            @extend %floatLeft ;
-            @extend %marginRight4 ;
-          }
-          .text {
-            @extend %floatLeft ;
-            @extend %trainLocationContentFontSizeLarge ;
-          }
-          img {
-            $length: 30px ;
-            width: $length ;
-            height: $length ;
-          }
-        }
-      }
-    }
+    @extend %currentPositionInTrainLocation ;
   }
 }
 
@@ -236,12 +307,13 @@ ul.train_locations_of_each_direction {
   .title_of_a_railway_line {
     background-color: #ddd ;
     @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
-    @extend %marginBottom4 ;
+    @extend %marginBottom16 ;
   }
   .title_of_a_railway_direction {
-    background-color: #eee ;
     @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
-    @extend %marginBottom4 ;
+    @extend %marginBottom16 ;
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
   }
 }
 

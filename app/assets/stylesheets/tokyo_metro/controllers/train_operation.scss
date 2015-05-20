@@ -69,41 +69,51 @@
   }
 }
 
+%iconAndTextSettingsOfTrainOperationStatus {
+  .icon {
+    @extend %floatLeft ;
+    @extend %marginLeft8 ;
+    @extend %marginRight8 ;
+    text: {
+      align: center ;
+    }
+  }
+  .text {
+    color: #333 ;
+    @extend %floatLeft ;
+    @extend %marginRight8 ;
+    .text_ja {
+      font: {
+        weight: bold ;
+      }
+    }
+  }
+}
+
 .train_operation_info , .train_operation_info_precise_version , .train_operation_info_test {
   @include train_operation_info_status_bgcolor ;
+  @extend %iconAndTextSettingsOfTrainOperationStatus ;
   //
   clear: both ;
   .status {
     @extend %floatLeft ;
     .infos {
       margin: 8px ;
+      .text {
+        .text_ja {
+          font: {
+            size: 20pt ;
+          }
+        }
+        .text_en {
+          font: {
+            size: 10pt ;
+          }
+        }
+      }
     }
     border: solid 1px #333 ;
     margin-bottom: -1px;
-    .icon {
-      @extend %floatLeft ;
-      @extend %marginLeft8 ;
-      @extend %marginRight8 ;
-      text: {
-        align: center ;
-      }
-    }
-    .text {
-      color: #333 ;
-      @extend %floatLeft ;
-      @extend %marginRight8 ;
-      .text_ja {
-        font: {
-          size: 20pt;
-          weight: bold ;
-        }
-      }
-      .text_en {
-        font: {
-          size: 10pt ;
-        }
-      }
-    }
     .additional_infos {
       @extend %floatLeft ;
       .text_en {
@@ -127,6 +137,25 @@
           font: {
             size: 9pt ;
           }
+        }
+      }
+    }
+  }
+}
+
+li.train_location .sub_infos {
+  @include train_operation_info_status_bgcolor ;
+  .time_info {
+    @extend %iconAndTextSettingsOfTrainOperationStatus ;
+    .text {
+      .text_ja {
+        font: {
+          size: 12pt ;
+        }
+      }
+      .text_en {
+        font: {
+          size: 8.4pt ;
         }
       }
     }

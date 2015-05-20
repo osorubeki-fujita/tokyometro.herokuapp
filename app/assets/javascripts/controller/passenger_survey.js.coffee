@@ -52,9 +52,8 @@ class PassengerSurvey
     p0 = new LengthToEven( survey_year_domain_in_main_title(v) )
     p0.set()
     _domains = children_of_main_text_domain_in_main_title(v)
-    p1 = new DomainsCommonProcessor( _domains )
-    p2 = new DomainsVerticalAlignProcessor( _domains , p1.max_outer_height( false ) )
-    p2.process()
+    p = new DomainsVerticalAlignProcessor( _domains )
+    p.process()
     return
 
   process_table = (v) ->
@@ -557,8 +556,6 @@ class LinksToPassengerSurveyPagesOnIndexPage
 
   set_vertical_align = (v) ->
     _children = v.domain.children().not( 'a' )
-    p1 = new DomainsCommonProcessor( _children )
-    h = p1.max_outer_height( false )
-    p2 = new DomainsVerticalAlignProcessor( _children , h )
-    p2.process()
+    p = new DomainsVerticalAlignProcessor( _children )
+    p.process()
     return

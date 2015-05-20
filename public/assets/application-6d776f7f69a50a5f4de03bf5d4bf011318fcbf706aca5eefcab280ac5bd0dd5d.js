@@ -29871,7 +29871,7 @@ $('#progress').html(
   var StationInfoProcessor;
 
   StationInfoProcessor = (function() {
-    var has_station_code, process_station_codes, process_text, set_vertical_align_of_domain, set_width_of_domain, station_code_image, station_codes, text_domain, text_en, text_ja, texts;
+    var has_station_code, has_station_code_image, process_station_codes, process_text, set_vertical_align_of_domain, set_width_of_domain, station_code_image, station_codes, text_domain, text_en, text_ja, texts;
 
     function StationInfoProcessor(domain) {
       this.domain = domain;
@@ -29879,6 +29879,10 @@ $('#progress').html(
 
     has_station_code = function(v) {
       return v.domain.children('.station_codes , .station_code_outer').length === 1;
+    };
+
+    has_station_code_image = function(v) {
+      return station_code_image(v).length > 0;
     };
 
     station_codes = function(v) {
@@ -29916,18 +29920,25 @@ $('#progress').html(
     };
 
     process_station_codes = function(v) {
-      if (has_station_code(v)) {
+      var p;
+      if (has_station_code_image(v)) {
         station_codes(v).css('height', station_code_image(v).outerHeight(true));
-        return;
+      } else if (has_station_code(v)) {
+        console.log(station_codes(v));
+        p = new LengthToEven(station_codes(v), true);
+        p.set();
       }
     };
 
     process_text = function(v) {
+      var l_whole;
       texts(v).each(function() {
         var l;
-        l = new LengthToEven($(this));
+        l = new LengthToEven($(this), true);
         l.set();
       });
+      l_whole = new LengthToEven(text_domain(v), true);
+      l_whole.set();
     };
 
     set_vertical_align_of_domain = function(v) {
@@ -30909,13 +30920,12 @@ $('#progress').html(
     };
 
     process_survey_year_domain_in_main_title = function(v) {
-      var _domains, p0, p1, p2;
+      var _domains, p, p0;
       p0 = new LengthToEven(survey_year_domain_in_main_title(v));
       p0.set();
       _domains = children_of_main_text_domain_in_main_title(v);
-      p1 = new DomainsCommonProcessor(_domains);
-      p2 = new DomainsVerticalAlignProcessor(_domains, p1.max_outer_height(false));
-      p2.process();
+      p = new DomainsVerticalAlignProcessor(_domains);
+      p.process();
     };
 
     process_table = function(v) {
@@ -31541,12 +31551,10 @@ $('#progress').html(
     };
 
     set_vertical_align = function(v) {
-      var _children, h, p1, p2;
+      var _children, p;
       _children = v.domain.children().not('a');
-      p1 = new DomainsCommonProcessor(_children);
-      h = p1.max_outer_height(false);
-      p2 = new DomainsVerticalAlignProcessor(_children, h);
-      p2.process();
+      p = new DomainsVerticalAlignProcessor(_children);
+      p.process();
     };
 
     return LinksToPassengerSurveyPagesOnIndexPage;
@@ -31771,7 +31779,7 @@ $('#progress').html(
       _children = children(v);
       p1 = new DomainsCommonProcessor(_children);
       h = p1.max_outer_height(true);
-      p2 = new DomainsVerticalAlignProcessor(_children, h, 'middle');
+      p2 = new DomainsVerticalAlignProcessor(_children, h);
       p2.process();
       v.domain.css('height', h);
     };
@@ -33518,25 +33526,78 @@ $('#progress').html(
 
 }).call(this);
 (function() {
-  var TrainLocationInfo, TrainLocationInfoCurrentPosition, TrainLocationInfos;
+  var TrainLocationInfo, TrainLocationInfos, TrainLocationUlDomain;
 
   TrainLocationInfos = (function() {
-    var train_location_infos;
+    var domains_of_train_fundamental_infos, has_train_location_infos, has_train_type_infos, li_domains_of_train_locations, process_each_train_location_info, process_each_ul_domain, set_height_of_each_li_domain, set_width_of_train_type_domains, train_type_domains, ul_domains_of_train_locations_of_each_direction;
 
-    function TrainLocationInfos(domains) {
-      this.domains = domains != null ? domains : $('#train_location_infos');
+    function TrainLocationInfos(domain) {
+      this.domain = domain != null ? domain : $('#train_location_infos');
     }
 
-    train_location_infos = function(v) {
-      return v.domains.children('.train_location');
+    has_train_location_infos = function(v) {
+      return v.domain.length > 0;
+    };
+
+    has_train_type_infos = function(v) {
+      return train_type_domains(v).length > 0;
+    };
+
+    ul_domains_of_train_locations_of_each_direction = function(v) {
+      return v.domain.children('ul.train_locations_of_each_direction');
+    };
+
+    li_domains_of_train_locations = function(v) {
+      return ul_domains_of_train_locations_of_each_direction(v).children('li.train_location');
+    };
+
+    domains_of_train_fundamental_infos = function(v) {
+      return li_domains_of_train_locations(v).children('.train_fundamental_infos');
+    };
+
+    train_type_domains = function(v) {
+      return domains_of_train_fundamental_infos(v).children('.train_type');
     };
 
     TrainLocationInfos.prototype.process = function() {
-      train_location_infos(this).each(function() {
-        var t;
-        t = new TrainLocationInfo($(this));
-        t.process();
+      if (has_train_location_infos(this)) {
+        process_each_train_location_info(this);
+        if (has_train_type_infos(this)) {
+          set_width_of_train_type_domains(this);
+        }
+        process_each_ul_domain(this);
+        set_height_of_each_li_domain(this);
+      }
+    };
+
+    process_each_train_location_info = function(v) {
+      li_domains_of_train_locations(v).each(function() {
+        var p;
+        p = new TrainLocationInfo($(this));
+        p.process_vertical_align_of_each_content();
       });
+    };
+
+    set_width_of_train_type_domains = function(v) {
+      var p, w;
+      p = new DomainsCommonProcessor(train_type_domains(v));
+      w = p.max_width() + 4;
+      p.set_css_attribute('width', w);
+    };
+
+    process_each_ul_domain = function(v) {
+      ul_domains_of_train_locations_of_each_direction(v).each(function() {
+        var p, ul_domain;
+        ul_domain = $(this);
+        p = new TrainLocationUlDomain(ul_domain);
+        p.process();
+      });
+    };
+
+    set_height_of_each_li_domain = function(v) {
+      var p;
+      p = new li_domains_of_train_locations(v).children();
+      return p.set_all_of_uniform_height_to_max;
     };
 
     return TrainLocationInfos;
@@ -33546,7 +33607,7 @@ $('#progress').html(
   window.TrainLocationInfos = TrainLocationInfos;
 
   TrainLocationInfo = (function() {
-    var current_position, delay, process_current_position, process_delay, process_starting_station, process_sub_infos, process_train_fundamental_infos, process_train_number, set_domain_height, set_height_of_sub_infos, starting_station, sub_infos, train_fundamental_infos, train_infos, train_number;
+    var current_position, domain_of_station_infos_in_current_position, railway_line_matrix_very_small, set_height_and_vertical_align_of_railway_line_matrix, set_vertical_align_of_starting_station_and_train_number, set_vertical_align_of_station_infos, set_vertical_align_of_terminal_station_infos, set_vertical_align_of_time_info, set_width_of_title_in_sub_infos, starting_station, station_infos, sub_infos, terminal_info, time_info, train_fundamental_infos, train_number;
 
     function TrainLocationInfo(domain) {
       this.domain = domain;
@@ -33556,12 +33617,32 @@ $('#progress').html(
       return v.domain.children('.train_fundamental_infos').first();
     };
 
-    train_infos = function(v) {
-      return train_fundamental_infos(v).children('.train_infos').first();
+    railway_line_matrix_very_small = function(v) {
+      return train_fundamental_infos(v).children('.railway_line_matrix_very_small').first();
+    };
+
+    terminal_info = function(v) {
+      return train_fundamental_infos(v).children('.terminal_station').first();
+    };
+
+    current_position = function(v) {
+      return v.domain.children('.current_position').first();
     };
 
     sub_infos = function(v) {
       return v.domain.children('.sub_infos').first();
+    };
+
+    domain_of_station_infos_in_current_position = function(v) {
+      return current_position(v).children('.station_infos').first();
+    };
+
+    station_infos = function(v) {
+      return v.domain.find('.station_info');
+    };
+
+    time_info = function(v) {
+      return sub_infos(v).children('.time_info').first();
     };
 
     starting_station = function(v) {
@@ -33572,166 +33653,167 @@ $('#progress').html(
       return sub_infos(v).children('.train_number').first();
     };
 
-    delay = function(v) {
-      return sub_infos(v).children('.delay').first();
+    TrainLocationInfo.prototype.process_vertical_align_of_each_content = function() {
+      set_height_and_vertical_align_of_railway_line_matrix(this);
+      set_vertical_align_of_terminal_station_infos(this);
+      set_vertical_align_of_station_infos(this);
+      set_vertical_align_of_time_info(this);
+      set_width_of_title_in_sub_infos(this);
+      set_vertical_align_of_starting_station_and_train_number(this);
     };
 
-    current_position = function(v) {
-      return v.domain.children('.current_position').first();
+    set_height_and_vertical_align_of_railway_line_matrix = function(v) {
+      var info, p1, p2, r_matrix;
+      r_matrix = railway_line_matrix_very_small(v);
+      info = r_matrix.children('.info').first();
+      p1 = new DomainsVerticalAlignProcessor(info.children());
+      p1.process();
+      p2 = new DomainsCommonProcessor(info.children());
+      info.css('height', p2.max_outer_height(true));
+      r_matrix.css('height', info.outerHeight(true));
     };
 
-    TrainLocationInfo.prototype.process = function() {
-      process_train_fundamental_infos(this);
-      process_sub_infos(this);
-      process_current_position(this);
-      set_domain_height(this);
-    };
-
-    process_train_fundamental_infos = function(v) {
-      var _terminal_station, _train_fundamental_infos, _train_infos, p, terminal_station;
-      _train_infos = train_infos(v);
-      terminal_station = _train_infos.children('.terminal_station');
-      _terminal_station = new StationInfoProcessor(terminal_station);
-      _terminal_station.process();
-      _train_fundamental_infos = train_fundamental_infos(v);
-      p = new DomainsCommonProcessor(_train_fundamental_infos.children());
-      p.set_all_of_uniform_width_to_max();
-      _train_fundamental_infos.css('height', p.max_outer_height(true));
-    };
-
-    process_sub_infos = function(v) {
-      process_starting_station(v);
-      process_train_number(v);
-      process_delay(v);
-      set_height_of_sub_infos(v);
-    };
-
-    process_starting_station = function(v) {
-      var _starting_station, p1, p2, ps, station_info;
-      _starting_station = starting_station(v);
-      station_info = _starting_station.children('.station_info').first();
-      ps = new StationInfoProcessor(station_info);
-      ps.process();
-      p1 = new DomainsCommonProcessor(_starting_station.children());
-      _starting_station.css('height', p1.max_outer_height(true));
-      p2 = new DomainsVerticalAlignProcessor(_starting_station.children(), p1.max_outer_height(true), 'middle');
+    set_vertical_align_of_terminal_station_infos = function(v) {
+      var p1, p2, text;
+      text = terminal_info(v).children('.text');
+      p1 = new LengthToEven(text, true);
+      p1.set();
+      p2 = new DomainsVerticalAlignProcessor(terminal_info(v).children());
       p2.process();
     };
 
-    process_train_number = function(v) {
-      var _train_number, p;
-      _train_number = train_number(v);
-      p = new DomainsCommonProcessor(_train_number.children());
-      p.set_all_of_uniform_width_to_max();
-      _train_number.css('height', p.max_outer_height(true));
-    };
-
-    process_delay = function(v) {
-      var _delay, p, w;
-      _delay = delay(v);
-      p = new DomainsCommonProcessor(_delay.children());
-      w = p.max_outer_width(true) + 2;
-      _delay.children().each(function() {
-        $(this).css('width', w);
+    set_vertical_align_of_station_infos = function(v) {
+      station_infos(v).each(function() {
+        var station_info;
+        station_info = new StationInfoProcessor($(this));
+        station_info.process();
       });
-      _delay.css('height', p.max_outer_height(true));
     };
 
-    set_height_of_sub_infos = function(v) {
-      var _sub_infos, p;
-      _sub_infos = sub_infos(v);
-      p = new DomainsCommonProcessor(_sub_infos.children());
-      _sub_infos.css('height', p.max_outer_height(true));
-    };
-
-    process_current_position = function(v) {
-      var _current_position;
-      _current_position = new TrainLocationInfoCurrentPosition(current_position(v));
-      _current_position.process();
-    };
-
-    set_domain_height = function(v) {
+    set_vertical_align_of_time_info = function(v) {
       var p;
-      p = new DomainsCommonProcessor(v.domain.children());
-      v.domain.css('height', p.sum_outer_height(true));
+      time_info(v).children('.icon').each(function() {
+        var content, p;
+        content = $(this);
+        p = new LengthToEven(content);
+        return p.set();
+      });
+      time_info(v).children().not('.icon').each(function() {
+        var content, p;
+        content = $(this);
+        p = new LengthToEven(content, true);
+        return p.set();
+      });
+      p = new DomainsVerticalAlignProcessor(time_info(v).children());
+      p.process();
+    };
+
+    set_width_of_title_in_sub_infos = function(v) {
+      var p, titles;
+      titles = sub_infos(v).find('.starting_station_title , .title_of_train_number');
+      p = new DomainsCommonProcessor(titles);
+      p.set_all_of_uniform_width_to_max();
+    };
+
+    set_vertical_align_of_starting_station_and_train_number = function(v) {
+      $.each([starting_station(v), train_number(v)], function() {
+        var content, p;
+        content = $(this);
+        p = new DomainsVerticalAlignProcessor(content.children());
+        p.process();
+      });
     };
 
     return TrainLocationInfo;
 
   })();
 
-  TrainLocationInfoCurrentPosition = (function() {
-    var arrow, domain_of_station_infos, process_arrow, process_each_station_info, process_station_infos, set_height_of_children, set_height_of_domain_of_station_infos, station_infos, title;
+  TrainLocationUlDomain = (function() {
+    var border_left_and_bottom_of_current_position, current_positions, domains_of_train_fundamental_infos, li_train_locations, max_width_of_li_train_location, process_current_position, process_domains_of_train_fundamental_infos, process_sub_infos, railway_line_matrixes, set_max_outer_width_of_domains_of_train_fundamental_infos, set_max_outer_width_of_sub_infos, sub_infos, width_of_current_position;
 
-    function TrainLocationInfoCurrentPosition(domain) {
-      this.domain = domain;
+    function TrainLocationUlDomain(ul_domain1) {
+      this.ul_domain = ul_domain1;
+      set_max_outer_width_of_domains_of_train_fundamental_infos(this);
+      set_max_outer_width_of_sub_infos(this);
+      return;
     }
 
-    title = function(v) {
-      return v.domain.children('.title_of_current_position');
+    li_train_locations = function(v) {
+      return v.ul_domain.children('li.train_location');
     };
 
-    domain_of_station_infos = function(v) {
-      return v.domain.children('.station_infos').first();
+    domains_of_train_fundamental_infos = function(v) {
+      return li_train_locations(v).children('.train_fundamental_infos');
     };
 
-    station_infos = function(v) {
-      return domain_of_station_infos(v).children('.station_info');
+    railway_line_matrixes = function(v) {
+      return domains_of_train_fundamental_infos(v).children('.railway_line_matrix_very_small');
     };
 
-    arrow = function(v) {
-      return domain_of_station_infos(v).children('.arrow');
+    current_positions = function(v) {
+      return li_train_locations(v).children('.current_position');
     };
 
-    process_station_infos = function(v) {
-      var max_outer_height, p;
-      process_each_station_info(v);
-      p = new DomainsCommonProcessor(station_infos(v));
-      p.set_all_of_uniform_height_to_max();
-      max_outer_height = p.max_outer_height(true);
-      process_arrow(v, max_outer_height);
-      set_height_of_domain_of_station_infos(v, max_outer_height);
+    sub_infos = function(v) {
+      return li_train_locations(v).children('.sub_infos');
     };
 
-    process_each_station_info = function(v) {
-      station_infos(v).each(function() {
-        var p;
-        p = new StationInfoProcessor($(this));
-        p.process();
-      });
-    };
-
-    process_arrow = function(v, _max_outer_height) {
+    set_max_outer_width_of_domains_of_train_fundamental_infos = function(v) {
       var p;
-      switch (arrow(v).length) {
-        case 1:
-          p = new DomainsVerticalAlignProcessor(arrow(v), _max_outer_height, 'middle');
-          p.process();
-          break;
-        case 0:
-          break;
-        default:
-          console.log('Error');
-      }
+      p = new DomainsCommonProcessor(domains_of_train_fundamental_infos(v));
+      v.max_outer_width_of_domains_of_train_fundamental_infos = p.max_inner_width();
     };
 
-    set_height_of_domain_of_station_infos = function(v, max_outer_height) {
-      domain_of_station_infos(v).css('height', max_outer_height);
-    };
-
-    set_height_of_children = function(v) {
+    set_max_outer_width_of_sub_infos = function(v) {
       var p;
-      p = new DomainsCommonProcessor(v.domain.children());
-      p.set_all_of_uniform_height_to_max();
-      v.domain.css('height', p.max_outer_height(true));
+      p = new DomainsCommonProcessor(sub_infos(v));
+      v.max_outer_width_of_sub_infos = p.max_inner_width();
     };
 
-    TrainLocationInfoCurrentPosition.prototype.process = function() {
-      process_station_infos(this);
-      set_height_of_children(this);
+    max_width_of_li_train_location = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(li_train_locations(v));
+      return p.max_inner_width();
     };
 
-    return TrainLocationInfoCurrentPosition;
+    border_left_and_bottom_of_current_position = function(v) {
+      var p;
+      p = new DomainsCommonProcessor(current_positions(v));
+      return p.max_outer_width(false) - p.max_inner_width();
+    };
+
+    width_of_current_position = function(v) {
+      var width_of_li;
+      width_of_li = max_width_of_li_train_location(v);
+      return width_of_li - (v.max_outer_width_of_sub_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v));
+    };
+
+    TrainLocationUlDomain.prototype.process = function() {
+      process_domains_of_train_fundamental_infos(this);
+      process_sub_infos(this);
+      process_current_position(this);
+    };
+
+    process_domains_of_train_fundamental_infos = function(v) {
+      var w;
+      w = v.max_outer_width_of_domains_of_train_fundamental_infos;
+      domains_of_train_fundamental_infos(v).css('width', w);
+      railway_line_matrixes(v).css('width', w);
+    };
+
+    process_sub_infos = function(v) {
+      var w;
+      w = v.max_outer_width_of_sub_infos;
+      sub_infos(v).css('width', w);
+    };
+
+    process_current_position = function(v) {
+      var w;
+      w = width_of_current_position(v);
+      current_positions(v).css('width', w);
+    };
+
+    return TrainLocationUlDomain;
 
   })();
 
@@ -34898,13 +34980,12 @@ $('#progress').html(
     };
 
     LinkInfoToTrainLocation.prototype.process = function(w) {
-      var p1, p2;
+      var p;
       set_width(this, w);
       set_margin_of_font_awesome_icon(this);
       set_width_of_text(this);
-      p1 = new DomainsCommonProcessor(this.domain.children());
-      p2 = new DomainsVerticalAlignProcessor(this.domain.children(), p1.max_outer_height(true), 'middle');
-      p2.process();
+      p = new DomainsVerticalAlignProcessor(this.domain.children());
+      p.process();
     };
 
     set_width = function(v, w) {
@@ -35233,34 +35314,45 @@ $('#progress').html(
     hasProp = {}.hasOwnProperty;
 
   DomainsVerticalAlignProcessor = (function() {
+    var _outer_height_of_external_domain;
+
     function DomainsVerticalAlignProcessor(domains, outer_height_of_external_domain, setting) {
       this.domains = domains;
       this.outer_height_of_external_domain = outer_height_of_external_domain;
       this.setting = setting != null ? setting : 'middle';
     }
 
+    _outer_height_of_external_domain = function(v) {
+      var h, p;
+      if (v.outer_height_of_external_domain != null) {
+        h = v.outer_height_of_external_domain;
+      } else {
+        p = new DomainsCommonProcessor(v.domains);
+        h = p.max_outer_height(false);
+      }
+      return h;
+    };
+
     DomainsVerticalAlignProcessor.prototype.process = function() {
-      var _outer_height_of_external_domain;
-      _outer_height_of_external_domain = this.outer_height_of_external_domain;
       switch (this.setting) {
         case 'middle':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignMiddleProcessor($(this), _outer_height_of_external_domain);
+            p = new DomainVerticalAlignMiddleProcessor($(this), _outer_height_of_external_domain(v));
             p.process();
           });
           break;
         case 'top':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignTopProcessor($(this), _outer_height_of_external_domain);
+            p = new DomainVerticalAlignTopProcessor($(this), _outer_height_of_external_domain(v));
             p.process();
           });
           break;
         case 'bottom':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignBottomProcessor($(this), _outer_height_of_external_domain);
+            p = new DomainVerticalAlignBottomProcessor($(this), _outer_height_of_external_domain(v));
             p.process();
           });
       }
@@ -35373,7 +35465,7 @@ $('#progress').html(
   var LengthToEven;
 
   LengthToEven = (function() {
-    var height_new, width_new;
+    var height_new, length_info, width_new;
 
     function LengthToEven(domain, text) {
       this.domain = domain;
@@ -35394,21 +35486,23 @@ $('#progress').html(
       return Math.ceil(v.domain.height() * 1.0 / 2) * 2;
     };
 
-    LengthToEven.prototype.length_to_even = function(v) {
+    length_info = function(v, info_of_max_or_min) {
       var h, w;
-      if (v == null) {
-        v = null;
+      if (info_of_max_or_min == null) {
+        info_of_max_or_min = null;
       }
-      if (v !== null) {
+      w = width_new(v);
+      h = height_new(v);
+      if (info_of_max_or_min !== null) {
         if (v.min_width != null) {
-          w = Math.max(v.min_width, width_new(this));
+          w = Math.max(info_of_max_or_min.min_width, w);
         } else if (v.max_width != null) {
-          w = Math.min(v.max_width, width_new(this));
+          w = Math.min(info_of_max_or_min.max_width, w);
         }
         if (v.min_height != null) {
-          h = Math.max(v.min_height, height_new(this));
+          h = Math.max(info_of_max_or_min.min_height, h);
         } else if (v.max_height != null) {
-          w = Math.min(v.max_height, height_new(this));
+          w = Math.min(info_of_max_or_min.max_height, h);
         }
       }
       return {
@@ -35417,14 +35511,14 @@ $('#progress').html(
       };
     };
 
-    LengthToEven.prototype.set = function(v) {
-      var length_info;
-      if (v == null) {
-        v = null;
+    LengthToEven.prototype.set = function(info_of_max_or_min) {
+      var l_info;
+      if (info_of_max_or_min == null) {
+        info_of_max_or_min = null;
       }
-      length_info = this.length_to_even(v);
-      this.domain.css('width', length_info.width);
-      this.domain.css('height', length_info.height);
+      l_info = length_info(this, info_of_max_or_min);
+      this.domain.css('width', l_info.width);
+      this.domain.css('height', l_info.height);
     };
 
     return LengthToEven;

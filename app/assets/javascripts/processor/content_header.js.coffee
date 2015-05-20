@@ -148,9 +148,8 @@ class LinkInfoToTrainLocation
     set_margin_of_font_awesome_icon(@)
     set_width_of_text(@)
 
-    p1 = new DomainsCommonProcessor( @domain.children() )
-    p2 = new DomainsVerticalAlignProcessor( @domain.children() , p1.max_outer_height( true ) ,'middle' )
-    p2.process()
+    p = new DomainsVerticalAlignProcessor( @domain.children() )
+    p.process()
     return
 
   set_width = ( v , w ) ->

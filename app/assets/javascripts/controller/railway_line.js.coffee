@@ -156,7 +156,7 @@ class WomenOnlyCarSectionInfos
     _children = children(v)
     p1 = new DomainsCommonProcessor( _children )
     h = p1.max_outer_height( true )
-    p2 = new DomainsVerticalAlignProcessor( _children , h , 'middle' )
+    p2 = new DomainsVerticalAlignProcessor( _children , h )
     p2.process()
     v.domain.css( 'height' , h )
     return

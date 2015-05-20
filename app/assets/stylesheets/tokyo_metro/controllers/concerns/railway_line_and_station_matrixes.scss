@@ -101,16 +101,37 @@
   }
 }
 
+%commonSettingsInRailwayLineMatrixNormalAndSmall {
+  @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+  @extend %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes ;
+  @extend %textSettingsOfRailwayLineMatrixes ;
+  @extend %marginBottomMinus1 ;
+  @extend %marginRightMinus1 ;
+  .info {
+    .railway_line_code_outer {
+      @extend %floatLeft ;
+      @extend %marginRight8 ;
+    }
+  }
+}
+
+%commonSettingsInRailwayLineMatrixOfAllTypes {
+  .info {
+    @extend %marginLeft8 ;
+    @extend %marginRight8 ;
+    .text {
+      @extend %floatLeft ;
+    }
+  }
+}
+
 #railway_lines , #train_operation_infos {
   @extend %contentsIncludedInRailwayLineMatrixes ;
   .railway_line_matrix {
     height: 128px ;
     text-align: center;
-    @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
-    @extend %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes ;
-    @extend %textSettingsOfRailwayLineMatrixes ;
-    @extend %marginBottomMinus1 ;
-    @extend %marginRightMinus1 ;
+    @extend %commonSettingsInRailwayLineMatrixNormalAndSmall ;
+    @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
   }
   height: auto ;
   @extend %marginBottom32 ;
@@ -118,20 +139,32 @@
 
 %railwayLineMatrixSmall {
   .railway_line_matrix_small {
-    @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
-    @extend %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes ;
-    @extend %textSettingsOfRailwayLineMatrixes ;
-    @extend %marginBottomMinus1 ;
-    @extend %marginRightMinus1 ;
+    @extend %commonSettingsInRailwayLineMatrixNormalAndSmall ;
+    @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
+  }
+}
+
+%railwayLineMatrixVerySmall {
+  .railway_line_matrix_very_small {
+    @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
+    @extend %floatLeft ;
+    .text_ja {
+      font: {
+        size: 12pt ;
+        // weight: bold ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 9pt ;
+      }
+    }
     .info {
-      @extend %marginLeft8 ;
-      @extend %marginRight8 ;
-      .railway_line_code_outer {
+      @extend %marginTop8 ;
+      @extend %marginBottom8 ;
+      .railway_line_code_outer_small {
         @extend %floatLeft ;
         @extend %marginRight8 ;
-      }
-      .text {
-        @extend %floatLeft ;
       }
     }
   }
@@ -181,6 +214,10 @@
     @extend %contentsIncludedInRailwayLineMatrixes ;
   }
   @extend %marginBottom16 ;
+}
+
+li.train_location {
+  @extend %railwayLineMatrixVerySmall ;
 }
 
 #station_matrixes {
