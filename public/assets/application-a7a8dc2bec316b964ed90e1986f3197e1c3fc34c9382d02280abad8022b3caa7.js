@@ -35338,21 +35338,21 @@ $('#progress').html(
         case 'middle':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignMiddleProcessor($(this), _outer_height_of_external_domain(v));
+            p = new DomainVerticalAlignMiddleProcessor($(this), _outer_height_of_external_domain(this));
             p.process();
           });
           break;
         case 'top':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignTopProcessor($(this), _outer_height_of_external_domain(v));
+            p = new DomainVerticalAlignTopProcessor($(this), _outer_height_of_external_domain(this));
             p.process();
           });
           break;
         case 'bottom':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignBottomProcessor($(this), _outer_height_of_external_domain(v));
+            p = new DomainVerticalAlignBottomProcessor($(this), _outer_height_of_external_domain(this));
             p.process();
           });
       }

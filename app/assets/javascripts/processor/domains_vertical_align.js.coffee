@@ -14,17 +14,17 @@ class DomainsVerticalAlignProcessor
     switch @setting
       when 'middle'
         @domains.each ->
-          p = new DomainVerticalAlignMiddleProcessor( $( this ) , _outer_height_of_external_domain(v) )
+          p = new DomainVerticalAlignMiddleProcessor( $( this ) , _outer_height_of_external_domain(@) )
           p.process()
           return
       when 'top'
         @domains.each ->
-          p = new DomainVerticalAlignTopProcessor( $( this ) , _outer_height_of_external_domain(v) )
+          p = new DomainVerticalAlignTopProcessor( $( this ) , _outer_height_of_external_domain(@) )
           p.process()
           return
       when 'bottom'
         @domains.each ->
-          p = new DomainVerticalAlignBottomProcessor( $( this ) , _outer_height_of_external_domain(v) )
+          p = new DomainVerticalAlignBottomProcessor( $( this ) , _outer_height_of_external_domain(@) )
           p.process()
           return
     return

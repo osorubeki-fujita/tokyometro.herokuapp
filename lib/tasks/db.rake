@@ -1,11 +1,37 @@
 namespace :tokyo_metro do
   namespace :db do
+  
+    namespace :make do
 
-    desc "Make list of tables"
-    task :make_list_of_tables => :environment do
-      ::File.open( "#{ ::Rails.root }/db/tables.txt" , "w:utf-8" ) do |f|
-        f.print( ::ActiveRecord::Base.connection.tables.sort.join( "\n" ) )
+      desc "Make list of tables"
+      task :list_of_tables => :environment do
+        ::File.open( "#{ ::Rails.root }/db/tables.txt" , "w:utf-8" ) do |f|
+          f.print( ::ActiveRecord::Base.connection.tables.sort.join( "\n" ) )
+        end
       end
+
+      namespace :list_of_commands do
+        namespace :for_importing do
+          namespace :csv do
+
+            desc "Make commands for importing csv to PostgrSql on Heroku"
+            task :to_postgresql_on_heroku => :environment do
+              time_dirname = ::TokyoMetro::Rake.time_dirname( ARGV )
+              commands = ::TokyoMetro::Rake::Rails::Deploy::Heroku::Csv::Command.to_import_to_postgresql( time_dirname )
+              ::File.open( "#{ ::Rails.root }/db/csv/#{time_dirname}/commands_for_importing_csv_to_postgresql_on_heroku.txt" , "w:utf-8" ) do |f|
+                f.print( "heroku pg:psql" )
+                f.print( "\n" )
+                f.print( commands.join( "\n" ) )
+                f.print( "\n" )
+                f.print( "\\q" )
+                f.print( "\n" )
+              end
+            end
+
+          end
+        end
+      end
+
     end
 
     namespace :convert do
@@ -35,7 +61,15 @@ end
 
 __END__
 
-rake tokyo_metro:db:make_list_of_tables
+rake assets:precompile --trace
+cap git:commit
+git push heroku master
+rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
+git push github master
+
+
+
+rake tokyo_metro:db:make:list_of_tables
 rake tokyo_metro:db:deploy:heroku:make_migration_file
 rake db:vacuum
 rake assets:precompile --trace
@@ -43,10 +77,15 @@ rake tokyo_metro:db:export:sqlite:to_csv
 rake tokyo_metro:db:convert:csv:to_shift_jis 20150521020957
 
 cap git:commit
-git push github master
 git push heroku master
 
 rake tokyo_metro:db:deploy:heroku:reset
 rake tokyo_metro:db:deploy:heroku:migrate
 # rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150515235244
+
+rake tokyo_metro:db:make:list_of_commands:for_importing:csv:to_postgresql_on_heroku 20150521020957
+
+
 rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
+
+git push github master
