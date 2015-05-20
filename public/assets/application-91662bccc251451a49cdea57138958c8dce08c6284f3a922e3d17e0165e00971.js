@@ -33606,8 +33606,8 @@ $('#progress').html(
 
     set_height_of_each_li_domain = function(v) {
       var p;
-      p = new li_domains_of_train_locations(v).children();
-      return p.set_all_of_uniform_height_to_max;
+      p = new DomainsCommonProcessor(li_domains_of_train_locations(v).children());
+      p.set_all_of_uniform_height_to_max();
     };
 
     return TrainLocationInfos;
@@ -33795,7 +33795,10 @@ $('#progress').html(
     width_of_current_position = function(v) {
       var width_of_li;
       width_of_li = max_width_of_li_train_location(v);
-      return width_of_li - (v.max_outer_width_of_sub_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v));
+      console.log('width_of_li: ' + width_of_li);
+      console.log('max_outer_width_of_domains_of_train_fundamental_infos: ' + v.max_outer_width_of_domains_of_train_fundamental_infos);
+      console.log('max_outer_width_of_sub_infos: ' + v.max_outer_width_of_sub_infos);
+      return width_of_li - (v.max_outer_width_of_domains_of_train_fundamental_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v));
     };
 
     TrainLocationUlDomain.prototype.process = function() {

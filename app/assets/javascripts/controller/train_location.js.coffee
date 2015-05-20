@@ -51,8 +51,8 @@ class TrainLocationInfos
     return
 
   set_height_of_each_li_domain = (v) ->
-    p = new li_domains_of_train_locations(v).children()
-    return p.set_all_of_uniform_height_to_max
+    p = new DomainsCommonProcessor( li_domains_of_train_locations(v).children() )
+    p.set_all_of_uniform_height_to_max()
     return
 
 window.TrainLocationInfos = TrainLocationInfos
@@ -196,7 +196,10 @@ class TrainLocationUlDomain
   
   width_of_current_position = (v) ->
     width_of_li = max_width_of_li_train_location(v)
-    return width_of_li - ( v.max_outer_width_of_sub_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v) )
+    console.log 'width_of_li: ' + width_of_li
+    console.log 'max_outer_width_of_domains_of_train_fundamental_infos: ' + v.max_outer_width_of_domains_of_train_fundamental_infos
+    console.log 'max_outer_width_of_sub_infos: ' + v.max_outer_width_of_sub_infos
+    return width_of_li - ( v.max_outer_width_of_domains_of_train_fundamental_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v) )
 
   process: ->
     process_domains_of_train_fundamental_infos(@)

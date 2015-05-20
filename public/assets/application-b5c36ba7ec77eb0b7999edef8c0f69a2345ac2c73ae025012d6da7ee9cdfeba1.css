@@ -12839,11 +12839,6 @@ ul.train_locations_of_each_direction li.train_location .train_fundamental_infos 
 #train_location_infos .title_of_a_railway_line {
   background-color: #ddd;
 }
-
-/* line 320, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/train_location.scss */
-li.train_location {
-  height: 240px;
-}
 /* line 3, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
 .train_operation_info .icon, .train_operation_info_precise_version .icon, .train_operation_info_test .icon, li.train_location .sub_infos .time_info .icon, .train_operation_info .text, .train_operation_info_precise_version .text, .train_operation_info_test .text, li.train_location .sub_infos .time_info .text, .train_operation_info .status, .train_operation_info_precise_version .status, .train_operation_info_test .status, .train_operation_info .status .additional_infos, .train_operation_info_precise_version .status .additional_infos, .train_operation_info_test .status .additional_infos, #train_operation_infos .link_info_to_train_location_of_each_railway_line, #train_operation_infos .link_info_to_train_location_of_each_railway_line .icon, #train_operation_infos .link_info_to_train_location_of_each_railway_line .text {
   float: left;
