@@ -1,30 +1,34 @@
 class DomainsVerticalAlignProcessor
 
-  constructor: ( @domains , @outer_height_of_external_domain , @setting = 'middle' ) ->
-  
+  constructor: ( @domains , @outer_height_of_external_domain = 'auto' , @setting = 'middle' ) ->
+
   _outer_height_of_external_domain = (v) ->
-    if v.outer_height_of_external_domain?
+    if v.outer_height_of_external_domain? and v.outer_height_of_external_domain isnt 'auto'
       h = v.outer_height_of_external_domain
     else
+      # console.log v.domains
+      # console.log v.outer_height_of_external_domain
+      # console.log v.setting
       p = new DomainsCommonProcessor( v.domains )
       h = p.max_outer_height( false )
     return h
 
   process: ->
+    _outer_h = _outer_height_of_external_domain(@)
     switch @setting
       when 'middle'
         @domains.each ->
-          p = new DomainVerticalAlignMiddleProcessor( $( this ) , _outer_height_of_external_domain(@) )
+          p = new DomainVerticalAlignMiddleProcessor( $( @ ) , _outer_h )
           p.process()
           return
       when 'top'
         @domains.each ->
-          p = new DomainVerticalAlignTopProcessor( $( this ) , _outer_height_of_external_domain(@) )
+          p = new DomainVerticalAlignTopProcessor( $( @ ) , _outer_h )
           p.process()
           return
       when 'bottom'
         @domains.each ->
-          p = new DomainVerticalAlignBottomProcessor( $( this ) , _outer_height_of_external_domain(@) )
+          p = new DomainVerticalAlignBottomProcessor( $( @ ) , _outer_h )
           p.process()
           return
     return

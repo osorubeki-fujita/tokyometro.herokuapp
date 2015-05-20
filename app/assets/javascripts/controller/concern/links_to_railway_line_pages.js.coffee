@@ -93,7 +93,7 @@ class LinkToRailwayLinePage
     c = children_of_domain_of_content(v)
     p1 = new DomainsCommonProcessor(c)
     h = p1.max_outer_height( true )
-    p2 = new DomainsVerticalAlignProcessor( c , h , 'middle' )
+    p2 = new DomainsVerticalAlignProcessor( c , h )
     p2.process()
     return
 

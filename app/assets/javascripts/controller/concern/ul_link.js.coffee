@@ -212,7 +212,7 @@ class SideMenuEachLink
       p0 = new LengthToEven( _icon )
       p0.set()
 
-      p1 = new DomainsVerticalAlignProcessor( icon(v).children() , _icon.outerHeight( false ) , 'middle' )
+      p1 = new DomainsVerticalAlignProcessor( icon(v).children() , _icon.outerHeight( false ) )
       p1.process()
 
       p2 = new DomainsHorizontalAlignProcessor( icon(v).children() , _icon.outerWidth( false ) , 'center' )
@@ -250,7 +250,7 @@ class SideMenuEachLink
     return p.max_outer_height( true )
 
   set_vertical_align_of_sub_domains = ( v , _max_outer_height_of_sub_domains ) ->
-    p = new DomainsVerticalAlignProcessor( sub_domains_of_link_domain(v) , _max_outer_height_of_sub_domains , 'middle' )
+    p = new DomainsVerticalAlignProcessor( sub_domains_of_link_domain(v) , _max_outer_height_of_sub_domains )
     p.process()
     return
 

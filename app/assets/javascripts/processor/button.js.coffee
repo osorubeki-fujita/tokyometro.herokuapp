@@ -13,8 +13,8 @@ class ButtonProcessor
       _icon = icon(@)
       w = @domain.width()
       h = @domain.height()
-      pw = new DomainsHorizontalAlignProcessor( icon(@) , w , 'center' )
-      ph = new DomainsVerticalAlignProcessor( icon(@) , h , 'middle' )
+      pw = new DomainsHorizontalAlignProcessor( _icon , w , 'center' )
+      ph = new DomainsVerticalAlignProcessor( _icon , h )
       pw.process()
       ph.process()
     return

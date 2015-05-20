@@ -81,11 +81,9 @@ git push heroku master
 
 rake tokyo_metro:db:deploy:heroku:reset
 rake tokyo_metro:db:deploy:heroku:migrate
-# rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150515235244
 
+# rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150515235244
 rake tokyo_metro:db:make:list_of_commands:for_importing:csv:to_postgresql_on_heroku 20150521020957
 
-
 rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
-
 git push github master

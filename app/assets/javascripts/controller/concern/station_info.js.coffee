@@ -6,7 +6,7 @@ class StationInfoProcessor
     return v.domain.children( '.station_codes , .station_code_outer' ).length is 1
   
   has_station_code_image = (v) ->
-    return station_code_image(v).length > 0
+    return station_codes(v).children( 'img.station_code' ).length > 0
 
   station_codes = (v) ->
     return v.domain.children( '.station_codes , .station_code_outer' ).first()
@@ -55,7 +55,7 @@ class StationInfoProcessor
     if has_station_code(v)
       p1 = new DomainsCommonProcessor( v.domain.children() )
       _max_outer_height = p1.max_outer_height( true )
-      p2 = new DomainsVerticalAlignProcessor( v.domain.children() , _max_outer_height , 'middle' )
+      p2 = new DomainsVerticalAlignProcessor( v.domain.children() , _max_outer_height )
       p2.process()
       return
     return

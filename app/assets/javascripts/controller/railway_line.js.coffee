@@ -192,7 +192,7 @@ class WomenOnlyCarSectionInfo
 
   process_height = (v) ->
     _h = max_outer_height_of_children(v)
-    p = new DomainsVerticalAlignProcessor( v.domain.children() , _h , 'middle' )
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , _h )
     p.process()
     v.domain.css( 'height' , _h )
     return

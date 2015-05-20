@@ -121,7 +121,7 @@ class ContentHeader
 
   set_vertical_align = (v) ->
     h = max_height_of_icon_text_button(v)
-    p = new DomainsVerticalAlignProcessor( v.domain.children() , h , 'middle' )
+    p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
     p.process()
     return
 
@@ -147,9 +147,11 @@ class LinkInfoToTrainLocation
     set_width(@,w)
     set_margin_of_font_awesome_icon(@)
     set_width_of_text(@)
+    _children = @domain.children()
 
-    p = new DomainsVerticalAlignProcessor( @domain.children() )
-    p.process()
+    p1 = new DomainsCommonProcessor( _children )
+    p2 = new DomainsVerticalAlignProcessor( _children , p1.max_outer_height( true ) )
+    p2.process()
     return
 
   set_width = ( v , w ) ->
@@ -157,7 +159,7 @@ class LinkInfoToTrainLocation
     return
 
   set_margin_of_font_awesome_icon = (v) ->
-    p1 = new DomainsVerticalAlignProcessor( font_awesome_icon(v) , icon(v).height() , 'middle' )
+    p1 = new DomainsVerticalAlignProcessor( font_awesome_icon(v) , icon(v).height() )
     p2 = new DomainsHorizontalAlignProcessor( font_awesome_icon(v) , icon(v).width() , 'center' )
     p1.process()
     p2.process()
