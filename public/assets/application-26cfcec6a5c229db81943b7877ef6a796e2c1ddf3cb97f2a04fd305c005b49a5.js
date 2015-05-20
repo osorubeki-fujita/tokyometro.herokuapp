@@ -29111,7 +29111,7 @@ $('#progress').html(
       c = children_of_domain_of_content(v);
       p1 = new DomainsCommonProcessor(c);
       h = p1.max_outer_height(true);
-      p2 = new DomainsVerticalAlignProcessor(c, h, 'middle');
+      p2 = new DomainsVerticalAlignProcessor(c, h);
       p2.process();
     };
 
@@ -29882,7 +29882,7 @@ $('#progress').html(
     };
 
     has_station_code_image = function(v) {
-      return station_code_image(v).length > 0;
+      return station_codes(v).children('img.station_code').length > 0;
     };
 
     station_codes = function(v) {
@@ -29946,7 +29946,7 @@ $('#progress').html(
       if (has_station_code(v)) {
         p1 = new DomainsCommonProcessor(v.domain.children());
         _max_outer_height = p1.max_outer_height(true);
-        p2 = new DomainsVerticalAlignProcessor(v.domain.children(), _max_outer_height, 'middle');
+        p2 = new DomainsVerticalAlignProcessor(v.domain.children(), _max_outer_height);
         p2.process();
         return;
       }
@@ -30481,7 +30481,7 @@ $('#progress').html(
         _icon = icon(v);
         p0 = new LengthToEven(_icon);
         p0.set();
-        p1 = new DomainsVerticalAlignProcessor(icon(v).children(), _icon.outerHeight(false), 'middle');
+        p1 = new DomainsVerticalAlignProcessor(icon(v).children(), _icon.outerHeight(false));
         p1.process();
         p2 = new DomainsHorizontalAlignProcessor(icon(v).children(), _icon.outerWidth(false), 'center');
         p2.process();
@@ -30516,7 +30516,7 @@ $('#progress').html(
 
     set_vertical_align_of_sub_domains = function(v, _max_outer_height_of_sub_domains) {
       var p;
-      p = new DomainsVerticalAlignProcessor(sub_domains_of_link_domain(v), _max_outer_height_of_sub_domains, 'middle');
+      p = new DomainsVerticalAlignProcessor(sub_domains_of_link_domain(v), _max_outer_height_of_sub_domains);
       p.process();
     };
 
@@ -31831,7 +31831,7 @@ $('#progress').html(
     process_height = function(v) {
       var _h, p;
       _h = max_outer_height_of_children(v);
-      p = new DomainsVerticalAlignProcessor(v.domain.children(), _h, 'middle');
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), _h);
       p.process();
       v.domain.css('height', _h);
     };
@@ -34776,8 +34776,8 @@ $('#progress').html(
         _icon = icon(this);
         w = this.domain.width();
         h = this.domain.height();
-        pw = new DomainsHorizontalAlignProcessor(icon(this), w, 'center');
-        ph = new DomainsVerticalAlignProcessor(icon(this), h, 'middle');
+        pw = new DomainsHorizontalAlignProcessor(_icon, w, 'center');
+        ph = new DomainsVerticalAlignProcessor(_icon, h);
         pw.process();
         ph.process();
       }
@@ -34952,7 +34952,7 @@ $('#progress').html(
     set_vertical_align = function(v) {
       var h, p;
       h = max_height_of_icon_text_button(v);
-      p = new DomainsVerticalAlignProcessor(v.domain.children(), h, 'middle');
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), h);
       p.process();
     };
 
@@ -34980,12 +34980,14 @@ $('#progress').html(
     };
 
     LinkInfoToTrainLocation.prototype.process = function(w) {
-      var p;
+      var _children, p1, p2;
       set_width(this, w);
       set_margin_of_font_awesome_icon(this);
       set_width_of_text(this);
-      p = new DomainsVerticalAlignProcessor(this.domain.children());
-      p.process();
+      _children = this.domain.children();
+      p1 = new DomainsCommonProcessor(_children);
+      p2 = new DomainsVerticalAlignProcessor(_children, p1.max_outer_height(true));
+      p2.process();
     };
 
     set_width = function(v, w) {
@@ -34994,7 +34996,7 @@ $('#progress').html(
 
     set_margin_of_font_awesome_icon = function(v) {
       var p1, p2;
-      p1 = new DomainsVerticalAlignProcessor(font_awesome_icon(v), icon(v).height(), 'middle');
+      p1 = new DomainsVerticalAlignProcessor(font_awesome_icon(v), icon(v).height());
       p2 = new DomainsHorizontalAlignProcessor(font_awesome_icon(v), icon(v).width(), 'center');
       p1.process();
       p2.process();
@@ -35318,13 +35320,13 @@ $('#progress').html(
 
     function DomainsVerticalAlignProcessor(domains, outer_height_of_external_domain, setting) {
       this.domains = domains;
-      this.outer_height_of_external_domain = outer_height_of_external_domain;
+      this.outer_height_of_external_domain = outer_height_of_external_domain != null ? outer_height_of_external_domain : 'auto';
       this.setting = setting != null ? setting : 'middle';
     }
 
     _outer_height_of_external_domain = function(v) {
       var h, p;
-      if (v.outer_height_of_external_domain != null) {
+      if ((v.outer_height_of_external_domain != null) && v.outer_height_of_external_domain !== 'auto') {
         h = v.outer_height_of_external_domain;
       } else {
         p = new DomainsCommonProcessor(v.domains);
@@ -35334,25 +35336,27 @@ $('#progress').html(
     };
 
     DomainsVerticalAlignProcessor.prototype.process = function() {
+      var _outer_h;
+      _outer_h = _outer_height_of_external_domain(this);
       switch (this.setting) {
         case 'middle':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignMiddleProcessor($(this), _outer_height_of_external_domain(this));
+            p = new DomainVerticalAlignMiddleProcessor($(this), _outer_h);
             p.process();
           });
           break;
         case 'top':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignTopProcessor($(this), _outer_height_of_external_domain(this));
+            p = new DomainVerticalAlignTopProcessor($(this), _outer_h);
             p.process();
           });
           break;
         case 'bottom':
           this.domains.each(function() {
             var p;
-            p = new DomainVerticalAlignBottomProcessor($(this), _outer_height_of_external_domain(this));
+            p = new DomainVerticalAlignBottomProcessor($(this), _outer_h);
             p.process();
           });
       }
