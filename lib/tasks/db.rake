@@ -63,8 +63,8 @@ __END__
 
 rake assets:precompile --trace
 cap git:commit
-git push heroku master
 rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
+git push heroku master
 git push github master
 
 
