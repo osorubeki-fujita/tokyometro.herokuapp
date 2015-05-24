@@ -6,7 +6,7 @@ class StationFacilityPointUl
 
   li_domains = (v) ->
     return v.domain.children( 'li' )
-  
+
   #-------- Code (all)
 
   codes_in_li_domains = (v) ->
@@ -19,7 +19,7 @@ class StationFacilityPointUl
 
   has_elevator_domains = (v) ->
     return elevator_domains(v).length > 0
-  
+
   #-------- Code (normal)
 
   normal_code_domains = (v) ->
@@ -27,7 +27,7 @@ class StationFacilityPointUl
 
   has_normal_code_domains = (v) ->
     return normal_code_domains(v).length > 0
-  
+
   #-------- Close
 
   has_close_infos = (v) ->
@@ -160,7 +160,7 @@ window.StationFacilityPointUl = StationFacilityPointUl
 class StationFacilityPointElevator
 
   constructor: ( @domain ) ->
-  
+
   #-------- ev
 
   ev_domains = (v) ->
