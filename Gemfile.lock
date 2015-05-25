@@ -308,7 +308,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.2.4)
+    tokyo_metro (0.2.5)
       haml
       odpt_common (>= 0.2.3)
       odpt_tokyo_metro_helper (>= 0.2.1)
@@ -386,7 +386,7 @@ DEPENDENCIES
   spring
   sqlite3
   taps
-  tokyo_metro (>= 0.2.4)
+  tokyo_metro (>= 0.2.5)
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)

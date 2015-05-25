@@ -134,6 +134,10 @@ Rails.application.routes.draw do
   #-------- Twitter
   post 'twitter/minimize' , to: 'twitter#minimize'
 
+  #-------- Document
+  get 'document/table/:model_namespace_in_url(/:page)' ,
+    to: 'document#table'
+
   #-------- その他
 
   match ':controller/:action', via: [ :get , :post , :patch ]

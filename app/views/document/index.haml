@@ -28,7 +28,7 @@
         = "Length"
     %tbody
       - @models.each.with_index(1) do | ary , i |
-        - category , model , number = ary
+        - category , model , number = ary.values
         - raise "Error: #{i}" if model.nil?
         %tr{ class: cycle( :odd_row , :even_row , name: :row_color ) }<
           %td{ class: :index }<
@@ -39,6 +39,10 @@
             - else
               = " "
           %td{ class: :model_name }<
-            = model
+            - if number > 0
+              - url = url_for( controller: :document , action: :table , model_namespace_in_url: model.underscore.gsub( "/" , "_" ) )
+              = link_to( model , url )
+            - else
+              = model
           %td{ class: :length_of_model }<
             = number_separated_by_comma( number )

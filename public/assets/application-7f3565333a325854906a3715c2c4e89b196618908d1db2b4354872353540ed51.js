@@ -24069,6 +24069,19 @@ $('#progress').html(
 
 }).call(this);
 (function() {
+  var checkAttr;
+
+  checkAttr = function(attr_name, obj) {
+    var attr, v;
+    v = obj.is_included_in;
+    attr = v.attr(attr_name);
+    return typeof attr !== 'undefined' && attr !== false;
+  };
+
+  window.checkAttr = checkAttr;
+
+}).call(this);
+(function() {
   var LinkDomainsToSetHoverEvent;
 
   LinkDomainsToSetHoverEvent = (function() {
@@ -24335,6 +24348,65 @@ $('#progress').html(
     var h;
     h = new OnPageLoadHandler();
     h.process();
+  });
+
+}).call(this);
+(function() {
+  var ToolTipsOnConnectingRailwayLineInfo;
+
+  ToolTipsOnConnectingRailwayLineInfo = (function() {
+    var railway_lines, transfer_infos;
+
+    function ToolTipsOnConnectingRailwayLineInfo() {}
+
+    transfer_infos = function(v) {
+      return $('li.transfer_info');
+    };
+
+    railway_lines = function(v) {
+      return $('li.railway_line');
+    };
+
+    ToolTipsOnConnectingRailwayLineInfo.prototype.process = function() {
+      var _option;
+      _option = {
+        potision: {
+          my: "left top",
+          at: "left bottom"
+        },
+        show: {
+          effect: "slideDown",
+          delay: 200
+        },
+        hide: {
+          effect: "slideUp",
+          delay: 200
+        },
+        content: function() {
+          var element;
+          element = $(this);
+          if (checkAttr("title", {
+            is_included_in: element
+          })) {
+            return "<span class='info_in_tooltip'>" + (element.attr("title")) + "</span>";
+          }
+        },
+        item: $(this),
+        track: true
+      };
+      $.each([transfer_infos(this), railway_lines(this)], function() {
+        this.find('.info , .remark').tooltip(_option);
+      });
+    };
+
+    return ToolTipsOnConnectingRailwayLineInfo;
+
+  })();
+
+  $(document).on('ready page:load', function() {
+    var t;
+    t = new ToolTipsOnConnectingRailwayLineInfo();
+    t.process();
   });
 
 }).call(this);

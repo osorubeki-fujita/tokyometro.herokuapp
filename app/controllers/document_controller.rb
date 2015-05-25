@@ -61,4 +61,93 @@ class DocumentController < ApplicationController
     render 'document/how_to_use' , layout: 'application'
   end
 
+  def table
+    table_container = TableContainer.new( params )
+
+    if table_container.redirect_to_index_from_table_page?
+      redirect_to( controller: :document , action: :index , status: :not_found )
+      return
+
+    elsif table_container.invalid_page?
+      redirect_if_page_is_invalid( table_container.page_number_max )
+      return
+
+    end
+
+    infos = table_container.infos_to_render_normally
+
+    @model_namespace_in_rails = infos[ :model_namespace_in_rails ]
+    @title = infos[ :title ]
+    @datum = infos[ :datum ]
+    render 'document/table' , layout: 'application_wide'
+  end
+
+  private
+
+  def redirect_if_page_is_invalid( actual_page )
+    redirect_to( controller: :document , action: :table , model_namespace_in_url: @model_namespace_in_url , page: actual_page , status: :see_other )
+  end
+
+  class TableContainer
+
+    @@rows_in_a_page = 100
+
+    def initialize( params )
+      models = ::TokyoMetro::Modules::Db::Model.list
+      @model_namespace_in_url = params[ :model_namespace_in_url ]
+      @page = params[ :page ].with_default_value(1).to_i
+
+      model_info = models.find { | info | info[ :model ].underscore.gsub( "/" , "_" ) == @model_namespace_in_url }
+      @model_namespace_in_rails = eval( model_info[ :model ] )
+      @count = model_info[ :count ]
+    end
+
+    def infos_to_render_normally
+      {
+        model_namespace_in_rails: @model_namespace_in_rails ,
+        title: title ,
+        datum: datum
+      }
+    end
+
+    def redirect_to_index_from_table_page?
+      @count == 0
+    end
+
+    def invalid_page?
+      page_number_max < @page
+    end
+
+    def page_number_max
+      if @count == 0
+        0
+      else
+        ( @count * 1.0 / @@rows_in_a_page ).ceil
+      end
+    end
+
+    private
+
+    def title
+      "Table - #{ @model_namespace_in_rails }"
+    end
+
+    def id_min
+      [ @count , ( @page - 1 ) * @@rows_in_a_page + 1 ].min
+    end
+
+    def id_max
+      [ @page * @@rows_in_a_page , @count ].min
+    end
+
+    def id_range
+      ( id_min..id_max ).to_a
+    end
+
+    def datum
+      @model_namespace_in_rails.where( id: id_range )
+    end
+
+  end
+
 end

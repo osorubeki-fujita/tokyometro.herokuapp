@@ -6092,6 +6092,11 @@ ul#links_to_railway_line_pages li.fukutoshin.this_station .text .text_en {
   color: #e6b422;
 }
 
+/* line 20, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/link_to_railway_line_page/note_and_remark.scss */
+span.info_in_tooltip {
+  font-size: 9pt;
+}
+
 /* line 5, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/link_to_railway_line_page.scss */
 #station_facility_platform_infos table.platform_info tr.transfer_infos li.transfer_info {
   padding: 4px;
@@ -6120,6 +6125,10 @@ ul#links_to_railway_line_pages li.fukutoshin.this_station .text .text_en {
 }
 
 /* IE7 */
+/* line 20, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/link_to_railway_line_page/note_and_remark.scss */
+span.info_in_tooltip {
+  font-size: 9pt;
+}
 /* line 3, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/float.scss */
 #railway_lines .multiple_lines.yurakucho_fukutoshin .railway_line_codes .railway_line_code_outer, #train_operation_infos .multiple_lines.yurakucho_fukutoshin .railway_line_codes .railway_line_code_outer, #station_matrixes .railway_line .multiple_lines.yurakucho_fukutoshin .railway_line_codes .railway_line_code_outer, #railway_lines .railway_line_matrix, #train_operation_infos .railway_line_matrix, #station_matrixes .railway_line .railway_line_matrix_small, #train_operation_infos .railway_line .railway_line_matrix_small, #station_matrixes .railway_line .stations, #station_matrixes .railway_line .stations_on_main_line, #station_matrixes .railway_line .stations_on_branch_line, #railway_lines .multiple_lines.yurakucho_fukutoshin .yurakucho, #train_operation_infos .multiple_lines.yurakucho_fukutoshin .yurakucho, #station_matrixes .railway_line .multiple_lines.yurakucho_fukutoshin .yurakucho, #railway_lines .multiple_lines.yurakucho_fukutoshin .fukutoshin, #train_operation_infos .multiple_lines.yurakucho_fukutoshin .fukutoshin, #station_matrixes .railway_line .multiple_lines.yurakucho_fukutoshin .fukutoshin, #railway_lines .railway_line_matrix .info .railway_line_code_outer, #train_operation_infos .railway_line_matrix .info .railway_line_code_outer, #station_matrixes .railway_line .railway_line_matrix_small .info .railway_line_code_outer, #train_operation_infos .railway_line .railway_line_matrix_small .info .railway_line_code_outer, #railway_lines .railway_line_matrix .info .text, #train_operation_infos .railway_line_matrix .info .text, #station_matrixes .railway_line .railway_line_matrix_small .info .text, #train_operation_infos .railway_line .railway_line_matrix_small .info .text, li.train_location .railway_line_matrix_very_small .info .text, li.train_location .railway_line_matrix_very_small, li.train_location .railway_line_matrix_very_small .info .railway_line_code_outer_small, #station_matrixes .railway_line .station {
   float: left;
@@ -7542,6 +7551,111 @@ ul.hiragana_column li ul.stations .small, ul.alphabet_column li ul.stations .sma
 }
 
 /* IE7 */
+/* line 3, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+/* line 10, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
+* html .clearfix {
+  zoom: 1;
+}
+
+/* IE6 */
+/* line 11, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
+*:first-child + html .clearfix {
+  zoom: 1;
+}
+
+/* IE7 */
+/* line 3, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+/* line 10, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
+* html .clearfix {
+  zoom: 1;
+}
+
+/* IE6 */
+/* line 11, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
+*:first-child + html .clearfix {
+  zoom: 1;
+}
+
+/* IE7 */
+/* line 8, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .limited_express_to_tokyu, .fukutoshin .limited_express_to_tokyu {
+  color: #333333;
+  background: #fd9a3d;
+  background: -moz-linear-gradient(top, rgba(253, 154, 61, 0.4), rgba(253, 154, 61, 0.8) 20%, #fd9a3d 50%, rgba(253, 154, 61, 0.8) 80%, rgba(253, 154, 61, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(253, 154, 61, 0.4)), color-stop(0.2, rgba(253, 154, 61, 0.8)), color-stop(0.5, #fd9a3d), color-stop(0.8, rgba(253, 154, 61, 0.8)), to(rgba(253, 154, 61, 0.4)));
+}
+/* line 13, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .commuter_limited_express_to_tokyu, .fukutoshin .commuter_limited_express_to_tokyu {
+  color: #333333;
+  background: #ffcc66;
+  background: -moz-linear-gradient(top, rgba(255, 204, 102, 0.4), rgba(255, 204, 102, 0.8) 20%, #ffcc66 50%, rgba(255, 204, 102, 0.8) 80%, rgba(255, 204, 102, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 204, 102, 0.4)), color-stop(0.2, rgba(255, 204, 102, 0.8)), color-stop(0.5, #ffcc66), color-stop(0.8, rgba(255, 204, 102, 0.8)), to(rgba(255, 204, 102, 0.4)));
+}
+/* line 18, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .express_to_tokyu, .fukutoshin .express_to_tokyu {
+  color: #ffffff;
+  background: #ee0011;
+  background: -moz-linear-gradient(top, rgba(238, 0, 17, 0.4), rgba(238, 0, 17, 0.8) 20%, #ee0011 50%, rgba(238, 0, 17, 0.8) 80%, rgba(238, 0, 17, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(238, 0, 17, 0.4)), color-stop(0.2, rgba(238, 0, 17, 0.8)), color-stop(0.5, #ee0011), color-stop(0.8, rgba(238, 0, 17, 0.8)), to(rgba(238, 0, 17, 0.4)));
+}
+/* line 23, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .local_to_tokyu, .fukutoshin .local_to_tokyu {
+  color: #ffffff;
+  background: #0000ff;
+  background: -moz-linear-gradient(top, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0.8) 20%, #0000ff 50%, rgba(0, 0, 255, 0.8) 80%, rgba(0, 0, 255, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 255, 0.4)), color-stop(0.2, rgba(0, 0, 255, 0.8)), color-stop(0.5, #0000ff), color-stop(0.8, rgba(0, 0, 255, 0.8)), to(rgba(0, 0, 255, 0.4)));
+}
+/* line 30, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .local_to_seibu, .fukutoshin .local_to_seibu {
+  color: #ffffff;
+  background: #666666;
+  background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
+}
+/* line 35, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .rapid_to_seibu, .fukutoshin .rapid_to_seibu {
+  color: #ffffff;
+  background: #00ccff;
+  background: -moz-linear-gradient(top, rgba(0, 204, 255, 0.4), rgba(0, 204, 255, 0.8) 20%, #00ccff 50%, rgba(0, 204, 255, 0.8) 80%, rgba(0, 204, 255, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 204, 255, 0.4)), color-stop(0.2, rgba(0, 204, 255, 0.8)), color-stop(0.5, #00ccff), color-stop(0.8, rgba(0, 204, 255, 0.8)), to(rgba(0, 204, 255, 0.4)));
+}
+/* line 40, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .semi_express_to_seibu, .fukutoshin .semi_express_to_seibu {
+  color: #ffffff;
+  background: #00cc99;
+  background: -moz-linear-gradient(top, rgba(0, 204, 153, 0.4), rgba(0, 204, 153, 0.8) 20%, #00cc99 50%, rgba(0, 204, 153, 0.8) 80%, rgba(0, 204, 153, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 204, 153, 0.4)), color-stop(0.2, rgba(0, 204, 153, 0.8)), color-stop(0.5, #00cc99), color-stop(0.8, rgba(0, 204, 153, 0.8)), to(rgba(0, 204, 153, 0.4)));
+}
+/* line 45, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .rapid_express_to_seibu, .fukutoshin .rapid_express_to_seibu {
+  color: #ffffff;
+  background: #cc6699;
+  background: -moz-linear-gradient(top, rgba(204, 102, 153, 0.4), rgba(204, 102, 153, 0.8) 20%, #cc6699 50%, rgba(204, 102, 153, 0.8) 80%, rgba(204, 102, 153, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(204, 102, 153, 0.4)), color-stop(0.2, rgba(204, 102, 153, 0.8)), color-stop(0.5, #cc6699), color-stop(0.8, rgba(204, 102, 153, 0.8)), to(rgba(204, 102, 153, 0.4)));
+}
+/* line 52, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/train_types/yurakucho_fukutoshin.scss */
+.yurakucho .local_to_tobu_tojo, .fukutoshin .local_to_tobu_tojo {
+  color: #ffffff;
+  background: #666666;
+  background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.4), rgba(102, 102, 102, 0.8) 20%, #666666 50%, rgba(102, 102, 102, 0.8) 80%, rgba(102, 102, 102, 0.4));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.4)), color-stop(0.2, rgba(102, 102, 102, 0.8)), color-stop(0.5, #666666), color-stop(0.8, rgba(102, 102, 102, 0.8)), to(rgba(102, 102, 102, 0.4)));
+}
 /* line 3, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/clearfix.scss */
 .clearfix:after {
   visibility: hidden;
@@ -9932,6 +10046,11 @@ td.transfer ul.railway_lines li.railway_line .info {
 /* line 15, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/link_to_railway_line_page/note_and_remark.scss */
 td.transfer ul.railway_lines li.railway_line .remark {
   color: #e6b422;
+}
+
+/* line 20, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/concerns/link_to_railway_line_page/note_and_remark.scss */
+span.info_in_tooltip {
+  font-size: 9pt;
 }
 
 /* line 9, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/_text.scss */

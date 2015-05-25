@@ -1,0 +1,18 @@
+- column_names = @datum.column_names
+
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @model_namespace_in_rails.to_s , nil ).render
+
+%div{ id: :infos_in_db }
+  %table{ class: :text_en }
+    %thead
+      - column_names.each do | column_name |
+        %td<
+          = column_name
+    %tbody
+      - @datum.each do | data |
+        %tr
+          - column_names.each do | column_name |
+            %td<
+              = data.send( column_name )
