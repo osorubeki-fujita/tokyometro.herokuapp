@@ -30,5 +30,29 @@ module ApplicationHelper
     = time.to_strf_normal_ja
     HAML
   end
+  
+  def problems
+    render inline: <<-HAML , type: :haml , locals: { request: request }
+%div{ id: :problems }
+  = problems_header
+  %ul{ class: [ :info_text , :problems ] }
+    - [ "リアルタイム情報の更新ボタンが動作しない" , "Twitterの縮小ボタンが動作しない" , "駅時刻表ページ（重大なバグが見つかったため公開を停止しています）" ].each do | info |
+      %li{ class: :text_ja }<
+        = info
+    HAML
+  end
+  
+  def problems_header
+    ::TokyoMetro::App::Renderer::Concern::Header::Content.new( request , :problems , :info ,
+      "既知の主な問題点" ,
+      "Problems and bugs" ,
+      icon_size: 2 ,
+      size_setting_button_type: nil ,
+      contoller_of_size_setting: nil ,
+      add_update_button: false ,
+      update_button_id: nil ,
+      additional_content: nil
+    ).render
+  end
 
 end

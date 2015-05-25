@@ -9,4 +9,5 @@
 
 - content_for :side_menu do
   = ::TokyoMetro::App::Renderer::SideMenu::NowDeveloping.new( request ).render
+  = problems
   = ::TokyoMetro::App::Renderer::SideMenu.render_all( request )

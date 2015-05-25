@@ -44,6 +44,7 @@ class OnPageLoadHandler
     real_time_info_processor = new RealTimeInfoProcessor()
     twitters_processor = new TwittersProcessor()
     now_developing_processor = new NowDevelopingProcessor()
+    problems_processor = new NowDevelopingProcessor( $( '#problems' ) )
     ul_side_menu_links = new UlSideMenuLinks()
     ul_station_related_links = new UlStationRelatedLinks()
 
@@ -52,6 +53,7 @@ class OnPageLoadHandler
     ary.push real_time_info_processor
     ary.push twitters_processor
     ary.push now_developing_processor
+    ary.push problems_processor
     ary.push ul_side_menu_links
     ary.push ul_station_related_links
 
