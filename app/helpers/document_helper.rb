@@ -8,8 +8,6 @@ module DocumentHelper
     "Documents" # "Documents of development"
   end
 
-
-
   def render_to_do( contents )
     render inline: <<-HAML , type: :haml , locals: { contents: contents }
 - if contents.present?

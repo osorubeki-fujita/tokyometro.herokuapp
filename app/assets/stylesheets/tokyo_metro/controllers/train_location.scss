@@ -234,7 +234,7 @@
       .arrow {
         @extend %marginTop4 ;
         @extend %marginBottom4 ;
-        text-align: center ;
+        @extend %marginLeft32 ;
       }
       .station_info {
         // @extend %floatLeft ;

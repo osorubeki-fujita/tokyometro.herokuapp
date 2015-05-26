@@ -18,6 +18,10 @@
       font-size: 20pt ;
       @extend %marginBottom4 ;
       @extend %linkInDiv ;
+      .version {
+        font-size: 9pt ;
+        @extend %marginLeft8 ;
+      }
     }
     .sub {
       @extend %text_en ;

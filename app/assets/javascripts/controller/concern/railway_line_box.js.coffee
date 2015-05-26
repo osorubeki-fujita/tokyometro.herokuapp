@@ -45,14 +45,13 @@ class NormalRailwayLineBox extends RailwayLineBoxBase
     return v.info().find( '.railway_line_code_outer' ).first()
 
   width_of_railway_line_code_outer = (v) ->
-    return railway_line_code_outer(v).outerWidth( true )
+    return railway_line_code_outer(v).outerWidth( false )
 
   margin_of_railway_line_code_outer = (v) ->
-    return ( v.width - width_of_railway_line_code_outer(v) ) * 0.5
+    return ( v.info().innerWidth() - width_of_railway_line_code_outer(v) ) * 0.5
 
   # 路線記号の左右の margin の変更
   set_margin_of_railway_line_code_outer = (v) ->
-    # console.log 'NormalRailwayLineBox\#set_margin_of_railway_line_code_outer'
     _railway_line_code_outer = railway_line_code_outer(v)
     _margin_of_railway_line_code_outer = margin_of_railway_line_code_outer(v)
     railway_line_code_outer(v).css( 'margin-left' , _margin_of_railway_line_code_outer ).css( 'margin-right' , _margin_of_railway_line_code_outer )

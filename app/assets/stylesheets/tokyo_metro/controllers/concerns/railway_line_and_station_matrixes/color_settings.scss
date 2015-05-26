@@ -125,3 +125,49 @@ $saturatedColorOfYurakucho: saturate( $line_yurakucho_bgcolor , 20% ) ;
     to( #{$color_right} )
   );
 }
+
+//--------
+
+#railway_lines , #train_operation_infos , #station_matrixes , #train_operation_infos {
+  .each_line.ginza {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_ginza_bgcolor ) ;
+  }
+  .each_line.marunouchi {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_marunouchi_bgcolor ) ;
+  }
+  .each_line.hibiya {
+    @include backgroundColorOfRailwayLineMatrixesHibiya( $line_hibiya_bgcolor ) ;
+  }
+  .each_line.tozai {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_tozai_bgcolor ) ;
+  }
+  .each_line.chiyoda {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_chiyoda_bgcolor ) ;
+  }
+  .each_line.yurakucho {
+    @include backgroundColorOfRailwayLineMatrixesYurakucho( $line_yurakucho_bgcolor ) ;
+  }
+  .each_line.hanzomon {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_hanzomon_bgcolor ) ;
+  }
+  .each_line.namboku {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_namboku_bgcolor ) ;
+  }
+  .each_line.fukutoshin {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_fukutoshin_bgcolor ) ;
+  }
+  .each_line.toei_mita {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_toei_mita_bgcolor ) ;
+  }
+  .multiple_lines.yurakucho_fukutoshin {
+    @include backgroundColorOfRailwayLineMatrixesYurakuchoFukutoshin( $line_fukutoshin_bgcolor ) ;
+  }
+}
+
+#station_matrixes {
+  .railway_line {
+    .stations , .stations_on_main_line , .stations_on_branch_line {
+      @include backgroundColorOfRailwayLineMatrixesNormal( #eee ) ;
+    }
+  }
+}

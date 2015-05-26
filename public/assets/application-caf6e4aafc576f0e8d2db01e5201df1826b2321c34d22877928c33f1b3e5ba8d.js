@@ -18989,11 +18989,11 @@ $('#progress').html(
     };
 
     width_of_railway_line_code_outer = function(v) {
-      return railway_line_code_outer(v).outerWidth(true);
+      return railway_line_code_outer(v).outerWidth(false);
     };
 
     margin_of_railway_line_code_outer = function(v) {
-      return (v.width - width_of_railway_line_code_outer(v)) * 0.5;
+      return (v.info().innerWidth() - width_of_railway_line_code_outer(v)) * 0.5;
     };
 
     set_margin_of_railway_line_code_outer = function(v) {
@@ -19269,12 +19269,12 @@ $('#progress').html(
     };
 
     process_normal_railway_lines = function(v) {
-      var _width, p;
+      var p, w;
       p = new RailwayLineAndStationMatrix();
-      _width = p.width_of_each_normal_railway_line();
+      w = p.width_of_each_normal_railway_line();
       normal_railway_lines(v).each(function() {
         var normal_railway_line_box;
-        normal_railway_line_box = new NormalRailwayLineBox($(this), _width);
+        normal_railway_line_box = new NormalRailwayLineBox($(this), w);
         normal_railway_line_box.process();
       });
     };

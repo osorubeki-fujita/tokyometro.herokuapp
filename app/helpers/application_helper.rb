@@ -39,6 +39,9 @@ module ApplicationHelper
     - [ "リアルタイム情報の更新ボタンが動作しない" , "Twitterの縮小ボタンが動作しない" , "駅時刻表ページ（重大なバグが見つかったため公開を停止しています）" ].each do | info |
       %li{ class: :text_ja }<
         = info
+    %li{ class: :to_do }<
+      = link_to( "" , url_for( controller: :document , action: :index , anchor: :to_do ) )
+      = "To Do"
     HAML
   end
   

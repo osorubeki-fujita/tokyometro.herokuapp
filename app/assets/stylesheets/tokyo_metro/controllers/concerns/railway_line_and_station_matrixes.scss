@@ -1,7 +1,6 @@
 @charset "utf-8" ;
 
 @import 'railway_line_and_station_matrixes/railway_line_codes.scss' ;
-@import 'railway_line_and_station_matrixes/color_settings.scss' ;
 
 %fundamentalSettingsOfRailwayLineAndStationMatrixes {
   @extend %floatLeft ;
@@ -15,12 +14,6 @@
     left: 16px ;
     right: 16px ;
   }
-  @include backgroundColorOfRailwayLineMatrixesNormal( #eee ) ;
-}
-
-%colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes {
-  @include common_link_settings( $link_normal_base_color , $link_visited_color , $link_hover_color , $link_active_color ) ;
-  @extend %linkInDiv ;
 }
 
 %textSettingsOfRailwayLineMatrixes {
@@ -37,43 +30,12 @@
   }
 }
 
-%contentsIncludedInRailwayLineMatrixes {
+#railway_lines , #train_operation_infos , #station_matrixes , #train_operation_infos {
   .each_line {
     @extend %settingsOfRailwayLineCodeInRailwayLineMatrix_48 ;
     @extend %settingsOfRailwayLineCodeInRailwayLineMatrix_32 ;
   }
-  .each_line.ginza {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_ginza_bgcolor ) ;
-  }
-  .each_line.marunouchi {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_marunouchi_bgcolor ) ;
-  }
-  .each_line.hibiya {
-    @include backgroundColorOfRailwayLineMatrixesHibiya( $line_hibiya_bgcolor ) ;
-  }
-  .each_line.tozai {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_tozai_bgcolor ) ;
-  }
-  .each_line.chiyoda {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_chiyoda_bgcolor ) ;
-  }
-  .each_line.yurakucho {
-    @include backgroundColorOfRailwayLineMatrixesYurakucho( $line_yurakucho_bgcolor ) ;
-  }
-  .each_line.hanzomon {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_hanzomon_bgcolor ) ;
-  }
-  .each_line.namboku {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_namboku_bgcolor ) ;
-  }
-  .each_line.fukutoshin {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_fukutoshin_bgcolor ) ;
-  }
-  .each_line.toei_mita {
-    @include backgroundColorOfRailwayLineMatrixesNormal( $line_toei_mita_bgcolor ) ;
-  }
   .multiple_lines.yurakucho_fukutoshin {
-    @include backgroundColorOfRailwayLineMatrixesYurakuchoFukutoshin( $line_fukutoshin_bgcolor ) ;
     @extend %railwayLineCodesInRailwayLineMatrixesYurakuchoFukutoshin ;
     .text_ja {
       clear: left ;
@@ -103,10 +65,13 @@
 
 %commonSettingsInRailwayLineMatrixNormalAndSmall {
   @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
-  @extend %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes ;
+  @extend %linkInDiv ;
   @extend %textSettingsOfRailwayLineMatrixes ;
   @extend %marginBottomMinus1 ;
   @extend %marginRightMinus1 ;
+}
+
+%railwayLineCodeOuterFloatLeft {
   .info {
     .railway_line_code_outer {
       @extend %floatLeft ;
@@ -119,6 +84,11 @@
   .info {
     @extend %marginLeft8 ;
     @extend %marginRight8 ;
+  }
+}
+
+%infoTextFloatLeftInRailwayLineMatrix {
+  .info {
     .text {
       @extend %floatLeft ;
     }
@@ -126,7 +96,6 @@
 }
 
 #railway_lines , #train_operation_infos {
-  @extend %contentsIncludedInRailwayLineMatrixes ;
   .railway_line_matrix {
     height: 128px ;
     text-align: center;
@@ -140,7 +109,9 @@
 %railwayLineMatrixSmall {
   .railway_line_matrix_small {
     @extend %commonSettingsInRailwayLineMatrixNormalAndSmall ;
+    @extend %railwayLineCodeOuterFloatLeft ;
     @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
+    @extend %infoTextFloatLeftInRailwayLineMatrix ;
   }
 }
 
@@ -148,6 +119,7 @@
   .railway_line_matrix_very_small {
     @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
     @extend %floatLeft ;
+    @extend %infoTextFloatLeftInRailwayLineMatrix ;
     .text_ja {
       font: {
         size: 12pt ;
@@ -211,7 +183,6 @@
   .railway_line {
     clear: both ;
     @extend %railwayLineMatrixSmall ;
-    @extend %contentsIncludedInRailwayLineMatrixes ;
   }
   @extend %marginBottom16 ;
 }
@@ -219,6 +190,8 @@
 li.train_location {
   @extend %railwayLineMatrixVerySmall ;
 }
+
+//--------
 
 #station_matrixes {
   .railway_line {

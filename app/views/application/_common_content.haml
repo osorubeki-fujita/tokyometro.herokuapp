@@ -4,7 +4,9 @@
     %div{ class: [ :top_title , :clearfix ] }<>
       %div{ class: :main }<
         = link_to_unless_current( "" , url_for( controller: :application , action: :index ) )
-        = ::ApplicationHelper.common_title_ja
+        != ::ApplicationHelper.common_title_ja
+        %span{ class: :version }<
+          = "Beta Version"
       %div{ class: :sub }<
         = ::ApplicationHelper.common_title_en
     %div{ class: :developer }

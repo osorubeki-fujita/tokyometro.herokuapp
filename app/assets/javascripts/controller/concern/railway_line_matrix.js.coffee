@@ -52,12 +52,9 @@ class RailwayLineMatrixes
   # 一般路線の box の設定
   process_normal_railway_lines = (v) ->
     p = new RailwayLineAndStationMatrix()
-    _width = p.width_of_each_normal_railway_line()
+    w = p.width_of_each_normal_railway_line()
     normal_railway_lines(v).each ->
-      # console.log $( this )
-      # console.log $( this ).children( '.info' )
-      # console.log $( this ).children( '.info' ).first()
-      normal_railway_line_box = new NormalRailwayLineBox( $( this ) , _width )
+      normal_railway_line_box = new NormalRailwayLineBox( $( this ) , w )
       normal_railway_line_box.process()
       return
     return

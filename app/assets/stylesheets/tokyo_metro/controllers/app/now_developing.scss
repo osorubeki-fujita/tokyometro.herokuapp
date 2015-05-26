@@ -58,6 +58,16 @@
     margin: 0px ;
     li {
       list-style: none ;
+      @extend %linkInDiv ;
+      font: {
+        size: 10pt ;
+      }
+    }
+    li.to_do {
+      @extend %paddingLeft4 ;
+      @extend %paddingTop4 ;
+      @extend %paddingBottom4 ;
+      background-color: mix( $jp_traditional_karashi , #fff ) ;
     }
   }
 }
