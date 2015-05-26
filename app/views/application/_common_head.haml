@@ -4,8 +4,8 @@
   - actual_title = @title ? "#{@title} - #{default_title}" : default_title
   %title<
     = actual_title
-  %meta{:content => @keywords ? @keywords : "" , :name => "keywords"}
-  %meta{:content => @discription ? @discription : "" , :name => "description"}
+  %meta{:content => @meta_keywords ? @meta_keywords : "" , :name => "keywords"}
+  %meta{:content => @meta_discription ? @meta_discription : "" , :name => "description"}
   = stylesheet_link_tag( 'application', media: 'all', 'data-turbolinks-track' => true )
   = javascript_include_tag( 'application', 'data-turbolinks-track' => true )
   - # = javascript_include_tag( "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" , type: "text/javascript" )

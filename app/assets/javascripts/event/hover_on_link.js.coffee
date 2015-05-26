@@ -2,6 +2,10 @@ class LinkDomainsToSetHoverEvent
 
   constructor: ->
 
+  li_domains_in_sns_accounts = (v) ->
+    return $( 'ul#sns_accounts' )
+      .children( 'li' )
+
   li_domains_in_left_side_menu = (v) ->
     return $( 'ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents' )
       .children( 'li' )
@@ -78,6 +82,7 @@ class LinkDomainsToSetHoverEvent
   list = (v) ->
     ary = []
 
+    ary.push li_domains_in_sns_accounts(v)
     ary.push li_domains_in_left_side_menu(v)
     ary.push li_domains_of_links_to_document_pages(v)
     # ary.push li_domains_of_links_to_year_pages(v)

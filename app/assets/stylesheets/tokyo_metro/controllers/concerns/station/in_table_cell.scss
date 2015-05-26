@@ -41,7 +41,7 @@
   @extend %stationInfoCellLinkHover ;
   td.station_info {
     @extend %stationInfoTextInTableFontSizeSettings ;
-    @extend %link_in_div ;
+    @extend %linkInDiv ;
     $station_code_img_length: 24px ;
     padding: 0px ;
     text-align: left ;

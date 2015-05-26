@@ -3,7 +3,7 @@
 @import 'link_to_railway_line_page/note_and_remark.scss' ;
 
 %domainBaseSettingsOfLinkToRailwayLine {
-  @extend %link_in_div ;
+  @extend %linkInDiv ;
   @extend %floatLeft ;
   padding: 4px ;
   margin: {

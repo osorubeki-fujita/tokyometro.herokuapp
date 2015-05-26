@@ -20,7 +20,7 @@
 
 %colorAndLinkSettingsOfTextInRailwayLineAndStationMatrixes {
   @include common_link_settings( $link_normal_base_color , $link_visited_color , $link_hover_color , $link_active_color ) ;
-  @extend %link_in_div ;
+  @extend %linkInDiv ;
 }
 
 %textSettingsOfRailwayLineMatrixes {

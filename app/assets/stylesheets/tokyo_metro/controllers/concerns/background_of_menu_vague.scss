@@ -1,0 +1,40 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%backgroundOfMenuVague {
+  $color_top: rgba( $operator_color , 0.08 );
+  $color_middle: rgba( $color_top , 0.02 );
+  $color_bottom: $color_middle;
+  //
+  $color_stop_point_1_moz : 30% ;
+  $color_stop_point_1_webkit : 0.3 ;
+  $color_stop_point_2_moz : 70% ;
+  $color_stop_point_2_webkit : 0.7 ;
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_top} #{$color_stop_point_1_moz},
+    #{$color_middle} #{$color_stop_point_2_moz} ,
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_middle} ) ,
+    to( #{$color_bottom} )
+  );
+}
+
+//--------
+
+ul.train_locations_of_each_direction {
+  li.train_location {
+    .current_position {
+      @extend %backgroundOfMenuVague ;
+    }
+  }
+}

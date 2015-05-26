@@ -64,7 +64,7 @@
 
 %connectingRailwayLineOfTokyoMetro {
   li.tokyo_metro {
-    @extend %link_in_div ;
+    @extend %linkInDiv ;
     // border: {
       // color: #ccc ;
     // }
@@ -94,7 +94,7 @@
   @extend %railwayLineConnectingToAnotherStation ;
   li.railway_line {
     @extend %floatLeft ;
-    @extend %link_in_div ;
+    @extend %linkInDiv ;
     padding: 6px ;
     margin: {
       right: -1px ;

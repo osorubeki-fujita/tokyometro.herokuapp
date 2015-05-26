@@ -2,13 +2,10 @@
 
 @import '../fundamental_settings.scss' ;
 @import 'concerns/station/in_table_cell.scss' ;
-@import 'concerns/background_of_menu.scss' ;
 
 #main_content_center {
   .links_to_passenger_survey {
     .title {
-      @extend %backgroundOfMenu ;
-      @extend %borderBottomOfMenu ;
       @extend %marginBottom16 ;
       @extend %paddingLeft8 ;
       @extend %paddingTop4 ;
@@ -150,7 +147,7 @@ ul#links_to_year_pages_on_index_page {
       font: {
         size: 9pt ;
       }
-      @extend %link_in_div ;
+      @extend %linkInDiv ;
     }
     td.passenger_journey {
       font: {

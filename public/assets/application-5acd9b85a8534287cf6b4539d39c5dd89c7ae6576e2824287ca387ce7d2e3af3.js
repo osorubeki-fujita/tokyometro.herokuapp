@@ -18597,39 +18597,30 @@ $('#progress').html(
 	"JavaScript Test"
 );
 (function() {
-  var BottomContent;
+  var Header;
 
-  BottomContent = (function() {
-    var links, margin_of_links, processor_of_links;
+  Header = (function() {
+    var set_vertical_align;
 
-    function BottomContent(domain) {
-      this.domain = domain != null ? domain : $('div#bottom_content');
+    function Header(domain) {
+      this.domain = domain != null ? domain : $('#header');
     }
 
-    links = function(v) {
-      return v.domain.children('.links');
+    set_vertical_align = function(v) {
+      var p;
+      p = new DomainsVerticalAlignProcessor(v.domain.children(), 'auto', 'bottom');
+      p.process();
     };
 
-    margin_of_links = function(v, p) {
-      return (v.domain.outerHeight(true) - p.sum_outer_height(true)) * 0.5;
+    Header.prototype.process = function() {
+      set_vertical_align(this);
     };
 
-    processor_of_links = function(v) {
-      return new DomainsCommonProcessor(links(v));
-    };
-
-    BottomContent.prototype.process = function() {
-      var _margin_of_links, p;
-      p = processor_of_links(this);
-      _margin_of_links = margin_of_links(this, p);
-      ['margin-top', 'margin-bottom'].each(function() {
-        p.set_css_attribute($(this), _margin_of_links);
-      });
-    };
-
-    return BottomContent;
+    return Header;
 
   })();
+
+  window.Header = Header;
 
 }).call(this);
 (function() {
@@ -18849,69 +18840,6 @@ $('#progress').html(
   })();
 
   window.LinksToStationInfoPages = LinksToStationInfoPages;
-
-}).call(this);
-(function() {
-  var MainContents;
-
-  MainContents = (function() {
-    var added_to_max_height, contents, left_contents, main_content_center, main_content_wide, max_height, padding_bottom_of_contents, padding_top_of_contents, right_contents;
-
-    function MainContents() {}
-
-    contents = function(v) {
-      return $('div#contents');
-    };
-
-    left_contents = function(v) {
-      return $('div#left_contents');
-    };
-
-    main_content_center = function(v) {
-      return $('div#main_content_center');
-    };
-
-    main_content_wide = function(v) {
-      return $('div#main_content_wide');
-    };
-
-    right_contents = function(v) {
-      return $('div#right_contents');
-    };
-
-    added_to_max_height = function(v) {
-      return 32;
-    };
-
-    padding_top_of_contents = function(v) {
-      return 8;
-    };
-
-    padding_bottom_of_contents = function(v) {
-      return 8;
-    };
-
-    max_height = function(v) {
-      var ary;
-      ary = [left_contents(v).outerHeight(), main_content_center(v).outerHeight(), main_content_wide(v).outerHeight(), right_contents(v).outerHeight()];
-      return Math.max.apply(null, ary) + added_to_max_height(v);
-    };
-
-    MainContents.prototype.process = function() {
-      var _max_height;
-      _max_height = max_height(this);
-      contents(this).css('height', _max_height + padding_top_of_contents(this) + padding_bottom_of_contents(this));
-      left_contents(this).css('height', _max_height);
-      main_content_center(this).css('height', _max_height);
-      main_content_wide(this).css('height', _max_height);
-      right_contents(this).css('height', _max_height);
-    };
-
-    return MainContents;
-
-  })();
-
-  window.MainContents = MainContents;
 
 }).call(this);
 (function() {
@@ -24085,9 +24013,13 @@ $('#progress').html(
   var LinkDomainsToSetHoverEvent;
 
   LinkDomainsToSetHoverEvent = (function() {
-    var hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey, hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey, li_domains_in_left_side_menu, li_domains_of_link_to_fare_contents_of_railway_lines, li_domains_of_links_to_document_pages, li_domains_of_links_to_railway_line_pages_from_platform_info, li_domains_of_links_to_railway_line_pages_from_railway_line_info, li_domains_of_links_to_railway_line_pages_from_station_facility_page, li_domains_of_links_to_station_info_pages, li_domains_of_platform_info_tabs, li_domains_to_operator_each_year_page_of_passenger_survey, li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page, li_domains_to_operator_page_of_passenger_survey, li_domains_to_railway_line_each_year_page_of_passenger_survey, li_domains_to_railway_line_page_of_passenger_survey, list, operator_domains_in_links_to_passenger_survey, railway_line_domains_in_links_to_passenger_survey, set_hover_event_of_escaping_class, set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey, set_hover_main_event;
+    var hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey, hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey, li_domains_in_left_side_menu, li_domains_in_sns_accounts, li_domains_of_link_to_fare_contents_of_railway_lines, li_domains_of_links_to_document_pages, li_domains_of_links_to_railway_line_pages_from_platform_info, li_domains_of_links_to_railway_line_pages_from_railway_line_info, li_domains_of_links_to_railway_line_pages_from_station_facility_page, li_domains_of_links_to_station_info_pages, li_domains_of_platform_info_tabs, li_domains_to_operator_each_year_page_of_passenger_survey, li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page, li_domains_to_operator_page_of_passenger_survey, li_domains_to_railway_line_each_year_page_of_passenger_survey, li_domains_to_railway_line_page_of_passenger_survey, list, operator_domains_in_links_to_passenger_survey, railway_line_domains_in_links_to_passenger_survey, set_hover_event_of_escaping_class, set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey, set_hover_main_event;
 
     function LinkDomainsToSetHoverEvent() {}
+
+    li_domains_in_sns_accounts = function(v) {
+      return $('ul#sns_accounts').children('li');
+    };
 
     li_domains_in_left_side_menu = function(v) {
       return $('ul#links_to_main_contents , ul#links_to_other_websites , ul#links_to_documents').children('li');
@@ -24152,6 +24084,7 @@ $('#progress').html(
     list = function(v) {
       var ary;
       ary = [];
+      ary.push(li_domains_in_sns_accounts(v));
       ary.push(li_domains_in_left_side_menu(v));
       ary.push(li_domains_of_links_to_document_pages(v));
       ary.push(li_domains_of_link_to_fare_contents_of_railway_lines(v));
@@ -24293,8 +24226,10 @@ $('#progress').html(
     function OnPageLoadHandler() {}
 
     list = function(v) {
-      var ary, document, fare_table, links_to_station_info_pages, now_developing_processor, passenger_survey, problems_processor, railway_line, railway_line_codes, railway_line_matrixes, real_time_info_processor, selection_header_processor, station_facility, station_matrixes, station_timetables, train_location_infos, train_operation_infos, twitters_processor, ul_side_menu_links, ul_station_related_links;
+      var ary, document, fare_table, header, links_to_station_info_pages, now_developing_processor, passenger_survey, problems_processor, railway_line, railway_line_codes, railway_line_matrixes, real_time_info_processor, selection_header_processor, station_facility, station_matrixes, station_timetables, train_location_infos, train_operation_infos, twitters_processor, ul_side_menu_links, ul_station_related_links;
       ary = [];
+      header = new Header();
+      ary.push(header);
       document = new Document();
       ary.push(document);
       railway_line_matrixes = new RailwayLineMatrixes();

@@ -1,7 +1,6 @@
 @charset "utf-8" ;
 
 @import '../fundamental_settings.scss' ;
-@import 'concerns/background_of_menu.scss' ;
 
 %trainLocationContentFontSizeSmall {
   .text_ja {
@@ -220,7 +219,6 @@
 %currentPositionInTrainLocation {
   .current_position {
     @extend %floatLeft ;
-    @extend %backgroundOfMenuVague ;
     border: {
       left: solid 4px #fff ;
       right: solid 4px #fff ;
@@ -312,7 +310,5 @@ ul.train_locations_of_each_direction {
   .title_of_a_railway_direction {
     @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
     @extend %marginBottom16 ;
-    @extend %backgroundOfMenu ;
-    @extend %borderBottomOfMenu ;
   }
 }

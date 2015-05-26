@@ -52,7 +52,7 @@
 %platformInfoTabLi {
   display: block;
   @extend %floatLeft ;
-  @extend %link_in_div ;
+  @extend %linkInDiv ;
   @extend %textSettingsOfLineNameInPlatformInfoTab ;
   list-style-type: none;
   &.displayed {

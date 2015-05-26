@@ -147,7 +147,7 @@ GEM
       mini_portile (~> 0.6.0)
     nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
-    odpt_common (0.2.3)
+    odpt_common (0.2.4)
       activesupport (>= 4.2.1)
     odpt_tokyo_metro_helper (0.2.1)
       activesupport (>= 4.2.1)
@@ -308,7 +308,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.2.6)
+    tokyo_metro (0.2.7)
       haml
       odpt_common (>= 0.2.3)
       odpt_tokyo_metro_helper (>= 0.2.1)

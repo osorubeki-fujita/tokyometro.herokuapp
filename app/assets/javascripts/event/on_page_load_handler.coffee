@@ -4,6 +4,13 @@ class OnPageLoadHandler
 
     ary = []
 
+    #---- header
+
+    header = new Header()
+    ary.push header
+
+    #---- document
+
     document = new Document()
     ary.push document
 
@@ -56,13 +63,6 @@ class OnPageLoadHandler
     ary.push problems_processor
     ary.push ul_side_menu_links
     ary.push ul_station_related_links
-
-    # 不使用
-    # main_contents = new MainContents()
-    # bottom_content = new BottomContent()
-
-    # ary.push main_contents
-    # ary.push bottom_content
 
     return ary
 

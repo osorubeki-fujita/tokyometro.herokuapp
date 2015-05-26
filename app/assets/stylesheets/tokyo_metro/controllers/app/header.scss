@@ -5,27 +5,59 @@
 #header {
   background-color: $jp_traditional_yokan_iro ;
   color: #fff ;
-  height: 48px ;
+  // height: 48px ;
   padding: {
     left: 16px ;
     right: 16px ;
     top: 4px ;
   }
-  @extend %text_en ;
   .top_title {
-    font-size: 24pt ;
     @extend %floatLeft ;
-  }
-  .top_subtitle{
-    @extend %marginLeft8 ;
     @extend %text_en ;
-    // @extend %floatLeft ;
-    font-size: 12pt;
+    .main {
+      font-size: 20pt ;
+      @extend %marginBottom4 ;
+      @extend %linkInDiv ;
+    }
+    .sub {
+      @extend %text_en ;
+      font-size: 9pt;
+      @extend %marginBottom4 ;
+    }
   }
-  .top_title_to_fb {
+  .developer {
     @extend %floatRight ;
     font-size: 9pt;
     @extend %text_en ;
+    //----
+    .name {
+      border: {
+        bottom: dotted 1px #fff ;
+      }
+      @extend %marginBottom4 ;
+      @extend %paddingLeft4 ;
+      @extend %paddingRight4 ;
+    }
+    ul#sns_accounts {
+      padding: 0px ;
+      margin: {
+        top: 0px ;
+      }
+      @extend %marginBottom4 ;
+      li.sns_account {
+        @extend %linkInDiv ;
+        list-style: none ;
+        font-size: 7.5pt;
+        i {
+          @extend %marginLeft4 ;
+          @extend %marginRight4 ;
+        }
+        &.hover {
+          background-color: #666 ;
+        }
+      }
+    }
+    //----
     a {
       color: #fff ;
     }

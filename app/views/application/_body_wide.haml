@@ -1,8 +1,5 @@
 %body
-  %div{ id: :header , class: "col-md-12" }<
-    = yield( :header )
-  %div{ id: :header_sub , class: "col-md-12" }<
-    = yield( :header_sub )
+  = yield( :header )
   %div{ id: :contents , class: [ :container , :clearfix ] }
     %div{ id: :left_contents , class: "col-md-3" }
       = yield( :side_menu )

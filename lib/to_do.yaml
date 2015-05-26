@@ -1,0 +1,70 @@
+system:
+  - "リアルタイム情報 更新ボタン"
+  - "Twitter 縮小ボタン"
+  # "Ajaxの実験に使用、実際はcssとjQueryで処理"
+  -
+    title: "train_operation（列車運行情報） , train_location（列車位置情報）ページの完成"
+    contents:
+      - "遅れありのときに「平常通り」と表示される事態の解消"
+      - "Ajax を利用"
+      # - "（Rails での使い方をsearch）"
+      - "列車時刻表からの遅延判定"
+      - "位置情報 駅の時刻を表示"
+      - "日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）"
+      - "有楽町線・副都心線の統合"
+      - "渋谷、小竹向原、和光市での種別変更対応"
+      - "南北線・三田線"
+      - "ロマンスカーの列車名"
+      - "train_location エラー時の処理"
+      -
+        title: "【データ取得方法の変更】"
+        contents:
+          - "列車運行情報は必ず全線まとめて一気に取得"
+          - "更新が全路線同時だから"
+          - "サーバー側、クライアント側それぞれの負担軽減のため"
+      - "運行情報の Visualize（現状の改修、路線図・地図上への表示 - リストだけではわかりにくい）"
+      - "千代田線 松戸発北千住行き始発、北千住発松戸行き始発、北千住発松戸行き最終"
+      - "train_timetable にその日ごとの運行開始、終了を示す列を追加"
+  - 
+    title: "RailwayLine の column の整理"
+    contents:
+      - "一部を削除（特に「事業者名 + 路線名」）"
+      - "css_class_name もメソッドになるように定義し直す"
+      -
+        title: "module を作成"
+        contents:
+          - "::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include"
+          - "それぞれのクラスに適合するよう調整"
+  - "scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色）cf. lib\\tokyo_metro\\factory\\scss"
+  -
+    title: "Point::Info - Station::Info - StationFacility について"
+    contents:
+      - "RSpec により構造に無駄がないかをチェックし、必要ならば整理"
+  -
+    title: "Error 処理、カスタマイズのための Factory の導入"
+    contents:
+      - "Convert"
+      - "Patch"
+      - "Customize"
+  -
+    title: "train_type"
+    contents:
+      - "\"custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard\" を削除し、 \"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal\" の設定を変更"
+  - "TokyoMetro::App::Renderer での url_for , current_page? , link_to_unless_current"
+
+design:
+  - "SNSボタンの設置"
+  - "サイドメニューをページ上部へ（横に並べる）"
+  - "Top へのバナー"
+  - "必要な部分に class=\'clearfix\' を設定"
+  - "運賃ページ 乗り入れ他路線 hover - color設定"
+  -
+    title: "駅施設ページ ホーム情報タブ"
+    contents:
+      - "hover - color設定"
+      - "バリアフリー、主要施設に tooltip の導入"
+
+SEO:
+  - "Meta タグ"
+  - "SNS対応"
+  - "パンくずリスト"

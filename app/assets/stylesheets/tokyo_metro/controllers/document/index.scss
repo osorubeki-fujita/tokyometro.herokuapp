@@ -16,42 +16,74 @@ ul#links_to_document_pages {
   }
 }
 
-#infos_in_db {
-    table {
-        border: solid 1px #333;
-        margin: {
-            top: 16px ;
-        }
-        padding: 2em ;
-        border-collapse: collapse ;
-        @extend %cycleOfRowColor ;
-        thead {
-            background-color: rgba( $jp_traditional_ameiro , 0.6 ) ;
-            td {
-                padding: {
-                    top: 4px ;
-                    bottom: 4px ;
-                }
-            }
-        }
-        td {
-            padding: {
-                left: 8px ;
-                right: 8px ;
-            }
-        }
-        tr {
-            td.index {
-                @extend %infos_in_db_textAlignRight ;
-            }
-            td.model_name {
-                text-align: left ;
-            }
-            td.length_of_model {
-                @extend %infos_in_db_textAlignRight ;
-            }
-        }
+#to_do , #infos_in_db {
+  h3.title {
+    font: {
+      size: 16pt ;
+      weight: normal ;
     }
+    padding: 4px ;
+    @extend %marginBottom16 ;
+  }
+}
+
+#to_do {
+  h4.each_category {
+    border: {
+      left: solid 8px #ccc ;
+    }
+    @extend %paddingLeft8 ;
+    @extend %paddingTop4 ;
+    @extend %paddingBottom4 ;
+    @extend %marginBottom8 ;
+  }
+  ol.each_category {
+    padding: {
+      left: 0px ;
+    }
+    margin: {
+      top: 0px ;
+    }
+    @extend %marginLeft32 ;
+    @extend %marginBottom16 ;
+    font: {
+      size: 9pt ;
+    }
+  }
+}
+
+#infos_in_db {
+  table {
+    border: solid 1px #333;
+    border-collapse: collapse ;
+    @extend %cycleOfRowColor ;
+    thead {
+      background-color: rgba( $jp_traditional_ameiro , 0.6 ) ;
+      td {
+        padding: {
+          top: 4px ;
+          bottom: 4px ;
+        }
+      }
+    }
+    td {
+      padding: {
+        left: 8px ;
+        right: 8px ;
+      }
+    }
+    tr {
+      td.index {
+        @extend %infos_in_db_textAlignRight ;
+      }
+      td.model_name {
+        text-align: left ;
+      }
+      td.length_of_model {
+        @extend %infos_in_db_textAlignRight ;
+      }
+    }
+  }
   font: {
     size: 9pt ;
   }

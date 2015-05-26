@@ -62,7 +62,7 @@
         bottom: 8px ;
       }
     }
-    @extend %link_in_div ;
+    @extend %linkInDiv ;
     &:hover {
       background-color: $link_hover_domain_color ;
     }

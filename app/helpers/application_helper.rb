@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def self.common_title_en
-    "Tokyo Metro Open Data Contest 2014"
+    "Since Tokyo Metro Open Data Contest 2014"
   end
 
   def self.time_strf( h , m )
