@@ -27,6 +27,9 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = false
 
+  config.assets.enabled = true
+  config.assets.prefix = "/dev-assets"
+
   config.assets.compress = true
 
   # Adds additional error checking when serving assets at runtime.
@@ -36,8 +39,6 @@ Rails.application.configure do
 
   config.action_controller.default_url_options = { host: "localhost:3000" }
 
-  config.assets.enabled = true
-  config.assets.prefix = "/dev-assets"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
