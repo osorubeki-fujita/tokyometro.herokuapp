@@ -25,7 +25,9 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
+
+  config.assets.compress = true
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
@@ -33,6 +35,9 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.action_controller.default_url_options = { host: "localhost:3000" }
+
+  config.assets.enabled = true
+  config.assets.prefix = "/dev-assets"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
