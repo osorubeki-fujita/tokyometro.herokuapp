@@ -2,6 +2,11 @@ class LinkDomainsToSetHoverEvent
 
   constructor: ->
 
+  link_to_top_page_on_header = (v) ->
+    return $( '#header' )
+      .children( '.top_title' )
+      .children( '.main' )
+
   li_domains_in_sns_accounts = (v) ->
     return $( 'ul#sns_accounts' )
       .children( 'li' )
@@ -82,6 +87,7 @@ class LinkDomainsToSetHoverEvent
   list = (v) ->
     ary = []
 
+    ary.push link_to_top_page_on_header(v)
     ary.push li_domains_in_sns_accounts(v)
     ary.push li_domains_in_left_side_menu(v)
     ary.push li_domains_of_links_to_document_pages(v)

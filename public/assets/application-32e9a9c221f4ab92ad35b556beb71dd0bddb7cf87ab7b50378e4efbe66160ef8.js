@@ -24013,9 +24013,13 @@ $('#progress').html(
   var LinkDomainsToSetHoverEvent;
 
   LinkDomainsToSetHoverEvent = (function() {
-    var hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey, hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey, li_domains_in_left_side_menu, li_domains_in_sns_accounts, li_domains_of_link_to_fare_contents_of_railway_lines, li_domains_of_links_to_document_pages, li_domains_of_links_to_railway_line_pages_from_platform_info, li_domains_of_links_to_railway_line_pages_from_railway_line_info, li_domains_of_links_to_railway_line_pages_from_station_facility_page, li_domains_of_links_to_station_info_pages, li_domains_of_platform_info_tabs, li_domains_to_operator_each_year_page_of_passenger_survey, li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page, li_domains_to_operator_page_of_passenger_survey, li_domains_to_railway_line_each_year_page_of_passenger_survey, li_domains_to_railway_line_page_of_passenger_survey, list, operator_domains_in_links_to_passenger_survey, railway_line_domains_in_links_to_passenger_survey, set_hover_event_of_escaping_class, set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey, set_hover_main_event;
+    var hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey, hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey, li_domains_in_left_side_menu, li_domains_in_sns_accounts, li_domains_of_link_to_fare_contents_of_railway_lines, li_domains_of_links_to_document_pages, li_domains_of_links_to_railway_line_pages_from_platform_info, li_domains_of_links_to_railway_line_pages_from_railway_line_info, li_domains_of_links_to_railway_line_pages_from_station_facility_page, li_domains_of_links_to_station_info_pages, li_domains_of_platform_info_tabs, li_domains_to_operator_each_year_page_of_passenger_survey, li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page, li_domains_to_operator_page_of_passenger_survey, li_domains_to_railway_line_each_year_page_of_passenger_survey, li_domains_to_railway_line_page_of_passenger_survey, link_to_top_page_on_header, list, operator_domains_in_links_to_passenger_survey, railway_line_domains_in_links_to_passenger_survey, set_hover_event_of_escaping_class, set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey, set_hover_main_event;
 
     function LinkDomainsToSetHoverEvent() {}
+
+    link_to_top_page_on_header = function(v) {
+      return $('#header').children('.top_title').children('.main');
+    };
 
     li_domains_in_sns_accounts = function(v) {
       return $('ul#sns_accounts').children('li');
@@ -24084,6 +24088,7 @@ $('#progress').html(
     list = function(v) {
       var ary;
       ary = [];
+      ary.push(link_to_top_page_on_header(v));
       ary.push(li_domains_in_sns_accounts(v));
       ary.push(li_domains_in_left_side_menu(v));
       ary.push(li_domains_of_links_to_document_pages(v));

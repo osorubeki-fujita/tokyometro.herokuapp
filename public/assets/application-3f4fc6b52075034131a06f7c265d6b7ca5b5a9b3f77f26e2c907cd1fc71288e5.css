@@ -3350,33 +3350,37 @@ div, h1, h2, h3, h4, h5, h6, p {
 #header .top_title .main .version {
   font-size: 9pt;
 }
-/* line 26, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 25, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+#header .top_title .main.hover {
+  background-color: #666;
+}
+/* line 29, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .top_title .sub {
   font-size: 9pt;
 }
-/* line 32, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 35, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .developer {
   font-size: 9pt;
 }
-/* line 37, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 40, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .developer .name {
   border-bottom: dotted 1px #fff;
 }
-/* line 45, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 48, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .developer ul#sns_accounts {
   padding: 0px;
   margin-top: 0px;
 }
-/* line 51, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 54, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .developer ul#sns_accounts li.sns_account {
   list-style: none;
   font-size: 7.5pt;
 }
-/* line 59, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 62, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .developer ul#sns_accounts li.sns_account.hover {
   background-color: #666;
 }
-/* line 65, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
+/* line 68, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/tokyo_metro/controllers/app/header.scss */
 #header .developer a {
   color: #fff;
 }
@@ -8987,18 +8991,18 @@ ul#links_to_year_pages_on_index_page {
   margin-bottom: 0px;
 }
 
-/* line 39, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
+/* line 27, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
 li.survey_year .text_en {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 
 /* line 63, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
-ul#links_to_year_pages_on_index_page li.survey_year .icon {
+li.survey_year .text_en, ul#links_to_year_pages_on_index_page li.survey_year .icon {
   margin-right: 4px;
 }
 
 /* line 75, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
-#passenger_survey_contents #passenger_survey_table table td.station_info .station_codes, #passenger_survey_contents #passenger_survey_table table td.station_info .station_code_outer, li.survey_year .text_en {
+#passenger_survey_contents #passenger_survey_table table td.station_info .station_codes, #passenger_survey_contents #passenger_survey_table table td.station_info .station_code_outer {
   margin-right: 8px;
 }
 
@@ -9123,18 +9127,18 @@ ul#links_to_year_pages_on_index_page {
   margin-bottom: 0px;
 }
 
-/* line 39, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
+/* line 27, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
 li.survey_year .text_en {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 
 /* line 63, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
-ul#links_to_year_pages_on_index_page li.survey_year .icon {
+li.survey_year .text_en, ul#links_to_year_pages_on_index_page li.survey_year .icon {
   margin-right: 4px;
 }
 
 /* line 75, C:/RubyPj/Rails/tokyo_metro/app/assets/stylesheets/common_mixins/margin.scss */
-#passenger_survey_contents #passenger_survey_table table td.station_info .station_codes, #passenger_survey_contents #passenger_survey_table table td.station_info .station_code_outer, li.survey_year .text_en {
+#passenger_survey_contents #passenger_survey_table table td.station_info .station_codes, #passenger_survey_contents #passenger_survey_table table td.station_info .station_code_outer {
   margin-right: 8px;
 }
 
