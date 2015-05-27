@@ -91,3 +91,10 @@ heroku maintenance:off
 
 rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
 git push github master
+
+--------
+
+
+heroku maintenance:on
+heroku run rake assets:precompile --trace
+heroku maintenance:off

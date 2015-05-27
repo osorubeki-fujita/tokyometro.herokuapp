@@ -26,11 +26,30 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = false
+  
+  #--------
 
   config.assets.enabled = true
-  config.assets.prefix = "/dev-assets"
+  # config.assets.prefix = "/dev-assets"
+
+  # Disable Rails's static asset server (Apache or nginx will already do this).
+  # config.serve_static_files = true
+  config.serve_static_files = false
+
+  config.assets.enabled = true
+  config.assets.compress = true
+
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :yui
 
   config.assets.compress = true
+
+  # Generate digests for assets URLs.
+  config.assets.digest = true
+  
+  #--------
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

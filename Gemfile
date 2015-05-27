@@ -56,7 +56,6 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem "activerecord-postgresql-adapter"
-  gem "yui-compressor"
 end
 
 #-------- test 環境
@@ -70,6 +69,7 @@ end
 
 gem 'yaml_db'
 gem 'taps'
+gem "yui-compressor"
 
 gem 'font-awesome-sass'
 

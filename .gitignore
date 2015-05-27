@@ -28,4 +28,4 @@
 /db/csv/*/*.csv
 /provided_by_tokyo_metro/
 
-/public/dev-assets/**/*.*
+/public/dev-assets/*/**.*
