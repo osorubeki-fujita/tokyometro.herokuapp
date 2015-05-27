@@ -1,3 +1,19 @@
+design:
+  - "SNSボタンの設置"
+  - "サイドメニューをページ上部へ（横に並べる）"
+  - "必要な部分に class=\'clearfix\' を設定"
+  - "運賃ページ 乗り入れ他路線 hover - color設定"
+  -
+    title: "駅施設ページ ホーム情報タブ"
+    contents:
+      - "hover - color設定"
+      - "バリアフリー、主要施設に tooltip の導入"
+
+SEO:
+  - "Meta タグ"
+  - "SNS対応"
+  - "パンくずリスト"
+
 system:
   - "リアルタイム情報 更新ボタン"
   - "Twitter 縮小ボタン"
@@ -51,20 +67,3 @@ system:
     contents:
       - "\"custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard\" を削除し、 \"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal\" の設定を変更"
   - "TokyoMetro::App::Renderer での url_for , current_page? , link_to_unless_current"
-
-design:
-  - "SNSボタンの設置"
-  - "サイドメニューをページ上部へ（横に並べる）"
-  - "Top へのバナー"
-  - "必要な部分に class=\'clearfix\' を設定"
-  - "運賃ページ 乗り入れ他路線 hover - color設定"
-  -
-    title: "駅施設ページ ホーム情報タブ"
-    contents:
-      - "hover - color設定"
-      - "バリアフリー、主要施設に tooltip の導入"
-
-SEO:
-  - "Meta タグ"
-  - "SNS対応"
-  - "パンくずリスト"
