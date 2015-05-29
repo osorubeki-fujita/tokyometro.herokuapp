@@ -22,29 +22,49 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = false
-  
   #--------
+  
+  to_compress = false
+  
+  unless to_compress
 
-  # config.assets.enabled = true
-  # config.assets.prefix = "/dev-assets"
+    # Debug mode disables concatenation and preprocessing of assets.
+    # This option may cause significant delays in view rendering with a large
+    # number of complex assets.
+    config.assets.debug = true
+  
+    config.assets.enabled = false
+  
+    # Disable Rails's static asset server (Apache or nginx will already do this).
+    config.serve_static_files = false
+  
+    config.assets.compress = false
+  
+    # Generate digests for assets URLs.
+    config.assets.digest = false
+  
+  else
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
-  # config.serve_static_files = true
-  config.serve_static_files = false
-
-  # config.assets.compress = true
-
-  # Compress JavaScripts and CSS.
-  # config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
-  # config.assets.css_compressor = :yui
-
-  # Generate digests for assets URLs.
-  # config.assets.digest = true
+    # Debug mode disables concatenation and preprocessing of assets.
+    # This option may cause significant delays in view rendering with a large
+    # number of complex assets.
+    config.assets.debug = false
+  
+    config.assets.enabled = true
+  
+    # Disable Rails's static asset server (Apache or nginx will already do this).
+    config.serve_static_files = false
+  
+    config.assets.compress = true
+  
+    # Compress JavaScripts and CSS.
+    config.assets.js_compressor = :uglifier
+    config.assets.css_compressor = :yui
+  
+    # Generate digests for assets URLs.
+    config.assets.digest = true
+  
+  end
   
   #--------
 

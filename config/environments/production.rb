@@ -18,14 +18,18 @@ Rails.application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
-  
+
   #--------
+
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = false
 
   config.assets.enabled = true
   # config.assets.prefix = "/dev-assets"
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  # config.serve_static_files = true
   config.serve_static_files = false
 
   config.assets.compress = true
