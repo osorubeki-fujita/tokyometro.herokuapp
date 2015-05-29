@@ -1,0 +1,20 @@
+<% extension_names_and_table_attrs = { row: :tr , cell: :td } %>
+<% positions_and_colors = { odd: "\#fff" , even: "\#f9f9f9" } %>
+
+@charset "utf-8" ;
+
+<% extension_names_and_table_attrs.each do | extension_name , table_attr | %>
+
+<% # [begin] Sass %>
+
+<%= "%cycleOf#{ extension_name.to_s.capitalize }" %>Color {
+  <% positions_and_colors.each do | position , color | %>
+  <%= table_attr.to_s %>.<%= position.to_s %>_<%= extension_name.to_s %> {
+    background-color: <%= color %> ;
+  }
+  <% end %>
+}
+
+<% # [end] Sass %>
+
+<% end %>

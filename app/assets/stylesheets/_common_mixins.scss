@@ -10,10 +10,8 @@
 @import 'common_mixins/float.scss' ;
 @import 'common_mixins/link.scss' ;
 @import 'common_mixins/list.scss' ;
-@import 'common_mixins/margin.scss' ;
-@import 'common_mixins/padding.scss' ;
-
-// @import 'common_mixins/clearfix.scss' ;
+@import 'common_mixins/margin_and_padding.scss' ;
+@import 'common_mixins/div_vertical_align.scss' ;
 
 //-------- リストの基本設定 (list-style)
 

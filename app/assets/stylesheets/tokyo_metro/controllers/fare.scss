@@ -64,12 +64,8 @@
       bottom: 32px ;
     }
     td {
-      padding: {
-        top: 0px ;
-        bottom: 0px ;
-        left: 8px ;
-        right: 8px ;
-      }
+      @extend %paddingTopBottom0 ;
+      @extend %paddingLeftRight8 ;
     }
     //
     td.station_name_top {
@@ -106,10 +102,7 @@
     }
     tr.header , tr.fares {
       td {
-        padding: {
-          top: 2px ;
-          bottom: 2px ;
-        }
+        @extend paddingTopBottom2 ;
         font: {
           size: 10.5pt ;
         }

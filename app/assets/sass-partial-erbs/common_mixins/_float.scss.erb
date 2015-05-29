@@ -1,0 +1,13 @@
+@charset "utf-8" ;
+
+<% positions = [ "left" , "right" ] %>
+<% positions.each do | position | %>
+  <% heads = [ "%float#{ position.capitalize }" , "@mixin float_#{ position }" ] %>
+  <% heads.each do | head | %>
+
+<%= head %> {
+  float: <%= position %> ;
+}
+
+  <% end %>
+<% end %>

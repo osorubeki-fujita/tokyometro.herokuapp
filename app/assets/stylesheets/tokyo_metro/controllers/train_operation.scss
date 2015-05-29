@@ -2,13 +2,6 @@
 
 @import '../fundamental_settings.scss' ;
 
-%marginTopBottom8 {
-  margin: {
-    top: 8px ;
-    bottom: 8px ;
-  }
-}
-
 @mixin train_operation_info_status_bgcolor_base( $color_1 ) {
     $color_top: rgba( $color_1 , 0.25 );
     $color_middle: rgba( $color_top , 0.1 );
@@ -72,8 +65,7 @@
 %iconAndTextSettingsOfTrainOperationStatus {
   .icon {
     @extend %floatLeft ;
-    @extend %marginLeft8 ;
-    @extend %marginRight8 ;
+    @extend %marginLeftRight8 ;
     text: {
       align: center ;
     }

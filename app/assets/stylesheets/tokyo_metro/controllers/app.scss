@@ -17,11 +17,11 @@ body {
 //-------- text
 
 .text_ja {
-    @extend %text_ja ;
+  @extend %text_ja ;
 }
 
 .text_en {
-    @extend %text_en ;
+  @extend %text_en ;
 }
 
 //-------- link
@@ -69,11 +69,6 @@ body {
     width: $width_main_content_wide ;
     @extend %mainContentSettings ;
   }
-  padding: {
-    top: 8px ;
-    bottom: 8px ;
-    left: 8px ;
-    right: 8px ;
-  }
+  @extend padding8 ;
   background-color: #fff ;
 }

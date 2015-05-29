@@ -1,22 +1,17 @@
 @charset "utf-8" ;
-
-$cycle_bgcolor_of_odd_row: #fff ;
-$cycle_bgcolor_of_even_row: #f9f9f9 ;
-
 %cycleOfRowColor {
   tr.odd_row {
-    background-color: $cycle_bgcolor_of_odd_row ;
+    background-color: #fff ;
   }
   tr.even_row {
-    background-color: $cycle_bgcolor_of_even_row ;
+    background-color: #f9f9f9 ;
   }
 }
-
 %cycleOfCellColor {
-  td.odd_row {
-    background-color: $cycle_bgcolor_of_odd_row ;
+  td.odd_cell {
+    background-color: #fff ;
   }
-  td.even_row {
-    background-color: $cycle_bgcolor_of_even_row ;
+  td.even_cell {
+    background-color: #f9f9f9 ;
   }
 }
