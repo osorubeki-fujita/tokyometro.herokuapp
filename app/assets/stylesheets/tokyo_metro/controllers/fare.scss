@@ -9,11 +9,11 @@
 %tdStationNameTopInFareTable {
   .station_codes {
     $length: 24px ;
-    @extend %floatLeft ;
-    @extend %marginRight4 ;
+    @include float_left ;
+    @include margin_right_4 ;
     img.station_code {
-      @extend %floatLeft ;
-      @extend %marginRight4 ;
+      @include float_left ;
+      @include margin_right_4 ;
       width: $length ;
       height: $length ;
     }
@@ -60,9 +60,7 @@
     //
     border-collapse: collapse ;
     border-spacing: 0px ;
-    margin: {
-      bottom: 32px ;
-    }
+    @include margin_bottom_32 ;
     td {
       @extend %paddingTopBottom0 ;
       @extend %paddingLeftRight8 ;
@@ -102,7 +100,7 @@
     }
     tr.header , tr.fares {
       td {
-        @extend paddingTopBottom2 ;
+        @include padding_top_bottom_2 ;
         font: {
           size: 10.5pt ;
         }

@@ -29,25 +29,22 @@ Rails.application.configure do
   
   #--------
 
-  config.assets.enabled = true
+  # config.assets.enabled = true
   # config.assets.prefix = "/dev-assets"
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   # config.serve_static_files = true
   config.serve_static_files = false
 
-  config.assets.enabled = true
-  config.assets.compress = true
+  # config.assets.compress = true
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
-  config.assets.css_compressor = :yui
-
-  config.assets.compress = true
+  # config.assets.css_compressor = :yui
 
   # Generate digests for assets URLs.
-  config.assets.digest = true
+  # config.assets.digest = true
   
   #--------
 

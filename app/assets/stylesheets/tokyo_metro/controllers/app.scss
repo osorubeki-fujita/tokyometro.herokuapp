@@ -6,12 +6,8 @@
 body {
   border-collapse: collapse ;
   background-color: rgba( $operator_color , 0.1 ) ;
-  margin: {
-    left: 16px ;
-    right: 16px ;
-    top: 0px ;
-    bottom: 0px ;
-  }
+  @include margin_left_right_16 ;
+  @include margin_top_bottom_0 ;
 }
 
 //-------- text
@@ -69,6 +65,6 @@ body {
     width: $width_main_content_wide ;
     @extend %mainContentSettings ;
   }
-  @extend padding8 ;
+  @include padding_8 ;
   background-color: #fff ;
 }
