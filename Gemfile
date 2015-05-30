@@ -56,6 +56,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem "activerecord-postgresql-adapter"
+  gem "lograge"
 end
 
 #-------- test 環境
