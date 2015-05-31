@@ -34,7 +34,6 @@ module ApplicationHelper
   def problems
     contents = [
       "リアルタイム情報の更新ボタンが動作しない" ,
-      "Twitterの縮小ボタンが動作しない" ,
       "駅時刻表ページ（重大なバグが見つかったため公開を停止しています）"
     ]
     render inline: <<-HAML , type: :haml , locals: { request: request , contents: contents }

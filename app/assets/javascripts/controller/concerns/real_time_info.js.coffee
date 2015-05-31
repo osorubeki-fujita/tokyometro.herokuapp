@@ -8,6 +8,21 @@ class RealTimeInfoProcessor
   content_header = (v) ->
     return v.domain.children( '.content_header' )
 
+  size_changing_button_domain = (v) ->
+    return content_header(v)
+      .children( '.size_changing_button' )
+      .first()
+
+  size_changing_button = (v) ->
+    return size_changing_button_domain(v)
+      .children( 'button' )
+      .first()
+
+  i_in_size_changing_button = (v) ->
+    return size_changing_button(v)
+      .children( 'i' )
+      .first()
+
   domain_of_time_infos = (v) ->
     return v.domain.children( 'ul.time_infos' ).first()
 
@@ -18,7 +33,6 @@ class RealTimeInfoProcessor
     if has_real_time_info_and_update_button(@)
       process_content_header(@)
       process_time_infos(@)
-      # set_domain_height(@)
     return
 
   process_content_header = (v) ->
@@ -33,12 +47,19 @@ class RealTimeInfoProcessor
       return
     return
 
-  #new_domain_height = (v) ->
-    # return content_header(v).outerHeight( true ) + domain_of_time_infos(v).outerHeight( true )
-
-  # set_domain_height = (v) ->
-    # v.domain.css( 'height' , new_domain_height(v) )
-    # return
+  set_size_change_event: ->
+    # console.log 'RealTimeInfoProcessor\#set_size_change_event'
+    _this = @
+    size_changing_button(@).on 'click' , ->
+      # console.log 'click'
+      _this.change_display_settings()
+      return
+    return
+  
+  change_display_settings: ->
+    d = new DisplaySettings( @domain , size_changing_button(@) , i_in_size_changing_button(@) )
+    d.process()
+    return
 
 window.RealTimeInfoProcessor = RealTimeInfoProcessor
 

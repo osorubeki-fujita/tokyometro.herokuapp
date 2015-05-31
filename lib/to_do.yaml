@@ -16,7 +16,6 @@ SEO:
 
 system:
   - "リアルタイム情報 更新ボタン"
-  - "Twitter 縮小ボタン"
   # "Ajaxの実験に使用、実際はcssとjQueryで処理"
   -
     title: "train_operation（列車運行情報） , train_location（列車位置情報）ページの完成"
