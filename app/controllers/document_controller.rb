@@ -78,7 +78,8 @@ class DocumentController < ApplicationController
 
     @model_namespace_in_rails = infos[ :model_namespace_in_rails ]
     @title = infos[ :title ]
-    @datum = infos[ :datum ]
+    # @datum = infos[ :datum ]
+    @datum = @model_namespace_in_rails.order( :id ).page( table_container.send( :page ) ).per( table_container.rows_in_a_page )
     render 'document/table' , layout: 'application_wide'
   end
 
@@ -90,17 +91,18 @@ class DocumentController < ApplicationController
 
   class TableContainer
 
-    @@rows_in_a_page = 100
+    @@models = ::TokyoMetro::Modules::Db::Model.list
 
     def initialize( params )
-      models = ::TokyoMetro::Modules::Db::Model.list
-      @model_namespace_in_url = params[ :model_namespace_in_url ]
-      @page = params[ :page ].with_default_value(1).to_i
+      @rows_in_a_page = 100
+      @params = params
 
-      model_info = models.find { | info | info[ :model ].underscore.gsub( "/" , "_" ) == @model_namespace_in_url }
+      model_info = @@models.find { | info | info[ :model ].underscore.gsub( "/" , "_" ) == model_namespace_in_url }
       @model_namespace_in_rails = eval( model_info[ :model ] )
       @count = model_info[ :count ]
     end
+
+    attr_reader :rows_in_a_page
 
     def infos_to_render_normally
       {
@@ -110,42 +112,54 @@ class DocumentController < ApplicationController
       }
     end
 
-    def redirect_to_index_from_table_page?
+    def no_data?
       @count == 0
     end
 
+    def redirect_to_index_from_table_page?
+      no_data?
+    end
+
     def invalid_page?
-      page_number_max < @page
+      page_number_max < page
     end
 
     def page_number_max
-      if @count == 0
+      if no_data?
         0
       else
-        ( @count * 1.0 / @@rows_in_a_page ).ceil
+        ( @count * 1.0 / @rows_in_a_page ).ceil
       end
     end
 
     private
+    
+    def model_namespace_in_url
+      @params[ :model_namespace_in_url ]
+    end
+    
+    def page
+      @params[ :page ].with_default_value(1).to_i
+    end
 
     def title
-      "Table - #{ @model_namespace_in_rails }"
+      "#{ @model_namespace_in_rails } (#{ page }/#{ page_number_max })"
     end
 
-    def id_min
-      [ @count , ( @page - 1 ) * @@rows_in_a_page + 1 ].min
-    end
+    # def id_min
+      # [ @count , ( page - 1 ) * @rows_in_a_page + 1 ].min
+    # end
 
-    def id_max
-      [ @page * @@rows_in_a_page , @count ].min
-    end
+    # def id_max
+      # [ page * @rows_in_a_page , @count ].min
+    # end
 
-    def id_range
-      ( id_min..id_max ).to_a
-    end
+    # def id_range
+      # ( id_min..id_max ).to_a
+    # end
 
     def datum
-      @model_namespace_in_rails.where( id: id_range )
+      @model_namespace_in_rails.page( page ).per( @rows_in_a_page ).order( :id )
     end
 
   end

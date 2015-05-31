@@ -32,11 +32,16 @@ module ApplicationHelper
   end
   
   def problems
-    render inline: <<-HAML , type: :haml , locals: { request: request }
+    contents = [
+      "リアルタイム情報の更新ボタンが動作しない" ,
+      "Twitterの縮小ボタンが動作しない" ,
+      "駅時刻表ページ（重大なバグが見つかったため公開を停止しています）"
+    ]
+    render inline: <<-HAML , type: :haml , locals: { request: request , contents: contents }
 %div{ id: :problems }
   = problems_header
   %ul{ class: [ :info_text , :problems ] }
-    - [ "リアルタイム情報の更新ボタンが動作しない" , "Twitterの縮小ボタンが動作しない" , "駅時刻表ページ（重大なバグが見つかったため公開を停止しています）" ].each do | info |
+    - contents.each do | info |
       %li{ class: :text_ja }<
         = info
     %li{ class: :to_do }<
@@ -51,7 +56,7 @@ module ApplicationHelper
       "Problems and bugs" ,
       icon_size: 2 ,
       size_setting_button_type: nil ,
-      contoller_of_size_setting: nil ,
+      size_setting_button_id: nil ,
       add_update_button: false ,
       update_button_id: nil ,
       additional_content: nil

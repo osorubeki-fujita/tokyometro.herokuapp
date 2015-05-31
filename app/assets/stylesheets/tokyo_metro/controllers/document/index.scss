@@ -2,16 +2,10 @@
 
 @import '../../fundamental_settings.scss' ;
 
-%infos_in_db_textAlignRight {
-  text-align: right ;
-}
-
 ul#links_to_document_pages {
   .link_to_document {
     .text {
-      margin: {
-        right: 16px ;
-      }
+      @include margin_right_16 ;
     }
   }
 }
@@ -22,8 +16,8 @@ ul#links_to_document_pages {
       size: 16pt ;
       weight: normal ;
     }
-    padding: 4px ;
-    @extend %marginBottom16 ;
+    @include padding_4 ;
+    @include margin_bottom_16 ;
   }
 }
 
@@ -32,20 +26,15 @@ ul#links_to_document_pages {
     border: {
       left: solid 8px #ccc ;
     }
-    @extend %paddingLeft8 ;
-    @extend %paddingTop4 ;
-    @extend %paddingBottom4 ;
-    @extend %marginBottom8 ;
+    @include padding_top_bottom_4 ;
+    @include padding_left_8 ;
+    @include margin_bottom_8 ;
   }
   ol.each_category {
-    padding: {
-      left: 0px ;
-    }
-    margin: {
-      top: 0px ;
-    }
-    @extend %marginLeft32 ;
-    @extend %marginBottom16 ;
+    @include padding_left_0 ;
+    @include margin_top_0 ;
+    @include margin_left_32 ;
+    @include margin_bottom_16 ;
     font: {
       size: 9pt ;
     }
@@ -60,31 +49,33 @@ ul#links_to_document_pages {
     thead {
       background-color: rgba( $jp_traditional_ameiro , 0.6 ) ;
       td {
-        padding: {
-          top: 4px ;
-          bottom: 4px ;
-        }
+        @include padding_top_bottom_4 ;
       }
     }
     td {
-      padding: {
-        left: 8px ;
-        right: 8px ;
-      }
+      @include padding_left_right_8 ;
     }
     tr {
       td.index {
-        @extend %infos_in_db_textAlignRight ;
+        @include float_right ;
       }
       td.model_name {
-        text-align: left ;
+        @include float_left ;
       }
       td.length_of_model {
-        @extend %infos_in_db_textAlignRight ;
+        @include float_right ;
       }
     }
   }
   font: {
     size: 9pt ;
+  }
+  .page_links {
+    &.top {
+      @include margin_bottom_16 ;
+    }
+    &.bottom {
+      @include margin_top_16 ;
+    }
   }
 }

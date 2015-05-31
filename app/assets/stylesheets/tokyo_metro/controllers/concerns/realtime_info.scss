@@ -27,11 +27,9 @@
     }
   }
   ul.titles {
-    padding: {
-      left: 4px ;
-      right: 4px ;
-    }
-    @extend %marginBottom8 ;
+    @include padding_left_4 ;
+    @include padding_right_4 ;
+    @include margin_bottom_8 ;
   }
   li {
     list-style-type: none;
@@ -39,22 +37,18 @@
   li.title {
     padding: 0px ;
     .icon {
-      @extend %floatLeft ;
-      @extend %marginRight4 ;
+      @include float_left ;
+      @include margin_right_4 ;
       width: 20px ;
     }
     .text {
-      @extend %floatLeft ;
+      @include float_left ;
     }
-    padding: {
-      top: 4px ;
-      bottom: 4px ;
-    }
+    @include padding_top_4 ;
+    @include padding_bottom_4 ;
     p {
-      margin: {
-        top: 0px ;
-        bottom: 0px ;
-      }
+      @include margin_top_0 ;
+      @include margin_bottom_0 ;
       line-height: 1.1em ;
     }
     .text_ja {
@@ -71,54 +65,41 @@
     }
   }
   li.train_operation_info , li.train_location_infos {
-    margin: {
-      bottom: 8px ;
-    }
+    @include margin_bottom_8 ;
   }
   ul.time_infos {
-    margin: {
-      left: 16px ;
-      right: 16px ;
-      top: 16px ;
-    }
-    padding: {
-      left: 0px ;
-    }
+    @include margin_left_right_16 ;
+    @include margin_top_16 ;
+    @include padding_left_0 ;
   }
   ul.time_infos_of_category {
-    @extend %marginLeft16 ;
-    @extend %marginBottom8 ;
-    padding: 0px ;
+    @include margin_left_16 ;
+    @include margin_bottom_8 ;
+    @include padding_0 ;
     font: {
       size: 9pt ;
     }
-    // .title_of_time_info {
-      // @extend %floatLeft ;
-    // }
     .time {
-      // @extend %floatLeft ;
-      @extend %marginLeft16 ;
+      @include margin_left_16 ;
     }
   }
   ul.en {
-    padding: {
-      left: 0px ;
-    }
     color: #999 ;
     font: {
       size: 8pt ;
     }
-    @extend %marginTop8 ;
-    @extend %marginBottom16 ;
+    @include padding_left_0 ;
+    @include margin_top_8 ;
+    @include margin_bottom_16 ;
     li {
       clear: left ;
     }
     .title_of_time_info_en {
-      @extend %floatLeft ;
+      @include float_left ;
     }
     .time_en {
-      @extend %floatLeft ;
-      @extend %marginLeft4 ;
+      @include float_left ;
+      @include margin_left_4 ;
     }
   }
 }

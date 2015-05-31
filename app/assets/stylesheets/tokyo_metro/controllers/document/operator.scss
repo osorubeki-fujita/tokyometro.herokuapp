@@ -1,5 +1,6 @@
 @charset "utf-8" ;
 
+@import '../../fundamental_settings.scss' ;
 @import 'document_info_box/mixins.scss' ;
 
 #operators {
@@ -11,52 +12,50 @@
 }
 
 #railway_lines {
-    $railway_line_name_padding_left_width: 8px ;
-    $railway_line_name_border_left_width: 8px ;
-    .operator {
-        margin: {
-            left: $railway_line_name_padding_left_width + $railway_line_name_border_left_width ;
-            bottom: 32px ;
-        }
-        //
-        // 各鉄道会社の情報を格納する box
-        .document_info_box_normal {
-            $height: 160px ;
-            @include documentInfoBoxNormal( $height ) ;
-            @extend %commonSettingsOfColorBox ;
-        }
-        .top {
-            width: $width_main_content_center - ( $railway_line_name_padding_left_width + $railway_line_name_border_left_width ) * 3 ;
-            height: 48px ;
-            .color_info {
-                float: right;
-            }
-        }
-        .railway_line_name {
-            @extend %nameInDocument ;
-            .text_ja {
-                max-height: 96px ;
-            }
-        }
+  $railway_line_name_padding_left_width: 8px ;
+  $railway_line_name_border_left_width: 8px ;
+  .operator {
+    margin: {
+      left: $railway_line_name_padding_left_width + $railway_line_name_border_left_width ;
     }
+    @include margin_bottom_32 ;
+    //
+    // 各鉄道会社の情報を格納する box
+    .document_info_box_normal {
+      $height: 160px ;
+      @include documentInfoBoxNormal( $height ) ;
+      @extend %commonSettingsOfColorBox ;
+    }
+    .top {
+      width: $width_main_content_center - ( $railway_line_name_padding_left_width + $railway_line_name_border_left_width ) * 3 ;
+      height: 48px ;
+      .color_info {
+        @include float_right ;
+      }
+    }
+    .railway_line_name {
+      @extend %nameInDocument ;
+      .text_ja {
+        max-height: 96px ;
+      }
+    }
+  }
 }
 
 #railway_directions {
-    $railway_direction_name_padding_left_width: 8px ;
-    $railway_direction_name_border_left_width: 8px ;
-    .operator {
-        margin: {
-            left: $railway_direction_name_padding_left_width + $railway_direction_name_border_left_width ;
-            bottom: 64px ;
-        }
-        .railway_line {
-            margin: {
-                bottom: 32px ;
-            }
-            .document_info_box_normal {
-                @include documentInfoBoxNormal ;
-                @extend %commonSettingsOfColorBox ;
-            }
-        }
+  $railway_direction_name_padding_left_width: 8px ;
+  $railway_direction_name_border_left_width: 8px ;
+  .operator {
+    margin: {
+      left: $railway_direction_name_padding_left_width + $railway_direction_name_border_left_width ;
     }
+    @include margin_bottom_64 ;
+    .railway_line {
+      @include margin_bottom_32 ;
+      .document_info_box_normal {
+        @include documentInfoBoxNormal ;
+        @extend %commonSettingsOfColorBox ;
+      }
+    }
+  }
 }

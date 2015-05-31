@@ -23,49 +23,49 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
 
   #--------
-  
-  to_compress = false
-  
+
+  to_compress = true
+
   unless to_compress
 
     # Debug mode disables concatenation and preprocessing of assets.
     # This option may cause significant delays in view rendering with a large
     # number of complex assets.
     config.assets.debug = true
-  
+
     config.assets.enabled = false
-  
+
     # Disable Rails's static asset server (Apache or nginx will already do this).
     config.serve_static_files = false
-  
+
     config.assets.compress = false
-  
+
     # Generate digests for assets URLs.
     config.assets.digest = false
-  
+
   else
 
     # Debug mode disables concatenation and preprocessing of assets.
     # This option may cause significant delays in view rendering with a large
     # number of complex assets.
     config.assets.debug = false
-  
+
     config.assets.enabled = true
-  
+
     # Disable Rails's static asset server (Apache or nginx will already do this).
     config.serve_static_files = false
-  
+
     config.assets.compress = true
-  
+
     # Compress JavaScripts and CSS.
     config.assets.js_compressor = :uglifier
     config.assets.css_compressor = :yui
-  
+
     # Generate digests for assets URLs.
     config.assets.digest = true
-  
+
   end
-  
+
   #--------
 
   # Adds additional error checking when serving assets at runtime.
@@ -78,6 +78,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
   config.after_initialize do
     #Bullet.enable = true
     #Bullet.alert = true
