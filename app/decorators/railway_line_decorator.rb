@@ -94,7 +94,7 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_railway_timetable( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :railway_timetable_title }
-  = ::TokyoMetro::App::Renderer::Concern::Header::Title::Base.new( request , ::RailwayTimetableHelper.common_title_ja , ::RailwayTimetableHelper.common_title_en ).render
+  = ::TokyoMetro::App::Renderer::Concerns::Header::Title::Base.new( request , ::RailwayTimetableHelper.common_title_ja , ::RailwayTimetableHelper.common_title_en ).render
   = ::RailwayLineDecorator.name_main( infos )
     HAML
   end
@@ -196,7 +196,7 @@ class RailwayLineDecorator < Draper::Decorator
       "#{ css_class_name }_line"
     end
   end
-  
+
   alias :page_name :railway_line_page_name
 
   def travel_time_table_id
@@ -237,7 +237,7 @@ class RailwayLineDecorator < Draper::Decorator
     = str
     HAML
   end
-  
+
   def render_name_in_station_facility_platform_info_transfer_info
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :text }

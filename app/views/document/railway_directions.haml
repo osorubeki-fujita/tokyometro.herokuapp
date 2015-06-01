@@ -1,6 +1,6 @@
 = render "common_content"
 
-= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
 
 %div{ id: :railway_directions }
   - railway_directions_grouped_by_operator = @railway_directions.group_by { | railway_direction | railway_direction.railway_line.operator.id }

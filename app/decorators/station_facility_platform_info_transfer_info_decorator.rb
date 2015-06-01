@@ -7,7 +7,7 @@ class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
   end
 
   def render
-    ::TokyoMetro::App::Renderer::Concern::Link::ToRailwayLinePage::ConnectingRailwayLine::FromPlatfromInfo.new( h.request , self ).render
+    ::TokyoMetro::App::Renderer::Concerns::Link::ToRailwayLinePage::ConnectingRailwayLine::FromPlatfromInfo.new( h.request , self ).render
   end
 
 =begin

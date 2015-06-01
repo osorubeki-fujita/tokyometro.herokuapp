@@ -30,7 +30,7 @@ module ApplicationHelper
     = time.to_strf_normal_ja
     HAML
   end
-  
+
   def problems
     contents = [
       "リアルタイム情報の更新ボタンが動作しない" ,
@@ -48,9 +48,9 @@ module ApplicationHelper
       = "To Do"
     HAML
   end
-  
+
   def problems_header
-    ::TokyoMetro::App::Renderer::Concern::Header::Content.new( request , :problems , :info ,
+    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :problems , :info ,
       "既知の主な問題点" ,
       "Problems and bugs" ,
       icon_size: 2 ,

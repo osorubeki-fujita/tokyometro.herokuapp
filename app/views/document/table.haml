@@ -2,7 +2,7 @@
 
 = render "common_content"
 
-= ::TokyoMetro::App::Renderer::Concern::Header::Title::DocumentContent.new( request , @model_namespace_in_rails.to_s , nil ).render
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @model_namespace_in_rails.to_s , nil ).render
 
 %div{ id: :infos_in_db }
   %div{ class: [ :page_links , :top ] }
