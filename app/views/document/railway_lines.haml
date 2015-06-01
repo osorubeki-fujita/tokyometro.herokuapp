@@ -12,5 +12,5 @@
           = operator_instance.name_ja
         %h4{ class: :text_en }<
           = operator_instance.name_en
-      - railway_lines.sort_by{ | railway_line | railway_line.index }.each do | railway_line |
+      - railway_lines.sort_by( &:index ).each do | railway_line |
         = railway_line.decorate.render_document_info_box

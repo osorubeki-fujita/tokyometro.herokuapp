@@ -29,14 +29,15 @@
     = "Models"
   %table{ class: :text_en }
     %thead
-      %td<
-        = "Number"
-      %td<
-        = "Category"
-      %td<
-        = "Model"
-      %td<
-        = "Length"
+      %tr
+        %td<
+          = "Number"
+        %td<
+          = "Category"
+        %td<
+          = "Model"
+        %td<
+          = "Length"
     %tbody
       - @models.each.with_index(1) do | ary , i |
         - category , model , number = ary.values

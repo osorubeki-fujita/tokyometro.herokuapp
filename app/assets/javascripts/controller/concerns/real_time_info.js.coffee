@@ -6,7 +6,8 @@ class RealTimeInfoProcessor
     return ( v.domain.length > 0 )
 
   content_header = (v) ->
-    return v.domain.children( '.content_header' )
+    return v.domain
+      .children( '.content_header' )
 
   size_changing_button_domain = (v) ->
     return content_header(v)
@@ -24,10 +25,13 @@ class RealTimeInfoProcessor
       .first()
 
   domain_of_time_infos = (v) ->
-    return v.domain.children( 'ul.time_infos' ).first()
+    return v.domain
+      .children( 'ul.time_infos' )
+      .first()
 
   time_infos = (v) ->
-    return domain_of_time_infos(v).children( 'li' )
+    return domain_of_time_infos(v)
+      .children( 'li' )
 
   process: ->
     if has_real_time_info_and_update_button(@)
@@ -55,7 +59,7 @@ class RealTimeInfoProcessor
       _this.change_display_settings()
       return
     return
-  
+
   change_display_settings: ->
     d = new DisplaySettings( @domain , size_changing_button(@) , i_in_size_changing_button(@) )
     d.process()
@@ -68,10 +72,13 @@ class EachRealTimeInfo
   constructor: ( @domain ) ->
 
   domain_of_titles = (v) ->
-    return v.domain.children( 'ul.titles' ).first()
+    return v.domain
+      .children( 'ul.titles' )
+      .first()
 
   titles = (v) ->
-    return domain_of_titles(v).children( 'li.title' )
+    return domain_of_titles(v)
+      .children( 'li.title' )
 
   # domain_of_time_infos_of_category = (v) ->
     # return v.domain.children( 'ul.time_infos_of_category' ).first()

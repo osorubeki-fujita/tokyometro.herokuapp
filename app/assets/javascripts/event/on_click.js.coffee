@@ -9,7 +9,7 @@ class OnClickHandler
     return ary
 
   process: ->
-    console.log 'OnClickHandler\#process'
+    # console.log 'OnClickHandler\#process'
     $.each list(@) , ->
       @.set_size_change_event()
     return

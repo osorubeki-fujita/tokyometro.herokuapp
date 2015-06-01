@@ -321,7 +321,8 @@ class RailwayLineDecorator < Draper::Decorator
       end
       ::TokyoMetro::App::Renderer::ColorBox.new( h.request , size: size ).render
     else
-      h.render inline: <<-HAML , type: :haml
+      puts object.same_as
+      h.render inline: <<-HAML , type: :haml , locals: { class_name: css_class_name_of_railway_line_code( small , clearfix ) }
 %div{ class: class_name }<
       HAML
     end

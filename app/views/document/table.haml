@@ -10,9 +10,10 @@
     = paginate( @datum )
   %table{ class: :text_en }
     %thead
-      - column_names.each do | column_name |
-        %td<
-          = column_name
+      %tr
+        - column_names.each do | column_name |
+          %td<
+            = column_name
     %tbody
       - @datum.each do | data |
         %tr
