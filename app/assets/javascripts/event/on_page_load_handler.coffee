@@ -87,3 +87,8 @@ $( document ).on 'ready page:load' , ->
   h = new OnPageLoadHandler()
   h.process()
   return
+
+$( document ).on 'page:change' , ->
+  g = new GoogleMapInStationFacility()
+  g.initialize_map()
+  return

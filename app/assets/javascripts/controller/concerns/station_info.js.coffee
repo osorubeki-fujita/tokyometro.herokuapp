@@ -4,7 +4,7 @@ class StationInfoProcessor
 
   has_station_code = (v) ->
     return v.domain.children( '.station_codes , .station_code_outer' ).length is 1
-  
+
   has_station_code_image = (v) ->
     return station_codes(v).children( 'img.station_code' ).length > 0
 

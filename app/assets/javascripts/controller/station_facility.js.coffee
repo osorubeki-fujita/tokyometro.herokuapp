@@ -42,7 +42,7 @@ class StationFacility
       table.process()
       return
     return
-  
+
   process_platform_info_tabs = (v) ->
     tab_ul_processor = new StationFacilityPlatformInfoTabUl()
     tab_ul_processor.process()

@@ -15,7 +15,7 @@ class OnClickHandler
     return
 
 class DisplaySettings
-  
+
   constructor: ( @domain , @button , @i_in_button ) ->
 
   visible = (v) ->

@@ -4,7 +4,7 @@ class TrainLocationInfos
 
   has_train_location_infos = (v) ->
     return v.domain.length > 0
-  
+
   has_train_type_infos = (v) ->
     return train_type_domains(v).length > 0
 
@@ -41,7 +41,7 @@ class TrainLocationInfos
     w = p.max_width() + 4
     p.set_css_attribute( 'width' , w )
     return
-  
+
   process_each_ul_domain = (v) ->
     ul_domains_of_train_locations_of_each_direction(v).each ->
       ul_domain = $(@)
@@ -160,40 +160,40 @@ class TrainLocationUlDomain
     set_max_outer_width_of_domains_of_train_fundamental_infos(@)
     set_max_outer_width_of_sub_infos(@)
     return
-  
+
   li_train_locations = (v) ->
     return v.ul_domain.children( 'li.train_location' )
-  
+
   domains_of_train_fundamental_infos = (v) ->
     return li_train_locations(v).children( '.train_fundamental_infos' )
-  
+
   railway_line_matrixes = (v) ->
     return domains_of_train_fundamental_infos(v).children( '.railway_line_matrix_very_small' )
-  
+
   current_positions = (v) ->
     return li_train_locations(v).children( '.current_position' )
-  
+
   sub_infos = (v) ->
     return li_train_locations(v).children( '.sub_infos' )
-  
+
   set_max_outer_width_of_domains_of_train_fundamental_infos = (v) ->
     p = new DomainsCommonProcessor( domains_of_train_fundamental_infos(v) )
     v.max_outer_width_of_domains_of_train_fundamental_infos = p.max_inner_width()
     return
-  
+
   set_max_outer_width_of_sub_infos = (v) ->
     p = new DomainsCommonProcessor( sub_infos(v) )
     v.max_outer_width_of_sub_infos = p.max_inner_width()
     return
-  
+
   max_width_of_li_train_location = (v) ->
     p = new DomainsCommonProcessor( li_train_locations(v) )
     return p.max_inner_width()
-  
+
   border_left_and_bottom_of_current_position = (v) ->
     p = new DomainsCommonProcessor( current_positions(v) )
     return p.max_outer_width( false ) - p.max_inner_width()
-  
+
   width_of_current_position = (v) ->
     width_of_li = max_width_of_li_train_location(v)
     console.log 'width_of_li: ' + width_of_li
@@ -217,7 +217,7 @@ class TrainLocationUlDomain
     w = v.max_outer_width_of_sub_infos
     sub_infos(v).css( 'width' , w )
     return
-  
+
   process_current_position = (v) ->
     w = width_of_current_position(v)
     current_positions(v).css( 'width' , w )

@@ -4,11 +4,10 @@ class GoogleMapInStationFacility
 
   # constructor: ( @domain = $( 'iframe#map' ) ) ->
   constructor: ( @domain = $( '#map_canvas' ) ) ->
-  
+
   has_map_canvas = (v) ->
     return v.domain.length > 0
-  
-  has_map_handler = (v) ->
+   has_map_handler = (v) ->
     map_handler = $( "#map_handler" )
     return map_handler.length > 0
 
@@ -38,7 +37,6 @@ class GoogleMapInStationFacility
     if has_map_canvas(@)
       set_width_of_map_canvas(@)
       set_height_of_map_canvas(@)
-      initialize_map(@)
     return
 
   set_width_of_map_canvas = (v) ->
@@ -56,7 +54,7 @@ class GoogleMapInStationFacility
     # console.log obj
     return obj
   
-  default_zoom_size = (v) ->
+ efault_zoom_size = (v) ->
     return parseInt( v.domain.attr( "data-zoom" ) , 10 )
 
   default_map_options = (v) ->
@@ -66,28 +64,30 @@ class GoogleMapInStationFacility
     # console.log obj
     return obj
   
-  map_canvas_element = (v) ->
+  m_canvas_element = (v) ->
     return document.getElementById( "map_canvas" )
 
-  initialize_map = (v) ->
-    # console.log 'GoogleMapInStationFacility\#initialize_map'
-    _default_map_options = default_map_options(v)
+  initialize_map: ->
+    console.log 'GoogleMapInStationFacility\#initialize_map'
+    if has_map_canvas(@)
+      _default_map_options = default_map_options(@)
 
-    v.before_hover_on =
-      lat: _default_map_options.center.lat
-      lng: _default_map_options.center.lng
-      zoom: _default_map_options.zoom
+      @before_hover_on =
+        lat: _default_map_options.center.lat
+        lng: _default_map_options.center.lng
+        zoom: _default_map_options.zoom
 
-    init_function = ->
-      map = new google.maps.Map( map_canvas_element(v) , _default_map_options )
+      init_function = ->
+        map = new google.maps.Map( map_canvas_element(@) , _default_map_options )
 
-      # google.maps.event.addListenerOnce( map , 'idle', event_when_center_changed( v , map ) )
-      # google.maps.event.addListener( map , 'center_changed', event_when_center_changed( v , map ) )
-      google.maps.event.addListener( map , 'idle', event_when_center_changed( v , map ) )
-      google.maps.event.addListenerOnce( map , 'idle', set_hover_event_to_li_domains_of_map( v , map ) )
-      return
+        # google.maps.event.addListenerOnce( map , 'idle', event_when_center_changed( @ , map ) )
+        # google.maps.event.addListener( map , 'center_changed', event_when_center_changed( @ , map ) )
+        google.maps.event.addListener( map , 'idle', event_when_center_changed( @ , map ) )
+        google.maps.event.addListenerOnce( map , 'idle', set_hover_event_to_li_domains_of_map( @ , map ) )
+        return
 
-    google.maps.event.addDomListener( window , 'load' , init_function )
+      google.maps.event.addDomListener( window , 'load' , init_function )
+      google.maps.event.addDomListener( window , 'page:change' , init_function )
     return
 
   event_when_center_changed = ( v , map ) ->
