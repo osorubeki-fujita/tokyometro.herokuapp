@@ -1,3 +1,6 @@
+
+__END__
+
 namespace :tsukaisute do
   desc "Replace invalid surrounding area info"
   task :surrounding_area_20150601 => :environment do

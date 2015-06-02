@@ -3,14 +3,19 @@
 @import '../../fundamental_settings.scss' ;
 
 %buttonCommonSettings {
-  border: solid 1px #fff ;
+  border: {
+    style: solid ;
+    width: 1px ;
+  }
   @include border_radius( 4px ) ;
   @extend %floatRight ;
   @extend %linkInDiv ;
   @extend %marginLeft8 ;
   &:hover {
-    border: solid 1px #fff ;
-    background-color: #999 ;
+    border: {
+      style: solid ;
+      width: 1px ;
+    }
   }
   list-style: none ;
   a {
@@ -23,12 +28,43 @@
     padding: 0px ;
     margin: 0px ;
     border: none ;
-    color: #fff ;
     background-color: transparent ;
     cursor: pointer ;
     text-align: center ;
     vertical-align: middle ;
     display: block ;
+  }
+}
+
+%buttonWhite {
+  $base_color: #fff ;
+  border: {
+    color: $base_color ;
+  }
+  &:hover {
+    border: {
+      color: $base_color ;
+    }
+    background-color: #999 ;
+  }
+  button {
+    color: $base_color ;
+  }
+}
+
+%buttonBlack {
+  $base_color: #333 ;
+  border: {
+    color: $base_color ;
+  }
+  &:hover {
+    border: {
+      color: $base_color ;
+    }
+    background-color: rgba( #fff , 0.3 ) ;
+  }
+  button {
+    color: $base_color ;
   }
 }
 
@@ -60,17 +96,28 @@
   }
 }
 
-.button {
-  @extend %buttonCommonSettings ;
-  @extend %buttonSmall ;
-}
+// .button {
+  // @extend %buttonCommonSettings ;
+  // @extend %buttonSmall ;
+  // @extend %buttonWhite ;
+// }
 
 .update_button {
   @extend %buttonCommonSettings ;
+  @extend %buttonWhite ;
   @extend %buttonLarge ;
 }
 
 .size_changing_button {
   @extend %buttonCommonSettings ;
+  @extend %buttonWhite ;
   @extend %buttonLarge ;
+}
+
+#current_position_info {
+  .to_current_position {
+    @extend %buttonCommonSettings ;
+    @extend %buttonBlack ;
+    @extend %buttonLarge ;
+  }
 }

@@ -601,7 +601,7 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def station_name_url_encoded
+  def name_ja_url_encoded
     ::ERB::Util.url_encode( name_ja_actual )
   end
 

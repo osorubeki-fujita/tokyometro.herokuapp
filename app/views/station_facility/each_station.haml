@@ -1,4 +1,6 @@
 - station_info_decorated = @station_info.decorate
+- station_info_decorated_for_google_map = station_info_decorated.google_map
+
 - all_exit_infos = @point_infos.select( &:exit? ).sort_by( &:code_as_instance )
 
 - real_time_info = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , @railway_lines.except_for_branch_lines )
@@ -18,12 +20,34 @@
   = station_info_decorated.render_title_of_links_to_station_info_pages
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , station_info: @station_info ).render
 
+
 %div{ id: :exits_and_map , class: :clearfix }
   %ul{ id: :exits }
     - [ all_exit_infos.select( &:opened? ) , all_exit_infos.select( &:closed? ) ].each do | group |
       - group.each do | exit_info |
         = exit_info.decorate.render_in_station_facility_page
-  %iframe{ id: :map , src: @station_info.decorate.google_map.url , frameborder: 0 }
+  - # = station_info_decorated_for_google_map.render_embeded_map
+  = station_info_decorated_for_google_map.render_map_canvas
+
+%div{ id: :map_handler , class: :clearfix }
+  %div{ class: [ :debug , :clearfix ] }
+    %div{ class: [ :message , :clearfix ] }
+    %div{ class: [ :precise , :clearfix ] }
+  %ul{ id: :links_of_map }
+    %li{ id: :open_large_size , class: :link_of_map }
+      %a{ target: :_blank }<
+        = ""
+      %div{ class: [ :content , :clearfix ] }
+        %div{ class: :icon }
+          = ::TokyoMetro::App::Renderer::Icon.link_to_another_website( request , 1 ).render
+        %div{ class: :text }
+          - [ "現在表示中の地図を" , "大きいサイズで開く" ].each do | text_ja |
+            %div{ class: :text_ja }<
+              = text_ja
+          %div{ class: :text_en }<
+            = "Open the map in large size"
+    = station_info_decorated_for_google_map.render_button_to_center_of_station( request )
+
 
 %div{ id: :station_facility_contents }
 

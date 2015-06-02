@@ -24,7 +24,7 @@ Rails.application.configure do
 
   #--------
 
-  to_compress = true
+  to_compress = false
 
   unless to_compress
 

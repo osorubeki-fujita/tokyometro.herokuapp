@@ -4,13 +4,13 @@
 
 %closeInfoOfLiInUlExits {
   .close {
-    @extend %floatLeft ;
+    @include float_left ;
     @extend %marginLeft8 ;
     background-color: $jp_traditional_kinariiro ;
     border: solid 1px #ccc ;
     padding: 4px ;
     .icon {
-      @extend %floatLeft ;
+      @include float_left ;
       @extend %marginRight4 ;
       padding: 2px ;
       @include border_radius( 2px ) ;
@@ -19,7 +19,7 @@
       }
     }
     .text {
-      @extend %floatLeft ;
+      @include float_left ;
       background-color: transparent ;
       padding: 2px ;
     }
@@ -39,10 +39,10 @@
     img.elevator_outside {
       width: 32px ;
       height: 32px ;
-      @extend %floatLeft ;
+      @include float_left ;
     }
     .ev.text_en {
-      @extend %floatLeft ;
+      @include float_left ;
       @include border_radius( 2px ) ;
       @extend %marginLeft4 ;
       padding: 4px ;
@@ -76,23 +76,23 @@
   @extend %closeInfoOfLiInUlExits ;
   @extend %elevatorInfoOfLiInUlExits ;
   .code {
-    @extend %floatLeft ;
-    padding: 4px ;
+    @include float_left ;
+    @include padding_4 ;
     background-color: $jp_traditional_tanko_blight ;
     display: inline ;
   }
   .text {
-    @extend %floatLeft ;
+    @include float_left ;
     boder: solid 1px #eeba00 ; // DIC-N805
     background-color: #f9d36e ; // DIC-N802
     padding: 2px ;
   }
   .main {
-    @extend %floatLeft ;
+    @include float_left ;
   }
   .additional_info {
-    @extend %floatLeft ;
-    @extend %marginLeft4 ;
+    @include float_left ;
+    @include margin_left_4 ;
     font: {
       size: 9pt ;
     }
@@ -109,10 +109,9 @@
 }
 
 #exits_and_map {
-  @extend %marginBottom32 ;
   clear:both ;
   ul#exits {
-    @extend %floatLeft ;
+    @include float_left ;
     @extend %clearUlDefaultSettings ;
     margin: {
       right: -1px ;
@@ -127,8 +126,118 @@
       @extend %liInUlExits ;
     }
   }
-  iframe#map {
-    @extend %floatLeft ;
+  iframe#map , #map_canvas {
+    @include float_left ;
     border: solid 1px #999 ;
   }
 }
+
+//--------
+
+%mapHandlerNormalText {
+  .text_ja {
+    font: {
+      size: 10pt ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 7.5pt ;
+    }
+  }
+}
+
+%mapHandlerContentOfMapLink {
+  @include float_left ;
+  .icon {
+    @include float_left ;
+  }
+  .text {
+    @extend %mapHandlerNormalText ;
+    @include float_left ;
+  }
+}
+
+%mapHandlerContentDebug {
+  .debug {
+    @include float_left ;
+    // display: none ;
+    .message {
+      @extend %mapHandlerNormalText ;
+      @include padding_8 ;
+    }
+    .precise {
+      @include padding_8 ;
+      background-color: #f6f6f6 ;
+      font: {
+        size: 7pt ;
+      }
+      .title_of_current_position {
+        font: {
+          weight: bold ;
+          size: 9pt ;
+        }
+      }
+    }
+  }
+}
+
+#map_handler {
+  @extend %marginBottom32 ;
+  @extend %mapHandlerContentDebug ;
+  background-color: $jp_traditional_yokan_iro ;
+  //
+  ul#links_of_map {
+    @include float_right ;
+    @extend %clearUlDefaultSettings ;
+    background-color: #fff ;
+    li.link_of_map {
+      @extend %mapHandlerContentOfMapLink ;
+      @extend %liBaseSettingsInLinkUl ;
+      .content {
+        @include margin_8 ;
+        .icon {
+          @include margin_right_8 ;
+        }
+      }
+      margin: {
+        top: -1px ;
+        left: -1px ;
+      }
+      border: solid 1px #999 ;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  //
+  &.geolocation_available {
+    .debug {
+      .message {
+        background-color: $jp_traditional_wakame_iro ;
+      }
+    }
+  }
+  &.geolocation_error {
+    .debug {
+      .message {
+        background-color: $jp_traditional_nijiiro ;
+      }
+    }
+  }
+  &.without_geolocation {
+    .debug {
+      .message {
+        background-color: #f0f0f0 ;
+      }
+    }
+  }
+}
+
+// button {
+//   &:focus {
+//     outline: {
+//       color: $jp_traditional_aomidori ;
+//     }
+//   }
+// }

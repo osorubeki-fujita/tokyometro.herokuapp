@@ -70,6 +70,12 @@ class OnPageLoadHandler
     $.each list(@) , ->
       @.process()
       return
+    set_geo_location_info(@)
+    return
+
+  set_geo_location_info = (v) ->
+    g = new GeoLocationProcessor()
+    g.set_info()
     return
 
 # Turbolinks 対策
