@@ -54,7 +54,7 @@ class GoogleMapInStationFacility
     # console.log obj
     return obj
   
- efault_zoom_size = (v) ->
+  default_zoom_size = (v) ->
     return parseInt( v.domain.attr( "data-zoom" ) , 10 )
 
   default_map_options = (v) ->
@@ -63,12 +63,12 @@ class GoogleMapInStationFacility
       zoom: default_zoom_size(v)
     # console.log obj
     return obj
-  
-  m_canvas_element = (v) ->
+
+  map_canvas_element = (v) ->
     return document.getElementById( "map_canvas" )
 
   initialize_map: ->
-    console.log 'GoogleMapInStationFacility\#initialize_map'
+    # console.log 'GoogleMapInStationFacility\#initialize_map'
     if has_map_canvas(@)
       _default_map_options = default_map_options(@)
 
@@ -76,8 +76,9 @@ class GoogleMapInStationFacility
         lat: _default_map_options.center.lat
         lng: _default_map_options.center.lng
         zoom: _default_map_options.zoom
+      
 
-      init_function = ->
+      init_function = =>
         map = new google.maps.Map( map_canvas_element(@) , _default_map_options )
 
         # google.maps.event.addListenerOnce( map , 'idle', event_when_center_changed( @ , map ) )
