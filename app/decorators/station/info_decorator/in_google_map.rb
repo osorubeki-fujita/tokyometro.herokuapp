@@ -35,7 +35,7 @@ class Station::InfoDecorator::InGoogleMap < ::TokyoMetro::Factory::Decorate::App
 
   def render_button_to_center_of_station( request )
     h.render inline: <<-HAML , type: :haml , locals: { this: self , request: request }
-%li{ class: [ :link_of_map , :to_center_of_station ] , "data-geo-lat" => this.object.latitude , "deta-geo-lng" => this.object.longitude }
+%li{ class: [ :link_of_map , :to_center_of_station ] , "data-geo-lat" => this.object.latitude , "data-geo-lng" => this.object.longitude }
   %div{ class: [ :content , :clearfix ] }
     %div{ class: :icon }
       = ::TokyoMetro::App::Renderer::Icon.location( request , 1 ).render

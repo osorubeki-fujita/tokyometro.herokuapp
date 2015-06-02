@@ -1,6 +1,9 @@
 class GeoLocationProcessor
 
   constructor: ( @domain = $( "#map_handler" ) ) ->
+  
+  has_map_handler = (v) ->
+    return v.domain.length > 0
 
   # Geolocation APIを利用できる環境か否かを判定
   geolocation_api_is_available = (v) ->
@@ -8,18 +11,19 @@ class GeoLocationProcessor
 
   # 現在の位置情報を表示
   set_info: ->
-    if geolocation_api_is_available(@) 
-      success = ( position ) =>
-        callback_when_succeed_to_get_current_position( @ , position )
-        return
-      error = ( err ) =>
-        callback_when_failed_to_get_current_position( @ , err )
-        return
-      option = option_for_getting_current_position(@)
-      navigator.geolocation.getCurrentPosition( success , error , option )
+    if has_map_handler(@)
+      if geolocation_api_is_available(@) 
+        success = ( position ) =>
+          callback_when_succeed_to_get_current_position( @ , position )
+          return
+        error = ( err ) =>
+          callback_when_failed_to_get_current_position( @ , err )
+          return
+        option = option_for_getting_current_position(@)
+        navigator.geolocation.getCurrentPosition( success , error , option )
 
-    else
-      set_info_without_geolocation(@)
+      else
+        set_info_without_geolocation(@)
     return
 
   # ユーザーの現在の位置情報が取得できた場合
@@ -30,6 +34,7 @@ class GeoLocationProcessor
     set_additional_class_and_debug_infos( v , obj )
 
     v.domain
+      .children( '.links_and_current_position' )
       .children( 'ul#links_of_map' )
       .append( c.link_to_move_map_to_current_position() )
     return
@@ -269,7 +274,9 @@ class GeoLocationDebugInfosProcessor
     return
 
   debug_domain = (v) ->
-    return v.domain.children( '.debug' )
+    return v.domain
+      .children( '.links_and_current_position' )
+      .children( '.debug' )
 
   reset = (v) ->
     # console.log v.domain

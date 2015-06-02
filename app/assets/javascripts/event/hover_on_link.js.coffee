@@ -113,6 +113,7 @@ class LinkDomainsToSetHoverEvent
     set_hover_event_of_escaping_class( @ , 'this_station' )
     set_hover_main_event(@)
     set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey(@)
+    # set_hover_event_to_li_domains_of_map(@)
     return
 
   set_hover_event_of_escaping_class = ( v , class_name ) ->
@@ -188,5 +189,10 @@ class LinkDomainsToSetHoverEvent
         .removeClass( '_hover' , { duration: 300 , children: true } )
       return
     return e
+
+  set_hover_event_to_li_domains_of_map = (v) ->
+    g = new GoogleMapInStationFacility()
+    g.set_hover_event_to_li_domains_of_map()
+    return
 
 window.LinkDomainsToSetHoverEvent = LinkDomainsToSetHoverEvent
