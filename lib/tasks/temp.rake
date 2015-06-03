@@ -1,7 +1,7 @@
 namespace :temp do
 
   desc "Replace invalid surrounding area info"
-  task :surrounding_area_20150603 => :environment do
+  task :surrounding_area_20150603_1 => :environment do
 
     dictionary = ::TokyoMetro::Modules::Api::Convert::Patches::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
     ::SurroundingArea.all.each do | item |
@@ -26,8 +26,20 @@ namespace :temp do
       end
     end
 
-    ::SurroundingArea.where( name: dictionary.values ).each do | item |
+    ::SurroundingArea.where( name: dictionary.keys ).each do | item |
       item.destroy
+    end
+
+  end
+
+  task :surrounding_area_20150603_2 => :environment do
+
+    dictionary = ::TokyoMetro::Modules::Api::Convert::Patches::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
+    dictionary.values.each do | name_ja |
+      unless ::SurroundingArea.find_by( name: name_ja ).present?
+        id_new = ::SurroundingArea.all.pluck( :id ).max + 1
+        ::SurroundingArea.create( name: name_ja , id: id_new )
+      end
     end
 
   end
