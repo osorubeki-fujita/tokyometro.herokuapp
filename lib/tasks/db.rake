@@ -61,40 +61,34 @@ end
 
 __END__
 
-heroku maintenance:on
-
-rake assets:precompile --trace
 cap git:commit
-rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
-git push heroku master
 git push github master
 
-
-
+rake assets:precompile --trace # （省略可）
+rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
 rake tokyo_metro:db:make:list_of_tables
 rake tokyo_metro:db:deploy:heroku:make_migration_file
 rake db:vacuum
-rake assets:precompile --trace
+
+cap git:commit
+
 rake tokyo_metro:db:export:sqlite:to_csv
 rake tokyo_metro:db:convert:csv:to_shift_jis 20150521020957
 
-cap git:commit
-git push heroku master
+#---- importing commands
+rake tokyo_metro:db:make:list_of_commands:for_importing:csv:to_postgresql_on_heroku 20150521020957
 
+heroku maintenance:on
+
+git push heroku master
 rake tokyo_metro:db:deploy:heroku:reset
 rake tokyo_metro:db:deploy:heroku:migrate
 
+#---- importing process
 # rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150515235244
-rake tokyo_metro:db:make:list_of_commands:for_importing:csv:to_postgresql_on_heroku 20150521020957
 
 heroku maintenance:off
 
 rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
+cap git:commit
 git push github master
-
---------
-
-
-heroku maintenance:on
-heroku run rake assets:precompile --trace
-heroku maintenance:off
