@@ -17,11 +17,11 @@ class StationFacilityController < ApplicationController
 
   def action_for_station_page
     action_base_for_station_page( :station_facility , layout: :application_wide ) do
-      @station_facility = @station_info.station_facility
-      @railway_lines = ::RailwayLine.where( id: @station_facility.station_infos.pluck( :railway_line_id ) ).tokyo_metro.except_for_branch_lines
+      @station_facility_info = @station_info.station_facility_info
+      @railway_lines = ::RailwayLine.where( id: @station_facility_info.station_infos.pluck( :railway_line_id ) ).tokyo_metro.except_for_branch_lines
       # @display_google_map = true
 
-      @point_infos = @station_facility.point_infos.includes( :category )
+      @point_infos = @station_facility_info.point_infos.includes( :category )
 
       # set_station_info_for_google_map
       set_exit_info_for_google_map
@@ -30,7 +30,7 @@ class StationFacilityController < ApplicationController
 
 =begin
   def action_for_railway_line_page
-    action_base_for_railway_line_page( :station_facility , layout: :application_wide )
+    action_base_for_railway_line_page( :station_facility_info , layout: :application_wide )
   end
 =end
 
@@ -41,7 +41,7 @@ class StationFacilityController < ApplicationController
   end
 
   def set_station_info_for_google_map
-    @station_info_for_google_map = ::Gmaps4rails.build_markers( @station_facility.station_infos ) do | station_info , marker |
+    @station_info_for_google_map = ::Gmaps4rails.build_markers( @station_facility_info.station_infos ) do | station_info , marker |
       marker.lat( station_info.latitude )
       marker.lng( station_info.longitude )
       marker.infowindow( "#{ station_info.decorate.name_ja_actual }（#{ station_info.railway_line.name_ja }）" )

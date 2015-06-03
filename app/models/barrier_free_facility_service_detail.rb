@@ -3,8 +3,8 @@ class BarrierFreeFacilityServiceDetail < ActiveRecord::Base
   belongs_to :barrier_free_facility_service_detail_pattern
   has_one :barrier_free_facility_escalator_direction
 
-  def station_facility
-    barrier_free_facility_info.station_facility
+  def station_facility_info
+    barrier_free_facility_info.station_facility_info
   end
 
   def escalator_direction

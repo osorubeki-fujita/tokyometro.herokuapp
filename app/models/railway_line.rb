@@ -3,13 +3,13 @@ class RailwayLine < ActiveRecord::Base
   include ::Association::To::Station::Infos
 
   belongs_to :operator
-  has_many :station_facilities , through: :station_infos
+  has_many :station_facility_infos , through: :station_infos
   has_many :women_only_car_infos
   has_many :travel_time_infos
   has_many :railway_directions
 
   has_many :connecting_railway_lines
-  # has_many :station_facilities , through: :connecting_railway_lines
+  # has_many :station_facility_infos , through: :connecting_railway_lines
 
   has_many :station_timetable_fundamental_infos
   has_many :station_timetables , through: :station_timetable_fundamental_infos
@@ -213,7 +213,7 @@ class RailwayLine < ActiveRecord::Base
   def jr_lines?
     same_as == "odpt.Railway:JR-East"
   end
-  
+
   def toden_arakawa_line?
     same_as == "odpt.Railway:Toei.TodenArakawa"
   end

@@ -1,6 +1,6 @@
 class BarrierFreeFacility::Info < ActiveRecord::Base
 
-  belongs_to :station_facility , class: ::StationFacility
+  belongs_to :station_facility_info , class: ::StationFacility::Info
   belongs_to :barrier_free_facility_type , class: ::BarrierFreeFacilityType
   belongs_to :barrier_free_facility_located_area , class: ::BarrierFreeFacilityLocatedArea
 

@@ -182,8 +182,8 @@ class Station::InfoDecorator < Draper::Decorator
   def render_link_to_station_facility_info_of_connecting_other_stations
     _c_railway_lines = connecting_railway_lines_of_the_same_operator_connected_to_another_station
     if _c_railway_lines.present?
-      station_facility_ids = _c_railway_lines.map( &:connecting_station_info ).uniq.map( &:station_facility_id ).uniq
-      station_infos = station_facility_ids.map { | station_facility_id | ::StationFacility.find( station_facility_id ).station_infos.first }
+      station_facility_info_ids = _c_railway_lines.map( &:connecting_station_info ).uniq.map( &:station_facility_info_id ).uniq
+      station_infos = station_facility_info_ids.map { | station_facility_info_id | ::StationFacility::Info.find( station_facility_info_id ).station_infos.first }
       h_locals = {
         request: h.request ,
         station_infos: station_infos
@@ -347,7 +347,7 @@ class Station::InfoDecorator < Draper::Decorator
   def render_title_of_station_facility
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ id: :station_facility_title }
-  = ::StationFacilityDecorator.render_common_title( request )
+  = ::StationFacility::InfoDecorator.render_common_title( request )
   = info.render_header( station_code: true , all_station_codes: true )
     HAML
   end

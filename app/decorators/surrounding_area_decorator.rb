@@ -3,7 +3,7 @@ class SurroundingAreaDecorator < Draper::Decorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-= this.name
+= this.name_ja
     HAML
   end
 

@@ -116,7 +116,7 @@ system:
           - "それぞれのクラスに適合するよう調整"
   - "scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色）cf. lib\\tokyo_metro\\factory\\scss"
   -
-    title: "Point::Info - Station::Info - StationFacility について"
+    title: "Point::Info - Station::Info - StationFacility::Info について"
     contents:
       - "RSpec により構造に無駄がないかをチェックし、必要ならば整理"
   -

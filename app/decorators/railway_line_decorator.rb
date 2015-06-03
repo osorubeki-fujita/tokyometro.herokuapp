@@ -60,7 +60,7 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_station_facility( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :station_facility_title }
-  = ::StationFacilityDecorator.render_common_title( request )
+  = ::StationFacility::InfoDecorator.render_common_title( request )
   = ::RailwayLineDecorator.name_main( infos )
     HAML
   end

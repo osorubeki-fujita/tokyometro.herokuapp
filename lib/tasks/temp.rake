@@ -31,9 +31,9 @@ namespace :temp do
         valid_surrounding_area: "都電荒川線東池袋四丁目停留場"
       }
     ].each do | set |
-    
-      platform_info_surrounding_areas = ::StationFacility.find_by( same_as: set[ :station_facility_same_as ] ).station_facility_platform_info_surrounding_areas
-      
+
+      platform_info_surrounding_areas = ::StationFacility::Info.find_by( same_as: set[ :station_facility_same_as ] ).station_facility_platform_info_surrounding_areas
+
       platform_info_surrounding_areas.each do | item |
         if item.surrounding_area.present? and item.surrounding_area.name == set[ :invalid_surrounding_area_name ]
           valid_surrounding_area = ::SurroundingArea.find_by( name: set[ :valid_surrounding_area ] )
@@ -43,7 +43,7 @@ namespace :temp do
           item.update( surrounding_area_id: valid_surrounding_area.id )
         end
       end
-    
+
     end
   end
 
@@ -51,9 +51,9 @@ namespace :temp do
 
     dictionary = ::TokyoMetro::Modules::Api::Convert::Patches::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
     dictionary.values.each do | name_ja |
-      unless ::SurroundingArea.find_by( name: name_ja ).present?
+      unless ::SurroundingArea.find_by( name_ja: name_ja ).present?
         id_new = ::SurroundingArea.all.pluck( :id ).max + 1
-        ::SurroundingArea.create( name: name_ja , id: id_new )
+        ::SurroundingArea.create( name_ja: name_ja , id: id_new )
       end
     end
 
@@ -67,10 +67,10 @@ namespace :temp do
       if dictionary.keys.include?( item.name )
 
         valid_name = dictionary[ item.name ]
-        valid_in_db = ::SurroundingArea.find_by( name: valid_name )
+        valid_in_db = ::SurroundingArea.find_by( name_ja: valid_name )
         unless valid_in_db.present?
           id_of_valid_in_db = ::SurroundingArea.all.pluck( :id ).max + 1
-          valid_in_db = ::SurroundingArea.create( name: valid_name , id: id_of_valid_in_db )
+          valid_in_db = ::SurroundingArea.create( name_ja: valid_name , id: id_of_valid_in_db )
         end
 
         # puts "-" * 4
@@ -85,7 +85,7 @@ namespace :temp do
       end
     end
 
-    ::SurroundingArea.where( name: dictionary.keys ).each do | item |
+    ::SurroundingArea.where( name_ja: dictionary.keys ).each do | item |
       item.destroy
     end
 

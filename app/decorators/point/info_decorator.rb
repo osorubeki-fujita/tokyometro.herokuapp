@@ -77,7 +77,7 @@ class Point::InfoDecorator < Draper::Decorator
   #--------
 
   def li_classes_of_exit_with_elevator
-    raise "Error: #{ code } in \"#{ object.station_facility.same_as}\"" unless has_elevator?
+    raise "Error: #{ code } in \"#{ object.station_facility_info.same_as}\"" unless has_elevator?
     if has_only_info_to_display_as_main_info?
       if code_of_number_and_alphabet?
         :text_en

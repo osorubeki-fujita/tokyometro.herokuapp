@@ -1,5 +1,5 @@
 class Point::Info < ActiveRecord::Base
-  belongs_to :station_facility
+  belongs_to :station_facility_info , class: ::StationFacility::Info
 
   has_many :station_points
   has_many :station_infos , through: :station_points
@@ -15,7 +15,7 @@ class Point::Info < ActiveRecord::Base
   # after_validation :geocode
 
   scope :station_infos , -> {
-    station_facility.station_infos
+    station_facility_info.station_infos
   }
 
   scope :elevator , -> {
@@ -49,11 +49,11 @@ class Point::Info < ActiveRecord::Base
   def point_category
     category
   end
-  
+
   def point_code
     code
   end
-  
+
   def point_additional_name
     additional_name
   end
