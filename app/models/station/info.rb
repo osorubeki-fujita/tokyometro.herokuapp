@@ -2,7 +2,7 @@ class Station::Info < ActiveRecord::Base
   has_many :station_passenger_surveys , foreign_key: :station_info_id
   has_many :passenger_surveys , through: :station_passenger_surveys
 
-  belongs_to :station_facility
+  belongs_to :station_facility_info , class: ::StationFacility::Info
   belongs_to :railway_line
   belongs_to :operator
 
@@ -28,7 +28,7 @@ class Station::Info < ActiveRecord::Base
   include ::TokyoMetro::Modules::Db::Decision::CurrentStation
 
   def station_infos_including_other_railway_lines
-    station_facility.station_infos.order( :railway_line_id )
+    station_facility_info.station_infos.order( :railway_line_id )
   end
 
   def base_station_info

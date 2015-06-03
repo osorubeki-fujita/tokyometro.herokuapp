@@ -55,8 +55,8 @@
   %div{ id: :station_facility_platform_infos }
     = ::StationFacilityPlatformInfoDecorator.render_sub_top_title
 
-    = ::TokyoMetro::App::Renderer::StationFacility::Platform.make_list( request , @station_facility ).render
+    = ::TokyoMetro::App::Renderer::StationFacility::Platform.make_list( request , @station_facility_info ).render
 
   %div{ id: :station_facility_infos }
     = ::BarrierFreeFacility::InfoDecorator.render_sub_top_title
-    = @station_facility.decorate.render_barrier_free_facility_infos
+    = @station_facility_info.decorate.render_barrier_free_facility_infos
