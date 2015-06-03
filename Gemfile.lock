@@ -312,7 +312,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.5.2)
+    tokyo_metro (0.5.3)
       haml
       odpt_common (>= 0.2.3)
       odpt_tokyo_metro_helper (>= 0.2.1)

@@ -1,10 +1,8 @@
 class StationFacility::Info < ActiveRecord::Base
-  include ::Association::To::Station::Infos
-
+  has_many :station_infos , class: ::Station::Info , foreign_key: :station_facility_info_id
   has_many :passenger_surveys , through: :station_infos
 
   has_many :station_facility_platform_infos , class: ::StationFacilityPlatformInfo , foreign_key: :station_facility_info_id
-
   has_many :station_facility_platform_info_surrounding_areas , through: :station_facility_platform_infos
   has_many :surrounding_areas , through: :station_facility_platform_infos
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518191043) do
+ActiveRecord::Schema.define(version: 20150603171550) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150518191043) do
   create_table "barrier_free_facility_infos", force: :cascade do |t|
     t.string   "id_urn",                                limit: 255
     t.string   "same_as",                               limit: 255
-    t.integer  "station_facility_id"
+    t.integer  "station_facility_info_id"
     t.integer  "barrier_free_facility_type_id"
     t.integer  "barrier_free_facility_located_area_id"
     t.string   "remark",                                limit: 255
@@ -233,12 +233,12 @@ ActiveRecord::Schema.define(version: 20150518191043) do
   end
 
   create_table "point_infos", force: :cascade do |t|
-    t.string   "id_urn",              limit: 255
-    t.integer  "station_facility_id"
+    t.string   "id_urn",                   limit: 255
+    t.integer  "station_facility_info_id"
     t.integer  "category_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "geo_json",            limit: 255
+    t.string   "geo_json",                 limit: 255
     t.integer  "floor"
     t.boolean  "elevator"
     t.boolean  "closed"
@@ -304,18 +304,18 @@ ActiveRecord::Schema.define(version: 20150518191043) do
     t.datetime "updated_at"
   end
 
-  create_table "station_facilities", force: :cascade do |t|
-    t.string   "same_as",    limit: 255
-    t.string   "id_urn",     limit: 255
-    t.datetime "dc_date"
+  create_table "station_facility_aliases", force: :cascade do |t|
+    t.integer  "station_facility_info_id"
+    t.string   "same_as",                  limit: 255
+    t.integer  "index_of_alias"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "station_facility_aliases", force: :cascade do |t|
-    t.integer  "station_facility_id"
-    t.string   "same_as",             limit: 255
-    t.integer  "index_of_alias"
+  create_table "station_facility_infos", force: :cascade do |t|
+    t.string   "same_as",    limit: 255
+    t.string   "id_urn",     limit: 255
+    t.datetime "dc_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -344,7 +344,7 @@ ActiveRecord::Schema.define(version: 20150518191043) do
   end
 
   create_table "station_facility_platform_infos", force: :cascade do |t|
-    t.integer  "station_facility_id"
+    t.integer  "station_facility_info_id"
     t.integer  "car_composition"
     t.integer  "car_number"
     t.integer  "railway_line_id"
@@ -359,7 +359,7 @@ ActiveRecord::Schema.define(version: 20150518191043) do
     t.integer  "railway_line_id"
     t.integer  "index_in_railway_line"
     t.string   "station_code",                  limit: 255
-    t.integer  "station_facility_id"
+    t.integer  "station_facility_info_id"
     t.string   "name_ja",                       limit: 255
     t.string   "name_hira",                     limit: 255
     t.string   "name_en",                       limit: 255
@@ -473,7 +473,7 @@ ActiveRecord::Schema.define(version: 20150518191043) do
   end
 
   create_table "surrounding_areas", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name_ja",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
