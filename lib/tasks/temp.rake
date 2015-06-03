@@ -2,7 +2,9 @@ namespace :temp do
 
   task :reset_train_operation_text_id => :environment do
     ::TrainOperation::Text.all.to_a.each.with_index(1) do | item , i |
-      item.update( id: i )
+      if item.id != i
+        item.update( id: i )
+      end
     end
   end
 
