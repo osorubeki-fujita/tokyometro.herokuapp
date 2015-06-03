@@ -6,7 +6,7 @@ class StationFacility < ActiveRecord::Base
 
   has_many :station_facility_platform_infos
   
-  #has_many :station_facility_platform_info_surrounding_areas , through: :station_facility_platform_infos
+  has_many :station_facility_platform_info_surrounding_areas , through: :station_facility_platform_infos
   has_many :surrounding_areas , through: :station_facility_platform_infos
 
   has_many :connecting_railway_line_infos , through: :station_infos
