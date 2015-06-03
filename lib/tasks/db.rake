@@ -73,10 +73,10 @@ rake db:vacuum
 cap git:commit
 
 rake tokyo_metro:db:export:sqlite:to_csv
-rake tokyo_metro:db:convert:csv:to_shift_jis 20150521020957
+rake tokyo_metro:db:convert:csv:to_shift_jis 20150604033506
 
 #---- importing commands
-rake tokyo_metro:db:make:list_of_commands:for_importing:csv:to_postgresql_on_heroku 20150521020957
+rake tokyo_metro:db:make:list_of_commands:for_importing:csv:to_postgresql_on_heroku 20150604033506
 
 heroku maintenance:on
 
@@ -85,10 +85,10 @@ rake tokyo_metro:db:deploy:heroku:reset
 rake tokyo_metro:db:deploy:heroku:migrate
 
 #---- importing process
-# rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150515235244
+# rake tokyo_metro:db:import:csv:to_postgresql_on_heroku 20150604033506
 
 heroku maintenance:off
-
 rake tokyo_metro:db:deploy:heroku:move_migration_files_after_process
+
 cap git:commit
 git push github master
