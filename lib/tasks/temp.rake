@@ -1,8 +1,8 @@
 namespace :temp do
   desc "Add train operation info"
-  task :train_operation_info_20150603 => :environment do
+  task :train_operation_info_20150603_1 => :environment do
     text_1 = "17時38分頃、綾瀬駅で車両点検のため、運転を見合わせていましたが、17時46分頃、運転を再開し、ダイヤが乱れています。 只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。 詳しくは駅係員にお尋ねください。"
-    text_2 = "17時38分頃、綾瀬駅で車両点検のため、ダイヤが乱れています。 只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。 詳しくは駅係員にお尋ねください。"
+    text_2 = "17時38分頃、綾瀬駅で車両点検のため、ダイヤが乱れています。\n只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。\n詳しくは駅係員にお尋ねください。"
 
     text_2_in_db = ::TrainOperation::Text.find_by( in_api: text_2 )
 
@@ -18,6 +18,16 @@ namespace :temp do
     text_2_in_db.update( id: text_2_new_id )
     text_1_in_db = ::TrainOperation::Text.create( in_api: text_1 , id: text_2_old_id )
   end
+
+  desc "Update train operation info"
+  task :train_operation_info_20150603_2 => :environment do
+    text_1_old = "17時38分頃、綾瀬駅で車両点検のため、運転を見合わせていましたが、17時46分頃、運転を再開し、ダイヤが乱れています。 只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。 詳しくは駅係員にお尋ねください。"
+    text_1_new = "17時38分頃、綾瀬駅で車両点検のため、運転を見合わせていましたが、17時46分頃、運転を再開し、ダイヤが乱れています。\n只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。\n詳しくは駅係員にお尋ねください。"
+    text_1_in_db = ::TrainOperation::Text.find_by( in_api: [ text_1_old , text_1_new ] )
+    raise "Error" unless text_1_in_db.present?
+    text_1_in_db.update( in_api: text_1_new )
+  end
+
 end
 
 __END__
