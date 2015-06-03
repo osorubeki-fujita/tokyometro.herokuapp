@@ -71,12 +71,7 @@ class GoogleMapInStationFacility
     # console.log 'GoogleMapInStationFacility\#initialize_map'
     if has_map_canvas(@)
       _default_map_options = default_map_options(@)
-
-      @before_hover_on =
-        lat: _default_map_options.center.lat
-        lng: _default_map_options.center.lng
-        zoom: _default_map_options.zoom
-      
+      set_map_option_before_hover_on( @ , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
 
       init_function = =>
         map = new google.maps.Map( map_canvas_element(@) , _default_map_options )
@@ -89,6 +84,13 @@ class GoogleMapInStationFacility
 
       google.maps.event.addDomListener( window , 'load' , init_function )
       google.maps.event.addDomListener( window , 'page:change' , init_function )
+    return
+  
+  set_map_option_before_hover_on = ( v , lat , lng , zoom ) ->
+    v.before_hover_on =
+      lat: lat
+      lng: lng
+      zoom: zoom
     return
 
   event_when_center_changed = ( v , map ) ->
@@ -151,10 +153,7 @@ class GoogleMapInStationFacility
     # console.log map.getZoom()
 
     f = ->
-      v.before_hover_on =
-        lat: map.getCenter().lat()
-        lng: map.getCenter().lng()
-        zoom: map.getZoom()
+      set_map_option_before_hover_on( v , map.getCenter().lat() , map.getCenter().lng() , map.getZoom() )
 
       # console.log v.before_hover_on
 
@@ -165,6 +164,7 @@ class GoogleMapInStationFacility
       # console.log lat_lng_move_to
 
       zoom_min = default_zoom_size(v) - 1
+
       map.panTo( lat_lng_move_to )
       if v.before_hover_on.zoom < zoom_min
         map.setZoom( zoom_min )
