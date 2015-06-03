@@ -391,7 +391,7 @@ DEPENDENCIES
   spring
   sqlite3
   taps
-  tokyo_metro (>= 0.2.5)
+  tokyo_metro (>= 0.5.3)
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603171550) do
+ActiveRecord::Schema.define(version: 20150603174724) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -304,18 +304,18 @@ ActiveRecord::Schema.define(version: 20150603171550) do
     t.datetime "updated_at"
   end
 
-  create_table "station_facility_aliases", force: :cascade do |t|
-    t.integer  "station_facility_info_id"
-    t.string   "same_as",                  limit: 255
-    t.integer  "index_of_alias"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "station_facility_infos", force: :cascade do |t|
     t.string   "same_as",    limit: 255
     t.string   "id_urn",     limit: 255
     t.datetime "dc_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_facility_name_aliases", force: :cascade do |t|
+    t.integer  "station_facility_info_id"
+    t.string   "same_as",                  limit: 255
+    t.integer  "index_of_alias"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
