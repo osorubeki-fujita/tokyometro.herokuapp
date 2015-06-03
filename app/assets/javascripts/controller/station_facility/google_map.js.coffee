@@ -5,14 +5,24 @@ class GoogleMapInStationFacility
   # constructor: ( @domain = $( 'iframe#map' ) ) ->
   constructor: ( @domain = $( '#map_canvas' ) ) ->
 
-  has_map_canvas = (v) ->
-    return v.domain.length > 0
-   has_map_handler = (v) ->
-    map_handler = $( "#map_handler" )
-    return map_handler.length > 0
-
   ul_exits = (v) ->
     return $( 'ul#exits' )
+
+  li_domains_of_points = (v) ->
+    return ul_exits(v)
+      .children( 'li.point' )
+  
+  map_handler = (v) ->
+    return $( "#map_handler" )
+
+  has_map_canvas = (v) ->
+    return v.domain.length > 0
+  
+  has_ul_exits = (v) ->
+    return ul_exits(v).length > 0
+
+  has_map_handler = (v) ->
+    return map_handler(v).length > 0
 
   width_of_exits_and_map = (v) ->
     p = new DomainsCommonProcessor( $( '#main_content_wide , #main_content_center' ) )
@@ -28,7 +38,7 @@ class GoogleMapInStationFacility
     return parseInt( v.domain.css( 'border-width' ) , 10 )
 
   width_of_map_canvas = (v) ->
-    return width_of_exits_and_map(v) - ( width_of_ul_exits(v) + border_width_of_map(v) * 2 )
+    return width_of_exits_and_map(v) - ( width_of_ul_exits(v) + border_width_of_map(v) )
 
   height_of_map_canvas = (v) ->
     return height_of_ul_exits(v)
@@ -79,7 +89,7 @@ class GoogleMapInStationFacility
         # google.maps.event.addListenerOnce( map , 'idle', event_when_center_changed( @ , map ) )
         # google.maps.event.addListener( map , 'center_changed', event_when_center_changed( @ , map ) )
         google.maps.event.addListener( map , 'idle', event_when_center_changed( @ , map ) )
-        google.maps.event.addListenerOnce( map , 'idle', set_hover_event_to_li_domains_of_map( @ , map ) )
+        google.maps.event.addListenerOnce( map , 'idle', set_hover_event_to_li_domain_groups( @ , map ) )
         return
 
       google.maps.event.addDomListener( window , 'load' , init_function )
@@ -119,22 +129,27 @@ class GoogleMapInStationFacility
 
   #--------
 
-  set_hover_event_to_li_domains_of_map = ( v , map ) ->
+  set_hover_event_to_li_domain_groups = ( v , map ) ->
     f = ->
-      # console.log 'set_hover_event_to_li_domains_of_map 1'
+      # console.log 'set_hover_event_to_li_domain_groups 1'
       if has_map_handler(v)
-        # console.log li_domains_of_map_without_link_to_large_size(@)
-        li_domains_of_map_without_link_to_large_size(@).each ->
-          _domain = $(@)
-          # console.log $(@)
-          _domain.hover( hover_on( v , map , _domain ) , hover_off( v , map ) )
-          _domain.click( hover_on( v , map , _domain ) )
-          return
-      # console.log 'set_hover_event_to_li_domains_of_map 2'
+        set_hover_event_to_each_li_domain_group( v , map , li_domains_of_map_without_link_to_large_size(v) , default_zoom_size(v) - 1 )
+      if has_ul_exits(v)
+        set_hover_event_to_each_li_domain_group( v , map , li_domains_of_points(v) , default_zoom_size(v) + 3 )
+      # console.log 'set_hover_event_to_li_domain_groups 2'
     return f
+  
+  set_hover_event_to_each_li_domain_group = ( v , map , group , zoom_min ) ->
+    group.each ->
+      _domain = $(@)
+      # console.log _domain
+      _domain.hover( hover_on( v , map , _domain , zoom_min ) , hover_off( v , map ) )
+      _domain.click( hover_on( v , map , _domain , zoom_min ) )
+      return
+    return
 
   li_domains_of_map_without_link_to_large_size = (v) ->
-    return $( "#map_handler" )
+    return map_handler(v)
       .children( ".links_and_current_position" )
       .children( "ul#links_of_map" )
       .children( "li.link_of_map" )
@@ -144,7 +159,7 @@ class GoogleMapInStationFacility
     # map = new google.maps.Map( map_canvas_element(v) )
     # return map
 
-  hover_on = ( v , map , li_domain ) ->
+  hover_on = ( v , map , li_domain , zoom_min ) ->
     # console.log 'hover_on'
     # console.log li_domain
     # console.log map
@@ -162,8 +177,6 @@ class GoogleMapInStationFacility
         lng: parseFloat( li_domain.attr( 'data-geo-lng' ) )
 
       # console.log lat_lng_move_to
-
-      zoom_min = default_zoom_size(v) - 1
 
       map.panTo( lat_lng_move_to )
       if v.before_hover_on.zoom < zoom_min
