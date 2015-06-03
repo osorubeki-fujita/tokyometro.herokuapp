@@ -11,7 +11,7 @@ class StationFacility::Info < ActiveRecord::Base
   # has_many :railway_lines , through: :station_infos
   has_many :operators , through: :railway_lines
 
-  has_many :station_facility_aliases , class: ::StationFacilityAlias , foreign_key: :station_facility_info_id
+  has_many :station_facility_name_aliases , class: ::StationFacility::NameAlias , foreign_key: :station_facility_info_id
   has_many :barrier_free_facility_infos , class: ::BarrierFreeFacility::Info , foreign_key: :station_facility_info_id
   has_many :point_infos , class: ::Point::Info , foreign_key: :station_facility_info_id
 
