@@ -1,7 +1,7 @@
 = render "common_content"
 
 - content_for :right_contents do
-  = ::TokyoMetro::App::Renderer::Twitter.new( request , :railway_lines , @station_info.railway_lines_of_tokyo_metro ).render
+  = @twitter_processor.render
 
 - station_info_decorated = @station_info.decorate
 = station_info_decorated.render_title_of_fare

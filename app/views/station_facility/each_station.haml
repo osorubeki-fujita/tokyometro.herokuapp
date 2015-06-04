@@ -3,14 +3,12 @@
 
 - all_exit_infos = @point_infos.select( &:exit? ).sort_by( &:code_as_instance )
 
-- real_time_info = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , @railway_lines.except_for_branch_lines )
-
 = render "common_content"
 
 = station_info_decorated.render_title_of_station_facility
 = station_info_decorated.render_latest_passenger_survey
 
-= real_time_info.render( include_train_location_infos: false )
+= @real_time_info_processor.render( include_train_location_infos: false )
 
 = station_info_decorated.render_tokyo_metro_railway_lines( request )
 = station_info_decorated.render_railway_lines_except_for_tokyo_metro
@@ -19,7 +17,6 @@
 %div{ id: :links_to_station_info_pages }
   = station_info_decorated.render_title_of_links_to_station_info_pages
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , station_info: @station_info ).render
-
 
 %div{ id: :exits_and_map , class: :clearfix }
   = station_info_decorated_for_google_map.render_map_canvas

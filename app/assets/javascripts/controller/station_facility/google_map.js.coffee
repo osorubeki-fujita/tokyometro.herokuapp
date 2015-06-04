@@ -4,6 +4,11 @@ class GoogleMapInStationFacility
 
   # constructor: ( @domain = $( 'iframe#map' ) ) ->
   constructor: ( @domain = $( '#map_canvas' ) ) ->
+  
+  #---- 地図に関連する領域
+
+  map_canvas_element = (v) ->
+    return document.getElementById( "map_canvas" )
 
   ul_exits = (v) ->
     return $( 'ul#exits' )
@@ -15,6 +20,15 @@ class GoogleMapInStationFacility
   map_handler = (v) ->
     return $( "#map_handler" )
 
+  li_domains_of_map_without_link_to_large_size = (v) ->
+    return map_handler(v)
+      .children( ".links_and_current_position" )
+      .children( "ul#links_of_map" )
+      .children( "li.link_of_map" )
+      .filter( '.to_center_of_station , .to_current_position' )
+  
+  #---- 領域の有無の判定
+
   has_map_canvas = (v) ->
     return v.domain.length > 0
   
@@ -23,6 +37,8 @@ class GoogleMapInStationFacility
 
   has_map_handler = (v) ->
     return map_handler(v).length > 0
+  
+  #---- 領域の属性
 
   width_of_exits_and_map = (v) ->
     p = new DomainsCommonProcessor( $( '#main_content_wide , #main_content_center' ) )
@@ -42,6 +58,8 @@ class GoogleMapInStationFacility
 
   height_of_map_canvas = (v) ->
     return height_of_ul_exits(v)
+  
+  #-------- 一般の処理
 
   process: ->
     if has_map_canvas(@)
@@ -57,12 +75,10 @@ class GoogleMapInStationFacility
     v.domain.css( 'height' , height_of_map_canvas(v) )
     return
 
+  #-------- Google Map
+
   default_center_position_of_map = (v) ->
-    obj =
-      lat: parseFloat( v.domain.attr( "data-geo-lat" ) )
-      lng: parseFloat( v.domain.attr( "data-geo-lng" ) )
-    # console.log obj
-    return obj
+    return get_geo_attr( v , v.domain )
   
   default_zoom_size = (v) ->
     return parseInt( v.domain.attr( "data-zoom" ) , 10 )
@@ -74,37 +90,38 @@ class GoogleMapInStationFacility
     # console.log obj
     return obj
 
-  map_canvas_element = (v) ->
-    return document.getElementById( "map_canvas" )
+  get_geo_attr = ( v , dom ) ->
+    obj =
+      lat: parseFloat( dom.attr( "data-geo-lat" ) )
+      lng: parseFloat( dom.attr( "data-geo-lng" ) )
+    # console.log obj
+    return obj
 
   initialize_map: ->
     # console.log 'GoogleMapInStationFacility\#initialize_map'
     if has_map_canvas(@)
       _default_map_options = default_map_options(@)
-      set_map_option_before_hover_on( @ , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
+      set_current_map_info( @ , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
+      @in_li_domains = false
 
       init_function = =>
         map = new google.maps.Map( map_canvas_element(@) , _default_map_options )
 
-        # google.maps.event.addListenerOnce( map , 'idle', event_when_center_changed( @ , map ) )
-        # google.maps.event.addListener( map , 'center_changed', event_when_center_changed( @ , map ) )
         google.maps.event.addListener( map , 'idle', event_when_center_changed( @ , map ) )
-        google.maps.event.addListenerOnce( map , 'idle', set_hover_event_to_li_domain_groups( @ , map ) )
+        google.maps.event.addListenerOnce( map , 'idle', set_hover_and_click_event_to_li_domain_groups( @ , map ) )
         return
 
       google.maps.event.addDomListener( window , 'load' , init_function )
-      google.maps.event.addDomListener( window , 'page:change' , init_function )
     return
   
-  set_map_option_before_hover_on = ( v , lat , lng , zoom ) ->
-    v.before_hover_on =
+  set_current_map_info = ( v , lat , lng , zoom ) ->
+    v.current_map_info =
       lat: lat
       lng: lng
       zoom: zoom
     return
 
   event_when_center_changed = ( v , map ) ->
-    # console.log 'GoogleMapInStationFacility\#event_when_center_changed'
     f = ->
       set_link_for_open_large_size( v , map )
       return
@@ -129,75 +146,147 @@ class GoogleMapInStationFacility
 
   #--------
 
-  set_hover_event_to_li_domain_groups = ( v , map ) ->
+  set_hover_and_click_event_to_li_domain_groups = ( v , map ) ->
     f = ->
-      # console.log 'set_hover_event_to_li_domain_groups 1'
+      _li_domains_of_map_without_link_to_large_size = li_domains_of_map_without_link_to_large_size(v)
+      _li_domains_of_points = li_domains_of_points(v)
+      # console.log 'set_hover_and_click_event_to_li_domain_groups - begin'
       if has_map_handler(v)
-        set_hover_event_to_each_li_domain_group( v , map , li_domains_of_map_without_link_to_large_size(v) , default_zoom_size(v) - 1 )
+        # console.log 'has_map_handler'
+        set_hover_and_click_event_to_each_li_domain_group( v , map , _li_domains_of_map_without_link_to_large_size , default_zoom_size(v) - 1 )
+        set_tooltips( v , _li_domains_of_map_without_link_to_large_size )
       if has_ul_exits(v)
-        set_hover_event_to_each_li_domain_group( v , map , li_domains_of_points(v) , default_zoom_size(v) + 3 )
-      # console.log 'set_hover_event_to_li_domain_groups 2'
+        # console.log 'has_ul_exits'
+        set_hover_and_click_event_to_each_li_domain_group( v , map , _li_domains_of_points , default_zoom_size(v) + 3 )
+        set_tooltips( v , _li_domains_of_points )
+        set_mouseleave_event_to_ul_exits(v)
+      # console.log 'set_hover_and_click_event_to_li_domain_groups - end'
     return f
-  
-  set_hover_event_to_each_li_domain_group = ( v , map , group , zoom_min ) ->
+
+  set_hover_and_click_event_to_each_li_domain_group = ( v , map , group , zoom_min ) ->
     group.each ->
       _domain = $(@)
-      # console.log _domain
-      _domain.hover( hover_on( v , map , _domain , zoom_min ) , hover_off( v , map ) )
-      _domain.click( hover_on( v , map , _domain , zoom_min ) )
+
+      _domain.on
+        # .on 'hover' は使用不可
+
+        "mouseenter": ->
+          event_when_mouseenter( v , map , _domain , zoom_min )
+          return
+
+        "mouseleave": ->
+          event_when_mouseleave( v , map , _domain )
+          return
+
+        "click": ->
+          event_when_click( v , map , _domain , zoom_min )
+          return
+
       return
     return
+  
+  set_mouseleave_event_to_ul_exits = (v) ->
+    ul_exits(v).on
+      "mouseleave": ->
+        # console.log 'mouseleave_of_group'
+        leave_li_domains(v)
+        return
+    return
+  
+  sleep_time_when_hover_on = (v) ->
+    return 1000 # [ms]
 
-  li_domains_of_map_without_link_to_large_size = (v) ->
-    return map_handler(v)
-      .children( ".links_and_current_position" )
-      .children( "ul#links_of_map" )
-      .children( "li.link_of_map" )
-      .filter( '.to_center_of_station , .to_current_position' )
+  event_when_mouseenter = ( v , map , _domain , zoom_min ) ->
+    _sleep_time_when_hover_on = sleep_time_when_hover_on(v)
 
-  # google_map_object = (v) ->
-    # map = new google.maps.Map( map_canvas_element(v) )
-    # return map
+    f = ->
+      # console.log 'event_when_mouseenter - begin'
+      set_current_map_info( v , map.getCenter().lat() , map.getCenter().lng() , map.getZoom() )
+      move_map( v , map , _domain , zoom_min )
+      # console.log 'event_when_mouseenter - end'
+      return
 
-  hover_on = ( v , map , li_domain , zoom_min ) ->
-    # console.log 'hover_on'
+    # 外の領域から来たとき
+    if from_out_of_li_domains(v)
+      # delay を設定
+      enter_li_domains(v)
+      timeout_event = setTimeout( f , sleep_time_when_hover_on )
+      _domain.data( 'timeout' , timeout_event )
+    #
+    else
+      f.call(@)
+    return
+
+  event_when_mouseleave = ( v , map , _domain ) ->
+    # console.log 'event_when_mouseleave - begin'
+    clearTimeout( _domain.data( 'timeout' ) )
+    reset_map( v , map )
+    # console.log 'event_when_mouseleave - end'
+    return
+
+  event_when_click = ( v , map , _domain , zoom_min ) ->
+    # console.log 'event_when_click - begin'
+    clearTimeout( _domain.data( 'timeout' ) )
+    move_map( v , map , _domain , zoom_min )
+    set_current_map_info( v , map.getCenter().lat() , map.getCenter().lng() , map.getZoom() )
+    # console.log 'event_when_click - end'
+    return
+
+  move_map = ( v , map , li_domain , zoom_min ) ->
+    # console.log 'move_map'
     # console.log li_domain
     # console.log map
     # console.log map.getCenter().lat()
     # console.log map.getCenter().lng()
     # console.log map.getZoom()
 
-    f = ->
-      set_map_option_before_hover_on( v , map.getCenter().lat() , map.getCenter().lng() , map.getZoom() )
+    lat_lng_move_to = get_geo_attr( v , li_domain )
 
-      # console.log v.before_hover_on
+    # console.log lat_lng_move_to
 
-      lat_lng_move_to =
-        lat: parseFloat( li_domain.attr( 'data-geo-lat' ) )
-        lng: parseFloat( li_domain.attr( 'data-geo-lng' ) )
+    map.panTo( lat_lng_move_to )
+    if v.current_map_info.zoom < zoom_min
+      map.setZoom( zoom_min )
+    return
 
-      # console.log lat_lng_move_to
+  reset_map = ( v , map ) ->
+    lat_lng_move_to =
+      lat: v.current_map_info.lat
+      lng: v.current_map_info.lng
 
-      map.panTo( lat_lng_move_to )
-      if v.before_hover_on.zoom < zoom_min
-        map.setZoom( zoom_min )
-      return
-    return f
+    # console.log v.current_map_info
+    # console.log lat_lng_move_to
 
-  hover_off = ( v , map ) ->
-    # console.log 'hover_off'
-    # console.log v.before_hover_on
+    map.panTo( lat_lng_move_to )
+    map.setZoom( v.current_map_info.zoom )
+    return
 
-    f = ->
-      lat_lng_move_to =
-        lat: v.before_hover_on.lat
-        lng: v.before_hover_on.lng
+  from_out_of_li_domains = (v) ->
+    return !( v.in_li_domains )
 
-      # console.log lat_lng_move_to
+  enter_li_domains = (v) ->
+    v.in_li_domains = true
+    return
 
-      map.panTo( lat_lng_move_to )
-      map.setZoom( v.before_hover_on.zoom )
-      return
-    return f
+  leave_li_domains = (v) ->
+    v.in_li_domains = false
+    return
+
+  set_tooltips = ( v , domains ) ->
+    _sleep_time_when_hover_on = sleep_time_when_hover_on(v)
+    option =
+      potision:
+        my: "left top"
+        at: "left bottom"
+      show:
+        effect: "slideDown"
+        delay: _sleep_time_when_hover_on
+      content: "<span class='info_in_tooltip'>クリックで地図の表示を固定</span>"
+      items: '[class]'
+      track: false
+    console.log 'set_tooltips'
+    console.log domains
+    domains.tooltip( option )
+    return
 
 window.GoogleMapInStationFacility = GoogleMapInStationFacility

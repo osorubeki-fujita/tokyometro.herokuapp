@@ -3,6 +3,9 @@ class TrainOperationController < ApplicationController
   include ActionBaseForStationPage
   include ActionBaseForRailwayLinePage
   include RailwayLineByParams
+  
+  include TwitterProcessor
+  include RealTimeInfoProcessor
 
   def index
     @title = "各線の列車運行情報"
@@ -10,15 +13,27 @@ class TrainOperationController < ApplicationController
     @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
+
+    set_twitter_processor
+    set_real_time_info_processor
+
     render 'train_operation/index'
   end
 
   def action_for_station_page
-    action_base_for_station_page( :train_operation )
+    action_base_for_station_page( :train_operation ) do
+      # station_ids = @station_info.station_infos_including_other_railway_lines.pluck( :id )
+      @railway_lines = @station_info.railway_lines_of_tokyo_metro
+      set_twitter_processor
+      set_real_time_info_processor
+    end
   end
 
   def action_for_railway_line_page
-    action_base_for_railway_line_page( :train_operation )
+    action_base_for_railway_line_page( :train_operation ) do
+      set_twitter_processor
+      set_real_time_info_processor
+    end
   end
 
   private

@@ -5,12 +5,17 @@ class StationFacilityController < ApplicationController
   # include ActionBaseForRailwayLinePage
   # include RailwayLineByParams
 
+  include TwitterProcessor
+  include RealTimeInfoProcessor
+
   def index
     @title = "駅のご案内"
     @railway_lines = ::RailwayLine.tokyo_metro
     @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
+
+    set_twitter_processor( :tokyo_metro )
 
     render 'station_facility/index'
   end
@@ -22,6 +27,7 @@ class StationFacilityController < ApplicationController
       # @display_google_map = true
 
       @point_infos = @station_facility_info.point_infos.includes( :category )
+      set_real_time_info_processor( railway_lines: @railway_lines.except_for_branch_lines )
 
       # set_station_info_for_google_map
       set_exit_info_for_google_map

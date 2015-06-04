@@ -1,5 +1,7 @@
 class DocumentController < ApplicationController
 
+  include TwitterProcessor
+
   def index
     @title = "開発ドキュメント"
     @models = ::TokyoMetro::Modules::Db::Model.list
@@ -58,6 +60,7 @@ class DocumentController < ApplicationController
     @title = "使い方・機能のご説明"
     @title_en = "How to use"
     @title_ja = @title
+    set_twitter_processor( :tokyo_metro )
     render 'document/how_to_use' , layout: 'application'
   end
 

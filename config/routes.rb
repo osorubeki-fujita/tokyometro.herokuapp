@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     to: 'train_operation#index'
 
   get 'train_operation/:railway_line' ,
+    # constraints: OnlyRailwayLineRequest ,
     constraints: { railway_line: /[a-z]+_line/ } ,
     to: 'train_operation#action_for_railway_line_page'
 
@@ -74,6 +75,7 @@ Rails.application.routes.draw do
     to: 'train_location#index'
 
   get 'train_location/:railway_line' ,
+    # constraints: OnlyRailwayLineRequestIncludingYurakuchoAndFukutoshinLine ,
     constraints: { railway_line: /(?:[a-z]+|yurakucho_and_fukutoshin)_line/ } ,
     to: 'train_location#action_for_railway_line_page'
 
@@ -83,12 +85,14 @@ Rails.application.routes.draw do
     to: 'railway_line#index'
 
   get 'railway_line/:railway_line' ,
+    # constraints: OnlyRailwayLineRequestIncludingYurakuchoAndFukutoshinLine ,
     constraints: { railway_line: /(?:[a-z]+|yurakucho_and_fukutoshin)_line/ } ,
     to: 'railway_line#action_for_railway_line_page'
 
   # -------- 駅施設
 
-  get 'station_facility(/index)' , to: 'station_facility#index'
+  get 'station_facility(/index)' ,
+    to: 'station_facility#index'
 
   get 'station_facility/:station' ,
     to: 'station_facility#action_for_station_page'
@@ -131,12 +135,12 @@ Rails.application.routes.draw do
   get 'passenger_survey/:station' ,
     to: 'passenger_survey#action_for_station_page'
 
-  #-------- Twitter
-  post 'twitter/minimize' , to: 'twitter#minimize'
-
   #-------- Document
   get 'document/table/:model_namespace_in_url(/:page)' ,
     to: 'document#table'
+
+  #-------- Update
+  post 'update/real_time_infos' , to: 'update#real_time_infos'
 
   #-------- その他
 

@@ -3,6 +3,8 @@ class StationTimetableController < ApplicationController
   include ActionBaseForStationPage
   include ActionBaseForRailwayLinePage
   include RailwayLineByParams
+  
+  include TwitterProcessor
 
   def index
     @title = "駅の時刻表"
@@ -10,6 +12,7 @@ class StationTimetableController < ApplicationController
     @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
     @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
+    set_twitter_processor( :tokyo_metro )
     render 'station_timetable/index'
   end
 
@@ -22,7 +25,9 @@ class StationTimetableController < ApplicationController
   end
 
   def action_for_railway_line_page
-    action_base_for_railway_line_page( :station_timetable , layout: :application )
+    action_base_for_railway_line_page( :station_timetable , layout: :application ) do
+      set_twitter_processor
+    end
   end
 
   private

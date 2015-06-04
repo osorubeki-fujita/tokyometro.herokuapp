@@ -70,13 +70,18 @@ class OnPageLoadHandler
     $.each list(@) , ->
       @.process()
       return
-    set_geo_location_info(@)
     return
 
-  set_geo_location_info = (v) ->
-    g = new GeoLocationProcessor()
-    g.set_info()
-    return
+
+class UpdateRealTimeInfo
+
+  constructor: ( @domain = $( '#real_time_info_and_update_button' ) ) ->
+
+  icons_related_to_update: ->
+    return @domain.children( '.content_header' ).find( 'i.fa-refresh , i.fa-spinner' )
+
+
+#-------- [ready] [page:load]
 
 # Turbolinks 対策
 # [NG] $ ->
@@ -86,9 +91,40 @@ class OnPageLoadHandler
 $( document ).on 'ready page:load' , ->
   h = new OnPageLoadHandler()
   h.process()
-  return
-
-$( document ).on 'ready page:load page:change' , ->
+  #----
+  p = new LinkDomainsToSetHoverEvent()
+  p.process()
+  #----
+  g = new GeoLocationProcessor()
+  g.set_info()
+  #----
   g = new GoogleMapInStationFacility()
   g.initialize_map()
+  #----
+  u = new UpdateRealTimeInfo()
+  i = u.icons_related_to_update()
+
+  $( document ).ajaxStart ->
+    i.addClass( 'fa-spin' )
+    return
+  $( document ).ajaxComplete ->
+    i.removeClass( 'fa-spin' )
+    return
+  #----
+  return
+
+#-------- [page:change]
+
+$( document ).on 'page:restore' , ->
+  g = new GeoLocationProcessor()
+  g.set_info()
+  #----
+  g = new GoogleMapInStationFacility()
+  g.initialize_map()
+
+#-------- [resize]
+
+$( document ).on 'resize' , ->
+  h = new OnPageLoadHandler()
+  h.process()
   return

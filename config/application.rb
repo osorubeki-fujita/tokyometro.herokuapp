@@ -37,6 +37,8 @@ module RailsTokyoMetro
 
     #----------------
 
+    config.autoload_paths += Dir[ ::Rails.root.join('lib', 'constraints') ]
+
     config.eager_load_paths += Dir[ ::Rails.root.join('app', 'decorators', 'concerns') ]
     config.eager_load_paths += Dir[ ::Rails.root.join('app', 'decorators', 'concerns','association') ]
     config.eager_load_paths += Dir[ ::Rails.root.join('app', 'models', 'concerns') ]

@@ -3,13 +3,19 @@ class RailwayLineController < ApplicationController
   include ActionBaseForRailwayLinePage
   include RailwayLineByParams
 
+  include TwitterProcessor
+  include RealTimeInfoProcessor
+
   def index
     @title = "路線のご案内"
     render 'railway_line/index'
   end
 
   def action_for_railway_line_page
-    action_base_for_railway_line_page( :railway_line , layout: :application )
+    action_base_for_railway_line_page( :railway_line , layout: :application ) do
+      set_twitter_processor( railway_lines: @railway_lines.except_for_branch_lines )
+      set_real_time_info_processor( railway_lines: @railway_lines.except_for_branch_lines )
+    end
   end
 
   private
