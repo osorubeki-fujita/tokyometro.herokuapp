@@ -97,23 +97,26 @@ class GoogleMapInStationFacility
     # console.log obj
     return obj
 
-  initialize_map: ->
+  initialize_map: () ->
     # console.log 'GoogleMapInStationFacility\#initialize_map'
     if has_map_canvas(@)
-      _default_map_options = default_map_options(@)
-      set_current_map_info( @ , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
-      @in_li_domains = false
+      google.maps.event.addDomListener( window , 'load' , map_init_function(@) )
+      google.maps.event.addDomListener( window , 'page:change' , map_init_function(@) )
 
-      init_function = =>
-        map = new google.maps.Map( map_canvas_element(@) , _default_map_options )
-
-        google.maps.event.addListener( map , 'idle', event_when_center_changed( @ , map ) )
-        google.maps.event.addListenerOnce( map , 'idle', set_hover_and_click_event_to_li_domain_groups( @ , map ) )
-        return
-
-      google.maps.event.addDomListener( window , 'load' , init_function )
     return
   
+  map_init_function = (v) ->
+    _default_map_options = default_map_options(v)
+    set_current_map_info( v , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
+    v.in_li_domains = false
+
+    map = new google.maps.Map( map_canvas_element(v) , _default_map_options )
+
+    google.maps.event.addListener( map , 'idle', event_when_center_changed( v , map ) )
+    google.maps.event.addListenerOnce( map , 'idle', set_hover_and_click_event_to_li_domain_groups( v , map ) )
+    return
+
+
   set_current_map_info = ( v , lat , lng , zoom ) ->
     v.current_map_info =
       lat: lat
@@ -284,8 +287,8 @@ class GoogleMapInStationFacility
       content: "<span class='info_in_tooltip'>クリックで地図の表示を固定</span>"
       items: '[class]'
       track: false
-    console.log 'set_tooltips'
-    console.log domains
+    # console.log 'set_tooltips'
+    # console.log domains
     domains.tooltip( option )
     return
 

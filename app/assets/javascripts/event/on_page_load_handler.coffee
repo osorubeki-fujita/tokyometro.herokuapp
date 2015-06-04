@@ -88,18 +88,22 @@ class UpdateRealTimeInfo
 # [NG] $( document ).live 'pageshow', ->
 # [OK] $( document ).on 'ready page:load' , ->
 
+
 $( document ).on 'ready page:load' , ->
+  # console.log 'ready page:load'
+  #----
   h = new OnPageLoadHandler()
   h.process()
   #----
   p = new LinkDomainsToSetHoverEvent()
   p.process()
   #----
-  g = new GeoLocationProcessor()
-  g.set_info()
+  # geo_and_map.call(@)
+  gl = new GeoLocationProcessor()
+  gl.set_info()
   #----
-  g = new GoogleMapInStationFacility()
-  g.initialize_map()
+  gm = new GoogleMapInStationFacility()
+  gm.initialize_map()
   #----
   u = new UpdateRealTimeInfo()
   i = u.icons_related_to_update()
@@ -115,16 +119,16 @@ $( document ).on 'ready page:load' , ->
 
 #-------- [page:change]
 
-$( document ).on 'page:restore' , ->
-  g = new GeoLocationProcessor()
-  g.set_info()
-  #----
-  g = new GoogleMapInStationFacility()
-  g.initialize_map()
+# $( document ).on 'page:change page:restore' , ->
+  # console.log 'page:change'
+  # #----
+  # g = new GoogleMapInStationFacility()
+  # g.initialize_map( 'page:change' )
 
 #-------- [resize]
 
 $( document ).on 'resize' , ->
+  console.log 'resize'
   h = new OnPageLoadHandler()
   h.process()
   return

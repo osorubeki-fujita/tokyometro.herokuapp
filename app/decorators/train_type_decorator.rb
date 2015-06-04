@@ -99,7 +99,7 @@ class TrainTypeDecorator < Draper::Decorator
   end
 
   def class_name_of_name_box
-    ary = [ css_class_in_document ]
+    ary = [ css_class_name ]
     unless color == "\#333333"
       ary << :train_type_displayed
     else
