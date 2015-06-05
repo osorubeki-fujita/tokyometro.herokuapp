@@ -63,8 +63,8 @@ class StationFacilityInfosOfEachType
 
   process: ->
     set_title_width(@)
-    process_each_side_domain(@)
     process_specific_infos(@)
+    process_each_side_domain(@)
     process_toilet_icons(@)
     return
 
@@ -81,11 +81,21 @@ class StationFacilityInfosOfEachType
     return
 
   process_specific_infos = (v) ->
-    $.each [ operation_day_domains(v) , escalator_direction_domains(v)  , service_time_domains(v) , remark_domains(v) ] , ->
-      if $(@).length > 0
-        length_processor = new DomainsCommonProcessor( $(@) )
-        length_processor.set_all_of_uniform_width_to_max()
-      return
+    process_specific_infos_of_each_category( v , operation_day_domains(v) )
+    process_specific_infos_of_each_category( v , escalator_direction_domains(v) )
+    process_specific_infos_of_each_category( v , service_time_domains(v) )
+    process_specific_infos_of_each_category( v , remark_domains(v) , false )
+    return
+
+  process_specific_infos_of_each_category = ( v , domains , set_length_to_even = true ) ->
+    if domains.length > 0
+      p = new DomainsCommonProcessor( domains )
+      p.set_all_of_uniform_width_to_max()
+      if set_length_to_even
+        domains.each ->
+          p = new LengthToEven( $(@) , true )
+          p.set()
+          return
     return
 
   process_toilet_icons = (v) ->
