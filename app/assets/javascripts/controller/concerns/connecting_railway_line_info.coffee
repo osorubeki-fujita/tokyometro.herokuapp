@@ -1,4 +1,4 @@
-class ToolTipsOnConnectingRailwayLineInfo
+class ConnectingRailwayLineInfo
 
   constructor: ->
 
@@ -7,8 +7,8 @@ class ToolTipsOnConnectingRailwayLineInfo
 
   railway_lines = (v) ->
     return $( 'li.railway_line' )
-
-  process: ->
+  
+  set_tooltip = (v) ->
     _option =
       potision:
         my: "left top"
@@ -16,17 +16,17 @@ class ToolTipsOnConnectingRailwayLineInfo
       content: ->
         element = $(@)
         if checkAttr( "title" , { is_included_in: element } )
-          return "<span class='info_in_tooltip'>#{ element.attr( "title" ) }</span>"
+          return "<span class='in_tooltip text_ja'>#{ element.attr( "title" ) }</span>"
       items: "[title]"
       track: false
 
-    $.each [ transfer_infos(@) , railway_lines(@) ] , ->
+    $.each [ transfer_infos(v) , railway_lines(v) ] , ->
       @.find( '.info , .remark' ).tooltip( _option )
       return
     return
 
+  process: ->
+    set_tooltip(@)
+    return
 
-$( document ).on 'ready page:load' , ->
-  c = new ToolTipsOnConnectingRailwayLineInfo()
-  c.process()
-  return
+window.ConnectingRailwayLineInfo = ConnectingRailwayLineInfo

@@ -54,6 +54,8 @@ class OnPageLoadHandler
     problems_processor = new NowDevelopingProcessor( $( '#problems' ) )
     ul_side_menu_links = new UlSideMenuLinks()
     ul_station_related_links = new UlStationRelatedLinks()
+    connecting_railway_line = new ConnectingRailwayLineInfo()
+    on_click = new OnClickHandler()
 
     ary.push links_to_station_info_pages
     ary.push selection_header_processor
@@ -63,6 +65,8 @@ class OnPageLoadHandler
     ary.push problems_processor
     ary.push ul_side_menu_links
     ary.push ul_station_related_links
+    ary.push connecting_railway_line
+    ary.push on_click
 
     return ary
 

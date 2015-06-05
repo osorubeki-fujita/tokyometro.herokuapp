@@ -67,7 +67,7 @@ class TwittersProcessor
     return
 
   change_display_settings: ->
-    d = new DisplaySettings( @domain , button(@) , i_in_button(@) )
+    d = new DisplaySettingsOnClick( @domain , button(@) , i_in_button(@) )
     d.process()
     return
 

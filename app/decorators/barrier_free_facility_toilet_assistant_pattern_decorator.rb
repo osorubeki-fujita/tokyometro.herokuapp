@@ -3,7 +3,7 @@ class BarrierFreeFacilityToiletAssistantPatternDecorator < Draper::Decorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { toilet_assistant_info: self }
-%ul{ class: :toilet_assistants }<
+%ul{ class: [ :toilet_assistants  , :clearfix ] }<
   - ary = toilet_assistant_info.to_a
   - if ary.present?
     - ary.each do | assistant |

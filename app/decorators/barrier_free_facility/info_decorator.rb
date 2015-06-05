@@ -107,8 +107,8 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%li{ class: :facility }
-  %div{ class: :image_and_number }
+%li{ class: [ :facility , :clearfix ] }
+  %div{ class: [ :image_and_number , :clearfix ] }
     = image_tag( this.image_filename , class: :barrier_free_facility , title: this.title_added_to_image )
     = this.render_place_name_number
   %div{ class: :info }

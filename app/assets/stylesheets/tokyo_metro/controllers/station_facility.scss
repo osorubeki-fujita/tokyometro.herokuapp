@@ -3,16 +3,11 @@
 @import '../fundamental_settings.scss' ;
 @import 'concerns/connecting_railway_line_info.scss' ;
 
-%lineCodeAndColorBoxInStationFacilityRailwayLineInfo {
-  @extend %floatLeft ;
-  @extend %margin4 ;
-}
-
 %stationFacilityRailwayLineInfo {
   ul {
     @extend %clearUlDefaultSettings ;
-    @extend %marginBottom16 ;
     @extend %connectingRailwayLineInfo ;
+    @include margin_bottom_16 ;
     height: auto ;
   }
   clear: both ;
@@ -22,9 +17,9 @@
   .title {
     $font_size_ja: 12pt ;
     $font_size_en: $font_size_ja * 0.75 ;
-    @extend %paddingLeft4 ;
-    @extend %paddingRight16 ;
-    @extend %marginBottom8 ;
+    @include padding_left_4 ;
+    @include padding_right_16 ;
+    @include margin_bottom_8 ;
     .text_ja {
       font: {
         size: $font_size_ja ;
@@ -131,23 +126,19 @@
 
 
 %stationFacilityInsideAndOutside {
-  @extend %floatLeft ;
-  padding: {
-    left: 0px ;
-  }
-  margin: {
-    top: 0px ;
-  }
-  @extend %marginLeft32 ;
-  @extend %marginBottom8 ;
+  @include padding_left_0 ;
+  @include margin_top_0 ;
+  @include margin_left_32 ;
+  @include margin_bottom_8 ;
+  @include float_left ;
   clear: both ;
   // width: 360px ;
   li {
     list-style: none ;
   }
   .title {
-    @extend %marginBottom8 ;
-    @extend %floatLeft ;
+    @include margin_bottom_8 ;
+    @include float_left ;
     border: {
       bottom: dotted 1px $operator_color ;
     }
@@ -157,7 +148,6 @@
       size: $font_size_ja ;
     }
     .text_en {
-      // @extend %floatLeft ;
       font: {
         size: $font_size_en ;
       }
@@ -169,7 +159,7 @@
 }
 
 %commonSettingsOfServiceDetail {
-  @extend %floatLeft ;
+  @include float_left ;
   border: {
     left: {
       style: solid ;
@@ -189,8 +179,8 @@
 }
 
 %serviceDetailPreciseInfo {
-  @extend %floatLeft ;
-  @extend %marginRight8 ;
+  @include float_left ;
+  @include margin_right_8 ;
   font: {
     size: 8pt ;
   }
@@ -208,7 +198,7 @@
 
 %stationFacilityInfoNumber {
   .number {
-    @extend %floatLeft ;
+    @include float_left ;
     color: #aaa ;
     width: 32px ;
     font: {
@@ -219,7 +209,7 @@
 
 %stationFacilityInfoImage {
   img.barrier_free_facility {
-    @extend %floatLeft ;
+    @include float_left ;
     height: 48px ;
     width: auto ;
   }
@@ -227,7 +217,7 @@
 
 %stationFacilityInfoServiceDetailOperationDay {
   .operation_day {
-    @extend %floatLeft ;
+    @include float_left ;
     @extend %serviceDetailPreciseInfo ;
     border: solid 1px #eee ;
     background-color: #fafafa ;
@@ -236,12 +226,9 @@
 
 %stationFacilityInfoServiceDetailEscalatorDirection {
   .service_detail {
-    // @extend %floatLeft ;
-    // @extend %marginBottom4 ;
     .escalator_direction {
-      @extend %floatLeft ;
+      @include float_left ;
       @extend %serviceDetailPreciseInfo ;
-      @extend %marginBottom4 ;
       border: solid 1px $jp_traditional_aomidori ;
       background-color: rgba( $jp_traditional_aomidori , 0.12 ) ;
     }
@@ -252,15 +239,12 @@
   .service_time {
     display: block ;
     @extend %commonSettingsOfServiceDetail ;
-    margin: {
-      bottom: 2px ;
-    }
   }
 }
 
 %stationFacilityInfoServiceDetailToiletAssistants {
   ul.toilet_assistants {
-    @extend %marginBottom4 ;
+    @include margin_bottom_4 ;
     padding: {
       left: 0px ;
     }
@@ -296,13 +280,9 @@
 
 #station_facility_infos {
   ul#station_facility_info {
-    padding: {
-      left: 0px ;
-    }
-    margin: {
-      top: 0px ;
-      bottom: 0px ;
-    }
+    @include padding_left_0 ;
+    @include margin_top_0 ;
+    @include margin_bottom_0 ;
     li {
       &.elevator , &.escalator , &.toilet , &.link_for_mobility_scooter , &.stairlift {
         list-style: none ;
@@ -311,18 +291,17 @@
   }
   .title {
     clear: both ;
-    @extend %marginBottom8 ;
+    @include float_left ;
+    @include margin_bottom_8 ;
     border: {
       bottom: solid 1px $operator_color ;
     }
     $font_size_ja: 14pt ;
     $font_size_en: $font_size_ja * 0.75 ;
-    @extend %floatLeft ;
     font: {
       size: $font_size_ja ;
     }
     .text_en {
-      // @extend %floatLeft ;
       font: {
         size: $font_size_en ;
       }
@@ -336,17 +315,16 @@
   }
   .facility {
     clear: both ;
-    @extend %marginLeft16 ;
-    @extend %marginBottom8 ;
+    @include margin_left_16 ;
+    @include margin_bottom_8 ;
     .image_and_number {
-      @extend %floatLeft ;
+      @include float_left ;
       @extend %stationFacilityInfoNumber ;
       @extend %stationFacilityInfoImage ;
     }
     .info {
       clear: none ;
-      @extend %floatLeft ;
-      // @extend %marginRight4 ;
+      @include float_left ;
       font: {
         size: 9pt ;
       }
@@ -354,7 +332,7 @@
         font: {
           size: 10pt ;
         }
-        @extend %marginBottom4 ;
+        @include margin_bottom_4 ;
         display: block ;
       }
       %commonSettingsOfUlServiceDetail {
@@ -367,6 +345,7 @@
         @extend %commonSettingsOfUlServiceDetail ;
         ul.service_detail {
           @extend %commonSettingsOfUlServiceDetail ;
+          @include margin_bottom_2 ;
           list-style: none ;
           li {
             list-style: none ;

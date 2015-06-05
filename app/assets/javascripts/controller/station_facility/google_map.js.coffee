@@ -284,7 +284,7 @@ class GoogleMapInStationFacility
       show:
         effect: "slideDown"
         delay: _sleep_time_when_hover_on
-      content: "<span class='info_in_tooltip'>クリックで地図の表示を固定</span>"
+      content: "<span class='in_tooltip text_ja'>クリックで地図の表示を固定</span>"
       items: '[class]'
       track: false
     # console.log 'set_tooltips'

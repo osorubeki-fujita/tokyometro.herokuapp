@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+span.in_tooltip {
+  &.text , &.text_ja , &.text_en {
+    font: {
+      size: 9pt ;
+    }
+  }
+}

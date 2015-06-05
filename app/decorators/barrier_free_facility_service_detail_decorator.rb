@@ -4,7 +4,7 @@ class BarrierFreeFacilityServiceDetailDecorator < Draper::Decorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%ul{ class: :service_detail }<
+%ul{ class: [ :service_detail , :clearfix ] }<
   - if this.has_any_info?
     - pattern = this.barrier_free_facility_service_detail_pattern.decorate
     - # 利用可能日

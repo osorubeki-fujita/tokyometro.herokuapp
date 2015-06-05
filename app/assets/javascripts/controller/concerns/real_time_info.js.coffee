@@ -61,7 +61,7 @@ class RealTimeInfoProcessor
     return
 
   change_display_settings: ->
-    d = new DisplaySettings( @domain , size_changing_button(@) , i_in_size_changing_button(@) )
+    d = new DisplaySettingsOnClick( @domain , size_changing_button(@) , i_in_size_changing_button(@) )
     d.process()
     return
 

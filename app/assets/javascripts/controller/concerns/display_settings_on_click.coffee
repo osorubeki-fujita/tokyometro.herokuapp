@@ -1,20 +1,4 @@
-class OnClickHandler
-
-  list = (v) ->
-    ary = []
-    t = new TwittersProcessor()
-    r = new RealTimeInfoProcessor()
-    ary.push t
-    ary.push r
-    return ary
-
-  process: ->
-    # console.log 'OnClickHandler\#process'
-    $.each list(@) , ->
-      @.set_size_change_event()
-    return
-
-class DisplaySettings
+class DisplaySettingsOnClick
 
   constructor: ( @domain , @button , @i_in_button ) ->
 
@@ -36,9 +20,4 @@ class DisplaySettings
       @i_in_button.removeClass( 'fa-chevron-down' ).addClass( 'fa-chevron-up' )
     return
 
-window.DisplaySettings = DisplaySettings
-
-$( document ).on 'ready page:load' , ->
-  h = new OnClickHandler()
-  h.process()
-  return
+window.DisplaySettingsOnClick = DisplaySettingsOnClick
