@@ -40,14 +40,6 @@ class Station::InfoDecorator < Draper::Decorator
     }
   end
 
-  def link_title_to_station_page_ja
-    "#{ station_codes_in_link_title } #{ name_ja_actual } - #{ name_hira } (#{ name_en }) "
-  end
-
-  def link_title_to_station_page_en
-    "#{ station_codes_in_link_title } #{ name_en } - #{ name_ja_actual } （#{ name_hira }）"
-  end
-
   def render_name_ja( with_subname: true , prefix: nil , suffix: nil )
     render_name_ja_or_hira( name_ja_actual , with_subname , prefix , suffix )
   end
@@ -157,28 +149,6 @@ class Station::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  # 東京メトロの路線情報を表示する method
-  def render_tokyo_metro_railway_lines( request )
-    h_locals = {
-      this: self ,
-      request: request ,
-      railway_lines_of_tokyo_metro: railway_lines_of_tokyo_metro ,
-      c_railway_lines: connecting_railway_lines_of_the_same_operator_connected_to_another_station
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :tokyo_metro_railway_lines }
-  = ::ConnectingRailwayLine::InfoDecorator.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
-  %ul{ id: :railway_lines_in_this_station , class: [ :railway_lines , :clearfix ] }
-    - railway_lines_of_tokyo_metro.each do | railway_line |
-      = ::TokyoMetro::App::Renderer::RailwayLine::LinkToPage.new( request , railway_line.decorate ).render
-  - if c_railway_lines.present?
-    %ul{ id: :railway_lines_in_another_station , class: [ :railway_lines , :clearfix ] }
-      - c_railway_lines.each do | connecting_railway_line_info |
-        = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line_info.decorate ).render
-    HAML
-  end
-
   def render_link_to_station_facility_info_of_connecting_other_stations
     _c_railway_lines = connecting_railway_lines_of_the_same_operator_connected_to_another_station
     if _c_railway_lines.present?
@@ -198,26 +168,6 @@ class Station::InfoDecorator < Draper::Decorator
           = ::TokyoMetro::App::Renderer::Icon.tokyo_metro( request , 1 ).render
         %div{ class: :text }
           = station_info.decorate.render_name_ja_and_en( suffix_ja: "駅のご案内" , prefix_en: "Information of " , suffix_en: " Sta." )
-      HAML
-    end
-  end
-
-  # 他事業者の乗り換え情報を表示する method
-  def render_railway_lines_except_for_tokyo_metro
-    # @param c_railway_lines [Array <RailwayLine>] 東京メトロ以外の乗り入れ路線
-    _connecting_railway_lines_except_for_tokyo_metro = connecting_railway_lines_except_for_tokyo_metro
-
-    if _connecting_railway_lines_except_for_tokyo_metro.present?
-      h_locals = {
-        c_railway_lines: _connecting_railway_lines_except_for_tokyo_metro
-      }
-
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :other_railway_lines }
-  = ::ConnectingRailwayLine::InfoDecorator.render_title_of_other_railway_lines_in_station_facility_info
-  %ul{ id: :railway_lines_except_for_tokyo_metro , class: [ :railway_lines , :clearfix ] }
-    - c_railway_lines.each do | connecting_railway_line_info |
-      = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line_info.decorate ).render
       HAML
     end
   end
@@ -386,7 +336,7 @@ class Station::InfoDecorator < Draper::Decorator
       this: self ,
       action: station_page_name ,
       railway_line: r ,
-      title: link_title_to_station_page_ja ,
+      title: title.link_to_station_page.ja ,
       set_anchor: set_anchor
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
@@ -404,7 +354,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_link_to_station_page_en
-    h.link_to( name_en , station_page_name , title: link_title_to_station_page_en )
+    h.link_to( name_en , station_page_name , title: title.link_to_station_page.en )
   end
 
   def render_link_to_station_facility_page_ja
@@ -498,16 +448,6 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def google_map
-    ::Station::InfoDecorator::InGoogleMap.new( self )
-  end
-
-  def train_location
-    ::Station::InfoDecorator::InTrainLocation.new( self )
-  end
-
-  private
-
   def station_codes
     ary = object.station_infos_including_other_railway_lines.select_tokyo_metro.map( &:station_code )
     if at_ayase?
@@ -516,10 +456,24 @@ class Station::InfoDecorator < Draper::Decorator
       ary
     end
   end
-
-  def station_codes_in_link_title
-    "\[ #{ station_codes.join(" , " ) } \]"
+  
+  def title
+    ::Station::InfoDecorator::Title.new( self )
   end
+
+  def google_map
+    ::Station::InfoDecorator::InGoogleMap.new( self )
+  end
+
+  def train_location
+    ::Station::InfoDecorator::InTrainLocation.new( self )
+  end
+  
+  def on_station_facility_page
+    ::Station::InfoDecorator::OnStationFacilityPage.new( self )
+  end
+
+  private
 
   def code_image_filename
     dirname = "provided_by_tokyo_metro/station_number"

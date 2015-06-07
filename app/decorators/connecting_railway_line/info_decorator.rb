@@ -34,7 +34,7 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
       return h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name , anchor: _railway_line_decorated.travel_time_table_id )
     end
 
-    h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name )
+    return h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name )
   end
 
   private

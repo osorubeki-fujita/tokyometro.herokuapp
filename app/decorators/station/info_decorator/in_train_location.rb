@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InTrainLocation < ::TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def render_as_terminal_station
     h.render inline: <<-HAML , type: :haml , locals: { this: decorator }

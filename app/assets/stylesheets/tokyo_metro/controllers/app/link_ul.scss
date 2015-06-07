@@ -115,7 +115,7 @@ $border_color_of_li_in_link: #ddd ;
 %iconToExternalPageInLinkLi {
   .link_to_another_website , .open_another_window {
     float: right ;
-    width: 20px ;
+    width: 16px ;
     text-align: center ;
   }
   .open_another_window {
@@ -138,15 +138,11 @@ $border_color_of_li_in_link: #ddd ;
 
 //-------- アイコンの設定
 
-%imageInLinkLi18 {
+%imageInLinkLi16 {
   div.icon {
-    $length: 18px ;
+    $length: 16px ;
     width: $length ;
     height: $length ;
-    img {
-      width: $length ;
-      height: $length ;
-    }
   }
 }
 
@@ -155,17 +151,7 @@ $border_color_of_li_in_link: #ddd ;
     $length: 32px ;
     width: $length ;
     height: $length ;
-    img {
-      width: $length ;
-      height: $length ;
-    }
-    @extend %marginRight8 ;
-  }
-}
-
-%smallImageIconInLinkLi {
-  li.small {
-    @extend %imageInLinkLi18 ;
+    @include margin_right_8 ;
   }
 }
 
@@ -173,13 +159,9 @@ $border_color_of_li_in_link: #ddd ;
   li {
     div.icon {
       $width: 32px ;
-      $height: 18px ;
+      $height: 16px ;
       width: $width ;
       height: $height ;
-      img {
-        width: $height ;
-        height: $height ;
-      }
     }
   }
 }
@@ -323,7 +305,6 @@ ul#links_to_document_pages {
   @extend %liBorderSettingsOfLeftSideMenu ;
   //----
   //
-  @extend %smallImageIconInLinkLi ;
   @extend %linkHoverSettingsOfLinkToDocumentPages ;
   @extend %commonSettingsOfLiInLinkUl ;
   @extend %marginBottom16 ;

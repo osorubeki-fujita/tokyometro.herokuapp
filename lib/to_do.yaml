@@ -15,8 +15,11 @@ SEO:
   - "パンくずリスト"
 
 system:
-  - "リアルタイム情報 更新ボタン"
-  # "Ajaxの実験に使用、実際はcssとjQueryで処理"
+  -
+    title: "リアルタイム情報"
+    contents:
+      - 更新ボタンの動作
+      - 右側に路線ページへのリンクを設置
   -
     title: "train_operation（列車運行情報） , train_location（列車位置情報）ページの完成"
     contents:

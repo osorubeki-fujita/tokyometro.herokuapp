@@ -4,8 +4,15 @@ namespace :temp do
     h = ::Hash.new
     sleep(10)
     http_client = ::HTTPClient.new
+    [ :connect_timeout , :send_timeout , :receive_timeout ].each do | timeout_type |
+      http_client.send( "#{ timeout_type }=" , 300 )
+    end
+
     sleep(10)
     [ :kasumigaseki , :ginza ].each do | sta |
+      unless h[ sta ].present?
+        h[ sta ] = ::Hash.new
+      end
       h[ sta ][ :json ] = ::TokyoMetro::Api::StationFacility.get( http_client , same_as: "odpt.stationFacility:TokyoMetro.#{ sta.capitalize }" , perse_json: true ).first
       sleep(1)
       h[ sta ][ :instance ] = ::TokyoMetro::Api::StationFacility.get( http_client , same_as: "odpt.stationFacility:TokyoMetro.#{ sta.capitalize }" , perse_json: true , generate_instance: true ).first
