@@ -9,12 +9,13 @@
   padding: 8px ;
   .icon {
     width: 64px ;
-    @extend %floatLeft ;
-    @extend %marginRight8 ;
+    @include float_left ;
+    @include margin_right_8 ;
   }
   .icon , .icons {
-    @extend %floatLeft ;
-    @extend %marginRight8 ;
+    @include float_left ;
+    @include margin_right_8 ;
+    text-align: center ;
   }
   .icons {
     .icon {
@@ -22,8 +23,8 @@
     }
   }
   .text {
-    @extend %floatLeft ;
-    @extend %marginRight16 ;
+    @include float_left ;
+    @include margin_right_16 ;
   }
 }
 

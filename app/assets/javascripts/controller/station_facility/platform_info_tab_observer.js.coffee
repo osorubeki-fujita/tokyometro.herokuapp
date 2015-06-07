@@ -2,26 +2,36 @@
 
 class StationFacilityPlatformInfoTabObserver
 
-  constructor: ( @anchor = window.location.hash.replace( "\#" , "" ) ) ->
+  constructor: ->
+    # console.log "StationFacilityPlatformInfoTabObserver\#constructor"
+    @anchor = anchor_without_char(@)
+    # console.log @anchor
 
-  location_hash_was_changed = ( value ) ->
-    return( window.location.hash.replace( "\#" , "" ) isnt value.anchor )
+    # s = new StationFacility()
+    # s.change_platform_info_tabs()
+    return
+
+  duration: ->
+    return 1500
+
+  anchor_without_char = (v) ->
+    return window.location.hash.replace( "\#" , "" ) 
+
+  location_hash_was_changed = (v) ->
+    return( anchor_without_char(v) isnt v.anchor )
+
+  listen: ->
+    # console.log 'StationFacilityPlatformInfoTabObserver#listen'
+    if location_hash_was_changed(@)
+      @anchor = anchor_without_char(@)
+      # console.log 'location_hash_was_changed: to ' + @anchor
+      hook(@)
+    return
 
   hook = ( value ) ->
     # console.log 'StationFacilityPlatformInfoTabObserver#hook'
     s = new StationFacilityPlatformInfoTabsAndContents()
     s.hook_while_observing_platform_infos()
     return
-
-  listen: ->
-    # console.log 'StationFacilityPlatformInfoTabObserver#listen'
-    if location_hash_was_changed( @ )
-      # console.log @anchor
-      @anchor = window.location.hash.replace( "\#" , "" )
-      hook(@)
-    return
-
-  duration: ->
-    return 1500
 
 window.StationFacilityPlatformInfoTabObserver = StationFacilityPlatformInfoTabObserver

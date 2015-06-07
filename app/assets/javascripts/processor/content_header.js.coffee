@@ -10,7 +10,7 @@ class ContentHeaderProcessor
 
   width_of_icon_domains = (v) ->
      p = new DomainsCommonProcessor( icon_domains(v) )
-     return p.max_outer_width( false )
+     return p.max_width( false )
 
   max_width_of_font_awesome_icons = (v) ->
      p = new DomainsCommonProcessor( font_awesome_icons(v) )
@@ -20,24 +20,43 @@ class ContentHeaderProcessor
     return Math.ceil( Math.max( width_of_icon_domains(v) , max_width_of_font_awesome_icons(v) ) )
 
   process: ->
-    process_each_icon(@)
     process_each_domain(@)
     return
 
-  process_each_icon = (v) ->
-    _width_of_icon_domains_new = width_of_icon_domains_new(v)
-    font_awesome_icons(v).each ->
-      p = new DomainsHorizontalAlignProcessor( $( this ) , _width_of_icon_domains_new )
-      p.process()
-      return
-    icon_domains(v).each ->
-      $( this ).css( 'width' , _width_of_icon_domains_new )
-      return
-    return
+#   process_each_icon = (v) ->
+#     _width_of_icon_domains_new = width_of_icon_domains_new(v)
+# 
+#     console.log '===='
+#     console.log "ContentHeaderProcessor\#process_each_icon: width_of_icon_domains_new"
+#     console.log v.domains
+#     console.log 'w: ' + _width_of_icon_domains_new
+# 
+#     console.log "---- font_awesome_icons"
+# 
+#     font_awesome_icons(v).each ->
+#       console.log 'width (before): ' + $(@).width()
+# 
+#       l = new LengthToEven( $(@) )
+#       l.set()
+#       p = new DomainsHorizontalAlignProcessor( $(@) , _width_of_icon_domains_new )
+#       p.process()
+# 
+#       console.log 'width (after): ' + $(@).width()
+#       return
+# 
+#     console.log "---- icon_domains"
+# 
+#     icon_domains(v).each ->
+#       console.log 'width (before): ' + $(@).width()
+#       $(@).css( 'width' , _width_of_icon_domains_new )
+#       console.log 'width (after): ' + $(@).width()
+#       return
+# 
+#     return
 
   process_each_domain = (v) ->
     v.domains.each ->
-      _title = new ContentHeader( $( this ) )
+      _title = new ContentHeader( $(@) )
       _title.process()
       return
     return
@@ -94,7 +113,6 @@ class ContentHeader
     process_text_domains(@)
     process_buttons(@)
     set_vertical_align(@)
-    # set_height(@)
     return
 
   process_link_info = (v) ->
@@ -124,11 +142,6 @@ class ContentHeader
     p = new DomainsVerticalAlignProcessor( v.domain.children() , h )
     p.process()
     return
-
-  # set_height = (v) ->
-    # h = max_height_of_icon_and_text(v)
-    # v.domain.css( 'height' , h )
-    # return
 
 class LinkInfoToTrainLocation
 

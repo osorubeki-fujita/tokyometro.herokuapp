@@ -14,6 +14,8 @@ class BarrierFreeFacilityServiceDetailDecorator < Draper::Decorator
       = this.escalator_direction.decorate.render
     - # 利用可能時間
     = pattern.render_service_time_info
+
+    - # = this.id.to_s + " / " + pattern.id.to_s
     HAML
   end
 

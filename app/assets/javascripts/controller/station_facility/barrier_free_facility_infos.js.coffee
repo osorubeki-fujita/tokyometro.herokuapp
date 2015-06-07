@@ -72,19 +72,18 @@ class StationFacilityInfosOfEachType
     title_domain(v).css( 'width' , v.width )
     return
 
-  process_each_side_domain = (v) ->
-    $.each [ inside(v) , outside(v) ] , ->
-      instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea( $(@) , v.width )
-      # console.log $(@)
-      instance_of_each_area.process()
-      return
-    return
-
   process_specific_infos = (v) ->
     process_specific_infos_of_each_category( v , operation_day_domains(v) )
     process_specific_infos_of_each_category( v , escalator_direction_domains(v) )
     process_specific_infos_of_each_category( v , service_time_domains(v) )
     process_specific_infos_of_each_category( v , remark_domains(v) , false )
+    return
+
+  process_each_side_domain = (v) ->
+    $.each [ inside(v) , outside(v) ] , ->
+      instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea( $(@) , v.width )
+      instance_of_each_area.process()
+      return
     return
 
   process_specific_infos_of_each_category = ( v , domains , set_length_to_even = true ) ->
@@ -125,8 +124,6 @@ class StationFacilityInfosOfEachType
 class StationFacilityInfosOfEachTypeAndLocatedArea
 
   constructor: ( @domain , @width ) ->
-    # console.log @width
-    return
 
   title_domain = (v) ->
     return v.domain.children( '.title' ).first()

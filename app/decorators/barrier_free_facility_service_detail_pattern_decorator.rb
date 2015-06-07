@@ -31,14 +31,10 @@ class BarrierFreeFacilityServiceDetailPatternDecorator < Draper::Decorator
 
   def render_service_time_info
     if has_service_time_info?
-      # puts "have service time info"
-      # puts object.to_s
       h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %li{ class: :service_time }<
   = "利用可能時間：" + this.service_time_info( skip_validity_check: true )
       HAML
-    else
-      # puts "Not have service time info"
     end
   end
 

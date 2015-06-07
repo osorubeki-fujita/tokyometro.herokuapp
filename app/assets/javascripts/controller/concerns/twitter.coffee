@@ -1,6 +1,9 @@
 class TwittersProcessor
 
   constructor: ( @domain = $( '#twitters' ) ) ->
+  
+  has_twitter_info = (v) ->
+    return v.domain.length > 0
 
   content_header = (v) ->
     return v.domain
@@ -23,16 +26,13 @@ class TwittersProcessor
       .first()
 
   process: ->
-    process_header(@)
+    if has_twitter_info(@)
+      process_header(@)
     return
 
   process_header = (v) ->
-    # console.log 'Twitters\#process_header'
-    # t = new ContentHeaderProcessor( v.domain.children( '.content_header' ) )
     t = new ContentHeaderProcessor( content_header(v) )
     t.process()
-    # t = new TwitterHeader( content_header(v) )
-    # t.process()
     return
 
   embed_script: ->
@@ -49,7 +49,6 @@ class TwittersProcessor
       p = 'http'
     else
       p = 'https'
-    # console.log p
     unless d.getElementById( id )
       js = d.createElement(s)
       js.id = id
@@ -58,10 +57,8 @@ class TwittersProcessor
     return
 
   set_size_change_event: ->
-    # console.log 'TwittersProcessor\#set_size_change_event'
     _this = @
     button(@).on 'click' , ->
-      # console.log 'click'
       _this.change_display_settings()
       return
     return

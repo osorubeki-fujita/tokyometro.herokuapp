@@ -107,8 +107,6 @@ class EachRealTimeInfo
       t = new ContentHeaderProcessor( $(@) )
       t.process()
       return
-    # p = new DomainsCommonProcessor( titles(v) )
-    # domain_of_titles(v).css( 'height' , p.sum_outer_height( true ) )
     return
 
   # set_height_of_li_domains = (v) ->

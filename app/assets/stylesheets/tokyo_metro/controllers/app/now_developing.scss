@@ -13,8 +13,8 @@
 }
 
 #now_developing , #problems {
-  @extend %floatLeft ;
-  @extend %marginBottom16 ;
+  @include float_left ;
+  @include margin_bottom_16 ;
   .content_header {
     color: #fff ;
   }

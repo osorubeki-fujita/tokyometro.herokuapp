@@ -2,16 +2,6 @@
 
 @import '../../fundamental_settings.scss' ;
 
-// 現在不使用
-%inputBoxShadow {
-  $width: 1px ;
-  $height: 1px ;
-  $bokeh: 1px ;
-  $widen: 1px ;
-  $color: #666 ;
-  @include box_shadow( $width , $height , $bokeh , $widen , $color ) ;
-}
-
 #real_time_info_and_update_button {
   border: solid 1px #333 ;
   .content_header {
@@ -40,6 +30,7 @@
       @include float_left ;
       @include margin_right_4 ;
       width: 20px ;
+      text-align: center ;
     }
     .text {
       @include float_left ;

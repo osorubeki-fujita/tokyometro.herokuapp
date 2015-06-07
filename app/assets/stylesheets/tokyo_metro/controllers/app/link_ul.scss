@@ -25,12 +25,8 @@ $border_color_of_li_in_link: #ddd ;
 
 %commonSettingsOfLiInLinkUl {
   height: auto ;
-  margin: {
-    top: 0px ;
-  }
-  padding: {
-    left: 0px ;
-  }
+  @include margin_top_0 ;
+  @include padding_left_0 ;
   //
   li.normal , li.small {
     @extend %liBaseSettingsInLinkUl ;
@@ -39,14 +35,15 @@ $border_color_of_li_in_link: #ddd ;
       bottom: -1 * $width_of_li_border_in_link ;
     }
     .text , .text_large , .model_name {
-      @extend %floatLeft ;
+      @include float_left ;
     }
     div.icon {
-      @extend %floatLeft ;
-      @extend %marginRight4 ;
+      @include float_left ;
+      @include margin_right_4 ;
+      text-align: center ;
     }
     .link_type {
-      @extend %floatRight ;
+      @include float_right ;
     }
     .text_en {
       color: #999 ;
@@ -118,6 +115,8 @@ $border_color_of_li_in_link: #ddd ;
 %iconToExternalPageInLinkLi {
   .link_to_another_website , .open_another_window {
     float: right ;
+    width: 20px ;
+    text-align: center ;
   }
   .open_another_window {
     color: #ddd ;

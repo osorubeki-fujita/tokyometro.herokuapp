@@ -1,15 +1,44 @@
 namespace :temp do
+  task :debug_kasumigaseki_and_ginza_20150608 => :environment do
+
+    h = ::Hash.new
+    sleep(10)
+    http_client = ::HTTPClient.new
+    sleep(10)
+    [ :kasumigaseki , :ginza ].each do | sta |
+      h[ sta ][ :json ] = ::TokyoMetro::Api::StationFacility.get( http_client , same_as: "odpt.stationFacility:TokyoMetro.#{ sta.capitalize }" , perse_json: true ).first
+      sleep(1)
+      h[ sta ][ :instance ] = ::TokyoMetro::Api::StationFacility.get( http_client , same_as: "odpt.stationFacility:TokyoMetro.#{ sta.capitalize }" , perse_json: true , generate_instance: true ).first
+      sleep(1)
+    end
+
+    c_escalator_4 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Escalator.Outside.4"
+    c_escalator_5 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Escalator.Outside.5"
+
+    [ c_escalator_4 , c_escalator_4 ].each do | escalator |
+      puts h[ :kasumigaseki ][ :json ][ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == escalator }.inspect
+      puts h[ :kasumigaseki ][ :instance ].barrier_free_facilities.find { | item | item.same_as == escalator }.inspect
+      puts ""
+    end
+    
+    k_h_escalator_2 = "odpt.StationFacility:TokyoMetro.Hibiya.Ginza.Escalator.Outside.4"
+    
+    puts h[ :ginza ][ :json ][ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == k_h_escalator_2 }.inspect
+    puts h[ :ginza ][ :instance ].barrier_free_facilities.find { | item | item.same_as == k_h_escalator_2 }.inspect
+  end
+  
+end
+
+
+__END__
+
+namespace :temp do
+
   task :connecting_railway_line_note_20150605 => :environment do
     info = ::ConnectingRailwayLine::Note.find_by( ja: "銀座線から東急東横線へ乗り換える場合は、表参道駅で半蔵門線に乗り換えの上、渋谷駅で半蔵門線から副都心線に乗り換えると移動距離が少なく便利です。" )
     raise "Error" unless info.present?
     info.update( ja: "銀座線から東急東横線へ乗り換える場合は、表参道駅で半蔵門線に乗り換えの上、渋谷駅で半蔵門線から東急東横線に乗り換えると移動距離が少なく便利です。" )
   end
-end
-
-__END__
-
-
-namespace :temp do
 
   task :reset_train_operation_text_id => :environment do
     ::TrainOperation::Text.all.to_a.each.with_index(1) do | item , i |

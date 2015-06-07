@@ -9,6 +9,7 @@
     .icon {
       width: 32px ;
       @include margin_right_8 ;
+      text-align: center ;
     }
     .update_button {
       @include float_right ;

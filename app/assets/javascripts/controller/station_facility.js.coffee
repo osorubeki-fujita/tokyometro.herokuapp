@@ -12,11 +12,20 @@ class StationFacility
   tables_of_platform_info_tab_contents = (v) ->
     return v.tab_contents.find( 'table.platform_info' )
 
+  platform_info_tab_contents = (v) ->
+    tab_ul_processor = new StationFacilityPlatformInfoTabUl()
+    return tab_ul_processor.li_contents()
+
   process: ->
     if in_station_facility_station_page(@)
       process_point_ul(@)
       process_google_map(@)
-      process_platform_infos(@)
+      process_platform_info_tabs(@)
+
+      process_tables_of_platform_info_tab_contents(@)
+
+      @.change_platform_info_tabs()
+
       process_barrier_free_facility_infos(@)
     return
 
@@ -31,31 +40,31 @@ class StationFacility
     return
 
   #-------- プラットホーム情報のタブとその内容の処理・初期化
-  process_platform_infos = (v) ->
-    process_tables_of_platform_info_tab_contents(v)
-    process_platform_info_tabs(v)
+
+  process_platform_info_tabs = (v) ->
+    tab_ul_processor = new StationFacilityPlatformInfoTabUl()
+    tab_ul_processor.process()
     return
 
   process_tables_of_platform_info_tab_contents = (v) ->
+    # console.log 'length: ' + tables_of_platform_info_tab_contents(v).length
     tables_of_platform_info_tab_contents(v).each ->
       table = new StationFacilityPlatformInfoTable( $(@) )
       table.process()
       return
     return
 
-  process_platform_info_tabs = (v) ->
-    tab_ul_processor = new StationFacilityPlatformInfoTabUl()
-    tab_ul_processor.process()
-
-    platform_info_tabs = tab_ul_processor.li_contents()
-    t = new StationFacilityPlatformInfoTabsAndContents( platform_info_tabs )
-    t.initialize_platform_infos()
-    return
-
   #-------- バリアフリー情報の処理
   process_barrier_free_facility_infos = (v) ->
     b = new StationFacilityBarrierFreeFacilityInfos()
     b.process()
+    return
+
+  change_platform_info_tabs: ->
+    # process_tables_of_platform_info_tab_contents(@)
+
+    t = new StationFacilityPlatformInfoTabsAndContents( platform_info_tab_contents(@) )
+    t.initialize_platform_infos()
     return
 
 window.StationFacility = StationFacility

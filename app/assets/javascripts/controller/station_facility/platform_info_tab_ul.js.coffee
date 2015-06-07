@@ -1,6 +1,7 @@
 #-------- [class] StationFacilityPlatformInfoTabUl
 
 class StationFacilityPlatformInfoTabUl extends TabUl
+
   constructor: ( @ul = $( 'ul#platform_info_tabs' ) ) ->
 
   has_ul = (v) ->
@@ -11,6 +12,13 @@ class StationFacilityPlatformInfoTabUl extends TabUl
     # super()
     # return
 
+  process: ->
+    if has_ul(@)
+      process_railway_line_name(@)
+      super()
+      return
+    return
+
   process_railway_line_name = (v) ->
     # console.log( 'StationFacilityPlatformInfoTabUl\#process_railway_line_name' )
     # console.log(v)
@@ -18,13 +26,6 @@ class StationFacilityPlatformInfoTabUl extends TabUl
     v.li_contents().each ->
       tab_li = new StationFacilityPlatformInfoTabLi( $(@) )
       tab_li.process()
-      return
-    return
-
-  process: ->
-    if has_ul(@)
-      process_railway_line_name(@)
-      super()
       return
     return
 

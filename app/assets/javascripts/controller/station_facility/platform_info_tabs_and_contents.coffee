@@ -15,21 +15,21 @@ class StationFacilityPlatformInfoTabsAndContents
       target = new StationFacilityPlatformInfoTabTarget( _anchor , tab_id_of_platform_info( @ , _anchor ) )
 
       #-------- アンカーが指定されている場合
-      if anchor_is_defined( @ , target )
+      if anchor_is_present( @ , target )
         #---- アンカーが正しく指定されている場合
         if anchor_is_valid_as_platform_info( @ , target )
-          console.log( "指定OK: " + _anchor )
+          # console.log( "指定OK: " + _anchor )
           #-- アンカーに適合するタブを表示
           display_platform_info_tab_of( @ , target , false )
         #---- アンカーが正しく指定されていない場合
         else
-          console.log( "指定NG: " + _anchor )
+          # console.log( "指定NG: " + _anchor )
           #-- 最初のタブを表示
           display_first_platform_info_tab( @ , true )
 
       #-------- アンカーが指定されていない場合
       else
-        console.log( "未指定: " + _anchor )
+        # console.log( "未指定: " + _anchor )
         #-- 最初のタブを表示
         display_first_platform_info_tab( @ , false )
         return
@@ -40,12 +40,16 @@ class StationFacilityPlatformInfoTabsAndContents
   #-------- 監視中に変更があった場合の処理
   hook_while_observing_platform_infos: ->
     # console.log 'StationFacilityPlatformInfoTabsAndContents\#hook_while_observing_platform_infos'
-    if anchor_is_defined(@)
+    
+    # アンカーが存在する場合
+    if anchor_is_present(@)
       _anchor = anchor(@)
       target = new StationFacilityPlatformInfoTabTarget( _anchor , tab_id_of_platform_info( @ , _anchor ) )
+      # アンカーがプラットホーム情報に関する適切なものである場合
       if anchor_is_valid_as_platform_info( @ , target )
         process_platform_info_tabs( @ , target )
       return
+     # アンカーが存在しない場合
     else
       display_first_platform_info_tab( @ , false )
     return
@@ -68,14 +72,13 @@ class StationFacilityPlatformInfoTabsAndContents
     return window.location.hash.replace( "\#" , "" )
 
   #-------- アンカーが設定されていないことを判定するメソッド
-  anchor_is_not_defined = (v) ->
-    # console.log 'StationFacilityPlatformInfoTabsAndContents\#anchor_is_not_defined'
+  anchor_is_blank = (v) ->
     return anchor(v) is ''
 
   #-------- アンカーが設定されていることを判定するメソッド
-  anchor_is_defined = (v) ->
-    # console.log 'StationFacilityPlatformInfoTabsAndContents\#anchor_is_defined'
-    return !( anchor_is_not_defined(v) )
+  anchor_is_present = (v) ->
+    # console.log 'StationFacilityPlatformInfoTabsAndContents\#anchor_is_present'
+    return !( anchor_is_blank(v) )
 
   anchor_is_valid_as_platform_info = ( v , target ) ->
     # console.log 'StationFacilityPlatformInfoTabsAndContents\#anchor_is_valid_as_platform_info'
@@ -110,24 +113,26 @@ class StationFacilityPlatformInfoTabsAndContents
   display_first_platform_info_tab = ( v , change_location = false ) ->
     # console.log 'StationFacilityPlatformInfoTabsAndContents\#display_first_platform_info_tab'
     _first_tab_id = first_platform_info_tab_id(v)
-    console.log '_first_tab_id: ' + _first_tab_id
     _anchor_name = anchor_name_of_platform_info( v , _first_tab_id )
-    console.log '_anchor_name: ' + _anchor_name
-    unless _anchor_name is null
+
+    # console.log '_first_tab_id: ' + _first_tab_id
+    # console.log '_anchor_name: ' + _anchor_name
+
+    if _anchor_name?
       target =new StationFacilityPlatformInfoTabTarget( _anchor_name , _first_tab_id )
       display_platform_info_tab_of( v , target , change_location )
       return
     return
 
   anchor_name_of_platform_info = ( v , tab_id ) ->
-    unless tab_id is null
+    unless tab_id is null or typeof( tab_id ) is 'undefined'
       anchor_name = tab_id.replace( /\#?platform_info_/ , "" )
     else
       anchor_name = null
     return anchor_name
 
   tab_id_of_platform_info = ( v , anchor ) ->
-    return 'platform_info_' + anchor
+    return "platform_info_#{ anchor }"
 
 window.StationFacilityPlatformInfoTabsAndContents = StationFacilityPlatformInfoTabsAndContents
 

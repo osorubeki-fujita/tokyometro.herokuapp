@@ -1,4 +1,4 @@
-class UlSideMenuLinks
+class SideMenuLinks
 
   constructor: ( @domain = $( '#side_menu' ) ) ->
 
@@ -35,11 +35,9 @@ class UlSideMenuLinks
       li = new SideMenuEachLink( $( this ) , class_name )
       li.process()
       return
-    # p = new DomainsCommonProcessor( li_domains )
-    # ul_domain.css( 'height' , p.sum_outer_height( true ) )
     return
 
-window.UlSideMenuLinks = UlSideMenuLinks
+window.SideMenuLinks = SideMenuLinks
 
 class UlStationRelatedLinks
 
@@ -85,10 +83,6 @@ class UlStationRelatedLinks
       return
     return
 
-  # set_height_to_ul = (v) ->
-    # links(v).css( 'height' , height_of_ul(v) )
-    # return
-
   set_clear_to_li = (v) ->
     if v.li_rows > 1
       i = v.actual_in_a_row
@@ -96,13 +90,6 @@ class UlStationRelatedLinks
         li_domains(v).eq(i).css( 'clear' , 'both' )
         i += v.actual_in_a_row
     return
-
-  # height_of_ul = (v) ->
-    # get_li_rows(v)
-    # p = new DomainsCommonProcessor( li_domains(v) )
-    # border_width = 1
-    # rows = v.li_rows
-    # return p.max_outer_height( true ) * rows - ( rows - 1 ) * border_width
 
   get_li_rows = (v) ->
     if in_a_single_row(v)
@@ -116,7 +103,6 @@ class UlStationRelatedLinks
         actual_in_a_row -= 1
     v.li_rows = r
     v.actual_in_a_row = actual_in_a_row
-    # console.log actual_in_a_row
     return
 
   in_main_content_center = (v) ->
@@ -209,25 +195,14 @@ class SideMenuEachLink
   set_position_of_icon = (v) ->
     if has_icon_content(v)
       _icon = icon(v)
-      p0 = new LengthToEven( _icon )
-      p0.set()
-
-      p1 = new DomainsVerticalAlignProcessor( icon(v).children() , _icon.outerHeight( false ) )
-      p1.process()
-
-      p2 = new DomainsHorizontalAlignProcessor( icon(v).children() , _icon.outerWidth( false ) , 'center' )
-      p2.process()
+      p = new DomainsVerticalAlignProcessor( _icon.children() , _icon.outerHeight( false ) )
+      p.process()
     return
 
   process_text = (v) ->
     if has_text(v) or has_text_large(v)
-      # set_height_of_text(v)
-
       _max_outer_height_of_sub_domains = max_outer_height_of_sub_domains(v)
       set_vertical_align_of_sub_domains( v , _max_outer_height_of_sub_domains )
-      # set_height_of_link_domain( v , _max_outer_height_of_sub_domains )
-
-      # set_height_of_whole_domain(v)
     return
 
   sum_outer_height_of_text = (v) ->
@@ -238,13 +213,6 @@ class SideMenuEachLink
     p = new DomainsCommonProcessor( sub_domains_of_text_large(v) )
     return p.sum_outer_height( true )
 
-  # set_height_of_text = (v) ->
-    # if has_text(v) and has_sub_domains_of_text(v)
-      # text(v).css( 'height' , sum_outer_height_of_text(v) )
-    # else if has_text_large(v) and has_sub_domains_of_text_large(v)
-      # text_large(v).css( 'height' , sum_outer_height_of_text_large(v) )
-    # return
-
   max_outer_height_of_sub_domains = (v) ->
     p = new DomainsCommonProcessor( sub_domains_of_link_domain(v) )
     return p.max_outer_height( true )
@@ -253,11 +221,3 @@ class SideMenuEachLink
     p = new DomainsVerticalAlignProcessor( sub_domains_of_link_domain(v) , _max_outer_height_of_sub_domains )
     p.process()
     return
-
-  # set_height_of_link_domain = ( v , _max_outer_height_of_sub_domains ) ->
-    # link_domain(v).css( 'height' , _max_outer_height_of_sub_domains )
-    # return
-
-  # set_height_of_whole_domain = (v) ->
-    # v.domain.css( 'height' , link_domain(v).outerHeight( true ) )
-    # return

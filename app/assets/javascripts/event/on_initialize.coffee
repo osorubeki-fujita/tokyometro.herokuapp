@@ -52,7 +52,8 @@ class OnPageLoadHandler
     twitters_processor = new TwittersProcessor()
     now_developing_processor = new NowDevelopingProcessor()
     problems_processor = new NowDevelopingProcessor( $( '#problems' ) )
-    ul_side_menu_links = new UlSideMenuLinks()
+
+    side_menu_links = new SideMenuLinks()
     ul_station_related_links = new UlStationRelatedLinks()
     connecting_railway_line = new ConnectingRailwayLineInfo()
     on_click = new OnClickHandler()
@@ -63,17 +64,41 @@ class OnPageLoadHandler
     ary.push twitters_processor
     ary.push now_developing_processor
     ary.push problems_processor
-    ary.push ul_side_menu_links
+    ary.push side_menu_links
     ary.push ul_station_related_links
     ary.push connecting_railway_line
     ary.push on_click
+    
+    link_domains_to_set_hover_event = new LinkDomainsToSetHoverEvent()
+    
+    ary.push link_domains_to_set_hover_event
 
     return ary
 
-  process: ->
-    $.each list(@) , ->
+  process_on_page_load: ->
+    process_normal_list(@)
+    set_geo_location_info(@)
+    initialize_google_map_in_station_facility(@)
+    return
+  
+  process_on_resize: ->
+    process_normal_list(@)
+    return
+
+  process_normal_list = (v) ->
+    $.each list(v) , ->
       @.process()
       return
+    return
+
+  set_geo_location_info = (v) ->
+    p= new GeoLocationProcessor()
+    p.set_info()
+    return
+
+  initialize_google_map_in_station_facility = (v) ->
+    map = new GoogleMapInStationFacility()
+    map.initialize_map()
     return
 
 
@@ -97,42 +122,40 @@ $( document ).on 'ready page:load' , ->
   # console.log 'ready page:load'
   #----
   h = new OnPageLoadHandler()
-  h.process()
-  #----
-  p = new LinkDomainsToSetHoverEvent()
-  p.process()
-  #----
-  # geo_and_map.call(@)
-  gl = new GeoLocationProcessor()
-  gl.set_info()
-  #----
-  gm = new GoogleMapInStationFacility()
-  gm.initialize_map()
+  h.process_on_page_load()
   #----
   u = new UpdateRealTimeInfo()
-  i = u.icons_related_to_update()
+  icons = u.icons_related_to_update()
 
   $( document ).ajaxStart ->
-    i.addClass( 'fa-spin' )
+    icons.addClass( 'fa-spin' )
     return
   $( document ).ajaxComplete ->
-    i.removeClass( 'fa-spin' )
+    icons.removeClass( 'fa-spin' )
     return
   #----
   return
 
 #-------- [page:change]
+#-------- [page:restore]
 
 # $( document ).on 'page:change page:restore' , ->
+  
   # console.log 'page:change'
   # #----
+
   # g = new GoogleMapInStationFacility()
   # g.initialize_map( 'page:change' )
+  # return
 
 #-------- [resize]
 
 $( document ).on 'resize' , ->
   console.log 'resize'
   h = new OnPageLoadHandler()
-  h.process()
+  h.process_on_resize()
   return
+
+station_facility_platform_info_tab_observer = new StationFacilityPlatformInfoTabObserver()
+window.station_facility_platform_info_tab_observer = station_facility_platform_info_tab_observer
+window.setInterval( 'station_facility_platform_info_tab_observer.listen()' , station_facility_platform_info_tab_observer.duration() )

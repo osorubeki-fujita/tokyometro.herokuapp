@@ -28,6 +28,3 @@
 // require_tree .
 
 const goldenRatio = 1.618 ;
-
-station_facility_platform_info_tab_observer = new StationFacilityPlatformInfoTabObserver() ;
-window.setInterval( 'station_facility_platform_info_tab_observer.listen()' , station_facility_platform_info_tab_observer.duration() ) ;
