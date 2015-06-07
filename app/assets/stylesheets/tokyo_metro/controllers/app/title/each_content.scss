@@ -2,12 +2,10 @@
 
 @import '../../../fundamental_settings.scss' ;
 
-%title_of_each_content {
+%titleOfEachContent {
   clear: both ;
-  padding: 4px ;
-  margin: {
-    bottom: 8px ;
-  }
+  @include padding_8 ;
+  @include margin_bottom_16 ;
   h2 {
     $font_base_size: 14pt ;
     font: {
@@ -27,7 +25,7 @@
   }
 }
 
-%title_of_each_content_background_color {
+%titleOfEachContentBackgroundColor {
   $bgcolor: rgba( $jp_traditional_yokan_iro , 0.1 ) ;
   $color_stop_point_1_moz : 50% ;
   $color_stop_point_1_webkit : 0.5 ;
@@ -54,51 +52,47 @@
   );
 }
 
+//--------
+
 #fare_infos {
   .top_title {
-    @extend %title_of_each_content ;
-    @extend %title_of_each_content_background_color ;
+    @extend %titleOfEachContent ;
   }
 }
 
 #station_facility_platform_infos {
   .top_title {
-    @extend %title_of_each_content ;
-    @extend %title_of_each_content_background_color ;
+    @extend %titleOfEachContent ;
   }
 }
 
 #station_facility_infos {
   .top_title {
-    @extend %title_of_each_content ;
-    @extend %title_of_each_content_background_color ;
+    @extend %titleOfEachContent ;
   }
 }
 
 #links_to_station_info_pages {
   .title {
-    @extend %title_of_each_content ;
-    @extend %title_of_each_content_background_color ;
+    @extend %titleOfEachContent ;
   }
 }
 
 #women_only_car {
   .top_title {
-    @extend %title_of_each_content ;
+    @extend %titleOfEachContent ;
   }
 }
 
 #railway_line_contents {
   #train_info {
     .top_title {
-      @extend %title_of_each_content ;
-        @extend %title_of_each_content_background_color ;
-      }
+      @extend %titleOfEachContent ;
     }
-    #travel_time {
-      .top_title {
-        @extend %title_of_each_content ;
-      @extend %title_of_each_content_background_color ;
+  }
+  #travel_time {
+    .top_title {
+      @extend %titleOfEachContent ;
     }
   }
 }

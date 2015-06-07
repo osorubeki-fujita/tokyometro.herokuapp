@@ -15,20 +15,10 @@
     bottom: 4px ;
   }
   .title {
-    $font_size_ja: 12pt ;
-    $font_size_en: $font_size_ja * 0.75 ;
-    @include padding_left_4 ;
-    @include padding_right_16 ;
     @include margin_bottom_8 ;
     .text_ja {
       font: {
-        size: $font_size_ja ;
         weight: bold ;
-      }
-    }
-    .text_en {
-      font: {
-        size: $font_size_en ;
       }
     }
   }
@@ -36,14 +26,16 @@
 
 %tokyoMetroRailwayLinesTitle {
   .title {
-    $bgcolor: rgba( desaturate( $operator_color , 10% ) , 0.3 ) ;
+    $base_bgcolor: desaturate( $operator_color , 10% ) ;
+    $rate: 0.2 ;
+    $bgcolor: rgba( $base_bgcolor , $rate ) ;
     $color_stop_point_1_moz : 50% ;
     $color_stop_point_1_webkit : 0.5 ;
     $color_stop_point_2_moz : 80% ;
     $color_stop_point_2_webkit : 0.8 ;
-    $color_1 : rgba( $bgcolor , 0.24 ) ;
-    $color_2 : rgba( $bgcolor , 0.18 ) ;
-    $color_3 : rgba( $bgcolor , 0.09 ) ;
+    $color_1 : rgba( $base_bgcolor , $rate * 1.2 ) ;
+    $color_2 : rgba( $base_bgcolor , $rate * 0.9 ) ;
+    $color_3 : rgba( $base_bgcolor , $rate * 0.5 ) ;
     //
     background: $bgcolor ;
     // Firefox
@@ -65,14 +57,16 @@
 
 %connectingRailwayLinesTitle {
   .title {
-    $bgcolor: rgba( mix( $operator_color , $jp_traditional_yokan_iro , 60% ) , 0.2 ) ;
+    $base_bgcolor: mix( $operator_color , $jp_traditional_yokan_iro , 30% ) ;
+    $rate: 0.1 ;
+    $bgcolor: rgba( $base_bgcolor , $rate ) ;
     $color_stop_point_1_moz : 50% ;
     $color_stop_point_1_webkit : 0.5 ;
     $color_stop_point_2_moz : 80% ;
     $color_stop_point_2_webkit : 0.8 ;
-    $color_1 : rgba( $bgcolor , 0.16 ) ;
-    $color_2 : rgba( $bgcolor , 0.12 ) ;
-    $color_3 : rgba( $bgcolor , 0.06 ) ;
+    $color_1 : rgba( $base_bgcolor , $rate * 1.6 ) ;
+    $color_2 : rgba( $base_bgcolor , $rate * 1.2 ) ;
+    $color_3 : rgba( $base_bgcolor , $rate * 0.6 ) ;
     //
     background: $bgcolor ;
     // Firefox

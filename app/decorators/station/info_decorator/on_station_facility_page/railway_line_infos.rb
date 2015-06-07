@@ -47,7 +47,7 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :other_railway_lines }
-  = ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :title , :temp , "乗り入れ路線" , "Other railway lines" , icon_size: 2 ).render
+  = ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :title , :railway_line , "乗り入れ路線" , "Other railway lines" , icon_size: 2 ).render
   - # = ::ConnectingRailwayLine::InfoDecorator.render_title_of_other_railway_lines_in_station_facility_info
   %ul{ id: :railway_lines_except_for_tokyo_metro , class: [ :railway_lines , :clearfix ] }
     - c_railway_lines.each do | connecting_railway_line_info |

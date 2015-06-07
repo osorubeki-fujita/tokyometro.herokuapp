@@ -2,15 +2,12 @@
 
 @import '../../fundamental_settings.scss' ;
 
-%contentHeaderSettings {
+%contentHeaderCommonSettings {
   // background-color: #666 ;
   background-color: desaturate( $operator_color , 80% ) ;
-  color: #fff ;
   padding: 8px ;
   .icon {
     width: 64px ;
-    @include float_left ;
-    @include margin_right_8 ;
   }
   .icon , .icons {
     @include float_left ;
@@ -28,35 +25,68 @@
   }
 }
 
-#train_operation_infos {
-  .title_of_train_operation_infos {
-    @extend %contentHeaderSettings ;
-  }
-  .title_of_train_location_infos {
-    @extend %contentHeaderSettings ;
-  }
+%contentHeaderWhite {
+  color: #fff ;
 }
 
-//--------
-
 .content_header , .selection_header {
-  @extend %contentHeaderSettings ;
+  @extend %contentHeaderCommonSettings ;
+  $font_size_ja: 12pt ;
+  $font_size_en: $font_size_ja * 0.75 ;
   .text_ja {
     font: {
-      size: 12pt ;
+      size: $font_size_ja ;
       weight: normal ;
     }
   }
   .text_en {
     font: {
-      size: 9pt ;
+      size: $font_size_en ;
       weight: normal ;
     }
   }
 }
 
+//--------
+
+#train_operation_infos {
+  .title_of_train_operation_infos {
+    @extend %contentHeaderCommonSettings ;
+    @extend %contentHeaderWhite ;
+  }
+  .title_of_train_location_infos {
+    @extend %contentHeaderCommonSettings ;
+    @extend %contentHeaderWhite ;
+  }
+}
+
+#select_railway_line {
+  @extend %contentHeaderWhite ;
+}
+
+#select_station_from_railway_line {
+  @extend %contentHeaderWhite ;
+}
+
+#select_station_from_list {
+  @extend %contentHeaderWhite ;
+}
+
+.twitter_header {
+  @extend %contentHeaderWhite ;
+}
+
+.real_time_infos  {
+  @extend %contentHeaderWhite ;
+}
+
+//--------
+
+//---- 現在不使用
+
 .passenger_info_header {
-  @extend %contentHeaderSettings ;
+  @extend %contentHeaderCommonSettings ;
+  @extend %contentHeaderWhite ;
   .text_ja {
     font: {
       size: 8pt ;

@@ -78,3 +78,48 @@ ul#links_to_passenger_survey_pages {
     @extend %borderBottomOfMenu ;
   }
 }
+
+//-------- Content Header
+
+#links_to_station_info_pages {
+  .title {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#fare_infos {
+  .top_title {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#station_facility_platform_infos {
+  .top_title {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#station_facility_infos {
+  .top_title {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#railway_line_contents {
+  #train_info {
+    .top_title {
+      @extend %backgroundOfMenu ;
+      @extend %borderBottomOfMenu ;
+    }
+  }
+  #travel_time {
+    .top_title {
+      @extend %backgroundOfMenu ;
+      @extend %borderBottomOfMenu ;
+    }
+  }
+}
