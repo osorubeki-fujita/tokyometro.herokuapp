@@ -28,5 +28,5 @@
 
   %div{ id: :left_contents , class: "col-md-3"}
     = ::TokyoMetro::App::Renderer::SideMenu::NowDeveloping.new( request ).render
-    = problems
+    = ::TokyoMetro::App::Renderer::SideMenu::Problems.new( request ).render
     = ::TokyoMetro::App::Renderer::SideMenu.render_all( request )

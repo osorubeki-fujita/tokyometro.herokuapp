@@ -23,7 +23,7 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :tokyo_metro_railway_lines }
-  = ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :title , :tokyo_metro , "東京メトロの路線" , "Railway lines of Tokyo Metro" , icon_size: 2 ).render
+  = ::TokyoMetro::App::Renderer::StationFacility::Header::RailwayLines::TheSameOperator.new( request ).render
   %ul{ id: :railway_lines_in_this_station , class: [ :railway_lines , :clearfix ] }
     - railway_lines_of_the_same_operator.each do | railway_line |
       = ::TokyoMetro::App::Renderer::RailwayLine::LinkToPage.new( request , railway_line.decorate ).render
@@ -47,8 +47,7 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :other_railway_lines }
-  = ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :title , :railway_line , "乗り入れ路線" , "Other railway lines" , icon_size: 2 ).render
-  - # = ::ConnectingRailwayLine::InfoDecorator.render_title_of_other_railway_lines_in_station_facility_info
+  = ::TokyoMetro::App::Renderer::StationFacility::Header::RailwayLines::OtherOperators.new( request ).render
   %ul{ id: :railway_lines_except_for_tokyo_metro , class: [ :railway_lines , :clearfix ] }
     - c_railway_lines.each do | connecting_railway_line_info |
       = ::TokyoMetro::App::Renderer::ConnectingRailwayLine::LinkToRailwayLinePage.new( request , connecting_railway_line_info.decorate ).render

@@ -21,5 +21,13 @@ class Operator < ActiveRecord::Base
   scope :id_of_tokyo_metro , -> {
     id_of( "odpt.Operator:TokyoMetro" )
   }
+  
+  def name_ja_normal
+    name_ja.split( "/" ).first
+  end
+  
+  def name_en_normal
+    name_en.split( "/" ).first
+  end
 
 end

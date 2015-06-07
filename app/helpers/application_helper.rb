@@ -3,6 +3,10 @@ module ApplicationHelper
   def self.tokyo_metro
     ::Operator.find_by_same_as( "odpt.Operator:TokyoMetro" )
   end
+  
+  def self.this_operator
+    tokyo_metro
+  end
 
   def self.common_title_ja
     "Rails on Ruby"
@@ -29,37 +33,6 @@ module ApplicationHelper
   %div{ class: :time }<
     = time.to_strf_normal_ja
     HAML
-  end
-
-  def problems
-    contents = [
-      "リアルタイム情報の更新ボタンが動作しない" ,
-      "駅時刻表ページ（重大なバグが見つかったため公開を停止しています）"
-    ]
-    render inline: <<-HAML , type: :haml , locals: { request: request , contents: contents }
-%div{ id: :problems }
-  = problems_header
-  %ul{ class: [ :info_text , :problems ] }
-    - contents.each do | info |
-      %li{ class: :text_ja }<
-        = info
-    %li{ class: :to_do }<
-      = link_to( "" , url_for( controller: :document , action: :index , anchor: :to_do ) )
-      = "To Do"
-    HAML
-  end
-
-  def problems_header
-    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :problems , :info ,
-      "既知の主な問題点" ,
-      "Problems and bugs" ,
-      icon_size: 2 ,
-      size_changing_button_type: nil ,
-      size_changing_button_id: nil ,
-      add_update_button: false ,
-      update_button_id: nil ,
-      additional_content: nil
-    ).render
   end
 
 end

@@ -3,26 +3,6 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
 
   decorates_association :railway_line
 
-  def self.render_title_of_tokyo_metro_railway_lines_in_station_facility_info
-    h.render inline: <<-HAML , type: :haml
-%div{ class: :title }
-  %div{ class: :text_ja }<
-    = "東京メトロの路線"
-  %div{ class: :text_en }<
-    = "Railway lines of Tokyo Metro"
-    HAML
-  end
-
-  def self.render_title_of_other_railway_lines_in_station_facility_info
-    h.render inline: <<-HAML , type: :haml
-%div{ class: :title }
-  %div{ class: :text_ja }<
-    = "乗り入れ路線"
-  %div{ class: :text_en }<
-    = "Other railway lines"
-    HAML
-  end
-
   def url_for_railway_line_page
     unless railway_line_page_exists?
       return nil
