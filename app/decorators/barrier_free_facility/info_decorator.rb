@@ -102,7 +102,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     end
     ary << located_area.name_en
     image_file_basename = ary.select( &:present? ).map { | item | item.to_s.underscore.downcase }.join( "_" )
-    "barrier_free_facility/#{ image_file_basename }.svg"
+    "barrier_free_facilities/#{ image_file_basename }.svg"
   end
 
   def render

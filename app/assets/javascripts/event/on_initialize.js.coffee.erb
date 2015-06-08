@@ -107,7 +107,10 @@ class UpdateRealTimeInfo
   constructor: ( @domain = $( '#real_time_info_and_update_button' ) ) ->
 
   icons_related_to_update: ->
-    return @domain.children( '.content_header' ).find( 'i.fa-refresh , i.fa-spinner' )
+    <% base_name_of_icons = [ :updating , :real_time_info , :real_time_infos ].map { | key | ::TokyoMetro::App::Renderer::Icon.images[ key.to_s ] }.uniq %>
+    <% class_name_of_icons = base_name_of_icons.map { | basename | "i.fa-#{basename}" } %>
+    <% class_name_of_icons_for_search_by_jquery = class_name_of_icons.join( " , " ) %>
+    return @domain.children( '.content_header' ).find( '<%= class_name_of_icons_for_search_by_jquery ->' )
 
 
 #-------- [ready] [page:load]
@@ -158,4 +161,5 @@ $( document ).on 'resize' , ->
 
 station_facility_platform_info_tab_observer = new StationFacilityPlatformInfoTabObserver()
 window.station_facility_platform_info_tab_observer = station_facility_platform_info_tab_observer
+
 window.setInterval( 'station_facility_platform_info_tab_observer.listen()' , station_facility_platform_info_tab_observer.duration() )

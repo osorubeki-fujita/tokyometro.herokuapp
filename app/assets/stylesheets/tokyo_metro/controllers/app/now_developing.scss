@@ -24,7 +24,7 @@
       font: {
         size: 9pt;
       }
-      @extend %marginBottom8 ;
+      @include margin_bottom_8 ;
     }
     .text_en {
       font: {
@@ -64,9 +64,8 @@
       }
     }
     li.to_do {
-      @extend %paddingLeft4 ;
-      @extend %paddingTop4 ;
-      @extend %paddingBottom4 ;
+      @include padding_left_4 ;
+      @include padding_top_bottom_4 ;
       background-color: mix( $jp_traditional_karashi , #fff ) ;
     }
   }

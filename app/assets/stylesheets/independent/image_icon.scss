@@ -1,31 +1,11 @@
 @charset "utf-8";
 
-.icon_img_1x {
-  $length: 16px ;
-  width: $length ;
-  height: $length ;
-}
-
-.icon_img_2x {
-  $length: 32px ;
-  width: $length ;
-  height: $length ;
-}
-
-.icon_img_3x {
-  $length: 48px ;
-  width: $length ;
-  height: $length ;
-}
-
-.icon_img_4x {
-  $length: 64px ;
-  width: $length ;
-  height: $length ;
-}
-
-.icon_img_5x {
-  $length: 80px ;
-  width: $length ;
-  height: $length ;
+$i: 1 ;
+@while $i <= 5 {
+  .icon_img_#{$i}x {
+    $length: $i * 16px ;
+    width: $length ;
+    height: $length ;
+  }
+  $i: $i + 1 ;
 }

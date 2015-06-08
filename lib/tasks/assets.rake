@@ -1,5 +1,6 @@
 namespace :assets do
   namespace :sass do
+
     namespace :make do
 
       #--------
@@ -13,5 +14,15 @@ namespace :assets do
       #--------
 
     end
+
+    namespace :copy do
+
+      desc "Copy svg files"
+      task :svg_files => :environment do
+        ::TokyoMetro::Rake::Assets::Image::SvgFiles.copy
+      end
+
+    end
+
   end
 end
