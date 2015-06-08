@@ -1,5 +1,79 @@
 namespace :temp do
+
+  task :update_station_facility_in_kasumigaseki_20150609 => :environment do
+    c_escalator_4 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.4"
+    c_escalator_5 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.5"
+
+    invalid_service_detail_pattern_id = nil
+    barrier_free_facility_info_ids = []
+
+    [ c_escalator_4 , c_escalator_5 ].each do | escalator_name |
+      escalator = ::BarrierFreeFacility::Info.find_by( same_as: escalator_name )
+      barrier_free_facility_info_ids << escalator.id
+      raise unless escalator.present?
+      escalator.service_details.each do | detail_info |
+        pattern = detail_info.barrier_free_facility_service_detail_pattern
+
+        if pattern.operation_day.blank?
+          if invalid_service_detail_pattern_id.blank?
+            invalid_service_detail_pattern_id = pattern.id
+          else
+            unless invalid_service_detail_pattern_id == pattern.id
+              raise
+            end
+
+          end
+        end
+
+      end
+    end
+
+    barrier_free_facility_info_ids.sort!
+    puts "barrier_free_facility_info_ids: #{ barrier_free_facility_info_ids.to_s }"
+    puts "invalid_service_detail_pattern_id: #{ invalid_service_detail_pattern_id }"
+
+    barrier_free_facility_info_ids_of_invalid_pattern = ::BarrierFreeFacilityServiceDetailPattern.find( invalid_service_detail_pattern_id ).barrier_free_facility_infos.pluck( :id ).sort
+    puts "barrier_free_facility_info_ids_of_invalid_pattern: #{ barrier_free_facility_info_ids_of_invalid_pattern }"
+
+    operation_day_new = ::OperationDay.find_by( name_ja: "平日" )
+    invalid_pattern = ::BarrierFreeFacilityServiceDetailPattern.find( invalid_service_detail_pattern_id )
+
+    if barrier_free_facility_info_ids_of_invalid_pattern == barrier_free_facility_info_ids
+      puts "Update - Begin"
+      raise unless operation_day_new.present?
+      invalid_pattern.update( operation_day_id: operation_day_new.id )
+      puts "Update - Complete"
+    else
+
+      puts "Create new instance - Begin"
+      h_for_new_pattern_instance = {
+        operation_day_id: operation_day_new.id ,
+        service_start_before_first_train: invalid_pattern.service_start_before_first_train ,
+        service_start_time_hour: invalid_pattern.service_start_time_hour ,
+        service_start_time_min: invalid_pattern.service_start_time_min ,
+        service_end_time_hour: invalid_pattern.service_end_time_hour ,
+        service_end_time_min: invalid_pattern.service_end_time_min ,
+        service_end_after_last_train: invalid_pattern.service_end_after_last_train
+      }
+
+      new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.find_by( h_for_new_pattern_instance )
+      unless new_pattern_instance.present?
+        new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.create( h_for_new_pattern_instance )
+      end
+
+      ::BarrierFreeFacilityServiceDetail.where(
+        barrier_free_facility_info_id: barrier_free_facility_info_ids ,
+        barrier_free_facility_service_detail_pattern_id: invalid_service_detail_pattern_id
+      ).to_a.each do | service_detail |
+        service_detail.update( barrier_free_facility_service_detail_pattern_id: new_pattern_instance.id )
+      end
+
+      puts "Create new instance - Complete"
+    end
+  end
+
   task :debug_kasumigaseki_and_ginza_20150608 => :environment do
+    puts "debug_kasumigaseki_and_ginza_20150608"
 
     h = ::Hash.new
     sleep(10)
@@ -19,21 +93,28 @@ namespace :temp do
       sleep(1)
     end
 
-    c_escalator_4 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Escalator.Outside.4"
-    c_escalator_5 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Escalator.Outside.5"
+    c_escalator_4 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.4"
+    c_escalator_5 = "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.5"
 
-    [ c_escalator_4 , c_escalator_4 ].each do | escalator |
+    [ c_escalator_4 , c_escalator_5 ].each do | escalator |
+      puts "-" * 4
+      puts ""
       puts h[ :kasumigaseki ][ :json ][ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == escalator }.inspect
+      puts ""
       puts h[ :kasumigaseki ][ :instance ].barrier_free_facilities.find { | item | item.same_as == escalator }.inspect
       puts ""
     end
-    
-    k_h_escalator_2 = "odpt.StationFacility:TokyoMetro.Hibiya.Ginza.Escalator.Outside.4"
-    
+
+    k_h_escalator_2 = "odpt.StationFacility:TokyoMetro.Hibiya.Ginza.Inside.Escalator.2"
+
+    puts "-" * 4
+    puts ""
     puts h[ :ginza ][ :json ][ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == k_h_escalator_2 }.inspect
+    puts ""
     puts h[ :ginza ][ :instance ].barrier_free_facilities.find { | item | item.same_as == k_h_escalator_2 }.inspect
+    puts ""
   end
-  
+
 end
 
 

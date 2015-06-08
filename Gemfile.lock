@@ -206,8 +206,6 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.6.1)
-    rack-protection (1.5.3)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -314,7 +312,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.6.0)
+    tokyo_metro (0.6.1)
       haml
       odpt_common (>= 0.2.3)
       odpt_tokyo_metro_helper (>= 0.2.1)

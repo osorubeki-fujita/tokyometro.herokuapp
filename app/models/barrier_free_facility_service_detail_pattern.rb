@@ -1,6 +1,7 @@
 class BarrierFreeFacilityServiceDetailPattern < ActiveRecord::Base
 
   has_many :barrier_free_facility_service_details
+  has_many :barrier_free_facility_infos , class: ::BarrierFreeFacility::Info , through: :barrier_free_facility_service_details
   belongs_to :operation_day
 
   [ :start_before_first_train , :end_after_last_train ].each do | method_base_name |
