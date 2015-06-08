@@ -53,12 +53,13 @@ namespace :temp do
         service_start_time_min: invalid_pattern.service_start_time_min ,
         service_end_time_hour: invalid_pattern.service_end_time_hour ,
         service_end_time_min: invalid_pattern.service_end_time_min ,
-        service_end_after_last_train: invalid_pattern.service_end_after_last_train
+        service_end_after_last_train: invalid_pattern.service_end_after_last_train ,
+        id: ::BarrierFreeFacilityServiceDetailPattern.all.pluck(:id).max + 1
       }
 
       new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.find_by( h_for_new_pattern_instance )
       unless new_pattern_instance.present?
-        new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.create( h_for_new_pattern_instance , id: ::BarrierFreeFacilityServiceDetailPattern.all.pluck(:id).max + 1 )
+        new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.create( h_for_new_pattern_instance )
       end
 
       ::BarrierFreeFacilityServiceDetail.where(
