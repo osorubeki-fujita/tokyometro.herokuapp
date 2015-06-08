@@ -1,17 +1,29 @@
 class FareTables
+
   constructor: ( @domains = $( '#fare_tables' ) ) ->
+
+  tables = (v) ->
+    return v.domains.children( '.fare_table' )
+  
+  content_headers = (v) ->
+    return $( '#links_to_station_info_pages , #fare_contents' )
+      .children( '.content_header' )
 
   has_table = (v) ->
     return tables(v).length > 0
 
-  tables = (v) ->
-    return v.domains.children( '.fare_table' )
-
   process: ->
     if has_table(@)
+      process_content_headers(@)
       process_each_fare_table(@)
       process_links_to_railway_line_pages(@)
     return
+  
+  process_content_headers = (v) ->
+    p = new ContentHeaderProcessor( content_headers(v) )
+    p.process()
+    return
+    
 
   process_each_fare_table = (v) ->
     tables(v).each ->

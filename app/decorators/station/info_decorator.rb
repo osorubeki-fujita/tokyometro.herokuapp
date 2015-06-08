@@ -98,8 +98,9 @@ class Station::InfoDecorator < Draper::Decorator
     }
 
     if name_sub.present? and with_subname
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-= raw( name_main + "&nbsp;" )
+      name_main_txt = name_main + "&nbsp;"
+      h.render inline: <<-HAML , type: :haml , locals: h_locals.merge({ name_main_txt: name_main_txt })
+= raw( name_main_txt )
 %span{ class: :small }<>
   = name_sub
 - if suffix.present?
@@ -178,18 +179,9 @@ class Station::InfoDecorator < Draper::Decorator
       :title ,
       :station ,
       render_name_ja( with_subname: true , suffix: "駅に関するご案内" ) ,
-      render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: "Station" ) ,
+      render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: " Sta." ) ,
       icon_size: 3
     ).render
-=begin
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :title }
-  %h2{ class: :text_ja }<
-    = this.render_name_ja( with_subname: true , suffix: "駅に関するご案内" )
-  %h3{ class: :text_en }<
-    = this.render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: "Station" )
-    HAML
-=end
   end
 
   # @note {ConnectingRailwayLineDecorator#render} から呼び出される。
@@ -200,17 +192,6 @@ class Station::InfoDecorator < Draper::Decorator
     = this.decorate.render_name_ja( with_subname: false , suffix: this.attribute_ja )
   %div{ class: :text_en }<
     = this.decorate.render_name_en( with_subname: false , suffix: this.attribute_en_short.capitalize )
-    HAML
-  end
-
-  def render_fare_title_of_this_station( *railway_lines )
-    railway_line = railway_lines.flatten.first
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , railway_line: railway_line }
-%div{ class: :top_title }
-  %h2{ class: :text_ja }<
-    = this.render_name_ja( with_subname: true , suffix: "駅から#{ railway_line.name_ja }各駅までの運賃" )
-  %h3{ class: :text_en }<
-    = this.render_name_en( with_subname: true , prefix: "Fares from " , suffix: " to stations on #{ railway_line.name_en }" )
     HAML
   end
 

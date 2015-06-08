@@ -10,18 +10,6 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   decorates_association :barrier_free_facility_escalator_directions
   decorates_association :barrier_free_facility_toilet_assistants
   decorates_association :barrier_free_facility_toilet_assistant_patterns
-  
-  def self.render_title( request )
-    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :title , :barrier_free_facilities , sub_top_title_ja , sub_top_title_en , icon_size: 3 )
-  end
-
-  def self.sub_top_title_ja
-    "駅施設のご案内"
-  end
-
-  def self.sub_top_title_en
-    "Information of station facilities"
-  end
 
   def self.inspect_image_filenames
     ary = ::Array.new

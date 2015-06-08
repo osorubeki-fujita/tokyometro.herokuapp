@@ -1,17 +1,5 @@
 class StationFacilityPlatformInfoDecorator < Draper::Decorator
   delegate_all
-  
-  def self.render_title( request )
-    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new( request , :title , :platform_info , sub_top_title_ja , sub_top_title_en , icon_size: 3 )
-  end
-
-  def self.sub_top_title_ja
-    "乗車・降車位置のご案内"
-  end
-
-  def self.sub_top_title_en
-    "Information of transfer, barrier free facilities, surrounding areas on the platforms"
-  end
 
   def self.render_transfer_info_title
     h.render inline: <<-HAML , type: :haml

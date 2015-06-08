@@ -1,16 +1,6 @@
 class WomenOnlyCarInfoDecorator < Draper::Decorator
   delegate_all
 
-  extend SubTopTitleRenderer
-
-  def self.sub_top_title_ja
-    "女性専用車のご案内"
-  end
-
-  def self.sub_top_title_en
-    "Women only car"
-  end
-
   def car_composition_ja_precise
     "#{ object.car_composition }両編成"
   end

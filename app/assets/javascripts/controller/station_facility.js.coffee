@@ -15,9 +15,14 @@ class StationFacility
   platform_info_tab_contents = (v) ->
     tab_ul_processor = new StationFacilityPlatformInfoTabUl()
     return tab_ul_processor.li_contents()
+  
+  content_headers_in_station_facility_page = (v) ->
+    return $( '#tokyo_metro_railway_lines , #other_railway_lines , #links_to_station_info_pages , #station_facility_platform_infos , #station_facility_infos' )
+      .children( '.content_header' )
 
   process: ->
     if in_station_facility_station_page(@)
+      process_content_headers(@)
       process_point_ul(@)
       process_google_map(@)
       process_platform_info_tabs(@)
@@ -27,6 +32,11 @@ class StationFacility
       @.change_platform_info_tabs()
 
       process_barrier_free_facility_infos(@)
+    return
+
+  process_content_headers = (v) ->
+    p = new ContentHeaderProcessor( content_headers_in_station_facility_page(v) )
+    p.process()
     return
 
   process_point_ul = (v) ->

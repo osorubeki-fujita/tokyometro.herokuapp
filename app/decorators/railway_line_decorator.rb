@@ -2,8 +2,6 @@ class RailwayLineDecorator < Draper::Decorator
   delegate_all
 
   include CommonTitleRenderer
-  extend SubTopTitleRenderer
-
   include TwitterRenderer
 
   def self.common_title_ja
@@ -41,10 +39,6 @@ class RailwayLineDecorator < Draper::Decorator
   = ::RailwayLineDecorator.render_common_title( request )
   = ::RailwayLineDecorator.name_main( infos )
     HAML
-  end
-
-  def self.render_title_of_train_info
-    render_sub_top_title( text_ja: "運行情報" , text_en: "Train information" )
   end
 
   # タイトルを記述するメソッド（路線別）

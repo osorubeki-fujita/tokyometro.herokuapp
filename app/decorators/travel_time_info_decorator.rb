@@ -1,16 +1,6 @@
 class TravelTimeInfoDecorator < Draper::Decorator
   delegate_all
 
-  extend SubTopTitleRenderer
-
-  def self.sub_top_title_ja
-    "停車駅と所要時間のご案内"
-  end
-
-  def self.sub_top_title_en
-    "Stops and travel time"
-  end
-
   def self.render_empty_row
     h.render inline: <<-HAML , type: :haml
 %tr{ class: :empty_row }<

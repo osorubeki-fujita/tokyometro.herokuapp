@@ -1,5 +1,4 @@
 @charset "utf-8" ;
-
 @import '../../fundamental_settings.scss' ;
 
 %tokyoMetroRailwayLinesTitle {
@@ -60,50 +59,16 @@
   );
 }
 
-%contentHeaderInStationFacilityPageCommonSettings {
-  .text_ja {
-    font: {
-      weight: bold ;
-    }
-  }
-  @extend %iconHeight48 ;
-}
-
 //--------
 
 #tokyo_metro_railway_lines {
-  .title {
+  .content_header {
     @extend %tokyoMetroRailwayLinesTitle ;
-    @extend %contentHeaderInStationFacilityPageCommonSettings ;
-    @include margin_bottom_16 ;
   }
 }
 
 #other_railway_lines {
-  .title {
+  .content_header {
     @extend %connectingRailwayLinesTitle ;
-    @extend %contentHeaderInStationFacilityPageCommonSettings ;
-    @include margin_bottom_16 ;
-  }
-}
-
-#links_to_station_info_pages {
-  .content_header {
-    @extend %contentHeaderInStationFacilityPageCommonSettings ;
-    @include margin_bottom_16 ;
-  }
-}
-
-#station_facility_platform_infos {
-  .content_header {
-    @extend %contentHeaderInStationFacilityPageCommonSettings ;
-    @include margin_bottom_16 ;
-  }
-}
-
-#station_facility_infos {
-  .content_header {
-    @extend %contentHeaderInStationFacilityPageCommonSettings ;
-    @include margin_bottom_16 ;
   }
 }

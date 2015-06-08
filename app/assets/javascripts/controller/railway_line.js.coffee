@@ -1,14 +1,32 @@
 class RailwayLine
+
   constructor: ->
 
+  #---- 領域
+
+  railway_line_title = (v) ->
+    return $( '#railway_line_title' )
+
   travel_time = (v) ->
-    $( '#travel_time' )
+    return $( '#travel_time' )
 
   travel_time_info = (v) ->
-    travel_time(v).find( 'table.travel_time_info' )
+    return travel_time(v)
+      .find( 'table.travel_time_info' )
+
+  content_headers = (v) ->
+    return $( '#links_to_railway_line_info_pages , #travel_time , #women_only_car' )
+      .children( '.content_header' )
+
+  #---- 判定
+
+  in_railway_line_title = (v) ->
+    return railway_line_title(v).length > 0
 
   has_multiple_travel_time_info_tables = (v) ->
-    travel_time_info(v).length > 1
+    return travel_time_info(v).length > 1
+  
+  #---- 数値
 
   max_width_of_travel_time_info_tables = (v) ->
     n = 0
@@ -17,6 +35,18 @@ class RailwayLine
       n = Math.max( n , table.inner_width() )
       return
     return n
+
+  process: ->
+    if in_railway_line_title(@)
+      process_content_headers(@)
+      process_travel_time_info_tables(@)
+      process_women_only_car(@)
+    return
+
+  process_content_headers = (v) ->
+    p = new ContentHeaderProcessor( content_headers(v) )
+    p.process()
+    return
 
   process_travel_time_info_tables = (v) ->
     # console.log( 'RailwayLine\#process_travel_time_info_tables' )
@@ -28,10 +58,11 @@ class RailwayLine
         table = new TravelTimeInfoTable( $( this ) )
         table.set_width( _width_new )
         return
-      return
+
     travel_time_info(v).each ->
       table = new TravelTimeInfoTable( $( this ) )
       table.set_width_of_station_info_domain()
+      return
     return
 
   process_women_only_car = (v) ->
@@ -39,16 +70,12 @@ class RailwayLine
     women_only_car.process()
     return
 
-  process: ->
-    process_travel_time_info_tables(@)
-    process_women_only_car(@)
-    return
-
 window.RailwayLine = RailwayLine
 
 #-------- TravelTimeInfoTable
 
 class TravelTimeInfoTable
+
   constructor: ( @domain ) ->
 
   inner_width: ->
@@ -90,6 +117,7 @@ class TravelTimeInfoTableStationInfoRow
 #-------- WomenOnlyCar
 
 class WomenOnlyCar
+
   constructor: ( @domain = $( '#women_only_car' ) ) ->
 
   sections = (v) ->
@@ -121,6 +149,7 @@ class WomenOnlyCar
 
 
 class WomenOnlyCarSectionInfos
+
   constructor: ( @domain ) ->
 
   children = (v) ->
@@ -169,6 +198,7 @@ class WomenOnlyCarSectionInfos
     return
 
 class WomenOnlyCarSectionInfo
+
   constructor: ( @domain ) ->
 
   cars = (v) ->
@@ -181,6 +211,11 @@ class WomenOnlyCarSectionInfo
   max_outer_height_of_children = (v) ->
     p = new DomainsCommonProcessor( v.domain.children() )
     return p.max_outer_height( true )
+
+  process: ->
+    process_cars(@)
+    process_height(@)
+    return
 
   process_cars = (v) ->
     _max_height = max_outer_height_of_car_domains(v)
@@ -197,11 +232,6 @@ class WomenOnlyCarSectionInfo
     v.domain.css( 'height' , _h )
     return
 
-  process: ->
-    process_cars(@)
-    process_height(@)
-    return
-
 class WomenOnlyCarSectionInfoCar
 
   constructor: ( @car , @max_height ) ->
@@ -214,5 +244,5 @@ class WomenOnlyCarSectionInfoCar
 
   process: ->
     _padding_top_and_bottom = padding_top_and_bottom(@)
-    @car.css( 'padding-top' , _padding_top_and_bottom ).css( 'padding-bottom' , _padding_top_and_bottom )
+    @car.css( 'padding-top' , Math.ceil( _padding_top_and_bottom ) ).css( 'padding-bottom' , Math.floor( _padding_top_and_bottom ) )
     return

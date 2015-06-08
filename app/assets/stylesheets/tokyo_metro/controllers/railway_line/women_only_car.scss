@@ -2,7 +2,7 @@
 
 @import '../../fundamental_settings.scss' ;
 
-%background_of_women_only_car {
+%backgroundOfWomenOnlyCar {
   $base_color: $jp_traditional_sango ;
   //
   // 変数の定義
@@ -78,167 +78,163 @@
 }
 
 %womenOnlyCarOperationDayTitle {
-	.title {
-		@extend %paddingLeft4 ;
-		@extend %marginBottom16 ;
-		@extend %womenOnlyCarTitleCommonSettings ;
-		border: {
-			left: {
-				color: #999 ;
-			}
-		}
-		background: {
-			color: #fafafa ;
-		}
-		h4 {
-			font: {
-				size: 16px ;
-				weight: bold ;
-			}
-		}
-		h5 {
-			font: {
-				size: 12px ;
-				weight: normal ;
-			}
-		}
-	}
+  .title {
+    @include padding_left_4 ;
+    @include margin_bottom_16 ;
+    @extend %womenOnlyCarTitleCommonSettings ;
+    border: {
+      left: {
+        color: #999 ;
+      }
+    }
+    background: {
+      color: #fafafa ;
+    }
+    h4 {
+      font: {
+        size: 16px ;
+        weight: bold ;
+      }
+    }
+    h5 {
+      font: {
+        size: 12px ;
+        weight: normal ;
+      }
+    }
+  }
 }
 
 %womenOnlyCarSectionTitle {
-	.title {
-		@extend %paddingLeft4 ;
-		@extend %marginBottom8 ;
-		@extend %womenOnlyCarTitleCommonSettings ;
-		background: {
-			color: #fcfcfc ;
-		}
-		h5 {
-			font: {
-				size: 12px ;
-				weight: bold ;
-			}
-		}
-		h6 {
-			font: {
-				size: 9px ;
-				weight: normal ;
-			}
-		}
-	}
+  .title {
+    @include padding_left_4 ;
+    @include margin_bottom_8 ;
+    @extend %womenOnlyCarTitleCommonSettings ;
+    background: {
+      color: #fcfcfc ;
+    }
+    h5 {
+      font: {
+        size: 12px ;
+        weight: bold ;
+      }
+    }
+    h6 {
+      font: {
+        size: 9px ;
+        weight: normal ;
+      }
+    }
+  }
 }
 
 %womenOnlyCarAvailableTime {
-	.available_time {
-		float: left ;
-		font: {
-			size: 12pt ;
-		}
-		border: solid 1px #eee ;
-		padding: 4px ;
-		@include border_radius( 4px ) ;
-	}
+  .available_time {
+    @include float_left ;
+    @include padding_4 ;
+    @include border_radius( 4px ) ;
+    font: {
+      size: 12pt ;
+    }
+    border: solid 1px #eee ;
+  }
 }
 
 %womenOnlyCarSectionInfos {
-	.section_infos {
-		@extend %marginLeft16 ;
-		@extend %womenOnlyCarAvailableTime ;
-		.infos {
-			@extend %marginLeft16 ;
-			float: left ;
-			.info {
-                padding: {
-                    top: 2px ;
-                    bottom: 2px ;
-                }
-				.place {
-					float: left ;
-					text-align: right ;
-			        @extend %marginRight16 ;
-				}
-				.cars {
-					float: left ;
-                    .car {
-                        float: left ;
-                        border: solid 1px #999 ;
-                        text-align: center;
-                        width: 24px ;
-                        @extend %marginRight4 ;
-                        @extend %paddingTop4 ;
-                        @extend %paddingBottom4 ;
-                    }
-                    .women_only {
-                        @extend %background_of_women_only_car ;
-                        font: {
-                            weight: bold ;
-                            size: 10pt ;
-                        }
-                    }
-                    .normal {
-                        font: {
-                            weight: normal ;
-                            size: 7.5pt ;
-                        }
-                    }
-				}
-			}
-		}
-	}
+  .section_infos {
+    @include margin_left_16 ;
+    @extend %womenOnlyCarAvailableTime ;
+    .infos {
+      @include margin_left_16 ;
+      @include float_left ;
+      .info {
+        @include padding_top_bottom_2 ;
+        .place {
+          @include float_left ;
+          @include margin_right_16 ;
+          text-align: right ;
+        }
+        .cars {
+          @include float_left ;
+          .car {
+            @include float_left ;
+            @include margin_right_4 ;
+            @include padding_top_bottom_4 ;
+            border: solid 1px #999 ;
+            text-align: center;
+            width: 24px ;
+          }
+          .women_only {
+            @extend %backgroundOfWomenOnlyCar ;
+            font: {
+              weight: bold ;
+              size: 10pt ;
+            }
+          }
+          .normal {
+            font: {
+              weight: normal ;
+              size: 7.5pt ;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 #women_only_car {
-    .top_title {
-        @extend %background_of_women_only_car ;
+  .content_header {
+    @extend %backgroundOfWomenOnlyCar ;
+  }
+  .title_of_a_railway_line {
+    border: {
+      left: {
+        style: solid ;
+        width: 8px ;
+      }
     }
-    .title_of_a_railway_line {
-        border: {
-            left: {
-                style: solid ;
-                width: 8px ;
-            }
-        }
-		@extend %marginBottom16 ;
-		@extend %paddingLeft8 ;
+    @include margin_bottom_16 ;
+    @include padding_left_8 ;
+  }
+  .operation_day {
+    @extend %womenOnlyCarOperationDayTitle ;
+    .section {
+      clear: both ;
+      @include margin_left_16 ;
+      @include margin_bottom_16 ;
+      @extend %womenOnlyCarSectionTitle ;
+      @extend %womenOnlyCarSectionInfos ;
     }
-	.operation_day {
-		@extend %womenOnlyCarOperationDayTitle ;
-		.section {
-			clear: both ;
-			@extend %marginLeft16 ;
-			@extend %marginBottom16 ;
-			@extend %womenOnlyCarSectionTitle ;
-			@extend %womenOnlyCarSectionInfos ;
-		}
-	}
-    .in_railway_line_group .operation_day {
-        @extend %marginLeft16 ;
-    }
-    .ginza {
-        @include womenOnlyCarColorSettingsBase( $line_ginza_bgcolor ) ;
-    }
-    .marunouchi {
-        @include womenOnlyCarColorSettingsBase( $line_marunouchi_bgcolor ) ;
-    }
-    .hibiya {
-        @include womenOnlyCarColorSettingsBase( $line_hibiya_bgcolor ) ;
-    }
-    .tozai {
-        @include womenOnlyCarColorSettingsBase( $line_tozai_bgcolor ) ;
-    }
-    .chiyoda {
-        @include womenOnlyCarColorSettingsBase( $line_chiyoda_bgcolor ) ;
-    }
-    .yurakucho {
-        @include womenOnlyCarColorSettingsBase( $line_yurakucho_bgcolor ) ;
-    }
-    .hanzomon {
-        @include womenOnlyCarColorSettingsBase( $line_hanzomon_bgcolor ) ;
-    }
-    .namboku {
-        @include womenOnlyCarColorSettingsBase( $line_namboku_bgcolor ) ;
-    }
-    .fukutoshin {
-        @include womenOnlyCarColorSettingsBase( $line_fukutoshin_bgcolor ) ;
-    }
+  }
+  .in_railway_line_group .operation_day {
+    @include margin_left_16 ;
+  }
+  .ginza {
+    @include womenOnlyCarColorSettingsBase( $line_ginza_bgcolor ) ;
+  }
+  .marunouchi {
+    @include womenOnlyCarColorSettingsBase( $line_marunouchi_bgcolor ) ;
+  }
+  .hibiya {
+    @include womenOnlyCarColorSettingsBase( $line_hibiya_bgcolor ) ;
+  }
+  .tozai {
+    @include womenOnlyCarColorSettingsBase( $line_tozai_bgcolor ) ;
+  }
+  .chiyoda {
+    @include womenOnlyCarColorSettingsBase( $line_chiyoda_bgcolor ) ;
+  }
+  .yurakucho {
+    @include womenOnlyCarColorSettingsBase( $line_yurakucho_bgcolor ) ;
+  }
+  .hanzomon {
+    @include womenOnlyCarColorSettingsBase( $line_hanzomon_bgcolor ) ;
+  }
+  .namboku {
+    @include womenOnlyCarColorSettingsBase( $line_namboku_bgcolor ) ;
+  }
+  .fukutoshin {
+    @include womenOnlyCarColorSettingsBase( $line_fukutoshin_bgcolor ) ;
+  }
 }

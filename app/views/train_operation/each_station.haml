@@ -10,7 +10,7 @@
 = station_info_decorated.render_latest_passenger_survey
 
 %div{ id: :links_to_station_info_pages }
-  = station_info_decorated.render_title_of_links_to_station_info_pages
+  = station_info_decorated.render_title_of_links_to_station_info_pages( request )
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request ).render
 
 = @real_time_info_processor.render( include_train_location_infos: false )
