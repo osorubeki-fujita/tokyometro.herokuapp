@@ -58,7 +58,7 @@ namespace :temp do
 
       new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.find_by( h_for_new_pattern_instance )
       unless new_pattern_instance.present?
-        new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.create( h_for_new_pattern_instance )
+        new_pattern_instance = ::BarrierFreeFacilityServiceDetailPattern.create( h_for_new_pattern_instance , id: ::BarrierFreeFacilityServiceDetailPattern.all.pluck(:id).max + 1 )
       end
 
       ::BarrierFreeFacilityServiceDetail.where(
