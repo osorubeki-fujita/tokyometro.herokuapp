@@ -153,22 +153,3 @@
     @extend %contentHeaderNormalTextSettings ;
   }
 }
-
-//---- 現在不使用
-
-.passenger_info_header {
-  @extend %contentHeaderCommonSettings ;
-  @extend %contentHeaderBlackBackgroundAndWhiteText ;
-  .text_ja {
-    font: {
-      size: 8pt ;
-      weight: normal ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 6pt ;
-      weight: normal ;
-    }
-  }
-}

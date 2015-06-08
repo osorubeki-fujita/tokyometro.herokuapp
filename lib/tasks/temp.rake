@@ -72,6 +72,12 @@ namespace :temp do
     end
   end
 
+end
+
+__END__
+
+namespace :temp do
+
   task :debug_kasumigaseki_and_ginza_20150608 => :environment do
     puts "debug_kasumigaseki_and_ginza_20150608"
 
@@ -118,7 +124,6 @@ namespace :temp do
 end
 
 
-__END__
 
 namespace :temp do
 

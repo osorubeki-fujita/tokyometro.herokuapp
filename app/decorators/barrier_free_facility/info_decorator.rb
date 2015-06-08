@@ -1,4 +1,5 @@
 class BarrierFreeFacility::InfoDecorator < Draper::Decorator
+
   delegate_all
 
   decorates_association :barrier_free_facility_type
