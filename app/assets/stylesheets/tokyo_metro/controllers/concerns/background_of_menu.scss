@@ -82,27 +82,27 @@ ul#links_to_passenger_survey_pages {
 //-------- Content Header
 
 #links_to_station_info_pages {
-  .title {
-    @extend %backgroundOfMenu ;
-    @extend %borderBottomOfMenu ;
-  }
-}
-
-#fare_infos {
-  .top_title {
+  .content_header {
     @extend %backgroundOfMenu ;
     @extend %borderBottomOfMenu ;
   }
 }
 
 #station_facility_platform_infos {
-  .top_title {
+  .content_header {
     @extend %backgroundOfMenu ;
     @extend %borderBottomOfMenu ;
   }
 }
 
 #station_facility_infos {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#fare_infos {
   .top_title {
     @extend %backgroundOfMenu ;
     @extend %borderBottomOfMenu ;

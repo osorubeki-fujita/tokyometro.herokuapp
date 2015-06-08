@@ -172,7 +172,16 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def render_title_of_links_to_station_info_pages
+  def render_title_of_links_to_station_info_pages( request )
+    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new(
+      request ,
+      :title ,
+      :station ,
+      render_name_ja( with_subname: true , suffix: "駅に関するご案内" ) ,
+      render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: "Station" ) ,
+      icon_size: 3
+    ).render
+=begin
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :title }
   %h2{ class: :text_ja }<
@@ -180,6 +189,7 @@ class Station::InfoDecorator < Draper::Decorator
   %h3{ class: :text_en }<
     = this.render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: "Station" )
     HAML
+=end
   end
 
   # @note {ConnectingRailwayLineDecorator#render} から呼び出される。

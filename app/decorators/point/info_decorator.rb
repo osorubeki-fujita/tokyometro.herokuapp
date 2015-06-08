@@ -91,7 +91,7 @@ class Point::InfoDecorator < Draper::Decorator
   end
 
   def render_elevator_icon
-    h.image_tag( "barrier_free_facility/elevator_outside.svg" , class: :elevator_outside , title: "Elevator Outside" )
+    h.image_tag( ::TokyoMetro::App::Renderer::Icon.images[ "elevator_outside" ] , class: :elevator_outside , title: "Elevator Outside" )
   end
 
   def render_close_info

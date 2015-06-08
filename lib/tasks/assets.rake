@@ -15,6 +15,9 @@ namespace :assets do
 
     end
 
+  end
+  
+  namespace :image do
     namespace :copy do
 
       desc "Copy svg files"
@@ -23,6 +26,6 @@ namespace :assets do
       end
 
     end
-
   end
+
 end

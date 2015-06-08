@@ -79,13 +79,6 @@ class StationFacilityInfosOfEachType
     process_specific_infos_of_each_category( v , remark_domains(v) , false )
     return
 
-  process_each_side_domain = (v) ->
-    $.each [ inside(v) , outside(v) ] , ->
-      instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea( $(@) , v.width )
-      instance_of_each_area.process()
-      return
-    return
-
   process_specific_infos_of_each_category = ( v , domains , set_length_to_even = true ) ->
     if domains.length > 0
       p = new DomainsCommonProcessor( domains )
@@ -95,6 +88,13 @@ class StationFacilityInfosOfEachType
           p = new LengthToEven( $(@) , true )
           p.set()
           return
+    return
+
+  process_each_side_domain = (v) ->
+    $.each [ inside(v) , outside(v) ] , ->
+      instance_of_each_area = new StationFacilityInfosOfEachTypeAndLocatedArea( $(@) , v.width )
+      instance_of_each_area.process()
+      return
     return
 
   process_toilet_icons = (v) ->
@@ -126,7 +126,7 @@ class StationFacilityInfosOfEachTypeAndLocatedArea
   constructor: ( @domain , @width ) ->
 
   title_domain = (v) ->
-    return v.domain.children( '.title' ).first()
+    return v.domain.children( '.title_of_each_area' ).first()
 
   facilities = (v) ->
     return v.domain.children( '.facility' )
