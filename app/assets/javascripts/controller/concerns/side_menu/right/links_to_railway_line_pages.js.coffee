@@ -1,71 +1,6 @@
-class LinksToRailwayLinePagesProcessor
-
-  constructor: ( @controller , @domain_infos , @class_name_of_li_sub_content , @length_infos , @max_number_of_li_domains ) ->
-
-  process: ->
-    set_width_of_railway_line_and_operator_domains_to_this_object(@)
-
-    set_width_of_text_domain_in_domain_groups_related_to_railway_lines(@)
-    process_titles(@)
-    process_railway_line_and_operator_domain(@)
-    set_length_of_each_sub_domain(@)
-    return
-
-  set_width_of_railway_line_and_operator_domains_to_this_object = (v) ->
-    w1 = v.length_infos.max_outer_width_of_contents_in_domains_related_to_railway_lines
-    w2 = v.length_infos.width_of_whole_domain - ( v.length_infos.inner_width_of_li_sub_content * ( v.max_number_of_li_domains - 1 ) + v.length_infos.border_width_of_li_domains * ( v.max_number_of_li_domains + 1 ) )
-    w = Math.max( w1 , w2 )
-    v.length_infos.width_of_railway_line_and_operator_domains = w
-    return
-
-  set_width_of_text_domain_in_domain_groups_related_to_railway_lines = (v) ->
-    for group in v.domain_infos.domain_groups_related_to_railway_lines
-      li_domain_group = $( group )
-      $.each li_domain_group , ->
-        l = new LinkToRailwayLinePage( $(@) , v.controller )
-        l.set_text_width()
-        return
-    return
-
-  process_titles = (v) ->
-    t = v.domain_infos.titles
-    if t?
-      t.each ->
-        paddings_left_and_right = $(@).innerWidth() - $(@).width()
-        $(@).css( 'width' , v.length_infos.width_of_whole_domain - paddings_left_and_right )
-        return
-    return
-
-  process_railway_line_and_operator_domain = (v) ->
-    $.each v.domain_infos.li_railway_line_domains , ->
-      p = new LinkToRailwayLinePage( $(@) , v.controller , v.length_infos.width_of_railway_line_and_operator_domains , '.with_link_to_railway_line_page , .railway_line_without_link' )
-      p.process()
-      return
-
-    if v.domain_infos.li_operator_domain? or ( typeof( v.domain_infos.li_operator_domain ) isnt 'undefined' )
-      $.each v.domain_infos.li_operator_domain , ->
-        p = new LinkToRailwayLinePage( $( this ) , v.controller , v.length_infos.width_of_railway_line_and_operator_domains , '.link_to_operator_page' )
-        p.process()
-        return
-
-    return
-
-  set_length_of_each_sub_domain = (v) ->
-    $.each v.domain_infos.ul_each_railway_line_domains , ->
-      p = new LinkToSubConentPagesInEachUl( $(@) , 'railway_line' , v.class_name_of_li_sub_content , v.length_infos.inner_width_of_li_sub_content )
-      p.process()
-      return
-
-    if v.domain_infos.ul_operator_domains? or ( typeof( v.domain_infos.ul_operator_domains ) isnt 'undefined' )
-      v.domain_infos.ul_operator_domains.each ->
-        p = new LinkToSubConentPagesInEachUl( $(@) , 'tokyo_metro' , v.class_name_of_li_sub_content , v.length_infos.inner_width_of_li_sub_content )
-        p.process()
-        return
-    return
-
 class LinksToRailwayLinePages
 
-  constructor: ( @domain , @controller , @class_name_of_li_sub_content ) ->
+  constructor: ( @domain , @controller , @class_name_of_li_sub_content , @selector_for_text_domain ) ->
 
   links_to_year_pages = (v) ->
     return v.domain
@@ -218,7 +153,7 @@ class LinksToRailwayLinePages
 class LinksToPassengerSurveyPages extends LinksToRailwayLinePages
 
   constructor: ( @domain ) ->
-    super( @domain , 'passenger_survey' , 'survey_year' )
+    super( @domain , 'passenger_survey' , 'survey_year' , 'img' )
 
   titles = (v) ->
     return v.domain
@@ -275,6 +210,71 @@ class LinksToRealTimeInfoPages extends LinksToRailwayLinePages
 
 window.LinksToRealTimeInfoPages = LinksToRealTimeInfoPages
 
+
+class LinksToRailwayLinePagesProcessor
+
+  constructor: ( @controller , @domain_infos , @class_name_of_li_sub_content , @length_infos , @max_number_of_li_domains , @selector_for_text_domain ) ->
+
+  process: ->
+    set_width_of_railway_line_and_operator_domains_to_this_object(@)
+
+    set_width_of_text_domain_in_domain_groups_related_to_railway_lines(@)
+    process_titles(@)
+    process_railway_line_and_operator_domain(@)
+    set_length_of_each_sub_domain(@)
+    return
+
+  set_width_of_railway_line_and_operator_domains_to_this_object = (v) ->
+    w1 = v.length_infos.max_outer_width_of_contents_in_domains_related_to_railway_lines
+    w2 = v.length_infos.width_of_whole_domain - ( v.length_infos.inner_width_of_li_sub_content * ( v.max_number_of_li_domains - 1 ) + v.length_infos.border_width_of_li_domains * ( v.max_number_of_li_domains + 1 ) )
+    w = Math.max( w1 , w2 )
+    v.length_infos.width_of_railway_line_and_operator_domains = w
+    return
+
+  set_width_of_text_domain_in_domain_groups_related_to_railway_lines = (v) ->
+    for group in v.domain_infos.domain_groups_related_to_railway_lines
+      li_domain_group = $( group )
+      $.each li_domain_group , ->
+        l = new LinkToRailwayLinePage( $(@) , v.controller )
+        l.set_text_width()
+        return
+    return
+
+  process_titles = (v) ->
+    t = v.domain_infos.titles
+    if t?
+      t.each ->
+        paddings_left_and_right = $(@).innerWidth() - $(@).width()
+        $(@).css( 'width' , v.length_infos.width_of_whole_domain - paddings_left_and_right )
+        return
+    return
+
+  process_railway_line_and_operator_domain = (v) ->
+    $.each v.domain_infos.li_railway_line_domains , ->
+      p = new LinkToRailwayLinePage( $(@) , v.controller , v.length_infos.width_of_railway_line_and_operator_domains , '.with_link_to_railway_line_page , .railway_line_without_link' )
+      p.process()
+      return
+
+    if v.domain_infos.li_operator_domain? or ( typeof( v.domain_infos.li_operator_domain ) isnt 'undefined' )
+      $.each v.domain_infos.li_operator_domain , ->
+        p = new LinkToRailwayLinePage( $( this ) , v.controller , v.length_infos.width_of_railway_line_and_operator_domains , '.link_to_operator_page' )
+        p.process()
+        return
+
+    return
+
+  set_length_of_each_sub_domain = (v) ->
+    $.each v.domain_infos.ul_each_railway_line_domains , ->
+      p = new LinkToSubConentPagesInEachUl( $(@) , 'railway_line' , v.class_name_of_li_sub_content , v.length_infos.inner_width_of_li_sub_content , v.selector_for_text_domain )
+      p.process()
+      return
+
+    if v.domain_infos.ul_operator_domains? or ( typeof( v.domain_infos.ul_operator_domains ) isnt 'undefined' )
+      v.domain_infos.ul_operator_domains.each ->
+        p = new LinkToSubConentPagesInEachUl( $(@) , 'tokyo_metro' , v.class_name_of_li_sub_content , v.length_infos.inner_width_of_li_sub_content , v.selector_for_text_domain )
+        p.process()
+        return
+    return
 
 class LinkToSubConentPagesInEachUl
 
