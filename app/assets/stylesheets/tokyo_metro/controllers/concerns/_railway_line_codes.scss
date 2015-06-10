@@ -110,12 +110,9 @@ $normal_border_width_of_railway_line_code_stroked_circle_32_normal: $normal_bord
 //---------------- 記号の文字の設定
 
 %railwayLineCodesCommonTextSettings {
-	@extend %floatLeft ;
+  @include float_left ;
   p {
-    margin: {
-      top: 0px ;
-      bottom: 0px ;
-    }
+    @include margin_top_bottom_0 ;
   }
 }
 

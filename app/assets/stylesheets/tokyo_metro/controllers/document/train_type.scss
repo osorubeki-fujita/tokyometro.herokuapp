@@ -5,7 +5,7 @@
 
 %trainTypeDisplayed {
   @extend %nameInDocument ;
-  @extend %padding4 ;
+  @include padding_4 ;
   text-align: center ;
 }
 
@@ -18,7 +18,7 @@
     }
     @include margin_bottom_64 ;
     .railway_line {
-      @extend %marginBottom32 ;
+      @include margin_bottom_32 ;
       .document_info_box_wide {
         $height: 144px ;
         @include documentInfoBoxWide( $height ) ;

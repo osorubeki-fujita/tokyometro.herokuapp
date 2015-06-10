@@ -19,7 +19,7 @@
     }
   }
   .text {
-    @extend %floatLeft ;
+    @include float_left ;
     .text_ja {
       font: {
         size: 9pt ;
@@ -40,7 +40,7 @@
     }
   }
   .arrow {
-    @extend %marginTop4 ;
+    @include margin_top_4 ;
     text-align: center ;
   }
 }
@@ -62,8 +62,8 @@
     border-spacing: 0px ;
     @include margin_bottom_32 ;
     td {
-      @extend %paddingTopBottom0 ;
-      @extend %paddingLeftRight8 ;
+      @include padding_top_bottom_0 ;
+      @include padding_left_right_8 ;
     }
     //
     td.station_name_top {

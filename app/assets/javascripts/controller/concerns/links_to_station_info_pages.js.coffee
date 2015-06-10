@@ -1,44 +1,88 @@
 class LinksToStationInfoPages
 
-  constructor: ( @domain = $( '#station_link_list' ) ) ->
+  constructor: ( @domain = $( '#links_to_station_info_pages' ) ) ->
 
-  has_station_link_list = (v) ->
-    return ( v.domain.children().length > 0 )
+  links_to_station_info_pages_are_present = (v) ->
+    return ( v.domain.length > 0 )
 
-  station_link_list_ja = (v) ->
-    return v.domain.children( 'ul#station_link_list_ja' )
+  links = (v) ->
+    return v.domain.children( 'ul' + v.ul_id )
 
-  station_link_list_en = (v) ->
-    return v.domain.children( 'ul#station_link_list_en' )
+  li_domains = (v) ->
+    return links(v).children( 'li' )
 
-  columns = (v) ->
-    d = v.domain.find( 'ul.hiragana_column, ul.alphabet_column' )
-    # console.log d
-    return d
+  number_of_li_domains = (v) ->
+    return li_domains(v).length
 
-  process_each_column = (v) ->
-    _columns = columns(v)
-    # console.log _columns
-    p = new DomainsCommonProcessor( _columns )
-    p.set_css_attribute( 'width' , p.max_inner_width() )
+  max_width_of_li = (v) ->
+    p = new DomainsCommonProcessor( li_domains(v) )
+    return p.max_width()
+
+  process: ->
+    process_each( @ , '#links' )
+    process_each( @ , '#links_to_station_facility_info_of_connecting_other_stations' )
     return
 
-  set_height_of_lists = (v) ->
-    v.domain.children( 'ul' ).each ->
-      list = $( this )
-      cols = list.children( 'ul' )
-      p = new DomainsCommonProcessor( cols )
-      list.css( 'height' , p.max_inner_height() )
+  process_each = ( v , ul_id = '#links' ) ->
+    v.ul_id = ul_id
+    if links_to_station_info_pages_are_present(v)
+      li_domains(v).each ->
+        li = new SideMenuEachLink( $(@) , '.link_to_content' )
+        li.process()
+        return
+      set_width_to_li(v)
+      # set_height_to_ul(v)
+      set_clear_to_li(v)
+    return
+
+  set_width_to_li = (v) ->
+    w = max_width_of_li(v)
+    li_domains(v).each ->
+      $( this ).css( 'width' , w )
       return
     return
 
-  process: ->
-    if has_station_link_list(@)
-      # console.log 'LinksToStationInfoPages\#process: has_station_link_list ---> true'
-      process_each_column(@)
-      set_height_of_lists(@)
-    else
-      # console.log 'LinksToStationInfoPages\#process: has_station_link_list ---> false'
+  set_clear_to_li = (v) ->
+    if v.li_rows > 1
+      i = v.actual_in_a_row
+      while i < number_of_li_domains(v)
+        li_domains(v).eq(i).css( 'clear' , 'both' )
+        i += v.actual_in_a_row
     return
+
+  get_li_rows = (v) ->
+    if in_a_single_row(v)
+      r = 1
+      actual_in_a_row = number_of_li_domains(v)
+    else
+      max_in_a_row = Math.floor( outer_main_domain_width(v) * 1.0 / max_width_of_li(v) )
+      r = Math.ceil( number_of_li_domains(v) * 1.0 / max_in_a_row )
+      actual_in_a_row = max_in_a_row
+      while ( actual_in_a_row - 1 ) * r >= number_of_li_domains(v)
+        actual_in_a_row -= 1
+    v.li_rows = r
+    v.actual_in_a_row = actual_in_a_row
+    return
+
+  in_main_content_center = (v) ->
+    return ( $( '#main_content_center' ).length > 0 )
+
+  in_main_content_wide = (v) ->
+    return ( $( '#main_content_wide' ).length > 0 )
+
+  outer_main_domain = (v) ->
+    if in_main_content_center(v)
+      d = $( '#main_content_center' )
+    else if in_main_content_wide(v)
+      d = $( '#main_content_wide' )
+    else
+      d = false
+    return d
+
+  outer_main_domain_width = (v) ->
+    return outer_main_domain(v).width()
+
+  in_a_single_row = (v) ->
+    return ( max_width_of_li(v) * number_of_li_domains(v) + 1 <= outer_main_domain_width(v) )
 
 window.LinksToStationInfoPages = LinksToStationInfoPages

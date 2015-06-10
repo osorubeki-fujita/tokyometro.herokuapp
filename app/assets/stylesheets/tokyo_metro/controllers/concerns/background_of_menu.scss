@@ -66,6 +66,12 @@ ul#links_to_passenger_survey_pages {
   }
 }
 
+#links_to_real_time_info_pages_of_railway_lines {
+  .title {
+    @extend %backgroundOfMenu ;
+  }
+}
+
 #update {
   @extend %backgroundOfMenu ;
 }

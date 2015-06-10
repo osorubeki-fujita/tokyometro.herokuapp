@@ -4,27 +4,21 @@
 
 %baseOfLineCodeInPlatformInfoTab {
   .railway_line_code_32 {
-    @extend %floatLeft ;
-    margin: {
-      right: 6px ;
-    }
+    @include float_left ;
+    @include margin_right_6 ;
   }
   .yurakucho , .fukutoshin , .namboku , .toei_mita {
-    @extend %floatLeft ;
+    @include float_left ;
   }
 }
 
 %textSettingsOfLineNameInPlatformInfoTab {
   .railway_line_name {
     @extend %baseOfLineCodeInPlatformInfoTab ;
-    margin: {
-      left: 8px ;
-      right: 8px ;
-      top: 4px ;
-      bottom: 4px ;
-    }
+    @include margin_top_bottom_4 ;
+    @include margin_left_right_8 ;
     .text {
-      @extend %floatLeft ;
+      @include float_left ;
       .text_ja {
         font: {
           size: 10pt ;
@@ -42,16 +36,13 @@
 %platformInfoTabUl {
   position: relative ;
   z-index: 1 ;
-  padding: 0px ;
-  margin: {
-    top: 0px ;
-    bottom: 0px ;
-  }
+  @include padding_0 ;
+  @include margin_top_bottom_0 ;
 }
 
 %platformInfoTabLi {
   display: block;
-  @extend %floatLeft ;
+  @include float_left ;
   @extend %linkInDiv ;
   @extend %textSettingsOfLineNameInPlatformInfoTab ;
   list-style-type: none;

@@ -34,25 +34,22 @@
 #passenger_survey_of_station {
   @extend %bgcolorOfPassengerSurveyOfStation ;
   text-align: right ;
-  padding: {
-    top: 2px ;
-    bottom: 2px ;
-    right: 8px ;
-  }
-  @extend %marginBottom8 ;
+  @include padding_top_bottom_2 ;
+  @include padding_right_8 ;
+  @include margin_bottom_8 ;
   .data {
-    @extend %floatRight ;
+    @include float_right ;
   }
   .icon {
     @extend %linkInDiv ;
-    @extend %floatLeft ;
-    @extend %marginRight4 ;
+    @include float_left ;
+    @include margin_right_4 ;
     i {
-      @extend %floatLeft ;
+      @include float_left ;
     }
   }
   .text_ja {
-    @extend %floatLeft ;
+    @include float_left ;
   }
   //
   $font_size_base: 12px ;

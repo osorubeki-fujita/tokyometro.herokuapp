@@ -7,6 +7,8 @@
 @import 'platform_info/title_cell.scss' ;
 @import 'platform_info/tab_content.scss' ;
 
+@import 'platform_info/in_tooltip.scss' ;
+
 #station_facility_platform_infos {
   @include margin_bottom_32 ;
 }

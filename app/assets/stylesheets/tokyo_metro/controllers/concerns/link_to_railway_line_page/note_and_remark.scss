@@ -4,8 +4,8 @@
 
 %infoAndRemarkSettingsInLinkToRailwayLine {
   .info , .remark {
-    @extend %floatLeft ;
-    @extend %marginLeft4 ;
+    @include float_left ;
+    @include margin_left_4 ;
     width: 18px ;
     height: 18px ;
   }

@@ -17,7 +17,7 @@
 //-------- リストの基本設定 (list-style)
 
 %liBaseSettingsInLinkUl {
-  @extend %floatLeft ;
+  @include float_left ;
   @extend %linkInDiv ;
   list-style: none ;
 }

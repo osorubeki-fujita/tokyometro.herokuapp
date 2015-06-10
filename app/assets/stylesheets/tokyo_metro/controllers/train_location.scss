@@ -37,7 +37,7 @@
     font: {
       size: 7pt ;
     }
-    @extend %marginLeft4 ;
+    @include margin_left_4 ;
   }
 }
 
@@ -81,20 +81,20 @@
     font: {
       size: 9pt ;
     }
-    @extend %marginLeft4 ;
+    @include margin_left_4 ;
   }
 }
 
 %trainLocationStartingStation {
   @extend %trainLocationContentFontSizeSmall ;
-  @extend %marginRight8 ;
+  @include margin_right_8 ;
 }
 
 // --------
 
 %railwayLineMatrixInTrainLocation {
   .railway_line_matrix_small {
-    @extend %floatLeft ;
+    @include float_left ;
     height: 120px ;
   }
 }
@@ -103,13 +103,12 @@
 
 %terminalStationInTrainLocation {
   .terminal_station {
-    @extend %marginBottom8 ;
-    @extend %marginLeft8 ;
-    @extend %marginRight8 ;
+    @include margin_left_right_8 ;
+    @include margin_bottom_8 ;
     @extend %trainLocationContentFontSizeLarge ;
     clear: both ;
     .station_codes {
-      @extend %floatLeft ;
+      @include float_left ;
       margin: {
         right: 5px ;
       }
@@ -123,7 +122,7 @@
       }
     }
     .text {
-      @extend %floatLeft ;
+      @include float_left ;
     }
   }
 }
@@ -296,13 +295,13 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos {
 // --------
 
 %titleOfRailwayLineAndRailwayDirectionInTrainLoations {
-  padding: 8px ;
   h3 , h4 , h5 {
     font: {
       weight: normal ;
     }
   }
-  @extend %marginBottom16 ;
+  @include margin_bottom_16 ;
+  @include padding_8 ;
 }
 
 // --------

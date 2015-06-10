@@ -33,7 +33,7 @@
   $travel_time_square_length: $line_width - $travel_time_square_margin * 2 ;
   td.railway_line_column {
     width: $line_width ;
-    padding: 0px ;
+    @include padding_0 ;
     text-align: center ;
     .travel_time_info_square {
       @extend %text_en ;
@@ -55,20 +55,17 @@
   td.station_info {
     width: 256px ;
     .station_info_domain {
-      margin: {
-        left: 8px ;
-        right: 16px ;
-        top: 8px ;
-        bottom: 8px ;
-      }
+      @include margin_left_8 ;
+      @include margin_right_16 ;
+      @include margin_top_bottom_8 ;
     }
     @extend %linkInDiv ;
     &:hover {
       background-color: $link_hover_domain_color ;
     }
     .station_codes {
-      @extend %floatLeft ;
-      @extend %marginRight4 ;
+      @include float_left ;
+      @include margin_right_4 ;
       img {
         $length: 24px ;
         width: $length ;
@@ -76,14 +73,14 @@
       }
     }
     .text {
-      @extend %floatLeft ;
+      @include float_left ;
       @extend %fontSettingsOfTravelTimeInfo ;
     }
   }
 }
 
 %commonSettingsOfTravelTimeInfo {
-  @extend %marginBottom16 ;
+  @include margin_bottom_16 ;
   @extend %colorSettingsOfTravelTimeInfoThroughOperation ;
   @extend %settingsOfTravelTimeInfoRailwayColumn ;
   @extend %settingsOfTravelTimeInfoStationName ;

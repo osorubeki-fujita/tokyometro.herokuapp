@@ -53,7 +53,7 @@
 %railwayLineCodesInRailwayLineMatrixesYurakuchoFukutoshin {
   .railway_line_codes {
     .railway_line_code_outer {
-      @extend %floatLeft ;
+      @include float_left ;
     }
   }
 }

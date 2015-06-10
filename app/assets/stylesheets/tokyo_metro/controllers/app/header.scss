@@ -6,34 +6,31 @@
   background-color: $jp_traditional_yokan_iro ;
   color: #fff ;
   // height: 48px ;
-  padding: {
-    left: 16px ;
-    right: 16px ;
-    top: 4px ;
-  }
+  @include padding_left_right_16 ;
+  @include padding_top_4 ;
   .top_title {
-    @extend %floatLeft ;
+    @include float_left ;
     @extend %text_en ;
     .main {
       font-size: 20pt ;
-      @extend %marginBottom4 ;
+      @include margin_bottom_4 ;
       @extend %linkInDiv ;
       .version {
         font-size: 9pt ;
-        @extend %marginLeft8 ;
+        @include margin_left_8 ;
       }
       &.hover {
         background-color: #666 ;
       }
     }
     .sub {
+      @include margin_bottom_4 ;
       @extend %text_en ;
       font-size: 9pt;
-      @extend %marginBottom4 ;
     }
   }
   .developer {
-    @extend %floatRight ;
+    @include float_right ;
     font-size: 9pt;
     @extend %text_en ;
     //----
@@ -41,23 +38,19 @@
       border: {
         bottom: dotted 1px #fff ;
       }
-      @extend %marginBottom4 ;
-      @extend %paddingLeft4 ;
-      @extend %paddingRight4 ;
+      @include padding_left_right_4 ;
+      @include margin_bottom_4 ;
     }
     ul#sns_accounts {
-      padding: 0px ;
-      margin: {
-        top: 0px ;
-      }
-      @extend %marginBottom4 ;
+      @include padding_0 ;
+      @include margin_top_0 ;
+      @include margin_bottom_4 ;
       li.sns_account {
         @extend %linkInDiv ;
         list-style: none ;
         font-size: 7.5pt;
         i {
-          @extend %marginLeft4 ;
-          @extend %marginRight4 ;
+          @include margin_left_right_4 ;
         }
         &.hover {
           background-color: #666 ;

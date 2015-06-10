@@ -10,10 +10,10 @@ table.travel_time_info , table.travel_time_info_main , table.travel_time_info_br
 }
 
 td.transfer {
-  padding: 8px ;
+  @include padding_8 ;
   @extend %connectingRailwayLineInfo ;
   ul.railway_lines {
-    @extend %floatLeft ;
+    @include float_left ;
     @extend %clearUlDefaultSettings ;
     li.railway_line {
       border: {

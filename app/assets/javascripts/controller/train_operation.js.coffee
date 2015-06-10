@@ -24,7 +24,7 @@ class TrainOperationInfos
   width_of_railway_line_matrix = (v) ->
     w = 0
     informations_including_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       w = Math.max( w , train_operation_info.railway_line_matrix_outer_width( true ) )
       return
     return w
@@ -32,7 +32,7 @@ class TrainOperationInfos
   height_of_railway_line_matrix = (v) ->
     h = 0
     informations_including_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       h = Math.max( h , train_operation_info.railway_line_matrix_inner_height() )
       return
     return h
@@ -43,7 +43,7 @@ class TrainOperationInfos
   height_of_status = (v) ->
     h = 0
     informations_including_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       w = Math.max( w , train_operation_info.status_inner_height() )
       return
     return h
@@ -66,21 +66,11 @@ class TrainOperationInfos
     # console.log h
     return h
 
-  max_width_of_icon_body = (v) ->
-    w = 0
-    informations(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
-      _icon_body_width = train_operation_info.status().icon_body_width()
-      w = Math.max( w , _icon_body_width )
-      return
-    return w
-
   process: ->
     if has_titles(@)
       process_titles(@)
     # 運行情報がページ内に存在する場合
     if has_informations(@)
-      initialize_icon_size(@)
       # それぞれの路線名のテキスト領域の大きさを初期化
       initialize_railway_line_matrix_text_size(@)
       # それぞれの運行状況ステータスのテキスト領域の大きさを初期化
@@ -95,18 +85,10 @@ class TrainOperationInfos
     _titles.process()
     return
 
-  initialize_icon_size = (v) ->
-    _max_width_of_icon_body = max_width_of_icon_body(v)
-    informations(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
-      train_operation_info.initialize_icon_size( _max_width_of_icon_body )
-      return
-    return
-
   # それぞれの路線名のテキスト領域の大きさを初期化するメソッド
   initialize_railway_line_matrix_text_size = (v) ->
     informations_including_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       train_operation_info.initialize_railway_line_matrix_text_size()
       return
     return
@@ -114,7 +96,7 @@ class TrainOperationInfos
   max_width_of_status_text = (v) ->
     w = 0
     informations(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       p = new DomainsCommonProcessor( train_operation_info.status().text().children() )
       outer_width = p.max_outer_width( true )
       w = Math.max( w , Math.ceil( outer_width ) )
@@ -125,7 +107,7 @@ class TrainOperationInfos
   initialize_status_text_size = (v) ->
     _max_width_of_status_text = max_width_of_status_text(v)
     informations_including_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       train_operation_info.initialize_status_text_size( _max_width_of_status_text )
       return
     return
@@ -137,18 +119,18 @@ class TrainOperationInfos
     _size_of_status = size_of_status(v,h)
 
     informations_including_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       train_operation_info.initialize_size( _size_of_railway_line_matrix , _size_of_status )
       return
     return
 
   set_attributes = (v) ->
     informations(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       train_operation_info.set_attributes()
       return
     informations_of_precise_version(v).each ->
-      train_operation_info = new TrainOperationInfo( $( this ) )
+      train_operation_info = new TrainOperationInfo( $(@) )
       train_operation_info.set_attributes( true )
       return
     return
@@ -175,10 +157,6 @@ class TrainOperationInfo
 
   status_inner_height: ->
     return @.status().inner_height()
-
-  initialize_icon_size: ( _max_width ) ->
-    @.status().initialize_icon_size( _max_width )
-    return
 
   # 個別の路線名のテキスト領域の大きさを初期化するメソッド
   initialize_railway_line_matrix_text_size: ->
@@ -348,15 +326,6 @@ class TrainOperationInfoStatus extends TrainOperationInfoMatrixBase
   additional_infos = (v) ->
     return v.infos().children( '.additional_infos' ).first()
 
-  icon_body_width: ->
-    return Math.ceil( @.icon_body().width() )
-
-  initialize_icon_size: ( _max_width ) ->
-    @.icon().css( 'width' , _max_width )
-    p= new DomainsHorizontalAlignProcessor( @.icon_body() , _max_width )
-    p.process()
-    return
-
   # 個別の運行状況ステータスのテキスト領域の大きさを初期化するメソッド
   initialize_text_size: ( _width ) ->
     p = new DomainsCommonProcessor( @.text().children() )
@@ -392,16 +361,16 @@ class TrainOperationInfoStatus extends TrainOperationInfoMatrixBase
   set_margin_top_of_icon_and_text = (v) ->
     _max_height_of_icon_and_text = max_height_of_icon_and_text(v)
     $( [ v.icon() , v.text() ] ).each ->
-      _margin_top = ( _max_height_of_icon_and_text - $( this ).outerHeight( true ) ) * 0.5
-      $( this ).css( 'margin-top' , _margin_top )
+      _margin_top = ( _max_height_of_icon_and_text - $(@).outerHeight( true ) ) * 0.5
+      $(@).css( 'margin-top' , _margin_top )
       return
     return
 
   set_margin_bottom_of_children = (v) ->
     _max_height_of_children = max_height_of_children(v)
     v.infos().children().each ->
-      _margin_bottom = ( _max_height_of_children - $( this ).outerHeight( true ) )
-      $( this ).css( 'margin-bottom' , _margin_bottom )
+      _margin_bottom = ( _max_height_of_children - $(@).outerHeight( true ) )
+      $(@).css( 'margin-bottom' , _margin_bottom )
       return
     return
 

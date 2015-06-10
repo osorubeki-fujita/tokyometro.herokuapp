@@ -176,19 +176,15 @@ $title_height: $title_common_height + $title_main_text_height ;
       }
     }
     .station_name {
-      @extend %floatLeft ;
+      @include float_left ;
     }
     .station_codes {
-      float: right ;
-      margin: {
-        right: 8px ;
-      }
+      @include float_right ;
+      @include margin_right_8 ;
       img.station_code {
         $img_length: 48px ;
-        @extend %floatLeft ;
-        margin: {
-          left: 8px ;
-        }
+        @include float_left ;
+        @include margin_left_8 ;
         width: $img_length ;
         height: $img_length ;
       }

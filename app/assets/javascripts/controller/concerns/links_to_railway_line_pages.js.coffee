@@ -1,15 +1,18 @@
 class LinksToRailwayLinePages
 
-  constructor: ( @domain , @controller ) ->
+  constructor: ( @domain , @page_category ) ->
 
   link_domains = (v) ->
-    return v.domain.children( 'li' ).not( '.title' )
+    return v.domain
+      .children( 'li' )
+      .not( '.title' )
 
   title_domains = (v) ->
-    return v.domain.children( 'li.title' )
+    return v.domain
+      .children( 'li.title' )
 
-  on_fare_controller = (v) ->
-    return v.controller is 'fare'
+  on_fare_category = (v) ->
+    return v.page_category is 'fare'
 
   process: ->
     set_width_of_each_fare_link_domain(@)
@@ -18,15 +21,15 @@ class LinksToRailwayLinePages
     return
 
   set_width_of_each_fare_link_domain = (v) ->
-    if on_fare_controller(v)
+    if on_fare_category(v)
       p = new RailwayLineAndStationMatrix()
       v.width_of_each_link_domain = p.width_of_each_normal_railway_line()
     return
 
   process_each_link_domain = (v) ->
-    if on_fare_controller(v)
+    if on_fare_category(v)
       link_domains(v).each ->
-        d = new LinkToRailwayLinePage( $( this ) , v.controller , v.width_of_each_link_domain )
+        d = new LinkToRailwayLinePage( $( this ) , v.category , v.width_of_each_link_domain )
         d.set_text_width()
         d.process()
       return
@@ -65,13 +68,16 @@ window.LinksToRailwayLinePages = LinksToRailwayLinePages
 
 class LinkToRailwayLinePage
 
-  constructor: ( @domain , @controller , @width , @content_domain_name = '.railway_line_without_link , .with_link_to_railway_line_page' ) ->
+  constructor: ( @domain , @category , @width , @content_domain_name = '.railway_line_without_link , .with_link_to_railway_line_page' ) ->
 
   domain_of_content = (v) ->
-    return v.domain.children( v.content_domain_name ).first()
+    return v.domain
+      .children( v.content_domain_name )
+      .first()
 
   children_of_domain_of_content = (v) ->
-    return domain_of_content(v).children()
+    return domain_of_content(v)
+      .children()
 
   sum_outer_width_of_children_of_domain_of_content = (v) ->
     c = children_of_domain_of_content(v)
@@ -98,11 +104,17 @@ class LinkToRailwayLinePage
     return
 
   set_width = (v) ->
-    switch v.controller
+    switch v.category
       when 'fare'
-        v.domain.css( 'width' , v.width )
+        set_width_normally(v)
       when 'passenger_survey'
-        v.domain.css( 'width' , v.width )
+        set_width_normally(v)
+      when 'real_time_infos'
+        set_width_normally(v)
+    return
+  
+  set_width_normally = (v) ->
+    v.domain.css( 'width' , v.width )
     return
 
 window.LinkToRailwayLinePage = LinkToRailwayLinePage

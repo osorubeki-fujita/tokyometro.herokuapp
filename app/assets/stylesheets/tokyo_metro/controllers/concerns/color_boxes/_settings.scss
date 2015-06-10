@@ -11,7 +11,7 @@
 
 //-------- float 属性の設定
 %colorBoxFloatSettings {
-	@extend %floatLeft ;
+  @include float_left ;
 }
 
 //-------- 線のスタイルと色の設定（標準）
@@ -24,14 +24,14 @@
 
 //-------- colorBox 各種共通の設定
 %colorBoxCommonBase {
-  // @extend %colorBoxTextSettings ;
   text-align: center ;
   vertical-align: middle ;
+  @include float_left ;
   //
   // @extend %colorBoxFloatSettings ;
-	@extend %floatLeft ;
-  //
+  // @extend %colorBoxTextSettings ;
   // @extend %colorBoxNormalBorder ;
+  //
   border: {
     style: solid ;
     color: #999 ;

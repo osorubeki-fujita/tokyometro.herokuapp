@@ -6,10 +6,9 @@
 #main_content_center {
   .links_to_passenger_survey {
     .title {
-      @extend %marginBottom16 ;
-      @extend %paddingLeft8 ;
-      @extend %paddingTop4 ;
-      @extend %paddingBottom4 ;
+      @include margin_bottom_16 ;
+      @include padding_left_8 ;
+      @include padding_top_bottom_4 ;
       font: {
         weight: normal ;
         size: 12pt ;
@@ -24,8 +23,7 @@
 li.survey_year {
   .text_en {
     font-size: 12pt ;
-    @extend %marginLeft4 ;
-    @extend %marginRight4 ;
+    @include margin_left_right_4 ;
   }
 }
 
@@ -39,11 +37,11 @@ ul#links_to_year_pages_on_index_page {
     }
     padding: 8px ;
     .icon {
-      @extend %floatLeft ;
-      @extend %marginRight4 ;
+      @include float_left ;
+      @include margin_right_4 ;
     }
     .text {
-      @extend %floatLeft ;
+      @include float_left ;
     }
     .text_ja {
       font-size: 12pt ;
@@ -55,7 +53,7 @@ ul#links_to_year_pages_on_index_page {
       font-size: 9pt ;
     }
   }
-  @extend %marginBottom32 ;
+  @include margin_bottom_32 ;
 }
 
 .links_to_passenger_survey {
@@ -63,7 +61,7 @@ ul#links_to_year_pages_on_index_page {
     p.text_ja.info {
       font-size: 9pt ;
     }
-    @extend %marginBottom8 ;
+    @include margin_bottom_8 ;
   }
 }
 
@@ -74,7 +72,7 @@ ul#links_to_year_pages_on_index_page {
   @extend %cycleOfRowColor ;
   border-collapse: collapse ;
   border-spacing: 0px ;
-  @extend %marginBottom32 ;
+  @include margin_bottom_32 ;
 }
 
 %passengerSurveyTable_TheadSettings {
@@ -106,12 +104,8 @@ ul#links_to_year_pages_on_index_page {
 
 %passengerSurveyTable_TdSettings {
   td {
-    padding: {
-      top: 0px ;
-      bottom: 0px ;
-      left: 8px ;
-      right: 8px ;
-    }
+    @include padding_top_bottom_0 ;
+    @include padding_left_right_8 ;
   }
 }
 
@@ -128,16 +122,12 @@ ul#links_to_year_pages_on_index_page {
       min-width: 28px ;
     }
     td.order.railway_line {
-      padding: {
-        left: 16px ;
-        right: 4px ;
-      }
+      @include padding_left_16 ;
+      @include padding_right_4 ;
     }
     td.order.all {
-      padding: {
-        left: 4px ;
-        right: 8px ;
-      }
+      @include padding_left_4 ;
+      @include padding_right_8 ;
       font: {
         size: 8pt ;
       }
@@ -155,10 +145,7 @@ ul#links_to_year_pages_on_index_page {
       }
     }
     td.graph {
-      padding: {
-        top: 0px ;
-        bottom: 0px ;
-      }
+      @include padding_top_bottom_0 ;
       svg {
         height: <%= ::TokyoMetro::App::Renderer::PassengerSurvey::Table::MetaClass::Row.rectangle_height %>px ;
         width: 0px ;
@@ -175,7 +162,7 @@ ul#links_to_year_pages_on_index_page {
 
 @mixin passengerSurveyTable_TdStationInfoSettings ( $img_margin_right ) {
   td.station_info {
-    padding: 0px ;
+    @include padding_0 ;
     .station_codes {
       margin: {
         right: $img_margin_right ;
@@ -261,19 +248,17 @@ ul#links_to_year_pages_on_index_page {
 #passenger_survey_title {
   .main_text {
     .railway_line {
-      @extend %floatLeft ;
+      @include float_left ;
     }
     .survey_year {
-      @extend %floatRight ;
+      @include float_right ;
+      @include padding_top_bottom_8 ;
+      @include padding_left_right_16 ;
+      @include margin_right_16 ;
+      @include border_radius( 4px ) ;
       font: {
         size: 18pt ;
       }
-      @include border_radius( 4px ) ;
-      @extend %paddingTop8 ;
-      @extend %paddingBottom8 ;
-      @extend %paddingLeft16 ;
-      @extend %paddingRight16 ;
-      @extend %marginRight16 ;
       background-color: #666 ;
       color: #fff ;
     }

@@ -2,7 +2,7 @@
 @import '../../fundamental_settings.scss' ;
 
 %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
-  @extend %floatLeft ;
+  @include float_left ;
 }
 
 %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 {
@@ -32,12 +32,12 @@
 
 %railwayLineConnectingToAnotherStation {
   .another_station {
-    @extend %floatLeft ;
-    @extend %marginLeft4 ;
+    @include float_left ;
+    @include margin_left_4 ;
+    @include padding_4 ;
     // @include border_radius( 2px ) ;
     background-color: #eee ;
     border: solid 1px #999 ;
-    padding: 4px ;
     $font_size_ja: 8pt ;
     .text_ja {
       font-size: $font_size_ja ;
@@ -93,9 +93,9 @@
   // @extend %connectingRailwayLineOfOtherOperator ;
   @extend %railwayLineConnectingToAnotherStation ;
   li.railway_line {
-    @extend %floatLeft ;
+    @include float_left ;
+    @include padding_6 ;
     @extend %linkInDiv ;
-    padding: 6px ;
     margin: {
       right: -1px ;
       bottom: -1px ;

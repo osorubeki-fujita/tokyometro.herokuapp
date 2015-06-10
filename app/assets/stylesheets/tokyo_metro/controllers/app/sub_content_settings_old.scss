@@ -101,60 +101,58 @@
 }
 
 %floatLeftAndVerticalAlignMiddleInTopContent {
-	@extend %floatLeft ;
-	vertical-align: middle ;
+  @include float_left ;
+  vertical-align: middle ;
 }
 
 @mixin topContent {
-    // 変数の定義
-    $length_of_logo: 64px ;
-    $margin_top_and_bottom_of_logo: 8px;
-    $border_of_logo: 2px ;
-    $height_of_content: 96px ; // $length_of_logo + $border_of_logo * 2 + $margin_top_and_bottom_of_logo * 2 ;
-    //
+  // 変数の定義
+  $length_of_logo: 64px ;
+  $margin_top_and_bottom_of_logo: 8px;
+  $border_of_logo: 2px ;
+  $height_of_content: 96px ; // $length_of_logo + $border_of_logo * 2 + $margin_top_and_bottom_of_logo * 2 ;
+  //
+  height: $height_of_content ;
+  @include margin_bottom_16 ;
+  %floatLeftAndVerticalAlignMiddleInTopContent {
+    @include float_left ;
+    vertical-align: middle ;
+  }
+  .logo {
+    @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
     height: $height_of_content ;
-    margin: {
-        bottom: 16px ;
+    img {
+      margin:{
+        left: $margin_top_and_bottom_of_logo ;
+        right: $margin_top_and_bottom_of_logo * 2 ;
+        top: $margin_top_and_bottom_of_logo;
+        bottom: $margin_top_and_bottom_of_logo;
+      }
+      width: $length_of_logo ;
+      height: $length_of_logo ;
+      border: solid $border_of_logo #fff;
+      // @include rounded_square_border_radius(8px) ;
     }
-    %floatLeftAndVerticalAlignMiddleInTopContent {
-		@extend %floatLeft ;
-        vertical-align: middle ;
-    }
-    .logo {
-        @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
-        height: $height_of_content ;
-        img {
-            margin:{
-                left: $margin_top_and_bottom_of_logo ;
-                right: $margin_top_and_bottom_of_logo * 2 ;
-                top: $margin_top_and_bottom_of_logo;
-                bottom: $margin_top_and_bottom_of_logo;
-            }
-            width: $length_of_logo ;
-            height: $length_of_logo ;
-            border: solid $border_of_logo #fff;
-            // @include rounded_square_border_radius(8px) ;
+  }
+  .text {
+    @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
+    .title {
+      @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
+      @extend %text_en ;
+      .tokyo_metro {
+        display: block;
+        color: #fff ;
+        font: {
+          size: 18pt;
         }
-    }
-    .text {
-        @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
-        .title {
-            @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
-            @extend %text_en ;
-            .tokyo_metro {
-                display: block;
-                color: #fff ;
-                font: {
-                    size: 18pt;
-                }
-            }
-            .open_data_contest{
-                color: lighten( $background_base_color_of_top_content , 20% );
-                font: {
-                    size: 24pt;
-                    weight: bold;
-                }
-            }
+      }
+      .open_data_contest{
+        color: lighten( $background_base_color_of_top_content , 20% );
+        font: {
+          size: 24pt;
+          weight: bold;
         }
+      }
     }
+  }
 }

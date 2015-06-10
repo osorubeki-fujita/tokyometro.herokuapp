@@ -5,14 +5,14 @@
 %closeInfoOfLiInUlExits {
   .close {
     @include float_left ;
-    @extend %marginLeft8 ;
+    @include margin_left_8 ;
+    @include padding_4 ;
     background-color: $jp_traditional_kinariiro ;
     border: solid 1px #ccc ;
-    padding: 4px ;
     .icon {
       @include float_left ;
-      @extend %marginRight4 ;
-      padding: 2px ;
+      @include margin_right_4 ;
+      @include padding_2 ;
       @include border_radius( 2px ) ;
       i {
         color: #f00 ;
@@ -20,8 +20,8 @@
     }
     .text {
       @include float_left ;
+      @include padding_2 ;
       background-color: transparent ;
-      padding: 2px ;
     }
     .text_ja {
       font-size: 9pt ;
@@ -43,9 +43,9 @@
     }
     .ev.text_en {
       @include float_left ;
+      @include margin_left_4 ;
+      @include padding_4 ;
       @include border_radius( 2px ) ;
-      @extend %marginLeft4 ;
-      padding: 4px ;
       display: inline ;
       background-color: #fff ;
       text-align: center ;
@@ -59,7 +59,7 @@
 %liInUlExits {
   list-style: none ;
   @extend %linkInDiv ;
-  padding: 4px ;
+  @include padding_4 ;
   margin: {
     bottom: -1px ;
   }
@@ -197,7 +197,7 @@
 }
 
 #map_handler {
-  @extend %marginBottom32 ;
+  @include margin_bottom_32 ;
   @extend %mapHandlerContentDebug ;
   // background-color: $jp_traditional_yokan_iro ;
   background-color: #ccc ;

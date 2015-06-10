@@ -11,9 +11,7 @@
     height: auto ;
   }
   clear: both ;
-  padding: {
-    bottom: 4px ;
-  }
+  @include padding_bottom_4 ;
 }
 
 #tokyo_metro_railway_lines {
@@ -72,22 +70,20 @@
       font: {
         size: $font_size_en ;
       }
-      margin: {
-        left: 6px ;
-      }
+      @include margin_left_6 ;
     }
   }
 }
 
 %commonSettingsOfServiceDetail {
   @include float_left ;
+  @include padding_4 ;
   border: {
     left: {
       style: solid ;
       width: 4px ;
     }
   }
-  padding: 4px ;
 }
 
 @mixin colorSettingsOfServiceDetail( $border_color ) {
@@ -104,11 +100,11 @@
   @include margin_right_8 ;
   @include padding_top_bottom_2 ;
   @include padding_left_right_4 ;
+  text-align:center;
+  @include border_radius( 2px ) ;
   font: {
     size: 8pt ;
   }
-  text-align:center;
-  @include border_radius( 2px ) ;
 }
 
 //--------
@@ -129,6 +125,40 @@
     @include float_left ;
     height: 48px ;
     width: auto ;
+  }
+}
+
+//--------
+
+%stationFacilityInfoCommonSettings {
+  clear: none ;
+  @include float_left ;
+  font: {
+    size: 9pt ;
+  }
+}
+
+%stationFacilityInfoPlace {
+  .place {
+    font: {
+      size: 10pt ;
+    }
+    @include margin_bottom_4 ;
+    display: block ;
+  }
+}
+
+%stationFacilityInfoUlServiceDetails {
+  ul.service_details {
+    @include padding_left_0 ;
+    ul.service_detail {
+      @include padding_left_0 ;
+      @include margin_bottom_2 ;
+      list-style: none ;
+      li {
+        list-style: none ;
+      }
+    }
   }
 }
 
@@ -156,15 +186,14 @@
   .service_time {
     display: block ;
     @extend %commonSettingsOfServiceDetail ;
+    @include colorSettingsOfServiceDetail( $jp_traditional_moegi ) ;
   }
 }
 
 %stationFacilityInfoServiceDetailToiletAssistants {
   ul.toilet_assistants {
     @include margin_bottom_4 ;
-    padding: {
-      left: 0px ;
-    }
+    @include padding_left_0 ;
     li.toilet_assistant {
       @extend %serviceDetailPreciseInfo ;
       border: solid 1px $jp_traditional_kamenozoki ;
@@ -172,6 +201,9 @@
       list-style: none ;
     }
   }
+}
+
+%stationFacilityInfoImageOfToiletAssistants {
   img.toilet_assistant {
     $length: 24px ;
     width: $length ;
@@ -191,8 +223,11 @@
 %stationFacilityInfoServiceDetailRemark {
   .remark {
     @extend %commonSettingsOfServiceDetail ;
+    @include colorSettingsOfServiceDetail( $jp_traditional_jinzamomi ) ;
   }
 }
+
+//--------
 
 #station_facility_infos {
   ul#station_facility_info {
@@ -241,38 +276,10 @@
       @extend %stationFacilityInfoImage ;
     }
     .info {
-      clear: none ;
-      @include float_left ;
-      font: {
-        size: 9pt ;
-      }
-      .place {
-        font: {
-          size: 10pt ;
-        }
-        @include margin_bottom_4 ;
-        display: block ;
-      }
-      %commonSettingsOfUlServiceDetail {
-        padding: {
-          left: 0px ;
-        }
-      }
+      @extend %stationFacilityInfoCommonSettings ;
       //
-      ul.service_details {
-        @extend %commonSettingsOfUlServiceDetail ;
-        ul.service_detail {
-          @extend %commonSettingsOfUlServiceDetail ;
-          @include margin_bottom_2 ;
-          list-style: none ;
-          li {
-            list-style: none ;
-          }
-        }
-        .service_time {
-          @include colorSettingsOfServiceDetail( $jp_traditional_moegi ) ;
-        }
-      }
+      @extend %stationFacilityInfoPlace ;
+      @extend %stationFacilityInfoUlServiceDetails ;
       @extend %stationFacilityInfoServiceDetailOperationDay ;
       @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
       @extend %stationFacilityInfoServiceDetailServiceTime ;
@@ -280,9 +287,20 @@
       @extend %stationFacilityInfoServiceDetailWheelChair ;
       @extend %stationFacilityInfoServiceDetailRemark ;
       //
-      .remark {
-        @include colorSettingsOfServiceDetail( $jp_traditional_jinzamomi ) ;
-      }
+      @extend %stationFacilityInfoImageOfToiletAssistants ;
     }
   }
+}
+
+.in_tooltip.barrier_free_facility {
+  @extend %stationFacilityInfoCommonSettings ;
+  //
+  @extend %stationFacilityInfoPlace ;
+  @extend %stationFacilityInfoUlServiceDetails ;
+  @extend %stationFacilityInfoServiceDetailOperationDay ;
+  @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
+  @extend %stationFacilityInfoServiceDetailServiceTime ;
+  @extend %stationFacilityInfoServiceDetailToiletAssistants ;
+  @extend %stationFacilityInfoServiceDetailWheelChair ;
+  @extend %stationFacilityInfoServiceDetailRemark ;
 }

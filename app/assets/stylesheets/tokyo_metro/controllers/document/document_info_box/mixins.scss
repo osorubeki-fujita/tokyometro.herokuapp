@@ -3,39 +3,39 @@
 @import '../../../fundamental_settings.scss' ;
 
 %nameInDocument {
-  @extend %floatLeft ;
-    vertical: {
-        align: middle ;
+  @include float_left ;
+  vertical: {
+    align: middle ;
+  }
+  .text_ja {
+    font: {
+      size: 18pt ;
     }
-    .text_ja {
-        font: {
-            size: 18pt ;
-        }
-        .sub {
-            font: {
-                size: 10pt ;
-            }
-            line-height: 1.3em ;
-            margin: {
-                top: -2px ;
-                bottom: 6px ;
-            }
-        }
-        margin: {
-            bottom: -2px ;
-        }
+    .sub {
+      font: {
+        size: 10pt ;
+      }
+      line-height: 1.3em ;
+      margin: {
+        top: -2px ;
+        bottom: 6px ;
+      }
     }
-    .text_en {
-        font: {
-            size: 10pt;
-        }
-        .sub {
-            font: {
-                size: 8pt ;
-            }
-            line-height: 1.3em ;
-        }
+    margin: {
+      bottom: -2px ;
     }
+  }
+  .text_en {
+    font: {
+      size: 10pt;
+    }
+    .sub {
+      font: {
+        size: 8pt ;
+      }
+      line-height: 1.3em ;
+    }
+  }
 }
 
 $border_radius_of_info_box: 9px ;
@@ -60,29 +60,29 @@ $width_of_each_color_area: 160px ;
 }
 
 %commonSettingsOfColorBox {
-    border : solid $border_width #999 ;
-    margin: {
-        left: $margin_left ;
-        bottom: $margin_bottom ;
+  border : solid $border_width #999 ;
+  margin: {
+    left: $margin_left ;
+    bottom: $margin_bottom ;
+  }
+  padding : $padding_width ;
+  @include colorBoxMarginSettingsInDocumentInfoBox( 0px , $border_radius_of_info_box ) ;
+  .color_info {
+    @include float_left ;
+    width : 96px ;
+    .web_color {
+      font: {
+        size : 12pt ;
+      }
+      @extend %text_en ;
     }
-    padding : $padding_width ;
-    @include colorBoxMarginSettingsInDocumentInfoBox( 0px , $border_radius_of_info_box ) ;
-    .color_info {
-        @extend %floatLeft ;
-        width : 96px ;
-        .web_color {
-            font: {
-                size : 12pt ;
-            }
-            @extend %text_en ;
-        }
-        .rgb_color {
-            font: {
-                size : 8pt;
-            }
-            @extend %text_en ;
-        }
+    .rgb_color {
+      font: {
+        size : 8pt;
+      }
+      @extend %text_en ;
     }
+  }
 }
 
 @mixin sizeSettingsOfDocumentInfoBox( $width_base , $height_base ) {

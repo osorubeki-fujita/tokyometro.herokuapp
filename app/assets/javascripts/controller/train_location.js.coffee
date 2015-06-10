@@ -9,16 +9,20 @@ class TrainLocationInfos
     return train_type_domains(v).length > 0
 
   ul_domains_of_train_locations_of_each_direction = (v) ->
-    return v.domain.children( 'ul.train_locations_of_each_direction' )
+    return v.domain
+      .children( 'ul.train_locations_of_each_direction' )
 
   li_domains_of_train_locations = (v) ->
-    return ul_domains_of_train_locations_of_each_direction(v).children( 'li.train_location' )
+    return ul_domains_of_train_locations_of_each_direction(v)
+      .children( 'li.train_location' )
 
   domains_of_train_fundamental_infos = (v) ->
-    return li_domains_of_train_locations(v).children( '.train_fundamental_infos' )
+    return li_domains_of_train_locations(v)
+      .children( '.train_fundamental_infos' )
 
   train_type_domains = (v) ->
-    return domains_of_train_fundamental_infos(v).children( '.train_type' )
+    return domains_of_train_fundamental_infos(v)
+      .children( '.train_type' )
 
   process: ->
     if has_train_location_infos(@)
@@ -62,34 +66,53 @@ class TrainLocationInfo
   constructor: ( @domain ) ->
 
   train_fundamental_infos = (v) ->
-    return v.domain.children( '.train_fundamental_infos' ).first()
+    return v.domain
+      .children( '.train_fundamental_infos' )
+      .first()
 
   railway_line_matrix_very_small = (v) ->
-    return train_fundamental_infos(v).children( '.railway_line_matrix_very_small' ).first()
+    return train_fundamental_infos(v)
+      .children( '.railway_line_matrix_very_small' )
+      .first()
 
   terminal_info = (v) ->
-    return train_fundamental_infos(v).children( '.terminal_station' ).first()
+    return train_fundamental_infos(v)
+      .children( '.terminal_station' )
+      .first()
 
   current_position = (v) ->
-    return v.domain.children( '.current_position' ).first()
+    return v.domain
+      .children( '.current_position' )
+      .first()
 
   sub_infos = (v) ->
-    return v.domain.children( '.sub_infos' ).first()
+    return v.domain
+      .children( '.sub_infos' )
+      .first()
 
   domain_of_station_infos_in_current_position = (v) ->
-    return current_position(v).children( '.station_infos' ).first()
+    return current_position(v)
+      .children( '.station_infos' )
+      .first()
 
   station_infos = (v) ->
-    return v.domain.find( '.station_info' )
+    return v.domain
+      .find( '.station_info' )
 
   time_info = (v) ->
-    return sub_infos(v).children( '.time_info' ).first()
+    return sub_infos(v)
+      .children( '.time_info' )
+      .first()
 
   starting_station = (v) ->
-    return sub_infos(v).children( '.starting_station' ).first()
+    return sub_infos(v)
+      .children( '.starting_station' )
+      .first()
 
   train_number = (v) ->
-    return sub_infos(v).children( '.train_number' ).first()
+    return sub_infos(v)
+      .children( '.train_number' )
+      .first()
 
   process_vertical_align_of_each_content: ->
     # console.log 'TrainLocationInfo\#process_vertical_align_of_each_content'
@@ -128,10 +151,6 @@ class TrainLocationInfo
     return
 
   set_vertical_align_of_time_info = (v) ->
-    time_info(v).children( '.icon' ).each ->
-      content = $(@)
-      p = new LengthToEven( content )
-      p.set()
     time_info(v).children().not( '.icon' ).each ->
       content = $(@)
       p = new LengthToEven( content , true )
@@ -162,19 +181,24 @@ class TrainLocationUlDomain
     return
 
   li_train_locations = (v) ->
-    return v.ul_domain.children( 'li.train_location' )
+    return v.ul_domain
+      .children( 'li.train_location' )
 
   domains_of_train_fundamental_infos = (v) ->
-    return li_train_locations(v).children( '.train_fundamental_infos' )
+    return li_train_locations(v)
+      .children( '.train_fundamental_infos' )
 
   railway_line_matrixes = (v) ->
-    return domains_of_train_fundamental_infos(v).children( '.railway_line_matrix_very_small' )
+    return domains_of_train_fundamental_infos(v)
+      .children( '.railway_line_matrix_very_small' )
 
   current_positions = (v) ->
-    return li_train_locations(v).children( '.current_position' )
+    return li_train_locations(v)
+      .children( '.current_position' )
 
   sub_infos = (v) ->
-    return li_train_locations(v).children( '.sub_infos' )
+    return li_train_locations(v)
+      .children( '.sub_infos' )
 
   set_max_outer_width_of_domains_of_train_fundamental_infos = (v) ->
     p = new DomainsCommonProcessor( domains_of_train_fundamental_infos(v) )

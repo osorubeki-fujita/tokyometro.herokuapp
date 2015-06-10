@@ -54,32 +54,29 @@
     border-spacing: 0px ;
   }
   td.through_operation_infos {
-    padding: 8px ;
+    @include padding_8 ;
     .through_operation_info {
-      @extend %floatLeft ;
-      .train_type_outer {
-        @extend %floatLeft ;
-      }
-      .train_type_displayed {
-        clear: both ;
-        @extend %floatLeft ;
-      }
-      .precise {
-        @extend %floatLeft ;
-      }
-      margin: 4px ;
-      padding: {
-        top: 4px ;
-        bottom: 4px ;
-        left: 8px ;
-        right: 8px ;
-      }
+      @include float_left ;
+      @include margin_4 ;
+      @include padding_top_bottom_4 ;
+      @include padding_left_right_8 ;
       @include border_radius( 4px ) ;
       // border: solid 1px #333 ;
       // background-color: #666 ;
       // color: #fff ;
       border: solid 1px #999 ;
       background-color: #eee ;
+      //
+      .train_type_outer {
+        @include float_left ;
+      }
+      .train_type_displayed {
+        clear: both ;
+        @include float_left ;
+      }
+      .precise {
+        @include float_left ;
+      }
     }
     font: {
       size: 9pt ;
@@ -87,12 +84,12 @@
   }
   tr.through_operation_info_row.top {
     td.through_operation_infos {
-      @extend %paddingBottom16 ;
+      @include padding_bottom_16 ;
     }
   }
   tr.through_operation_info_row.bottom {
     td.through_operation_infos {
-      @extend %paddingTop16 ;
+      @include padding_top_16 ;
     }
   }
   td.hibiya_tobu {

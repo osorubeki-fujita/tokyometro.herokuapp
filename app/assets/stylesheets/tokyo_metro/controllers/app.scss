@@ -32,7 +32,7 @@ body {
 //-------- contents
 
 %mainContentSettings {
-  @extend %floatLeft ;
+  @include float_left ;
   height: auto ;
 }
 
@@ -40,13 +40,13 @@ body {
   $padding: $side_menu_padding ;
   #left_contents {
     width: $width_of_left_contents - $padding ;
-    @extend %floatLeft ;
+    @include float_left ;
     padding: {
       right: $padding ;
     }
   }
   #right_contents {
-    @extend %floatLeft ;
+    @include float_left ;
     width: $width_of_right_contents - $padding ;
     padding: {
       left: $padding ;

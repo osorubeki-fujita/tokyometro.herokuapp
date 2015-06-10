@@ -1,3 +1,6 @@
+
+__END__
+
 namespace :temp do
 
   task :update_station_facility_in_kasumigaseki_20150609 => :environment do
@@ -75,7 +78,6 @@ namespace :temp do
 
 end
 
-__END__
 
 namespace :temp do
 

@@ -4,7 +4,7 @@
 
 %stationInfoTextInTableFontSizeSettings {
   .text {
-    @extend %floatLeft ;
+    @include float_left ;
     .text_ja {
       font: {
         size: 12pt ;
@@ -42,24 +42,24 @@
   td.station_info {
     @extend %stationInfoTextInTableFontSizeSettings ;
     @extend %linkInDiv ;
+    @include padding_0 ;
     $station_code_img_length: 24px ;
-    padding: 0px ;
     text-align: left ;
     .station_info_domain {
-      margin: 8px ;
+      @include margin_8 ;
     }
     .station_codes {
-      @extend %floatLeft ;
-      @extend %marginRight8 ;
+      @include float_left ;
+      @include margin_right_8 ;
       img.station_code {
-        @extend %floatLeft ;
+        @include float_left ;
         width: $station_code_img_length ;
         height: $station_code_img_length ;
       }
     }
     .station_code_outer {
-      @extend %floatLeft ;
-      @extend %marginRight8 ;
+      @include float_left ;
+      @include margin_right_8 ;
       background-color: #fff ;
       $margin_of_inner_domain: 2px ;
       $length_base: $station_code_img_length + $margin_of_inner_domain * 2 ;

@@ -61,7 +61,7 @@
 }
 
 %stationTrainTimePreciseInfos {
-  @extend %floatLeft ;
+  @include float_left ;
   color: $jp_traditional_sumi_iro ;
   font: {
     size: 8pt ;
@@ -89,7 +89,7 @@ table.station_timetable {
   background-color: #fff ;
   border-collapse: collapse ;
   width: auto ;
-  @extend %marginBottom32 ;
+  @include margin_bottom_32 ;
   @extend %commonSettingsOfStationTimetableHeader ;
   @extend %colorSettingsOfStationTimetableHeader ;
   @extend %stationTimetableBorderSetting ;

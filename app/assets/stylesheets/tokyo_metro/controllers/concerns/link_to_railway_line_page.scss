@@ -4,14 +4,13 @@
 
 %domainBaseSettingsOfLinkToRailwayLine {
   @extend %linkInDiv ;
-  @extend %floatLeft ;
-  padding: 4px ;
+  @include float_left ;
+  @include padding_4 ;
   margin: {
     right: -1px ;
     bottom: -1px ;
   }
   border: solid 1px #fff ;
-  // @include border_radius( 4px ) ;
 }
 
 %hoverSettingsOfLinkToRailwayLine {
@@ -22,7 +21,7 @@
 
 %colorBoxSettingsOfLinkToRailwayLine {
   .color_box_32 {
-    @extend %floatLeft ;
+    @include float_left ;
   }
 }
 

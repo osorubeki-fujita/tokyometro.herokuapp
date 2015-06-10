@@ -50,9 +50,9 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
       raise "Error: #{ same_as }"
     end
 
-    facility_id = [ place.downcase , category.downcase , number ].select( &:present? ).map( &:to_s ).join( "_" )
+    facility_id = [ railway_line_code_letter.downcase , place.downcase , category.downcase , number ].select( &:present? ).map( &:to_s ).join( "_" )
     facility_code = [ railway_line_code_letter , number ].map( &:to_s ).join
-    platform = [ place , category , number ].select( &:present? ).map( &:to_s ).join( "." )
+    platform = [ railway_line_code_letter , place , category , number ].select( &:present? ).map( &:to_s ).join( "." )
     { id: facility_id , code: facility_code , platform: platform }
   end
 
@@ -178,17 +178,13 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   def render_in_platform_info
     hs = id_and_code_hash
     if image_filename.present?
+      options = tooltip_options_in_platform_info.merge({ class: :barrier_free_facility })
       h.link_to(
-        h.image_tag( image_filename , class: :barrier_free_facility ) ,
-        h.url_for( anchor: hs[ :id ] ) ,
-        title: title_added_to_image
+        h.image_tag( image_filename , options ) ,
+        h.url_for( anchor: hs[ :id ] )
       )
     else
-      h.link_to(
-        hs[ :platform ] ,
-        h.url_for( anchor: hs[ :id ] ) ,
-        title: hs[ :platform ]
-      )
+      raise
     end
   end
 
@@ -206,6 +202,27 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   def available_to_wheel_chair?
     object.available_to_wheel_chair?
+  end
+  
+  IN_DATA_FOR_TOOLTIP_JOINED_BY = "／"
+
+  def tooltip_options_in_platform_info
+    h = ::Hash.new
+    h[ "data-place" ] = root_infos_to_s
+    if service_details.present?
+      h[ "data-service-details" ] = service_details.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
+    end
+    if escalator_available_to_wheel_chair?
+      h[ "data-wheelchair" ] = "車いす対応"
+    end
+    if toilet_assistant_info_pattern.present?
+      h[ "data-toilet-assistant" ] = toilet_assistant_info_pattern.to_s
+    end
+    if remark.present?
+      h[ "data-remark" ] = remark_to_a.join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
+    end
+
+    h
   end
 
 end

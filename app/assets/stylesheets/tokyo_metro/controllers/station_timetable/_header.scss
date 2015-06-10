@@ -44,9 +44,9 @@
 //-------- 曜日 共通設定
 
 %stationTimetableHeaderMainOperationDay {
-  @extend %floatLeft ;
-  @extend %marginRight8 ;
-  padding: 8px ;
+  @include float_left ;
+  @include margin_right_8 ;
+  @include padding_8 ;
   text-align: center ;
   color: #fff ;
   .text_ja {
@@ -67,8 +67,8 @@
 }
 
 %stationTimetableHeaderMainDirection {
-  @extend %floatLeft ;
-  @extend %marginLeft4 ;
+  @include float_left ;
+  @include margin_left_4 ;
   // background-color: #f6f6f6 ;
   .text_ja {
     font: {
@@ -85,8 +85,8 @@
 }
 
 %stationTimetableHeaderAdditionalInfosStationCodes {
-  @extend %floatLeft ;
-  @extend %marginRight4 ;
+  @include float_left ;
+  @include margin_right_4 ;
   img {
     width: 24px ;
     height: 24px ;
@@ -94,8 +94,8 @@
 }
 
 %stationTimetableHeaderAdditionalInfosStationName {
-  @extend %floatLeft ;
-  @extend %marginRight4 ;
+  @include float_left ;
+  @include margin_right_4 ;
   .text_ja {
     font: {
       size: 10pt ;
@@ -137,7 +137,7 @@
         }
       }
       .additional_infos {
-        @extend %floatRight ;
+        @include float_right ;
         .station_codes {
           @extend %stationTimetableHeaderAdditionalInfosStationCodes ;
         }

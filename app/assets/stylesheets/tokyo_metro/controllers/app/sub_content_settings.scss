@@ -6,6 +6,6 @@ $side_menu_padding: 16px ;
 
 #side_menu {
   clear: both ;
-  @extend %floatLeft ;
+  @include float_left ;
   width: $width_of_left_contents - $side_menu_padding ;
 }

@@ -8,9 +8,9 @@
     width: 1px ;
   }
   @include border_radius( 4px ) ;
-  @extend %floatRight ;
+  @include float_right ;
+  @include margin_left_8 ;
   @extend %linkInDiv ;
-  @extend %marginLeft8 ;
   &:hover {
     border: {
       style: solid ;
@@ -22,11 +22,11 @@
     cursor: pointer ;
   }
   form {
-    padding: 0px ;
+    @include padding_0 ;
   }
   button {
-    padding: 0px ;
-    margin: 0px ;
+    @include padding_0 ;
+    @include margin_0 ;
     border: none ;
     background-color: transparent ;
     cursor: pointer ;

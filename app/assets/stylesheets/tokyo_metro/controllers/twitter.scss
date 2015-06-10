@@ -6,7 +6,7 @@
   border: solid 1px #333 ;
   .content_header {
     .text_en {
-      @extend %floatLeft ;
+      @include float_left ;
       font: {
         size: 14pt ;
       }
