@@ -270,27 +270,23 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos { .train_n
 
 // --------
 
-ul.train_locations_of_each_direction {
-  li.train_location {
-    .sub_infos {
-      .starting_station {
-        .starting_station_title {
-          @extend %trainLocationContentTitleSmall ;
-        }
-        .station_info {
-          .text {
-            @extend %trainLocationContentFontSizeSmall ;
-          }
-        }
-      }
-      .time_info {
-        .title_of_delay {
-          @extend %trainLocationContentTitleSmall ;
-        }
+ul.train_locations_of_each_direction { li.train_location { .sub_infos {
+  .starting_station {
+    .starting_station_title {
+      @extend %trainLocationContentTitleSmall ;
+    }
+    .station_info {
+      .text {
+        @extend %trainLocationContentFontSizeSmall ;
       }
     }
   }
-}
+  .time_info {
+    .title_of_delay {
+      @extend %trainLocationContentTitleSmall ;
+    }
+  }
+}}}
 
 // --------
 
