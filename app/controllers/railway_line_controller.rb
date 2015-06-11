@@ -8,6 +8,7 @@ class RailwayLineController < ApplicationController
 
   def index
     @title = "路線のご案内"
+    set_twitter_processor( :tokyo_metro ) 
     render 'railway_line/index'
   end
 

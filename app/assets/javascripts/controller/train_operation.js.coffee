@@ -1,19 +1,35 @@
 class TrainOperationInfos
 
   constructor: ( @domain = $( "#train_operation_infos" ) ) ->
+  
+  has_train_operation_info_title = (v) ->
+    return train_operation_info_title(v).length > 0
+  
+  has_title_of_links_to_station_info_pages = (v) ->
+    return title_of_links_to_station_info_pages(v).length > 0
 
   # 運行情報がページ内に存在するか否かの判定
   has_informations = (v) ->
-    return ( informations(v).length > 0 )
+    return informations(v).length > 0
 
   has_titles = (v) ->
-    return ( titles(v).length > 0 )
-
-  informations_including_precise_version = (v) ->
-    return v.domain.children( '.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test' )
+    return titles(v).length > 0
+  
+  on_train_operation_controller = (v) ->
+    return has_train_operation_info_title(v)
+  
+  train_operation_info_title = (v) ->
+    return $( '#train_operation_info_title' )
+  
+  title_of_links_to_station_info_pages = (v) ->
+    return $( '#links_to_station_info_pages' )
+      .children( '.content_header' )
 
   informations = (v) ->
     return v.domain.children( '.train_operation_info , .train_operation_info_test' )
+
+  informations_including_precise_version = (v) ->
+    return v.domain.children( '.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test' )
 
   titles = (v) ->
     return v.domain.find( '.title_of_train_operation_infos , .title_of_train_location_infos' )
@@ -67,6 +83,8 @@ class TrainOperationInfos
     return h
 
   process: ->
+    if on_train_operation_controller(@) and has_title_of_links_to_station_info_pages(@)
+      process_title_of_links_to_station_info_pages(@)
     if has_titles(@)
       process_titles(@)
     # 運行情報がページ内に存在する場合
@@ -79,10 +97,15 @@ class TrainOperationInfos
       initialize_size_of_railway_line_matrix_and_status(@)
       set_attributes(@)
     return
+  
+  process_title_of_links_to_station_info_pages = (v) ->
+    p = new ContentHeaderProcessor( title_of_links_to_station_info_pages(v) )
+    p.process()
+    return
 
   process_titles = (v) ->
-    _titles = new ContentHeaderProcessor( titles(v) )
-    _titles.process()
+    p = new ContentHeaderProcessor( titles(v) )
+    p.process()
     return
 
   # それぞれの路線名のテキスト領域の大きさを初期化するメソッド

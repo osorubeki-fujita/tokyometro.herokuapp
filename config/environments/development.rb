@@ -22,6 +22,8 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  config.logger = ::Logger.new( "log/production.log" , 'daily' )
+
   #--------
 
   to_compress = false

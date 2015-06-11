@@ -35,9 +35,8 @@
     display: block ;
     @include padding_left_8 ;
     @include padding_top_bottom_4 ;
-    font: {
-      size: 10pt ;
-    }
+    @include margin_bottom_8 ;
+    @include font_ja_and_en(10) ;
     .small {
       font: {
         size: 8pt ;

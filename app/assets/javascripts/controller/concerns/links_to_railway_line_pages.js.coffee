@@ -1,6 +1,6 @@
 class LinksToRailwayLinePages
 
-  constructor: ( @domain , @page_category ) ->
+  constructor: ( @domain , @category ) ->
 
   link_domains = (v) ->
     return v.domain
@@ -12,57 +12,65 @@ class LinksToRailwayLinePages
       .children( 'li.title' )
 
   on_fare_category = (v) ->
-    return v.page_category is 'fare'
+    return v.category is 'fare'
 
   process: ->
-    set_width_of_each_fare_link_domain(@)
-    process_each_link_domain(@)
+    process_when_on_fare_category(@)
     set_height_of_link_domains(@)
+    return
+  
+  process_when_on_fare_category = (v) ->
+    if on_fare_category(v)
+      set_width_of_each_fare_link_domain(v)
+      process_each_link_domain_on_fare_category(v)
     return
 
   set_width_of_each_fare_link_domain = (v) ->
-    if on_fare_category(v)
-      p = new RailwayLineAndStationMatrix()
-      v.width_of_each_link_domain = p.width_of_each_normal_railway_line()
+    p = new RailwayLineAndStationMatrix()
+    v.width_of_each_link_domain = p.width_of_each_normal_railway_line()
     return
 
-  process_each_link_domain = (v) ->
-    if on_fare_category(v)
-      link_domains(v).each ->
-        d = new LinkToRailwayLinePage( $( this ) , v.category , v.width_of_each_link_domain )
-        d.set_text_width()
-        d.process()
+  process_each_link_domain_on_fare_category = (v) ->
+    # console.log 'LinksToRailwayLinePages\#process_each_link_domain_on_fare_category'
+    # console.log 'width_of_each_link_domain: ' + v.width_of_each_link_domain
+    # console.log link_domains(v)
+    link_domains(v).each ->
+      d = new LinkToRailwayLinePage( $( this ) , v.category , v.width_of_each_link_domain )
+      d.set_text_width()
+      d.process()
       return
     return
-
-  max_height_of_link_domains = (v) ->
-    p = new DomainsCommonProcessor( link_domains(v) )
-    return p.max_height()
 
   set_height_of_link_domains = (v) ->
     p = new DomainsCommonProcessor( link_domains(v) )
     p.set_css_attribute( 'height' , p.max_height() )
     return
 
-  number_of_normal_railway_lines = (v) ->
-    p = new RailwayLineAndStationMatrix()
-    return p.number_of_normal_railway_lines
+  #--------
 
-  border_width = (v) ->
-    p = new RailwayLineAndStationMatrix()
-    return p.border_width
+  # max_height_of_link_domains = (v) ->
+    # p = new DomainsCommonProcessor( link_domains(v) )
+    # return p.max_height()
 
-  whole_height_of_link_domains = (v) ->
-    h = max_height_of_link_domains(v)
-    num = number_of_normal_railway_lines(v)
-    b_width = border_width(v)
-    return h * num + b_width * ( num + 1 )
+  # number_of_normal_railway_lines = (v) ->
+    # p = new RailwayLineAndStationMatrix()
+    # return p.number_of_normal_railway_lines
 
-  whole_height_of_title_domains = (v) ->
-    _t = title_domains(v)
-    num = _t.length
-    p1 = new DomainsCommonProcessor( _t )
-    return p1.sum_inner_height() + border_width(v) * num
+  # border_width = (v) ->
+    # p = new RailwayLineAndStationMatrix()
+    # return p.border_width
+
+  # whole_height_of_link_domains = (v) ->
+    # h = max_height_of_link_domains(v)
+    # num = number_of_normal_railway_lines(v)
+    # b_width = border_width(v)
+    # return h * num + b_width * ( num + 1 )
+
+  # whole_height_of_title_domains = (v) ->
+    # _t = title_domains(v)
+    # num = _t.length
+    # p1 = new DomainsCommonProcessor( _t )
+    # return p1.sum_inner_height() + border_width(v) * num
 
 window.LinksToRailwayLinePages = LinksToRailwayLinePages
 

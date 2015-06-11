@@ -5,16 +5,7 @@
 #real_time_info_and_update_button {
   border: solid 1px #333 ;
   .content_header {
-    .text_ja {
-      font: {
-        size: 9pt ;
-      }
-    }
-    .text_en {
-      font: {
-        size: 6.75pt ;
-      }
-    }
+    @include font_ja_and_en(10) ;
   }
   ul.titles {
     @include padding_left_4 ;
@@ -25,7 +16,7 @@
     list-style-type: none;
   }
   li.title {
-    padding: 0px ;
+    @include padding_0 ;
     .icon {
       @include float_left ;
       @include margin_right_4 ;
@@ -37,22 +28,11 @@
     }
     @include padding_top_4 ;
     @include padding_bottom_4 ;
+    @include font_ja_and_en(9) ;
     p {
       @include margin_top_0 ;
       @include margin_bottom_0 ;
-      line-height: 1.1em ;
-    }
-    .text_ja {
-      font: {
-        size: 10pt ;
-        weight: normal ;
-      }
-    }
-    .text_en {
-      font: {
-        size: 7.5pt ;
-        weight: normal ;
-      }
+      line-height: 1.2em ;
     }
   }
   li.train_operation_info , li.train_location_infos {
