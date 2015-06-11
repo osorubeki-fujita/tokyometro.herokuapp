@@ -8,7 +8,7 @@
 
 %div{ id: :links_to_station_info_pages }
   = station_info_decorated.render_title_of_links_to_station_info_pages( request )
-  = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request ).render
+  = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , @station_info ).render
 
 %div{ id: :fare_contents }
   = ::TokyoMetro::App::Renderer::FareTable::LinkToRailwayLinePage::Header.new( request , station_info_decorated , @railway_line_of_terminal_station ).render

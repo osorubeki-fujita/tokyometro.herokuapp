@@ -45,7 +45,7 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
       %div{ class: :text_ja }<
         = "地図の中心にする"
       %div{ class: :text_en }<
-        = this.render_name_en( with_subname: false , prefix: "Move map to " , suffix: "Sta." )
+        = this.render_name_en( with_subname: false , prefix: "Move the map to " , suffix: "Sta." )
     HAML
   end
 
