@@ -317,16 +317,30 @@ ul#links_to_main_contents {
   }
 }
 
-#links_to_station_info_pages ul#list_of_links_to_station_pages {
-  li {
-    .station_facility.link_to_content {
-      @extend %stationIconInLinkUl ;
+#links_to_station_info_pages {
+  ul#list_of_links_to_station_pages {
+    li {
+      .station_facility.link_to_content {
+        @extend %stationIconInLinkUl ;
+      }
+    }
+    // li.hover , li.this_page  {
+    li.hover , li.same_category {
+      .station_facility.link_to_content {
+        @extend %stationIconHoverInLinkUl ;
+      }
     }
   }
-  // li.hover , li.this_page {
-  li.hover , li.same_category {
-    .station_facility.link_to_content {
-      @extend %stationIconHoverInLinkUl ;
+  ul#list_of_links_to_station_facility_page_of_connecting_other_stations {
+    li {
+      .station_facility.link_to_content {
+        @extend %stationIconInLinkUl ;
+      }
+    }
+    li.hover {
+      .station_facility.link_to_content {
+        @extend %stationIconHoverInLinkUl ;
+      }
     }
   }
 }

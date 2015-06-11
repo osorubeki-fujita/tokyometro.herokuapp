@@ -33,7 +33,7 @@ class FareTables
     return
 
   process_links_to_railway_line_pages = (v) ->
-    console.log 'FareTables\#process_links_to_railway_line_pages'
+    # console.log 'FareTables\#process_links_to_railway_line_pages'
     l = new LinksToRailwayLinePages( $( 'ul#links_to_railway_line_pages' ) , 'fare' )
     l.process()
     return

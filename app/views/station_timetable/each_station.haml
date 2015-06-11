@@ -3,7 +3,7 @@
 = render( "common_content" )
 = station_info_decorated.render_title_of_station_timetable
 
-%div{ id: :links_to_station_info_pages }
+%div{ id: :links_to_station_info_pages , class: :clearfix }
   = station_info_decorated.render_title_of_links_to_station_info_pages( request )
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , @station_info ).render
 

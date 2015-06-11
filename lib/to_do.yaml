@@ -1,12 +1,10 @@
 design:
   - "SNSボタンの設置"
   - "サイドメニューをページ上部へ（横に並べる）"
-  - "運賃ページ 乗り入れ他路線 hover - color設定"
   -
     title: "駅施設ページ ホーム情報タブ"
     contents:
-      - "hover - color設定"
-      - "バリアフリー、主要施設に tooltip の導入"
+      - "主要施設に tooltip の導入"
   - "必要な部分に class=\'clearfix\' を設定"
 
 SEO:
