@@ -64,10 +64,10 @@ class StationMatrixRow
     return
 
   domains_of_stations_of_railway_line_including_branch_line = (v) ->
-    return v.domain.children( '.stations_on_main_line , .stations_on_branch_line' )
+    return v.domain.children( 'ul.stations_on_main_line , ul.stations_on_branch_line' )
 
   domains_of_stations_of_normal_railway_line = (v) ->
-    return v.domain.children( '.stations' ).first()
+    return v.domain.children( 'ul.stations' ).first()
 
   change_width_of_station_domain = (v) ->
     # console.log 'StationMatrixRow\#change_width_of_station_domain'

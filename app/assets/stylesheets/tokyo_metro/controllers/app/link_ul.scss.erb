@@ -288,6 +288,49 @@ ul#links_to_other_websites {
   }
 }
 
+
+%stationIconInLinkUl {
+  .icon_img {
+    background-image: url(<%= asset_path("assets/customized_icons/station.svg") %> ) ;
+    width: 16px ;
+    height: 16px ;
+    @include margin_8 ;
+  }
+}
+
+%stationIconHoverInLinkUl {
+  .icon_img {
+    background-image: url(<%= asset_path("assets/customized_icons/station_colored.svg") %> ) ;
+  }
+}
+
+ul#links_to_main_contents {
+  li {
+    .station_facility.link_to_content {
+      @extend %stationIconInLinkUl ;
+    }
+  }
+  li.hover , li.this_page , li.same_category {
+    .station_facility.link_to_content {
+      @extend %stationIconHoverInLinkUl ;
+    }
+  }
+}
+
+#links_to_station_info_pages ul#list_of_links_to_station_pages {
+  li {
+    .station_facility.link_to_content {
+      @extend %stationIconInLinkUl ;
+    }
+  }
+  // li.hover , li.this_page {
+  li.hover , li.same_category {
+    .station_facility.link_to_content {
+      @extend %stationIconHoverInLinkUl ;
+    }
+  }
+}
+
 //-------- ドキュメントへのリンク
 
 ul#links_to_document_pages {
@@ -429,22 +472,15 @@ ul#links_to_year_pages_on_index_page {
 
 //-------- 駅ページヘのリンク
 
-ul#links_to_station_pages {
-  @extend %largeImageIconInLinkLi ;
-  @extend %commonSettingsOfLiInLinkUl ;
-  //
-  @extend %marginOfDivLinkToContent ;
-}
-
 #links_to_station_info_pages {
-  ul#links {
+  ul#list_of_links_to_station_pages {
     @extend %largeImageIconInLinkLi ;
   }
-  ul#links_to_station_facility_info_of_connecting_other_stations {
+  ul#list_of_links_to_station_facility_info_of_connecting_other_stations {
     @extend %smallImageIconInLinkLiWithDomainOfNormalWidth ;
     @include float_left ;
   }
-  ul#links , ul#links_to_station_facility_info_of_connecting_other_stations {
+  ul#list_of_links_to_station_pages , ul#list_of_links_to_station_facility_info_of_connecting_other_stations {
     li {
       border: dotted 1px #ccc ;
     }

@@ -404,7 +404,7 @@ class RailwayLineDecorator < Draper::Decorator
   - when "odpt.Railway:TokyoMetro.Chiyoda"
     = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ) , set_anchor )
   - else
-    %div{ class: :stations }
+    %ul{ class: [ :stations , :clearfix ] }
       = this.render_matrix_and_links_to_stations_of_normal_railway_line( set_anchor: set_anchor )
     HAML
   end
@@ -431,9 +431,9 @@ class RailwayLineDecorator < Draper::Decorator
       set_anchor: set_anchor
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :stations_on_main_line }
+%ul{ class: [ :stations_on_main_line , :clearfix ] }
   = this.render_matrix_and_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
-%div{ class: :stations_on_branch_line }
+%ul{ class: [ :stations_on_branch_line , :clearfix ] }
   = branch_line.decorate.render_matrix_and_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
     HAML
   end

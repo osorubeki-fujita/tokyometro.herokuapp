@@ -6,7 +6,7 @@ class LinksToStationInfoPages
     return ( v.domain.length > 0 )
 
   links = (v) ->
-    return v.domain.children( 'ul' + v.ul_id )
+    return v.domain.children( "ul#{ v.ul_id }" )
 
   li_domains = (v) ->
     return links(v).children( 'li' )
@@ -19,11 +19,11 @@ class LinksToStationInfoPages
     return p.max_width()
 
   process: ->
-    process_each( @ , '#links' )
+    process_each( @ , '#list_of_links_to_station_pages' )
     process_each( @ , '#links_to_station_facility_info_of_connecting_other_stations' )
     return
 
-  process_each = ( v , ul_id = '#links' ) ->
+  process_each = ( v , ul_id ) ->
     v.ul_id = ul_id
     if links_to_station_info_pages_are_present(v)
       li_domains(v).each ->
@@ -38,7 +38,7 @@ class LinksToStationInfoPages
   set_width_to_li = (v) ->
     w = max_width_of_li(v)
     li_domains(v).each ->
-      $( this ).css( 'width' , w )
+      $(@).css( 'width' , w )
       return
     return
 

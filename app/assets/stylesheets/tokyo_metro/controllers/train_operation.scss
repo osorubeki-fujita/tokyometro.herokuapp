@@ -52,7 +52,7 @@
     @include train_operation_info_status_bgcolor_base( $jp_traditional_jinzamomi ) ;
     @include train_operation_info_status_icon_color_base( $jp_traditional_jinzamomi )
   }
-  .others {
+  .other_status {
     @include train_operation_info_status_bgcolor_base( #bbb ) ;
     @include train_operation_info_status_icon_color_base( #999 , 0% ) ;
   }

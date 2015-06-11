@@ -10,6 +10,7 @@
 %fundamentalSettingsOfStationDomainInStationMatrixes {
   @include padding_top_bottom_8 ;
   @include padding_left_right_16 ;
+  @include margin_top_0 ;
 }
 
 %textSettingsOfRailwayLineMatrixes {
@@ -129,8 +130,14 @@
 %stationMatrixesStation {
   @include float_left ;
   @include margin_right_8 ;
-  // @include font_ja_and_en( 10.5 , 0.8 ) ;
-  @include font_ja_and_en(10) ;
+  font: {
+    size: 10pt ;
+  }
+  .small {
+    font: {
+      size: 7.5pt ;
+    }
+  }
 }
 
 %stationMatrixesStations {
@@ -174,16 +181,17 @@ li.train_location {
 #station_matrixes {
   .railway_line {
     @extend %marginBottomMinus1 ;
-    .station {
+    li.station {
       @extend %stationMatrixesStation ;
+      list-style: none ;
     }
-    .stations {
+    ul.stations {
       @extend %stationMatrixesStations ;
     }
-    .stations_on_main_line {
+    ul.stations_on_main_line {
       @extend %stationMatrixesStationsOnMainLine ;
     }
-    .stations_on_branch_line {
+    ul.stations_on_branch_line {
       @extend %stationMatrixesStationsOnBranchLine ;
     }
   }

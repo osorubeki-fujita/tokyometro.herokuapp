@@ -19,10 +19,6 @@ class LinkDomainsToSetHoverEvent
     return $( 'ul#links_to_document_pages' )
       .children( 'li' )
 
-  # li_domains_of_links_to_year_pages = (v) ->
-    # return $( 'ul#links_to_year_pages' )
-      # .find( 'li.tokyo_metro' )
-
   li_domains_of_link_to_fare_contents_of_railway_lines = (v) ->
     return $( '#fare_contents' )
       .children( 'ul#links_to_railway_line_pages' )
@@ -31,7 +27,7 @@ class LinkDomainsToSetHoverEvent
 
   li_domains_of_links_to_station_info_pages = (v) ->
     return $( '#links_to_station_info_pages' )
-      .children( 'ul#links , ul#links_to_station_facility_info_of_connecting_other_stations' )
+      .children( 'ul#list_of_links_to_station_pages , ul#list_of_links_to_station_facility_info_of_connecting_other_stations' )
       .children( 'li' )
 
   li_domains_of_links_to_railway_line_pages_from_station_facility_page = (v) ->
@@ -49,17 +45,17 @@ class LinkDomainsToSetHoverEvent
       .children( 'ul.railway_lines' )
       .children( 'li.railway_line' )
 
-  li_domains_of_platform_info_tabs = (v) ->
-    return $( 'ul#platform_info_tabs' )
-      .children( 'li' )
-
   li_domains_to_railway_line_page_of_passenger_survey = (v) ->
     return railway_line_domains_in_links_to_passenger_survey(v)
       .children( 'li.railway_line' )
 
-  li_domains_to_railway_line_each_year_page_of_passenger_survey = (v) ->
+  li_domains_for_railway_line_each_year_page_of_passenger_survey = (v) ->
     return railway_line_domains_in_links_to_passenger_survey(v)
       .children( 'li.survey_year' )
+
+  li_domains_for_railway_line_each_controller_page_on_right_side_menu = (v) ->
+    return railway_line_domains_in_links_for_railway_line_each_controller_pages(v)
+      .children( 'li.each_controller' )
 
   li_domains_to_operator_page_of_passenger_survey = (v) ->
     return operator_domains_in_links_to_passenger_survey(v)
@@ -78,11 +74,19 @@ class LinkDomainsToSetHoverEvent
     return $( 'ul#links_to_passenger_survey_pages' )
       .children( 'ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station' )
       .children( 'ul.each_railway_line' )
+  
+  railway_line_domains_in_links_for_railway_line_each_controller_pages = (v) ->
+    return $( '#links_to_railway_line_pages' )
+      .children( 'ul.each_railway_line' )
 
   operator_domains_in_links_to_passenger_survey = (v) ->
     return $( 'ul#links_to_passenger_survey_pages' )
       .children( 'ul#links_to_year_pages' )
       .children( 'ul.operator' )
+
+  li_domains_of_platform_info_tabs = (v) ->
+    return $( 'ul#platform_info_tabs' )
+      .children( 'li' )
 
   list = (v) ->
     ary = []
@@ -91,16 +95,15 @@ class LinkDomainsToSetHoverEvent
     ary.push li_domains_in_sns_accounts(v)
     ary.push li_domains_in_left_side_menu(v)
     ary.push li_domains_of_links_to_document_pages(v)
-    # ary.push li_domains_of_links_to_year_pages(v)
     ary.push li_domains_of_link_to_fare_contents_of_railway_lines(v)
     ary.push li_domains_of_links_to_station_info_pages(v)
     ary.push li_domains_of_links_to_railway_line_pages_from_station_facility_page(v)
     ary.push li_domains_of_links_to_railway_line_pages_from_platform_info(v)
     ary.push li_domains_of_links_to_railway_line_pages_from_railway_line_info(v)
-    ary.push li_domains_of_platform_info_tabs(v)
 
     ary.push li_domains_to_railway_line_page_of_passenger_survey(v)
-    ary.push li_domains_to_railway_line_each_year_page_of_passenger_survey(v)
+    ary.push li_domains_for_railway_line_each_year_page_of_passenger_survey(v)
+    ary.push li_domains_for_railway_line_each_controller_page_on_right_side_menu(v)
 
     ary.push li_domains_to_operator_page_of_passenger_survey(v)
     ary.push li_domains_to_operator_each_year_page_of_passenger_survey(v)
@@ -112,8 +115,10 @@ class LinkDomainsToSetHoverEvent
   process: ->
     set_hover_event_of_escaping_class( @ , 'this_station' )
     set_hover_main_event(@)
-    set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey(@)
-    # set_hover_event_to_li_domains_of_map(@)
+
+    set_hover_event_to_li_domains_of_platform_info_tabs(@)
+    set_hover_event_to_li_domains_of_each_year_page_on_passenger_survey(@)
+    set_hover_event_to_li_domains_for_railway_line_each_controller_page_on_right_side_menu(@)
     return
 
   set_hover_event_of_escaping_class = ( v , class_name ) ->
@@ -133,38 +138,43 @@ class LinkDomainsToSetHoverEvent
     $.each list(v) , ->
       @.hover( escaping , reviving )
       return
-
     return
 
   set_hover_main_event = (v) ->
+    $.each list(v) , ->
+      # '.this_station' は除外しない
+      @.not( '.same_category, .this_page , .this_year' ).hover( add_class_hover_normally(v) , remove_class_hover_normally(v) )
+      return
+    return
 
-    add_class_hover = ->
+  set_hover_event_to_li_domains_of_platform_info_tabs = (v) ->
+    li_domains_of_platform_info_tabs(v).hover( add_class_hover_normally(v) , remove_class_hover_normally(v) )
+    return
+
+  add_class_hover_normally = (v) ->
+    f = ->
       $(@).addClass( 'hover' , { duration: 200 , children: true } )
       # console.log 'add_class_hover'
       return
+    return f
 
-    remove_class_hover = ->
+  remove_class_hover_normally = (v) ->
+    f = ->
       $(@).removeClass( 'hover' , { duration: 300 , children: true } )
       # console.log 'remove_class_hover'
       return
+    return f
 
-    $.each list(v) , ->
-      # '.this_station' は除外しない
-      @.not( '.same_category, .this_page , .this_year' ).hover( add_class_hover , remove_class_hover )
-      return
+  set_hover_event_to_li_domains_of_each_year_page_on_passenger_survey = (v) ->
+    hover_on_railway_line = hover_on_event_to_li_domains_of_each_content_on_right_side_menu( v , 'li.railway_line' )
+    hover_off_railway_line = hover_off_event_to_li_domains_of_each_content_on_right_side_menu( v , 'li.railway_line' )
 
-    return
-
-  set_hover_event_to_li_domains_to_each_year_page_of_passenger_survey = (v) ->
-    hover_on_railway_line = hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey( v , 'li.railway_line' )
-    hover_off_railway_line = hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey( v , 'li.railway_line' )
-
-    li_domains_to_railway_line_each_year_page_of_passenger_survey(v).each ->
+    li_domains_for_railway_line_each_year_page_of_passenger_survey(v).each ->
       $(@).hover( hover_on_railway_line , hover_off_railway_line )
       return
 
-    hover_on_operator = hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey( v , 'li.tokyo_metro' )
-    hover_off_operator = hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey( v , 'li.tokyo_metro' )
+    hover_on_operator = hover_on_event_to_li_domains_of_each_content_on_right_side_menu( v , 'li.tokyo_metro' )
+    hover_off_operator = hover_off_event_to_li_domains_of_each_content_on_right_side_menu( v , 'li.tokyo_metro' )
 
     li_domains_to_operator_each_year_page_of_passenger_survey(v).each ->
       $(@).hover( hover_on_operator , hover_off_operator )
@@ -172,7 +182,17 @@ class LinkDomainsToSetHoverEvent
 
     return
 
-  hover_on_event_to_li_domains_to_each_year_page_of_passenger_survey = ( v , selector ) ->
+  set_hover_event_to_li_domains_for_railway_line_each_controller_page_on_right_side_menu = (v) ->
+    hover_on_railway_line = hover_on_event_to_li_domains_of_each_content_on_right_side_menu( v , 'li.railway_line' )
+    hover_off_railway_line = hover_off_event_to_li_domains_of_each_content_on_right_side_menu( v , 'li.railway_line' )
+
+    li_domains_for_railway_line_each_controller_page_on_right_side_menu(v).each ->
+      $(@).hover( hover_on_railway_line , hover_off_railway_line )
+      return
+
+    return
+
+  hover_on_event_to_li_domains_of_each_content_on_right_side_menu = ( v , selector ) ->
     e = ->
       $(@)
         .prevAll( selector )
@@ -181,7 +201,7 @@ class LinkDomainsToSetHoverEvent
       return
     return e
 
-  hover_off_event_to_li_domains_to_each_year_page_of_passenger_survey = ( v , selector ) ->
+  hover_off_event_to_li_domains_of_each_content_on_right_side_menu = ( v , selector ) ->
     e = ->
       $(@)
         .prevAll( selector )
@@ -189,10 +209,5 @@ class LinkDomainsToSetHoverEvent
         .removeClass( '_hover' , { duration: 300 , children: true } )
       return
     return e
-
-  set_hover_event_to_li_domains_of_map = (v) ->
-    g = new GoogleMapInStationFacility()
-    g.set_hover_event_to_li_domains_of_map()
-    return
 
 window.LinkDomainsToSetHoverEvent = LinkDomainsToSetHoverEvent

@@ -166,7 +166,7 @@ $saturatedColorOfYurakucho: saturate( $line_yurakucho_bgcolor , 20% ) ;
 
 #station_matrixes {
   .railway_line {
-    .stations , .stations_on_main_line , .stations_on_branch_line {
+    ul.stations , ul.stations_on_main_line , ul.stations_on_branch_line {
       @include backgroundColorOfRailwayLineMatrixesNormal( #eee ) ;
     }
   }
