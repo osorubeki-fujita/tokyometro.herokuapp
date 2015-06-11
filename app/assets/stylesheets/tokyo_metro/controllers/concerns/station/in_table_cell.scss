@@ -5,9 +5,9 @@
 %stationInfoTextInTableFontSizeSettings {
   .text {
     @include float_left ;
+    @include font_ja_and_en(12) ;
     .text_ja {
       font: {
-        size: 12pt ;
         // weight: bold ;
       }
       .small {
@@ -19,9 +19,6 @@
       text-align: left ;
     }
     .text_en {
-      font: {
-        size: 8.4pt ;
-      }
       text-align: left ;
     }
   }

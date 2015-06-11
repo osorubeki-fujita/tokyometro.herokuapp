@@ -96,16 +96,7 @@
       .infos {
         @include margin_8 ;
         .text {
-          .text_ja {
-            font: {
-              size: 20pt ;
-            }
-          }
-          .text_en {
-            font: {
-              size: 10pt ;
-            }
-          }
+          @include font_ja_and_en( 20 , 0.5 ) ;
         }
       }
       border: solid 1px #333 ;
@@ -148,14 +139,10 @@ li.train_location .sub_infos {
       width: 32px ;
     }
     .text {
-      .text_ja {
-        font: {
-          size: 12pt ;
-        }
-      }
-      .text_en {
-        font: {
-          size: 8.4pt ;
+      @include font_ja_and_en(12) ;
+      p {
+        line: {
+          height: 1.2em ;
         }
       }
     }
@@ -201,16 +188,7 @@ li.train_operation_info.railway_line {
       @include float_left ;
       @include margin_0 ;
     }
-    .text_ja {
-      font: {
-        size: 10pt ;
-      }
-    }
-    .text_en {
-      font: {
-        size: 7.5pt ;
-      }
-    }
+    @include font_ja_and_en(10) ;
   }
 }
 

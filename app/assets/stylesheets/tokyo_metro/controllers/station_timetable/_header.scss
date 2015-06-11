@@ -49,15 +49,10 @@
   @include padding_8 ;
   text-align: center ;
   color: #fff ;
+  @include font_ja_and_en( 16 , 5.0 / 8 ) ;
   .text_ja {
     font: {
-      size: 16pt ;
       weight: bold ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 10pt ;
     }
   }
   border: {
@@ -70,15 +65,14 @@
   @include float_left ;
   @include margin_left_4 ;
   // background-color: #f6f6f6 ;
+  @include font_ja_and_en( 18 , 5.0 / 8 ) ;
   .text_ja {
     font: {
-      size: 18pt ;
       weight: bold ;
     }
   }
   .text_en {
     font: {
-      size: 11.25pt ;
       weight: normal ;
     }
   }
@@ -96,30 +90,12 @@
 %stationTimetableHeaderAdditionalInfosStationName {
   @include float_left ;
   @include margin_right_4 ;
-  .text_ja {
-    font: {
-      size: 10pt ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 7.5pt ;
-    }
-  }
+  @include font_ja_and_en(10) ;
 }
 
 %stationTimetableHeaderTrainTypeAndTerminalStationInfos {
   @extend %stationTimeTableHeaderNormalPadding ;
-  .text_ja {
-    font: {
-      size: 12pt ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 9pt ;
-    }
-  }
+  @include font_ja_and_en(12) ;
 }
 
 %commonSettingsOfStationTimetableHeader {

@@ -31,15 +31,10 @@
           @extend %trainTypeDisplayed ;
         }
         .displayed_black {
+          @include font_ja_and_en( 24 , 1.0 / 3 ) ;
           .text_ja {
             font: {
-              size: 24pt ;
               weight: bold ;
-            }
-          }
-          .text_en {
-            font: {
-              size: 8pt ;
             }
           }
         }
@@ -54,7 +49,7 @@
           }
           span.note_sub {
             font: {
-                size: 8pt ;
+              size: 8pt ;
             }
           }
         }

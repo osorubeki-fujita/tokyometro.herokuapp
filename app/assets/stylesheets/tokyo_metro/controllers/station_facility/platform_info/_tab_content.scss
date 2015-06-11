@@ -19,16 +19,7 @@
     @include margin_left_right_8 ;
     .text {
       @include float_left ;
-      .text_ja {
-        font: {
-          size: 10pt ;
-        }
-      }
-      .text_en {
-        font: {
-          size: 7.5pt ;
-        }
-      }
+      @include font_ja_and_en(10) ;
     }
   }
 }

@@ -2,38 +2,30 @@
 @import '../../../fundamental_settings.scss' ;
 
 %railwayLineHeaderInDocumentCommonSettings {
-        clear: both ;
-        .railway_line_name {
-            margin :{
-                bottom: 12px ;
-            }
-            border: {
-                left: {
-                    style: solid ;
-                    width: 6px ;
-                }
-            }
-            .text_ja {
-                font: {
-                    size: 12pt ;
-                }
-                line-height: 1.1em ;
-                margin: {
-                    bottom: 4px ;
-                }
-            }
-            .text_en {
-                font: {
-                    size: 7.5pt ;
-                    weight: normal ;
-                }
-                line-height: 1.1em ;
-                margin: {
-                    top: 0px ;
-                    bottom: 0px ;
-                }
-            }
-        }
+  clear: both ;
+  .railway_line_name {
+    margin :{
+      bottom: 12px ;
+    }
+    border: {
+      left: {
+        style: solid ;
+        width: 6px ;
+      }
+    }
+    @include font_ja_and_en( 12 , 0.6 ) ;
+    .text_ja {
+      line-height: 1.1em ;
+      @include margin_bottom_4 ;
+    }
+    .text_en {
+      font: {
+        weight: normal ;
+      }
+      line-height: 1.1em ;
+      @include margin_top_bottom_0 ;
+    }
+  }
 }
 
 @mixin borderAndPaddingWidthOfRailwayLineHeaderInDocument( $border_left_width , $padding_left_width ) {
@@ -50,77 +42,78 @@
 }
 
 @mixin borderColorOfEachRailwaLineHeaderInDocument( $color ) {
-    .railway_line_name {
-        border: {
-            left: {
-                color: $color ;
-            }
-        }
+  .railway_line_name {
+    border: {
+      left: {
+        color: $color ;
+      }
     }
+  }
 }
 
 @mixin borderColorOfRailwayLineHeaderInDocument {
-    .ginza {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_ginza_bgcolor )
-    }
-    .marunouchi {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_marunouchi_bgcolor )
-    }
-    .marunouchi_branch {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_tokyo_metro_marunouchi_b_bgcolor )
-    }
-    .hibiya {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_hibiya_bgcolor )
-    }
-    .tozai {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_tozai_bgcolor )
-    }
-    .chiyoda , .chiyoda_branch {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_chiyoda_bgcolor )
-    }
-    .yurakucho {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_yurakucho_bgcolor )
-    }
-    .hanzomon {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_hanzomon_bgcolor )
-    }
-    .namboku {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_namboku_bgcolor )
-    }
-    .fukutoshin {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_fukutoshin_bgcolor )
-    }
-    //-------- 都営地下鉄
-    .toei_asakusa {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_asakusa_bgcolor )
-    }
-    .toei_mita {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_mita_bgcolor )
-    }
-    .toei_shinjuku {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_shinjuku_bgcolor )
-    }
-    .toei_oedo {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_oedo_bgcolor )
-    }
-    //-------- 東急東横線
-    .tokyu_toyoko {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_tokyu_toyoko_bgcolor )
-    }
-    //-------- 西武池袋線
-    .seibu_ikebukuro {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_seibu_ikebukuro_bgcolor )
-    }
-    //-------- 東武東上線
-    .tobu_tojo {
-        @include borderColorOfEachRailwaLineHeaderInDocument( $line_tobu_tojo_bgcolor )
-    }
+  .ginza {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_ginza_bgcolor )
+  }
+  .marunouchi {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_marunouchi_bgcolor )
+  }
+  .marunouchi_branch {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tokyo_metro_marunouchi_b_bgcolor )
+  }
+  .hibiya {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_hibiya_bgcolor )
+  }
+  .tozai {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tozai_bgcolor )
+  }
+  .chiyoda , .chiyoda_branch {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_chiyoda_bgcolor )
+  }
+  .yurakucho {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_yurakucho_bgcolor )
+  }
+  .hanzomon {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_hanzomon_bgcolor )
+  }
+  .namboku {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_namboku_bgcolor )
+  }
+  .fukutoshin {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_fukutoshin_bgcolor )
+  }
+  //-------- 都営地下鉄
+  .toei_asakusa {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_asakusa_bgcolor )
+  }
+  .toei_mita {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_mita_bgcolor )
+  }
+  .toei_shinjuku {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_shinjuku_bgcolor )
+  }
+  .toei_oedo {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_oedo_bgcolor )
+  }
+  //-------- 東急東横線
+  .tokyu_toyoko {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tokyu_toyoko_bgcolor )
+  }
+  //-------- 西武池袋線
+  .seibu_ikebukuro {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_seibu_ikebukuro_bgcolor )
+  }
+  //-------- 東武東上線
+  .tobu_tojo {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tobu_tojo_bgcolor )
+  }
 }
 
 .document.railway_line {
-    $border_left_width: 8px ;
-    $padding_left_width: 8px ;
-    @extend %railwayLineHeaderInDocumentCommonSettings ;
-    @include borderAndPaddingWidthOfRailwayLineHeaderInDocument( $border_left_width , $padding_left_width ) ;
+  $border_left_width: 8px ;
+  $padding_left_width: 8px ;
+  @extend %railwayLineHeaderInDocumentCommonSettings ;
+  @include borderAndPaddingWidthOfRailwayLineHeaderInDocument( $border_left_width , $padding_left_width ) ;
 }
+
 @include borderColorOfRailwayLineHeaderInDocument ;

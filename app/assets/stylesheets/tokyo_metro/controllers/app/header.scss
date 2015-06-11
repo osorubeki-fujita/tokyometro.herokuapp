@@ -12,11 +12,15 @@
     @include float_left ;
     @extend %text_en ;
     .main {
-      font-size: 20pt ;
+      font: {
+        size: 20pt ;
+      }
       @include margin_bottom_4 ;
       @extend %linkInDiv ;
       .version {
-        font-size: 9pt ;
+        font: {
+          size: 9pt ;
+        }
         @include margin_left_8 ;
       }
       &.hover {
@@ -26,12 +30,16 @@
     .sub {
       @include margin_bottom_4 ;
       @extend %text_en ;
-      font-size: 9pt;
+      font: {
+        size: 9pt;
+      }
     }
   }
   .developer {
     @include float_right ;
-    font-size: 9pt;
+    font: {
+      size: 9pt ;
+    }
     @extend %text_en ;
     //----
     .name {

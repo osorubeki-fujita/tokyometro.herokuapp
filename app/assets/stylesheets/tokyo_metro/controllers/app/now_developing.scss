@@ -20,16 +20,9 @@
   }
   .info_text {
     padding: 8px ;
+    @include font_ja_and_en(9) ;
     .text_ja {
-      font: {
-        size: 9pt;
-      }
       @include margin_bottom_8 ;
-    }
-    .text_en {
-      font: {
-        size: 6.75pt;
-      }
     }
   }
 }
@@ -42,16 +35,7 @@
   @include sideMenuBoxColor( $jp_traditional_karashi ) ;
   .content_header {
     .text {
-      .text_ja {
-        font: {
-          size: 10pt ;
-        }
-      }
-      .text_en {
-        font: {
-          size: 7.5pt ;
-        }
-      }
+      @include font_ja_and_en(10) ;
     }
   }
   ul.problems {

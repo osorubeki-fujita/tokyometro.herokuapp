@@ -3,19 +3,12 @@
 @import '../fundamental_settings.scss' ;
 
 %trainLocationContentFontSizeSmall {
+  @include font_ja_and_en( 10 ) ;
   .text_ja {
-    font: {
-      size: 10pt ;
-    }
     .small {
       font: {
-        size: 7pt ;
+        size: 7.5pt ;
       }
-    }
-  }
-  .text_en {
-    font: {
-      size: 7pt ;
     }
   }
 }
@@ -25,27 +18,20 @@
 }
 
 %trainLocationContentTitleSmallInARow {
-  font: {
-    size: 10pt ;
-  }
+  @include font_ja_and_en( 10 ) ;
   .small {
     font: {
-      size: 7pt ;
+      size: 7.5pt ;
     }
   }
   .text_en {
-    font: {
-      size: 7pt ;
-    }
     @include margin_left_4 ;
   }
 }
 
 %trainLocationContentFontSizeLarge {
+  @include font_ja_and_en(12) ;
   .text_ja {
-    font: {
-      size: 12pt ;
-    }
     .small {
       font: {
         size: 8.4pt ;
@@ -53,9 +39,6 @@
     }
   }
   .text_en {
-    font: {
-      size: 9pt ;
-    }
     .small {
       font: {
         size: 7.2pt ;
@@ -109,9 +92,7 @@
     clear: both ;
     .station_codes {
       @include float_left ;
-      margin: {
-        right: 5px ;
-      }
+      @include margin_right_6 ;
       font: {
         size: 8pt ;
       }
@@ -158,7 +139,7 @@ ul.train_locations_of_each_direction {
 
 ul.train_locations_of_each_direction { li.train_location { .sub_infos { .time_info {
   @include margin_bottom_32 ;
-  @include padding_top_bottom_4 ;
+  @include padding_top_bottom_8 ;
   @include padding_left_right_8 ;
   .title_of_delay {
     @include float_left ;
@@ -233,6 +214,11 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos { .startin
   .starting_station_title {
     @include float_left ;
     @include margin_right_8 ;
+    p {
+      line: {
+        height: 1.2em ;
+      }
+    }
   }
   .station_info {
     @include float_left ;
@@ -245,6 +231,11 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos { .startin
     }
     .text {
       @include float_left ;
+      p {
+        line: {
+          height: 1.2em ;
+        }
+      }
     }
     img {
       $length: 24px ;
@@ -263,6 +254,11 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos { .train_n
     @include float_left ;
     @include margin_right_8 ;
     @extend %trainLocationContentTitleSmall ;
+    p {
+      line: {
+        height: 1.2em ;
+      }
+    }
   }
   .train_number_text {
     @include float_left ;
@@ -274,23 +270,27 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos { .train_n
 
 // --------
 
-ul.train_locations_of_each_direction { li.train_location { .sub_infos {
-  .starting_station {
-    .starting_station_title {
-      @extend %trainLocationContentTitleSmall ;
-    }
-    .station_info {
-      .text {
-        @extend %trainLocationContentFontSizeSmall ;
+ul.train_locations_of_each_direction {
+  li.train_location {
+    .sub_infos {
+      .starting_station {
+        .starting_station_title {
+          @extend %trainLocationContentTitleSmall ;
+        }
+        .station_info {
+          .text {
+            @extend %trainLocationContentFontSizeSmall ;
+          }
+        }
+      }
+      .time_info {
+        .title_of_delay {
+          @extend %trainLocationContentTitleSmall ;
+        }
       }
     }
   }
-  .time_info {
-    .title_of_delay {
-      @extend %trainLocationContentTitleSmall ;
-    }
-  }
-}}}
+}
 
 // --------
 
@@ -313,5 +313,6 @@ ul.train_locations_of_each_direction { li.train_location { .sub_infos {
   }
   .title_of_a_railway_direction {
     @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
+    @include font_ja_and_en(12) ;
   }
 }

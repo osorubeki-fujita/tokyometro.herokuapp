@@ -91,16 +91,14 @@
   @include margin_bottom_32 ;
   clear: both ;
   .operator_name {
+     @include font_ja_and_en( 16 , 5.0 / 8 ) ;
+     // @include font_ja_and_en( 16 ) ;
     .text_ja {
-      font: {
-          size: 16pt ;
-      }
       line-height: 1.1em ;
       @include margin_bottom_4 ;
     }
     .text_en {
       font: {
-        size: 10pt ;
         weight: normal ;
       }
       line-height: 1.1em ;

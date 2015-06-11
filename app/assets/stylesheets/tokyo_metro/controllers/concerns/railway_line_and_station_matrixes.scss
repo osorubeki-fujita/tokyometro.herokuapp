@@ -13,15 +13,10 @@
 }
 
 %textSettingsOfRailwayLineMatrixes {
+  @include font_ja_and_en( 20 , 0.5 ) ;
   .text_ja {
     font: {
-      size: 20pt ;
       weight: bold ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 10pt ;
     }
   }
 }
@@ -115,15 +110,10 @@
     @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
     @extend %infoTextFloatLeftInRailwayLineMatrix ;
     @include float_left ;
+    @include font_ja_and_en(12) ;
     .text_ja {
       font: {
-        size: 12pt ;
         // weight: bold ;
-      }
-    }
-    .text_en {
-      font: {
-        size: 9pt ;
       }
     }
     .info {
@@ -139,14 +129,8 @@
 %stationMatrixesStation {
   @include float_left ;
   @include margin_right_8 ;
-  font: {
-    size: 10.5pt ;
-  }
-  .small {
-    font: {
-      size: 8.4pt ;
-    }
-  }
+  // @include font_ja_and_en( 10.5 , 0.8 ) ;
+  @include font_ja_and_en(10) ;
 }
 
 %stationMatrixesStations {

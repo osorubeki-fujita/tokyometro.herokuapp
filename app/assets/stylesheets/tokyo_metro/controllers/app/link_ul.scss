@@ -50,14 +50,10 @@ $border_color_of_li_in_link: #ddd ;
     }
   }
   li.normal {
-    .text_large , .text_ja {
+    @include font_ja_and_en(12) ;
+    .text_large {
       font: {
         size: 12pt ;
-      }
-    }
-    .text_en {
-      font: {
-        size: 9pt ;
       }
     }
   }
@@ -66,14 +62,10 @@ $border_color_of_li_in_link: #ddd ;
       width: $icon_common_width ;
       height: $icon_common_width ;
     }
-    .text_large , .text_ja {
+    @include font_ja_and_en(9) ;
+    .text_large {
       font: {
         size: 9pt ;
-      }
-    }
-    .text_en {
-      font: {
-        size: 6.75pt ;
       }
     }
   }

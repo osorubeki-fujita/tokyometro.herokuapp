@@ -20,10 +20,8 @@
   }
   .text {
     @include float_left ;
+    @include font_ja_and_en(9) ;
     .text_ja {
-      font: {
-        size: 9pt ;
-      }
       .small {
         font: {
           size: 6.75pt ;
@@ -33,9 +31,6 @@
       text-align: left ;
     }
     .text_en {
-      font: {
-        size: 6.3pt ;
-      }
       text-align: left ;
     }
   }

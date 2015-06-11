@@ -9,9 +9,7 @@
     weight: bold ;
   }
   text-align: right ;
-  padding: {
-    right: 4px ;
-  }
+  @include padding_right_4 ;
 }
 
 

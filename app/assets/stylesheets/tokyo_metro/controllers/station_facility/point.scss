@@ -23,12 +23,11 @@
       @include padding_2 ;
       background-color: transparent ;
     }
+    @include font_ja_and_en(9) ;
     .text_ja {
-      font-size: 9pt ;
       background-color: transparent ;
     }
     .text_en {
-      font-size: 7pt ;
       background-color: transparent ;
     }
   }
@@ -144,26 +143,13 @@
 
 //--------
 
-%mapHandlerNormalText {
-  .text_ja {
-    font: {
-      size: 10pt ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 7.5pt ;
-    }
-  }
-}
-
 %mapHandlerContentOfMapLink {
   @include float_left ;
   .icon {
     @include float_left ;
   }
   .text {
-    @extend %mapHandlerNormalText ;
+    @include font_ja_and_en(10) ;
     @include float_left ;
   }
 }
@@ -177,7 +163,7 @@
       right: -1px ;
     }
     .message {
-      @extend %mapHandlerNormalText ;
+      @include font_ja_and_en(10) ;
       @include padding_8 ;
     }
     .precise {

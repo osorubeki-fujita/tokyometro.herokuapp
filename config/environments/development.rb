@@ -1,4 +1,9 @@
 Rails.application.configure do
+
+  compress_assets = true
+
+  #--------
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -26,9 +31,7 @@ Rails.application.configure do
 
   #--------
 
-  to_compress = false
-
-  unless to_compress
+  unless compress_assets
 
     # Debug mode disables concatenation and preprocessing of assets.
     # This option may cause significant delays in view rendering with a large

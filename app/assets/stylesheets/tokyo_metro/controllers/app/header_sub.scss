@@ -44,15 +44,10 @@
 #header_sub {
   @extend %headerSubBackgroundGradColor ;
   height: 12px ;
-  .text_ja {
-    font: {
-      size: 12pt ;
-    }
-  }
-  .text_en {
-    font: {
-      size: 24pt ;
-      weight: normal ;
-    }
-  }
+  // @include font_ja_and_en( 12 , 2 ) ;
+  // .text_en {
+    // font: {
+      // weight: normal ;
+    // }
+  // }
 }

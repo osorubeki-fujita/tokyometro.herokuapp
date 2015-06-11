@@ -7,10 +7,8 @@
   vertical: {
     align: middle ;
   }
+  @include font_ja_and_en( 18 , 18.0 / 10 ) ;
   .text_ja {
-    font: {
-      size: 18pt ;
-    }
     .sub {
       font: {
         size: 10pt ;
@@ -26,9 +24,6 @@
     }
   }
   .text_en {
-    font: {
-      size: 10pt;
-    }
     .sub {
       font: {
         size: 8pt ;
