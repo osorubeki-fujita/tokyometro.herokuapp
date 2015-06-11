@@ -18,12 +18,11 @@ class FareTables
       process_each_fare_table(@)
       process_links_to_railway_line_pages(@)
     return
-  
+
   process_content_headers = (v) ->
     p = new ContentHeaderProcessor( content_headers(v) )
     p.process()
     return
-    
 
   process_each_fare_table = (v) ->
     tables(v).each ->
