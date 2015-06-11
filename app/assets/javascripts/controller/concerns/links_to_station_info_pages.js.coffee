@@ -20,7 +20,7 @@ class LinksToStationInfoPages
 
   process: ->
     process_each( @ , '#list_of_links_to_station_pages' )
-    process_each( @ , '#links_to_station_facility_info_of_connecting_other_stations' )
+    process_each( @ , '#list_of_links_to_station_facility_page_of_connecting_other_stations' )
     return
 
   process_each = ( v , ul_id ) ->

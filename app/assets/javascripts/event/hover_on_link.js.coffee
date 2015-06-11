@@ -27,7 +27,7 @@ class LinkDomainsToSetHoverEvent
 
   li_domains_of_links_to_station_info_pages = (v) ->
     return $( '#links_to_station_info_pages' )
-      .children( 'ul#list_of_links_to_station_pages , ul#list_of_links_to_station_facility_info_of_connecting_other_stations' )
+      .children( 'ul#list_of_links_to_station_pages , ul#list_of_links_to_station_facility_page_of_connecting_other_stations' )
       .children( 'li' )
 
   li_domains_of_links_to_railway_line_pages_from_station_facility_page = (v) ->
