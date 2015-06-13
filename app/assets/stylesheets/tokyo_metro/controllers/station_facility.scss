@@ -77,7 +77,8 @@
 
 %commonSettingsOfServiceDetail {
   @include float_left ;
-  @include padding_4 ;
+  @include padding_left_right_8 ;
+  @include padding_top_bottom_4 ;
   border: {
     left: {
       style: solid ;
@@ -100,11 +101,8 @@
   @include margin_right_8 ;
   @include padding_top_bottom_2 ;
   @include padding_left_right_4 ;
-  text-align:center;
+  text-align: center;
   @include border_radius( 2px ) ;
-  font: {
-    size: 8pt ;
-  }
 }
 
 //--------
@@ -166,6 +164,7 @@
   .operation_day {
     @include float_left ;
     @extend %serviceDetailPreciseInfo ;
+    @include font_ja_and_en(9) ;
     border: solid 1px #eee ;
     background-color: #fafafa ;
   }
@@ -178,6 +177,25 @@
       @extend %serviceDetailPreciseInfo ;
       border: solid 1px $jp_traditional_aomidori ;
       background-color: rgba( $jp_traditional_aomidori , 0.12 ) ;
+      font: {
+        size: 8pt ;
+      }
+      .icons {
+        @include float_left ;
+        @include margin_right_4 ;
+        .up , .down {
+          @include float_left ;
+          width: 16px ;
+          text-align: center ;
+        }
+        .down {
+          margin-left: -6px ;
+        }
+      }
+      .text {
+        @include float_left ;
+        text-align: center ;
+      }
     }
   }
 }
@@ -185,8 +203,18 @@
 %stationFacilityInfoServiceDetailServiceTime {
   .service_time {
     display: block ;
+    $base_color: $jp_traditional_moegi ;
     @extend %commonSettingsOfServiceDetail ;
-    @include colorSettingsOfServiceDetail( $jp_traditional_moegi ) ;
+    @include colorSettingsOfServiceDetail( $base_color ) ;
+    i {
+      @include margin_right_4 ;
+    }
+    span.service_time_title {
+      @include margin_right_4 ;
+    }
+    span.joint {
+      @include margin_left_right_8 ;
+    }
   }
 }
 
@@ -196,6 +224,9 @@
     @include padding_left_0 ;
     li.toilet_assistant {
       @extend %serviceDetailPreciseInfo ;
+      font: {
+        size: 8pt ;
+      }
       border: solid 1px $jp_traditional_kamenozoki ;
       background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
       list-style: none ;
@@ -215,6 +246,9 @@
   .wheel_chair {
     display: block ;
     @extend %serviceDetailPreciseInfo ;
+    font: {
+      size: 8pt ;
+    }
     border: solid 1px $jp_traditional_kamenozoki ;
     background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
   }
@@ -257,9 +291,7 @@
         font: {
           size: $font_size_en ;
         }
-        margin: {
-          left: 7px ;
-        }
+        @include margin_left_6 ;
       }
     }
   }
@@ -288,19 +320,39 @@
       @extend %stationFacilityInfoServiceDetailRemark ;
       //
       @extend %stationFacilityInfoImageOfToiletAssistants ;
+      .service_time {
+        span.with_tooltip {
+          border: {
+            bottom: dotted 1px desaturate( $jp_traditional_moegi, 5% ) ;
+          }
+        }
+      }
     }
   }
 }
 
-.in_tooltip.barrier_free_facility {
-  @extend %stationFacilityInfoCommonSettings ;
-  //
-  @extend %stationFacilityInfoPlace ;
-  @extend %stationFacilityInfoUlServiceDetails ;
-  @extend %stationFacilityInfoServiceDetailOperationDay ;
-  @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
-  @extend %stationFacilityInfoServiceDetailServiceTime ;
-  @extend %stationFacilityInfoServiceDetailToiletAssistants ;
-  @extend %stationFacilityInfoServiceDetailWheelChair ;
-  @extend %stationFacilityInfoServiceDetailRemark ;
+div.ui-tooltip {
+  &.tooltip_of_barrier_free_facility , &.map_link {
+    max-width: 480px !important ;
+  }
+
+  .in_tooltip.barrier_free_facility {
+    @extend %stationFacilityInfoCommonSettings ;
+    //
+    @extend %stationFacilityInfoPlace ;
+    @extend %stationFacilityInfoUlServiceDetails ;
+    @extend %stationFacilityInfoServiceDetailOperationDay ;
+    @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
+    @extend %stationFacilityInfoServiceDetailServiceTime ;
+    @extend %stationFacilityInfoServiceDetailToiletAssistants ;
+    @extend %stationFacilityInfoServiceDetailWheelChair ;
+    @extend %stationFacilityInfoServiceDetailRemark ;
+  }
+
+  .service_time_in_tooltip {
+    font: {
+      size: 9pt ;
+    }
+  }
 }
+

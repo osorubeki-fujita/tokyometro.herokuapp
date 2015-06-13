@@ -36,13 +36,13 @@ class TrainLocationInfos
   process_each_train_location_info = (v) ->
     li_domains_of_train_locations(v).each ->
       p = new TrainLocationInfo( $(@) )
-      p.process_vertical_align_of_each_content()
+      p.process()
       return
     return
 
   set_width_of_train_type_domains = (v) ->
     p = new DomainsCommonProcessor( train_type_domains(v) )
-    w = p.max_width() + 4
+    w = Math.ceil( p.max_width() * 0.5 + 1 ) * 2
     p.set_css_attribute( 'width' , w )
     return
 
@@ -75,7 +75,7 @@ class TrainLocationInfo
       .children( '.railway_line_matrix_very_small' )
       .first()
 
-  terminal_info = (v) ->
+  terminal_station_info = (v) ->
     return train_fundamental_infos(v)
       .children( '.terminal_station' )
       .first()
@@ -85,9 +85,9 @@ class TrainLocationInfo
       .children( '.current_position' )
       .first()
 
-  sub_infos = (v) ->
+  ul_sub_infos = (v) ->
     return v.domain
-      .children( '.sub_infos' )
+      .children( 'ul.sub_infos' )
       .first()
 
   domain_of_station_infos_in_current_position = (v) ->
@@ -100,27 +100,30 @@ class TrainLocationInfo
       .find( '.station_info' )
 
   time_info = (v) ->
-    return sub_infos(v)
+    return ul_sub_infos(v)
       .children( '.time_info' )
       .first()
 
   starting_station = (v) ->
-    return sub_infos(v)
+    return ul_sub_infos(v)
       .children( '.starting_station' )
       .first()
 
   train_number = (v) ->
-    return sub_infos(v)
+    return ul_sub_infos(v)
       .children( '.train_number' )
       .first()
 
-  process_vertical_align_of_each_content: ->
-    # console.log 'TrainLocationInfo\#process_vertical_align_of_each_content'
+  has_station_code_text = (v) ->
+    return station_codes(v).children( 'img' ).length is 0
+
+  process: ->
+    # console.log 'TrainLocationInfo\#process'
     set_height_and_vertical_align_of_railway_line_matrix(@)
-    set_vertical_align_of_terminal_station_infos(@)
+    process_terminal_station_info(@)
     set_vertical_align_of_station_infos(@)
     set_vertical_align_of_time_info(@)
-    set_width_of_title_in_sub_infos(@)
+    set_width_of_title_in_ul_sub_infos(@)
     set_vertical_align_of_starting_station_and_train_number(@)
     return
 
@@ -135,12 +138,9 @@ class TrainLocationInfo
     r_matrix.css( 'height' , info.outerHeight( true ) )
     return
 
-  set_vertical_align_of_terminal_station_infos = (v) ->
-    text = terminal_info(v).children( '.text' )
-    p1 = new LengthToEven( text , true )
-    p1.set()
-    p2 = new DomainsVerticalAlignProcessor( terminal_info(v).children() )
-    p2.process()
+  process_terminal_station_info = (v) ->
+    station_info = new StationInfoProcessor( terminal_station_info(v) )
+    station_info.process()
     return
 
   set_vertical_align_of_station_infos = (v) ->
@@ -155,12 +155,13 @@ class TrainLocationInfo
       content = $(@)
       p = new LengthToEven( content , true )
       p.set()
+      return
     p = new DomainsVerticalAlignProcessor( time_info(v).children() )
     p.process()
     return
 
-  set_width_of_title_in_sub_infos = (v) ->
-    titles = sub_infos(v).find( '.starting_station_title , .title_of_train_number' )
+  set_width_of_title_in_ul_sub_infos = (v) ->
+    titles = ul_sub_infos(v).find( '.starting_station_title , .title_of_train_number' )
     p = new DomainsCommonProcessor( titles )
     p.set_all_of_uniform_width_to_max()
     return
@@ -177,7 +178,7 @@ class TrainLocationUlDomain
 
   constructor: ( @ul_domain ) ->
     set_max_outer_width_of_domains_of_train_fundamental_infos(@)
-    set_max_outer_width_of_sub_infos(@)
+    set_max_outer_width_of_ul_sub_infos(@)
     return
 
   li_train_locations = (v) ->
@@ -196,18 +197,18 @@ class TrainLocationUlDomain
     return li_train_locations(v)
       .children( '.current_position' )
 
-  sub_infos = (v) ->
+  ul_sub_infos = (v) ->
     return li_train_locations(v)
-      .children( '.sub_infos' )
+      .children( 'ul.sub_infos' )
 
   set_max_outer_width_of_domains_of_train_fundamental_infos = (v) ->
     p = new DomainsCommonProcessor( domains_of_train_fundamental_infos(v) )
     v.max_outer_width_of_domains_of_train_fundamental_infos = p.max_inner_width()
     return
 
-  set_max_outer_width_of_sub_infos = (v) ->
-    p = new DomainsCommonProcessor( sub_infos(v) )
-    v.max_outer_width_of_sub_infos = p.max_inner_width()
+  set_max_outer_width_of_ul_sub_infos = (v) ->
+    p = new DomainsCommonProcessor( ul_sub_infos(v) )
+    v.max_outer_width_of_ul_sub_infos = p.max_inner_width()
     return
 
   max_width_of_li_train_location = (v) ->
@@ -220,14 +221,14 @@ class TrainLocationUlDomain
 
   width_of_current_position = (v) ->
     width_of_li = max_width_of_li_train_location(v)
-    console.log 'width_of_li: ' + width_of_li
-    console.log 'max_outer_width_of_domains_of_train_fundamental_infos: ' + v.max_outer_width_of_domains_of_train_fundamental_infos
-    console.log 'max_outer_width_of_sub_infos: ' + v.max_outer_width_of_sub_infos
-    return width_of_li - ( v.max_outer_width_of_domains_of_train_fundamental_infos + v.max_outer_width_of_sub_infos + border_left_and_bottom_of_current_position(v) )
+    # console.log 'width_of_li: ' + width_of_li
+    # console.log 'max_outer_width_of_domains_of_train_fundamental_infos: ' + v.max_outer_width_of_domains_of_train_fundamental_infos
+    # console.log 'max_outer_width_of_ul_sub_infos: ' + v.max_outer_width_of_ul_sub_infos
+    return width_of_li - ( v.max_outer_width_of_domains_of_train_fundamental_infos + v.max_outer_width_of_ul_sub_infos + border_left_and_bottom_of_current_position(v) )
 
   process: ->
     process_domains_of_train_fundamental_infos(@)
-    process_sub_infos(@)
+    process_ul_sub_infos(@)
     process_current_position(@)
     return
 
@@ -237,9 +238,9 @@ class TrainLocationUlDomain
     railway_line_matrixes(v).css( 'width' , w )
     return
 
-  process_sub_infos = (v) ->
-    w = v.max_outer_width_of_sub_infos
-    sub_infos(v).css( 'width' , w )
+  process_ul_sub_infos = (v) ->
+    w = v.max_outer_width_of_ul_sub_infos
+    ul_sub_infos(v).css( 'width' , w )
     return
 
   process_current_position = (v) ->

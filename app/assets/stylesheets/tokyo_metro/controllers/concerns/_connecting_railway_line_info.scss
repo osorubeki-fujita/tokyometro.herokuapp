@@ -17,17 +17,7 @@
 }
 
 %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
-  $font_size_ja: 10pt ;
-  .text_ja {
-    font: {
-      size: $font_size_ja ;
-    }
-  }
-  .text_en {
-    font: {
-      size: $font_size_ja * 0.75 ;
-    }
-  }
+  @include font_ja_and_en(10) ;
 }
 
 %railwayLineConnectingToAnotherStation {
@@ -38,13 +28,7 @@
     // @include border_radius( 2px ) ;
     background-color: #eee ;
     border: solid 1px #999 ;
-    $font_size_ja: 8pt ;
-    .text_ja {
-      font-size: $font_size_ja ;
-    }
-    .text_en {
-      font-size: $font_size_ja * 0.6 ;
-    }
+    @include font_ja_and_en(8) ;
   }
 }
 

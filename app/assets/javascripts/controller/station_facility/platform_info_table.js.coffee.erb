@@ -33,6 +33,7 @@ class StationFacilityPlatformInfoTable
         b = new BarrierFreeFacilityImage( $(@) )
         return b.content_in_tooltip()
       items: "[data-place] , [data-wheelchair] , [data-toilet-assistant] , [data-remark] , [data-service-details]"
+      tooltipClass: 'tooltip_of_barrier_free_facility'
       track: false
 
     img_of_barrier_free_facilities(v).tooltip( option )
@@ -207,9 +208,10 @@ class BarrierFreeFacilityImage
 class ServiceDetailInTooltipForBarrierFreeFacilityImage
 
   constructor: ( content ) ->
-    regexp_for_operation_day = /^（利用可能日）：/
-    regexp_for_escalator_direction = /^（エスカレーターの方向）：/
-    regexp_for_service_time = /^（利用可能時間）：/
+    regexp_for_operation_day = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_OPERATION_DAY_TITLE %>：/
+    regexp_for_escalator_direction = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE %>：/
+    regexp_for_service_time = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_SERVICE_TIME_TITLE %>：/
+
     for item in content.split( "<%= BarrierFreeFacilityServiceDetailDecorator::IN_DATA_FOR_TOOLTIP_JOINED_BY %>" )
       if regexp_for_operation_day.test( item )
         @operation_day = item.replace( regexp_for_operation_day , "" )
@@ -220,10 +222,96 @@ class ServiceDetailInTooltipForBarrierFreeFacilityImage
 
   content_in_tooltip: ->
     str = ""
-    if @operation_day?
-      str += "<li class='operation_day'>#{ @operation_day }</li>"
-    if @escalator_direction?
-      str += "<li class='escalator_direction'>#{ @escalator_direction }</li>"
-    if @service_time?
-      str += "<li class='service_time'>利用可能時間：#{ @service_time }</li>"
+    str += content_in_tooltip_as_for_operation_day(@)
+    str += content_in_tooltip_as_for_escalator_direction(@)
+    str += content_in_tooltip_as_for_service_time(@)
+    # console.log str
+    return str
+
+  content_in_tooltip_as_for_operation_day = (v) ->
+    str = ""
+    if v.operation_day?
+      str += "<li class='operation_day'>#{ v.operation_day }</li>"
+    return str
+
+  content_in_tooltip_as_for_escalator_direction = (v) ->
+    str = ""
+    if v.escalator_direction?
+      str += "<li class='escalator_direction'>"
+      str += "<div class=\'icons\'>"
+
+      if v.escalator_direction.match( /上り/ )
+        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_UP.to_s ] %>" )
+        str += "<div class=\'up\'>"
+        str += i.to_html()
+        str += "</div>"
+
+      if v.escalator_direction.match( /下り/ )
+        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_DOWN.to_s ] %>" )
+        str += "<div class=\'down\'>"
+        str += i.to_html()
+        str += "</div>"
+
+      str += "</div>"
+      str += "<div class=\'text\'>#{ v.escalator_direction }</div>"
+      str += "</li>"
+    return str
+
+  content_in_tooltip_as_for_service_time = (v) ->
+    str = ""
+    if v.service_time?
+      p = new ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage( v.service_time )
+      str += p.to_html()
+    return str
+
+class ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage
+
+  constructor: ( service_time ) ->
+
+    @join_by = "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::JOIN_BY %>"
+    
+    @specific_infos =
+      time_title:
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ :time.to_s ] %>"
+      time_from:
+        text: "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::BEFORE_FIRST_TRAIN_TEXT %>"
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityServiceDetailPatternDecorator::BEFORE_FIRST_TRAIN_ICON.to_s ] %>"
+      time_until:
+        text: "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::AFTER_LAST_TRAIN_TEXT %>"
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityServiceDetailPatternDecorator::AFTER_LAST_TRAIN_ICON.to_s ] %>"
+    [ @time_from , @time_until ] = service_time.split( @join_by )
+
+  to_html: ->
+    str = ""
+    str += "<li class='service_time'>"
+    str += service_time_title(@)
+    str += time_from_str(@)
+    str += joint(@)
+    str += time_until_str(@)
+    str += "</li>"
+    return str
+
+  service_time_title = (v) ->
+    p = new FontAwesomeIconProcessor( v.specific_infos.time_title.icon )
+    return "<span class='service_time_title'>#{ p.to_html() }利用可能時間：</span>"
+
+  time_from_str = (v) ->
+    str = ""
+    if v.time_from is v.specific_infos.time_from.text
+      p = new FontAwesomeIconProcessor( v.specific_infos.time_from.icon )
+      str += "<span class='before_first_train'>#{ p.to_html() }#{ v.time_from }</span>"
+    else
+      str += "<span class='from'>#{ v.time_from }</span>"
+    return str
+
+  joint = (v) ->
+    return "<span class='joint'>#{ v.join_by }</span>"
+
+  time_until_str = (v) ->
+    str = ""
+    if v.time_until is v.specific_infos.time_until.text
+      p = new FontAwesomeIconProcessor( v.specific_infos.time_until.icon )
+      str += "<span class='after_last_train'>#{ p.to_html() }#{ v.time_until }</span>"
+    else
+      str += "<span class='until'>#{ v.time_until }</span>"
     return str

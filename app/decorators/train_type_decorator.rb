@@ -13,12 +13,24 @@ class TrainTypeDecorator < Draper::Decorator
   end
 
   def render_in_train_location
+    div_classes = [ :train_type , :clearfix , css_class_name , :text ].flatten
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , div_classes: div_classes }
+%div{ class: div_classes }<
+  = this.train_type_in_api.decorate.render_in_train_location
+    HAML
+  end
+
+=begin
+
+  def render_in_train_location
     div_classes = [ :train_type , :clearfix , css_class_name , :text_ja ].flatten
     h.render inline: <<-HAML , type: :haml , locals: { this: self , div_classes: div_classes }
 %p{ class: div_classes }<
   = this.train_type_in_api.decorate.render_in_train_location
     HAML
   end
+
+=end
 
   def render_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }

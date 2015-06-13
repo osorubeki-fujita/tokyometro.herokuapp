@@ -62,4 +62,10 @@ class OperatorDecorator < Draper::Decorator
     HAML
   end
 
+  def render_in_train_location
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+    
+    HAML
+  end
+
 end

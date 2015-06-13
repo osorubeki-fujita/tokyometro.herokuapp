@@ -48,6 +48,9 @@ class StationFacilityInfosOfEachType
 
   escalator_direction_domains = (v) ->
     return v.domain.find( 'li.escalator_direction' )
+  
+  escalator_direction_text_domains = (v) ->
+    return escalator_direction_domains(v).children( '.text' )
 
   service_time_domains = (v) ->
     return v.domain.find( 'li.service_time' )
@@ -66,6 +69,7 @@ class StationFacilityInfosOfEachType
     process_specific_infos(@)
     process_each_side_domain(@)
     process_toilet_icons(@)
+    set_tooltips(@)
     return
 
   set_title_width = (v) ->
@@ -74,20 +78,20 @@ class StationFacilityInfosOfEachType
 
   process_specific_infos = (v) ->
     process_specific_infos_of_each_category( v , operation_day_domains(v) )
-    process_specific_infos_of_each_category( v , escalator_direction_domains(v) )
+    process_specific_infos_of_each_category( v , escalator_direction_text_domains(v) )
     process_specific_infos_of_each_category( v , service_time_domains(v) )
     process_specific_infos_of_each_category( v , remark_domains(v) , false )
     return
 
   process_specific_infos_of_each_category = ( v , domains , set_length_to_even = true ) ->
     if domains.length > 0
-      p = new DomainsCommonProcessor( domains )
-      p.set_all_of_uniform_width_to_max()
+      p0 = new DomainsCommonProcessor( domains )
       if set_length_to_even
         domains.each ->
-          p = new LengthToEven( $(@) , true )
-          p.set()
+          p1 = new LengthToEven( $(@) , true )
+          p1.set()
           return
+      p0.set_all_of_uniform_width_to_max()
     return
 
   process_each_side_domain = (v) ->
@@ -117,6 +121,21 @@ class StationFacilityInfosOfEachType
             p = new DomainsHorizontalAlignProcessor( _icons , max_width , 'left' )
             p.process()
           return
+    return
+    
+  set_tooltips = (v) ->
+    # console.log 'set_tooltips'
+    option =
+      potision:
+        my: "left top"
+        at: "left bottom"
+      content: ->
+        element = $(@)
+        return "<span class='text_en service_time_in_tooltip'>#{ element.attr( 'data-en' ) }</span>"
+      items: '[data-en]'
+      track: false
+      tooltipClass: 'dictionary'
+    service_time_domains(v).children( 'span.with_tooltip' ).tooltip( option )
     return
 
 #-------- [class] StationFacilityInfosOfEachTypeAndLocatedArea
