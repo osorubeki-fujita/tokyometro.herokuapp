@@ -4,11 +4,11 @@ div.ui-tooltip {
   &.dictionary , &.connecting_railway_line {
     max-width: 480px !important ;
   }
-  span {
-    &.text , &.text_ja , &.text_en {
+  // span {
+    // &.text , &.text_ja , &.text_en {
       font: {
         size: 9pt ;
       }
-    }
-  }
+    // }
+  // }
 }

@@ -43,20 +43,11 @@ class StationFacilityInfosOfEachType
   inside_and_outside = (v) ->
     return v.domain.children( 'ul.inside , ul.outside' )
 
-  operation_day_domains = (v) ->
-    return v.domain.find( 'li.operation_day' )
-
-  escalator_direction_domains = (v) ->
-    return v.domain.find( 'li.escalator_direction' )
-  
-  escalator_direction_text_domains = (v) ->
-    return escalator_direction_domains(v).children( '.text' )
-
   service_time_domains = (v) ->
     return v.domain.find( 'li.service_time' )
 
-  remark_domains = (v) ->
-    return v.domain.find( '.remark' )
+  text_domains_with_tooltip_in_service_time_domains = (v) ->
+    return service_time_domains(v).children( 'span.with_tooltip' )
 
   icons = (v) ->
     return v.domain.find( 'img.barrier_free_facility' )
@@ -77,21 +68,8 @@ class StationFacilityInfosOfEachType
     return
 
   process_specific_infos = (v) ->
-    process_specific_infos_of_each_category( v , operation_day_domains(v) )
-    process_specific_infos_of_each_category( v , escalator_direction_text_domains(v) )
-    process_specific_infos_of_each_category( v , service_time_domains(v) )
-    process_specific_infos_of_each_category( v , remark_domains(v) , false )
-    return
-
-  process_specific_infos_of_each_category = ( v , domains , set_length_to_even = true ) ->
-    if domains.length > 0
-      p0 = new DomainsCommonProcessor( domains )
-      if set_length_to_even
-        domains.each ->
-          p1 = new LengthToEven( $(@) , true )
-          p1.set()
-          return
-      p0.set_all_of_uniform_width_to_max()
+    p = new StationFacilityBarrierFreeFacilityInfoServiceDetail( v.domain )
+    p.process()
     return
 
   process_each_side_domain = (v) ->
@@ -122,7 +100,7 @@ class StationFacilityInfosOfEachType
             p.process()
           return
     return
-    
+
   set_tooltips = (v) ->
     # console.log 'set_tooltips'
     option =
@@ -135,7 +113,7 @@ class StationFacilityInfosOfEachType
       items: '[data-en]'
       track: false
       tooltipClass: 'dictionary'
-    service_time_domains(v).children( 'span.with_tooltip' ).tooltip( option )
+    text_domains_with_tooltip_in_service_time_domains(v).tooltip( option )
     return
 
 #-------- [class] StationFacilityInfosOfEachTypeAndLocatedArea
@@ -220,3 +198,46 @@ class StationFacilityInfosOfEachSpecificFacility
       p.process()
       return
     return
+
+class StationFacilityBarrierFreeFacilityInfoServiceDetail
+
+  constructor: ( @domain ) ->
+
+  operation_day_domains = (v) ->
+    return v.domain.find( 'li.operation_day' )
+
+  escalator_direction_domains = (v) ->
+    return v.domain.find( 'li.escalator_direction' )
+  
+  escalator_direction_text_domains = (v) ->
+    return escalator_direction_domains(v).children( '.text' )
+
+  service_time_domains = (v) ->
+    return v.domain.find( 'li.service_time' )
+
+  remark_domains = (v) ->
+    return v.domain.find( '.remark' )
+
+  has_remark_domain = (v) ->
+    return remark_domains(v).length > 0
+
+  process: ->
+    process_specific_infos_of_each_category( @ , operation_day_domains(@) )
+    process_specific_infos_of_each_category( @ , escalator_direction_text_domains(@) )
+    process_specific_infos_of_each_category( @ , service_time_domains(@) )
+    if has_remark_domain(@)
+      process_specific_infos_of_each_category( @ , remark_domains(@) , false )
+    return
+
+  process_specific_infos_of_each_category = ( v , domains , set_length_to_even = true ) ->
+    if domains.length > 0
+      p0 = new DomainsCommonProcessor( domains )
+      if set_length_to_even
+        domains.each ->
+          p1 = new LengthToEven( $(@) , true )
+          p1.set()
+          return
+      p0.set_all_of_uniform_width_to_max()
+    return
+
+window.StationFacilityBarrierFreeFacilityInfoServiceDetail = StationFacilityBarrierFreeFacilityInfoServiceDetail

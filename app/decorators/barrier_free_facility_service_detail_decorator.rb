@@ -34,7 +34,7 @@ class BarrierFreeFacilityServiceDetailDecorator < Draper::Decorator
       ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE }：#{ escalator_direction.to_s }"
     end
     if pattern.has_service_time_info?
-      ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE }：#{ pattern.decorate.service_time_info_in_tooltip }"
+      ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_SERVICE_TIME_TITLE }：#{ pattern.decorate.service_time_info_in_tooltip }"
     end
     ary.join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
   end

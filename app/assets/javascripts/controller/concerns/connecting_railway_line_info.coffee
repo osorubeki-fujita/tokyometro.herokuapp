@@ -16,7 +16,12 @@ class ConnectingRailwayLineInfo
       content: ->
         element = $(@)
         if checkAttr( "title" , { is_included_in: element } )
-          return "<span class='text_ja'>#{ element.attr( "title" ) }</span>"
+          str = ""
+          str += "<div class='text_ja'>"
+          for item in element.attr( "title" ).split( "／" )
+            str += "<p>#{ item }</p>"
+          str += "</div>"
+          return str
       items: "[title]"
       track: false
       tooltipClass: 'connecting_railway_line'

@@ -37,6 +37,12 @@ class StationFacilityPlatformInfoTable
       track: false
 
     img_of_barrier_free_facilities(v).tooltip( option )
+    img_of_barrier_free_facilities(v).on( 'hover' , hover_function_for_img_of_barrier_free_facilities(v) )
+    return
+  
+  hover_function_for_img_of_barrier_free_facilities = (v) ->
+    p = new HoverEventForBarrierFreeFacilityInfoInTooltip()
+    p.process()
     return
 
 window.StationFacilityPlatformInfoTable = StationFacilityPlatformInfoTable
@@ -231,29 +237,34 @@ class ServiceDetailInTooltipForBarrierFreeFacilityImage
   content_in_tooltip_as_for_operation_day = (v) ->
     str = ""
     if v.operation_day?
-      str += "<li class='operation_day'>#{ v.operation_day }</li>"
+      matched_ary = v.operation_day.match(/^(.+) \(([\w\, ]+)\)$/)
+      [ whole , text_ja , text_en ] = matched_ary
+      str += "<li class='operation_day'>"
+      str += "<p class='text_ja'>#{ text_ja }</p>"
+      str += "<p class='text_en'>#{ text_en }</p>"
+      str += "</li>"
     return str
 
   content_in_tooltip_as_for_escalator_direction = (v) ->
     str = ""
     if v.escalator_direction?
       str += "<li class='escalator_direction'>"
-      str += "<div class=\'icons\'>"
+      str += "<div class='icons'>"
 
       if v.escalator_direction.match( /上り/ )
         i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_UP.to_s ] %>" )
-        str += "<div class=\'up\'>"
+        str += "<div class='up'>"
         str += i.to_html()
         str += "</div>"
 
       if v.escalator_direction.match( /下り/ )
         i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_DOWN.to_s ] %>" )
-        str += "<div class=\'down\'>"
+        str += "<div class='down'>"
         str += i.to_html()
         str += "</div>"
 
       str += "</div>"
-      str += "<div class=\'text\'>#{ v.escalator_direction }</div>"
+      str += "<div class='text'>#{ v.escalator_direction }</div>"
       str += "</li>"
     return str
 
@@ -315,3 +326,13 @@ class ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage
     else
       str += "<span class='until'>#{ v.time_until }</span>"
     return str
+
+class HoverEventForBarrierFreeFacilityInfoInTooltip
+
+  constructor: ( @barrier_free_facility_in_tooltip = $( 'div.ui-tooltip' ).find( '.in_tooltip.barrier_free_facility' ) ) ->
+
+  process: ->
+    # console.log @barrier_free_facility_in_tooltip
+    p = new StationFacilityBarrierFreeFacilityInfoServiceDetail( @barrier_free_facility_in_tooltip )
+    p.process()
+    return
