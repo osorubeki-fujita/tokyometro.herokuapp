@@ -7,13 +7,13 @@
   vertical: {
     align: middle ;
   }
-  @include font_ja_and_en( 18 , 18.0 / 10 ) ;
+  @include font_ja_and_en( 18 , 10.0 / 18 ) ;
   .text_ja {
     .sub {
       font: {
         size: 10pt ;
       }
-      line-height: 1.3em ;
+      line-height: 1.2em ;
       margin: {
         top: -2px ;
         bottom: 6px ;
@@ -33,13 +33,13 @@
   }
 }
 
-$border_radius_of_info_box: 9px ;
-$margin_left: 16px ;
+$border_radius_of_document_info_box: 8px ;
+$margin_left: 8px ;
 $border_width: 1px ;
 $height_base: 96px ;
 
-$padding_width: $border_radius_of_info_box ;
-$margin_bottom: $border_radius_of_info_box ;
+$padding_width: $border_radius_of_document_info_box ;
+$margin_bottom: $border_radius_of_document_info_box ;
 
 $info_box_of_operators_margin_bottom: 32px ;
 
@@ -61,7 +61,7 @@ $width_of_each_color_area: 160px ;
     bottom: $margin_bottom ;
   }
   padding : $padding_width ;
-  @include colorBoxMarginSettingsInDocumentInfoBox( 0px , $border_radius_of_info_box ) ;
+  @include colorBoxMarginSettingsInDocumentInfoBox( 0px , $border_radius_of_document_info_box ) ;
   .color_info {
     @include float_left ;
     width : 96px ;
@@ -80,37 +80,15 @@ $width_of_each_color_area: 160px ;
   }
 }
 
-@mixin sizeSettingsOfDocumentInfoBox( $width_base , $height_base ) {
-  $width: $width_base - ( $margin_left + $border_width * 2 + $padding_width * 2 );
-  $height: $height_base - ( $margin_bottom + $border_width * 2 + $padding_width * 2 );
-
+@mixin sizeSettingsOfDocumentInfoBox( $width_base ) {
+  $width: $width_base - ( $margin_left + $border_width * 2 + $padding_width * 2 ) ;
   width: $width ;
-  height : $height ;
 }
 
-@mixin documentInfoBoxNormal( $height: 96px ) {
-  @include sizeSettingsOfDocumentInfoBox( $width_main_content_center , $height ) ;
-  @include border_radius( $border_radius_of_info_box ) ;
+%documentInfoBoxNormal {
+  @include sizeSettingsOfDocumentInfoBox( $width_main_content_center ) ;
 }
 
-@mixin documentInfoBoxWide( $height: 96px ) {
-  @include sizeSettingsOfDocumentInfoBox( $width_main_content_wide , $height ) ;
-  @include border_radius( $border_radius_of_info_box ) ;
-}
-
-%infoBoxOfOperators {
-  // 各鉄道会社の情報を格納する box
-  .document_info_box_normal {
-    @include documentInfoBoxNormal ;
-    @extend %commonSettingsOfColorBox ;
-  }
-  // 鉄道会社の名称の領域
-  .operator_name {
-    @extend %nameInDocument ;
-    $width_of_rounded_square: 72px ;
-    width: $width_main_content_center - ( $width_of_rounded_square + $width_of_each_color_area ) ;
-  }
-  margin: {
-    bottom: $info_box_of_operators_margin_bottom ;
-  }
+%documentInfoBoxWide {
+  @include sizeSettingsOfDocumentInfoBox( $width_main_content_wide ) ;
 }

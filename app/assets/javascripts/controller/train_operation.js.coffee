@@ -124,7 +124,7 @@ class TrainOperationInfos
       outer_width = p.max_outer_width( true )
       w = Math.max( w , Math.ceil( outer_width ) )
       return
-    return w
+    return Math.ceil( w * 0.5 + 1 ) * 2
 
   # それぞれの運行状況ステータスのテキスト領域の大きさを初期化するメソッド
   initialize_status_text_size = (v) ->
@@ -351,8 +351,8 @@ class TrainOperationInfoStatus extends TrainOperationInfoMatrixBase
 
   # 個別の運行状況ステータスのテキスト領域の大きさを初期化するメソッド
   initialize_text_size: ( _width ) ->
-    p = new DomainsCommonProcessor( @.text().children() )
     @.text().css( 'width' , _width )
+    p = new DomainsCommonProcessor( @.text().children() )
     @.text().css( 'height' , p.sum_outer_height( true ) )
     return
 

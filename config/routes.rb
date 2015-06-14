@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     to: 'train_operation#index'
 
   get 'train_operation/:railway_line' ,
-    # constraints: OnlyRailwayLineRequest ,
+    # constraints: OnlyRailwayLineRequestConstraint.new ,
     constraints: { railway_line: /[a-z]+_line/ } ,
     to: 'train_operation#action_for_railway_line_page'
 
@@ -75,9 +75,9 @@ Rails.application.routes.draw do
     to: 'train_location#index'
 
   get 'train_location/:railway_line' ,
-    # constraints: OnlyRailwayLineRequestIncludingYurakuchoAndFukutoshinLine ,
     constraints: { railway_line: /(?:[a-z]+|yurakucho_and_fukutoshin)_line/ } ,
     to: 'train_location#action_for_railway_line_page'
+    # constraints: OnlyRailwayLineRequestIncludingYurakuchoAndFukutoshinLineConstraint.new
 
   #-------- 路線情報
 
@@ -85,9 +85,9 @@ Rails.application.routes.draw do
     to: 'railway_line#index'
 
   get 'railway_line/:railway_line' ,
-    # constraints: OnlyRailwayLineRequestIncludingYurakuchoAndFukutoshinLine ,
     constraints: { railway_line: /(?:[a-z]+|yurakucho_and_fukutoshin)_line/ } ,
     to: 'railway_line#action_for_railway_line_page'
+    # constraints: OnlyRailwayLineRequestIncludingYurakuchoAndFukutoshinLineConstraint.new
 
   # -------- 駅施設
 
@@ -136,6 +136,14 @@ Rails.application.routes.draw do
     to: 'passenger_survey#action_for_station_page'
 
   #-------- Document
+
+  get 'document(/index)' ,
+    to: 'document#index'
+
+  get 'document/:action' ,
+    controller: :document ,
+    constraints: { action: /(?:operators|train_owners|railway_lines|railway_directions|train_types)/ }
+
   get 'document/table/:model_namespace_in_url(/:page)' ,
     to: 'document#table'
 
@@ -144,7 +152,10 @@ Rails.application.routes.draw do
 
   #-------- その他
 
-  match ':controller/:action', via: [ :get , :post , :patch ]
+  get ':controller/:action' , constraints: { action: /(?:all|[a-z]+_line|index)/ }
+
+  # match ':controller/:action', via: [ :get , :post , :patch ]
+
   get '/index' , to: 'application#index'
   root to: 'application#index'
 end

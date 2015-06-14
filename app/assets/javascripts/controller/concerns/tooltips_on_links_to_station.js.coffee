@@ -47,8 +47,8 @@ class TooltipOnLinkToStation
   station_code_images_in_html = (v) ->
     str = ""
     str += "<div class='station_codes'>"
-    for image_name in ary_of_station_code_images(v)
-      p = new TooltipOnLinkToStationImageName( image_name )
+    for station_code in ary_of_station_code_images(v)
+      p = new TooltipOnLinkToStationImageName( station_code )
       str += p.to_html()
     str += "</div>"
     return str
@@ -64,13 +64,19 @@ class TooltipOnLinkToStation
 
 class TooltipOnLinkToStationImageName
 
-  constructor: ( @image_name ) ->
+  constructor: ( @station_code_base ) ->
 
-  src_basename = (v) ->
-    return v.image_name.toLowerCase()
-  
+  station_code = (v) ->
+    regexp = /^m(\d{2})$/
+    # console.log v.station_code_base
+    if regexp.test( v.station_code_base )
+      str = "mm#{ v.station_code_base.match( regexp )[1] }"
+    else
+      str = v.station_code_base.toLowerCase()
+    return str
+
   src = (v) ->
-    return "/assets/provided_by_tokyo_metro/station_number/#{ src_basename(v) }.png"
+    return "/assets/provided_by_tokyo_metro/station_number/#{ station_code(v) }.png"
 
   to_html: ->
-    return "<img class='station_code' alt='#{ @image_name }' src=#{ src(@) }>"
+    return "<img class='station_code' alt='#{ station_code(@) }' src=#{ src(@) }>"

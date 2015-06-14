@@ -230,10 +230,10 @@ class Station::InfoDecorator < Draper::Decorator
   = this.render_in_fare_table_without_link
       HAML
     else
-      h_locals = { this: self , linked_page_action: object.name_in_system.underscore }
+      h_locals = { this: self , linked_page_name: object.name_in_system.underscore }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
-%td{ class: [ :station_info , :with_link ] , "data-href" => linked_page_action }<
-  - linked_page = url_for( action: linked_page_action ) + "/" + this.railway_line.css_class_name + "_line"
+%td{ class: [ :station_info , :with_link ] , "data-href" => linked_page_name }<
+  - linked_page = url_for( railway_line: this.railway_line.decorate.page_name , station: linked_page_name )
   = link_to( "" , linked_page )
   = this.render_in_fare_table_without_link
       HAML
@@ -331,7 +331,7 @@ class Station::InfoDecorator < Draper::Decorator
     end
     h_locals = {
       this: self ,
-      action: station_page_name ,
+      station_page_name: station_page_name ,
       railway_line: r ,
       # title: title.link_to_station_page.ja ,
       set_anchor: set_anchor ,
@@ -340,14 +340,14 @@ class Station::InfoDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - if railway_line.present?
   - if set_anchor
-    %a{ datum_for_tooltip , href: url_for( action: action , anchor: railway_line , only_path: true ) }<
+    %a{ datum_for_tooltip , href: url_for( action: :action_for_station_page , station: station_page_name , anchor: railway_line , only_path: true ) }<
       = this.render_name_ja
   - else
-    - url = url_for( action: action ) + "/" + railway_line
+    - url = url_for( action: :action_for_station_page , station: station_page_name , railway_line: railway_line )
     %a{ datum_for_tooltip , href: url }<
       = this.render_name_ja
 - else
-  %a{ datum_for_tooltip , href: url_for( action: action ) }<
+  %a{ datum_for_tooltip , href: url_for( action: :action_for_station_page , station: station_page_name ) }<
     = this.render_name_ja
     HAML
   end

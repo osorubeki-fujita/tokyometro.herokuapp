@@ -3,12 +3,56 @@
 @import '../../fundamental_settings.scss' ;
 @import 'document_info_box/mixins.scss' ;
 
-#operators {
-  @extend %infoBoxOfOperators ;
-}
-
-#train_owners {
-  @extend %infoBoxOfOperators ;
+ul#operators.in_document , ul#train_owners.in_document {
+  @include padding_left_0 ;
+  margin: {
+    bottom: $info_box_of_operators_margin_bottom ;
+  }
+  //
+  li.operator {
+    list-style: none ;
+  }
+  //
+  // 各鉄道会社の情報を格納する box
+  li.document_info_box_normal {
+    @include border_radius( $border_radius_of_document_info_box ) ;
+    @extend %documentInfoBoxNormal ;
+    @extend %commonSettingsOfColorBox ;
+    .texts {
+      @include float_left ;
+    }
+    .main {
+      // 鉄道会社の名称の領域
+      .operator_name {
+        @extend %nameInDocument ;
+        $width_of_rounded_square: 72px ;
+        width: $width_main_content_center - ( $width_of_rounded_square + $width_of_each_color_area ) ;
+      }
+      @include margin_bottom_16 ;
+    }
+    ul.sub_infos {
+      @include margin_left_0 ;
+      @include padding_left_0 ;
+      @include padding_top_8 ;
+      border: {
+        top: dotted 1px #ccc ;
+      }
+      font: {
+        size: 9pt ;
+      }
+      li {
+        list-style: none ;
+        display: inline ;
+        dd , dt {
+          @include float_left ;
+        }
+        dd {
+          @include margin_left_0 ;
+          @include margin_right_16 ;
+        }
+      }
+    }
+  }
 }
 
 #railway_lines {
@@ -22,8 +66,7 @@
     //
     // 各鉄道会社の情報を格納する box
     .document_info_box_normal {
-      $height: 160px ;
-      @include documentInfoBoxNormal( $height ) ;
+      @extend %documentInfoBoxNormal ;
       @extend %commonSettingsOfColorBox ;
     }
     .top {
@@ -53,7 +96,7 @@
     .railway_line {
       @include margin_bottom_32 ;
       .document_info_box_normal {
-        @include documentInfoBoxNormal ;
+        @extend %documentInfoBoxNormal ;
         @extend %commonSettingsOfColorBox ;
       }
     }

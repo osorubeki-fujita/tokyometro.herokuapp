@@ -360,7 +360,7 @@ class RailwayLineDecorator < Draper::Decorator
 
     if make_link_to_railway_line
       if link_controller_name.present?
-        url = h.url_for( controller: link_controller_name , action: railway_line_page_name )
+        url = h.url_for( controller: link_controller_name , action: :action_for_railway_line_page , railway_line: railway_line_page_name )
       else
         url = h.url_for( action: railway_line_page_name )
       end
@@ -440,7 +440,7 @@ class RailwayLineDecorator < Draper::Decorator
 
   def render_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: [ :document_info_box_normal , this.css_class_name ] }
+%div{ class: [ :document_info_box_normal , this.css_class_name , :clearfix ] }
   %div{ class: :top }
     = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
     = this.render_railway_line_code( must_display_line_color: false )

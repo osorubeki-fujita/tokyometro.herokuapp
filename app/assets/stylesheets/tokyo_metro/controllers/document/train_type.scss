@@ -20,8 +20,8 @@
     .railway_line {
       @include margin_bottom_32 ;
       .document_info_box_wide {
-        $height: 144px ;
-        @include documentInfoBoxWide( $height ) ;
+        @include border_radius( $border_radius_of_document_info_box ) ;
+        @extend %documentInfoBoxWide ;
         @extend %commonSettingsOfColorBox ;
         //
         .train_type_displayed {

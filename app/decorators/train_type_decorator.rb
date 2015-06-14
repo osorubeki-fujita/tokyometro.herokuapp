@@ -34,7 +34,7 @@ class TrainTypeDecorator < Draper::Decorator
 
   def render_document_info_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :document_info_box_wide }
+%div{ class: [ :document_info_box_wide , :clearfix ] }
   = this.render_name_box
   = this.render_name_in_document_info_box
   = this.render_color_infos_in_document_info_box
