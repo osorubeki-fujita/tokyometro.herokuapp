@@ -12,7 +12,7 @@ class StationMatrixes
     border_width = p.border_width
 
     domains_of_each_railway_line(@).each ->
-      station_matrix_row = new StationMatrixRow( $( this ) , width_of_main_content_center , width_of_each_normal_railway_line , border_width )
+      station_matrix_row = new StationMatrixRow( $(@) , width_of_main_content_center , width_of_each_normal_railway_line , border_width )
       station_matrix_row.process()
       return
     return
@@ -24,7 +24,8 @@ class StationMatrixRow
   constructor: ( @domain , @width_of_main_content_center , @width_of_each_normal_railway_line , @border_width ) ->
 
   width_of_railway_line_matrix_small = (v) ->
-    return v.width_of_each_normal_railway_line # Math.floor( @width_of_each_normal_railway_line * 1.0 / goldenRatio )
+    return v.width_of_each_normal_railway_line
+    # Math.floor( @width_of_each_normal_railway_line * 1.0 / goldenRatio )
 
   base_width_of_station_box = (v) ->
     return v.width_of_main_content_center - ( width_of_railway_line_matrix_small(v) + v.border_width * 2 ) - v.border_width
@@ -50,8 +51,8 @@ class StationMatrixRow
   info_domain_in_railway_line_matrix_small = (v) ->
     return railway_line_matrix_small(v).children( '.info' ).first()
 
-  change_width = (v) ->
-    return
+  # change_width = (v) ->
+    # return
 
   change_width_of_domain = (v) ->
     v.domain.css( 'width' , v.width_of_main_content_center )
@@ -66,8 +67,30 @@ class StationMatrixRow
   domains_of_stations_of_railway_line_including_branch_line = (v) ->
     return v.domain.children( 'ul.stations_on_main_line , ul.stations_on_branch_line' )
 
-  domains_of_stations_of_normal_railway_line = (v) ->
+  ul_domain_of_stations_of_normal_railway_line = (v) ->
     return v.domain.children( 'ul.stations' ).first()
+
+  process: ->
+    # console.log( 'StationMatrixRow\#process' )
+
+    #-------- railway_line_matrix_small , domain_of_stations_in_station_matrix それぞれの長さを設定し、railway_line_domain の長さも微調整する
+    change_width_of_domain(@)
+    change_width_of_railway_line_matrix_small(@)
+    change_width_of_station_domain(@)
+
+    process_elements_in_railway_line_info_in_railway_line_matrix_small(@)
+
+    # 支線がある場合
+    if has_branch_line(@)
+      set_height_of_station_domains_of_railway_line_including_branch_line(@)
+    # 一般路線の場合
+    else
+      # set_height_of_domain_of_normal_railway_line(@)
+      set_height_of_domain_of_normal_railway_line_matrix_small(@)
+      set_height_of_station_domain_of_normal_railway_line(@)
+
+    set_margin_of_info_domain_in_railway_line_matrix_small(@)
+    return
 
   change_width_of_station_domain = (v) ->
     # console.log 'StationMatrixRow\#change_width_of_station_domain'
@@ -75,12 +98,12 @@ class StationMatrixRow
     # 支線がある場合
     if has_branch_line(v)
       domains_of_stations_of_railway_line_including_branch_line(v).each ->
-        station_group = new StationGroup( $( this ) , base_width_of_station_box(v) )
+        station_group = new StationGroup( $(@) , base_width_of_station_box(v) )
         station_group.process()
         return
     # 一般路線の場合
     else
-      station_group = new StationGroup( domains_of_stations_of_normal_railway_line(v) , base_width_of_station_box(v) )
+      station_group = new StationGroup( ul_domain_of_stations_of_normal_railway_line(v) , base_width_of_station_box(v) )
       station_group.process()
     return
 
@@ -109,12 +132,12 @@ class StationMatrixRow
     return
 
   new_height_of_domain_of_normal_railway_line = (v) ->
-    h = Math.max( railway_line_matrix_small(v).outerHeight( true ) , domains_of_stations_of_normal_railway_line(v).outerHeight( true ) )
+    h = Math.max( railway_line_matrix_small(v).outerHeight( true ) , ul_domain_of_stations_of_normal_railway_line(v).outerHeight( true ) )
     # console.log 'StationMatrixRow\#new_height_of_domain_of_normal_railway_line' + ' ' + '(height:' + h + ')'
     return h
 
-  set_height_of_domain_of_normal_railway_line = (v) ->
-    return v.domain.css( 'height' , new_height_of_domain_of_normal_railway_line(v) )
+  # set_height_of_domain_of_normal_railway_line = (v) ->
+    # return v.domain.css( 'height' , new_height_of_domain_of_normal_railway_line(v) )
 
   new_height_of_railway_line_matrix_small_of_normal_railway_line = (v) ->
     h = new_height_of_domain_of_normal_railway_line(v) - v.border_width
@@ -126,7 +149,7 @@ class StationMatrixRow
     return
 
   padding_top_plus_bottom_of_domain_of_stations_of_normal_railway_line = (v) ->
-    d = domains_of_stations_of_normal_railway_line(v)
+    d = ul_domain_of_stations_of_normal_railway_line(v)
     return d.innerHeight() - d.height()
 
   height_of_domain_of_stations_of_normal_railway_line = (v) ->
@@ -134,7 +157,7 @@ class StationMatrixRow
 
   set_height_of_station_domain_of_normal_railway_line = (v) ->
     # console.log( 'StationMatrixRow\#set_height_of_station_domain_of_normal_railway_line' )
-    domains_of_stations_of_normal_railway_line(v).css( 'height' , height_of_domain_of_stations_of_normal_railway_line(v) )
+    ul_domain_of_stations_of_normal_railway_line(v).css( 'height' , height_of_domain_of_stations_of_normal_railway_line(v) )
     return
 
   # info 領域の上下の margin を変更
@@ -143,35 +166,27 @@ class StationMatrixRow
     matrix.set_margin_top_and_bottom( railway_line_matrix_small(v).innerHeight() )
     return
 
-  process: ->
-    # console.log( 'StationMatrixRow\#process' )
-
-    #-------- railway_line_matrix_small , domain_of_stations_in_station_matrix それぞれの長さを設定し、railway_line_domain の長さも微調整する
-    change_width_of_domain(@)
-    change_width_of_railway_line_matrix_small(@)
-    change_width_of_station_domain(@)
-
-    process_elements_in_railway_line_info_in_railway_line_matrix_small(@)
-
-    # 支線がある場合
-    if has_branch_line(@)
-      set_height_of_station_domains_of_railway_line_including_branch_line(@)
-    # 一般路線の場合
-    else
-      set_height_of_domain_of_normal_railway_line(@)
-      set_height_of_domain_of_normal_railway_line_matrix_small(@)
-      set_height_of_station_domain_of_normal_railway_line(@)
-
-    set_margin_of_info_domain_in_railway_line_matrix_small(@)
-    return
-
 # 駅名領域（右側）
 class StationGroup
+
   constructor: ( @domain , @base_width_of_station_box ) ->
 
   width_of_domain = (v) ->
     return v.base_width_of_station_box - ( v.domain.innerWidth() - v.domain.width() )
 
+  li_stations = (v) ->
+    return v.domain.children( 'li.station' )
+
   process: ->
-    @domain.css( 'width' , width_of_domain(@) )
+    set_width_of_domain(@)
+    set_tooltips_to_li_stations(@)
+    return
+
+  set_width_of_domain = (v) ->
+    v.domain.css( 'width' , width_of_domain(v) )
+    return
+
+  set_tooltips_to_li_stations = (v) ->
+    p = new TooltipsOnLinksToStation( li_stations(v).children( 'a' ) )
+    p.set()
     return

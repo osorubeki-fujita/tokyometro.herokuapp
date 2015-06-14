@@ -1,3 +1,6 @@
+
+__END__
+
 class Station::InfoDecorator::Title::LinkToStationPage < ::TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def ja

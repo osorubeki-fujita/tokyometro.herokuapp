@@ -396,7 +396,7 @@ class RailwayLineDecorator < Draper::Decorator
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :railway_line }
+%div{ class: [ :railway_line , :clearfix ] }
   = this.render_matrix( make_link_to_railway_line: make_link_to_railway_line , size: :small )
   - case this.same_as
   - when "odpt.Railway:TokyoMetro.Marunouchi"

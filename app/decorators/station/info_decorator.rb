@@ -333,25 +333,27 @@ class Station::InfoDecorator < Draper::Decorator
       this: self ,
       action: station_page_name ,
       railway_line: r ,
-      title: title.link_to_station_page.ja ,
-      set_anchor: set_anchor
+      # title: title.link_to_station_page.ja ,
+      set_anchor: set_anchor ,
+      datum_for_tooltip: datum_for_tooltip
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - if railway_line.present?
   - if set_anchor
-    %a{ href: url_for( action: action , anchor: railway_line , only_path: true ) , title: title }<
+    %a{ datum_for_tooltip , href: url_for( action: action , anchor: railway_line , only_path: true ) }<
       = this.render_name_ja
   - else
-    %a{ href: url_for( action: action ) + "/" + railway_line , title: title }<
+    - url = url_for( action: action ) + "/" + railway_line
+    %a{ datum_for_tooltip , href: url }<
       = this.render_name_ja
 - else
-  %a{ href: url_for( action: action ) , title: title }<
+  %a{ datum_for_tooltip , href: url_for( action: action ) }<
     = this.render_name_ja
     HAML
   end
 
   def render_link_to_station_page_en
-    h.link_to( name_en , station_page_name , title: title.link_to_station_page.en )
+    h.link_to( name_en , station_page_name , datum_for_tooltip )
   end
 
   def render_link_to_station_facility_page_ja
@@ -453,10 +455,12 @@ class Station::InfoDecorator < Draper::Decorator
       ary
     end
   end
-  
+
+=begin
   def title
     ::Station::InfoDecorator::Title.new( self )
   end
+=end
 
   def google_map
     ::Station::InfoDecorator::InGoogleMap.new( self )
@@ -554,6 +558,10 @@ class Station::InfoDecorator < Draper::Decorator
 
   def name_ja_url_encoded
     ::ERB::Util.url_encode( name_ja_actual )
+  end
+
+  def datum_for_tooltip
+    { 'data-station-code-images' => station_codes.join( '/' ) , 'data-text-ja' => object.name_ja , 'data-text-hiragana' => object.name_hira , 'data-text-en' => object.name_en }
   end
 
 end
