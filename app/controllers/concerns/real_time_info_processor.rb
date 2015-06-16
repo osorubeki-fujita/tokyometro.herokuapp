@@ -4,7 +4,17 @@ module RealTimeInfoProcessor
 
   # @todo JSON::ParserError - A JSON text must at least contain two octets!
   def set_real_time_info_processor( railway_lines: @railway_lines )
-    @real_time_info_processor = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , railway_lines )
+    begin
+      @real_time_info_processor = ::TokyoMetro::App::Renderer::RealTimeInfos.new( request , railway_lines )
+    rescue ::SocketError
+      puts "SocketError"
+      @real_time_info_processor = nil
+      # ::TokyoMetro::App::Renderer::RealTimeInfos::NetworkError.new( request )
+    rescue ::JSON::ParserError
+      puts "JSON::ParserError"
+      @real_time_info_processor = nil
+      # ::TokyoMetro::App::Renderer::RealTimeInfos::JsonPerserError.new( request )
+    end
   end
 
 end

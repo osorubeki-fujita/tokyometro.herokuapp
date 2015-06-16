@@ -24,9 +24,9 @@ class OperationDayDecorator < Draper::Decorator
   def render_in_station_timetable_header
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :operation_day }<
-  %div{ class: :text_ja }<
+  %p{ class: :text_ja }<
     = info.name_ja
-  %div{ class: :text_en }<
+  %p{ class: :text_en }<
     = info.name_en.pluralize
     HAML
   end

@@ -359,9 +359,9 @@ class Station::InfoDecorator < Draper::Decorator
   def render_link_to_station_facility_page_ja
     link_name = "#{ name_ja_actual }駅のご案内へジャンプします。"
     if add_anchor_to_link_to_station_facility_page_ja?
-      h.link_to( "" , h.url_for( controller: :station_facility , action: station_page_name , anchor: anchor_added_to_link_of_station_faility_page ) , name: link_name )
+      h.link_to( "" , h.url_for( controller: :station_facility , action: :action_for_station_page , station: station_page_name , anchor: anchor_added_to_link_of_station_faility_page ) , name: link_name )
     else
-      h.link_to( "" , h.url_for( controller: :station_facility , action: station_page_name ) , name: link_name )
+      h.link_to( "" , h.url_for( controller: :station_facility , action: :action_for_station_page , station: station_page_name ) , name: link_name )
     end
   end
 
@@ -511,9 +511,9 @@ class Station::InfoDecorator < Draper::Decorator
     if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
     elsif object.railway_line.is_branch_line?
-      "#{ object.railway_line.main_railway_line.css_class_name }_line"
+      object.railway_line.main_railway_line.decorate.page_name
     else
-      "#{object.railway_line.css_class_name}_line"
+      object.railway_line.decorate.page_name
     end
   end
 
@@ -521,7 +521,7 @@ class Station::InfoDecorator < Draper::Decorator
     if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
     else
-      "#{object.railway_line.css_class_name}_line"
+      object.railway_line.decorate.page_name
     end
   end
 

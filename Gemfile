@@ -41,8 +41,6 @@ group :development do
   gem 'bullet'
   gem "rails-erd"
   gem 'quiet_assets' , '~> 1.0.3'
-  gem 'rspec'
-  gem 'rspec-rails'
 
   gem 'yard', '0.8.7.6'
 
@@ -59,12 +57,11 @@ group :production do
   gem "lograge"
 end
 
-#-------- test 環境
+#-------- RSpec
 
-group :test do
-  # gem 'rspec'
-  # gem 'rspec-rails'
-end
+gem 'rspec' , group: [:development, :test]
+gem 'rspec-rails' , group: [:development, :test]
+
 
 #--------
 

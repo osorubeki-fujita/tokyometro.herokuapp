@@ -8,7 +8,8 @@
 = station_info_decorated.render_title_of_station_facility
 = station_info_decorated.render_latest_passenger_survey
 
-= @real_time_info_processor.render( include_train_location_infos: false )
+- if @real_time_info_processor.present?
+  = @real_time_info_processor.render( include_train_location_infos: false )
 
 = station_info_decorated.on_station_facility_page.railway_line_infos( request ).render
 

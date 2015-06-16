@@ -74,87 +74,29 @@ class RailwayLine < ActiveRecord::Base
     where( name_code: ary )
   }
 
-  # 銀座線の駅を取得する
-  scope :ginza , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Ginza" )
-  }
-  scope :g , -> {
-    ginza
-  }
+  {
+    ginza: :g ,
+    marunouchi: :m ,
+    marunouchi_branch: :m_branch ,
+    hibiya: :h ,
+    tozai: :t ,
+    chiyoda: :c ,
+    yurakucho: :y ,
+    hanzomon: :z ,
+    namboku: :n ,
+    fukutoshin: :f
+  }.each do | railway_line_basename , railway_line_code |
+    eval <<-DEF
+      scope :#{ railway_line_basename } , -> {
+        find_by( same_as: "odpt.Railway:TokyoMetro.#{ railway_line_basename.camelize }" )
+      }
+      scope :#{ railway_line_code } , -> {
+        #{ railway_line_basename }
+      }
+    DEF
+  end
 
-  # 丸ノ内線の駅を取得する
-  scope :marunouchi , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Marunouchi" )
-  }
-  scope :m , -> {
-    marunouchi
-  }
-
-  # 丸ノ内線（支線）の駅を取得する
-  scope :marunouchi_branch , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" )
-  }
-  scope :m_branch , -> {
-    marunouchi_branch
-  }
-
-  # 日比谷線の駅を取得する
-  scope :hibiya , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Hibiya" )
-  }
-  scope :h , -> {
-    hibiya
-  }
-
-  # 東西線の駅を取得する
-  scope :tozai , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Tozai" )
-  }
-  scope :t , -> {
-    tozai
-  }
-
-  # 千代田線の駅を取得する
-  scope :chiyoda , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Chiyoda" )
-  }
-  scope :c , -> {
-    chiyoda
-  }
-
-  # 有楽町線の駅を取得する
-  scope :yurakucho , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Yurakucho" )
-  }
-  scope :y , -> {
-    yurakucho
-  }
-
-  # 半蔵門線の駅を取得する
-  scope :hanzomon , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Hanzomon" )
-  }
-  scope :z , -> {
-    hanzomon
-  }
-
-  # 南北線の駅を取得する
-  scope :namboku , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Namboku" )
-  }
-  scope :n , -> {
-    namboku
-  }
-
-  # 副都心線の駅を取得する
-  scope :fukutoshin , -> {
-    find_by( same_as: "odpt.Railway:TokyoMetro.Fukutoshin" )
-  }
-  scope :f , -> {
-    fukutoshin
-  }
-
-  # 有楽町線・副都心線の駅を取得する
+  # 有楽町線・副都心線を取得する
   scope :yurakucho_and_fukutoshin , -> {
     find_by( same_as: [ "odpt.Railway:TokyoMetro.Yurakucho" , "odpt.Railway:TokyoMetro.Fukutoshin" ] )
   }
@@ -216,6 +158,17 @@ class RailwayLine < ActiveRecord::Base
 
   def toden_arakawa_line?
     same_as == "odpt.Railway:Toei.TodenArakawa"
+  end
+
+  class ActiveRecord_Relation
+
+    def to_main_lines
+      main_ids_from_branch = select_branch_lines.map( &:main_railway_line_id ).uniq
+      main_ids = except_for_branch_lines.map( &:id ).uniq
+      railway_line_ids = [ main_ids_from_branch , main_ids ].flatten.uniq.sort
+      return ::RailwayLine.where( id: railway_line_ids )
+    end
+
   end
 
 end
