@@ -23,7 +23,7 @@ namespace :temp do
 
     station_infos.each do | k , station_info |
       puts "Update connecting railway line info to Oedo Line: #{k}"
-      # station_info.connecting_railway_line_infos.first.update( index_in_station: 2 )
+      station_info.connecting_railway_line_infos.first.update( index_in_station: 2 )
     end
 
     hashes_for_creating_connecting_railway_line_infos = [

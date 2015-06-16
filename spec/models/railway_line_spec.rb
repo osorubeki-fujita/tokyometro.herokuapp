@@ -39,4 +39,18 @@ RSpec.describe RailwayLine, :type => :model do
     end
   end
 
+  describe "Marunouchi Line" do
+    railway_lines = {
+      main: ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.Marunouchi" ) ,
+      branch: ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" )
+    }
+
+    railway_lines.each do | k , railway_line |
+      it "has info of #{k} line."
+        expect( railway_line ).to be_present
+      end
+    end
+
+  end
+
 end
