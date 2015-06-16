@@ -180,12 +180,14 @@
       font: {
         size: 8pt ;
       }
-      .icons {
+      .direction_icons {
         @include float_left ;
         @include margin_right_4 ;
-        .up , .down {
+        .direction_icon {
           @include float_left ;
-          width: 16px ;
+          $icon_size: 16px ;
+          width: $icon_size ;
+          height: $icon_size ;
           text-align: center ;
         }
         .down {

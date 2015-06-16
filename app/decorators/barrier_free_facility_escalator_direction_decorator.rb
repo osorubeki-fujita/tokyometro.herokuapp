@@ -8,11 +8,11 @@ class BarrierFreeFacilityEscalatorDirectionDecorator < Draper::Decorator
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self , icon_names: icon_names }
 %li{ class: :escalator_direction }<
-  %div{ class: :icons }
-    %div{ class: :up }
+  %div{ class: :direction_icons }
+    %div{ class: [ :direction_icon , :up ] }<
       - if icon_names.include?( :arrow_up )
         = ::TokyoMetro::App::Renderer::Icon.arrow_up( nil , 1 ).render
-    %div{ class: :down }
+    %div{ class: [ :direction_icon , :down ] }<
       - if icon_names.include?( :arrow_down )
         = ::TokyoMetro::App::Renderer::Icon.arrow_down( nil , 1 ).render
   %div{ class: :text }<

@@ -1,7 +1,7 @@
 class TrainOwnerDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
   def render
-    operator.decorate.render_document_info_box
+    operator.decorate.in_document.render
   end
 
 end

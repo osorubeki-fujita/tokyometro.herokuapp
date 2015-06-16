@@ -43,9 +43,6 @@
   ul.each_railway_line.marunouchi li {
     @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_marunouchi_bgcolor , 0.75 ) ;
   }
-  ul.each_railway_line.marunouchi_branch li {
-    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
-  }
   ul.each_railway_line.hibiya li {
     @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_hibiya_bgcolor , 1.6 ) ;
   }
