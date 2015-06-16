@@ -1,6 +1,9 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 # ENV['RAILS_ENV'] ||= 'development'
-ENV['RAILS_ENV'] = 'development'
+
+require 'yaml'
+
+ENV['RAILS_ENV'] = ::YAML.load_file( "#{ ::File.dirname( __FILE__ ) }/rails_env.yaml" ).first
 
 require File.expand_path('../../config/environment', __FILE__)
 
