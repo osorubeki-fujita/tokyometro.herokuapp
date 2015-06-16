@@ -13,7 +13,6 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
 
 /config/application_memo.rb
 /config/database.yml
@@ -29,3 +28,4 @@
 /provided_by_tokyo_metro/
 
 /public/dev-assets/*/**.*
+/tmp
