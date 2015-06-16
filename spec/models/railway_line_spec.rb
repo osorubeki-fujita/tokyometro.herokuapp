@@ -46,7 +46,7 @@ RSpec.describe RailwayLine, :type => :model do
     }
 
     railway_lines.each do | k , railway_line |
-      it "has info of #{k} line."
+      it "has info of #{k} line." do
         expect( railway_line ).to be_present
       end
     end
