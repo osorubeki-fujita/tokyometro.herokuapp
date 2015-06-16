@@ -43,6 +43,9 @@ ul#operators.in_document , ul#train_owners.in_document {
         font: {
           size: 10pt ;
         }
+        border: {
+          bottom: solid 1px #ccc ;
+        }
       }
       dl {
         @include margin_top_0 ;
@@ -108,7 +111,7 @@ ul#operators.in_document , ul#train_owners.in_document {
     .railway_line {
       @include margin_bottom_32 ;
       .document_info_box_normal {
-        @include border_radius( $border_radius_of_document_info_box ) ;
+    @include border_radius( $border_radius_of_document_info_box ) ;
         @extend %documentInfoBoxNormal ;
         @extend %commonSettingsOfColorBox ;
       }
