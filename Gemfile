@@ -148,5 +148,7 @@ gem 'hirb' , group: [ :development , :test ]
 gem 'hirb-unicode' , group: [ :development , :test ]
 gem 'better_errors' , group: [ :development , :test ]
 gem 'binding_of_caller' , group: [ :development , :test ]
-gem 'spring' , group: [ :development , :test ]
-gem 'spring-commands-rspec' , group: [ :development , :test ]
+
+#-------- Gems below are not working on Windows
+# gem 'spring' , group: [ :development , :test ]
+# gem 'spring-commands-rspec' , group: [ :development , :test ]
