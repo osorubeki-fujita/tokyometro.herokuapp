@@ -9,22 +9,35 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
+//-------- jQuery
+
+// require jquery
 //= require jquery.min
-//= require jquery.turbolinks
+
+// require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
-//= require turbolinks
-//= require underscore/underscore-min
-//= require_tree .
 
-//-------- 使用していない Version
-// require jquery
-// require jquery_ujs
+//-------- Turbolinks
+
 // require turbolinks
+
+//-------- Bootstrap
+
 // require bootstrap.min
+
+//-------- underscore
+
 // require underscore
+//= require underscore/underscore-min
+
+//-------- gmaps
+
 // require gmaps/google
-// require_tree .
+
+//-------- [All files]
+
+//= require_tree .
 
 const goldenRatio = 1.618 ;
