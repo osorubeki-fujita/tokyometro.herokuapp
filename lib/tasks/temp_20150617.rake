@@ -14,7 +14,8 @@ namespace :temp do
 
   task :update_connecting_railway_line_info_at_ayase_20150617 => :environment do
     title = "update_connecting_railway_line_info_at_ayase_20150617"
-    puts title
+    puts "* #{ title }"
+    puts ""
 
     ayase_branch = ::Station::Info.find_by( same_as: "odpt.Station:TokyoMetro.ChiyodaBranch.Ayase" )
     chiyoda_main = ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.Chiyoda" )
@@ -24,9 +25,11 @@ namespace :temp do
     connecting_railway_line_info_to_jr_joban = ayase_branch.connecting_railway_line_infos.find_by( railway_line_id: jr_joban.id )
     raise "Error" unless connecting_railway_line_info_to_chiyoda_main.present?
     raise "Error" unless connecting_railway_line_info_to_jr_joban.present?
+
     puts "Update"
     puts connecting_railway_line_info_to_chiyoda_main.inspect
     puts connecting_railway_line_info_to_jr_joban.inspect
+
     connecting_railway_line_info_to_chiyoda_main.update( hidden_on_railway_line_page: true )
     connecting_railway_line_info_to_jr_joban.update( hidden_on_railway_line_page: true )
   end

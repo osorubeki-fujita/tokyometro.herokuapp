@@ -4,7 +4,7 @@ namespace :log do
 
     desc "Search log of JSON Error"
     task :json_error => :environment do
-      ::LogFinder.search_by( /A JSON text must at least contain two octets/ )
+      ::TokyoMetro::Rake::Log::Finder.search_by( /A JSON text must at least contain two octets/ )
     end
 
   end

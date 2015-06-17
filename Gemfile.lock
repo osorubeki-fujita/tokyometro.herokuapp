@@ -75,7 +75,7 @@ GEM
     colorize (0.7.7)
     columnize (0.9.0)
     debug_inspector (0.0.2)
-    deplo (0.1.4)
+    deplo (0.1.5)
       activesupport (>= 4.2.1)
       capistrano
       versionomy (>= 0.4.4)
@@ -129,6 +129,7 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    log_finder (0.1.0)
     lograge (0.3.3)
       actionpack (>= 3)
       activesupport (>= 3)
@@ -315,6 +316,7 @@ GEM
     tilt (1.4.1)
     tokyo_metro (0.7.6)
       haml
+      log_finder (>= 0.1.0)
       odpt_common (>= 0.2.3)
       odpt_tokyo_metro_helper (>= 0.2.1)
       positive_support (>= 0.3.2)
