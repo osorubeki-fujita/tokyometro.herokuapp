@@ -33,5 +33,45 @@ namespace :temp do
     connecting_railway_line_info_to_chiyoda_main.update( hidden_on_railway_line_page: true )
     connecting_railway_line_info_to_jr_joban.update( hidden_on_railway_line_page: true )
   end
+  
+  task :update_platform_transfer_info_at_nakano_sakaue_20150617 => :environment do
+    nakano_sakaue = ::StationFacility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.NakanoSakaue" )
+    
+    raise unless nakano_sakaue.present?
+
+    railway_lines = {
+      main: ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.Marunouchi" ) ,
+      branch: ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" )
+    }
+    oedo_line = ::RailwayLine.find_by( same_as: "odpt.Railway:Toei.Oedo" )
+
+    railway_lines.values.each do |v|
+      raise unless v.present?
+    end
+    raise unless oedo_line.present?
+
+    p_infos = nakano_sakaue.platform_infos
+    raise unless p_infos.present?
+
+    for_honancho_in_api_same_as = "odpt.RailDirection:TokyoMetro.Honancho"
+    for_honancho_on_branch_line = ::RailwayDirection.find_by( railway_line_id: railway_lines[ :branch ] , in_api_same_as: for_honancho_in_api_same_as )
+    raise unless for_honancho_on_branch_line.present?
+
+    p_infos.each do | platform_info |
+      if platform_info.railway_line_id == railway_lines[ :main ].id and platform_info.car_composition == 6
+        t_infos = platform_info.transfer_infos
+        if t_infos.present?
+
+          t_infos.each do | transfer_info |
+            if transfer_info.railway_line_id != oedo_line.id and transfer_info.railway_direction.try( :in_api_same_as ) == for_honancho_in_api_same_as
+              transfer_info.update( railway_line_id: railway_lines[ :branch ].id , railway_direction_id: for_honancho_on_branch_line.id )
+            end
+          end
+
+        end
+      end
+    end
+    
+  end
 
 end

@@ -249,17 +249,17 @@ class ServiceDetailInTooltipForBarrierFreeFacilityImage
     str = ""
     if v.escalator_direction?
       str += "<li class='escalator_direction'>"
-      str += "<div class='icons'>"
+      str += "<div class='direction_icons'>"
 
       if v.escalator_direction.match( /上り/ )
         i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_UP.to_s ] %>" )
-        str += "<div class='up'>"
+        str += "<div class='direction_icon up'>"
         str += i.to_html()
         str += "</div>"
 
       if v.escalator_direction.match( /下り/ )
         i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_DOWN.to_s ] %>" )
-        str += "<div class='down'>"
+        str += "<div class='direction_icon down'>"
         str += i.to_html()
         str += "</div>"
 
