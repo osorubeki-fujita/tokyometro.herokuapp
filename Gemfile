@@ -93,7 +93,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.2.5'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
@@ -101,8 +101,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'haml-rails'
 gem 'httpclient'
 gem 'holiday_jp'
-
 # gem 'jquery-turbolinks'
+
 
 gem 'json' # JSONを扱うライブラリ
 
@@ -149,3 +149,4 @@ gem 'hirb-unicode' , group: [ :development , :test ]
 gem 'better_errors' , group: [ :development , :test ]
 gem 'binding_of_caller' , group: [ :development , :test ]
 gem 'spring' , group: [ :development , :test ]
+gem 'spring-commands-rspec' , group: [ :development , :test ]
