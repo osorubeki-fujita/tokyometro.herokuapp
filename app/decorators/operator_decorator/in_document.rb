@@ -48,30 +48,21 @@ class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecor
     HAML
   end
 
-  def render_button_domain
-    h.content_tag( :div , '' , class: [ :button_area , :clearfix ] )
-  end
-
   private
 
   def infos_to_render
-    {
-      "Attribute names of object" => attribute_names_of_object ,
-      "Methods of object" => methods_of_object ,
-      "Methods of decorator" => methods_of_decorator
-    }
+    super().merge({
+      "Infos from methods of object" => infos_from_methods_of_object ,
+      "Infos from methods of decorator" => infos_from_methods_of_decorator
+    })
   end
 
-  def attribute_names_of_object
-    object.class.attribute_names
+  def infos_from_methods_of_object
+    super( :name_ja_normal , :name_en_normal )
   end
 
-  def methods_of_object
-    [ :name_ja_normal , :name_en_normal ]
-  end
-
-  def methods_of_decorator
-    [ :twitter_title ]
+  def infos_from_methods_of_decorator
+    super( :twitter_title )
   end
 
 end
