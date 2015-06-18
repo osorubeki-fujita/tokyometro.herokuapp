@@ -4,7 +4,7 @@
 
 %div{ id: :railway_lines }
   - # operator = railway_line.operator ; raise "Error: " + railway_line.same_as if operator.nil? ;
-  - @railway_lines.select { | railway_line | railway_line.operator.present? }.group_by { | railway_line | railway_line.operator.id }.each do | operator_id , railway_lines |
+  - @railway_lines.select { | railway_line | railway_line.operator.present? }.group_by( &:operator_id ).each do | operator_id , railway_lines |
     - operator_instance = ::Operator.find_by( id: operator_id )
     %div{ class: [ :document , :operator , operator_instance.css_class_name ] }
       %div{ class: :operator_name }
@@ -12,8 +12,8 @@
           = operator_instance.name_ja
         %h4{ class: :text_en }<
           = operator_instance.name_en
-        %h4{ class: :text_en }<
-          = operator_instance.same_as
+        %h4{ class: [ :text_en , :same_as ] }<
+          = "same_as: " + operator_instance.same_as
       - railway_lines.sort_by( &:index ).each do | railway_line |
         %ul{ class: [ :railway_lines_of_each_operator , :in_document ] }
           = railway_line.decorate.in_document.render

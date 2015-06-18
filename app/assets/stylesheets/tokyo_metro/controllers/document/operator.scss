@@ -1,18 +1,5 @@
 @charset "utf-8" ;
-@import '../../../fundamental_settings.scss' ;
-
-@mixin borderAndPaddingWidthOfOperatorHeaderInDocument( $border_left_width , $padding_left_width ) {
-  .operator_name {
-    border: {
-      left: {
-        width: $border_left_width ;
-      }
-    }
-    padding: {
-      left: $padding_left_width ;
-    }
-  }
-}
+@import '../../fundamental_settings.scss' ;
 
 @mixin borderColorOfEachOperatorHeaderInDocument( $color ) {
   .operator_name {
@@ -84,14 +71,16 @@
   }
 }
 
-.document.operator {
-  $border_left_width: 8px ;
-  $padding_left_width: 8px ;
-  @include borderAndPaddingWidthOfOperatorHeaderInDocument( $border_left_width , $padding_left_width ) ;
-  @include margin_bottom_32 ;
-  @extend %borderColorOfOperatorHeaderInDocument ;
-  clear: both ;
+%operatorNameInDocument {
   .operator_name {
+    @include margin_bottom_16 ;
+    border: {
+      left: {
+        style: solid ;
+        width: 8px ;
+      }
+    }
+    @include padding_left_8 ;
      @include font_ja_and_en( 16 , 5.0 / 8 ) ;
      // @include font_ja_and_en( 16 ) ;
     .text_ja {
@@ -109,11 +98,12 @@
       @include margin_top_6 ;
       color: #999 ;
     }
-    @include margin_bottom_16 ;
-    border: {
-      left: {
-        style: solid ;
-      }
-    }
   }
+}
+
+.document.operator {
+  @include margin_bottom_32 ;
+  @extend %operatorNameInDocument ;
+  @extend %borderColorOfOperatorHeaderInDocument ;
+  clear: both ;
 }

@@ -27,13 +27,13 @@ class RailwayDirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::App
 
   def infos_to_render
     super().merge({
-      "Infos from Db columns of station info object" => infos_from_db_columns_of_station_info_object ,
-      "Infos from Db columns of railway line object" => infos_from_db_columns_of_railway_line_object
+      "Infos from Db columns of station info object (partial)" => infos_from_db_columns_of_station_info_object ,
+      "Infos from Db columns of railway line object (partial)" => infos_from_db_columns_of_railway_line_object
     })
   end
 
   def infos_from_db_columns_of_station_info_object
-    infos_from_methods_of( object.station_info , :same_as )
+    infos_from_methods_of( object.station_info , :same_as , :station_code )
   end
 
   def infos_from_db_columns_of_railway_line_object

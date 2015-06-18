@@ -2,8 +2,10 @@ class TrainOwnerDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDec
 
   def render
     # operator.decorate.in_document.render
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , operator: object.operator }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , operator: object.operator , number: object.id }
 %li{ class: [ :document_info_box , :operator , operator.css_class_name , :clearfix ] }
+  %div{ class: [ :number , :text_en ] }<
+    = number
   = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
   %div{ class: :texts }
     = this.render_main_domain

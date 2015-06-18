@@ -5,16 +5,20 @@
 
 ul.in_document {
   @include padding_left_0 ;
+  @include margin_top_0 ;
   @include margin_bottom_32 ;
   li.document_info_box {
     border : solid 1px #999 ;
-    @include margin_left_16 ;
     @include margin_bottom_16 ;
     @include padding_8 ;
     list-style: none ;
     @include border_radius( $border_radius_of_document_info_box ) ;
-    // @extend %documentInfoBox ;
-    // @include sizeSettingsOfDocumentInfoBox( $width_main_content_center ) ;
+    .number {
+      font: {
+        size: 9pt ;
+      }
+      @include margin_bottom_4 ;
+    }
     .texts {
       @include float_left ;
       @include margin_left_8 ;
@@ -25,48 +29,19 @@ ul.in_document {
       @include margin_bottom_16 ;
       .operator_name {
         @include float_left ;
-        $width_of_rounded_square: 72px ;
-        width: $width_main_content_center - ( $width_of_rounded_square + $width_of_each_color_area ) ;
+        @include margin_right_16 ;
       }
       .railway_line_name {
         @include float_left ;
-        @include margin_right_8 ;
+        @include margin_right_16 ;
+      }
+      .same_as {
+        @include margin_top_4 ;
+        color: #999 ;
       }
     }
     ul.sub_infos {
       @extend %ulSubInfosInDocumentInfoBox ;
-    }
-  }
-}
-
-#railway_lines {
-  $railway_line_name_padding_left_width: 8px ;
-  $railway_line_name_border_left_width: 8px ;
-  .operator {
-    .top {
-      width: $width_main_content_center - ( $railway_line_name_padding_left_width + $railway_line_name_border_left_width ) * 3 ;
-      height: 48px ;
-    }
-  }
-}
-
-#railway_lines {
-  li.document_info_box {
-    .number {
-      @include margin_bottom_4 ;
-    }
-  }
-  .operator {
-    @include margin_bottom_32 ;
-  }
-}
-
-#railway_directions {
-  .operator {
-    @include margin_bottom_64 ;
-    .railway_line {
-      @include margin_left_16 ;
-      @include margin_bottom_32 ;
     }
   }
 }

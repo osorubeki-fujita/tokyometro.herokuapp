@@ -9,23 +9,6 @@ $padding_width: $border_radius_of_document_info_box ;
 
 $width_of_each_color_area: 160px ;
 
-@mixin sizeSettingsOfDocumentInfoBox( $width_base ) {
-  $margin_left: 8px ;
-  $border_width: 1px ;
-  $padding_width: 8px ;
-  $width: $width_base - ( $margin_left + $border_width * 2 + $padding_width * 2 ) ;
-  width: $width ;
-}
-
-// %documentInfoBox {
-
-// }
-
-// %documentInfoBoxWide {
-  
-// }
-
-
 %nameInDocument {
   @include float_left ;
   @include margin_right_8 ;
