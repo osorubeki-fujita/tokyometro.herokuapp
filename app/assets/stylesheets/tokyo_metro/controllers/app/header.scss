@@ -10,7 +10,7 @@
   @include padding_top_4 ;
   .top_title {
     @include float_left ;
-    @extend %text_en ;
+    @extend %textEn ;
     .main {
       font: {
         size: 20pt ;
@@ -29,7 +29,7 @@
     }
     .sub {
       @include margin_bottom_4 ;
-      @extend %text_en ;
+      @extend %textEn ;
       font: {
         size: 9pt;
       }
@@ -40,7 +40,7 @@
     font: {
       size: 9pt ;
     }
-    @extend %text_en ;
+    @extend %textEn ;
     //----
     .name {
       border: {

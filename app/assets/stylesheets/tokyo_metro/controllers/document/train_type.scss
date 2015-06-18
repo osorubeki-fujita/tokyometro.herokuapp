@@ -21,8 +21,8 @@
       @include margin_bottom_32 ;
       .document_info_box_wide {
         @include border_radius( $border_radius_of_document_info_box ) ;
-        @extend %documentInfoBoxWide ;
-        @extend %commonSettingsOfColorBox ;
+        // @extend %documentInfoBoxWide ;
+        @extend %colorInfoInDocumentInfoBox ;
         //
         .train_type_displayed {
           @extend %trainTypeDisplayed ;

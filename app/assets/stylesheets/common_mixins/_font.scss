@@ -1,15 +1,23 @@
 @charset "utf-8";
 
-%text_ja {
+@mixin text_ja {
   font: {
     family: "HiraKakuProN-W3" , "ヒラギノ" , "メイリオ" , "MS Gothic" ;
   }
 }
 
-%text_en {
+@mixin text_en {
   font: {
     family: 'helvetica', 'verdana', 'arial' , 'sans-serif' , "HiraKakuProN-W3" , "ヒラギノ" , "メイリオ" ;
   }
+}
+
+%textJa {
+  @include text_ja ;
+}
+
+%textEn {
+  @include text_en ;
 }
 
 @mixin font_ja_and_en( $i , $rate: 0.75 ) {

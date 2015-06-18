@@ -17,10 +17,11 @@ gem 'rails', '4.2.1'
 gem 'metalic_ratio' , '>= 0.1.7'
 
 gem 'positive_support' , '>= 0.3.0'
+gem 'positive_string_support' , '>= 0.1.3'
 
 gem 'required_files' , '>= 0.2.6' , group: [:development, :test]
 
-gem 'tokyo_metro' , ">= 0.7.1"
+gem 'tokyo_metro' , ">= 0.8.1"
 
 #-------- development 環境
 

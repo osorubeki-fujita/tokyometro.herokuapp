@@ -25,6 +25,10 @@
       line-height: 1.1em ;
       @include margin_top_bottom_0 ;
     }
+    .same_as {
+      @include margin_top_4 ;
+      color: #999 ;
+    }
   }
 }
 

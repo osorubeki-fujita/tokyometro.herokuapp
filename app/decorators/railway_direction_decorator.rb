@@ -2,6 +2,10 @@ class RailwayDirectionDecorator < Draper::Decorator
   delegate_all
   decorates_association :station_info
 
+  def in_document
+    ::RailwayDirectionDecorator::InDocument.new( self )
+  end
+
   def render_in_station_timetable_header
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ class: :direction }<
@@ -18,18 +22,7 @@ class RailwayDirectionDecorator < Draper::Decorator
     = this.station_info.decorate.render_name_en( with_subname: false , prefix: "for " )
     HAML
   end
-  
-  def render_in_document
-    h.render inline: <<-HAML , type: :haml , locals: { info: self }
-- station_info = info.station_info.decorate
-%div{ class: :document_info_box_normal }
-  %div{ class: :text_ja }<
-    = station_info.name_ja_actual
-  %div{ class: :text_en }<
-    = station_info.name_en
-    HAML
-  end
-  
+
   def render_simple_title
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 - station_info = info.station_info.decorate
@@ -40,7 +33,7 @@ class RailwayDirectionDecorator < Draper::Decorator
     = "for " + station_info.name_en
     HAML
   end
-  
+
   alias :render_title_in_train_location :render_simple_title
 
 end

@@ -36,6 +36,15 @@ $border_color_of_li_in_link: #ddd ;
     }
     .text , .text_large , .model_name {
       @include float_left ;
+      color: #000 ;
+    }
+    .text_en {
+      color: #999 ;
+    }
+    .text_large {
+      &.text_en {
+        color: #000 ;
+      }
     }
     div.icon {
       @include float_left ;
@@ -44,9 +53,6 @@ $border_color_of_li_in_link: #ddd ;
     }
     .link_type {
       @include float_right ;
-    }
-    .text_en {
-      color: #999 ;
     }
   }
   li.normal {
@@ -123,7 +129,7 @@ $border_color_of_li_in_link: #ddd ;
 %linksToMainContentsTop {
   .top {
     .text_ja {
-      @extend %text_en ;
+      @extend %textEn ;
     }
   }
 }

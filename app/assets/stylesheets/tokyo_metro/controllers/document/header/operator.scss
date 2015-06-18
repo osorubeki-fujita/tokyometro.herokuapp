@@ -15,73 +15,73 @@
 }
 
 @mixin borderColorOfEachOperatorHeaderInDocument( $color ) {
-    .operator_name {
-        border: {
-            left: {
-                color: $color ;
-            }
-        }
+  .operator_name {
+    border: {
+      left: {
+        color: $color ;
+      }
     }
+  }
 }
 
-@mixin borderColorOfOperatorHeaderInDocument {
-    .tokyo_metro {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_tokyo_metro_bgcolor ) ;
-    }
-    .toei_subway {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_toei_subway_bgcolor ) ;
-    }
-    .toei {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_toei_bgcolor ) ;
-    }
-    .toden {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_toden_bgcolor ) ;
-    }
-    .jr_east {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_jr_east_bgcolor ) ;
-    }
-    .jr_central {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_jr_central_bgcolor ) ;
-    }
-    .tokyu {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_tokyu_bgcolor ) ;
-    }
-    .yokohama_minatomirai {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_yokohama_minatomirai_bgcolor ) ;
-    }
-    .odakyu {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_odakyu_bgcolor ) ;
-    }
-    .hakone_tozan {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_hakone_tozan_bgcolor ) ;
-    }
-    .seibu {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_seibu_bgcolor ) ;
-    }
-    .tobu {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_tobu_bgcolor ) ;
-    }
-    .saitama {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_saitama_bgcolor ) ;
-    }
-    .toyo_rapid {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_toyo_rapid_bgcolor ) ;
-    }
-    .keio {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_keio_bgcolor ) ;
-    }
-    .keisei {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_keisei_bgcolor ) ;
-    }
-    .tsukuba_exp {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_tsukuba_exp_bgcolor ) ;
-    }
-    .yurikamome {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_yurikamome_bgcolor ) ;
-    }
-    .rinkai {
-        @include borderColorOfEachOperatorHeaderInDocument( $operator_rinkai_bgcolor ) ;
-    }
+%borderColorOfOperatorHeaderInDocument {
+  &.tokyo_metro {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_tokyo_metro_bgcolor ) ;
+  }
+  &.toei_subway {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_toei_subway_bgcolor ) ;
+  }
+  &.toei {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_toei_bgcolor ) ;
+  }
+  &.toden {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_toden_bgcolor ) ;
+  }
+  &.jr_east {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_jr_east_bgcolor ) ;
+  }
+  &.jr_central {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_jr_central_bgcolor ) ;
+  }
+  &.tokyu {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_tokyu_bgcolor ) ;
+  }
+  &.yokohama_minatomirai {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_yokohama_minatomirai_bgcolor ) ;
+  }
+  &.odakyu {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_odakyu_bgcolor ) ;
+  }
+  &.hakone_tozan {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_hakone_tozan_bgcolor ) ;
+  }
+  &.seibu {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_seibu_bgcolor ) ;
+  }
+  &.tobu {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_tobu_bgcolor ) ;
+  }
+  &.saitama {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_saitama_bgcolor ) ;
+  }
+  &.toyo_rapid {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_toyo_rapid_bgcolor ) ;
+  }
+  &.keio {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_keio_bgcolor ) ;
+  }
+  &.keisei {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_keisei_bgcolor ) ;
+  }
+  &.tsukuba_exp {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_tsukuba_exp_bgcolor ) ;
+  }
+  &.yurikamome {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_yurikamome_bgcolor ) ;
+  }
+  &.rinkai {
+    @include borderColorOfEachOperatorHeaderInDocument( $operator_rinkai_bgcolor ) ;
+  }
 }
 
 .document.operator {
@@ -89,6 +89,7 @@
   $padding_left_width: 8px ;
   @include borderAndPaddingWidthOfOperatorHeaderInDocument( $border_left_width , $padding_left_width ) ;
   @include margin_bottom_32 ;
+  @extend %borderColorOfOperatorHeaderInDocument ;
   clear: both ;
   .operator_name {
      @include font_ja_and_en( 16 , 5.0 / 8 ) ;
@@ -104,6 +105,10 @@
       line-height: 1.1em ;
       @include margin_top_bottom_0 ;
     }
+    .same_as {
+      @include margin_top_6 ;
+      color: #999 ;
+    }
     @include margin_bottom_16 ;
     border: {
       left: {
@@ -112,5 +117,3 @@
     }
   }
 }
-
-@include borderColorOfOperatorHeaderInDocument ;

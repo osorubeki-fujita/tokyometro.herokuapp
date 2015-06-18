@@ -36,7 +36,7 @@
     @include padding_0 ;
     text-align: center ;
     .travel_time_info_square {
-      @extend %text_en ;
+      @extend %textEn ;
       background-color: #fff ;
       color: $text_black_base_color ;
       width: $travel_time_square_length ;
@@ -91,7 +91,7 @@
     vertical-align: top ;
   }
   .travel_time {
-    @extend %text_en ;
+    @extend %textEn ;
     text-align: center ;
     height: 24px ;
     vertical-align: middle ;

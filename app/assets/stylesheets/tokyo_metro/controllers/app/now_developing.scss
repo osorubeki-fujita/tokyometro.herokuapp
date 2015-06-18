@@ -51,6 +51,11 @@
       @include padding_left_4 ;
       @include padding_top_bottom_4 ;
       background-color: mix( $jp_traditional_karashi , #fff ) ;
+      &.text_en {
+        font: {
+          size: 9pt ;
+        }
+      }
     }
   }
 }

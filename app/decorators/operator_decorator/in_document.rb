@@ -2,7 +2,7 @@ class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecor
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%li{ class: [ :document_info_box_normal , :operator , this.css_class_name , :clearfix ] }
+%li{ class: [ :document_info_box , :operator , this.css_class_name , :clearfix ] }
   = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
   %div{ class: :texts }
     = this.render_main_domain
@@ -40,10 +40,10 @@ class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecor
   def render_color_info
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :color_info }
-  %div{ class: :web_color }<
+  %div{ class: [ :web_color , :text_en ] }<
     = this.color
   - if this.color.present?
-    %div{ class: :rgb_color }<
+    %div{ class: [ :rgb_color , :text_en ] }<
       = this.color.to_rgb_color_in_parentheses
     HAML
   end

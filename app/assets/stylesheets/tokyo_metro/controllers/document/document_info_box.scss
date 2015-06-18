@@ -1,0 +1,73 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+@import 'document_info_box/mixins.scss' ;
+
+ul.in_document {
+  @include padding_left_0 ;
+  @include margin_bottom_32 ;
+  li.document_info_box {
+    border : solid 1px #999 ;
+    @include margin_left_16 ;
+    @include margin_bottom_16 ;
+    @include padding_8 ;
+    list-style: none ;
+    @include border_radius( $border_radius_of_document_info_box ) ;
+    // @extend %documentInfoBox ;
+    // @include sizeSettingsOfDocumentInfoBox( $width_main_content_center ) ;
+    .texts {
+      @include float_left ;
+      @include margin_left_8 ;
+    }
+    .main {
+      @extend %nameInDocument ;
+      @extend %colorInfoInDocumentInfoBox ;
+      @include margin_bottom_16 ;
+      .operator_name {
+        @include float_left ;
+        $width_of_rounded_square: 72px ;
+        width: $width_main_content_center - ( $width_of_rounded_square + $width_of_each_color_area ) ;
+      }
+      .railway_line_name {
+        @include float_left ;
+        @include margin_right_8 ;
+      }
+    }
+    ul.sub_infos {
+      @extend %ulSubInfosInDocumentInfoBox ;
+    }
+  }
+}
+
+#railway_lines {
+  $railway_line_name_padding_left_width: 8px ;
+  $railway_line_name_border_left_width: 8px ;
+  .operator {
+    @include margin_bottom_32 ;
+    .top {
+      width: $width_main_content_center - ( $railway_line_name_padding_left_width + $railway_line_name_border_left_width ) * 3 ;
+      height: 48px ;
+      .color_info {
+        @include float_right ;
+      }
+    }
+  }
+}
+
+#railway_lines {
+  li.document_info_box {
+    .number {
+      @include margin_bottom_4 ;
+    }
+  }
+}
+
+#railway_directions {
+  .operator {
+    @include margin_bottom_64 ;
+    .railway_line {
+      @include margin_left_16 ;
+      @include margin_bottom_32 ;
+    }
+  }
+}

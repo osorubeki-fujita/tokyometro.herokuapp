@@ -3,7 +3,7 @@
 @import '../../fundamental_settings.scss' ;
 
 %fareCellCommonSettings {
-  @extend %text_en ;
+  @extend %textEn ;
   font: {
     size: 14pt ;
     weight: bold ;

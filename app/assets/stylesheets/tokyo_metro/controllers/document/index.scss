@@ -71,10 +71,7 @@ ul#links_to_document_pages {
     size: 9pt ;
   }
   .page_links {
-    &.top {
-      @include margin_bottom_16 ;
-    }
-    &.bottom {
+    &.top , &.bottom {
       @include margin_top_16 ;
     }
   }
