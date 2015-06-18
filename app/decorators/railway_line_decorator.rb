@@ -138,13 +138,8 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def name_ja_with_operator_name( process_special_railway_line: false , prefix: nil , suffix: nil )
-    if process_special_railway_line
-      case object.same_as
-      when "odpt.Railway:Seibu.SeibuYurakucho"
-        str = "西武線"
-      else
-        str = object.name_ja_with_operator_name
-      end
+    if process_special_railway_line and seibu_yurakucho_line?
+      str = "西武線"
     else
       str = object.name_ja_with_operator_name
     end
@@ -159,13 +154,8 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def name_en_with_operator_name( process_special_railway_line: false , prefix: nil , suffix: nil )
-    if process_special_railway_line
-      case object.same_as
-      when "odpt.Railway:Seibu.SeibuYurakucho"
-        str = "Seibu Line"
-      else
-        str = object.name_en_with_operator_name
-      end
+    if process_special_railway_line and seibu_yurakucho_line?
+      str = "Seibu Line"
     else
       str = object.name_en_with_operator_name
     end
@@ -230,38 +220,6 @@ class RailwayLineDecorator < Draper::Decorator
   %p{ class: :text_en }<
     = str
     HAML
-  end
-
-  def render_name_in_station_facility_platform_info_transfer_info
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :text }
-  %p{ class: :text_ja }<
-    = this.name_ja_in_station_facility_platform_info_transfer_info
-  %p{ class: :text_en }<
-    = this.name_en_in_station_facility_platform_info_transfer_info
-    HAML
-  end
-
-  def name_ja_in_station_facility_platform_info_transfer_info
-    case same_as
-    when "odpt.Railway:Tobu.SkyTreeIsesaki"
-      "東武線"
-    when "odpt.Railway:Seibu.SeibuYurakucho"
-      "西武線"
-    else
-      object.name_ja_with_operator_name
-    end
-  end
-
-  def name_en_in_station_facility_platform_info_transfer_info
-    case same_as
-    when "odpt.Railway:Tobu.SkyTreeIsesaki"
-      "Tobu Skytree Line"
-    when "odpt.Railway:Seibu.SeibuYurakucho"
-      "Seibu Line"
-    else
-      object.name_en_with_operator_name
-    end
   end
 
   def render_simple_title
@@ -440,6 +398,10 @@ class RailwayLineDecorator < Draper::Decorator
 
   def in_document
     ::RailwayLineDecorator::InDocument.new( self )
+  end
+
+  def in_platform_transfer_info
+    ::RailwayLineDecorator::InPlatformTransferInfo.new( self )
   end
 
   private

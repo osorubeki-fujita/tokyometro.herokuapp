@@ -131,25 +131,31 @@ class RailwayLine < ActiveRecord::Base
   end
 
   # @!endgroup
+  
+  def name_ja_with_operator_name_precise_and_without_parentheses
+    name_ja_with_operator_name_precise.gsub( /（.+）\Z/ , "" )
+  end
+
+  # @!group Polymorphic method
 
   def railway_line
     self
   end
 
-  def name_ja_with_operator_name_precise_and_without_parentheses
-    name_ja_with_operator_name_precise.gsub( /（.+）\Z/ , "" )
+  # @todo Revision
+  def except_for_branch_lines
+    self
   end
 
+  # @!group Decision
+
+  # @param railway_line [RailwayLine] 
   def branch_railway_line_of?( railway_line )
     branch_railway_line? and railway_line.id == main_railway_line_id
   end
 
   def tokyo_metro?
     operator.tokyo_metro?
-  end
-
-  def except_for_branch_lines
-    self
   end
 
   def jr_lines?
@@ -159,6 +165,16 @@ class RailwayLine < ActiveRecord::Base
   def toden_arakawa_line?
     same_as == "odpt.Railway:Toei.TodenArakawa"
   end
+
+  def tobu_sky_tree_isesaki_line?
+    same_as == "odpt.Railway:Tobu.SkyTreeIsesaki"
+  end
+
+  def seibu_yurakucho_line?
+    same_as == "odpt.Railway:Seibu.SeibuYurakucho"
+  end
+
+  # @!endgroup
 
   class ActiveRecord_Relation
 

@@ -43,13 +43,9 @@ ul.in_document {
   $railway_line_name_padding_left_width: 8px ;
   $railway_line_name_border_left_width: 8px ;
   .operator {
-    @include margin_bottom_32 ;
     .top {
       width: $width_main_content_center - ( $railway_line_name_padding_left_width + $railway_line_name_border_left_width ) * 3 ;
       height: 48px ;
-      .color_info {
-        @include float_right ;
-      }
     }
   }
 }
@@ -59,6 +55,9 @@ ul.in_document {
     .number {
       @include margin_bottom_4 ;
     }
+  }
+  .operator {
+    @include margin_bottom_32 ;
   }
 }
 

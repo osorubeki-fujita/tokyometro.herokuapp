@@ -30,7 +30,7 @@ class DocumentController < ApplicationController
     @title = "路線"
     @title_en = "Railway lines"
     @title_ja = @title
-    render 'document/railway_lines' , layout: 'application'
+    render 'document/railway_lines' , layout: 'application_wide'
   end
 
   def railway_directions

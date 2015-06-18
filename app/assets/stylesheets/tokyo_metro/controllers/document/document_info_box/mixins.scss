@@ -31,9 +31,9 @@ $width_of_each_color_area: 160px ;
   @include margin_right_8 ;
   @include font_ja_and_en( 18 , 10.0 / 18 ) ;
   .text_ja {
-    .sub {
+    .text_ja_sub {
       font: {
-        size: 10pt ;
+        size: 8pt ;
       }
       line-height: 1.2em ;
       margin: {
@@ -46,7 +46,7 @@ $width_of_each_color_area: 160px ;
     }
   }
   .text_en {
-    .sub {
+    .text_en_sub {
       font: {
         size: 8pt ;
       }
@@ -64,16 +64,16 @@ $width_of_each_color_area: 160px ;
     @include margin_right_8 ;
   }
   .color_info {
-    @include float_left ;
+    @include float_right ;
     width : 96px ;
     .web_color {
       font: {
-        size : 12pt ;
+        size : 10pt ;
       }
     }
     .rgb_color {
       font: {
-        size : 8pt ;
+        size : 7.5pt ;
       }
     }
   }

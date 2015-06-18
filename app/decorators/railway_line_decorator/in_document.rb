@@ -19,6 +19,8 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
   %div{ class: :railway_line_name }
     = this.render_name_ja
     = this.render_name_en
+    %p{ class: [ :same_as , :text_en ] }<
+      = this.object.same_as
   = this.render_color_info
     HAML
   end
@@ -87,34 +89,58 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
 
   private
 
-end
-
-__END__
-
   def infos_to_render
     super().merge({
-      "Infos from Db columns of station info object" => infos_from_db_columns_of_station_info_object ,
-      "Infos from Db columns of railway line object" => infos_from_db_columns_of_railway_line_object
+      "Infos from Db columns of railway line object" => infos_from_db_columns_of_railway_line_object ,
+      "Infos from Db columns of operator object" => infos_from_db_columns_of_operator_object ,
+      "Infos from Db columns of railway line decorator" => infos_from_db_columns_of_railway_line_decorator ,
+      "Infos from Db columns of railway line decorator in platform transfer info" => infos_from_db_columns_of_railway_line_decorator_in_platform_transfer_info ,
     })
   end
-
-  def infos_from_db_columns_of_station_info_object
-    infos_from_methods_of( object.station_info , :same_as )
-  end
-
-  def infos_from_db_columns_of_railway_line_object
-    infos_from_methods_of( object.railway_line , :same_as )
-  end
-
+  
   def infos_from_db_columns_of_operator_object
-    infors_from_db_columns_of( object.operator )
+    infos_from_methods_of( object.operator , :same_as )
   end
   
-  def infos_from_methods_of_operator_object
-    infos_from_methods_of( object.operator , :name_ja_normal , :name_en_normal )
+  def infos_from_db_columns_of_railway_line_object
+    infos_from_methods_of_object(
+      :station_attribute_ja ,
+      :station_attribute_hira ,
+      :station_attribute_en ,
+      :station_attribute_en_short ,
+      :name_ja_with_operator_name_precise_and_without_parentheses ,
+      :tokyo_metro? ,
+      :jr_lines? ,
+      :toden_arakawa_line? ,
+      :tobu_sky_tree_isesaki_line? ,
+      :seibu_yurakucho_line?
+    )
   end
   
-  def infos_from_methods_of_operator_decorator
-    infos_from_methods_of( object.operator.decorate , :twitter_title )
+  def infos_from_db_columns_of_railway_line_decorator
+    h1 = infos_from_methods_of_decorator(
+      :name_ja_with_operator_name ,
+      :name_en_with_operator_name
+    )
+    h2 = {
+      "name_ja_with_operator_name( process_special_railway_line: true )" => name_ja_with_operator_name( process_special_railway_line: true ) ,
+      "name_en_with_operator_name( process_special_railway_line: true )" => name_en_with_operator_name( process_special_railway_line: true )
+    }
+    h3 = infos_from_methods_of_decorator(
+      :twitter_title ,
+      :railway_line_page_name ,
+      :page_name ,
+      :travel_time_table_id
+    )
+    h1.merge(h2).merge(h3)
   end
-  
+
+  def infos_from_db_columns_of_railway_line_decorator_in_platform_transfer_info
+    d = @decorator.in_platform_transfer_info
+    {
+      "name_ja (private)" => d.send( :name_ja ) ,
+      "name_en (private)" => d.send( :name_en )
+    }
+  end
+
+end
