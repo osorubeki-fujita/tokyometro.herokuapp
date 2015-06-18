@@ -7,6 +7,8 @@ source 'https://rubygems.org'
 # ruby '2.2.2'
 ruby '2.1.6'
 
+gem 'rack' , '1.6.2'
+
 # -------- Ruby on Rails
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
