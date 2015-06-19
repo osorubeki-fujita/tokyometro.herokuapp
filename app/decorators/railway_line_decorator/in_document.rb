@@ -48,7 +48,7 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
     regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja
     name_ja = name_ja_with_operator_name_precise
 
-    if regexp =~ name_ja
+    if name_ja.present? and regexp =~ name_ja
       h_locals = {
         out_of_parentheses: name_ja.gsub( regexp , "" ) ,
         in_parentheses: $1

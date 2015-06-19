@@ -133,7 +133,7 @@ class RailwayLine < ActiveRecord::Base
   # @!endgroup
   
   def name_ja_with_operator_name_precise_and_without_parentheses
-    name_ja_with_operator_name_precise.gsub( /（.+）\Z/ , "" )
+    name_ja_with_operator_name_precise.try( :gsub , /（.+）\Z/ , "" )
   end
 
   # @!group Polymorphic method
