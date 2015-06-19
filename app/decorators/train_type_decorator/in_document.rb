@@ -16,7 +16,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
   = this.render_infos
     HAML
   end
-  
+
   # @!group Sub public methods
 
   def render_name_box
@@ -68,28 +68,24 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
 
   private
 
-end
-
-__END__
-
   def infos_to_render
     super().merge({
-      "Infos from Db columns of operator object" => infos_from_db_columns_of_operator_object ,
-      "Infos from methods of operator object" => infos_from_methods_of_operator_object ,
-      "Infos from methods of operator decorator" => infos_from_methods_of_operator_decorator
+      "Infos from Db columns of train_type_in_api object" => infos_from_db_columns_of_train_type_in_api_object ,
+      "Infos from methods of object" => infos_from_methods_of_object
+      "Infos from methods of decorator" => infos_from_methods_of_decorator
     })
   end
 
-  def infos_from_db_columns_of_operator_object
-    infors_from_db_columns_of( object.operator )
+  def infos_from_db_columns_of_train_type_in_api_object
+    infors_from_db_columns_of( object.train_type_in_api )
   end
 
-  def infos_from_methods_of_operator_object
-    infos_from_methods_of( object.operator , :name_ja_normal , :name_en_normal )
+  def infos_from_methods_of_object
+    infos_from_methods_of_object( :normal? , colored? )
   end
 
-  def infos_from_methods_of_operator_decorator
-    infos_from_methods_of( object.operator.decorate , :twitter_title )
+  def infos_from_methods_of_decorator
+    infos_from_methods_of_decorator( :css_class_name )
   end
 
 end

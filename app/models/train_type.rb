@@ -1,4 +1,5 @@
 class TrainType < ActiveRecord::Base
+
   has_many :train_times
   has_many :travel_time_infos
   has_many :train_type_stopping_patterns
@@ -8,11 +9,11 @@ class TrainType < ActiveRecord::Base
   belongs_to :railway_line
 
   scope :select_colored_if_exist , -> {
-    colored = select { | train_type | train_type.colored? }
+    colored = select( &:colored? )
     if colored.present?
       colored
     else
-      select { | train_type | train_type.normal? }
+      select( &:normal? )
     end
   }
 
@@ -21,10 +22,11 @@ class TrainType < ActiveRecord::Base
   end
 
   def normal?
-    /Normal/ === self.same_as
+    /Normal/ === same_as
   end
 
   def colored?
-    /Colored\Z/ === self.same_as
+    /Colored\Z/ === same_as
   end
+
 end

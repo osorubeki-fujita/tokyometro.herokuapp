@@ -16,24 +16,7 @@ class TrainTypeInApiDecorator < Draper::Decorator
   = this.name_ja_normal
     HAML
   end
-
-  def render_in_train_location
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%p{ class: :text_ja }<
-  = this.name_ja_normal
-%p{ class: :text_en }<
-  = this.name_en_normal
-    HAML
-  end
+  
+  alias :render_in_train_location :render_name_in_box
 
 end
-
-__END__
-
-  def render_in_train_location
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-!= this.name_ja_normal
-%span{ class: :text_en }<
-  = this.name_en_normal
-    HAML
-  end

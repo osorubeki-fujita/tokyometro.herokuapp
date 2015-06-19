@@ -14,38 +14,86 @@ SEO:
 
 system:
   -
-    title: "リアルタイム情報"
+    title: Document
+    contents:
+      - 駅リスト
+  -
+    title: TrainType - メソッド名の混在の解消
+    contents:
+      - css_class_name_in_document
+      - css_class_in_document
+  -
+    title: 地図・出入口情報
+    contents:
+      - geojson を利用したあれこれ
+      -
+        title: 地図上のマーカー
+        contents:
+          - 通常
+          - 出口名への hover
+      -
+        title: 出入口の領域
+        contents:
+          - 日本橋
+          - 池袋
+          - 浦安
+          - 中野新橋
+      - 銀座駅に神田駅の情報が含まれている!?
+      -
+        title: Point::Info / Station::Info / StationFacility::Info
+        contents:
+          - 構造に無駄がないかチェック
+          - RSpec を使用
+          - 必要ならば整理
+  -
+    title: リアルタイム情報 - train_operation（列車運行情報） , train_location（列車位置情報）ページの完成
     contents:
       - 更新ボタンの動作
-  -
-    title: "train_operation（列車運行情報） , train_location（列車位置情報）ページの完成"
-    contents:
-      - "遅れありのときに「平常通り」と表示される事態の解消"
-      - "Ajax を利用"
-      # - "（Rails での使い方をsearch）"
-      - "列車時刻表からの遅延判定"
-      - "位置情報 駅の時刻を表示"
-      - "日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）"
-      - "有楽町線・副都心線の統合"
-      - "渋谷、小竹向原、和光市での種別変更対応"
-      - "南北線・三田線"
-      - "ロマンスカーの列車名"
-      - "train_location エラー時の処理"
       -
-        title: "【データ取得方法の変更】"
+        title: 遅れありのときに「平常通り」と表示される事態の解消
         contents:
-          - "列車運行情報は必ず全線まとめて一気に取得"
-          - "更新が全路線同時だから"
-          - "サーバー側、クライアント側それぞれの負担軽減のため"
-      - "運行情報の Visualize（現状の改修、路線図・地図上への表示 - リストだけではわかりにくい）"
+          - テストデータの作成方法を検討
+          - RSpec でテスト
       -
-        title: "既知の問題点"
+        title: 運行障害発生時の処理
+        contents:
+          - 位置情報が取得できなくなる（運行中の列車が0になる）ことがある
+          - 運行情報から障害発生を検知できるとき、位置情報をもとに「運行中の列車 なし」とするのはダメ → 修正
+          -
+            title: 例
+            contents:
+              - 運行中の列車なし / No train is operated now. / 折返し運転 / 本日の運行は終了しました。
+      -
+        title: コンテンツ取得失敗時の処理
+        contents:
+          - Network
+          - API server
+      -
+        titie: Ajax を利用
+        contents:
+          - Rails での処理方法をもっと詳しくresearch, 効率化
+      - 列車時刻表からの遅延判定
+      - 位置情報 駅の時刻を表示
+      - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
+      - 有楽町線・副都心線の統合
+      - 渋谷、小竹向原、和光市での種別変更対応
+      - 南北線・三田線
+      - ロマンスカーの列車名
+      -
+        title: 【データ取得方法の変更】
+        contents:
+          - 列車運行情報は必ず全線まとめて一気に取得
+          - 更新が全路線同時だから
+          - サーバー側、クライアント側それぞれの負担軽減のため
+      - 運行情報の Visualize（現状の改修、路線図・地図上への表示 - リストだけではわかりにくい）
+      -
+        title: 既知の問題点
         contents:
           -
             title: 千代田線
             contents:
               -
-                title: "綾瀬 - 北綾瀬【問題なし】"
+                title: 綾瀬 - 北綾瀬【問題なし】
                 contents:
                   - 2015年05月20日 12:51:04
                   - 千代田線 A1296S3, B1298S3
@@ -56,12 +104,12 @@ system:
                 title: 千代田線 早朝の北千住発着列車（平日・土休日）
                 contents:
                   -
-                    title: "綾瀬 → 北千住"
+                    title: 綾瀬 → 北千住
                     contents:
                       - 綾瀬 4:38 発 - 北千住 行【JRから】
                       - 綾瀬 5:00 発 - 代々木上原 行
                   -
-                    title: "北千住 → 綾瀬"
+                    title: 北千住 → 綾瀬
                     contents:
                       - 北千住 4:54 発 - 我孫子 行【北千住発】
                       - 北千住 5:15 発 - 我孫子 行
@@ -69,70 +117,96 @@ system:
                 title: 千代田線 深夜の北千住発着列車（平日・土休日）
                 contents:
                   -
-                    title: "綾瀬 → 北千住"
+                    title: 綾瀬 → 北千住
                     contents:
                       - 綾瀬 0:05 発 - 代々木上原 行【JRから】
                       - 綾瀬 0:27 発 - 北千住 行【JRから】
                   -
-                    title: "北千住 → 綾瀬"
+                    title: 北千住 → 綾瀬
                     contents:
                       - 北千住 0:37 発 - 我孫子 行
                       - 北千住 1:04 発 - 松戸 行【北千住発】
-              - "早朝・深夜の北千住発着列車については、train_timetable にその日ごとの運行開始、終了を示す列を追加することで解決？"
+              - 早朝・深夜の北千住発着列車については、train_timetable にその日ごとの運行開始、終了を示す列を追加することで解決？
               -
-                title: "千代田線 始発（平日・土休日）"
+                title: 千代田線 始発（平日・土休日）
                 contents:
                   - 2015年05月21日 04:50:07
                   - 千代田線 A0567S
                   - 湯島発我孫子行き
                   - 「代々木上原方面」になっている
+              -
+                title: 朝の海老名始発
+                contents:
+                  - 千代田線 B0691E
+                  - 「代々木上原発」と表示？
           -
             title: 副都心線
             contents:
               -
-                title: "幅を越えてしまう"
+                title: 幅を越えてしまう
                 contents:
-                  - "行先：元町・中華街"
-                  - "現在位置：明治神宮前〈原宿〉"
-                  - "始発駅：新宿三丁目 or 石神井公園"
+                  - 行先：元町・中華街
+                  - 現在位置：明治神宮前〈原宿〉
+                  - 始発駅：新宿三丁目 or 石神井公園
               -
-                title: "幅を越えてしまう"
+                title: 幅を越えてしまう
                 contents:
-                  - "行先：（2文字）"
-                  - "現在位置：明治神宮前〈原宿〉"
-                  - "始発駅：元町・中華街"
+                  - 行先：（2文字）
+                  - 現在位置：明治神宮前〈原宿〉
+                  - 始発駅：元町・中華街
               -
-                title: "武蔵小杉発 渋谷行？"
+                title: 武蔵小杉発 渋谷行？
                 contents:
-                  - "2015年05月27日 07:10:59"
-                  - "副都心線 B0629K"
-                  - "行先：渋谷"
-                  - "現在位置：北参道"
-                  - "始発駅：武蔵小杉"
-                  - "方面：池袋"
+                  - 2015年05月27日 07:10:59
+                  - 副都心線 B0629K
+                  - 行先：渋谷
+                  - 現在位置：北参道
+                  - 始発駅：武蔵小杉
+                  - 方面：池袋
+  - System - required_files の作成方法 (yaml)
   -
-    title: "RailwayLine の column の整理"
+    title: Error 処理、カスタマイズのための Factory の導入
     contents:
-      - "一部を削除（特に「事業者名 + 路線名」）"
-      - "css_class_name もメソッドになるように定義し直す"
+      - Convert
+      - Patch
+      - Customize
+  -
+    title: RailwayLine の column の整理
+    contents:
+      - 一部を削除（特に「事業者名 + 路線名」）
+      - css_class_name もメソッドになるように定義し直す
       -
-        title: "module を作成"
+        title: module を作成
         contents:
-          - "::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include"
-          - "それぞれのクラスに適合するよう調整"
-  - "scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色）cf. lib\\tokyo_metro\\factory\\scss"
+          - ::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include
+          - それぞれのクラスに適合するよう調整
+  - Operator の column の整理
+  - System - Station::InfoDecorator の整理
+  - System - RailwayLineDecorator の整理
+  - System - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
+  - System - 名前空間の見直し (model, decorator)
+  - seed - [module] reference
+  - SeedFactory
   -
-    title: "Point::Info - Station::Info - StationFacility::Info について"
+    title: System - Static::TrainType
     contents:
-      - "RSpec により構造に無駄がないかをチェックし、必要ならば整理"
+      - yaml の構造をシンプルに
   -
-    title: "Error 処理、カスタマイズのための Factory の導入"
+    title: train_type
     contents:
-      - "Convert"
-      - "Patch"
-      - "Customize"
+      - \"custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard\" を削除
+      - \"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal\" の設定を変更
   -
-    title: "train_type"
+    title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色）
     contents:
-      - "\"custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard\" を削除し、 \"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal\" の設定を変更"
-  - "TokyoMetro::App::Renderer での url_for , current_page? , link_to_unless_current"
+      - cf. lib\\tokyo_metro\\factory\\scss
+  - 停車駅クラスの完成
+  - データの再流し込み
+  - 駅時刻表の公開を再開
+  - ページの拡大・縮小時の崩れを解消
+  -
+    title: TokyoMetro::App::Renderer での helper method
+    contents:
+      - url_for
+      - current_page?
+      - link_to_unless_current

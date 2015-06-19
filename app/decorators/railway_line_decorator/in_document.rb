@@ -27,7 +27,7 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
     = "same_as: "+ obj.same_as
     HAML
   end
-  
+
   # @!group Sub public methods
 
   def render_main_domain
@@ -101,15 +101,15 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
     super().merge({
       "Infos from Db columns of railway line object" => infos_from_db_columns_of_railway_line_object ,
       "Infos from Db columns of operator object (partial)" => infos_from_db_columns_of_operator_object ,
-      "Infos from Db columns of railway line decorator (partial)" => infos_from_db_columns_of_railway_line_decorator ,
-      "Infos from Db columns of railway line decorator in platform transfer info (partial)" => infos_from_db_columns_of_railway_line_decorator_in_platform_transfer_info ,
+      "Infos from Db columns of railway line decorator (partial)" => infos_from_methods_of_railway_line_decorator ,
+      "Infos from Db columns of railway line decorator in platform transfer info (partial)" => infos_from_methods_of_railway_line_decorator_in_platform_transfer_info ,
     })
   end
-  
+
   def infos_from_db_columns_of_operator_object
     infos_from_methods_of( object.operator , :same_as )
   end
-  
+
   def infos_from_db_columns_of_railway_line_object
     infos_from_methods_of_object(
       :station_attribute_ja ,
@@ -124,8 +124,8 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
       :seibu_yurakucho_line?
     )
   end
-  
-  def infos_from_db_columns_of_railway_line_decorator
+
+  def infos_from_methods_of_railway_line_decorator
     h1 = infos_from_methods_of_decorator(
       :name_ja_with_operator_name ,
       :name_en_with_operator_name
@@ -143,7 +143,7 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
     h1.merge(h2).merge(h3)
   end
 
-  def infos_from_db_columns_of_railway_line_decorator_in_platform_transfer_info
+  def infos_from_methods_of_railway_line_decorator_in_platform_transfer_info
     d = @decorator.in_platform_transfer_info
     {
       "name_ja (private)" => d.send( :name_ja ) ,

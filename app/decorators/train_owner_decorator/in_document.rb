@@ -29,13 +29,13 @@ class TrainOwnerDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDec
   def infos_from_db_columns_of_operator_object
     infors_from_db_columns_of( object.operator )
   end
-  
+
   def infos_from_methods_of_operator_object
     infos_from_methods_of( object.operator , :name_ja_normal , :name_en_normal )
   end
-  
+
   def infos_from_methods_of_operator_decorator
     infos_from_methods_of( object.operator.decorate , :twitter_title )
   end
-  
+
 end
