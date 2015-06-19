@@ -1,21 +1,37 @@
 class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
+  include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
+
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
 %li{ class: [ :document_info_box , :operator , this.css_class_name , :clearfix ] }
   %div{ class: [ :number , :text_en ] }<
     = number
-  = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
-  %div{ class: :texts }
-    = this.render_main_domain
-    = this.render_button_domain
-    = this.render_infos
+  = this.render_main_domain
+  = this.render_button_domain
+  = this.render_infos
     HAML
   end
+
+  def render_title
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+- obj = this.object
+%div{ class: :operator_name }
+  %h3{ class: :text_ja }<
+    = obj.name_ja
+  %h4{ class: :text_en }<
+    = obj.name_en
+  %h4{ class: [ :text_en , :same_as ] }<
+    = "same_as: " + obj.same_as
+    HAML
+  end
+
+  # @!group Sub public methods
 
   def render_main_domain
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: [ :main , :clearfix ] }
+  = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
   %div{ class: :operator_name }
     = this.render_name_ja
     = this.render_name_en
@@ -39,16 +55,7 @@ class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecor
     )
   end
 
-  def render_color_info
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :color_info }
-  %div{ class: [ :web_color , :text_en ] }<
-    = this.color
-  - if this.color.present?
-    %div{ class: [ :rgb_color , :text_en ] }<
-      = this.color.to_rgb_color_in_parentheses
-    HAML
-  end
+  # @!endgroup
 
   private
 

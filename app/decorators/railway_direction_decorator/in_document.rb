@@ -1,19 +1,23 @@
 class RailwayDirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
+  # @!group Main methods
+
   def render
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
 %li{ class: [ :document_info_box , :railway_direction , :clearfix ] }
+  %div{ class: [ :number , :text_en ] }<
+    = number
   = this.render_main_domain
   = this.render_button_domain
   = this.render_infos
     HAML
   end
 
+  # @!group Sub public methods
+
   def render_main_domain
-    h.render inline: <<-HAML , type: :haml , locals: { number: object.id , station_info_decorated: object.station_info.decorate }
+    h.render inline: <<-HAML , type: :haml , locals: { station_info_decorated: object.station_info.decorate }
 %div{ class: [ :text , :main , :clearfix ] }
-  %div{ class: [ :number , :text_en ] }<
-    = number
   %div{ class: :text_ja }<
     = station_info_decorated.name_ja_actual
   %div{ class: :text_en }<
@@ -22,6 +26,8 @@ class RailwayDirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::App
     = station_info_decorated.same_as
     HAML
   end
+
+  # @!endgroup
 
   private
 

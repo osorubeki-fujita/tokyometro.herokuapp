@@ -6,11 +6,9 @@ class TrainOwnerDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDec
 %li{ class: [ :document_info_box , :operator , operator.css_class_name , :clearfix ] }
   %div{ class: [ :number , :text_en ] }<
     = number
-  = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
-  %div{ class: :texts }
-    = this.render_main_domain
-    = this.render_button_domain
-    = this.render_infos
+  = this.render_main_domain
+  = this.render_button_domain
+  = this.render_infos
     HAML
   end
 

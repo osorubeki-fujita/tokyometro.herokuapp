@@ -1,19 +1,38 @@
 class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
+  include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
+
+  # @!group Main methods
+
   def render
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
 %li{ class: [ :document_info_box , this.css_class_name , :clearfix ] }
+  %div{ class: [ :number , :text_en ] }<
+    = number
   = this.render_main_domain
   = this.render_button_domain
   = this.render_infos
     HAML
   end
 
+  def render_title
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
+- obj = this.object
+%div{ class: :railway_line_name }
+  %h4{ class: :text_ja }<
+    = obj.name_ja
+  %h5{ class: :text_en }<
+    = obj.name_en
+  %h5{ class: [ :text_en , :same_as ] }<
+    = "same_as: "+ obj.same_as
+    HAML
+  end
+  
+  # @!group Sub public methods
+
   def render_main_domain
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :main }
-  %div{ class: [ :number , :text_en ] }<
-    = number
   = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
   = this.decorator.render_railway_line_code( must_display_line_color: false )
   %div{ class: :railway_line_name }
@@ -22,17 +41,6 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
     %p{ class: [ :same_as , :text_en ] }<
       = this.object.same_as
   = this.render_color_info
-    HAML
-  end
-
-  def render_color_info
-    h.render inline: <<-HAML , type: :haml , locals: { color: object.color }
-%div{ class: :color_info }
-  %div{ class: [ :web_color , :text_en ] }<
-    = color
-  - if color.present?
-    %div{ class: [ :rgb_color , :text_en ] }<
-      = color.to_rgb_color_in_parentheses
     HAML
   end
 

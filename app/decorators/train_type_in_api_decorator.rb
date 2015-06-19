@@ -10,15 +10,6 @@ class TrainTypeInApiDecorator < Draper::Decorator
     HAML
   end
 
-  def render_name_in_document_info_box
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%p{ class: :name_ja_normal }<
-  = this.name_ja_normal
-%p{ class: :name_en_normal }<
-  = this.name_en_normal
-    HAML
-  end
-
   def render_name_in_travel_time_info
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :name_ja_normal }<

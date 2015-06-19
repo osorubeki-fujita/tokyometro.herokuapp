@@ -3,7 +3,7 @@
 = ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
 
 %div{ id: :railway_directions }
-  - railway_directions_grouped_by_operator = @railway_directions.group_by { | railway_direction | railway_direction.railway_line.operator.id }
+  - railway_directions_grouped_by_operator = @railway_directions.group_by { | railway_direction | railway_direction.railway_line.operator_id }
   - raise "Error" if railway_directions_grouped_by_operator.nil?
   - railway_directions_grouped_by_operator.keys.sort.each do | operator_id |
     - railway_directions_in_an_operator = railway_directions_grouped_by_operator[ operator_id ]
@@ -11,25 +11,13 @@
     - operator_instance = ::Operator.find_by( id: operator_id )
     - raise "Error" if operator_instance.nil?
     %div{ class: [ :document , :operator , operator_instance.css_class_name ] }
-      %div{ class: :operator_name }
-        %h3{ class: :text_ja }<
-          = operator_instance.name_ja
-        %h4{ class: :text_en }<
-          = operator_instance.name_en
-        %h4{ class: [ :text_en , :same_as ] }<
-          = "same_as: " + operator_instance.same_as
+      = operator_instance.decorate.in_document.render_title
       - railway_directions_grouped_by_railway_line = railway_directions_in_an_operator.group_by( &:railway_line_id )
       - railway_directions_grouped_by_railway_line.keys.sort.each do | railway_line_id |
         - railway_directions_in_a_railway_line = railway_directions_grouped_by_railway_line[ railway_line_id ]
         - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
         %div{ class: [ :document , :railway_line , railway_line_instance.css_class_name ] }
-          %div{ class: :railway_line_name }
-            %h4{ class: :text_ja }<
-              = railway_line_instance.name_ja
-            %h5{ class: :text_en }<
-              = railway_line_instance.name_en
-            %h5{ class: [ :text_en , :same_as ] }<
-              = "same_as: "+ railway_line_instance.same_as
+          = railway_line_instance.decorate.in_document.render_title
           %ul{ class: [ :railway_directions_of_each_railway_line , :in_document ] }
             - railway_directions_in_a_railway_line.each do | railway_direction |
               = railway_direction.decorate.in_document.render

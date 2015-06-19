@@ -3,59 +3,15 @@
 @import '../../fundamental_settings.scss' ;
 @import 'document_info_box/mixins.scss' ;
 
-%trainTypeDisplayed {
-  @extend %nameInDocument ;
-  @include padding_4 ;
-  text-align: center ;
-}
-
 #train_types {
-  $train_type_padding_left_width: 8px ;
-  $train_type_border_left_width: 8px ;
-  .operator {
-    margin: {
-      left: $train_type_padding_left_width + $train_type_border_left_width ;
-    }
+  .document.operator {
     @include margin_bottom_64 ;
-    .railway_line {
+    .document.railway_line {
+      clear: both ;
+      @include margin_left_16 ;
       @include margin_bottom_32 ;
-      .document_info_box_wide {
-        @include border_radius( $border_radius_of_document_info_box ) ;
-        @extend %colorInfoInDocumentInfoBox ;
-        //
-        .train_type_displayed {
-          @extend %trainTypeDisplayed ;
-        }
-        .train_type_displayed_black {
-          @extend %trainTypeDisplayed ;
-        }
-        .displayed_black {
-          @include font_ja_and_en( 24 , 1.0 / 3 ) ;
-          .text_ja {
-            font: {
-              weight: bold ;
-            }
-          }
-        }
-        .train_type_name {
-          @extend %nameInDocument ;
-          @include margin_left_8 ;
-          .same_as {
-            @include margin_bottom_4 ;
-            font: {
-              size: 8pt ;
-            }
-          }
-          span.note_sub {
-            font: {
-              size: 8pt ;
-            }
-          }
-        }
-        .color_infos {
-          @include float_left ;
-          @include margin_left_8 ;
-        }
+      ul.train_types_of_each_railway_line {
+        @extend %marginLeft16 ;
       }
     }
   }
