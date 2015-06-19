@@ -40,7 +40,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: [ :color_infos , :clearfix ] }
   - [ this.object.bgcolor, this.object.color ].each do | color |
-    = this.render_color_info( colors )
+    = this.render_color_info( color )
     HAML
   end
 
