@@ -21,27 +21,8 @@ ul#links_to_document_pages {
   }
 }
 
-#to_do {
-  h4.each_category {
-    border: {
-      left: solid 8px #ccc ;
-    }
-    @include padding_top_bottom_4 ;
-    @include padding_left_8 ;
-    @include margin_bottom_8 ;
-  }
-  ol.each_category {
-    @include padding_left_0 ;
-    @include margin_top_0 ;
-    @include margin_left_32 ;
-    @include margin_bottom_16 ;
-    font: {
-      size: 9pt ;
-    }
-  }
-}
-
 #infos_in_db {
+  @include margin_bottom_32 ;
   table {
     border: solid 1px #333;
     border-collapse: collapse ;
@@ -73,6 +54,26 @@ ul#links_to_document_pages {
   .page_links {
     &.top , &.bottom {
       @include margin_top_16 ;
+    }
+  }
+}
+
+#to_do {
+  h4.each_category {
+    border: {
+      left: solid 8px #ccc ;
+    }
+    @include padding_top_bottom_4 ;
+    @include padding_left_8 ;
+    @include margin_bottom_8 ;
+  }
+  ol.each_category {
+    @include padding_left_0 ;
+    @include margin_top_0 ;
+    @include margin_left_32 ;
+    @include margin_bottom_16 ;
+    font: {
+      size: 9pt ;
     }
   }
 }
