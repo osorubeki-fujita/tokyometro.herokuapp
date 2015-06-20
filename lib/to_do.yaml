@@ -13,9 +13,7 @@ SEO:
   - SNS対応
   - パンくずリスト
 
-Gem:  
-
-System:
+"App and Gem":
   -
     title: 地図・出入口情報
     contents:
@@ -43,7 +41,7 @@ System:
         contents:
           - 問題の出入口は、urn:ucode:_00001C000000000000010000030C40CF
   -
-    title: System - 名前空間の見直し - Model / Decorator
+    title: App - 名前空間の見直し - Model / Decorator
     contents:
       - モデル名を Xxxx としたとき、正規表現は
       -
@@ -78,30 +76,30 @@ System:
   -
     title: Gem - seed関連
     contents:
-      - [module] reference
+      - "[module] reference"
       - SeedFactory
   - title: Gem - required_files の作成方法 (yaml)
   -
-    title: System - RailwayLine - column の整理
+    title: App - RailwayLine - column の整理
     contents:
       - 一部を削除（特に「事業者名 + 路線名」）
       - css_class_name もメソッドになるように定義し直す
       -
         title: module を作成
         contents:
-          - ::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include
+          - RailwayLine と TokyoMetro::Static::RailwayLine::Info に include
           - それぞれのクラスに適合するよう調整
-  - System - Operator - column の整理
-  - System - Station::InfoDecorator の整理
-  - System - RailwayLineDecorator の整理
-  - System - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
-  - System - 名前空間の見直し (model, decorator)
+  - App - Operator - column の整理
+  - App - Station::InfoDecorator の整理
+  - App - RailwayLineDecorator の整理
+  - App - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
+  - App - 名前空間の見直し (model, decorator)
   -
     title: Gem - TokyoMetro::Static::TrainType
     contents:
       - yaml の構造をシンプルに
   -
-    title: System - TrainType
+    title: App - TrainType
     contents:
       - custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard を削除
       - custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal の設定を変更
@@ -400,20 +398,20 @@ Contents:
 
 "To  Consider":
   -
-    title: System  - MetaStation のレイヤーを定義？
+    title: App  - MetaStation のレイヤーを定義？
     contents:
       - Point::Info - Station::Info - StationFacility::Info
   -
-    title: System - Modules → Module に名称変更？
+    title: App - Modules → Module に名称変更？
     contents:
       - 既存の（Ruby 本体で使用されている）namespace を用いると Rails でエラー？
   -
-    title: System - Rooting
+    title: App - Rooting
     contents:
       - lib/constraints
       - concerns
   -
-    title: System, Design - SurroundingArea
+    title: App, Design - SurroundingArea
     contents:
       - 駅施設ページ ホーム情報タブ - 主要施設に tooltip を導入
       - アルファベット表記、地理情報をDBに追加
