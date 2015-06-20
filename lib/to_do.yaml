@@ -1,4 +1,4 @@
-design:
+Design:
   - "SNSボタンの設置"
   - "サイドメニューをページ上部へ（横に並べる）"
   -
@@ -12,7 +12,7 @@ SEO:
   - "SNS対応"
   - "パンくずリスト"
 
-system:
+System:
   -
     title: Document
     contents:
@@ -45,6 +45,93 @@ system:
           - 構造に無駄がないかチェック
           - RSpec を使用
           - 必要ならば整理
+  -
+    title: System - 名前空間の見直し - Model / Decorator
+    contents:
+      - モデル名を Xxxx としたとき、正規表現は
+      -
+        title: Model に関連するもの
+        contents:
+          - Xxxx\\.
+          - Xxxx$
+      -
+        title: Decorator に関連するもの
+        contents:
+          - XxxxDecorator\\.
+          - XxxxDecorator$
+      -
+        title: association に関連するもの
+        contents:
+          - #{Xxxx.underscore}\\.
+          - #{Xxxx.underscore}$
+          - #{Xxxx.underscore.pluralize}\\.
+          - #{Xxxx.underscore.pluralize}$
+      - 【注意】db の rename_table を忘れないこと
+      - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
+  - System - required_files の作成方法 (yaml)
+  -
+    title: Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
+    contents:
+      - Convert
+      - Patch
+      - Customize
+  -
+    title: RailwayLine の column の整理
+    contents:
+      - 一部を削除（特に「事業者名 + 路線名」）
+      - css_class_name もメソッドになるように定義し直す
+      -
+        title: module を作成
+        contents:
+          - ::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include
+          - それぞれのクラスに適合するよう調整
+  - Operator の column の整理
+  - System - Station::InfoDecorator の整理
+  - System - RailwayLineDecorator の整理
+  - System - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
+  - System - 名前空間の見直し (model, decorator)
+  - seed - [module] reference
+  - SeedFactory
+  -
+    title: System - Static::TrainType
+    contents:
+      - yaml の構造をシンプルに
+  -
+    title: train_type
+    contents:
+      - \"custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard\" を削除
+      - \"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal\" の設定を変更
+  -
+    title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色）
+    contents:
+      - cf. lib\\tokyo_metro\\factory\\scss
+  - 停車駅クラスの完成
+  - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
+  - データの再流し込み
+  - 駅時刻表の公開を再開
+  - ページの拡大・縮小時の崩れを解消
+  -
+    title: TokyoMetro::App::Renderer での helper method
+    contents:
+      - url_for
+      - current_page?
+      - link_to_unless_current
+  -
+    title: TokyoMetro::App::Renderer::Icon を機能ごとに分離?
+    contents:
+      - FontAwesome::Stacked
+      - FontAwesome::Spin
+      - FontAwesome::Pulse
+  - とにかく RSpec でテストを書きまくる
+  - Decorate Factory の導入
+  -
+    title: 支線の処理
+    contents:
+      - Station::Info , RailwayLine または別の名前空間に自然なメソッドを定義
+      - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
+  - その他、必要な Refactoring
+
+"Real time":
   -
     title: リアルタイム情報 - train_operation（列車運行情報） , train_location（列車位置情報）ページの完成
     contents:
@@ -85,7 +172,8 @@ system:
       -
         titie: Ajax を利用
         contents:
-          - Rails での処理方法をもっと詳しくresearch, 効率化
+          - Rails での処理方法をもっと詳しくresearch
+          - 効率化
       - 列車時刻表からの遅延判定
       - 位置情報 駅の時刻を表示
       - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
@@ -177,88 +265,3 @@ system:
                   - 現在位置：北参道
                   - 始発駅：武蔵小杉
                   - 方面：池袋
-  -
-    title: System - 名前空間の見直し - Model / Decorator
-    contents:
-      - モデル名を Xxxx としたとき、正規表現は
-      -
-        title: Model に関連するもの
-        contents:
-          - Xxxx\\.
-          - Xxxx$
-      -
-        title: Decorator に関連するもの
-        contents:
-          - XxxxDecorator\\.
-          - XxxxDecorator$
-      -
-        title: association に関連するもの
-        contents:
-          - #{Xxxx.underscore}\\.
-          - #{Xxxx.underscore}$
-          - #{Xxxx.underscore.pluralize}\\.
-          - #{Xxxx.underscore.pluralize}$
-      - 【注意】db の rename_table を忘れないこと
-      - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
-  - System - required_files の作成方法 (yaml)
-  -
-    title: Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
-    contents:
-      - Convert
-      - Patch
-      - Customize
-  -
-    title: RailwayLine の column の整理
-    contents:
-      - 一部を削除（特に「事業者名 + 路線名」）
-      - css_class_name もメソッドになるように定義し直す
-      -
-        title: module を作成
-        contents:
-          - ::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include
-          - それぞれのクラスに適合するよう調整
-  - Operator の column の整理
-  - System - Station::InfoDecorator の整理
-  - System - RailwayLineDecorator の整理
-  - System - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
-  - System - 名前空間の見直し (model, decorator)
-  - seed - [module] reference
-  - SeedFactory
-  -
-    title: System - Static::TrainType
-    contents:
-      - yaml の構造をシンプルに
-  -
-    title: train_type
-    contents:
-      - \"custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard\" を削除
-      - \"custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal\" の設定を変更
-  -
-    title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色）
-    contents:
-      - cf. lib\\tokyo_metro\\factory\\scss
-  - 停車駅クラスの完成
-  - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
-  - データの再流し込み
-  - 駅時刻表の公開を再開
-  - ページの拡大・縮小時の崩れを解消
-  -
-    title: TokyoMetro::App::Renderer での helper method
-    contents:
-      - url_for
-      - current_page?
-      - link_to_unless_current
-  -
-    title: TokyoMetro::App::Renderer::Icon を機能ごとに分離?
-    contents:
-      - FontAwesome::Stacked
-      - FontAwesome::Spin
-      - FontAwesome::Pulse
-  - とにかく RSpec でテストを書きまくる
-  - Decorate Factory の導入
-  -
-    title: 支線の処理
-    contents:
-      - Station::Info , RailwayLine または別の名前空間に自然なメソッドを定義
-      - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
-  - その他、必要な Refactoring
