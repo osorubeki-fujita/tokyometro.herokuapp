@@ -62,12 +62,26 @@ system:
           -
             title: 例
             contents:
-              - 運行中の列車なし / No train is operated now. / 折返し運転 / 本日の運行は終了しました。
+              -
+                title: 運行中の列車 なし - No train is operated now.
+                contents:
+                  - 折返し運転
+                  - 本日の運行は終了しました。
+                  - Shuttle service is provided in section with no effect by accidents.
+                  - Today's operation was finished.
+              -
+                title: 運行中の列車 なし / No train is operated now.
+                contents:
+                  - ダイヤ乱れ
+                  - 本日の運行は終了しました。
+                  - Trains are behind schedule.
+                  - Today's operation was finished.
       -
         title: コンテンツ取得失敗時の処理
         contents:
-          - Network
-          - API server
+          - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
+          - Network - ネットワーク接続を確認してください - Please check network connection of your device
+          - API server - データ取得に失敗しました ページを更新し再度データを取得してください - Failed to load information - Please reload this page
       -
         titie: Ajax を利用
         contents:
@@ -163,9 +177,32 @@ system:
                   - 現在位置：北参道
                   - 始発駅：武蔵小杉
                   - 方面：池袋
+  -
+    title: System - 名前空間の見直し - Model / Decorator
+    contents:
+      - モデル名を Xxxx としたとき、正規表現は
+      -
+        title: Model に関連するもの
+        contents:
+          - Xxxx\\.
+          - Xxxx$
+      -
+        title: Decorator に関連するもの
+        contents:
+          - XxxxDecorator\\.
+          - XxxxDecorator$
+      -
+        title: association に関連するもの
+        contents:
+          - #{Xxxx.underscore}\\.
+          - #{Xxxx.underscore}$
+          - #{Xxxx.underscore.pluralize}\\.
+          - #{Xxxx.underscore.pluralize}$
+      - 【注意】db の rename_table を忘れないこと
+      - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
   - System - required_files の作成方法 (yaml)
   -
-    title: Error 処理、カスタマイズのための Factory の導入
+    title: Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
     contents:
       - Convert
       - Patch
@@ -201,6 +238,7 @@ system:
     contents:
       - cf. lib\\tokyo_metro\\factory\\scss
   - 停車駅クラスの完成
+  - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
   - データの再流し込み
   - 駅時刻表の公開を再開
   - ページの拡大・縮小時の崩れを解消
@@ -210,3 +248,17 @@ system:
       - url_for
       - current_page?
       - link_to_unless_current
+  -
+    title: TokyoMetro::App::Renderer::Icon を機能ごとに分離?
+    contents:
+      - FontAwesome::Stacked
+      - FontAwesome::Spin
+      - FontAwesome::Pulse
+  - とにかく RSpec でテストを書きまくる
+  - Decorate Factory の導入
+  -
+    title: 支線の処理
+    contents:
+      - Station::Info , RailwayLine または別の名前空間に自然なメソッドを定義
+      - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
+  - その他、必要な Refactoring
