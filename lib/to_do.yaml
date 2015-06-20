@@ -6,21 +6,16 @@ Design:
     title: 駅施設ページ ホーム情報タブ
     contents:
       - 主要施設に tooltip の導入
-  - 必要な部分に class=\'clearfix\' を設定
+  - "必要な部分に class='clearfix' を設定"
 
 SEO:
-  - "Meta タグ"
-  - "SNS対応"
-  - "パンくずリスト"
+  - Meta タグ
+  - SNS対応
+  - パンくずリスト
+
+Gem:  
 
 System:
-  -
-    title: Gem (tokyo_metro)
-    contents:
-      -
-        title: TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
-        contents:
-          - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
   -
     title: 地図・出入口情報
     contents:
@@ -54,12 +49,12 @@ System:
       -
         title: Model に関連するもの
         contents:
-          - Xxxx\\.
+          - Xxxx\.
           - Xxxx$
       -
         title: Decorator に関連するもの
         contents:
-          - XxxxDecorator\\.
+          - XxxxDecorator\.
           - XxxxDecorator$
       -
         title: association に関連するもの
@@ -70,15 +65,24 @@ System:
           - #{Xxxx.underscore.pluralize}$
       - 【注意】db の rename_table を忘れないこと
       - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
-  - System - required_files の作成方法 (yaml)
   -
-    title: Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
+    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
+    contents:
+          - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
+  -
+    title: Gem - Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
     contents:
       - Convert
       - Patch
       - Customize
   -
-    title: RailwayLine の column の整理
+    title: Gem - seed関連
+    contents:
+      - [module] reference
+      - SeedFactory
+  - title: Gem - required_files の作成方法 (yaml)
+  -
+    title: System - RailwayLine - column の整理
     contents:
       - 一部を削除（特に「事業者名 + 路線名」）
       - css_class_name もメソッドになるように定義し直す
@@ -87,31 +91,29 @@ System:
         contents:
           - ::RailwayLine と ::TokyoMetro::Static::RailwayLine::Info に include
           - それぞれのクラスに適合するよう調整
-  - Operator の column の整理
+  - System - Operator - column の整理
   - System - Station::InfoDecorator の整理
   - System - RailwayLineDecorator の整理
   - System - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
   - System - 名前空間の見直し (model, decorator)
-  - seed - [module] reference
-  - SeedFactory
   -
-    title: System - Static::TrainType
+    title: Gem - TokyoMetro::Static::TrainType
     contents:
       - yaml の構造をシンプルに
   -
-    title: train_type
+    title: System - TrainType
     contents:
       - custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard を削除
       - custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal の設定を変更
+      -
+        title: メソッド名の混在の解消
+        contents:
+          - css_class_name_in_document
+          - css_class_in_document
   -
     title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色、列車種別）
     contents:
       - cf. lib/tokyo_metro/factory/scss
-  -
-    title: TrainType - メソッド名の混在の解消
-    contents:
-      - css_class_name_in_document
-      - css_class_in_document
   - 停車駅クラスの完成
   - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
   -
