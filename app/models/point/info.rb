@@ -46,6 +46,10 @@ class Point::Info < ActiveRecord::Base
     not_closed
   }
 
+  scope :without_invalid , -> {
+    where.not( id_urn: "urn:ucode:_00001C000000000000010000030C40CF" )
+  }
+
   def point_category
     category
   end

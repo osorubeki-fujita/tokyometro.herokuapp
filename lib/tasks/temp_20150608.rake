@@ -1,4 +1,4 @@
-namespace :temp do
+﻿namespace :temp do
 
   task :debug_kasumigaseki_and_ginza_20150608 => :environment do
     title = "debug_kasumigaseki_and_ginza_20150608"
