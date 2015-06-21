@@ -105,7 +105,7 @@ SEO:
       -
         title: メソッド名の混在の解消
         contents:
-		  - css_class_name
+          - css_class_name
           - css_class_in_document
           - css_class_name_in_document
   -
