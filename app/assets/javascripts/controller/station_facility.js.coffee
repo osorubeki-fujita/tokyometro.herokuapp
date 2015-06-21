@@ -24,7 +24,7 @@ class StationFacility
     if in_station_facility_station_page(@)
       process_content_headers(@)
       process_point_ul(@)
-      process_google_map(@)
+      process_google_maps(@)
       process_platform_info_tabs(@)
 
       process_tables_of_platform_info_tab_contents(@)
@@ -44,8 +44,8 @@ class StationFacility
     p.process()
     return
 
-  process_google_map = (v) ->
-    p = new GoogleMapInStationFacility()
+  process_google_maps = (v) ->
+    p = new GoogleMapsInStationFacility()
     p.process()
     return
 

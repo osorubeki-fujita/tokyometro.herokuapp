@@ -97,7 +97,7 @@ class OnPageLoadHandler
     return
 
   initialize_google_map_in_station_facility = (v) ->
-    map = new GoogleMapInStationFacility()
+    map = new GoogleMapsInStationFacility()
     map.initialize_map()
     return
 
@@ -147,7 +147,7 @@ $( document ).on 'ready page:load' , ->
   # console.log 'page:change'
   # #----
 
-  # g = new GoogleMapInStationFacility()
+  # g = new GoogleMapsInStationFacility()
   # g.initialize_map( 'page:change' )
   # return
 

@@ -1,6 +1,6 @@
 #-------------------------------- Google Map の処理
 
-class GoogleMapInStationFacility
+class GoogleMapsInStationFacility
 
   # constructor: ( @domain = $( 'iframe#map' ) ) ->
   constructor: ( @domain = $( '#map_canvas' ) ) ->
@@ -91,21 +91,20 @@ class GoogleMapInStationFacility
     return obj
 
   get_geo_attr = ( v , dom ) ->
-    obj =
-      lat: parseFloat( dom.attr( "data-geo-lat" ) )
-      lng: parseFloat( dom.attr( "data-geo-lng" ) )
-    # console.log obj
-    return obj
+    geo_info = new GeoInfoOnGoogleMaps( dom )
+    return geo_info.to_obj()
 
   initialize_map: () ->
-    # console.log 'GoogleMapInStationFacility\#initialize_map'
+    # console.log 'GoogleMapsInStationFacility\#initialize_map'
     if has_map_canvas(@)
       google.maps.event.addDomListener( window , 'load' , map_init_function(@) )
       google.maps.event.addDomListener( window , 'page:change' , map_init_function(@) )
-
     return
-  
+
   map_init_function = (v) ->
+    init_markers_of_exits(v)
+    init_markers_of_center(v)
+
     _default_map_options = default_map_options(v)
     set_current_map_info( v , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
     v.in_li_domains = false
@@ -127,6 +126,7 @@ class GoogleMapInStationFacility
   event_when_center_changed = ( v , map ) ->
     f = ->
       set_link_for_open_large_size( v , map )
+      change_display_settings_of_markers( v , map )
       return
     return f
 
@@ -135,7 +135,7 @@ class GoogleMapInStationFacility
     zoom = map.getZoom()
     # console.log center
 
-    # console.log 'GoogleMapInStationFacility\#set_link_for_open_large_size'
+    # console.log 'GoogleMapsInStationFacility\#set_link_for_open_large_size'
     # console.log "lat: #{ center.lat() } / lng: #{ center.lng() }"
 
     # # console.log "center: #{ center }"
@@ -293,4 +293,81 @@ class GoogleMapInStationFacility
     domains.tooltip( option )
     return
 
-window.GoogleMapInStationFacility = GoogleMapInStationFacility
+  init_markers_of_exits = (v) ->
+    console.log 'init_markers_of_exits'
+    ary = []
+    li_domains_of_points(v).each ->
+      point = new GeoInfoOnGoogleMaps( $(@) )
+      console.log point
+      console.log point.to_marker_obj()
+      ary += point.to_marker_obj()
+      return
+    v.markers_of_exits = ary
+    return
+
+  init_markers_of_center = (v) ->
+    console.log 'init_markers_of_center'
+    center_geo_info = new GeoInfoOnGoogleMaps( v.domain )
+    console.log center_geo_info
+    console.log center_geo_info.to_marker_obj()
+    v.marker_of_center = center_geo_info.to_marker_obj()
+    return
+
+  change_display_settings_of_markers = ( v , map ) ->
+    if map.getZoom() >= default_zoom_size(v) + 1
+      set_marker_of_exits( v , map )
+    else
+      set_marker_of_exits( v , null )
+    return
+
+  set_marker_of_exits = ( v , map ) ->
+    console.log map
+    for exit_marker in v.markers_of_exits
+      exit_marker.setMap( map )
+    v.marker_of_center.setMap( map )
+    return
+
+window.GoogleMapsInStationFacility = GoogleMapsInStationFacility
+
+class GeoInfoOnGoogleMaps
+
+  constructor: ( @domain ) ->
+  
+  to_obj: ->
+    obj =
+      lat: lat(@)
+      lng: lng(@)
+    # console.log obj
+    return obj
+
+  to_latlng_obj: ->
+    obj = new google.maps.LatLng( lat(@) , lng(@) )
+    return obj
+
+  to_marker_obj: ->
+    marker = new google.maps.Marker( marker_option(@) )
+    return marker
+
+  marker_option = (v) ->
+    obj =
+      position: v.to_latlng_obj()
+      title: marker_title(v)
+    return obj
+  
+  marker_title = (v) ->
+    return 'Marker'
+
+  lat = (v) ->
+    return parseFloat( v.domain.attr( "data-geo-lat" ) )
+
+  lng = (v) ->
+    return parseFloat( v.domain.attr( "data-geo-lng" ) )
+
+  has_elevator = (v) ->
+    return v.domain.children().hasClass( 'elevator' )
+
+  open = (v) ->
+    return v.domain.hasClass( 'open' )
+
+  close = (v) ->
+    return v.domain.hasClass( 'close' )
