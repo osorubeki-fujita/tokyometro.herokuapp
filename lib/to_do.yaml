@@ -419,3 +419,8 @@ Contents:
       - アルファベット表記、地理情報をDBに追加
       - Google Maps による表現
   - dd, dt
+  - 列車に付記する注釈
+  -
+    title: 日付の判定・取得を行うメソッド（AM 3時で切り替え）
+    contents:
+      - メソッド名は #date_of_current_diagram など？
