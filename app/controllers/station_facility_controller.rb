@@ -26,7 +26,8 @@ class StationFacilityController < ApplicationController
       @railway_lines = ::RailwayLine.where( id: @station_facility_info.station_infos.pluck( :railway_line_id ) ).tokyo_metro.to_main_lines
       # @display_google_map = true
 
-      @point_infos = @station_facility_info.point_infos.without_invalid.includes( :category )
+      # @point_infos = @station_facility_info.point_infos.without_invalid.includes( :category )
+      @point_infos = @station_facility_info.point_infos.includes( :category )
       set_real_time_info_processor( railway_lines: @railway_lines.except_for_branch_lines )
 
       # set_station_info_for_google_map
