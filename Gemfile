@@ -90,7 +90,7 @@ gem 'coffee-rails', '>= 4.0.1'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
+gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.2.5'
@@ -104,7 +104,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'haml-rails'
 gem 'httpclient'
 gem 'holiday_jp'
-# gem 'jquery-turbolinks'
+gem 'jquery-turbolinks'
 
 
 gem 'json' # JSONを扱うライブラリ

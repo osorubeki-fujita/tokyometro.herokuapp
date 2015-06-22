@@ -431,12 +431,16 @@ class GeoInfoOnGoogleMaps
     else
       obj =
         path: 'M -4 -4 L 4 -4 L 4 4 L -4 4 z'
-        fillColor: 'gold'
         fillOpacity: 0.9
         scale: 1
-        strokeColor: 'brown'
         strokeOpacity: 1
         strokeWeight: 0.5
+      if open(v)
+        obj.fillColor = 'gold'
+        obj.strokeColor = 'brown'
+      else if close(v)
+        obj.fillColor = 'gray'
+        obj.strokeColor = 'black'
       return obj
     return
 
