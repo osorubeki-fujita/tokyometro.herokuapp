@@ -1,3 +1,6 @@
+
+__END__
+
 # coding: utf-8
 require 'httpclient'
 require 'json'
