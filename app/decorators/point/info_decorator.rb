@@ -2,9 +2,11 @@ class Point::InfoDecorator < Draper::Decorator
 
   delegate_all
 
+  REGEXP_FOR_MAKING_ID_URN_ON_HTML = /\Aurn\:ucode\:_0{4}1C0{13}10{5}30C(?=[\dA-F]+\Z)/
+
   def render_in_station_facility_page
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , li_classes: li_classes }
-%li{ class: li_classes , "data-geo_lat" => this.latitude , "data-geo_lng" => this.longitude }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , id_urn_on_html: id_urn_on_html , li_classes: li_classes }
+%li{ id: id_urn_on_html , class: li_classes , "data-geo_lat" => this.latitude , "data-geo_lng" => this.longitude }
   = this.render_main_in_station_facility_page
   = this.render_close_info
     HAML
@@ -112,7 +114,7 @@ class Point::InfoDecorator < Draper::Decorator
   private
 
   def li_classes
-    ary = [ :point , css_status_class_name ]
+    ary = [ :point , css_status_class_name , :link_to_map , type ]
     if has_only_info_to_display_as_main_info? and code_of_number_and_alphabet?
       ary << :text_en
     end
@@ -163,6 +165,10 @@ class Point::InfoDecorator < Draper::Decorator
         end
       end
     end
+  end
+
+  def id_urn_on_html
+    id_urn.gsub( REGEXP_FOR_MAKING_ID_URN_ON_HTML , "" ).downcase
   end
 
 end
