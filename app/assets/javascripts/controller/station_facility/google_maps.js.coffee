@@ -17,10 +17,10 @@ class GoogleMapsInStationFacility
   li_domains_of_points = (v) ->
     return ul_exits(v)
       .children( 'li.point' )
-  
+
   map_handler = (v) ->
     return $( "#map_handler" )
-  
+
   links_to_maps = (v) ->
     return map_handler(v)
       .children( ".links_and_current_position" )
@@ -30,18 +30,18 @@ class GoogleMapsInStationFacility
     return links_to_maps(v)
       .children( "li.link_to_map" )
       .filter( '#link_to_map_on_the_center_of_station , #link_to_map_of_current_position' )
-  
+
   #---- 領域の有無の判定
 
   has_map_canvas = (v) ->
     return v.domain.length > 0
-  
+
   has_ul_exits = (v) ->
     return ul_exits(v).length > 0
 
   has_map_handler = (v) ->
     return map_handler(v).length > 0
-  
+
   #---- 領域の属性
 
   width_of_exits_and_map = (v) ->
@@ -62,7 +62,7 @@ class GoogleMapsInStationFacility
 
   height_of_map_canvas = (v) ->
     return height_of_ul_exits(v)
-  
+
   #-------- 一般の処理
 
   process: ->
@@ -83,7 +83,7 @@ class GoogleMapsInStationFacility
 
   default_center_position_of_map = (v) ->
     return get_geo_attr( v , v.domain )
-  
+
   default_zoom_size = (v) ->
     return parseInt( v.domain.attr( "data-zoom" ) , 10 )
 
@@ -104,7 +104,7 @@ class GoogleMapsInStationFacility
       google.maps.event.addDomListener( window , 'load' , map_init_function(@) )
       google.maps.event.addDomListener( window , 'page:change' , map_init_function(@) )
     return
-  
+
   #-------- Google Maps の関数 (0.1) 現在表示されている地図の情報をセットする関数
   set_current_map_info = ( v , center , zoom ) ->
     v.current_map_info =
@@ -175,16 +175,16 @@ class GoogleMapsInStationFacility
   #-------- Google Maps の関数 (2) 地図の中心が変更されたときに実行される関数
   event_when_center_changed = ( v , map ) ->
     f = ->
-      set_link_for_open_large_size( v , map )
+      set_link_for_opening_large_size_map( v , map )
       change_display_settings_of_markers( v , map )
       return
     return f
 
   #-------- Google Maps の関数 (2.1) 大きい window で地図を開くためのリンクを初期化・更新する関数
-  set_link_for_open_large_size = ( v , map ) ->
+  set_link_for_opening_large_size_map = ( v , map ) ->
     center = map.getCenter()
     zoom = map.getZoom()
-    $( 'li#open_large_size' )
+    $( 'li#open_large_size_map' )
       .children( 'a' )
       .attr( 'href' , "https://www.google.co.jp/maps/@#{ center.lat() },#{ center.lng() },#{ zoom }z" )
     return
@@ -233,7 +233,7 @@ class GoogleMapsInStationFacility
     return
 
   event_when_mouseenter = ( v , map , _domain , zoom_min ) ->
-  
+
     #-------- 処理の内容
     f = ->
       # console.log 'event_when_mouseenter - begin'
@@ -434,7 +434,7 @@ class GeoInfoOnGoogleMaps
         str_en += " [Now closed]"
       return "#{ str_ja } #{ str_en }"
     return
-  
+
   marker_icon = (v) ->
     if v.station_main_marker
       return null
