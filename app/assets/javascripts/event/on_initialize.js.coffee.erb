@@ -7,12 +7,12 @@ class OnPageLoadHandler
     #---- header
 
     header = new Header()
-    ary.push header
+    ary.push( header )
 
     #---- document
 
     document = new Document()
-    ary.push document
+    ary.push( document )
 
     #---- concerns (1)
 
@@ -20,9 +20,9 @@ class OnPageLoadHandler
     station_matrixes = new StationMatrixes()
     railway_line_codes = new RailwayLineCodes()
 
-    ary.push railway_line_matrixes
-    ary.push station_matrixes
-    ary.push railway_line_codes
+    ary.push( railway_line_matrixes )
+    ary.push( station_matrixes )
+    ary.push( railway_line_codes )
 
     #---- controllers
 
@@ -32,17 +32,17 @@ class OnPageLoadHandler
     passenger_survey = new PassengerSurvey()
     fare_table = new FareTables()
 
-    ary.push railway_line
-    ary.push station_timetables
-    ary.push station_facility
-    ary.push passenger_survey
-    ary.push fare_table
+    ary.push( railway_line )
+    ary.push( station_timetables )
+    ary.push( station_facility )
+    ary.push( passenger_survey )
+    ary.push( fare_table )
 
     train_operation_infos = new TrainOperationInfos()
     train_location_infos = new TrainLocationInfos()
 
-    ary.push train_operation_infos
-    ary.push train_location_infos
+    ary.push( train_operation_infos )
+    ary.push( train_location_infos )
 
     #---- concerns (2)
 
@@ -58,20 +58,20 @@ class OnPageLoadHandler
     connecting_railway_line = new ConnectingRailwayLineInfo()
     on_click = new OnClickHandler()
 
-    ary.push station_link_list
-    ary.push selection_header_processor
-    ary.push real_time_info_processor
-    ary.push twitters_processor
-    ary.push now_developing_processor
-    ary.push problems_processor
-    ary.push side_menu_links
-    ary.push links_to_station_info_pages
-    ary.push connecting_railway_line
-    ary.push on_click
+    ary.push( station_link_list )
+    ary.push( selection_header_processor )
+    ary.push( real_time_info_processor )
+    ary.push( twitters_processor )
+    ary.push( now_developing_processor )
+    ary.push( problems_processor )
+    ary.push( side_menu_links )
+    ary.push( links_to_station_info_pages )
+    ary.push( connecting_railway_line )
+    ary.push( on_click )
     
     link_domains_to_set_hover_event = new LinkDomainsToSetHoverEvent()
     
-    ary.push link_domains_to_set_hover_event
+    ary.push( link_domains_to_set_hover_event )
 
     return ary
 

@@ -4,7 +4,8 @@ class GoogleMapsInStationFacility
 
   # constructor: ( @domain = $( 'iframe#map' ) ) ->
   constructor: ( @domain = $( '#map_canvas' ) ) ->
-  
+    @sleep_time_when_hover_on = 1000 # [ms]
+
   #---- 地図に関連する領域
 
   map_canvas_element = (v) ->
@@ -19,11 +20,14 @@ class GoogleMapsInStationFacility
   
   map_handler = (v) ->
     return $( "#map_handler" )
-
-  li_domains_of_map_without_link_to_large_size = (v) ->
+  
+  links_of_map = (v) ->
     return map_handler(v)
       .children( ".links_and_current_position" )
       .children( "ul#links_of_map" )
+
+  li_domains_of_map_without_link_to_large_size = (v) ->
+    return links_of_map(v)
       .children( "li.link_of_map" )
       .filter( '.to_center_of_station , .to_current_position' )
   
@@ -100,29 +104,75 @@ class GoogleMapsInStationFacility
       google.maps.event.addDomListener( window , 'load' , map_init_function(@) )
       google.maps.event.addDomListener( window , 'page:change' , map_init_function(@) )
     return
-
-  map_init_function = (v) ->
-    init_markers_of_exits(v)
-    init_markers_of_center(v)
-
-    _default_map_options = default_map_options(v)
-    set_current_map_info( v , _default_map_options.center.lat , _default_map_options.center.lng , _default_map_options.zoom )
-    v.in_li_domains = false
-
-    map = new google.maps.Map( map_canvas_element(v) , _default_map_options )
-
-    google.maps.event.addListener( map , 'idle', event_when_center_changed( v , map ) )
-    google.maps.event.addListenerOnce( map , 'idle', set_hover_and_click_event_to_li_domain_groups( v , map ) )
-    return
-
-
-  set_current_map_info = ( v , lat , lng , zoom ) ->
+  
+  #-------- Google Maps の関数 (0.1) 現在表示されている地図の情報をセットする関数
+  set_current_map_info = ( v , center , zoom ) ->
     v.current_map_info =
-      lat: lat
-      lng: lng
+      center: center
       zoom: zoom
     return
 
+  #-------- Google Maps の関数 (0.2) 現在表示されている地図の中心位置を取得しオブジェクトを返す関数
+  current_center_position_of_map = ( v , map ) ->
+    center =
+      lat: map.getCenter().lat()
+      lng: map.getCenter().lng()
+    return center
+
+  enter_li_domains = (v) ->
+    # console.log 'enter_li_domains'
+    v.in_li_domains = true
+    return
+
+  leave_li_domains = (v) ->
+    # console.log 'leave_li_domains'
+    v.in_li_domains = false
+    return
+
+  from_out_of_li_domains = (v) ->
+    return !( v.in_li_domains )
+
+  markers = (v) ->
+    return [ v.markers_of_exits , v.marker_of_center ]
+
+  #-------- Google Maps の関数 (1) 初期化時に実行する関数
+
+  # 地図表示時、最初に実行される関数
+  map_init_function = (v) ->
+    init_fundamental_infos(v)
+
+    map = new google.maps.Map( map_canvas_element(v) , default_map_options(v) )
+    google.maps.event.addListener( map , 'idle', event_when_center_changed( v , map ) )
+    google.maps.event.addListenerOnce( map , 'idle', event_when_first_load_completed( v , map ) )
+    return
+
+  #-------- 基礎情報を初期化する関数
+  init_fundamental_infos = (v) ->
+    init_markers(v)
+    init_current_map_info(v)
+    init_current_mouse_position(v)
+    return
+
+  #-------- Google Maps の関数 (1.1) マーカーの情報を初期化する関数
+  init_markers = (v) ->
+    v.markers_of_exits = new GeoMarkersOnGoogleMaps( li_domains_of_points(v) , { min: default_zoom_size(v) + 1 } )
+    v.marker_of_center = new GeoMarkersOnGoogleMaps( v.domain , { max: default_zoom_size(v) } , true )
+    return
+
+  #-------- Google Maps の関数 (1.2) 現在表示されている地図の情報を初期化する関数
+  init_current_map_info = (v) ->
+    d = default_map_options(v)
+    set_current_map_info( v , d.center , d.zoom )
+    return
+
+  #-------- Google Maps の関数 (1.3) マウスの位置情報を初期化する関数
+  init_current_mouse_position = (v) ->
+    v.in_li_domains = false
+    return
+
+  #--------
+
+  #-------- Google Maps の関数 (2) 地図の中心が変更されたときに実行される関数
   event_when_center_changed = ( v , map ) ->
     f = ->
       set_link_for_open_large_size( v , map )
@@ -130,81 +180,64 @@ class GoogleMapsInStationFacility
       return
     return f
 
+  #-------- Google Maps の関数 (2.1) 大きい window で地図を開くためのリンクを初期化・更新する関数
   set_link_for_open_large_size = ( v , map ) ->
     center = map.getCenter()
     zoom = map.getZoom()
-    # console.log center
-
-    # console.log 'GoogleMapsInStationFacility\#set_link_for_open_large_size'
-    # console.log "lat: #{ center.lat() } / lng: #{ center.lng() }"
-
-    # # console.log "center: #{ center }"
-    # # console.log center
-
-    li_domain = $( 'li#open_large_size' )
-    # li_domain.attr( 'data-geo-lat' , center.lat() ).attr( 'data-geo-lng' , center.lng() )
-    li_domain.children( 'a' ).attr( 'href' , "https://www.google.co.jp/maps/@#{ center.lat() },#{ center.lng() },#{ zoom }z" )
-
+    $( 'li#open_large_size' )
+      .children( 'a' )
+      .attr( 'href' , "https://www.google.co.jp/maps/@#{ center.lat() },#{ center.lng() },#{ zoom }z" )
     return
 
   #--------
 
-  set_hover_and_click_event_to_li_domain_groups = ( v , map ) ->
+  #-------- Google Maps の関数 (3) 最初のロードが完了したときに実行される関数
+  event_when_first_load_completed = ( v , map ) ->
     f = ->
-      _li_domains_of_map_without_link_to_large_size = li_domains_of_map_without_link_to_large_size(v)
-      _li_domains_of_points = li_domains_of_points(v)
-      # console.log 'set_hover_and_click_event_to_li_domain_groups - begin'
+
+      # console.log 'event_when_first_load_completed - begin'
       if has_map_handler(v)
         # console.log 'has_map_handler'
-        set_hover_and_click_event_to_each_li_domain_group( v , map , _li_domains_of_map_without_link_to_large_size , default_zoom_size(v) - 1 )
-        set_tooltips( v , _li_domains_of_map_without_link_to_large_size )
+        event_for_each_link_group_when_first_load_completed( v , map , links_of_map(v) , li_domains_of_map_without_link_to_large_size(v) , default_zoom_size(v) - 1 )
+
       if has_ul_exits(v)
         # console.log 'has_ul_exits'
-        set_hover_and_click_event_to_each_li_domain_group( v , map , _li_domains_of_points , default_zoom_size(v) + 3 )
-        set_tooltips( v , _li_domains_of_points )
-        set_mouseleave_event_to_ul_exits(v)
-      # console.log 'set_hover_and_click_event_to_li_domain_groups - end'
+        event_for_each_link_group_when_first_load_completed( v , map , ul_exits(v) , li_domains_of_points(v) , default_zoom_size(v) + 3 )
+        change_display_settings_of_markers( v , map , true )
+
+      # console.log 'event_when_first_load_completed - end'
     return f
 
+  event_for_each_link_group_when_first_load_completed = ( v , map , ul_domain , li_domains , zoom_min ) ->
+    set_hover_and_click_event_to_each_li_domain_group( v , map , li_domains , zoom_min )
+    set_tooltips( v , li_domains )
+    set_mouseleave_event( v , ul_domain )
+    return
+
+  #-------- Google Maps の関数 (3.1) リンク領域にマウスオーバー・クリック時のイベントを登録する関数
   set_hover_and_click_event_to_each_li_domain_group = ( v , map , group , zoom_min ) ->
     group.each ->
       _domain = $(@)
-
       _domain.on
         # .on 'hover' は使用不可
-
         "mouseenter": ->
           event_when_mouseenter( v , map , _domain , zoom_min )
           return
-
         "mouseleave": ->
           event_when_mouseleave( v , map , _domain )
           return
-
         "click": ->
           event_when_click( v , map , _domain , zoom_min )
           return
-
       return
     return
-  
-  set_mouseleave_event_to_ul_exits = (v) ->
-    ul_exits(v).on
-      "mouseleave": ->
-        # console.log 'mouseleave_of_group'
-        leave_li_domains(v)
-        return
-    return
-  
-  sleep_time_when_hover_on = (v) ->
-    return 1000 # [ms]
 
   event_when_mouseenter = ( v , map , _domain , zoom_min ) ->
-    _sleep_time_when_hover_on = sleep_time_when_hover_on(v)
-
+  
+    #-------- 処理の内容
     f = ->
       # console.log 'event_when_mouseenter - begin'
-      set_current_map_info( v , map.getCenter().lat() , map.getCenter().lng() , map.getZoom() )
+      set_current_map_info( v , current_center_position_of_map( v , map ) , map.getZoom() )
       move_map( v , map , _domain , zoom_min )
       # console.log 'event_when_mouseenter - end'
       return
@@ -213,134 +246,152 @@ class GoogleMapsInStationFacility
     if from_out_of_li_domains(v)
       # delay を設定
       enter_li_domains(v)
-      timeout_event = setTimeout( f , sleep_time_when_hover_on )
-      _domain.data( 'timeout' , timeout_event )
-    #
+      # console.log 'sleep_time_when_hover_on: ' + v.sleep_time_when_hover_on
+
+      # timeout_event = setTimeout( f , v.sleep_time_when_hover_on )
+      # _domain.data( 'timeout' , timeout_event )
+
+      # setTimeout( f , v.sleep_time_when_hover_on )
+
+      f.call(@)
+
+    # リンク領域内部の移動のとき
     else
       f.call(@)
     return
 
   event_when_mouseleave = ( v , map , _domain ) ->
     # console.log 'event_when_mouseleave - begin'
-    clearTimeout( _domain.data( 'timeout' ) )
+
+    # clearTimeout( _domain.data( 'timeout' ) )
+
     reset_map( v , map )
     # console.log 'event_when_mouseleave - end'
     return
 
   event_when_click = ( v , map , _domain , zoom_min ) ->
     # console.log 'event_when_click - begin'
-    clearTimeout( _domain.data( 'timeout' ) )
+
+    # clearTimeout( _domain.data( 'timeout' ) )
+
     move_map( v , map , _domain , zoom_min )
-    set_current_map_info( v , map.getCenter().lat() , map.getCenter().lng() , map.getZoom() )
+    set_current_map_info( v , current_center_position_of_map( v , map ) , map.getZoom() )
     # console.log 'event_when_click - end'
     return
 
   move_map = ( v , map , li_domain , zoom_min ) ->
-    # console.log 'move_map'
-    # console.log li_domain
-    # console.log map
-    # console.log map.getCenter().lat()
-    # console.log map.getCenter().lng()
-    # console.log map.getZoom()
-
-    lat_lng_move_to = get_geo_attr( v , li_domain )
-
-    # console.log lat_lng_move_to
-
-    map.panTo( lat_lng_move_to )
+    map.panTo( get_geo_attr( v , li_domain ) )
     if v.current_map_info.zoom < zoom_min
       map.setZoom( zoom_min )
     return
 
   reset_map = ( v , map ) ->
-    lat_lng_move_to =
-      lat: v.current_map_info.lat
-      lng: v.current_map_info.lng
-
-    # console.log v.current_map_info
-    # console.log lat_lng_move_to
-
-    map.panTo( lat_lng_move_to )
+    map.panTo( v.current_map_info.center )
     map.setZoom( v.current_map_info.zoom )
     return
 
-  from_out_of_li_domains = (v) ->
-    return !( v.in_li_domains )
-
-  enter_li_domains = (v) ->
-    v.in_li_domains = true
-    return
-
-  leave_li_domains = (v) ->
-    v.in_li_domains = false
-    return
-
+  #-------- Google Maps の関数 (3.2) リンク領域に tooltip を設定する関数
   set_tooltips = ( v , domains ) ->
-    _sleep_time_when_hover_on = sleep_time_when_hover_on(v)
     option =
       potision:
         my: "left top"
         at: "left bottom"
       show:
         effect: "slideDown"
-        delay: _sleep_time_when_hover_on
+        delay: v.sleep_time_when_hover_on
       content: "<span class='text_ja'>クリックで地図の表示を固定</span>"
       items: '[class]'
       track: false
       tooltipClass: 'map_link'
-    # console.log 'set_tooltips'
-    # console.log domains
     domains.tooltip( option )
     return
 
-  init_markers_of_exits = (v) ->
-    console.log 'init_markers_of_exits'
-    ary = []
-    li_domains_of_points(v).each ->
-      point = new GeoInfoOnGoogleMaps( $(@) )
-      console.log point
-      console.log point.to_marker_obj()
-      ary += point.to_marker_obj()
-      return
-    v.markers_of_exits = ary
+  #-------- Google Maps の関数 (3.3) リンクのリストの領域からマウスが出たときのイベントを登録する関数
+  set_mouseleave_event = ( v , ul ) ->
+    ul.on
+      'mouseleave': ->
+        # console.log 'mouseleave_of_group'
+        leave_li_domains(v)
+        return
     return
 
-  init_markers_of_center = (v) ->
-    console.log 'init_markers_of_center'
-    center_geo_info = new GeoInfoOnGoogleMaps( v.domain )
-    console.log center_geo_info
-    console.log center_geo_info.to_marker_obj()
-    v.marker_of_center = center_geo_info.to_marker_obj()
-    return
-
-  change_display_settings_of_markers = ( v , map ) ->
-    if map.getZoom() >= default_zoom_size(v) + 1
-      set_marker_of_exits( v , map )
-    else
-      set_marker_of_exits( v , null )
-    return
-
-  set_marker_of_exits = ( v , map ) ->
-    console.log map
-    for exit_marker in v.markers_of_exits
-      exit_marker.setMap( map )
-    v.marker_of_center.setMap( map )
+  # マーカーの表示設定を変更する関数
+  change_display_settings_of_markers = ( v , map , force = false ) ->
+    # console.log 'change_display_settings_of_markers'
+    for marker_group in markers(v)
+      marker_group.refresh( map , force )
     return
 
 window.GoogleMapsInStationFacility = GoogleMapsInStationFacility
 
+class GeoMarkersOnGoogleMaps
+
+  #-------- 地物情報のリストを初期化
+  constructor: ( points , size_settings , station_main_marker ) ->
+    ary = []
+    # console.log 'GeoMarkersOnGoogleMaps\#constructor'
+    for point in points
+      geo_info = new GeoInfoOnGoogleMaps( $( point ) , station_main_marker )
+      ary.push( geo_info.to_marker_obj() )
+    @markers = ary
+    @size_settings = size_settings
+    @display = false
+
+  refresh: ( map , force ) ->
+    if to_display( @ , map )
+      if !( now_displayed(@) ) or force
+        display_markers_of_exits( @ , map )
+    else
+      if now_displayed(@) or force
+        hide_markers_of_exits(@)
+    return
+
+  to_display = ( v , map ) ->
+    if v.size_settings.min? and v.size_settings.max?
+      return ( v.size_settings.min <= map.getZoom() ) and ( map.getZoom() <= v.size_settings.max )
+    else if v.size_settings.min?
+      return v.size_settings.min <= map.getZoom()
+    else if v.size_settings.max?
+      return map.getZoom() <= v.size_settings.max
+    else
+      return true
+    return
+
+  now_displayed = (v) ->
+    return v.display
+
+  display_markers_of_exits = ( v , map ) ->
+    set_marker_of_exits( v , map )
+    v.display = true
+    return
+
+  hide_markers_of_exits = ( v ) ->
+    set_marker_of_exits( v , null )
+    v.display = false
+    return
+
+  # マーカーに地図を適用する関数
+  set_marker_of_exits = ( v , map ) ->
+    # console.log map
+    for marker in v.markers
+      # console.log marker
+      marker.setMap( map )
+    return
+
 class GeoInfoOnGoogleMaps
 
-  constructor: ( @domain ) ->
-  
+  constructor: ( @domain , @station_main_marker = false ) ->
+    # console.log @domain
+
   to_obj: ->
+    # console.log 'to_obj'
     obj =
       lat: lat(@)
       lng: lng(@)
-    # console.log obj
     return obj
 
   to_latlng_obj: ->
+    # console.log 'to_latlng_obj'
     obj = new google.maps.LatLng( lat(@) , lng(@) )
     return obj
 
@@ -352,10 +403,42 @@ class GeoInfoOnGoogleMaps
     obj =
       position: v.to_latlng_obj()
       title: marker_title(v)
+      icon: marker_icon(v)
     return obj
-  
+
   marker_title = (v) ->
-    return 'Marker'
+    if v.station_main_marker
+      map_canvas = new MapCanvas()
+      return map_canvas.to_title_on_google_maps_as_station_main_marker()
+    else
+      str_ja = "出入口"
+      str_en = "Entrance/Exit"
+      if has_code_info(v)
+        str_ja += " #{ code_info(v) }"
+        str_en += " #{ code_info(v) }"
+      if has_elevator(v)
+        str_ja += "（エレベーターあり）"
+        str_en += " [with elevator]"
+      if close(v)
+        str_ja += "【現在閉鎖中】"
+        str_en += "Now closed"
+      return "#{ str_ja } #{ str_en }"
+    return
+  
+  marker_icon = (v) ->
+    if v.station_main_marker
+      return null
+    else
+      obj =
+        path: 'M -4 -4 L 4 -4 L 4 4 L -4 4 z'
+        fillColor: 'gold'
+        fillOpacity: 0.9
+        scale: 1
+        strokeColor: 'brown'
+        strokeOpacity: 1
+        strokeWeight: 0.5
+      return obj
+    return
 
   lat = (v) ->
     return parseFloat( v.domain.attr( "data-geo-lat" ) )
@@ -371,3 +454,29 @@ class GeoInfoOnGoogleMaps
 
   close = (v) ->
     return v.domain.hasClass( 'close' )
+
+  has_code_info = (v) ->
+    return v.domain.children( '.code.text_en' ).length > 0
+
+  code_info = (v) ->
+    return v.domain.children( '.code.text_en' ).html()
+
+class MapCanvas
+
+  constructor: ( @domain = $( '#map_canvas' ) ) ->
+
+  station_codes = (v) ->
+    return v.domain.attr( 'data-station-codes' )
+
+  station_name_ja = (v) ->
+    return v.domain.attr( 'data-station-name-ja' )
+
+  station_name_hira = (v) ->
+    return v.domain.attr( 'data-station-name-hira' )
+
+  station_name_en = (v) ->
+    return v.domain.attr( 'data-station-name-en' )
+
+  to_title_on_google_maps_as_station_main_marker: ->
+    return "[#{ station_codes(@) }] #{ station_name_ja(@) }（#{ station_name_hira(@) } #{ station_name_en(@) }）"
+    

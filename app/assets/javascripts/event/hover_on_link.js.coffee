@@ -91,24 +91,24 @@ class LinkDomainsToSetHoverEvent
   list = (v) ->
     ary = []
 
-    ary.push link_to_top_page_on_header(v)
-    ary.push li_domains_in_sns_accounts(v)
-    ary.push li_domains_in_left_side_menu(v)
-    ary.push li_domains_of_links_to_document_pages(v)
-    ary.push li_domains_of_link_to_fare_contents_of_railway_lines(v)
-    ary.push li_domains_of_links_to_station_info_pages(v)
-    ary.push li_domains_of_links_to_railway_line_pages_from_station_facility_page(v)
-    ary.push li_domains_of_links_to_railway_line_pages_from_platform_info(v)
-    ary.push li_domains_of_links_to_railway_line_pages_from_railway_line_info(v)
+    ary.push( link_to_top_page_on_header(v) )
+    ary.push( li_domains_in_sns_accounts(v) )
+    ary.push( li_domains_in_left_side_menu(v) )
+    ary.push( li_domains_of_links_to_document_pages(v) )
+    ary.push( li_domains_of_link_to_fare_contents_of_railway_lines(v) )
+    ary.push( li_domains_of_links_to_station_info_pages(v) )
+    ary.push( li_domains_of_links_to_railway_line_pages_from_station_facility_page(v) )
+    ary.push( li_domains_of_links_to_railway_line_pages_from_platform_info(v) )
+    ary.push( li_domains_of_links_to_railway_line_pages_from_railway_line_info(v) )
 
-    ary.push li_domains_to_railway_line_page_of_passenger_survey(v)
-    ary.push li_domains_for_railway_line_each_year_page_of_passenger_survey(v)
-    ary.push li_domains_for_railway_line_each_controller_page_on_right_side_menu(v)
+    ary.push( li_domains_to_railway_line_page_of_passenger_survey(v) )
+    ary.push( li_domains_for_railway_line_each_year_page_of_passenger_survey(v) )
+    ary.push( li_domains_for_railway_line_each_controller_page_on_right_side_menu(v) )
 
-    ary.push li_domains_to_operator_page_of_passenger_survey(v)
-    ary.push li_domains_to_operator_each_year_page_of_passenger_survey(v)
+    ary.push( li_domains_to_operator_page_of_passenger_survey(v) )
+    ary.push( li_domains_to_operator_each_year_page_of_passenger_survey(v) )
 
-    ary.push li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page(v)
+    ary.push( li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page(v) )
 
     return ary
 

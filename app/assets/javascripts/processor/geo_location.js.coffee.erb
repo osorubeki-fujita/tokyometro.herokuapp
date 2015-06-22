@@ -76,8 +76,8 @@ class CurrentPosition
 
   message = (v) ->
     html_text_ary = []
-    html_text_ary.push "<div class\=\'text_ja\'>現在位置の情報を利用しています。</div>"
-    html_text_ary.push "<div class\=\'text_en\'>Using information of current position.</div>"
+    html_text_ary.push( "<div class\=\'text_ja\'>現在位置の情報を利用しています。</div>" )
+    html_text_ary.push( "<div class\=\'text_en\'>Using information of current position.</div>" )
     return html_text_ary.join( '' )
 
   precise = (v) ->
@@ -86,11 +86,11 @@ class CurrentPosition
     base_infos = current_position_base_infos(v)
 
     html_text_ary = []
-    html_text_ary.push "<div class\=\'title_of_current_position\'>現在位置</div>"
-    html_text_ary.push "<div class\=\'precise_infos_of_current_position\'>"
+    html_text_ary.push( "<div class\=\'title_of_current_position\'>現在位置</div>" )
+    html_text_ary.push( "<div class\=\'precise_infos_of_current_position\'>" )
 
     $.each base_infos , ->
-      html_text_ary.push "<p class\=\'content\'>#{ @ }</p>"
+      html_text_ary.push( "<p class\=\'content\'>#{ @ }</p>" )
       return
 
     html_text_ary.push( "</div>" )
@@ -143,7 +143,7 @@ class CurrentPosition
         if val.unit?
           # console.log 'unit'
           str += " #{ val.unit }"
-        ary.push str
+        ary.push( str )
 
       # console.log key
 
@@ -188,21 +188,21 @@ class CurrentPosition
     if position_on_the_ground_is_available(@)
       ary = []
 
-      ary.push "<li class\=\'link_of_map to_current_position\' data-geo-lat\=\'#{ @position.coords.latitude }\' data-geo-lng=\'#{ @position.coords.longitude }\'>"
-      ary.push "<div class\=\'content clearfix\'>"
+      ary.push( "<li class\=\'link_of_map to_current_position\' data-geo-lat\=\'#{ @position.coords.latitude }\' data-geo-lng=\'#{ @position.coords.longitude }\'>" )
+      ary.push( "<div class\=\'content clearfix\'>" )
 
-      ary.push "<div class\=\'icon\'>"
-      ary.push "<i class\=\'fa fa-<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ "current_position" ] %> fa-1x\'></i>"
-      ary.push "</div>"
+      ary.push( "<div class\=\'icon\'>" )
+      ary.push( "<i class\=\'fa fa-<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ "current_position" ] %> fa-1x\'></i>" )
+      ary.push( "</div>" )
 
-      ary.push "<div class\=\'text\'>"
-      ary.push "<div class\=\'text_ja\'>現在位置を</div>"
-      ary.push "<div class\=\'text_ja\'>地図の中心にする</div>"
-      ary.push "<div class\=\'text_en\'>Move the map to the current position</div>"
-      ary.push "</div>"
+      ary.push( "<div class\=\'text\'>" )
+      ary.push( "<div class\=\'text_ja\'>現在位置を</div>" )
+      ary.push( "<div class\=\'text_ja\'>地図の中心にする</div>" )
+      ary.push( "<div class\=\'text_en\'>Move the map to the current position</div>" )
+      ary.push( "</div>" )
 
-      ary.push "</div>"
-      ary.push "</div>"
+      ary.push( "</div>" )
+      ary.push( "</div>" )
 
       str += ary.join('')
     return str

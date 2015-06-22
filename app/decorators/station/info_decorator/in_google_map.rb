@@ -1,20 +1,5 @@
 class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSubDecorator
 
-  def json_title
-    "#{ name_ja_actual } #{ name_en }"
-  end
-
-  # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
-  def src_in_iframe
-    str = ::String.new
-    str << "https://www.google.com/maps/embed/v1/search?key=#{ ::TokyoMetro::GOOGLE_MAP_API_KEY }&q=#{ name_ja_url_encoded }"
-    str << "&center=#{ latitude },#{ longitude }"
-    str << "&zoom=16"
-    str << "&maptype=roadmap"
-    str << "&language=ja"
-    str
-  end
-  
   def render_map_canvas
     h.content_tag(
       :div ,
@@ -23,13 +8,12 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
       "data-geo-lng" => object.longitude ,
       "data-map-lang" => :ja ,
       "data-zoom" => 16 ,
-      "data-maptype" => :roadmap
+      "data-maptype" => :roadmap ,
+      "data-station-name-ja" => object.name_ja ,
+      "data-station-name-hira" => object.name_hira ,
+      "data-station-name-en" => object.name_en ,
+      "data-station-codes" => decorator.station_codes.join(" / ")
     ) do
-    end
-  end
-
-  def render_embeded_map
-    h.content_tag( :iframe , id: :map , src: url , frameborder: 0 ) do
     end
   end
 
@@ -47,6 +31,30 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
       %div{ class: :text_en }<
         = this.render_name_en( with_subname: false , prefix: "Move the map to " , suffix: "Sta." )
     HAML
+  end
+
+=begin
+
+  # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
+  def src_in_iframe
+    str = ::String.new
+    str << "https://www.google.com/maps/embed/v1/search?key=#{ ::TokyoMetro::GOOGLE_MAP_API_KEY }&q=#{ name_ja_url_encoded }"
+    str << "&center=#{ latitude },#{ longitude }"
+    str << "&zoom=16"
+    str << "&maptype=roadmap"
+    str << "&language=ja"
+    str
+  end
+
+  def render_embeded_map
+    h.content_tag( :iframe , id: :map , src: src_in_iframe , frameborder: 0 ) do
+    end
+  end
+
+=end
+
+  def json_title
+    "#{ name_ja_actual } #{ name_en }"
   end
 
 end

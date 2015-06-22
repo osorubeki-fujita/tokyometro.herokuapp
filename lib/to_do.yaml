@@ -12,6 +12,7 @@ SEO:
   - Meta タグ
   - SNS対応
   - パンくずリスト
+
 "App and Gem":
   -
     title: 地図・出入口情報
@@ -143,7 +144,6 @@ SEO:
       - Station::Info , RailwayLine または別の名前空間に自然なメソッドを定義
       - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
   - その他、必要な Refactoring
-
 
 "Real time":
   - 更新ボタンの動作

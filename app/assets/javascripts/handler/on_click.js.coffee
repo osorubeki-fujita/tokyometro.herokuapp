@@ -4,8 +4,8 @@ class OnClickHandler
     ary = []
     t = new TwittersProcessor()
     r = new RealTimeInfoProcessor()
-    ary.push t
-    ary.push r
+    ary.push(t)
+    ary.push(r)
     return ary
 
   process: ->

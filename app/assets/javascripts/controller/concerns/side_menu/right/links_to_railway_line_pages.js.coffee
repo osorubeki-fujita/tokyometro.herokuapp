@@ -64,12 +64,12 @@ class LinksToRailwayLinePages
   contents_in_domains_related_to_railway_lines = (v) ->
     ary = []
     $.each domains_of_railway_line_name(v) , ->
-      ary.push $(@)
+      ary.push( $(@) )
 
     d = main_content_in_link_to_operator_page(v)
     if d?
       $.each d , ->
-        ary.push $(@)
+        ary.push( $(@) )
         return
     return ary
 
