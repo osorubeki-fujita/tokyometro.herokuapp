@@ -191,10 +191,10 @@
   .links_and_current_position {
     @include float_left ;
   }
-  ul#links_of_map {
+  ul#links_to_maps {
     @extend %clearUlDefaultSettings ;
     background-color: #fff ;
-    li.link_of_map {
+    li.link_to_map {
       @extend %mapHandlerContentOfMapLink ;
       @extend %liBaseSettingsInLinkUl ;
       .content {

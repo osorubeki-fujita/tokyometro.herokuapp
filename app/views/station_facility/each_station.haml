@@ -26,8 +26,8 @@
 
 %div{ id: :map_handler , class: :clearfix }
   %div{ class: :links_and_current_position }
-    %ul{ id: :links_of_map , class: :clearfix }
-      %li{ id: :open_large_size , class: :link_of_map }
+    %ul{ id: :links_to_maps , class: :clearfix }
+      %li{ id: :open_large_size , class: :link_to_map }
         %a{ target: :_blank }<
           = ""
         %div{ class: [ :content , :clearfix ] }
@@ -39,7 +39,7 @@
                 = text_ja
             %div{ class: :text_en }<
               = "Open the map in large size"
-      = station_info_decorated_for_google_map.render_button_to_center_of_station( request )
+      = station_info_decorated_for_google_map.render_button_to_map_on_the_center_of_station( request )
     %div{ class: [ :debug , :clearfix ] }
       %div{ class: [ :message , :clearfix ] }
       %div{ class: [ :precise , :clearfix ] }

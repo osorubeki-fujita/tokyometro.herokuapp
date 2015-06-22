@@ -21,15 +21,15 @@ class GoogleMapsInStationFacility
   map_handler = (v) ->
     return $( "#map_handler" )
   
-  links_of_map = (v) ->
+  links_to_maps = (v) ->
     return map_handler(v)
       .children( ".links_and_current_position" )
-      .children( "ul#links_of_map" )
+      .children( "ul#links_to_maps" )
 
   li_domains_of_map_without_link_to_large_size = (v) ->
-    return links_of_map(v)
-      .children( "li.link_of_map" )
-      .filter( '.to_center_of_station , .to_current_position' )
+    return links_to_maps(v)
+      .children( "li.link_to_map" )
+      .filter( '#link_to_map_on_the_center_of_station , #link_to_map_of_current_position' )
   
   #---- 領域の有無の判定
 
@@ -198,7 +198,7 @@ class GoogleMapsInStationFacility
       # console.log 'event_when_first_load_completed - begin'
       if has_map_handler(v)
         # console.log 'has_map_handler'
-        event_for_each_link_group_when_first_load_completed( v , map , links_of_map(v) , li_domains_of_map_without_link_to_large_size(v) , default_zoom_size(v) - 1 )
+        event_for_each_link_group_when_first_load_completed( v , map , links_to_maps(v) , li_domains_of_map_without_link_to_large_size(v) , default_zoom_size(v) - 1 )
 
       if has_ul_exits(v)
         # console.log 'has_ul_exits'

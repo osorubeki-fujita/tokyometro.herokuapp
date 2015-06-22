@@ -35,8 +35,8 @@ class GeoLocationProcessor
 
     v.domain
       .children( '.links_and_current_position' )
-      .children( 'ul#links_of_map' )
-      .append( c.link_to_move_map_to_current_position() )
+      .children( 'ul#links_to_maps' )
+      .append( c.link_to_current_position() )
     return
 
   # ユーザーの現在の位置情報が取得できなかった場合
@@ -183,12 +183,12 @@ class CurrentPosition
         unit: "km/h"
     return obj
 
-  link_to_move_map_to_current_position: ->
+  link_to_current_position: ->
     str = ""
     if position_on_the_ground_is_available(@)
       ary = []
 
-      ary.push( "<li class\=\'link_of_map to_current_position\' data-geo-lat\=\'#{ @position.coords.latitude }\' data-geo-lng=\'#{ @position.coords.longitude }\'>" )
+      ary.push( "<li id='link_to_map_of_current_position' class\='link_to_map' data-geo-lat\=\'#{ @position.coords.latitude }\' data-geo-lng=\'#{ @position.coords.longitude }\'>" )
       ary.push( "<div class\=\'content clearfix\'>" )
 
       ary.push( "<div class\=\'icon\'>" )
