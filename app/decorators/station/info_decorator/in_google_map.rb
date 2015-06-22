@@ -4,22 +4,22 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
     h.content_tag(
       :div ,
       id: :map_canvas ,
-      "data-geo-lat" => object.latitude ,
-      "data-geo-lng" => object.longitude ,
+      "data-geo_lat" => object.latitude ,
+      "data-geo_lng" => object.longitude ,
       "data-map-lang" => :ja ,
       "data-zoom" => 16 ,
       "data-maptype" => :roadmap ,
-      "data-station-name-ja" => object.name_ja ,
-      "data-station-name-hira" => object.name_hira ,
-      "data-station-name-en" => object.name_en ,
-      "data-station-codes" => decorator.station_codes.join(" / ")
+      "data-station_name_ja" => object.name_ja ,
+      "data-station_name_hira" => object.name_hira ,
+      "data-station_name_en" => object.name_en ,
+      "data-station_codes" => decorator.station_codes.join(" / ")
     ) do
     end
   end
 
   def render_button_to_map_on_the_center_of_station( request )
     h.render inline: <<-HAML , type: :haml , locals: { this: self , request: request }
-%li{ id: :link_to_map_on_the_center_of_station , class: :link_to_map , "data-geo-lat" => this.object.latitude , "data-geo-lng" => this.object.longitude }
+%li{ id: :link_to_map_on_the_center_of_station , class: :link_to_map , "data-geo_lat" => this.object.latitude , "data-geo_lng" => this.object.longitude }
   %div{ class: [ :content , :clearfix ] }
     %div{ class: :icon }
       = ::TokyoMetro::App::Renderer::Icon.location( request , 1 ).render

@@ -459,10 +459,10 @@ class GeoInfoOnGoogleMaps
     return
 
   lat = (v) ->
-    return parseFloat( v.domain.attr( "data-geo-lat" ) )
+    return parseFloat( v.domain.attr( "data-geo_lat" ) )
 
   lng = (v) ->
-    return parseFloat( v.domain.attr( "data-geo-lng" ) )
+    return parseFloat( v.domain.attr( "data-geo_lng" ) )
 
   has_elevator = (v) ->
     return v.domain.children().hasClass( 'elevator' )
@@ -484,16 +484,16 @@ class MapCanvas
   constructor: ( @domain = $( '#map_canvas' ) ) ->
 
   station_codes = (v) ->
-    return v.domain.attr( 'data-station-codes' )
+    return v.domain.attr( 'data-station_codes' )
 
   station_name_ja = (v) ->
-    return v.domain.attr( 'data-station-name-ja' )
+    return v.domain.attr( 'data-station_name_ja' )
 
   station_name_hira = (v) ->
-    return v.domain.attr( 'data-station-name-hira' )
+    return v.domain.attr( 'data-station_name_hira' )
 
   station_name_en = (v) ->
-    return v.domain.attr( 'data-station-name-en' )
+    return v.domain.attr( 'data-station_name_en' )
 
   to_title_on_google_maps_as_station_main_marker: ->
     return "[#{ station_codes(@) }] #{ station_name_ja(@) }（#{ station_name_hira(@) } #{ station_name_en(@) }）"

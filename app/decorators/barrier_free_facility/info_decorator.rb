@@ -203,20 +203,20 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   def available_to_wheel_chair?
     object.available_to_wheel_chair?
   end
-  
+
   IN_DATA_FOR_TOOLTIP_JOINED_BY = "／"
 
   def tooltip_options_in_platform_info
     h = ::Hash.new
     h[ "data-place" ] = root_infos_to_s
     if service_details.present?
-      h[ "data-service-details" ] = service_details.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
+      h[ "data-service_details" ] = service_details.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
     end
     if escalator_available_to_wheel_chair?
       h[ "data-wheelchair" ] = "車いす対応"
     end
     if toilet_assistant_info_pattern.present?
-      h[ "data-toilet-assistant" ] = toilet_assistant_info_pattern.to_s
+      h[ "data-toilet_assistant" ] = toilet_assistant_info_pattern.to_s
     end
     if remark.present?
       h[ "data-remark" ] = remark_to_a.join( IN_DATA_FOR_TOOLTIP_JOINED_BY )

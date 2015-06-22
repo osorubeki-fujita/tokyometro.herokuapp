@@ -32,14 +32,14 @@ class StationFacilityPlatformInfoTable
       content: ->
         b = new BarrierFreeFacilityImage( $(@) )
         return b.content_in_tooltip()
-      items: "[data-place] , [data-wheelchair] , [data-toilet-assistant] , [data-remark] , [data-service-details]"
+      items: "[data-place] , [data-wheelchair] , [data-toilet_assistant] , [data-remark] , [data-service_details]"
       tooltipClass: 'tooltip_of_barrier_free_facility'
       track: false
 
     img_of_barrier_free_facilities(v).tooltip( option )
     img_of_barrier_free_facilities(v).on( 'hover' , hover_function_for_img_of_barrier_free_facilities(v) )
     return
-  
+
   hover_function_for_img_of_barrier_free_facilities = (v) ->
     p = new HoverEventForBarrierFreeFacilityInfoInTooltip()
     p.process()
@@ -125,7 +125,7 @@ class BarrierFreeFacilityImage
       inner_tag: 'ul'
       class_of_inner_tag: 'service_detail clearfix'
       function_to_make_inner_content: f
-    return content_in_tooltip_normal( v , 'data-service-details' , 'service_details' , option )
+    return content_in_tooltip_normal( v , 'data-service_details' , 'service_details' , option )
 
   content_in_tooltip_as_for_wheel_chair = (v) ->
     return content_in_tooltip_normal( v , 'data-wheelchair' , 'wheel_chair' )
@@ -137,7 +137,7 @@ class BarrierFreeFacilityImage
       long_content: true
       inner_tag: 'li'
       class_of_inner_tag: 'toilet_assistant'
-    return content_in_tooltip_normal( v , 'data-toilet-assistant' , 'toilet_assistants' , option )
+    return content_in_tooltip_normal( v , 'data-toilet_assistant' , 'toilet_assistants' , option )
 
   content_in_tooltip_as_for_remark = (v) ->
     option =
@@ -280,7 +280,7 @@ class ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage
   constructor: ( service_time ) ->
 
     @join_by = "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::JOIN_BY %>"
-    
+
     @specific_infos =
       time_title:
         icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ :time.to_s ] %>"

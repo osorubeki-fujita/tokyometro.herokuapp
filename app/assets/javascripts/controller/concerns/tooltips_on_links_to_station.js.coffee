@@ -11,7 +11,7 @@ class TooltipsOnLinksToStation
         element = $(@)
         t = new TooltipOnLinkToStation( element )
         return t.to_html()
-      items: "[data-station-code-images] , [data-text-ja] , [data-text-hiragana] , [data-text-en]"
+      items: "[data-station_code_images] , [data-text_ja] , [data-text_hira] , [data-text_en]"
       tooltipClass: 'station_name_in_tooltip'
       track: false
     @link_domains.tooltip( option )
@@ -24,16 +24,16 @@ class TooltipOnLinkToStation
   constructor: ( @element ) ->
 
   station_code_images = (v) ->
-    return v.element.attr( 'data-station-code-images' )
+    return v.element.attr( 'data-station_code_images' )
 
   text_ja = (v) ->
-    return v.element.attr( 'data-text-ja' )
+    return v.element.attr( 'data-text_ja' )
 
   text_hiragana = (v) ->
-    return v.element.attr( 'data-text-hiragana' )
+    return v.element.attr( 'data-text_hira' )
 
   text_en = (v) ->
-    return v.element.attr( 'data-text-en' )
+    return v.element.attr( 'data-text_en' )
 
   ary_of_station_code_images = (v) ->
     return station_code_images(v).split( '/' )

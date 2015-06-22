@@ -469,7 +469,7 @@ class Station::InfoDecorator < Draper::Decorator
   def train_location
     ::Station::InfoDecorator::InTrainLocation.new( self )
   end
-  
+
   def on_station_facility_page
     ::Station::InfoDecorator::OnStationFacilityPage.new( self )
   end
@@ -561,7 +561,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def datum_for_tooltip
-    { 'data-station-code-images' => station_codes.join( '/' ) , 'data-text-ja' => object.name_ja , 'data-text-hiragana' => object.name_hira , 'data-text-en' => object.name_en }
+    { 'data-station_code_images' => station_codes.join( '/' ) , 'data-text_ja' => object.name_ja , 'data-text_hira' => object.name_hira , 'data-text_en' => object.name_en }
   end
 
 end

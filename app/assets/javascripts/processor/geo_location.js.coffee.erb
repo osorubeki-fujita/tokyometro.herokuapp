@@ -1,7 +1,7 @@
 class GeoLocationProcessor
 
   constructor: ( @domain = $( "#map_handler" ) ) ->
-  
+
   has_map_handler = (v) ->
     return v.domain.length > 0
 
@@ -12,7 +12,7 @@ class GeoLocationProcessor
   # 現在の位置情報を表示
   set_info: ->
     if has_map_handler(@)
-      if geolocation_api_is_available(@) 
+      if geolocation_api_is_available(@)
         success = ( position ) =>
           callback_when_succeed_to_get_current_position( @ , position )
           return
@@ -188,7 +188,7 @@ class CurrentPosition
     if position_on_the_ground_is_available(@)
       ary = []
 
-      ary.push( "<li id='link_to_map_of_current_position' class\='link_to_map' data-geo-lat\=\'#{ @position.coords.latitude }\' data-geo-lng=\'#{ @position.coords.longitude }\'>" )
+      ary.push( "<li id='link_to_map_of_current_position' class\='link_to_map' data-geo_lat\=\'#{ @position.coords.latitude }\' data-geo_lng=\'#{ @position.coords.longitude }\'>" )
       ary.push( "<div class\=\'content clearfix\'>" )
 
       ary.push( "<div class\=\'icon\'>" )
@@ -249,7 +249,7 @@ class GeoLocationError
 class WithoutGeoLocation
 
   constructor: ->
-  
+
   message = (v) ->
     return "このデバイスでは位置情報を利用することができません。"
 

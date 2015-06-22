@@ -4,7 +4,7 @@ class Point::InfoDecorator < Draper::Decorator
 
   def render_in_station_facility_page
     h.render inline: <<-HAML , type: :haml , locals: { this: self , li_classes: li_classes }
-%li{ class: li_classes , "data-geo-lat" => this.latitude , "data-geo-lng" => this.longitude }
+%li{ class: li_classes , "data-geo_lat" => this.latitude , "data-geo_lng" => this.longitude }
   = this.render_main_in_station_facility_page
   = this.render_close_info
     HAML
