@@ -203,7 +203,7 @@ class GoogleMapsInStationFacility
       if has_ul_exits(v)
         # console.log 'has_ul_exits'
         event_for_each_link_group_when_first_load_completed( v , map , ul_exits(v) , li_domains_of_points(v) , default_zoom_size(v) + 3 )
-        change_display_settings_of_markers( v , map , true )
+        init_display_settings_of_markers( v , map )
 
       # console.log 'event_when_first_load_completed - end'
     return f
@@ -248,12 +248,12 @@ class GoogleMapsInStationFacility
       enter_li_domains(v)
       # console.log 'sleep_time_when_hover_on: ' + v.sleep_time_when_hover_on
 
-      # timeout_event = setTimeout( f , v.sleep_time_when_hover_on )
-      # _domain.data( 'timeout' , timeout_event )
+      timeout_event = setTimeout( f , v.sleep_time_when_hover_on )
+      _domain.data( 'timeout' , timeout_event )
 
       # setTimeout( f , v.sleep_time_when_hover_on )
 
-      f.call(@)
+      # f.call(@)
 
     # リンク領域内部の移動のとき
     else
@@ -263,17 +263,14 @@ class GoogleMapsInStationFacility
   event_when_mouseleave = ( v , map , _domain ) ->
     # console.log 'event_when_mouseleave - begin'
 
-    # clearTimeout( _domain.data( 'timeout' ) )
-
+    clearTimeout( _domain.data( 'timeout' ) )
     reset_map( v , map )
     # console.log 'event_when_mouseleave - end'
     return
 
   event_when_click = ( v , map , _domain , zoom_min ) ->
     # console.log 'event_when_click - begin'
-
-    # clearTimeout( _domain.data( 'timeout' ) )
-
+    clearTimeout( _domain.data( 'timeout' ) )
     move_map( v , map , _domain , zoom_min )
     set_current_map_info( v , current_center_position_of_map( v , map ) , map.getZoom() )
     # console.log 'event_when_click - end'
@@ -316,10 +313,16 @@ class GoogleMapsInStationFacility
     return
 
   # マーカーの表示設定を変更する関数
-  change_display_settings_of_markers = ( v , map , force = false ) ->
+  change_display_settings_of_markers = ( v , map ) ->
     # console.log 'change_display_settings_of_markers'
     for marker_group in markers(v)
-      marker_group.refresh( map , force )
+      marker_group.refresh( map )
+    return
+
+  init_display_settings_of_markers = ( v , map ) ->
+    # console.log 'init_display_settings_of_markers'
+    for marker_group in markers(v)
+      marker_group.init( map )
     return
 
 window.GoogleMapsInStationFacility = GoogleMapsInStationFacility
@@ -344,6 +347,13 @@ class GeoMarkersOnGoogleMaps
     else
       if now_displayed(@) or force
         hide_markers_of_exits(@)
+    return
+
+  init: ( map ) ->
+    if to_display( @ , map )
+      display_markers_of_exits( @ , map )
+    else
+      hide_markers_of_exits(@)
     return
 
   to_display = ( v , map ) ->
@@ -421,7 +431,7 @@ class GeoInfoOnGoogleMaps
         str_en += " [with elevator]"
       if close(v)
         str_ja += "【現在閉鎖中】"
-        str_en += "Now closed"
+        str_en += " [Now closed]"
       return "#{ str_ja } #{ str_en }"
     return
   
@@ -436,8 +446,12 @@ class GeoInfoOnGoogleMaps
         strokeOpacity: 1
         strokeWeight: 0.5
       if open(v)
-        obj.fillColor = 'gold'
-        obj.strokeColor = 'brown'
+        if has_elevator(v)
+          obj.fillColor = '#6c2b30'
+          obj.strokeColor = '#6b1920'
+        else
+          obj.fillColor = '#f7e27c'
+          obj.strokeColor = '#ed5b00'
       else if close(v)
         obj.fillColor = 'gray'
         obj.strokeColor = 'black'
@@ -483,4 +497,3 @@ class MapCanvas
 
   to_title_on_google_maps_as_station_main_marker: ->
     return "[#{ station_codes(@) }] #{ station_name_ja(@) }（#{ station_name_hira(@) } #{ station_name_en(@) }）"
-    
