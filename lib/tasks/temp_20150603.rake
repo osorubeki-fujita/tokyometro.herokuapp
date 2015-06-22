@@ -41,7 +41,7 @@ namespace :temp do
   
   #-------- SurroundingArea
 
-  task :surrounding_area_20150603_bugfix_on_development => :environment do
+  task :surrounding_area_20150603_bug_fix_on_development => :environment do
     [
       {
         station_facility_same_as: "odpt.StationFacility:TokyoMetro.OmoteSando" ,

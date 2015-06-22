@@ -2,10 +2,6 @@ Design:
   - ブラウザによって表示が崩れる問題を修正
   - SNSボタンの設置
   - サイドメニューをページ上部へ（横に並べる）
-  -
-    title: 駅施設ページ ホーム情報タブ
-    contents:
-      - 主要施設に tooltip の導入
   - "必要な部分に class='clearfix' を設定"
 
 SEO:
@@ -36,10 +32,6 @@ SEO:
           - 構造に無駄がないかチェック
           - RSpec を使用
           - 必要ならば整理
-      -
-        title: 銀座駅に神田駅の情報が含まれている!?【フォーラムにて報告済】
-        contents:
-          - 問題の出入口は、urn:ucode:_00001C000000000000010000030C40CF
   -
     title: App - 名前空間の見直し - Model / Decorator
     contents:
@@ -62,7 +54,11 @@ SEO:
           - #{Xxxx.underscore.pluralize}\.
           - #{Xxxx.underscore.pluralize}$
       - 【注意】db の rename_table を忘れないこと
-      - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
+      -
+        title: Operator 関連の名前空間（候補）
+        contents:
+          - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
+          - Operator::Info / Operator::AsTrainOwner
   -
     title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
     contents:
@@ -80,18 +76,24 @@ SEO:
       - SeedFactory
   - title: Gem - required_files の作成方法 (yaml)
   -
-    title: App - RailwayLine - column の整理
+    title: App - Db - column の整理
     contents:
-      - 一部を削除（特に「事業者名 + 路線名」）
-      - css_class_name もメソッドになるように定義し直す
+      - Operator
       -
-        title: module を作成
+        title: RailwayLine
         contents:
-          - RailwayLine と TokyoMetro::Static::RailwayLine::Info に include
-          - それぞれのクラスに適合するよう調整
-  - App - Operator - column の整理
-  - App - Station::InfoDecorator の整理
-  - App - RailwayLineDecorator の整理
+          - 一部を削除（特に「事業者名 + 路線名」）
+          - css_class_name もメソッドになるように定義し直す
+          -
+            title: module を作成
+            contents:
+              - RailwayLine と TokyoMetro::Static::RailwayLine::Info に include
+              - それぞれのクラスに適合するよう調整
+  -
+    title: App - Decorator の整理
+    contents:
+      - Station::InfoDecorator
+      - RailwayLineDecorator
   - App - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
   - App - 名前空間の見直し (model, decorator)
   -
@@ -415,7 +417,10 @@ Contents:
   -
     title: App, Design - SurroundingArea
     contents:
-      - 駅施設ページ ホーム情報タブ - 主要施設に tooltip を導入
+      -
+        title: 駅施設ページ ホーム情報タブ
+        contents:
+          - 主要施設に tooltip を導入
       - アルファベット表記、地理情報をDBに追加
       - Google Maps による表現
   - dd, dt
@@ -423,4 +428,13 @@ Contents:
   -
     title: 日付の判定・取得を行うメソッド（AM 3時で切り替え）
     contents:
-      - メソッド名は #date_of_current_diagram など？
+      - メソッド名は '\#date_of_current_diagram' など？
+
+"Reported":
+  -
+    title: 地図・出入口情報
+    contents:
+      -
+        title: 銀座駅に神田駅の情報が含まれている!?
+        contents:
+          - 問題の出入口は、urn:ucode:_00001C000000000000010000030C40CF

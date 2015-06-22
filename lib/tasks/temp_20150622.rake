@@ -1,14 +1,4 @@
-
-__END__
-
 # coding: utf-8
-require 'httpclient'
-require 'json'
-require 'active_support'
-require 'active_support/core_ext'
-Encoding.default_external = "utf-8"
-
-ACCESS_TOKEN = ARGV[0]
 
 def station_facility( station_name )
   response = HTTPClient.new.get( "https://api.tokyometroapp.jp/api/v2/datapoints" , { "rdf:type" => "odpt:StationFacility" , "owl:sameAs" => "odpt.StationFacility:TokyoMetro.#{ station_name }" , "acl:consumerKey"=> ACCESS_TOKEN } )
@@ -31,8 +21,20 @@ def inspect_service_detail( station_name , *b_names )
   end
 end
 
-puts "● 霞ケ関"
-inspect_service_detail( "Kasumigaseki" , "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.4" , "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.5" )
+namespace :temp do
+  task :bug_check_of_barrier_free_facility_20150622 => :environment do
+    require 'httpclient'
+    require 'json'
+    require 'active_support'
+    require 'active_support/core_ext'
+    Encoding.default_external = "utf-8"
 
-puts "● 赤坂見附"
-inspect_service_detail( "AkasakaMitsuke" , "odpt.StationFacility:TokyoMetro.Ginza.AkasakaMitsuke.Outside.Escalator.1" )
+    ACCESS_TOKEN = ARGV[1]
+
+    puts "● 霞ケ関"
+    inspect_service_detail( "Kasumigaseki" , "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.4" , "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.5" )
+
+    puts "● 赤坂見附"
+    inspect_service_detail( "AkasakaMitsuke" , "odpt.StationFacility:TokyoMetro.Ginza.AkasakaMitsuke.Outside.Escalator.1" )
+  end
+end
