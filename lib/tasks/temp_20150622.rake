@@ -29,12 +29,17 @@ namespace :temp do
     require 'active_support/core_ext'
     Encoding.default_external = "utf-8"
 
-    ACCESS_TOKEN = ARGV[1]
+    ACCESS_TOKEN = ENV['ACCESS_TOKEN']
 
     puts "● 霞ケ関"
     inspect_service_detail( "Kasumigaseki" , "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.4" , "odpt.StationFacility:TokyoMetro.Chiyoda.Kasumigaseki.Outside.Escalator.5" )
 
     puts "● 赤坂見附"
     inspect_service_detail( "AkasakaMitsuke" , "odpt.StationFacility:TokyoMetro.Ginza.AkasakaMitsuke.Outside.Escalator.1" )
+
+    # ARGV.slice( 1 , ARGV.size ).each{ |v|
+      # task v.to_sym do
+      # end
+    # }
   end
 end

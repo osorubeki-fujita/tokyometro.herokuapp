@@ -33,6 +33,11 @@ SEO:
           - RSpec を使用
           - 必要ならば整理
   -
+    title: App - Model in Csv
+    contents:
+      - 各 Model について、Csv 版をダウンロードできるようにする
+      - 特に TrainInformation::Text
+  -
     title: App - 名前空間の見直し - Model / Decorator
     contents:
       - モデル名を Xxxx としたとき、正規表現は
