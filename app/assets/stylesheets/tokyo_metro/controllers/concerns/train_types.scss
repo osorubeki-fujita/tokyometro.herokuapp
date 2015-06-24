@@ -1,7 +1,6 @@
 @charset "utf-8";
 
 @import 'train_types/box.scss' ;
-@import 'train_types/odakyu_romance_car.scss' ;
 
 #train_types {
   .train_type_displayed {
@@ -195,6 +194,11 @@
   .romance_car_normal {
     $color: $train_type_chiyoda_romance_car_normal_color;
     $bgcolor: $train_type_chiyoda_romance_car_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_standard {
+    $color: $train_type_chiyoda_romance_car_standard_color;
+    $bgcolor: $train_type_chiyoda_romance_car_standard_bgcolor;
     @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
   }
 }
