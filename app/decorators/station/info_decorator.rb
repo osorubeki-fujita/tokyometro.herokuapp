@@ -164,7 +164,7 @@ class Station::InfoDecorator < Draper::Decorator
 %ul{ id: :list_of_links_to_station_facility_page_of_connecting_other_stations , class: :clearfix }
   - station_infos.each do | station_info |
     %li{ class: [ :normal , :clearfix ] }
-      = link_to( "" , url_for( controller: controller , action: station_info.station_page_name ) , class: :link )
+      = link_to( "" , url_for( controller: controller , action: :action_for_station_page , station: station_info.station_page_name ) , class: :link )
       %div{ class: [ controller , :link_to_content , :clearfix ] }
         - unless controller.to_s == "station_facility"
           %div{ class: :icon }

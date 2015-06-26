@@ -4,10 +4,12 @@ Design:
   - サイドメニューをページ上部へ（横に並べる）
   - "必要な部分に class='clearfix' を設定"
 
+
 SEO:
   - Meta タグ
   - SNS対応
   - パンくずリスト
+
 
 "App and Gem":
   -
@@ -159,6 +161,7 @@ SEO:
       - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
   - その他、必要な Refactoring
 
+
 "Real time":
   - 更新ボタンの動作
   -
@@ -290,6 +293,7 @@ SEO:
           - 始発駅：武蔵小杉
           - 方面：池袋
 
+
 Contents:
   -
     title: 駅選択画面
@@ -413,6 +417,7 @@ Contents:
   - 福祉・バリアフリー系
   - 災害対策系
 
+
 "To  Consider":
   -
     title: App  - MetaStation のレイヤーを定義？
@@ -438,6 +443,7 @@ Contents:
       - Google Maps による表現
   - dd, dt
   - 列車に付記する注釈
+
 
 "Reported":
   -
