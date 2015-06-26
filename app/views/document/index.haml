@@ -56,5 +56,5 @@
   - RailsTokyoMetro::TO_DO.each do | category , contents |
     %h4{ class: [ :each_category , :text_en ] }<
       = category.capitalize
-    %ol{ class: [ :each_category , category.underscore ] }
+    %ol{ class: [ :each_category , category.gsub( " " , "_" ).downcase ] }
       = render_to_do( contents )
