@@ -11,6 +11,31 @@ SEO:
 
 "App and Gem":
   -
+    title: App - TrainType ロマンスカー
+    contents:
+      - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar)
+      - ログの取得
+      - custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard
+      - custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal
+  -
+    title: App - TrainType
+    contents:
+      -
+        title: メソッド名の混在の解消
+        contents:
+          - css_class_name
+          - css_class_in_document
+          - css_class_name_in_document
+  -
+    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
+    contents:
+          - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
+  -
+    title: App - Model in Csv
+    contents:
+      - 各 Model について、Csv 版をダウンロードできるようにする
+      - 特に TrainInformation::Text
+  -
     title: 地図・出入口情報
     contents:
       - geojson を利用したあれこれ
@@ -32,11 +57,6 @@ SEO:
           - 構造に無駄がないかチェック
           - RSpec を使用
           - 必要ならば整理
-  -
-    title: App - Model in Csv
-    contents:
-      - 各 Model について、Csv 版をダウンロードできるようにする
-      - 特に TrainInformation::Text
   -
     title: App - 名前空間の見直し - Model / Decorator
     contents:
@@ -64,10 +84,6 @@ SEO:
         contents:
           - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
           - Operator::Info / Operator::AsTrainOwner
-  -
-    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
-    contents:
-          - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
   -
     title: Gem - Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
     contents:
@@ -105,17 +121,6 @@ SEO:
     title: Gem - TokyoMetro::Static::TrainType
     contents:
       - yaml の構造をシンプルに
-  -
-    title: App - TrainType
-    contents:
-      - custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard を削除
-      - custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal の設定を変更
-      -
-        title: メソッド名の混在の解消
-        contents:
-          - css_class_name
-          - css_class_in_document
-          - css_class_name_in_document
   -
     title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色、列車種別）
     contents:
@@ -196,7 +201,7 @@ SEO:
   - 位置情報 駅の時刻を表示
   - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
   - 有楽町線・副都心線の統合
-  - 渋谷、小竹向原、和光市での種別変更対応
+  - 副都心線渋谷、小竹向原、和光市での種別変更対応
   - 南北線・三田線
   - ロマンスカーの列車名
   -
