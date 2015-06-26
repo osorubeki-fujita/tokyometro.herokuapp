@@ -1,17 +1,21 @@
-require 'httpclient'
-require 'json'
+namespace :temp do
+  task :train_location_infos_on_hanzomon_line_20150625 do
+    require 'httpclient'
+    require 'json'
 
-Encoding.default_external = "utf-8"
+    Encoding.default_external = "utf-8"
 
-ACCESS_TOKEN = '9790afccf7295b37c2e20ab98092579a9dc7057389d54a2865305e7096b1b0cf'
+    ACCESS_TOKEN = open( "#{ ::File.dirname( __FILE__ ) }/../../AccessToken" , "r:utf-8" ).read.chomp
 
-puts Time.now.to_s
+    puts Time.now.to_s
 
-response = HTTPClient.new.get( "https://api.tokyometroapp.jp/api/v2/datapoints" , { "rdf:type" => "odpt:TrainInformation" , "odpt:railway" => "odpt.Railway:TokyoMetro.Hanzomon" , "acl:consumerKey"=> ACCESS_TOKEN } )
-puts JSON.parse(response.body).to_s
+    response = HTTPClient.new.get( "https://api.tokyometroapp.jp/api/v2/datapoints" , { "rdf:type" => "odpt:TrainInformation" , "odpt:railway" => "odpt.Railway:TokyoMetro.Hanzomon" , "acl:consumerKey"=> ACCESS_TOKEN } )
+    puts JSON.parse(response.body).to_s
 
-response = HTTPClient.new.get( "https://api.tokyometroapp.jp/api/v2/datapoints" , { "rdf:type" => "odpt:Train" , "odpt:railway" => "odpt.Railway:TokyoMetro.Hanzomon" , "acl:consumerKey"=> ACCESS_TOKEN } )
-puts JSON.parse(response.body).to_s
+    response = HTTPClient.new.get( "https://api.tokyometroapp.jp/api/v2/datapoints" , { "rdf:type" => "odpt:Train" , "odpt:railway" => "odpt.Railway:TokyoMetro.Hanzomon" , "acl:consumerKey"=> ACCESS_TOKEN } )
+    puts JSON.parse(response.body).to_s
+  end
+end
 
 __END__
 

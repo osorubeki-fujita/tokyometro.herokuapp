@@ -196,11 +196,11 @@
     $bgcolor: $train_type_chiyoda_romance_car_normal_bgcolor;
     @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
   }
-  .romance_car_standard {
-    $color: $train_type_chiyoda_romance_car_standard_color;
-    $bgcolor: $train_type_chiyoda_romance_car_standard_bgcolor;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
+  // .romance_car_standard {
+    // $color: $train_type_chiyoda_romance_car_standard_color;
+    // $bgcolor: $train_type_chiyoda_romance_car_standard_bgcolor;
+    // @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  // }
 }
 .chiyoda_branch {
   .local_normal {

@@ -14,9 +14,16 @@ SEO:
     title: App - TrainType ロマンスカー
     contents:
       - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar)
-      - ログの取得
-      - custom.TrainTypeOtherOperator:Odakyu.RomanceCar.Standard
-      - custom.TrainType:TokyoMetro.Chiyoda.RomanceCar.Normal
+      - ログの生成
+  -
+    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
+    contents:
+      - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
+  -
+    title: App - Model in Csv
+    contents:
+      - 各 Model について、Csv 版をダウンロードできるようにする
+      - 特に TrainInformation::Text
   -
     title: App - TrainType
     contents:
@@ -26,15 +33,6 @@ SEO:
           - css_class_name
           - css_class_in_document
           - css_class_name_in_document
-  -
-    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
-    contents:
-          - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
-  -
-    title: App - Model in Csv
-    contents:
-      - 各 Model について、Csv 版をダウンロードできるようにする
-      - 特に TrainInformation::Text
   -
     title: 地図・出入口情報
     contents:
@@ -200,10 +198,11 @@ SEO:
   - 列車時刻表からの遅延判定
   - 位置情報 駅の時刻を表示
   - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
-  - 有楽町線・副都心線の統合
-  - 副都心線渋谷、小竹向原、和光市での種別変更対応
-  - 南北線・三田線
+  - 小竹向原、和光市、副都心線渋谷での種別変更対応（仮完了→時刻表データとの連携により本完了へ）
   - ロマンスカーの列車名
+  - 回送、臨時への対応
+  - 有楽町線・副都心線の統合
+  - 南北線・三田線
   -
     title: 【データ取得方法の変更】
     contents:
