@@ -11,11 +11,6 @@ SEO:
 
 "App and Gem":
   -
-    title: App - TrainType ロマンスカー
-    contents:
-      - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar)
-      - ログの生成
-  -
     title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
     contents:
       - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
@@ -24,6 +19,15 @@ SEO:
     contents:
       - 各 Model について、Csv 版をダウンロードできるようにする
       - 特に TrainInformation::Text
+  -
+    title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
+    contents:
+      - メソッド名は '\#date_of_current_diagram' など？
+  -
+    title: App - TrainType ロマンスカー
+    contents:
+      - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar)
+      - ログの生成
   -
     title: App - TrainType
     contents:
@@ -195,14 +199,14 @@ SEO:
     contents:
       - Rails での処理方法をもっと詳しくresearch
       - 効率化
-  - 列車時刻表からの遅延判定
-  - 位置情報 駅の時刻を表示
-  - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
-  - 小竹向原、和光市、副都心線渋谷での種別変更対応（仮完了→時刻表データとの連携により本完了へ）
   - ロマンスカーの列車名
   - 回送、臨時への対応
   - 有楽町線・副都心線の統合
   - 南北線・三田線
+  - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
+  - 列車時刻表からの遅延判定
+  - 小竹向原、和光市、副都心線渋谷での種別変更対応（現在は仮完了→列車時刻表データとの連携により本完了へ）
+  - 位置情報 駅の時刻を表示
   -
     title: 【データ取得方法の変更】
     contents:
@@ -434,10 +438,6 @@ Contents:
       - Google Maps による表現
   - dd, dt
   - 列車に付記する注釈
-  -
-    title: 日付の判定・取得を行うメソッド（AM 3時で切り替え）
-    contents:
-      - メソッド名は '\#date_of_current_diagram' など？
 
 "Reported":
   -
