@@ -12,14 +12,19 @@ SEO:
 
 
 "App and Gem":
+  - rake temp:operation_day_info_20150627 (on Heroku)
   -
     title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
     contents:
-      - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
+      - 固有識別子 (@id) を指定した検索・取得方法
+      - データ取得、データ検索のテスト
   -
     title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
     contents:
-      - メソッド名は '\#date_of_current_diagram' など？
+      - TokyoMetro.#current_operation_day など
+      - TokyoMetro::Modules::Db::Select::OperationDay
+      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認（フォーラムへ投稿）
+      - 日本の祝日（Gemを探す）
   -
     title: App - TrainType ロマンスカー
     contents:
