@@ -23,13 +23,14 @@ SEO:
     contents:
       - TokyoMetro.#current_operation_day など
       - TokyoMetro::Modules::Db::Select::OperationDay
-      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認（フォーラムへ投稿）
+      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】
       - 日本の祝日（Gemを探す）
   -
     title: App - TrainType ロマンスカー
     contents:
       - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar)
       - ログの生成 (TokyoMetro::Factory::Decorate::Api::TrainLocation::Info::TrainType\#process_log_of_romance_car)
+      - 確認後，疑問がある場合は【Forum】
   -
     title: App - Model in Csv
     contents:
@@ -168,14 +169,13 @@ SEO:
 
 
 "Real time":
-  - 更新ボタンの動作
   -
-    title: 遅れありのときに「平常通り」と表示される事態の解消
+    title: 遅れありのときに「平常通り」と表示される事態の解消【Complete to write -> Test】
     contents:
       - テストデータの作成方法を検討
       - RSpec でテスト
   -
-    title: 運行障害発生時の処理
+    title: 運行障害発生時の処理【Complete to write -> Test】
     contents:
       - 位置情報が取得できなくなる（運行中の列車が0になる）ことがある
       - 運行情報から障害発生を検知できるとき、位置情報をもとに「運行中の列車 なし」とするのはダメ → 修正
@@ -202,6 +202,8 @@ SEO:
       - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
       - Network - ネットワーク接続を確認してください - Please check network connection of your device
       - API server - データ取得に失敗しました ページを更新し再度データを取得してください - Failed to load information - Please reload this page
+  - 更新ボタンの動作
+  - 定期処理の実行
   -
     title: Ajax を利用
     contents:
@@ -214,6 +216,7 @@ SEO:
   - 日本時間であることを明記（海外からのアクセスを想定、JavaScriptで取得→表示する日時を確実に日本時間へ）
   - 列車時刻表からの遅延判定
   - 小竹向原、和光市、副都心線渋谷での種別変更対応（現在は仮完了→列車時刻表データとの連携により本完了へ）
+  - 種別変更のタイミングについて【Forum で確認】
   - 位置情報 駅の時刻を表示
   -
     title: 【データ取得方法の変更】
@@ -455,6 +458,19 @@ Contents:
     title: 地図・出入口情報
     contents:
       -
-        title: 銀座駅に神田駅の情報が含まれている!?
+        title: 銀座駅に神田駅の情報が含まれている
         contents:
           - 問題の出入口は、urn:ucode:_00001C000000000000010000030C40CF
+  -
+    title: 駅施設情報
+    contents:
+      -
+        title: バリアフリー
+        contents:
+          - 赤坂見附
+          - 霞ケ関
+      -
+        title: 周辺施設
+        contents:
+          - 虎ノ門
+          - 地下鉄赤塚
