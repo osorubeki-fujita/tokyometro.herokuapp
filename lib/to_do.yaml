@@ -17,11 +17,6 @@ SEO:
     contents:
       - 固有識別子 (@id) を指定した検索・取得方法（現状だと正しく取得できない…？）
   -
-    title: App - Model in Csv
-    contents:
-      - 各 Model について、Csv 版をダウンロードできるようにする
-      - 特に TrainInformation::Text
-  -
     title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
     contents:
       - メソッド名は '\#date_of_current_diagram' など？
@@ -29,7 +24,12 @@ SEO:
     title: App - TrainType ロマンスカー
     contents:
       - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar)
-      - ログの生成
+      - ログの生成 (TokyoMetro::Factory::Decorate::Api::TrainLocation::Info::TrainType\#process_log_of_romance_car)
+  -
+    title: App - Model in Csv
+    contents:
+      - 各 Model について、Csv 版をダウンロードできるようにする
+      - 特に TrainInformation::Text
   -
     title: App - TrainType
     contents:
