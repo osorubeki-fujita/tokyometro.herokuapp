@@ -10,8 +10,8 @@
     contents:
       - TokyoMetro.#current_operation_day など
       - TokyoMetro::Modules::Db::Select::OperationDay
+      - 日本の祝日については Gem 'holiday_japan' を利用
       - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】
-      - 日本の祝日（Gemを探す）
 
 "Real time":
   -

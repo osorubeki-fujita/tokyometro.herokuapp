@@ -103,7 +103,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'haml-rails'
 gem 'httpclient'
-gem 'holiday_jp'
 gem 'jquery-turbolinks'
 
 
