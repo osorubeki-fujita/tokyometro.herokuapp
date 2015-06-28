@@ -6,13 +6,17 @@ class TrainOperation::Status < ActiveRecord::Base
   def name_ja_for_display
     if name_ja.present?
       name_ja
+    elsif name_ja == "遅延"
+      nil
     else
       in_api
     end
   end
 
   def name_en_for_display
-    if name_en.present?
+    if name_ja == "遅延"
+      nil
+    elsif name_en.present?
       name_en
     else
       nil

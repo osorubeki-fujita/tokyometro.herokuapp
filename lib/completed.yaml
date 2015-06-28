@@ -1,24 +1,21 @@
 "App and Gem":
-  - rake temp:operation_day_info_20150627 (on Heroku)
-  -
-    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
-    contents:
-      - 固有識別子 (@id) を指定した検索・取得方法
-      - データ取得、データ検索のテスト
   -
     title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
     contents:
       - TokyoMetro.#current_operation_day など
       - TokyoMetro::Modules::Db::Select::OperationDay
       - 日本の祝日については Gem 'holiday_japan' を利用
-      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】
+      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】[To Do]
+  -
+    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
+    contents:
+      - 固有識別子 (@id) を指定した検索・取得方法
+      - データ取得、データ検索のテスト
+  - rake temp:operation_day_info_20150627 (on Heroku)
+
 
 "Real time":
-  -
-    title: 遅れありのときに「平常通り」と表示される事態の解消【Complete to write -> Test】
-    contents:
-      - テストデータの作成方法を検討
-      - RSpec でテスト
+  - 遅れありのときに「平常通り」と表示される事態の解消
   -
     title: 運行障害発生時の処理【Complete to write -> Test】
     contents:
@@ -42,7 +39,7 @@
               - Trains are behind schedule.
               - Today's operation was finished.
   -
-    title: コンテンツ取得失敗時の処理【Complete to write -> Test】
+    title: コンテンツ取得失敗時の処理
     contents:
       - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
       - Network - ネットワーク接続を確認してください - Please check network connection of your device
