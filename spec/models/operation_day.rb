@@ -6,12 +6,12 @@ RSpec.describe OperationDay, :type => :model do
     sh = ::OperationDay.find_by( same_as: custom:OperationDay:SaturdayHoliday" )
 
     it "\#current_operation_day" do
-      # 2015-06-27 16:00 (Sat)
+      # 2015-06-28 17:00 (Sat)
       expect( ::TokyoMetro.current_operation_day ).to eq( ::Time.new( 2015, 6 , 27 , 12 , 0 , 0 ) )
     end
 
     it "\#current_diagram" do
-      # 2015-06-27 16:00 (Sat)
+      # 2015-06-28 17:00 (Sat)
       expect( ::TokyoMetro.current_diagram ).to eq( sh )
     end
 
@@ -54,6 +54,14 @@ RSpec.describe OperationDay, :type => :model do
       expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 6 , 29 , 3 , 0 , 0 ) ).to eq(w)
       expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 6 , 29 , 12 , 0 , 0 ) ).to eq(w)
       expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 6 , 30 , 2 , 59 , 0 ) ).to eq(w)
+
+      expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 7 , 20 , 3 , 0 , 0 ) ).to eq( sh )
+      expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 7 , 20 , 12 , 0 , 0 ) ).to eq( sh )
+      expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 7 , 21 , 2 , 59 , 0 ) ).to eq( sh )
+
+      expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 7 , 21 , 3 , 0 , 0 ) ).to eq(w)
+      expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 7 , 21 , 12 , 0 , 0 ) ).to eq(w)
+      expect( ::TokyoMetro.diagram_as_of( ::Time.new( 2015, 7 , 22 , 2 , 59 , 0 ) ).to eq(w)
     end
   end
   
