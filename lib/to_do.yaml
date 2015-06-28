@@ -12,19 +12,6 @@ SEO:
 
 
 "App and Gem":
-  - rake temp:operation_day_info_20150627 (on Heroku)
-  -
-    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
-    contents:
-      - 固有識別子 (@id) を指定した検索・取得方法
-      - データ取得、データ検索のテスト
-  -
-    title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
-    contents:
-      - TokyoMetro.#current_operation_day など
-      - TokyoMetro::Modules::Db::Select::OperationDay
-      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】
-      - 日本の祝日（Gemを探す）
   -
     title: App - TrainType ロマンスカー
     contents:
@@ -169,39 +156,6 @@ SEO:
 
 
 "Real time":
-  -
-    title: 遅れありのときに「平常通り」と表示される事態の解消【Complete to write -> Test】
-    contents:
-      - テストデータの作成方法を検討
-      - RSpec でテスト
-  -
-    title: 運行障害発生時の処理【Complete to write -> Test】
-    contents:
-      - 位置情報が取得できなくなる（運行中の列車が0になる）ことがある
-      - 運行情報から障害発生を検知できるとき、位置情報をもとに「運行中の列車 なし」とするのはダメ → 修正
-      -
-        title: 例
-        contents:
-          -
-            title: 運行中の列車 なし - No train is operated now.
-            contents:
-              - 折返し運転
-              - 本日の運行は終了しました。
-              - Shuttle service is provided in section with no effect by accidents.
-              - Today's operation was finished.
-          -
-            title: 運行中の列車 なし / No train is operated now.
-            contents:
-              - ダイヤ乱れ
-              - 本日の運行は終了しました。
-              - Trains are behind schedule.
-              - Today's operation was finished.
-  -
-    title: コンテンツ取得失敗時の処理
-    contents:
-      - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
-      - Network - ネットワーク接続を確認してください - Please check network connection of your device
-      - API server - データ取得に失敗しました ページを更新し再度データを取得してください - Failed to load information - Please reload this page
   - 更新ボタンの動作
   - 定期処理の実行
   -
@@ -219,7 +173,7 @@ SEO:
   - 種別変更のタイミングについて【Forum で確認】
   - 位置情報 駅の時刻を表示
   -
-    title: 【データ取得方法の変更】
+    title: データ取得方法の変更
     contents:
       - 列車運行情報は必ず全線まとめて一気に取得
       - 更新が全路線同時だから
@@ -272,7 +226,7 @@ SEO:
           - 湯島発我孫子行き
           - 「代々木上原方面」になっている
       -
-        title: 朝の海老名始発
+        title: 朝の海老名始発（平日：海老名6:50 → 代々木上原 7:53 → 綾瀬 8:34）
         contents:
           - 千代田線 B0691E
           - 「代々木上原発」と表示？
@@ -424,53 +378,3 @@ Contents:
       - 間違った情報が入力されても正しい駅名を返すメソッド
   - 福祉・バリアフリー系
   - 災害対策系
-
-
-"To Consider":
-  -
-    title: App  - MetaStation のレイヤーを定義？
-    contents:
-      - Point::Info - Station::Info - StationFacility::Info
-  -
-    title: App - Modules → Module に名称変更？
-    contents:
-      - 既存の（Ruby 本体で使用されている）namespace を用いると Rails でエラー？
-  -
-    title: App - Rooting
-    contents:
-      - lib/constraints
-      - concerns
-  -
-    title: App, Design - SurroundingArea
-    contents:
-      -
-        title: 駅施設ページ ホーム情報タブ
-        contents:
-          - 主要施設に tooltip を導入
-      - アルファベット表記、地理情報をDBに追加
-      - Google Maps による表現
-  - dd, dt
-  - 列車に付記する注釈
-
-
-"Reported":
-  -
-    title: 地図・出入口情報
-    contents:
-      -
-        title: 銀座駅に神田駅の情報が含まれている
-        contents:
-          - 問題の出入口は、urn:ucode:_00001C000000000000010000030C40CF
-  -
-    title: 駅施設情報
-    contents:
-      -
-        title: バリアフリー
-        contents:
-          - 赤坂見附
-          - 霞ケ関
-      -
-        title: 周辺施設
-        contents:
-          - 虎ノ門
-          - 地下鉄赤塚

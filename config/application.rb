@@ -63,9 +63,11 @@ module RailsTokyoMetro
       ::TokyoMetro.set_fundamental_constants
 
       require ::File.join( ::Rails.root , 'lib' , 'patches' )
-      
+
       ::RailsTokyoMetro.module_eval do
-        const_set( :TO_DO , ::YAML.load_file( "#{ ::Rails.root }/lib/to_do.yaml" ) )
+        [ :to_do , :completed , :report_log , :to_consider ].each do | filename |
+          const_set( filename.upcase , ::YAML.load_file( "#{ ::Rails.root }/lib/#{ filename }.yaml" ) )
+        end
       end
 
       # ::TokyoMetro.set_api_consts( :station_facility , :passenger_survey , :station , :railway_line , :point )

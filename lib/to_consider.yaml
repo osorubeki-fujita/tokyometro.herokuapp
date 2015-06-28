@@ -1,0 +1,25 @@
+System:
+  -
+    title: App  - MetaStation のレイヤーを定義？
+    contents:
+      - Point::Info - Station::Info - StationFacility::Info
+  -
+    title: App - Modules → Module に名称変更？
+    contents:
+      - 既存の（Ruby 本体で使用されている）namespace を用いると Rails でエラー？
+  -
+    title: App - Rooting
+    contents:
+      - lib/constraints
+      - concerns
+  -
+    title: App, Design - SurroundingArea
+    contents:
+      -
+        title: 駅施設ページ ホーム情報タブ
+        contents:
+          - 主要施設に tooltip を導入
+      - アルファベット表記、地理情報をDBに追加
+      - Google Maps による表現
+  - dd, dt
+  - 列車に付記する注釈
