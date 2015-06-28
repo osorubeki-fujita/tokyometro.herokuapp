@@ -10,7 +10,7 @@ ul#links_to_document_pages {
   }
 }
 
-#to_do , #infos_in_db {
+#infos_in_db , .group_of_tasks {
   h3.title {
     font: {
       size: 16pt ;
@@ -58,7 +58,7 @@ ul#links_to_document_pages {
   }
 }
 
-#to_do {
+.group_of_tasks {
   h4.each_category {
     border: {
       left: solid 8px #ccc ;

@@ -79,7 +79,7 @@ ul#links_to_passenger_survey_pages {
 
 //-------- Document
 
-#to_do , #infos_in_db {
+#infos_in_db , .group_of_tasks {
   h3.title {
     @extend %backgroundOfMenu ;
     @extend %borderBottomOfMenu ;

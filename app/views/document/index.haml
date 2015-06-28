@@ -50,10 +50,10 @@
           %td{ class: :length_of_model }<
             = number_separated_by_comma( number )
 
-[ :to_do , :completed , :to_consider , :report_log ].each do | group_of_tasks |
-  %div{ id: group_of_tasks }<
+- [ :to_do , :completed , :to_consider , :report_log ].each do | group_of_tasks |
+  %div{ id: group_of_tasks , class: :group_of_tasks }<
     %h3{ class: [ :title , :text_en ] }<
-      = "To do"
+      = group_of_tasks.to_s.gsub( "_" , " " ).capitalize
     - RailsTokyoMetro.const_get( group_of_tasks.upcase ).each do | category , contents |
       %h4{ class: [ :each_category , :text_en ] }<
         = category.capitalize
