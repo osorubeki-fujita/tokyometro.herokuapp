@@ -10,16 +10,18 @@ SEO:
   - SNS対応
   - パンくずリスト
 
+
 Report:
   - 駅時刻表 odpt:StationTimetable の "@type" の値について（東西線，千代田線，南北線）
   - 駅施設情報 odpt:StationFacility の利用可能日について
+
 
 "App and Gem":
   -
     title: App - TrainType ロマンスカー
     contents:
       - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar) の確認
-      - ログの生成 (TokyoMetro::Factory::Decorate::Api::TrainLocation::Info::TrainType\#process_log_of_romance_car)
+      - ログの生成 (TokyoMetro::Factory::Convert::Customize::Api::TrainTimetable::RomanceCar::Info)
       - ログの確認後，疑問がある場合は【Forum】
   -
     title: App - Model in Csv

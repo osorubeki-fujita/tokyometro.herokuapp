@@ -78,7 +78,7 @@ namespace :temp do
       count_of_operation_days[ operation_day ] = operation_days.count { | item | item == operation_day }
     end
     puts count_of_operation_days.to_s
-    
+
     barrier_free_facilities_on_saturday_sunday_holiday = barrier_free_facilities.select { | item |
       item[ "odpt:serviceDetail" ].present? and item[ "odpt:serviceDetail" ].any? { | service_detail | service_detail[ "odpt:operationDays" ].present? and service_detail[ "odpt:operationDays" ] == "土日祝" }
     }
