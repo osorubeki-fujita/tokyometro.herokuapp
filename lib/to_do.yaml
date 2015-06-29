@@ -97,6 +97,10 @@ Report:
       - SeedFactory
   - title: Gem - required_files の作成方法 (yaml)
   -
+    title: App - Db - geojson
+    contents:
+      - 関連テーブルの列に URL を追加
+  -
     title: App - Db - column の整理
     contents:
       - Operator
