@@ -313,7 +313,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tokyo_metro (0.8.11)
+    tokyo_metro (0.8.12)
       haml
       holiday_japan (>= 1.2.0)
       log_finder (>= 0.1.0)
