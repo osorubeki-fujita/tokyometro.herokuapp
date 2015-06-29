@@ -17,6 +17,12 @@
 "Real time":
   - 遅れありのときに「平常通り」と表示される事態の解消
   -
+    title: コンテンツ取得失敗時の処理
+    contents:
+      - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
+      - Network - ネットワーク接続を確認してください - Please check network connection of your device
+      - API server - データ取得に失敗しました ページを更新し再度データを取得してください - Failed to load information - Please reload this page
+  -
     title: 運行障害発生時の処理【Complete to write -> Test】
     contents:
       - 位置情報が取得できなくなる（運行中の列車が0になる）ことがある
@@ -38,9 +44,3 @@
               - 本日の運行は終了しました。
               - Trains are behind schedule.
               - Today's operation was finished.
-  -
-    title: コンテンツ取得失敗時の処理
-    contents:
-      - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
-      - Network - ネットワーク接続を確認してください - Please check network connection of your device
-      - API server - データ取得に失敗しました ページを更新し再度データを取得してください - Failed to load information - Please reload this page
