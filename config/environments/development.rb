@@ -85,7 +85,7 @@ Rails.application.configure do
 
   #--------
 
-  config.romance_car_logger = ::Logger.new( 'log/romance_car_development.log' , 'daily' )
+  config.romance_car_logger = ::Logger.new( ::Rails.root.join( 'log/romance_car_development.log' ) , 'daily' )
 
   #--------
 
