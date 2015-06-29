@@ -26,6 +26,7 @@
 /dev/
 /db/csv/*/*.csv
 /provided_by_tokyo_metro/
+/invalid_station_timetable_context.txt
 
 /public/dev-assets/*/**.*
 /tmp
