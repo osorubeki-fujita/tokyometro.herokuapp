@@ -10,7 +10,7 @@
     title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
     contents:
       - 固有識別子 (@id) を指定した検索・取得方法
-      - データ取得、データ検索のテスト
+      - データ取得、データ検索
 
 
 "Real time":
