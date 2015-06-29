@@ -1,7 +1,7 @@
 # coding: utf-8
 
 namespace :temp do
-  task :bug_check_of_station_timetable_context_20150629 => :environment do
+  task :bug_check_of_station_timetable_context_20150630 => :environment do
     require 'httpclient'
     require 'json'
     require 'active_support'
@@ -34,7 +34,7 @@ namespace :temp do
 
   end
 
-  task :bug_check_of_operation_day_20150629_1 => :environment do
+  task :bug_check_of_operation_day_20150630_1 => :environment do
     require 'httpclient'
     require 'json'
     require 'active_support'
@@ -47,7 +47,7 @@ namespace :temp do
     puts station_facility_at_ginza[ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == "odpt.StationFacility:TokyoMetro.Hibiya.Ginza.Outside.Elevator.2" }.to_s
   end
 
-  task :bug_check_of_operation_day_20150629_2 => :environment do
+  task :bug_check_of_operation_day_20150630_2 => :environment do
     require 'httpclient'
     require 'json'
     require 'active_support'
@@ -83,5 +83,19 @@ namespace :temp do
       item[ "odpt:serviceDetail" ].present? and item[ "odpt:serviceDetail" ].any? { | service_detail | service_detail[ "odpt:operationDays" ].present? and service_detail[ "odpt:operationDays" ] == "土日祝" }
     }
     puts barrier_free_facilities_on_saturday_sunday_holiday.to_s
+  end
+
+  task :bug_check_of_operation_day_20150630_3 => :environment do
+    require 'httpclient'
+    require 'json'
+    require 'active_support'
+    require 'active_support/core_ext'
+    Encoding.default_external = "utf-8"
+
+    ACCESS_TOKEN = ENV['ACCESS_TOKEN']
+    response = HTTPClient.new.get( "https://api.tokyometroapp.jp/api/v2/datapoints" , { "rdf:type" => "odpt:StationFacility" , "owl:sameAs" => "odpt.StationFacility:TokyoMetro.AkasakaMitsuke" , "acl:consumerKey"=> ACCESS_TOKEN } )
+    station_facility_at_akasaka_mitsuke = JSON.parse( response.body ).first
+    puts station_facility_at_akasaka_mitsuke[ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == "odpt.StationFacility:TokyoMetro.Ginza.AkasakaMitsuke.Outside.Escalator.1" }.to_s
+    puts station_facility_at_akasaka_mitsuke[ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == "odpt.StationFacility:TokyoMetro.Marunouchi.AkasakaMitsuke.Outside.Escalator.1" }.to_s
   end
 end
