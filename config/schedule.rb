@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 90.seconds do
+every 60.seconds do
   runner "TokyoMetro::App::Renderer::RealTimeInfos.process_in_loop"
 end
