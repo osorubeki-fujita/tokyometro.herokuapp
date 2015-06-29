@@ -95,4 +95,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #--------
+
+  config.romance_car_logger = ::Logger.new( 'log/romance_car_production.log' , 'daily' )
 end

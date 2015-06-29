@@ -80,9 +80,14 @@ Rails.application.configure do
 
   config.action_controller.default_url_options = { host: "localhost:3000" }
 
-
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #--------
+
+  config.romance_car_logger = ::Logger.new( 'log/romance_car_development.log' , 'daily' )
+
+  #--------
 
   config.after_initialize do
     #Bullet.enable = true
