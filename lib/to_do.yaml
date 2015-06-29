@@ -18,8 +18,9 @@ Report:
   -
     title: App - TrainType ロマンスカー
     contents:
-      - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar) ，ログの生成 (TokyoMetro::Factory::Decorate::Api::TrainLocation::Info::TrainType\#process_log_of_romance_car)
-      - 確認後，疑問がある場合は【Forum】
+      - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar) の確認
+      - ログの生成 (TokyoMetro::Factory::Decorate::Api::TrainLocation::Info::TrainType\#process_log_of_romance_car)
+      - ログの確認後，疑問がある場合は【Forum】
   -
     title: App - Model in Csv
     contents:
