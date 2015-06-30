@@ -30,9 +30,12 @@ class RailwayLine < ActiveRecord::Base
 
   has_many :twitter_accounts , as: :operator_or_railway_line
 
+  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
+
   include ::TokyoMetro::Modules::Common::Info::RailwayLine
   include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine
   include ::TokyoMetro::Modules::Db::Decision::Operator
+  include ::TokyoMetro::Modules::Db::Decision::RailwayLine
 
   default_scope {
     order( index: :desc )
