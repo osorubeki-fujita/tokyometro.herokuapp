@@ -84,6 +84,11 @@ class LinkDomainsToSetHoverEvent
       .children( 'ul#links_to_year_pages' )
       .children( 'ul.operator' )
 
+  link_to_csv_of_table = (v) ->
+    return $( '#infos_in_db' )
+      .children( '.to_csv' )
+      .children( '.link_to_csv' )
+
   li_domains_of_platform_info_tabs = (v) ->
     return $( 'ul#platform_info_tabs' )
       .children( 'li' )
@@ -109,6 +114,7 @@ class LinkDomainsToSetHoverEvent
     ary.push( li_domains_to_operator_each_year_page_of_passenger_survey(v) )
 
     ary.push( li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page(v) )
+    ary.push( link_to_csv_of_table(v) )
 
     return ary
 

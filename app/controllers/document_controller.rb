@@ -64,6 +64,18 @@ class DocumentController < ApplicationController
     render 'document/how_to_use' , layout: 'application'
   end
 
+  def csv_table
+    table_container = TableContainer.new( params )
+
+    if table_container.redirect_to_index_from_table_page?
+      redirect_to( controller: :document , action: :index , status: :not_found )
+      return
+    end
+
+    @datum = table_container.model_namespace_in_rails.all
+    render 'document/csv_table.csv' , layout: nil
+  end
+
   def table
     table_container = TableContainer.new( params )
 
@@ -77,12 +89,13 @@ class DocumentController < ApplicationController
 
     end
 
+    @model_namespace_in_url = table_container.model_namespace_in_url
+    @model_namespace_in_rails = table_container.model_namespace_in_rails
+
     infos = table_container.infos_to_render_normally
 
-    @model_namespace_in_rails = infos[ :model_namespace_in_rails ]
     @title = infos[ :title ]
-    # @datum = infos[ :datum ]
-    @datum = @model_namespace_in_rails.order( :id ).page( table_container.send( :page ) ).per( table_container.rows_in_a_page )
+    @datum = infos[ :datum ]
     render 'document/table' , layout: 'application_wide'
   end
 
@@ -106,10 +119,10 @@ class DocumentController < ApplicationController
     end
 
     attr_reader :rows_in_a_page
+    attr_reader :model_namespace_in_rails
 
     def infos_to_render_normally
       {
-        model_namespace_in_rails: @model_namespace_in_rails ,
         title: title ,
         datum: datum
       }
@@ -134,13 +147,13 @@ class DocumentController < ApplicationController
         ( @count * 1.0 / @rows_in_a_page ).ceil
       end
     end
-
-    private
     
     def model_namespace_in_url
       @params[ :model_namespace_in_url ]
     end
-    
+
+    private
+
     def page
       @params[ :page ].with_default_value(1).to_i
     end
@@ -149,20 +162,8 @@ class DocumentController < ApplicationController
       "#{ @model_namespace_in_rails } (#{ page }/#{ page_number_max })"
     end
 
-    # def id_min
-      # [ @count , ( page - 1 ) * @rows_in_a_page + 1 ].min
-    # end
-
-    # def id_max
-      # [ page * @rows_in_a_page , @count ].min
-    # end
-
-    # def id_range
-      # ( id_min..id_max ).to_a
-    # end
-
     def datum
-      @model_namespace_in_rails.page( page ).per( @rows_in_a_page ).order( :id )
+      @model_namespace_in_rails.order( :id ).page( page ).per( rows_in_a_page )
     end
 
   end

@@ -144,6 +144,9 @@ Rails.application.routes.draw do
     controller: :document ,
     constraints: { action: /(?:operators|train_owners|railway_lines|railway_directions|train_types)/ }
 
+  get 'document/table/:model_namespace_in_url.csv' ,
+    to: 'document#csv_table'
+
   get 'document/table/:model_namespace_in_url(/:page)' ,
     to: 'document#table'
 

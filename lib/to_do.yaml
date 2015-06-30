@@ -24,11 +24,6 @@ Report:
       - ログの生成 (TokyoMetro::Factory::Convert::Customize::Api::TrainTimetable::RomanceCar::Info)
       - ログの確認後，疑問がある場合は【Forum】
   -
-    title: App - Model in Csv
-    contents:
-      - 各 Model について、Csv 版をダウンロードできるようにする
-      - 特に TrainInformation::Text
-  -
     title: App - TrainType
     contents:
       -
