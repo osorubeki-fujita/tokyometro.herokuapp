@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  compress_assets = true
+  compress_assets = false
 
   #--------
 
