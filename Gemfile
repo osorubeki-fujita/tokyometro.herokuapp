@@ -23,7 +23,7 @@ gem 'positive_string_support' , '>= 0.1.3'
 
 gem 'required_files' , '>= 0.2.6' , group: [:development, :test]
 
-gem 'tokyo_metro' , ">= 0.8.8"
+gem 'tokyo_metro' , ">= 0.8.12"
 
 #-------- development 環境
 
