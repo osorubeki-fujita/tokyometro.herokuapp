@@ -129,3 +129,10 @@ ul#links_to_passenger_survey_pages {
     @extend %borderBottomOfMenu ;
   }
 }
+
+#search_station {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}

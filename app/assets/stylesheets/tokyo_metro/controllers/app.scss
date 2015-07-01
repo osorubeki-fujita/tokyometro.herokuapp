@@ -68,3 +68,19 @@ body {
   @include padding_8 ;
   background-color: #fff ;
 }
+
+
+//-------- index
+
+#search_station {
+  .content_header {
+    @extend %iconHeight32 ;
+    .text {
+      @include font_ja_and_en(10) ;
+    }
+  }
+  .search_box {
+    @include padding_8 ;
+  }
+  @include margin_bottom_32 ;
+}
