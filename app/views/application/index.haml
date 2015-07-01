@@ -1,19 +1,19 @@
 = render "common_content"
 
 - content_for :right_contents do
-  %div{ id: :search_station }
-    %div{ class: [ :content_header , :clearfix ] }
-      %div{ class: :icon }
-        = ::TokyoMetro::App::Renderer::Icon.station( request , 2 ).render
-      %div{ class: [ :text , :clearfix ] }
-        %div{ class: :text_ja }<
-          = "駅のご案内"
-        %div{ class: :text_en }<
-          = "Stations"
-    %div{ class: :search_box }
-    - #   = h.form_for( @station_infos ) do |f|
-    - #     = f.collection_select( :name_ja , @station_infos , :name_in_system , :name_ja )
-    - #
+  - # %div{ id: :search_station }
+  - #   %div{ class: [ :content_header , :clearfix ] }
+  - #     %div{ class: :icon }
+  - #       = ::TokyoMetro::App::Renderer::Icon.station( request , 2 ).render
+  - #     %div{ class: [ :text , :clearfix ] }
+  - #       %div{ class: :text_ja }<
+  - #         = "駅のご案内"
+  - #       %div{ class: :text_en }<
+  - #         = "Stations"
+  - #   %div{ class: :search_box }
+  - #   - #   = h.form_for( @station_infos ) do |f|
+  - #   - #     = f.collection_select( :name_ja , @station_infos , :name_in_system , :name_ja )
+  - #   - #
       
   = @twitter_processor.render
 
