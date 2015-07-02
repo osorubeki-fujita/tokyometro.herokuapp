@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+$i: 1 ;
+@while $i <= 5 {
+  .icon_img_#{$i}x {
+    $length: $i * 16px ;
+    width: $length ;
+    height: $length ;
+  }
+  $i: $i + 1 ;
+}

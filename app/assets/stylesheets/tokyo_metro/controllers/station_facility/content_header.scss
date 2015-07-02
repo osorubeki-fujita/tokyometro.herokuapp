@@ -1,0 +1,74 @@
+@charset "utf-8" ;
+@import '../../fundamental_settings.scss' ;
+
+%tokyoMetroRailwayLinesTitle {
+  $base_bgcolor: desaturate( $operator_color , 10% ) ;
+  $rate: 0.2 ;
+  $bgcolor: rgba( $base_bgcolor , $rate ) ;
+  $color_stop_point_1_moz : 50% ;
+  $color_stop_point_1_webkit : 0.5 ;
+  $color_stop_point_2_moz : 80% ;
+  $color_stop_point_2_webkit : 0.8 ;
+  $color_1 : rgba( $base_bgcolor , $rate * 1.2 ) ;
+  $color_2 : rgba( $base_bgcolor , $rate * 0.9 ) ;
+  $color_3 : rgba( $base_bgcolor , $rate * 0.5 ) ;
+  //
+  background: $bgcolor ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+      #{$bgcolor},
+      #{$color_1} #{$color_stop_point_1_moz},
+      #{$color_2} #{$color_stop_point_2_moz} ,
+      #{$color_3}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+      from( #{$bgcolor} ),
+      color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+      color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+      to( #{$color_3} )
+  );
+}
+
+%connectingRailwayLinesTitle {
+  $base_bgcolor: mix( $operator_color , $jp_traditional_yokan_iro , 30% ) ;
+  $rate: 0.1 ;
+  $bgcolor: rgba( $base_bgcolor , $rate ) ;
+  $color_stop_point_1_moz : 50% ;
+  $color_stop_point_1_webkit : 0.5 ;
+  $color_stop_point_2_moz : 80% ;
+  $color_stop_point_2_webkit : 0.8 ;
+  $color_1 : rgba( $base_bgcolor , $rate * 1.6 ) ;
+  $color_2 : rgba( $base_bgcolor , $rate * 1.2 ) ;
+  $color_3 : rgba( $base_bgcolor , $rate * 0.6 ) ;
+  //
+  background: $bgcolor ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+      #{$bgcolor},
+      #{$color_1} #{$color_stop_point_1_moz},
+      #{$color_2} #{$color_stop_point_2_moz} ,
+      #{$color_3}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+      from( #{$bgcolor} ),
+      color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+      color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+      to( #{$color_3} )
+  );
+}
+
+//--------
+
+#tokyo_metro_railway_lines {
+  .content_header {
+    @extend %tokyoMetroRailwayLinesTitle ;
+  }
+}
+
+#other_railway_lines {
+  .content_header {
+    @extend %connectingRailwayLinesTitle ;
+  }
+}

@@ -1,0 +1,33 @@
+- column_names = @datum.column_names
+
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @model_namespace_in_rails.to_s , nil ).render
+
+%div{ id: :infos_in_db }
+  %div{ class: [ :page_links , :top ] }
+    = page_entries_info( @datum )
+    = paginate( @datum )
+  %div{ class: [ :to_csv , :clearfix ] }
+    %div{ class: [ :link_to_csv , :clearfix ] }
+      = link_to( '' , url_for( controller: :document , action: :csv_table , model_namespace_in_url: @model_namespace_in_url ) , target: :_blank )
+      %div{ class: :icon }
+        = ::TokyoMetro::App::Renderer::Icon.file_text( request , 1 ).render
+      %div{ class: [ :text , :text_en ] }<
+        = "Csv"
+
+  %table{ class: :text_en }
+    %thead
+      %tr
+        - column_names.each do | column_name |
+          %td<
+            = column_name
+    %tbody
+      - @datum.each do | data |
+        %tr
+          - column_names.each do | column_name |
+            %td<
+              = data.send( column_name )
+  %div{ class: [ :page_links , :bottom ] }
+    = page_entries_info( @datum )
+    = paginate( @datum )

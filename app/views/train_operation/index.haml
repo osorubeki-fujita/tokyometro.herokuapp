@@ -1,0 +1,11 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = @twitter_processor.render
+  = @real_time_info_processor.render_meta_datum( include_train_location_infos: false )
+  = ::TokyoMetro::App::Renderer::RealTimeInfos::SideMenu::LinksToRailwayLinePages.new( request ).render
+
+= ::TrainOperation::InfoDecorator.render_top_title( request , domain_id_name: :train_operation_info_title )
+= @real_time_info_processor.render
+= ::TokyoMetro::App::Renderer::StationMatrix.new( request , @railway_lines , make_link_to_railway_line: true ).render
+= ::TokyoMetro::App::Renderer::StationLinkList.new( request , @tokyo_metro_station_dictionary_including_main_info ).render

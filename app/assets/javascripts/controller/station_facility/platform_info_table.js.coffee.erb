@@ -1,0 +1,338 @@
+#-------------------------------- プラットホーム情報の処理
+
+class StationFacilityPlatformInfoTable
+
+  constructor: ( @domain ) ->
+
+  transfer_infos = (v) ->
+    return v.domain.find( 'li.transfer_info' )
+
+  img_of_barrier_free_facilities = (v) ->
+    return v.domain
+      .find( 'li.inside_barrier_free_facility_info , li.outside_barrier_free_facility_info' )
+      .children( 'a' )
+      .children( 'img' )
+
+  process: ->
+    process_transfer_infos(@)
+    set_tooltip_to_img_of_barrier_free_facilities(@)
+    return
+
+  # 乗換情報の処理
+  process_transfer_infos = (v) ->
+    platform_infos = new StationFacilityTransferInfosInPlatformInfos( transfer_infos(v) )
+    platform_infos.process()
+    return
+
+  set_tooltip_to_img_of_barrier_free_facilities = (v) ->
+    option =
+      potision:
+        my: "left top"
+        at: "left bottom"
+      content: ->
+        b = new BarrierFreeFacilityImage( $(@) )
+        return b.content_in_tooltip()
+      items: "[data-place] , [data-wheelchair] , [data-toilet_assistant] , [data-remark] , [data-service_details]"
+      tooltipClass: 'tooltip_of_barrier_free_facility'
+      track: false
+
+    img_of_barrier_free_facilities(v).tooltip( option )
+    img_of_barrier_free_facilities(v).on( 'hover' , hover_function_for_img_of_barrier_free_facilities(v) )
+    return
+
+  hover_function_for_img_of_barrier_free_facilities = (v) ->
+    p = new HoverEventForBarrierFreeFacilityInfoInTooltip()
+    p.process()
+    return
+
+window.StationFacilityPlatformInfoTable = StationFacilityPlatformInfoTable
+
+class StationFacilityTransferInfosInPlatformInfos
+
+  constructor: ( @domains ) ->
+
+  process: ->
+    @domains.each ->
+      info = new StationFacilityTransferInfoInPlatformInfo( $(@) )
+      info.process()
+    return
+
+class StationFacilityTransferInfoInPlatformInfo
+
+  constructor: ( @domain ) ->
+
+  div_domain = (v) ->
+    return v.domain.children( '.with_link_to_railway_line_page , .railway_line_with_no_link' )
+
+  railway_line_code = (v) ->
+    return div_domain(v).children( '.railway_line_code_32' ).first()
+
+  railway_line_code_main = (v) ->
+    return railway_line_code(v).children().first()
+
+  railway_line_main_domain = (v) ->
+    return div_domain(v).children( '.railway_line' ).first()
+
+  text_domain = (v) ->
+    return railway_line_main_domain(v).children( '.text' ).first()
+
+  process: ->
+    process_railway_line_main_domain(@)
+    set_width_of_outer_domain(@)
+    return
+
+  process_railway_line_main_domain = (v) ->
+    _railway_line_main_domain = railway_line_main_domain(v)
+    p = new LengthToEven( _railway_line_main_domain , true )
+    p.set( { min_width: 84 } )
+    return
+
+  set_width_of_outer_domain = (v) ->
+    doms = div_domain(v).children()
+    p1 = new DomainsCommonProcessor( doms )
+    div_domain(v).css( 'width' , p1.sum_outer_width( true ) )
+    return
+
+
+class BarrierFreeFacilityImage
+
+  constructor: ( @domain ) ->
+
+  content_in_tooltip: ->
+    str = ""
+    str += "<div class='in_tooltip barrier_free_facility'>"
+    str += content_in_tooltip_as_for_place(@)
+    str += content_in_tooltip_as_for_service_detail(@)
+    str += content_in_tooltip_as_for_wheel_chair(@)
+    str += content_in_tooltip_as_for_toilet_assistants(@)
+    str += content_in_tooltip_as_for_remark(@)
+    str += "</div>"
+    # console.log str
+    return str
+
+  content_in_tooltip_as_for_place = (v) ->
+    return content_in_tooltip_normal( v , 'data-place' , 'place' )
+
+  content_in_tooltip_as_for_service_detail = (v) ->
+    f = ( item ) ->
+      # console.log 'f content_in_tooltip_as_for_service_detail: ' + item
+      p = new ServiceDetailInTooltipForBarrierFreeFacilityImage( item )
+      return p.content_in_tooltip()
+
+    option =
+      outer_tag: 'ul'
+      long_content: true
+      inner_tag: 'ul'
+      class_of_inner_tag: 'service_detail clearfix'
+      function_to_make_inner_content: f
+    return content_in_tooltip_normal( v , 'data-service_details' , 'service_details' , option )
+
+  content_in_tooltip_as_for_wheel_chair = (v) ->
+    return content_in_tooltip_normal( v , 'data-wheelchair' , 'wheel_chair' )
+
+  content_in_tooltip_as_for_toilet_assistants = (v) ->
+    option =
+      outer_tag: 'ul'
+      additional_class_of_outer_tag: 'clearfix'
+      long_content: true
+      inner_tag: 'li'
+      class_of_inner_tag: 'toilet_assistant'
+    return content_in_tooltip_normal( v , 'data-toilet_assistant' , 'toilet_assistants' , option )
+
+  content_in_tooltip_as_for_remark = (v) ->
+    option =
+      long_content: true
+    return content_in_tooltip_normal( v , 'data-remark' , 'remark' , option )
+
+  #--------
+
+  content_in_tooltip_normal = ( v , attr_name , class_name_of_outer_tag , option ) ->
+    if checkAttr( attr_name , { is_included_in: v.domain } )
+      content = v.domain.attr( attr_name )
+      if option? and option.long_content
+        str = content_in_tooltip_normal_with_option( v , content , class_name_of_outer_tag , option )
+      else
+        str = content_in_tooltip_normal_without_option( v , class_name_of_outer_tag , content )
+    else
+      str = ""
+    # console.log str
+    return str
+
+  #--------
+
+  content_in_tooltip_normal_with_option = ( v , content , class_name_of_outer_tag , option ) ->
+    str = ""
+    _class_name_of_outer_tag = class_name_of_outer_tag_in_tooltip_normal_with_option( v , class_name_of_outer_tag , option )
+    outer_tag = outer_tag_in_tooltip_normal_with_option( v , option )
+
+    str += "<#{ outer_tag } class='#{ _class_name_of_outer_tag }'>"
+
+    if option.long_content
+      inner_tag = inner_tag_in_tooltip_normal_with_option_and_long_content( v , option )
+      for item in content.split( "<%= ::BarrierFreeFacility::InfoDecorator::IN_DATA_FOR_TOOLTIP_JOINED_BY %>" )
+        if option.class_of_inner_tag?
+          str += "<#{ inner_tag } class='#{ option.class_of_inner_tag }'>"
+        else
+          str += "<#{ inner_tag }>"
+        if option.function_to_make_inner_content?
+          item_add_to_str = option.function_to_make_inner_content.call( v , item )
+          str += item_add_to_str
+        else
+          str += item
+        str += "</#{ inner_tag }>"
+    else
+      str += content
+
+    str += "</#{ outer_tag }>"
+    return str
+
+  class_name_of_outer_tag_in_tooltip_normal_with_option = ( v , class_name_of_outer_tag , option ) ->
+    str = class_name_of_outer_tag
+    if option.additional_class_of_outer_tag?
+      str += " #{ option.additional_class_of_outer_tag }"
+    return str
+
+  outer_tag_in_tooltip_normal_with_option = ( v , option ) ->
+    if option.outer_tag?
+      str = option.outer_tag
+    else
+      str = "div"
+    return str
+
+  inner_tag_in_tooltip_normal_with_option_and_long_content = ( v , option ) ->
+    if option.inner_tag?
+      str = option.inner_tag
+    else
+      str = "p"
+    return str
+
+  #--------
+
+  content_in_tooltip_normal_without_option = ( v , class_name_of_outer_tag , content ) ->
+    return "<div class='#{ class_name_of_outer_tag }'>#{ content }</div>"
+
+class ServiceDetailInTooltipForBarrierFreeFacilityImage
+
+  constructor: ( content ) ->
+    regexp_for_operation_day = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_OPERATION_DAY_TITLE %>：/
+    regexp_for_escalator_direction = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE %>：/
+    regexp_for_service_time = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_SERVICE_TIME_TITLE %>：/
+
+    for item in content.split( "<%= BarrierFreeFacilityServiceDetailDecorator::IN_DATA_FOR_TOOLTIP_JOINED_BY %>" )
+      if regexp_for_operation_day.test( item )
+        @operation_day = item.replace( regexp_for_operation_day , "" )
+      else if regexp_for_escalator_direction.test( item )
+        @escalator_direction = item.replace( regexp_for_escalator_direction , "" )
+      else if regexp_for_service_time.test( item )
+        @service_time = item.replace( regexp_for_service_time , "" )
+
+  content_in_tooltip: ->
+    str = ""
+    str += content_in_tooltip_as_for_operation_day(@)
+    str += content_in_tooltip_as_for_escalator_direction(@)
+    str += content_in_tooltip_as_for_service_time(@)
+    # console.log str
+    return str
+
+  content_in_tooltip_as_for_operation_day = (v) ->
+    str = ""
+    if v.operation_day?
+      matched_ary = v.operation_day.match(/^(.+) \(([\w\, ]+)\)$/)
+      [ whole , text_ja , text_en ] = matched_ary
+      str += "<li class='operation_day'>"
+      str += "<p class='text_ja'>#{ text_ja }</p>"
+      str += "<p class='text_en'>#{ text_en }</p>"
+      str += "</li>"
+    return str
+
+  content_in_tooltip_as_for_escalator_direction = (v) ->
+    str = ""
+    if v.escalator_direction?
+      str += "<li class='escalator_direction'>"
+      str += "<div class='direction_icons'>"
+
+      str += "<div class='direction_icon up'>"
+      if v.escalator_direction.match( /上り/ )
+        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_UP.to_s ] %>" )
+        str += i.to_html()
+      str += "</div>"
+
+      str += "<div class='direction_icon down'>"
+      if v.escalator_direction.match( /下り/ )
+        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_DOWN.to_s ] %>" )
+        str += i.to_html()
+      str += "</div>"
+
+      str += "</div>"
+      str += "<div class='text'>#{ v.escalator_direction }</div>"
+      str += "</li>"
+    return str
+
+  content_in_tooltip_as_for_service_time = (v) ->
+    str = ""
+    if v.service_time?
+      p = new ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage( v.service_time )
+      str += p.to_html()
+    return str
+
+class ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage
+
+  constructor: ( service_time ) ->
+
+    @join_by = "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::JOIN_BY %>"
+
+    @specific_infos =
+      time_title:
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ :time.to_s ] %>"
+      time_from:
+        text: "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::BEFORE_FIRST_TRAIN_TEXT %>"
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityServiceDetailPatternDecorator::BEFORE_FIRST_TRAIN_ICON.to_s ] %>"
+      time_until:
+        text: "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::AFTER_LAST_TRAIN_TEXT %>"
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityServiceDetailPatternDecorator::AFTER_LAST_TRAIN_ICON.to_s ] %>"
+    [ @time_from , @time_until ] = service_time.split( @join_by )
+
+  to_html: ->
+    str = ""
+    str += "<li class='service_time'>"
+    str += service_time_title(@)
+    str += time_from_str(@)
+    str += joint(@)
+    str += time_until_str(@)
+    str += "</li>"
+    return str
+
+  service_time_title = (v) ->
+    p = new FontAwesomeIconProcessor( v.specific_infos.time_title.icon )
+    return "<span class='service_time_title'>#{ p.to_html() }利用可能時間：</span>"
+
+  time_from_str = (v) ->
+    str = ""
+    if v.time_from is v.specific_infos.time_from.text
+      p = new FontAwesomeIconProcessor( v.specific_infos.time_from.icon )
+      str += "<span class='before_first_train'>#{ p.to_html() }#{ v.time_from }</span>"
+    else
+      str += "<span class='from'>#{ v.time_from }</span>"
+    return str
+
+  joint = (v) ->
+    return "<span class='joint'>#{ v.join_by }</span>"
+
+  time_until_str = (v) ->
+    str = ""
+    if v.time_until is v.specific_infos.time_until.text
+      p = new FontAwesomeIconProcessor( v.specific_infos.time_until.icon )
+      str += "<span class='after_last_train'>#{ p.to_html() }#{ v.time_until }</span>"
+    else
+      str += "<span class='until'>#{ v.time_until }</span>"
+    return str
+
+class HoverEventForBarrierFreeFacilityInfoInTooltip
+
+  constructor: ( @barrier_free_facility_in_tooltip = $( 'div.ui-tooltip' ).find( '.in_tooltip.barrier_free_facility' ) ) ->
+
+  process: ->
+    # console.log @barrier_free_facility_in_tooltip
+    p = new StationFacilityBarrierFreeFacilityInfoServiceDetail( @barrier_free_facility_in_tooltip )
+    p.process()
+    return

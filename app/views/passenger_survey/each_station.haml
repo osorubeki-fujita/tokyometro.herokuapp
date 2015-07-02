@@ -1,0 +1,10 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::Station.new( request , @station_info ).render
+
+= @station_info.decorate.render_title_of_passenger_survey
+%div{ id: :passenger_survey_contents }
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::Table::Station.new( request , @passenger_survey_infos , @make_graph , @passenger_survey_infos_all ).render
+  %div{ id: :passenge_survey_graph }
+    = render( "graph_of_each_station" , station: @station_info )

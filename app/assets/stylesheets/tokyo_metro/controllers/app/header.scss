@@ -1,0 +1,73 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+#header {
+  background-color: $jp_traditional_yokan_iro ;
+  color: #fff ;
+  // height: 48px ;
+  @include padding_left_right_16 ;
+  @include padding_top_4 ;
+  .top_title {
+    @include float_left ;
+    @extend %textEn ;
+    .main {
+      font: {
+        size: 20pt ;
+      }
+      @include margin_bottom_4 ;
+      @extend %linkInDiv ;
+      .version {
+        font: {
+          size: 9pt ;
+        }
+        @include margin_left_8 ;
+      }
+      &.hover {
+        background-color: #666 ;
+      }
+    }
+    .sub {
+      @include margin_bottom_4 ;
+      @extend %textEn ;
+      font: {
+        size: 9pt;
+      }
+    }
+  }
+  .developer {
+    @include float_right ;
+    font: {
+      size: 9pt ;
+    }
+    @extend %textEn ;
+    //----
+    .name {
+      border: {
+        bottom: dotted 1px #fff ;
+      }
+      @include padding_left_right_4 ;
+      @include margin_bottom_4 ;
+    }
+    ul#sns_accounts {
+      @include padding_0 ;
+      @include margin_top_0 ;
+      @include margin_bottom_4 ;
+      li.sns_account {
+        @extend %linkInDiv ;
+        list-style: none ;
+        font-size: 7.5pt;
+        i {
+          @include margin_left_right_4 ;
+        }
+        &.hover {
+          background-color: #666 ;
+        }
+      }
+    }
+    //----
+    a {
+      color: #fff ;
+    }
+  }
+}

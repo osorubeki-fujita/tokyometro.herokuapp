@@ -1,0 +1,152 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%fareCellCommonSettings {
+  @extend %textEn ;
+  font: {
+    size: 14pt ;
+    weight: bold ;
+  }
+  text-align: right ;
+  @include padding_right_4 ;
+}
+
+
+@mixin fareCellColorSettingIcCard1( $ic_card_color_base ) {
+  background-color: rgba( $ic_card_color_base , 0.2 ) ;
+}
+@mixin fareCellColorSettingIcCard2( $ic_card_color_base ) {
+  background-color: rgba( $ic_card_color_base , 0.3 ) ;
+}
+@mixin fareCellColorSettingIcCard3( $ic_card_color_base ) {
+  background-color: rgba( $ic_card_color_base , 0.4 ) ;
+}
+@mixin fareCellColorSettingIcCard4( $ic_card_color_base ) {
+  background-color: rgba( $ic_card_color_base , 0.5 ) ;
+}
+@mixin fareCellColorSettingIcCard5( $ic_card_color_base ) {
+  background-color: rgba( $ic_card_color_base , 0.6 ) ;
+}
+@mixin fareCellColorSettingIcCard6( $ic_card_color_base ) {
+  background-color: rgba( $ic_card_color_base , 0.7 ) ;
+}
+
+@mixin fareCellColorSettingTicket1( $ticket_color_base ) {
+  background-color: rgba( $ticket_color_base , 0.3 ) ;
+}
+@mixin fareCellColorSettingTicket2( $ticket_color_base ) {
+  background-color: rgba( $ticket_color_base , 0.4 ) ;
+}
+@mixin fareCellColorSettingTicket3( $ticket_color_base ) {
+  background-color: rgba( $ticket_color_base , 0.5 ) ;
+}
+@mixin fareCellColorSettingTicket4( $ticket_color_base ) {
+  background-color: rgba( $ticket_color_base , 0.6 ) ;
+}
+@mixin fareCellColorSettingTicket5( $ticket_color_base ) {
+  background-color: rgba( $ticket_color_base , 0.7 ) ;
+}
+@mixin fareCellColorSettingTicket6( $ticket_color_base ) {
+  background-color: rgba( $ticket_color_base , 0.8 ) ;
+}
+
+
+@mixin fareCellColorSettings( $ic_card_color_base , $ticket_color_base ) {
+  td.ic_card_adult_1 { // 133 北千住 - 綾瀬
+    @include fareCellColorSettingIcCard1( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_adult_2 { // 165
+    @include fareCellColorSettingIcCard2( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_adult_3 { // 195
+    @include fareCellColorSettingIcCard3( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_adult_4 { // 237
+    @include fareCellColorSettingIcCard4( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_adult_5 { // 278
+    @include fareCellColorSettingIcCard5( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_adult_6 { // 308
+    @include fareCellColorSettingIcCard6( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_child_1 { // 133 北千住 - 綾瀬
+    @include fareCellColorSettingIcCard1( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_child_2 { // 165
+    @include fareCellColorSettingIcCard2( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_child_3 { // 195
+    @include fareCellColorSettingIcCard3( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_child_4 { // 237
+    @include fareCellColorSettingIcCard4( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_child_5 { // 278
+    @include fareCellColorSettingIcCard5( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ic_card_child_6 { // 308
+    @include fareCellColorSettingIcCard6( $ic_card_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_adult_1 { // 140 北千住 - 綾瀬
+    @include fareCellColorSettingTicket1( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_adult_2 { // 170
+    @include fareCellColorSettingTicket2( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_adult_3 { // 200
+    @include fareCellColorSettingTicket3( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_adult_4 { // 240
+    @include fareCellColorSettingTicket4( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_adult_5 { // 280
+    @include fareCellColorSettingTicket5( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_adult_6 { // 310
+    @include fareCellColorSettingTicket6( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_child_1 { // 140 北千住 - 綾瀬
+    @include fareCellColorSettingTicket1( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_child_2 { // 170
+    @include fareCellColorSettingTicket2( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_child_3 { // 200
+    @include fareCellColorSettingTicket3( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_child_4 { // 240
+    @include fareCellColorSettingTicket4( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_child_5 { // 280
+    @include fareCellColorSettingTicket5( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+  td.ticket_child_6 { // 310
+    @include fareCellColorSettingTicket6( $ticket_color_base ) ;
+    @extend %fareCellCommonSettings ;
+  }
+}

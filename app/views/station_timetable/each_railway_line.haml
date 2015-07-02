@@ -1,0 +1,7 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = @twitter_processor.render
+
+= ::RailwayLineDecorator.render_title_of_station_timetable( @railway_lines )
+%div{ id: :station_timetable_contents }

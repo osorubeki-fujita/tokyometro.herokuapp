@@ -1,0 +1,110 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'concerns/station/in_table_cell.scss' ;
+@import 'fare/fare_cell.scss' ;
+@import 'fare/railway_line.scss' ;
+@import 'fare/starting_station.scss' ;
+
+%tdStationNameTopInFareTable {
+  .station_codes {
+    $length: 24px ;
+    @include float_left ;
+    @include margin_right_4 ;
+    img.station_code {
+      @include float_left ;
+      @include margin_right_4 ;
+      width: $length ;
+      height: $length ;
+    }
+  }
+  .text {
+    @include float_left ;
+    @include font_ja_and_en(9) ;
+    .text_ja {
+      .small {
+        font: {
+          size: 6.75pt ;
+          weight: normal ;
+        }
+      }
+      text-align: left ;
+    }
+    .text_en {
+      text-align: left ;
+    }
+  }
+  .arrow {
+    @include margin_top_4 ;
+    text-align: center ;
+  }
+}
+
+#fare_tables {
+  @extend %fareTableSettingOfEachRailwayLine ;
+  table.fare_table {
+    $ic_card_color_base: mix( $operator_color , $jp_traditional_usuzakura , 0.6 ) ;
+    $ticket_color_base: mix( $operator_color , $jp_traditional_hakuji , 0.6 ) ;
+    @include fareCellColorSettings( $ic_card_color_base , $ticket_color_base ) ;
+    //
+    @extend %stationInfoInTableCommonSettings ;
+    @extend %tdStartingStation ;
+    td {
+      border: solid 1px #999 ;
+    }
+    //
+    border-collapse: collapse ;
+    border-spacing: 0px ;
+    @include margin_bottom_32 ;
+    td {
+      @include padding_top_bottom_0 ;
+      @include padding_left_right_8 ;
+    }
+    //
+    td.station_name_top {
+      @extend %tdStationNameTopInFareTable ;
+    }
+    td.station_info {
+      $station_name_height: 40px ;
+      width: 192px ;
+      height: $station_name_height ;
+    }
+    td.normal_fare {
+      background-color: $jp_traditional_geppaku ;
+    }
+    td.ic_card {
+      background-color: rgba( $ic_card_color_base , 0.8 ) ;
+    }
+    td.ticket {
+      background-color: rgba( $ticket_color_base , 0.8 ) ;
+    }
+    %widthOfAdultAndChild {
+      width: 64px ;
+    }
+    td.adult {
+      @extend %widthOfAdultAndChild ;
+    }
+    td.child {
+      @extend %widthOfAdultAndChild ;
+    }
+    tr.empty_row {
+      height: 6px ;
+    }
+    td.no_fare {
+      background-color: #ccc ;
+    }
+    tr.header , tr.fares {
+      td {
+        @include padding_top_bottom_2 ;
+        font: {
+          size: 10.5pt ;
+        }
+      }
+    }
+    tr.header , tr.fares {
+      .small.text_en {
+        font-size: 7.35pt ;
+      }
+    }
+  }
+}

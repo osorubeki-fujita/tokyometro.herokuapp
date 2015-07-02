@@ -1,0 +1,81 @@
+@charset "utf-8" ;
+@import '../../../fundamental_settings.scss' ;
+
+//---------------- 角丸四角形
+
+//-------- 内部のテキストの設定
+%colorBoxTextSettings {
+  text-align: center ;
+  vertical-align: middle ;
+}
+
+//-------- float 属性の設定
+%colorBoxFloatSettings {
+  @include float_left ;
+}
+
+//-------- 線のスタイルと色の設定（標準）
+%colorBoxNormalBorder {
+  border: {
+    style: solid ;
+    color: #999 ;
+  }
+}
+
+//-------- colorBox 各種共通の設定
+%colorBoxCommonBase {
+  text-align: center ;
+  vertical-align: middle ;
+  @include float_left ;
+  //
+  // @extend %colorBoxFloatSettings ;
+  // @extend %colorBoxTextSettings ;
+  // @extend %colorBoxNormalBorder ;
+  //
+  border: {
+    style: solid ;
+    color: #999 ;
+  }
+}
+
+//-------- 大きさ・線の幅の設定
+// 上下・左右の border の幅を引く
+@mixin colorBoxSizeSettings( $width , $height , $border_radius , $border_width ) {
+  width: $width - $border_width * 2 ;
+  height: $height - $border_width * 2 ;
+  @include border_radius( $border_radius ) ;
+  border: {
+    width: $border_width ;
+  }
+}
+
+//-------- colorBox 内部のグラデーションの設定
+@mixin gradationSettingsOfColorBox( $color ) {
+  // 変数の定義
+  $color_stop_point_1_moz : 20% ;
+  $color_stop_point_1_webkit : 0.2 ;
+  $color_stop_point_2_moz : 50% ;
+  $color_stop_point_2_webkit : 0.5 ;
+  $color_stop_point_3_moz : 80% ;
+  $color_stop_point_3_webkit : 0.8 ;
+  $lightened_color_a : rgba( $color , 0.4 ) ;
+  $lightened_color_b : rgba( $color , 0.8 ) ;
+  //
+  background: #{ $color } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$lightened_color_a},
+    #{$lightened_color_b} #{$color_stop_point_1_moz},
+    #{$color} #{$color_stop_point_2_moz} ,
+    #{$lightened_color_b} #{$color_stop_point_3_moz} ,
+    #{$lightened_color_a}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$lightened_color_a} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$lightened_color_b} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color} ) ,
+    color-stop( #{ $color_stop_point_3_webkit } , #{$lightened_color_b} ) ,
+    to( #{$lightened_color_a} )
+  );
+}

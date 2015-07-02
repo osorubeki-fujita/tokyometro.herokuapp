@@ -1,0 +1,406 @@
+@charset "utf-8";
+
+@import 'train_types/box.scss' ;
+
+#train_types {
+  .train_type_displayed {
+    @extend %colorBoxBase_48_144 ;
+  }
+  .train_type_displayed_black {
+    @extend %colorBoxBase_48_144 ;
+  }
+}
+
+.through_operation_info_box {
+  .train_type_displayed {
+    @extend %colorBoxBase_32_64 ;
+  }
+  .train_type_displayed_black {
+    @extend %colorBoxBase_32_64 ;
+  }
+}
+
+.ginza {
+  .local_normal {
+    $color: $train_type_ginza_local_normal_color;
+    $bgcolor: $train_type_ginza_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.marunouchi {
+  .local_normal {
+    $color: $train_type_marunouchi_local_normal_color;
+    $bgcolor: $train_type_marunouchi_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.marunouchi_branch {
+  .local_normal {
+    $color: $train_type_marunouchi_branch_local_normal_color;
+    $bgcolor: $train_type_marunouchi_branch_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.hibiya {
+  .local_normal {
+    $color: $train_type_hibiya_local_normal_color;
+    $bgcolor: $train_type_hibiya_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.tozai {
+  .local_for_toyo_rapid_railway {
+    $color: $train_type_tozai_local_for_toyo_rapid_railway_color;
+    $bgcolor: $train_type_tozai_local_for_toyo_rapid_railway_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_for_mitaka {
+    $color: $train_type_tozai_local_for_mitaka_color;
+    $bgcolor: $train_type_tozai_local_for_mitaka_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_for_tsudanuma {
+    $color: $train_type_tozai_local_for_tsudanuma_color;
+    $bgcolor: $train_type_tozai_local_for_tsudanuma_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_normal {
+    $color: $train_type_tozai_local_normal_color;
+    $bgcolor: $train_type_tozai_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .commuter_rapid_normal {
+    $color: $train_type_tozai_commuter_rapid_normal_color;
+    $bgcolor: $train_type_tozai_commuter_rapid_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .commuter_rapid_for_mitaka {
+    $color: $train_type_tozai_commuter_rapid_for_mitaka_color;
+    $bgcolor: $train_type_tozai_commuter_rapid_for_mitaka_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_normal {
+    $color: $train_type_tozai_rapid_normal_color;
+    $bgcolor: $train_type_tozai_rapid_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_for_mitaka {
+    $color: $train_type_tozai_rapid_for_mitaka_color;
+    $bgcolor: $train_type_tozai_rapid_for_mitaka_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_for_tsudanuma {
+    $color: $train_type_tozai_rapid_for_tsudanuma_color;
+    $bgcolor: $train_type_tozai_rapid_for_tsudanuma_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_for_toyo_rapid_railway {
+    $color: $train_type_tozai_rapid_for_toyo_rapid_railway_color;
+    $bgcolor: $train_type_tozai_rapid_for_toyo_rapid_railway_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .toyo_rapid_for_toyo_rapid_railway {
+    $color: $train_type_tozai_toyo_rapid_for_toyo_rapid_railway_color;
+    $bgcolor: $train_type_tozai_toyo_rapid_for_toyo_rapid_railway_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.chiyoda {
+  .local_normal {
+    $color: $train_type_chiyoda_local_normal_color;
+    $bgcolor: $train_type_chiyoda_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_for_jr {
+    $color: $train_type_chiyoda_local_for_jr_color;
+    $bgcolor: $train_type_chiyoda_local_for_jr_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_for_odakyu {
+    $color: $train_type_chiyoda_local_for_odakyu_color;
+    $bgcolor: $train_type_chiyoda_local_for_odakyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .semi_express_for_odakyu {
+    $color: $train_type_chiyoda_semi_express_for_odakyu_color;
+    $bgcolor: $train_type_chiyoda_semi_express_for_odakyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .tama_express_for_odakyu {
+    $color: $train_type_chiyoda_tama_express_for_odakyu_color;
+    $bgcolor: $train_type_chiyoda_tama_express_for_odakyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_hakone_saturdays_holidays_24 {
+    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_24_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_24_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_hakone_weekdays_21 {
+    $color: $train_type_chiyoda_romance_car_metro_hakone_weekdays_21_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_weekdays_21_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_home_way_weekdays_71 {
+    $color: $train_type_chiyoda_romance_car_metro_home_way_weekdays_71_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_weekdays_71_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_home_way_weekdays_41 {
+    $color: $train_type_chiyoda_romance_car_metro_home_way_weekdays_41_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_weekdays_41_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_home_way_weekdays_43 {
+    $color: $train_type_chiyoda_romance_car_metro_home_way_weekdays_43_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_weekdays_43_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_hakone_saturdays_holidays_21 {
+    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_21_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_21_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_hakone_saturdays_holidays_23 {
+    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_23_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_23_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_home_way_saturdays_holidays_43 {
+    $color: $train_type_chiyoda_romance_car_metro_home_way_saturdays_holidays_43_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_saturdays_holidays_43_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_sagami_weekdays_70 {
+    $color: $train_type_chiyoda_romance_car_metro_sagami_weekdays_70_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_sagami_weekdays_70_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_hakone_weekdays_22 {
+    $color: $train_type_chiyoda_romance_car_metro_hakone_weekdays_22_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_weekdays_22_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_sagami_saturdays_holidays_80 {
+    $color: $train_type_chiyoda_romance_car_metro_sagami_saturdays_holidays_80_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_sagami_saturdays_holidays_80_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_metro_hakone_saturdays_holidays_22 {
+    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_22_color;
+    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_22_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .romance_car_normal {
+    $color: $train_type_chiyoda_romance_car_normal_color;
+    $bgcolor: $train_type_chiyoda_romance_car_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  // .romance_car_standard {
+    // $color: $train_type_chiyoda_romance_car_standard_color;
+    // $bgcolor: $train_type_chiyoda_romance_car_standard_bgcolor;
+    // @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  // }
+}
+.chiyoda_branch {
+  .local_normal {
+    $color: $train_type_chiyoda_local_kita_ayase_color;
+    $bgcolor: $train_type_chiyoda_local_kita_ayase_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.yurakucho {
+  .local_colored {
+    $color: $train_type_yurakucho_local_colored_color;
+    $bgcolor: $train_type_yurakucho_local_colored_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_normal {
+    $color: $train_type_yurakucho_local_normal_color;
+    $bgcolor: $train_type_yurakucho_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.hanzomon {
+  .semi_express_to_tokyu {
+    $color: $train_type_hanzomon_semi_express_to_tokyu_color;
+    $bgcolor: $train_type_hanzomon_semi_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .holiday_express_to_tokyu {
+    $color: $train_type_hanzomon_holiday_express_to_tokyu_color;
+    $bgcolor: $train_type_hanzomon_holiday_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_to_tokyu {
+    $color: $train_type_hanzomon_local_to_tokyu_color;
+    $bgcolor: $train_type_hanzomon_local_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .semi_express_to_tobu {
+    $color: $train_type_hanzomon_semi_express_to_tobu_color;
+    $bgcolor: $train_type_hanzomon_semi_express_to_tobu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_to_tobu {
+    $color: $train_type_hanzomon_express_to_tobu_color;
+    $bgcolor: $train_type_hanzomon_express_to_tobu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_to_tokyu {
+    $color: $train_type_hanzomon_express_to_tokyu_color;
+    $bgcolor: $train_type_hanzomon_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_normal {
+    $color: $train_type_hanzomon_local_normal_color;
+    $bgcolor: $train_type_hanzomon_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.namboku {
+  .express_to_tokyu {
+    $color: $train_type_namboku_express_to_tokyu_color;
+    $bgcolor: $train_type_namboku_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_to_tokyu {
+    $color: $train_type_namboku_local_to_tokyu_color;
+    $bgcolor: $train_type_namboku_local_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_normal {
+    $color: $train_type_namboku_local_normal_color;
+    $bgcolor: $train_type_namboku_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.fukutoshin {
+  .local_colored {
+    $color: $train_type_fukutoshin_local_colored_color;
+    $bgcolor: $train_type_fukutoshin_local_colored_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_normal {
+    $color: $train_type_fukutoshin_local_normal_color;
+    $bgcolor: $train_type_fukutoshin_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .commuter_express_normal {
+    $color: $train_type_fukutoshin_commuter_express_normal_color;
+    $bgcolor: $train_type_fukutoshin_commuter_express_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .holiday_express_normal {
+    $color: $train_type_fukutoshin_holiday_express_normal_color;
+    $bgcolor: $train_type_fukutoshin_holiday_express_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_normal {
+    $color: $train_type_fukutoshin_express_normal_color;
+    $bgcolor: $train_type_fukutoshin_express_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+
+.toei_asakusa {
+  .airport_limited_express_normal {
+    $color: $train_type_toei_asakusa_airport_limited_express_normal_color;
+    $bgcolor: $train_type_toei_asakusa_airport_limited_express_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_normal {
+    $color: $train_type_toei_asakusa_local_normal_color;
+    $bgcolor: $train_type_toei_asakusa_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.toei_mita {
+  .local_normal {
+    $color: $train_type_toei_mita_local_normal_color;
+    $bgcolor: $train_type_toei_mita_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_to_tokyu {
+    $color: $train_type_toei_mita_express_to_tokyu_color;
+    $bgcolor: $train_type_toei_mita_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_to_tokyu {
+    $color: $train_type_toei_mita_local_to_tokyu_color;
+    $bgcolor: $train_type_toei_mita_local_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.toei_shinjuku {
+  .local_normal {
+    $color: $train_type_toei_shinjuku_local_normal_color;
+    $bgcolor: $train_type_toei_shinjuku_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_normal {
+    $color: $train_type_toei_shinjuku_express_normal_color;
+    $bgcolor: $train_type_toei_shinjuku_express_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.toei_oedo {
+  .local_normal {
+    $color: $train_type_toei_oedo_local_normal_color;
+    $bgcolor: $train_type_toei_oedo_local_normal_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+
+.tokyu_toyoko {
+  .limited_express_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_limited_express_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_limited_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .commuter_limited_express_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_commuter_limited_express_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_commuter_limited_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_express_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_local_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_local_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+
+.seibu_ikebukuro {
+  .local_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_local_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_local_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_rapid_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_rapid_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .semi_express_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_semi_express_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_semi_express_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_express_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_rapid_express_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_rapid_express_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
+.tobu_tojo {
+  .local_to_tobu_tojo {
+    $color: $train_type_yurakucho_fukutoshin_local_to_tobu_tojo_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_local_to_tobu_tojo_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}

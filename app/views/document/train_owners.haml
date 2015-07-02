@@ -1,0 +1,7 @@
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
+%ul{ id: :train_owners , class: :in_document }
+  - @train_owners.each do | train_owner |
+    = train_owner.decorate.in_document.render

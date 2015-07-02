@@ -1,0 +1,103 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+//-------- マウスオーバー時の文字色・背景色の設定（路線ページ）
+//---- jQuery で hover クラスを追加・削除
+
+//---- 方面
+
+@mixin linkToRailwayDirectionColorSetting( $color , $rate: 1 ) {
+  &.hover {
+    .railway_direction {
+      .text_en {
+        color: desaturate( $color , 60% ) ;
+      }
+    }
+  }
+}
+
+//---- 駅に関連する路線の領域
+
+@mixin linkToRailwayLineColorSettingOfThisStation( $color , $rate: 1 ) {
+  &.this_station {
+    background: {
+      color: rgba( $color , 0.1 * $rate ) ;
+    }
+    .text {
+      .text_en {
+        color: desaturate( $color , 60% ) ;
+      }
+    }
+  }
+}
+
+//---- 同じページへのリンクを含む領域
+
+@mixin linkToRailwayLineColorSettingOfThisPage( $color , $rate: 1 ) {
+  &.this_page {
+    background: {
+      color: rgba( $color , 0.2 * $rate ) ;
+    }
+    .text {
+      .text_en {
+        color: desaturate( $color , 90% ) ;
+      }
+    }
+  }
+}
+
+//--------
+
+ul#links_to_railway_line_pages {
+  li.ginza {
+    @include linkToRailwayDirectionColorSetting( $line_ginza_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_ginza_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_ginza_bgcolor ) ;
+  }
+  li.marunouchi {
+    @include linkToRailwayDirectionColorSetting( $line_marunouchi_bgcolor , 0.75 ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_marunouchi_bgcolor , 0.75 ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_marunouchi_bgcolor , 0.75 ) ;
+  }
+  li.marunouchi_branch {
+    @include linkToRailwayDirectionColorSetting( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
+  }
+  li.hibiya {
+    @include linkToRailwayDirectionColorSetting( $line_hibiya_bgcolor , 1.7 ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_hibiya_bgcolor , 1.7 ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_hibiya_bgcolor , 1.7 ) ;
+  }
+  li.tozai {
+    @include linkToRailwayDirectionColorSetting( $line_tozai_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_tozai_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_tozai_bgcolor ) ;
+  }
+  li.chiyoda {
+    @include linkToRailwayDirectionColorSetting( $line_chiyoda_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_chiyoda_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_chiyoda_bgcolor ) ;
+  }
+  li.yurakucho {
+    @include linkToRailwayDirectionColorSetting( $line_yurakucho_bgcolor , 1.5 ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_yurakucho_bgcolor , 1.5 ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_yurakucho_bgcolor , 1.5 ) ;
+  }
+  li.hanzomon {
+    @include linkToRailwayDirectionColorSetting( $line_hanzomon_bgcolor , 1.2 ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_hanzomon_bgcolor , 1.2 ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_hanzomon_bgcolor , 1.2 ) ;
+  }
+  li.namboku {
+    @include linkToRailwayDirectionColorSetting( $line_namboku_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_namboku_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_namboku_bgcolor ) ;
+  }
+  li.fukutoshin {
+    @include linkToRailwayDirectionColorSetting( $line_fukutoshin_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisStation( $line_fukutoshin_bgcolor ) ;
+    @include linkToRailwayLineColorSettingOfThisPage( $line_fukutoshin_bgcolor ) ;
+  }
+}

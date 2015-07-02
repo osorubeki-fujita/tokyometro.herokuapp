@@ -1,0 +1,173 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+//-------- 一般路線
+
+@mixin commonSettingsOfBackgroundColorOfRailwayLineMatrixes( $color_base ) {
+  // 変数の定義
+  //
+  $color_top: rgba( $color_base , 0.1 );
+  $color_center_1: rgba( $color_base , 0.215 );
+  $color_center_2: rgba( $color_base , 0.327 );
+  $color_center_3: rgba( $color_base , 0.434 );
+  $color_center_4: rgba( $color_base , 0.537 );
+  $color_center_5: rgba( $color_base , 0.635 );
+  $color_center_6: rgba( $color_base , 0.727 );
+  $color_center_7: rgba( $color_base , 0.812 );
+  $color_center_8: rgba( $color_base , 0.889 );
+  $color_center_9: rgba( $color_base , 0.955 );
+  $color_bottom: $color_base ;
+  //
+  $color_stop_point_1_moz : 10% ;
+  $color_stop_point_1_webkit : 0.1 ;
+  $color_stop_point_2_moz : 20% ;
+  $color_stop_point_2_webkit : 0.2 ;
+  $color_stop_point_3_moz : 30% ;
+  $color_stop_point_3_webkit : 0.3 ;
+  $color_stop_point_4_moz : 40% ;
+  $color_stop_point_4_webkit : 0.4 ;
+  $color_stop_point_5_moz : 50% ;
+  $color_stop_point_5_webkit : 0.5 ;
+  $color_stop_point_6_moz : 60% ;
+  $color_stop_point_6_webkit : 0.6 ;
+  $color_stop_point_7_moz : 70% ;
+  $color_stop_point_7_webkit : 0.7 ;
+  $color_stop_point_8_moz : 80% ;
+  $color_stop_point_8_webkit : 0.8 ;
+  $color_stop_point_9_moz : 90% ;
+  $color_stop_point_9_webkit : 0.9 ;
+  //
+  background: #{ $color_center_7 } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_center_1} #{$color_stop_point_1_moz},
+    #{$color_center_2} #{$color_stop_point_2_moz},
+    #{$color_center_3} #{$color_stop_point_3_moz},
+    #{$color_center_4} #{$color_stop_point_4_moz},
+    #{$color_center_5} #{$color_stop_point_5_moz},
+    #{$color_center_6} #{$color_stop_point_6_moz},
+    #{$color_center_7} #{$color_stop_point_7_moz},
+    #{$color_center_8} #{$color_stop_point_8_moz},
+    #{$color_center_9} #{$color_stop_point_9_moz},
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_center_1} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_center_2} ) ,
+    color-stop( #{$color_stop_point_3_webkit} , #{$color_center_3} ) ,
+    color-stop( #{$color_stop_point_4_webkit} , #{$color_center_4} ) ,
+    color-stop( #{$color_stop_point_5_webkit} , #{$color_center_5} ) ,
+    color-stop( #{$color_stop_point_6_webkit} , #{$color_center_6} ) ,
+    color-stop( #{$color_stop_point_7_webkit} , #{$color_center_7} ) ,
+    color-stop( #{$color_stop_point_8_webkit} , #{$color_center_8} ) ,
+    color-stop( #{$color_stop_point_9_webkit} , #{$color_center_9} ) ,
+    to( #{$color_bottom} )
+  );
+}
+
+@mixin backgroundColorOfRailwayLineMatrixesNormal( $color ) {
+  $background_color_base: mix( saturate( $color , 2% ) , #fff , 40% ) ;
+  @include commonSettingsOfBackgroundColorOfRailwayLineMatrixes( $background_color_base ) ;
+}
+
+@mixin backgroundColorOfRailwayLineMatrixesHibiya( $color ) {
+  $background_color_base: mix( saturate( $color , 2% ) , #fff , 40% ) ;
+  @include commonSettingsOfBackgroundColorOfRailwayLineMatrixes( $background_color_base );
+}
+
+$saturatedColorOfYurakucho: saturate( $line_yurakucho_bgcolor , 20% ) ;
+
+@mixin backgroundColorOfRailwayLineMatrixesYurakucho( $color ) {
+  $background_color_base: mix( $saturatedColorOfYurakucho , #fff , 40% ) ;
+  @include commonSettingsOfBackgroundColorOfRailwayLineMatrixes( $background_color_base ) ;
+}
+
+
+//-------- 有楽町線・副都心線
+
+@mixin backgroundColorOfRailwayLineMatrixesYurakuchoFukutoshin( $color_f ) {
+  $color_y_new: $saturatedColorOfYurakucho ;
+  //
+  // 変数の定義
+  //
+  $color_center_base: mix( $color_y_new , $color_f , 50% ) ;
+  //
+  $color_left: mix( $color_y_new , #fff , 30% ) ;
+  $color_center: mix( $color_center_base , #fff , 10% ) ;
+  $color_right: mix( $color_f , #fff , 30% ) ;
+  //
+  $color_stop_point_1_moz : 20% ;
+  $color_stop_point_1_webkit : 0.2 ;
+  $color_stop_point_2_moz : 50% ;
+  $color_stop_point_2_webkit : 0.5 ;
+  $color_stop_point_3_moz : 80% ;
+  $color_stop_point_3_webkit : 0.8 ;
+  //
+  background: $color_center_base ;
+  // Firefox
+  background: -moz-linear-gradient(left,
+    #{$color_left},
+    #{$color_left} #{$color_stop_point_1_moz},
+    #{$color_center} #{$color_stop_point_2_moz},
+    #{$color_right} #{$color_stop_point_3_moz},
+    #{$color_right}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, right top,
+    from( #{$color_left} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_left} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_center} ) ,
+    color-stop( #{$color_stop_point_3_webkit} , #{$color_right} ) ,
+    to( #{$color_right} )
+  );
+}
+
+//--------
+
+#railway_lines , #train_operation_infos , #station_matrixes , #train_operation_infos {
+  .each_line.ginza {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_ginza_bgcolor ) ;
+  }
+  .each_line.marunouchi {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_marunouchi_bgcolor ) ;
+  }
+  .each_line.hibiya {
+    @include backgroundColorOfRailwayLineMatrixesHibiya( $line_hibiya_bgcolor ) ;
+  }
+  .each_line.tozai {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_tozai_bgcolor ) ;
+  }
+  .each_line.chiyoda {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_chiyoda_bgcolor ) ;
+  }
+  .each_line.yurakucho {
+    @include backgroundColorOfRailwayLineMatrixesYurakucho( $line_yurakucho_bgcolor ) ;
+  }
+  .each_line.hanzomon {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_hanzomon_bgcolor ) ;
+  }
+  .each_line.namboku {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_namboku_bgcolor ) ;
+  }
+  .each_line.fukutoshin {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_fukutoshin_bgcolor ) ;
+  }
+  .each_line.toei_mita {
+    @include backgroundColorOfRailwayLineMatrixesNormal( $line_toei_mita_bgcolor ) ;
+  }
+  .multiple_lines.yurakucho_fukutoshin {
+    @include backgroundColorOfRailwayLineMatrixesYurakuchoFukutoshin( $line_fukutoshin_bgcolor ) ;
+  }
+}
+
+#station_matrixes {
+  .railway_line {
+    ul.stations , ul.stations_on_main_line , ul.stations_on_branch_line {
+      @include backgroundColorOfRailwayLineMatrixesNormal( #eee ) ;
+    }
+  }
+}

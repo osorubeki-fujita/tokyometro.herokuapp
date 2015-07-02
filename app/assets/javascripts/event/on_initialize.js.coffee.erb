@@ -1,0 +1,165 @@
+class OnPageLoadHandler
+
+  list = (v) ->
+
+    ary = []
+
+    #---- header
+
+    header = new Header()
+    ary.push( header )
+
+    #---- document
+
+    document = new Document()
+    ary.push( document )
+
+    #---- concerns (1)
+
+    railway_line_matrixes = new RailwayLineMatrixes()
+    station_matrixes = new StationMatrixes()
+    railway_line_codes = new RailwayLineCodes()
+
+    ary.push( railway_line_matrixes )
+    ary.push( station_matrixes )
+    ary.push( railway_line_codes )
+
+    #---- controllers
+
+    railway_line = new RailwayLine()
+    station_timetables = new StationTimetables()
+    station_facility = new StationFacility()
+    passenger_survey = new PassengerSurvey()
+    fare_table = new FareTables()
+
+    ary.push( railway_line )
+    ary.push( station_timetables )
+    ary.push( station_facility )
+    ary.push( passenger_survey )
+    ary.push( fare_table )
+
+    train_operation_infos = new TrainOperationInfos()
+    train_location_infos = new TrainLocationInfos()
+
+    ary.push( train_operation_infos )
+    ary.push( train_location_infos )
+
+    #---- concerns (2)
+
+    station_link_list = new StationLinkList()
+    selection_header_processor = new SelectionHeaderProcessor()
+    real_time_info_processor = new RealTimeInfoProcessor()
+    twitters_processor = new TwittersProcessor()
+    now_developing_processor = new NowDevelopingProcessor()
+    problems_processor = new NowDevelopingProcessor( $( '#problems' ) )
+
+    side_menu_links = new SideMenuLinks()
+    links_to_station_info_pages = new LinksToStationInfoPages()
+    connecting_railway_line = new ConnectingRailwayLineInfo()
+    on_click = new OnClickHandler()
+
+    ary.push( station_link_list )
+    ary.push( selection_header_processor )
+    ary.push( real_time_info_processor )
+    ary.push( twitters_processor )
+    ary.push( now_developing_processor )
+    ary.push( problems_processor )
+    ary.push( side_menu_links )
+    ary.push( links_to_station_info_pages )
+    ary.push( connecting_railway_line )
+    ary.push( on_click )
+    
+    link_domains_to_set_hover_event = new LinkDomainsToSetHoverEvent()
+    
+    ary.push( link_domains_to_set_hover_event )
+
+    return ary
+
+  process_on_page_load: ->
+    process_normal_list(@)
+    set_geo_location_info(@)
+    initialize_google_map_in_station_facility(@)
+    return
+  
+  process_on_resize: ->
+    process_normal_list(@)
+    return
+
+  process_normal_list = (v) ->
+    $.each list(v) , ->
+      @.process()
+      return
+    return
+
+  set_geo_location_info = (v) ->
+    p= new GeoLocationProcessor()
+    p.set_info()
+    return
+
+  initialize_google_map_in_station_facility = (v) ->
+    map = new GoogleMapsInStationFacility()
+    map.initialize_map()
+    return
+
+
+class UpdateRealTimeInfo
+
+  constructor: ( @domain = $( '#real_time_info_and_update_button' ) ) ->
+
+  icons_related_to_update: ->
+    <% base_name_of_icons = [ :updating , :real_time_info , :real_time_infos ].map { | key | ::TokyoMetro::App::Renderer::Icon.images[ key.to_s ] }.uniq %>
+    <% class_name_of_icons = base_name_of_icons.map { | basename | "i.fa-#{basename}" } %>
+    <% class_name_of_icons_for_search_by_jquery = class_name_of_icons.join( " , " ) %>
+    return @domain.children( '.content_header' ).find( '<%= class_name_of_icons_for_search_by_jquery ->' )
+
+
+#-------- [ready] [page:load]
+
+# Turbolinks 対策
+# [NG] $ ->
+# [NG] $( document ).live 'pageshow', ->
+# [OK] $( document ).on 'ready page:load' , ->
+
+
+$( document ).on 'ready page:load' , ->
+  # console.log 'ready page:load'
+  #----
+  h = new OnPageLoadHandler()
+  h.process_on_page_load()
+  #----
+  u = new UpdateRealTimeInfo()
+  icons = u.icons_related_to_update()
+
+  $( document ).ajaxStart ->
+    icons.addClass( 'fa-spin' )
+    return
+  $( document ).ajaxComplete ->
+    icons.removeClass( 'fa-spin' )
+    return
+  #----
+  return
+
+#-------- [page:change]
+#-------- [page:restore]
+
+# $( document ).on 'page:change page:restore' , ->
+  
+  # console.log 'page:change'
+  # #----
+
+  # g = new GoogleMapsInStationFacility()
+  # g.initialize_map( 'page:change' )
+  # return
+
+#-------- [resize]
+
+$( document ).on 'resize' , ->
+  console.log 'resize'
+  h = new OnPageLoadHandler()
+  h.process_on_resize()
+  return
+
+station_facility_platform_info_tab_observer = new StationFacilityPlatformInfoTabObserver()
+window.station_facility_platform_info_tab_observer = station_facility_platform_info_tab_observer
+
+window.setInterval( 'station_facility_platform_info_tab_observer.listen()' , station_facility_platform_info_tab_observer.duration() )

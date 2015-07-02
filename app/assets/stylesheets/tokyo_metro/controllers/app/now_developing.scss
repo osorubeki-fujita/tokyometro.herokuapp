@@ -1,0 +1,61 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+@mixin sideMenuBoxColor( $base_color ) {
+  border: solid 1px desaturate( $base_color , 20% ) ;
+  .content_header {
+    background-color: $base_color ;
+  }
+  .info_text {
+    background-color: rgba( $base_color , 0.2 ) ;
+  }
+}
+
+#now_developing , #problems {
+  @include float_left ;
+  @include margin_bottom_16 ;
+  .content_header {
+    color: #fff ;
+  }
+  .info_text {
+    padding: 8px ;
+    @include font_ja_and_en(9) ;
+    .text_ja {
+      @include margin_bottom_8 ;
+    }
+  }
+}
+
+#now_developing {
+  @include sideMenuBoxColor( $jp_traditional_jinzamomi ) ;
+}
+
+#problems {
+  @include sideMenuBoxColor( $jp_traditional_karashi ) ;
+  .content_header {
+    .text {
+      @include font_ja_and_en(10) ;
+    }
+  }
+  ul.problems {
+    margin: 0px ;
+    li {
+      list-style: none ;
+      @extend %linkInDiv ;
+      font: {
+        size: 10pt ;
+      }
+    }
+    li.to_do {
+      @include padding_left_4 ;
+      @include padding_top_bottom_4 ;
+      background-color: mix( $jp_traditional_karashi , #fff ) ;
+      &.text_en {
+        font: {
+          size: 9pt ;
+        }
+      }
+    }
+  }
+}

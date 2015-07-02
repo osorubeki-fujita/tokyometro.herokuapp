@@ -1,0 +1,65 @@
+@charset "utf-8" ;
+@import '../../../fundamental_settings.scss' ;
+
+//---------------- 文字の太さ
+
+%railwayLineCodesFontBold {
+  font: {
+    weight: bold ;
+  }
+}
+
+//---------------- 文字の色
+
+%railwayLineCodesWhiteText {
+  color: #fff ;
+}
+
+//---------------- 文字のフォント
+
+%railwayLineCodesFontSettings {
+  @extend %textEn ;
+}
+
+//---------------- 文字サイズ
+
+$railway_line_codes_large_letter_scale_rate: 32.0 / 48 ;
+
+$railway_line_codes_large_letter_48: 18pt ;
+$railway_line_codes_small_letter_48: 15pt ;
+$railway_line_codes_large_letter_32: $railway_line_codes_large_letter_48 * $railway_line_codes_large_letter_scale_rate ;
+$railway_line_codes_small_letter_32: $railway_line_codes_small_letter_48 * $railway_line_codes_large_letter_scale_rate ;
+
+// 大きい文字
+%railwayLineCodesLargeLetter_48 {
+  font: {
+    size: $railway_line_codes_large_letter_48 ;
+  }
+  @extend %railwayLineCodesFontSettings ;
+}
+
+// 小さい文字
+%railwayLineCodesSmallLetter_48 {
+  font: {
+    size: $railway_line_codes_small_letter_48 ;
+  }
+  @extend %railwayLineCodesFontSettings ;
+}
+
+//---------------- 文字サイズ（小）
+
+// 大きい文字
+%railwayLineCodesLargeLetter_32 {
+  font: {
+    size: $railway_line_codes_large_letter_32 ;
+  }
+  @extend %railwayLineCodesFontSettings ;
+}
+
+// 小さい文字
+%railwayLineCodesSmallLetter_32 {
+  font: {
+    size: $railway_line_codes_small_letter_32 ;
+  }
+  @extend %railwayLineCodesFontSettings ;
+}

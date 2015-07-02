@@ -1,0 +1,85 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%liHoverBgNormalInLinkUl {
+  $rate: 0.9 ;
+  // $color_base: rgba( $link_hover_domain_color , $rate ) ;
+  // $color_base: rgba( #f0f0f0 , $rate ) ;
+  $color_base: rgba( mix( #f0f0f0 , $link_hover_domain_color , 10% ) , $rate ) ;
+  //
+  // 変数の定義
+  //
+  $color_left: $color_base ;
+  $color_1: rgba( $color_base , 0.972 * $rate );
+  $color_2: rgba( $color_base , 0.896 * $rate );
+  $color_3: rgba( $color_base , 0.784 * $rate );
+  $color_4: rgba( $color_base , 0.648 * $rate );
+  $color_5: rgba( $color_base , 0.5 * $rate );
+  $color_6: rgba( $color_base , 0.352 * $rate );
+  $color_7: rgba( $color_base , 0.216 * $rate );
+  $color_8: rgba( $color_base , 0.104 * $rate );
+  $color_9: rgba( $color_base , 0.028 * $rate );
+  $color_right: rgba( $color_base , 0 * $rate );
+  //
+  $color_stop_point_1_moz : 10% ;
+  $color_stop_point_1_webkit : 0.1 ;
+  $color_stop_point_2_moz : 20% ;
+  $color_stop_point_2_webkit : 0.2 ;
+  $color_stop_point_3_moz : 30% ;
+  $color_stop_point_3_webkit : 0.3 ;
+  $color_stop_point_4_moz : 40% ;
+  $color_stop_point_4_webkit : 0.4 ;
+  $color_stop_point_5_moz : 50% ;
+  $color_stop_point_5_webkit : 0.5 ;
+  $color_stop_point_6_moz : 60% ;
+  $color_stop_point_6_webkit : 0.6 ;
+  $color_stop_point_7_moz : 70% ;
+  $color_stop_point_7_webkit : 0.7 ;
+  $color_stop_point_8_moz : 80% ;
+  $color_stop_point_8_webkit : 0.8 ;
+  $color_stop_point_9_moz : 90% ;
+  $color_stop_point_9_webkit : 0.9 ;
+  //
+  background: #{ $color_7 } ;
+  // Firefox
+  background: -moz-linear-gradient(left,
+    #{$color_left},
+    #{$color_1} #{$color_stop_point_1_moz},
+    #{$color_2} #{$color_stop_point_2_moz},
+    #{$color_3} #{$color_stop_point_3_moz},
+    #{$color_4} #{$color_stop_point_4_moz},
+    #{$color_5} #{$color_stop_point_5_moz},
+    #{$color_6} #{$color_stop_point_6_moz},
+    #{$color_7} #{$color_stop_point_7_moz},
+    #{$color_8} #{$color_stop_point_8_moz},
+    #{$color_9} #{$color_stop_point_9_moz},
+    #{$color_right}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, right top,
+    from( #{$color_left} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_1} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_2} ) ,
+    color-stop( #{$color_stop_point_3_webkit} , #{$color_3} ) ,
+    color-stop( #{$color_stop_point_4_webkit} , #{$color_4} ) ,
+    color-stop( #{$color_stop_point_5_webkit} , #{$color_5} ) ,
+    color-stop( #{$color_stop_point_6_webkit} , #{$color_6} ) ,
+    color-stop( #{$color_stop_point_7_webkit} , #{$color_7} ) ,
+    color-stop( #{$color_stop_point_8_webkit} , #{$color_8} ) ,
+    color-stop( #{$color_stop_point_9_webkit} , #{$color_9} ) ,
+    to( #{$color_right} )
+  );
+}
+
+%liHoverBgOperatorSurveyYearInLinkUl {
+ background: {
+    color: rgba( desaturate( $link_hover_domain_color , 5% ) , 0.7 ) ;
+  }
+}
+
+%liEmphasizeBgOperatorSurveyYearInLinkUl {
+ background: {
+    color: rgba( saturate( $link_hover_domain_color , 30% ) , 0.9 ) ;
+  }
+}

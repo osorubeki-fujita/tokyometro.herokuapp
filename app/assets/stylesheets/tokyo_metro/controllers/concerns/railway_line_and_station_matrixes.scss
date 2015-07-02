@@ -1,0 +1,198 @@
+@charset "utf-8" ;
+
+@import 'railway_line_and_station_matrixes/railway_line_codes.scss' ;
+
+%fundamentalSettingsOfRailwayLineAndStationMatrixes {
+  @include float_left ;
+  border: solid 1px #333 ;
+}
+
+%fundamentalSettingsOfStationDomainInStationMatrixes {
+  @include padding_top_bottom_8 ;
+  @include padding_left_right_16 ;
+  @include margin_top_0 ;
+}
+
+%textSettingsOfRailwayLineMatrixes {
+  @include font_ja_and_en( 20 , 0.5 ) ;
+  .text_ja {
+    font: {
+      weight: bold ;
+    }
+  }
+}
+
+#railway_lines , #train_operation_infos , #station_matrixes , #train_operation_infos {
+  .each_line {
+    @extend %settingsOfRailwayLineCodeInRailwayLineMatrix_48 ;
+    @extend %settingsOfRailwayLineCodeInRailwayLineMatrix_32 ;
+  }
+  .multiple_lines.yurakucho_fukutoshin {
+    @extend %railwayLineCodesInRailwayLineMatrixesYurakuchoFukutoshin ;
+    .text_ja {
+      clear: left ;
+    }
+    .yurakucho {
+      // background-color:transparent ;
+      @include float_left ;
+    }
+    .fukutoshin {
+      // background-color:transparent ;
+      @include float_left ;
+    }
+  }
+}
+
+%marginBottomMinus1 {
+  margin: {
+    bottom: -1px ;
+  }
+}
+
+%marginRightMinus1 {
+  margin: {
+    right: -1px ;
+  }
+}
+
+%commonSettingsInRailwayLineMatrixNormalAndSmall {
+  @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+  @extend %linkInDiv ;
+  @extend %textSettingsOfRailwayLineMatrixes ;
+  @extend %marginBottomMinus1 ;
+  @extend %marginRightMinus1 ;
+}
+
+%railwayLineCodeOuterFloatLeft {
+  .info {
+    .railway_line_code_outer {
+      @include float_left ;
+      @include margin_right_8 ;
+    }
+  }
+}
+
+%commonSettingsInRailwayLineMatrixOfAllTypes {
+  .info {
+    @include margin_left_right_8 ;
+  }
+}
+
+%infoTextFloatLeftInRailwayLineMatrix {
+  .info {
+    .text {
+      @include float_left ;
+    }
+  }
+}
+
+#railway_lines , #train_operation_infos {
+  .railway_line_matrix {
+    height: 128px ;
+    text-align: center;
+    @extend %commonSettingsInRailwayLineMatrixNormalAndSmall ;
+    @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
+  }
+  height: auto ;
+  @include margin_bottom_32 ;
+}
+
+%railwayLineMatrixSmall {
+  .railway_line_matrix_small {
+    @extend %commonSettingsInRailwayLineMatrixNormalAndSmall ;
+    @extend %railwayLineCodeOuterFloatLeft ;
+    @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
+    @extend %infoTextFloatLeftInRailwayLineMatrix ;
+  }
+}
+
+%railwayLineMatrixVerySmall {
+  .railway_line_matrix_very_small {
+    @extend %commonSettingsInRailwayLineMatrixOfAllTypes ;
+    @extend %infoTextFloatLeftInRailwayLineMatrix ;
+    @include float_left ;
+    @include font_ja_and_en(12) ;
+    .text_ja {
+      font: {
+        // weight: bold ;
+      }
+    }
+    .info {
+      @include margin_top_bottom_8 ;
+      .railway_line_code_outer_small {
+        @include float_left ;
+        @include margin_right_8 ;
+      }
+    }
+  }
+}
+
+%stationMatrixesStation {
+  @include float_left ;
+  @include margin_right_8 ;
+  font: {
+    size: 10pt ;
+  }
+  .small {
+    font: {
+      size: 7.5pt ;
+    }
+  }
+}
+
+%stationMatrixesStations {
+  @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+  @extend %fundamentalSettingsOfStationDomainInStationMatrixes ;
+  @extend %marginBottomMinus1 ;
+}
+
+%stationMatrixesStationsOnMainLine {
+  @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+  @extend %fundamentalSettingsOfStationDomainInStationMatrixes ;
+  border: {
+    bottom: none ;
+  }
+  margin-bottom: 0px ;
+}
+
+%stationMatrixesStationsOnBranchLine {
+  @extend %fundamentalSettingsOfRailwayLineAndStationMatrixes ;
+  @extend %fundamentalSettingsOfStationDomainInStationMatrixes ;
+  @extend %marginBottomMinus1 ;
+  border: {
+    top: none ;
+  }
+}
+
+#station_matrixes , #train_operation_infos {
+  .railway_line {
+    clear: both ;
+    @extend %railwayLineMatrixSmall ;
+  }
+  @include margin_bottom_16 ;
+}
+
+li.train_location {
+  @extend %railwayLineMatrixVerySmall ;
+}
+
+//--------
+
+#station_matrixes {
+  .railway_line {
+    @extend %marginBottomMinus1 ;
+    li.station {
+      @extend %stationMatrixesStation ;
+      list-style: none ;
+    }
+    ul.stations {
+      @extend %stationMatrixesStations ;
+    }
+    ul.stations_on_main_line {
+      @extend %stationMatrixesStationsOnMainLine ;
+    }
+    ul.stations_on_branch_line {
+      @extend %stationMatrixesStationsOnBranchLine ;
+    }
+  }
+}

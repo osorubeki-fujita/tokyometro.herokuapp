@@ -1,0 +1,76 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+#real_time_info_and_update_button {
+  border: solid 1px #333 ;
+  .content_header {
+    @include font_ja_and_en(10) ;
+  }
+  ul.titles {
+    @include padding_left_4 ;
+    @include padding_right_4 ;
+    @include margin_bottom_8 ;
+  }
+  li {
+    list-style-type: none;
+  }
+  li.title {
+    @include padding_0 ;
+    .icon {
+      @include float_left ;
+      @include margin_right_4 ;
+      width: 20px ;
+      text-align: center ;
+    }
+    .text {
+      @include float_left ;
+    }
+    @include padding_top_4 ;
+    @include padding_bottom_4 ;
+    @include font_ja_and_en(9) ;
+    p {
+      @include margin_top_0 ;
+      @include margin_bottom_0 ;
+      line-height: 1.2em ;
+    }
+  }
+  li.train_operation_info , li.train_location_infos {
+    @include margin_bottom_8 ;
+  }
+  ul.time_infos {
+    @include margin_left_right_16 ;
+    @include margin_top_16 ;
+    @include padding_left_0 ;
+  }
+  ul.time_infos_of_category {
+    @include margin_left_16 ;
+    @include margin_bottom_8 ;
+    @include padding_0 ;
+    font: {
+      size: 9pt ;
+    }
+    .time {
+      @include margin_left_16 ;
+    }
+  }
+  ul.en {
+    color: #999 ;
+    font: {
+      size: 8pt ;
+    }
+    @include padding_left_0 ;
+    @include margin_top_8 ;
+    @include margin_bottom_16 ;
+    li {
+      clear: left ;
+    }
+    .title_of_time_info_en {
+      @include float_left ;
+    }
+    .time_en {
+      @include float_left ;
+      @include margin_left_4 ;
+    }
+  }
+}

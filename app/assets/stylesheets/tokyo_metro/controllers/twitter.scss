@@ -1,0 +1,36 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+
+#twitters {
+  border: solid 1px #333 ;
+  .content_header {
+    .text_en {
+      @include float_left ;
+      font: {
+        size: 14pt ;
+      }
+    }
+  }
+  #twitter_accounts {
+    padding: 8px ;
+    margin: {
+      top: -1px ;
+    }
+  }
+  &.hidden {
+    #twitter_accounts {
+      display: none ;
+    }
+  }
+  &.visible {
+    #twitter_accounts {
+      display: block ;
+    }
+  }
+  img.u-photo {
+    $length: 32px ;
+    width: $length ;
+    height: 32px ;
+  }
+}

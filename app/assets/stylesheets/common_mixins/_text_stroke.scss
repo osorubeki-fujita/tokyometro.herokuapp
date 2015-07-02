@@ -1,0 +1,14 @@
+@charset "utf-8";
+// 文字の縁取り
+
+@mixin text_stroke {
+  // filter:dropshadow( color=#000000 , offX= 0 , offY=-0.5 )
+  // dropshadow( color=#000000,offX= 0.5 ,offY= 0 )
+  // dropshadow( color=#000000,offX= 0 ,offY= 0.5 )
+  // dropshadow( color=#000000,offX=-0.5 ,offY= 0 );
+  -webkit-text-stroke-color: #000;
+  -webkit-text-stroke-width: 0.5px;
+  // text: {
+    // shadow: black 0.5px 0.5px 0px, black -0.5px 0.5px 0px, black 0.5px -0.5px 0px, black -0.5px -0.5px 0px;
+  // }
+}

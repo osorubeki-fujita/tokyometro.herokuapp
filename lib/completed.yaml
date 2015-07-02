@@ -1,0 +1,45 @@
+"App and Gem":
+  -
+    title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
+    contents:
+      - TokyoMetro.#current_operation_day など
+      - TokyoMetro::Modules::Db::Select::OperationDay
+      - 日本の祝日については Gem 'holiday_japan' を利用
+      - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】[To Do]
+  -
+    title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
+    contents:
+      - 固有識別子 (@id) を指定した検索・取得方法
+      - データ取得、データ検索
+
+
+"Real time":
+  - 遅れありのときに「平常通り」と表示される事態の解消
+  -
+    title: コンテンツ取得失敗時の処理
+    contents:
+      - cf. [Rails] app/controllers/concerns/real_time_info_processor.rb
+      - Network - ネットワーク接続を確認してください - Please check network connection of your device
+      - API server - データ取得に失敗しました ページを更新し再度データを取得してください - Failed to load information - Please reload this page
+  -
+    title: 運行障害発生時の処理【Complete to write -> Test】
+    contents:
+      - 位置情報が取得できなくなる（運行中の列車が0になる）ことがある
+      - 運行情報から障害発生を検知できるとき、位置情報をもとに「運行中の列車 なし」とするのはダメ → 修正
+      -
+        title: 例
+        contents:
+          -
+            title: 運行中の列車 なし - No train is operated now.
+            contents:
+              - 折返し運転
+              - 本日の運行は終了しました。
+              - Shuttle service is provided in section with no effect by accidents.
+              - Today's operation was finished.
+          -
+            title: 運行中の列車 なし / No train is operated now.
+            contents:
+              - ダイヤ乱れ
+              - 本日の運行は終了しました。
+              - Trains are behind schedule.
+              - Today's operation was finished.

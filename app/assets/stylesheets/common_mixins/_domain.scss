@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+$width_whole: 1200px ;
+
+$yamato_ratio : 1.41 ; // 1.41421356
+$golden_ratio: 1.62 ; // 1.618033988749895
+$silver_ratio: 2.41 ; // 2.414213562373095
+$bronze_ratio: 3.3 ; // 3.302775637731995
+
+$r: ( ( 1 / $silver_ratio ) + 1 + ( 1 / $golden_ratio ) ) ;
+
+$width_of_left_contents: floor( $width_whole * ( 1 / $silver_ratio ) / $r ) ;
+$width_of_right_contents: floor( $width_whole * ( 1 / $golden_ratio ) / $r ) ;
+
+$width_main_content_center: floor( $width_whole * 1 / $r ) ;
+$width_main_content_wide: floor( $width_whole * ( 1 + ( 1 / $golden_ratio ) ) / $r ) ;

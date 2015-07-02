@@ -1,0 +1,63 @@
+﻿@charset "utf-8" ;
+
+// 車両番号の領域の色の設定（路線が1つの場合）
+@mixin cellOfCarNumberInPlatformInfo( $color ) {
+  td.car_number {
+    $color_top: rgba( $color , 0.5 ) ;
+    $color_middle: rgba( $color , 0.3 ) ;
+    $color_bottom: #f6f6f6 ;
+    //
+    $color_stop_point_1_moz : 60% ;
+    $color_stop_point_1_webkit : 0.6 ;
+    //
+    background: $color_middle ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+      #{$color_top},
+      #{$color_middle} #{$color_stop_point_1_moz},
+      #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+      from( #{$color_top} ),
+      color-stop( #{$color_stop_point_1_webkit} , #{$color_middle} ) ,
+      to( #{$color_bottom} ) 
+    );
+  }
+}
+
+// 車両番号の領域の色の設定（路線が2つの場合）
+@mixin cellOfCarNumberInPlatformInfoOfTwoRailways( $color_1 , $color_2 ) {
+  td.car_number {
+    $color_top: rgba( $color_1 , 0.7 ) ;
+    $color_middle_1: rgba( $color_1 , 0.5 ) ;
+    $color_middle_2: rgba( mix( $color_1 , $color_2 , 0.5 ) , 0.05 ) ;
+    $color_middle_3: rgba( $color_2 , 0.5 ) ;
+    $color_bottom: rgba( $color_2 , 0.7 ) ;
+    //
+    $color_stop_point_1_moz : 40% ;
+    $color_stop_point_1_webkit : 0.4 ;
+    $color_stop_point_2_moz : 60% ;
+    $color_stop_point_2_webkit : 0.6 ;
+    $color_stop_point_3_moz : 80% ;
+    $color_stop_point_3_webkit : 0.8 ;
+    //
+    background: $color_middle_2 ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+      #{$color_top},
+      #{$color_middle_1} #{$color_stop_point_1_moz},
+      #{$color_middle_2} #{$color_stop_point_2_moz},
+      #{$color_middle_3} #{$color_stop_point_3_moz},
+      #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+      from( #{$color_top} ),
+      color-stop( #{$color_stop_point_1_webkit} , #{$color_middle_1} ) ,
+      color-stop( #{$color_stop_point_2_webkit} , #{$color_middle_2} ) ,
+      color-stop( #{$color_stop_point_3_webkit} , #{$color_middle_3} ) ,
+      to( #{$color_bottom} )
+    );
+  }
+}

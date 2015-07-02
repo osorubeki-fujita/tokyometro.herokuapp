@@ -1,0 +1,110 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%baseOfLineCodeInPlatformInfoTab {
+  .railway_line_code_32 {
+    @include float_left ;
+    @include margin_right_6 ;
+  }
+  .yurakucho , .fukutoshin , .namboku , .toei_mita {
+    @include float_left ;
+  }
+}
+
+%textSettingsOfLineNameInPlatformInfoTab {
+  .railway_line_name {
+    @extend %baseOfLineCodeInPlatformInfoTab ;
+    @include margin_top_bottom_4 ;
+    @include margin_left_right_8 ;
+    .text {
+      @include float_left ;
+      @include font_ja_and_en(10) ;
+    }
+  }
+}
+
+%platformInfoTabUl {
+  position: relative ;
+  z-index: 1 ;
+  @include padding_0 ;
+  @include margin_top_bottom_0 ;
+}
+
+%platformInfoTabLi {
+  display: block;
+  @include float_left ;
+  @extend %linkInDiv ;
+  @extend %textSettingsOfLineNameInPlatformInfoTab ;
+  list-style-type: none;
+  &.displayed {
+    border: {
+      bottom: {
+        style: solid ;
+        color: #fff ;
+      }
+    }
+  }
+  &.hidden {
+    cursor: pointer;
+  }
+}
+
+%tabContentsUl {
+  padding: 0px;
+  margin: 0px;
+}
+
+%tabContentsLi {
+  clear: left;
+  display: block;
+  list-style-type: none;
+  height: 300px;
+  padding: 30px ;
+  overflow: auto;
+  &.hidden {
+    display: none;
+  }
+}
+
+%platformInfoContentBorder {
+  border: {
+    style: solid ;
+    color: #ccc ;
+  }
+}
+
+%platformInfoTabContent {
+  $border_width: 1px ;
+  #platform_info_tab_menu {
+    ul#platform_info_tabs {
+      @extend %platformInfoTabUl ;
+      li.platform_info_tab {
+        @extend %platformInfoContentBorder ;
+        border: {
+          width: $border_width ;
+        }
+        margin: {
+          right: -1 * $border_width ;
+        }
+        @extend %platformInfoTabLi ;
+      }
+    }
+  }
+  #platform_info_tab_contents {
+    clear: both ;
+    position: relative ;
+    z-index: 0 ;
+    top: -1 * $border_width ;
+    ul#tab_contents {
+      @extend %tabContentsUl ;
+      li.platform_info_tab_content {
+        @extend %tabContentsLi ;
+        @extend %platformInfoContentBorder ;
+        border: {
+          width: $border_width ;
+        }
+      }
+    }
+  }
+}

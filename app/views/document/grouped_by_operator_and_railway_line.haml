@@ -1,0 +1,34 @@
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
+%div{ id: @content_id }
+  - informations_grouped_by_operator = @informations.group_by { | info | info.railway_line.operator.id }
+  - raise "Error" if informations_grouped_by_operator.nil?
+  - informations_grouped_by_operator.keys.sort.each do | operator_id |
+    - informations_in_an_operator = informations_grouped_by_operator[ operator_id ]
+    - raise "Error" if informations_in_an_operator.nil?
+    - operator_instance = ::Operator.find_by( id: operator_id )
+    - raise "Error" if operator_instance.nil?
+    %div{ class: [ :operator , operator_instance.css_class_name ] }
+      %div{ class: :operator_name }
+        %h3{ class: :text_ja }<
+          = operator_instance.name_ja
+        %h4{ class: :text_en }<
+          = operator_instance.name_en
+      - informations_grouped_by_railway_line = informations_in_an_operator.group_by { | info | info.railway_line.id }
+      - informations_grouped_by_railway_line.keys.sort.each do | railway_line_id |
+        - informations_in_a_railway_line = informations_grouped_by_railway_line[ railway_line_id ]
+        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
+        %div{ class: [ :railway_line , railway_line_instance.css_class_name ] }
+          %div{ class: :railway_line_name }
+            %h4{ class: :text_ja }<
+              = railway_line_instance.name_ja
+            %h5{ class: :text_en }<
+              = railway_line_instance.name_en
+          - informations_in_a_railway_line.each do | info |
+            - # raise "Error: " + @proc.class.name
+            - # raise "Error: " + info.class.name
+            - variable_name = @variable_name.intern
+            :ruby
+              Haml::Engine.new( @rendered_template ).render_proc( Object.new, :partial , variable_name ).call( :partial => @partial_file , variable_name => @variable_name )

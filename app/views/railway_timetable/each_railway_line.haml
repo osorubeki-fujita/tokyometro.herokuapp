@@ -1,0 +1,7 @@
+= render "common_content"
+
+= ::RailwayLineDecorator.render_title_of_railway_timetable( @railway_lines )
+%div{ id: :railway_timetable_contents }
+  = ::TokyoMetro::App::Renderer::Concerns::Header::Selection.station_from_railway_line( request ).render
+  %div{ id: :railway_line_matrixes }
+    = ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: false )

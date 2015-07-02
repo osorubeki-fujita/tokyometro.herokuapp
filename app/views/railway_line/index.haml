@@ -1,0 +1,10 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = @twitter_processor.render
+  = ::TokyoMetro::App::Renderer::RealTimeInfos::SideMenu::LinksToRailwayLinePages.new( request ).render
+
+= ::RailwayLineDecorator.render_top_title( request , domain_id_name: :railway_line_title )
+%div{ id: :railway_lines }
+  = ::TokyoMetro::App::Renderer::Concerns::Header::Selection.railway_line( request ).render
+  = ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: true )

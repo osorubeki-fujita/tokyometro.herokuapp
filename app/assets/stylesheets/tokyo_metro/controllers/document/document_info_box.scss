@@ -1,0 +1,70 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+@import 'document_info_box/mixins.scss' ;
+
+ul.in_document {
+  @include padding_left_0 ;
+  @include margin_top_0 ;
+  @include margin_bottom_32 ;
+  li.document_info_box {
+    border : solid 1px #999 ;
+    @include margin_bottom_16 ;
+    @include padding_8 ;
+    list-style: none ;
+    @include border_radius( $border_radius_of_document_info_box ) ;
+    .number {
+      font: {
+        size: 9pt ;
+      }
+      @include margin_bottom_4 ;
+    }
+    .texts {
+      @include float_left ;
+      @include margin_left_8 ;
+    }
+    .train_type {
+      @include float_left ;
+      @include padding_16 ;
+      @include margin_right_16 ;
+      @include font_ja_and_en( 20 , 0.4 ) ;
+      @include border_radius(16px) ;
+      p {
+        text: {
+          align: center ;
+        }
+      }
+    }
+    .main {
+      @extend %nameInDocument ;
+      @extend %colorInfoInDocumentInfoBox ;
+      @include margin_bottom_16 ;
+      .operator_name , .railway_line_name , .train_type_name {
+        @include float_left ;
+        @include margin_right_16 ;
+      }
+      .color_infos {
+        @include float_left ;
+      }
+      .train_type_name {
+        .note {
+          @include margin_top_8 ;
+          font: {
+            size: 10pt ;
+          }
+        }
+        .note_sub {
+          font: {
+            size: 8pt ;
+          }
+        }
+      }
+    }
+    .button_area {
+      @include margin_bottom_8 ;
+    }
+    ul.sub_infos {
+      @extend %ulSubInfosInDocumentInfoBox ;
+    }
+  }
+}

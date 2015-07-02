@@ -1,0 +1,8 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::RailwayLine.new( request ).render
+
+= ::RailwayLineDecorator.render_title_of_passenger_survey( @railway_lines , @survey_year )
+%div{ id: :passenger_survey_contents }
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::Table::RailwayLine.new( request , @passenger_survey_infos_of_the_same_railway_line , @make_graph , @railway_lines_including_branch , @passenger_survey_infos_of_the_same_operator ).render

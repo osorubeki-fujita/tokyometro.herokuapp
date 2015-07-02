@@ -1,0 +1,330 @@
+@charset "utf-8" ;
+
+@import 'color_boxes.scss' ;
+@import 'railway_line_codes/text.scss' ;
+
+//---------------- 円の大きさの設定（共通）
+
+@mixin railwayLineCodesSizeOfCircle( $diameter , $border_width ) {
+  @include colorBoxSizeSettings( $diameter , $diameter , $diameter / 2 , $border_width ) ;
+}
+
+//---------------- 路線コード 背景色の設定
+
+%railwayLineCodeWhiteBackground {
+  background-color: #fff ;
+}
+
+%railwayLineCodeFilledRoundedSquareBorderColor {
+  border: {
+    color: #999 ;
+  }
+}
+
+//---------------- 路線コード 形状の設定
+
+//-------- 角丸四角形
+
+// 塗りつぶしあり
+%railwayLineCodeFilledRoundedSquare_48_48 {
+  @extend %colorBoxBase_48_48 ;
+  @extend %railwayLineCodesWhiteText ;
+  @extend %railwayLineCodeFilledRoundedSquareBorderColor ;
+}
+
+// 塗りつぶしなし
+%railwayLineCodeStrokedRoundedSquare_48_48 {
+  @extend %colorBoxBase_Stroked_48_48_Normal ;
+}
+
+//-------- 円形
+
+$normal_border_width_of_railway_line_code_stroked_circle_48_bold: 9px ;
+$normal_border_width_of_railway_line_code_stroked_circle_48_normal: 6px ;
+
+@mixin railwayLineCodesSizeOfCircle_48( $border_width ) {
+  @include railwayLineCodesSizeOfCircle( 48px , $border_width ) ;
+  border: {
+    style: solid ;
+  }
+}
+
+// 塗りつぶしなし（太）
+%railwayLineCodeStrokedCircle_48_Bold {
+  $border_width: $normal_border_width_of_railway_line_code_stroked_circle_48_bold ;
+  @include railwayLineCodesSizeOfCircle_48( $border_width ) ;
+  @extend %railwayLineCodeWhiteBackground ;
+  @extend %colorBoxCommonBase ;
+}
+
+// 塗りつぶしなし（細）
+%railwayLineCodeStrokedCircle_48_Normal {
+  $border_width: $normal_border_width_of_railway_line_code_stroked_circle_48_normal ;
+  @include railwayLineCodesSizeOfCircle_48( $border_width ) ;
+  @extend %railwayLineCodeWhiteBackground ;
+  @extend %colorBoxCommonBase ;
+}
+
+//---------------- 路線コード 形状（小）
+
+//-------- 角丸四角形
+
+// 塗りつぶしあり
+%railwayLineCodeFilledRoundedSquare_32_32 {
+  @extend %colorBoxBase_32_32 ;
+  @extend %railwayLineCodesWhiteText ;
+  @extend %railwayLineCodeFilledRoundedSquareBorderColor ;
+}
+
+// 塗りつぶしなし
+%railwayLineCodeStrokedRoundedSquare_32_32 {
+  @extend %colorBoxBase_Stroked_32_32_Normal ;
+}
+
+//-------- 円形
+
+$normal_border_width_of_railway_line_code_stroked_circle_32_bold: $normal_border_width_of_railway_line_code_stroked_circle_48_bold * $scale_rate  ;
+$normal_border_width_of_railway_line_code_stroked_circle_32_normal: $normal_border_width_of_railway_line_code_stroked_circle_48_normal * $scale_rate  ;
+
+
+@mixin railwayLineCodesSizeOfCircle_32( $border_width ) {
+  @include railwayLineCodesSizeOfCircle( 32px , $border_width ) ;
+}
+
+// 塗りつぶしなし（太）
+%railwayLineCodeStrokedCircle_32_Bold {
+  $border_width: $normal_border_width_of_railway_line_code_stroked_circle_32_bold ;
+  @include railwayLineCodesSizeOfCircle_32( $border_width ) ;
+  @extend %railwayLineCodeWhiteBackground ;
+  @extend %colorBoxCommonBase ;
+}
+
+// 塗りつぶしなし（細）
+%railwayLineCodeStrokedCircle_32_Normal {
+  $border_width: $normal_border_width_of_railway_line_code_stroked_circle_32_normal ;
+  @include railwayLineCodesSizeOfCircle_32( $border_width ) ;
+  @extend %railwayLineCodeWhiteBackground ;
+  @extend %colorBoxCommonBase ;
+}
+
+//---------------- 記号の文字の設定
+
+%railwayLineCodesCommonTextSettings {
+  @include float_left ;
+  p {
+    @include margin_top_bottom_0 ;
+  }
+}
+
+//---------------- 各社の記号の設定（路線記号）
+%railwayLineCodesOfNoLineCodeCommonSettings {
+  @extend %railwayLineCodesCommonTextSettings ;
+}
+
+%railwayLineCodesOfNoLineCode {
+  .railway_line_code_48 {
+    $length: 48px ;
+    width: $length ;
+    height: $length ;
+    @extend %railwayLineCodesOfNoLineCodeCommonSettings ;
+  }
+  .railway_line_code_32 {
+    $length: 32px ;
+    width: $length ;
+    height: $length ;
+    @extend %railwayLineCodesOfNoLineCodeCommonSettings ;
+  }
+}
+
+//-------- 東京メトロ
+%railwayLineCodesOfTokyoMetroCommonSettings {
+  @extend %railwayLineCodesFontBold ;
+  @extend %railwayLineCodesCommonTextSettings ;
+  color: #000 ;
+}
+
+%railwayLineCodesOfTokyoMetro {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfTokyoMetroCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Bold ;
+    @extend %railwayLineCodesLargeLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfTokyoMetroCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Bold ;
+    @extend %railwayLineCodesLargeLetter_32 ;
+  }
+}
+
+//-------- 都営地下鉄
+%railwayLineCodesOfToeiSubwayCommonSettings {
+  @extend %railwayLineCodesOfTokyoMetroCommonSettings ;
+}
+
+%railwayLineCodesOfToeiSubway {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfToeiSubwayCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Bold ;
+    @extend %railwayLineCodesLargeLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfToeiSubwayCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Bold ;
+    @extend %railwayLineCodesLargeLetter_32 ;
+  }
+}
+
+//-------- 東急
+%railwayLineCodesOfTokyuCommonSettings {
+  @extend %railwayLineCodesFontBold ;
+  @extend %railwayLineCodesCommonTextSettings ;
+}
+
+%railwayLineCodesOfTokyu {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfTokyuCommonSettings ;
+    @extend %railwayLineCodeFilledRoundedSquare_48_48 ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfTokyuCommonSettings ;
+    @extend %railwayLineCodeFilledRoundedSquare_32_32 ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- 小田急
+%railwayLineCodesOfOdakyuCommonSettings {
+  @extend %railwayLineCodesCommonTextSettings ;
+  border: {
+    color: $operator_odakyu_bgcolor ;
+  }
+}
+
+%railwayLineCodesOfOdakyu {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfOdakyuCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Normal ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfOdakyuCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Normal ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- 西武
+%railwayLineCodesOfSeibuCommonSettings {
+  @extend %railwayLineCodesCommonTextSettings ;
+}
+
+%railwayLineCodesOfSeibu {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfSeibuCommonSettings ;
+    @extend %railwayLineCodeFilledRoundedSquare_48_48 ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfSeibuCommonSettings ;
+    @extend %railwayLineCodeFilledRoundedSquare_32_32 ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- 東武
+%railwayLineCodesOfTobuCommonSettings {
+ @extend %railwayLineCodesCommonTextSettings ;
+}
+
+%railwayLineCodesOfTobu {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfTobuCommonSettings ;
+    @extend %railwayLineCodeStrokedRoundedSquare_48_48 ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfTobuCommonSettings ;
+    @extend %railwayLineCodeStrokedRoundedSquare_32_32 ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- 東葉高速
+%railwayLineCodesOfToyoRapidCommonSettings {
+  @extend %railwayLineCodesFontBold ;
+  @extend %railwayLineCodesCommonTextSettings ;
+  border: {
+    color: $operator_toyo_rapid_bgcolor ;
+  }
+}
+
+%railwayLineCodesOfToyoRapid {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfToyoRapidCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Normal ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfToyoRapidCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Normal ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- 京王
+%railwayLineCodesOfKeioCommonSettings {
+  @extend %railwayLineCodesCommonTextSettings ;
+}
+
+%railwayLineCodesOfKeio {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfKeioCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Normal ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfKeioCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Normal ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- 京成
+%railwayLineCodesOfKeiseiCommonSettings {
+  @extend %railwayLineCodesCommonTextSettings ;
+  border: {
+    color: $operator_keisei_bgcolor ;
+  }
+}
+
+%railwayLineCodesOfKeisei {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfKeiseiCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Normal ;
+    @extend %railwayLineCodesSmallLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfKeiseiCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Normal ;
+    @extend %railwayLineCodesSmallLetter_32 ;
+  }
+}
+
+//-------- ゆりかもめ
+%railwayLineCodesOfYurikamomeCommonSettings {
+  @extend %railwayLineCodesOfTokyoMetroCommonSettings ;
+}
+
+%railwayLineCodesOfYurikamome {
+  .railway_line_code_48 {
+    @extend %railwayLineCodesOfYurikamomeCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_48_Bold ;
+    @extend %railwayLineCodesLargeLetter_48 ;
+  }
+  .railway_line_code_32 {
+    @extend %railwayLineCodesOfYurikamomeCommonSettings ;
+    @extend %railwayLineCodeStrokedCircle_32_Bold ;
+    @extend %railwayLineCodesLargeLetter_32 ;
+  }
+}

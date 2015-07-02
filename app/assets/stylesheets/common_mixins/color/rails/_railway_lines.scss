@@ -1,0 +1,126 @@
+@charset "utf-8";
+@import 'operators.scss' ;
+
+//-------- ガイドライン / Wikipedia
+
+// 銀座線 #FF9500 / #f39700
+// 丸ノ内線 #F62E36 / #e60012
+// 日比谷線 #B5B5AC / #9caeb7
+// 東西線 #009BBF / #00a7db
+// 千代田線 #00BB85 / #009945
+// 有楽町線 #C1A470 / #d7c447
+// 半蔵門線 #8F76D6 / #9b7cb6
+// 南北線 #00AC9B / #00ada9
+// 副都心線 #9C5E31 / #bb641d
+
+//-------- ガイドライン準拠
+
+// $line_ginza_bgcolor: #ff9500 ;
+// $line_marunouchi_bgcolor: #f62e36 ;
+// $line_tokyo_metro_marunouchi_b_bgcolor: #f62e36 ;
+// $line_hibiya_bgcolor: #b5b5ac ;
+// $line_tozai_bgcolor: #009bbf ;
+// $line_chiyoda_bgcolor: #00bb85 ;
+// $line_yurakucho_bgcolor: #c1a470 ;
+// $line_hanzomon_bgcolor: #8f76d6 ;
+// $line_namboku_bgcolor: #00ac9b ;
+// $line_fukutoshin_bgcolor: #9c5e31 ;
+
+//-------- Wikipedia
+
+// $line_ginza_bgcolor: #f39700 ;
+// $line_marunouchi_bgcolor: #e60012 ;
+// $line_tokyo_metro_marunouchi_b_bgcolor: #e60012 ;
+// $line_hibiya_bgcolor: #9caeb7 ;
+// $line_tozai_bgcolor: #00a7db ;
+// $line_chiyoda_bgcolor: #009945 ;
+// $line_yurakucho_bgcolor: #d7c447 ;
+// $line_hanzomon_bgcolor: #9b7cb6 ;
+// $line_namboku_bgcolor: #00ada9 ;
+// $line_fukutoshin_bgcolor: #bb641d ;
+
+//-------- 画像から取得
+
+$line_ginza_bgcolor: #f6a90f ;
+$line_marunouchi_bgcolor: #e61018 ;
+$line_tokyo_metro_marunouchi_b_bgcolor: #e61018 ;
+$line_hibiya_bgcolor: #d0c7b8 ;
+$line_tozai_bgcolor: #00a1e9 ;
+$line_chiyoda_bgcolor: #0daa5d ;
+$line_yurakucho_bgcolor: #d6ae59 ;
+$line_hanzomon_bgcolor: #937eb7 ;
+$line_namboku_bgcolor: #01ad95 ;
+$line_fukutoshin_bgcolor: #ab5a23 ;
+
+//--------
+
+$line_toei_asakusa_bgcolor: #e85298 ;
+$line_toei_mita_bgcolor: #0078c2 ;
+$line_toei_shinjuku_bgcolor: #6cbb5a ;
+$line_toei_oedo_bgcolor: #b6007a ;
+
+$line_nippori_toneri_bgcolor: #ff69b4 ;
+$line_toden_arakawa_bgcolor: #66cc66 ;
+
+$line_jrs_bgcolor: #999 ;
+$line_jr_yamanote_bgcolor: #80c241 ;
+$line_jr_keihin_tohoku_bgcolor: #00b2e5 ;
+$line_jr_tokaido_bgcolor: #f68b1e ;
+$line_jr_yokosuka_bgcolor: #007ac0 ;
+$line_jr_takasaki_bgcolor: #f68b1e ;
+$line_jr_utsunomiya_bgcolor: #f68b1e ;
+$line_jr_shonan_shinjuku_bgcolor: #e21f26 ;
+$line_jr_ueno_tokyo_bgcolor: #654e99 ; // #f68b1e ;
+$line_jr_chuo_bgcolor: #007ac0 ;
+$line_jr_chuo_rapid_bgcolor: #f15a22 ;
+$line_jr_chuo_and_sobu_local_bgcolor: #ffd400 ;
+$line_jr_chuo_and_sobu_local_between_nakano_and_mitaka_bgcolor: #00a7db ;
+$line_jr_chuo_and_sobu_local_between_nishi_funabashi_and_tsudanuma_bgcolor: #00a7db ;
+$line_jr_sobu_bgcolor: #007ac0 ;
+$line_jr_narita_exp_bgcolor: #ff0000 ;
+$line_jr_saikyo_bgcolor: #00b48d ;
+$line_jr_joban_bgcolor: #00b261 ;
+$line_jr_keiyo_bgcolor: #c9242f ;
+$line_jr_musashino_bgcolor: #f15a22 ;
+$line_shinkansen_e_bgcolor: $operator_jr_east_bgcolor ;
+$line_tokaido_and_sanyo_shinkansen_bgcolor: #00008b ;
+
+$line_tokyu_toyoko_bgcolor: #da0442 ;
+$line_tokyu_meguro_bgcolor: #009cd2 ;
+$line_tokyu_den_en_toshi_bgcolor: #20a288 ;
+$line_minatomirai_bgcolor: $operator_yokohama_minatomirai_bgcolor ;
+
+$line_odakyu_odawara_bgcolor: $operator_odakyu_bgcolor ;
+$line_odakyu_tama_bgcolor: $operator_odakyu_bgcolor ;
+$line_odakyu_enoshima_bgcolor: $operator_odakyu_bgcolor ;
+$line_hakone_tozan_bgcolor: $operator_odakyu_bgcolor ;
+$line_hakone_tozan_bgcolor: $operator_odakyu_bgcolor ;
+
+$line_seibu_ikebukuro_bgcolor: #ff6600 ;
+$line_seibu_chichibu_bgcolor: #ff6600 ;
+$line_seibu_toshima_bgcolor: #ff6600 ;
+$line_seibu_yurakucho_bgcolor: #ff6600 ;
+$line_seibu_sayama_bgcolor: #ff6600 ;
+$line_seibu_shinjuku_bgcolor: #0099cc ;
+
+$line_tobu_sky_tree_and_isesaki_bgcolor: #0f6cc3 ;
+$line_tobu_sky_tree_oshiage_hikifune_bgcolor: #0f6cc3 ;
+$line_tobu_sky_tree_bgcolor: #0f6cc3 ;
+$line_tobu_isesaki_bgcolor: #ff0000 ;
+$line_tobu_nikko_bgcolor: #ffa500 ;
+$line_tobu_kinugawa_bgcolor: #ffa500 ;
+$line_tobu_tojo_bgcolor: #000099 ;
+
+$line_saitama_bgcolor: $operator_saitama_bgcolor ;
+$line_toyo_rapid_bgcolor: $operator_toyo_rapid_bgcolor ;
+
+$line_keio_bgcolor: $operator_keio_bgcolor ;
+$line_keio_new_bgcolor: $operator_keio_bgcolor ;
+$line_keio_inokashira_bgcolor: #000088 ;
+
+$line_keisei_main_bgcolor: $operator_keisei_bgcolor ;
+$line_keisei_oshiage_bgcolor: $operator_keisei_bgcolor ;
+
+$line_tsukuba_exp_bgcolor: $operator_tsukuba_exp_bgcolor ;
+$line_yurikamome_bgcolor: #00418e ; // 【要検討】
+$line_rinkai_bgcolor: $operator_rinkai_bgcolor ;

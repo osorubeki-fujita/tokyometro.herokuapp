@@ -1,0 +1,138 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%backgroundOfMenu {
+  $color_top: rgba( $operator_color , 0.15 );
+  $color_middle: rgba( $color_top , 0.05 );
+  $color_bottom: $color_middle;
+  //
+  $color_stop_point_1_moz : 30% ;
+  $color_stop_point_1_webkit : 0.3 ;
+  $color_stop_point_2_moz : 70% ;
+  $color_stop_point_2_webkit : 0.7 ;
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_top} #{$color_stop_point_1_moz},
+    #{$color_middle} #{$color_stop_point_2_moz} ,
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_middle} ) ,
+    to( #{$color_bottom} )
+  );
+}
+
+%borderBottomOfMenu {
+  border: {
+    bottom: solid 1px $operator_color ;
+  }
+}
+
+//--------
+
+#main_content_center {
+  .links_to_passenger_survey {
+    .title {
+      @extend %backgroundOfMenu ;
+      @extend %borderBottomOfMenu ;
+    }
+  }
+}
+
+ul#links_to_passenger_survey_pages {
+  .title.in_station_page , .title.to_year_pages {
+    @extend %backgroundOfMenu ;
+  }
+}
+
+#train_location_infos {
+  .title_of_a_railway_direction {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#real_time_info_and_update_button {
+  ul.titles {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#links_to_real_time_info_pages_of_railway_lines {
+  .title {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#update {
+  @extend %backgroundOfMenu ;
+}
+
+//-------- Document
+
+#infos_in_db , .group_of_tasks {
+  h3.title {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+//-------- Content Header
+
+#links_to_station_info_pages {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#station_facility_platform_infos {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#station_facility_infos {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#fare_contents {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#links_to_railway_line_info_pages {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#travel_time {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}
+
+#search_station {
+  .content_header {
+    @extend %backgroundOfMenu ;
+    @extend %borderBottomOfMenu ;
+  }
+}

@@ -1,0 +1,57 @@
+@charset "utf-8" ;
+@import 'color_boxes/settings.scss' ;
+
+$scale_rate: 32.0 / 48 ;
+
+//---------------- 角丸四角形の設定
+
+//-------- 塗りつぶしあり
+
+$width_of_normal_color_box: 48px ;
+$height_of_normal_color_box: $width_of_normal_color_box ;
+$border_radius_of_normal_color_box: 9px ;
+
+$width_of_wide_color_box: $width_of_normal_color_box * 3 ;
+$height_of_wide_color_box: $height_of_normal_color_box ;
+$border_radius_of_wide_color_box: $border_radius_of_normal_color_box ;
+
+$width_of_small_color_box: $width_of_normal_color_box * $scale_rate ;
+$height_of_small_color_box: $width_of_small_color_box ;
+$border_radius_of_small_color_box: $border_radius_of_normal_color_box * $scale_rate ;
+
+$border_width_of_color_box: 1px ;
+
+%colorBoxBase_48_48 {
+  @extend %colorBoxCommonBase ;
+  @include colorBoxSizeSettings( $width_of_normal_color_box , $height_of_normal_color_box , $border_radius_of_normal_color_box , $border_width_of_color_box ) ;
+}
+
+%colorBoxBase_48_144 {
+  @extend %colorBoxCommonBase ;
+  @include colorBoxSizeSettings( $width_of_wide_color_box , $height_of_wide_color_box , $border_radius_of_wide_color_box , $border_width_of_color_box ) ;
+}
+
+%colorBoxBase_32_64 {
+  @extend %colorBoxCommonBase ;
+  @include colorBoxSizeSettings( 64px , 32px , $border_radius_of_small_color_box , $border_width_of_color_box ) ;
+}
+
+%colorBoxBase_32_32 {
+  @extend %colorBoxCommonBase ;
+  @include colorBoxSizeSettings( $width_of_small_color_box , $height_of_small_color_box , $border_radius_of_small_color_box , $border_width_of_color_box ) ;
+}
+
+//-------- 塗りつぶしなし
+
+$normal_border_width_of_railway_line_code_stroked_square_48: 6px ;
+$normal_border_width_of_railway_line_code_stroked_square_32: $normal_border_width_of_railway_line_code_stroked_square_48 * $scale_rate  ;
+
+%colorBoxBase_Stroked_48_48_Normal {
+  @extend %colorBoxCommonBase ;
+  @include colorBoxSizeSettings( $width_of_normal_color_box , $height_of_normal_color_box , $border_radius_of_normal_color_box , $normal_border_width_of_railway_line_code_stroked_square_48 ) ;
+}
+
+%colorBoxBase_Stroked_32_32_Normal {
+  @extend %colorBoxCommonBase ;
+  @include colorBoxSizeSettings( $width_of_small_color_box , $height_of_small_color_box , $border_radius_of_small_color_box , $normal_border_width_of_railway_line_code_stroked_square_32 ) ;
+}

@@ -1,0 +1,23 @@
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
+%div{ id: :railway_directions }
+  - railway_directions_grouped_by_operator = @railway_directions.group_by { | railway_direction | railway_direction.railway_line.operator_id }
+  - raise "Error" if railway_directions_grouped_by_operator.nil?
+  - railway_directions_grouped_by_operator.keys.sort.each do | operator_id |
+    - railway_directions_in_an_operator = railway_directions_grouped_by_operator[ operator_id ]
+    - raise "Error" if railway_directions_in_an_operator.nil?
+    - operator_instance = ::Operator.find_by( id: operator_id )
+    - raise "Error" if operator_instance.nil?
+    %div{ class: [ :document , :operator , operator_instance.css_class_name ] }
+      = operator_instance.decorate.in_document.render_title
+      - railway_directions_grouped_by_railway_line = railway_directions_in_an_operator.group_by( &:railway_line_id )
+      - railway_directions_grouped_by_railway_line.keys.sort.each do | railway_line_id |
+        - railway_directions_in_a_railway_line = railway_directions_grouped_by_railway_line[ railway_line_id ]
+        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
+        %div{ class: [ :document , :railway_line , railway_line_instance.css_class_name ] }
+          = railway_line_instance.decorate.in_document.render_title
+          %ul{ class: [ :railway_directions_of_each_railway_line , :in_document ] }
+            - railway_directions_in_a_railway_line.each do | railway_direction |
+              = railway_direction.decorate.in_document.render

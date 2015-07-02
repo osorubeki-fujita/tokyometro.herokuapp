@@ -1,0 +1,56 @@
+- station_info_decorated = @station_info.decorate
+- station_info_decorated_for_google_map = station_info_decorated.google_map
+
+- all_exit_infos = @point_infos.select( &:exit? ).sort_by( &:code_as_instance )
+
+= render "common_content"
+
+= station_info_decorated.render_title_of_station_facility
+= station_info_decorated.render_latest_passenger_survey
+
+- if @real_time_info_processor.present?
+  = @real_time_info_processor.render( include_train_location_infos: false )
+
+= station_info_decorated.on_station_facility_page.railway_line_infos( request ).render
+
+%div{ id: :links_to_station_info_pages , class: :clearfix }
+  = station_info_decorated.render_title_of_links_to_station_info_pages( request )
+  = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , @station_info ).render
+
+%div{ id: :exits_and_map , class: :clearfix }
+  = station_info_decorated_for_google_map.render_map_canvas
+  %ul{ id: :exits }
+    - [ all_exit_infos.select( &:opened? ) , all_exit_infos.select( &:closed? ) ].each do | group |
+      - group.each do | exit_info |
+        = exit_info.decorate.render_in_station_facility_page
+
+%div{ id: :map_handler , class: :clearfix }
+  %div{ class: :links_and_current_position }
+    %ul{ id: :links_to_maps , class: :clearfix }
+      %li{ id: :open_large_size_map , class: :link_to_map }
+        %a{ target: :_blank }<
+          = ""
+        %div{ class: [ :content , :clearfix ] }
+          %div{ class: :icon }
+            = ::TokyoMetro::App::Renderer::Icon.link_to_another_website( request , 1 ).render
+          %div{ class: :text }
+            - [ "現在表示中の地図を" , "大きいサイズで開く" ].each do | text_ja |
+              %div{ class: :text_ja }<
+                = text_ja
+            %div{ class: :text_en }<
+              = "Open the map in large size"
+      = station_info_decorated_for_google_map.render_button_to_map_on_the_center_of_station( request )
+    %div{ class: [ :debug , :clearfix ] }
+      %div{ class: [ :message , :clearfix ] }
+      %div{ class: [ :precise , :clearfix ] }
+
+
+%div{ id: :station_facility_contents }
+
+  %div{ id: :station_facility_platform_infos }
+    = ::TokyoMetro::App::Renderer::StationFacility::Header::PlatformInfo.new( request ).render
+    = ::TokyoMetro::App::Renderer::StationFacility::Platform.make_list( request , @station_facility_info ).render
+
+  %div{ id: :station_facility_infos }
+    = ::TokyoMetro::App::Renderer::StationFacility::Header::BarrierFreeInfo.new( request ).render
+    = @station_facility_info.decorate.render_barrier_free_facility_infos

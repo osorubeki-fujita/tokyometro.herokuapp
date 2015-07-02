@@ -1,0 +1,9 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = @twitter_processor.render
+  = @real_time_info_processor.render_meta_datum( include_train_location_infos: true )
+  = ::TokyoMetro::App::Renderer::RealTimeInfos::SideMenu::LinksToRailwayLinePages.new( request ).render
+
+= ::RailwayLineDecorator.render_title_of_train_location( @railway_lines )
+= @real_time_info_processor.render( include_train_location_infos: true )

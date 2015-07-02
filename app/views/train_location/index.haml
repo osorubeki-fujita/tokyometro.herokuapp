@@ -1,0 +1,11 @@
+= render "common_content"
+
+- content_for :right_contents do
+  = @twitter_processor.render
+  = @real_time_info_processor.render_meta_datum( include_train_location_infos: false )
+  = ::TokyoMetro::App::Renderer::RealTimeInfos::SideMenu::LinksToRailwayLinePages.new( request ).render
+
+= ::TrainLocationDecorator.render_top_title( request , domain_id_name: :train_location_title )
+%div{ id: :railway_lines }
+  = @real_time_info_processor.render( include_train_location_infos: false , controller: :train_location , options: :add_index_of_train_location )
+  - # = ::RailwayLineDecorator.render_matrixes_of_all_railway_lines( including_yurakucho_and_fukutoshin: true , make_link_to_railway_line: true , controller: :train_location )

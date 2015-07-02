@@ -1,0 +1,11 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+$side_menu_padding: 16px ;
+
+#side_menu {
+  clear: both ;
+  @include float_left ;
+  width: $width_of_left_contents - $side_menu_padding ;
+}

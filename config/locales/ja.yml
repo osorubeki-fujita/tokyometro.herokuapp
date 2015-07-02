@@ -1,0 +1,17 @@
+ja:
+  hello: "こんにちは"
+  views:
+    pagination:
+      first: 先頭
+      last: 最終
+      previous: 前ページ
+      next: 次ページ
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        zero: "<span class=\'pagenation zero\'>該当データがありません。</span>"
+        one: "<span class=\'pagenation one\'>1 件中 <span class=\'number text_en\'>1 - 1</span> 件を表示</span>"
+        display_entries: "<span class=\'pagenation many\'>%{entry_name} の <span class=\'number text_en\'>1 - %{count}</span> 件を表示中 / 合計 %{count} 件</span>"
+      more_pages:
+        display_entries: "<span class=\'pagenation many\'>%{entry_name} の <span class=\'number text_en\'>%{first} - %{last}</span> 件を表示中 / 合計 %{total} 件</span>"

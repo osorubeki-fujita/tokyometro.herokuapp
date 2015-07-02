@@ -1,0 +1,7 @@
+%body
+  = yield( :header )
+  %div{ id: :contents , class: [ :container , :clearfix ] }
+    %div{ id: :left_contents , class: "col-md-3" }
+      = yield( :side_menu )
+    %div{ id: :main_content_wide , class: "col-md-9" }
+      = yield

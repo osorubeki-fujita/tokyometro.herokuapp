@@ -1,0 +1,102 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%listStyleOfLinksInUlInUl {
+  li {
+    list-style: none ;
+  }
+}
+
+%clearSettingsOfDomainsRelatedToPassengerSurvey {
+  clear: both ;
+}
+
+%linksToRailwayLinePageCommonSettings {
+  @extend %listStyleOfLinksInUlInUl ;
+  ul.each_railway_line {
+    @extend %listStyleOfLinksInUlInUl ;
+    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
+    @extend %padding0 ;
+  }
+}
+
+%clearBothInUlEachRailwayLine {
+  ul.each_railway_line {
+    clear: both ;
+  }
+}
+
+%titleInUlLinksInSideMenu {
+  .title {
+    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
+    height: auto ;
+    width: auto ;
+    display: block ;
+    @include padding_left_8 ;
+    @include padding_top_bottom_4 ;
+    @include margin_bottom_8 ;
+    @include font_ja_and_en(10) ;
+    .small {
+      font: {
+        size: 8pt ;
+      }
+    }
+  }
+}
+
+//-------- 乗降客数
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#links_to_year_pages {
+  li.survey_year {
+    margin: {
+      bottom: -1px ;
+    }
+  }
+}
+
+//--------
+
+#links_to_real_time_info_pages_of_railway_lines {
+  @extend %titleInUlLinksInSideMenu ;
+  ul#links_to_railway_line_pages {
+    @extend %linksToRailwayLinePageCommonSettings ;
+    @extend %clearBothInUlEachRailwayLine ;
+    li.each_controller {
+      margin: {
+        bottom: -1px ;
+      }
+    }
+  }
+}
+
+ul#links_to_passenger_survey_pages {
+  list-style: none ;
+  ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station {
+    @extend %linksToRailwayLinePageCommonSettings ;
+  }
+  ul#links_to_year_pages {
+    ul {
+      @extend %listStyleOfLinksInUlInUl ;
+      @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
+      @extend %padding0 ;
+    }
+    @extend %listStyleOfLinksInUlInUl ;
+    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
+  }
+  ul#links_to_station_pages {
+    @extend %listStyleOfLinksInUlInUl ;
+    @extend %clearSettingsOfDomainsRelatedToPassengerSurvey ;
+  }
+  @extend %clearBothInUlEachRailwayLine ;
+  @extend %titleInUlLinksInSideMenu ;
+
+  // .title.in_station_page , .title.to_year_pages {
+    // background-color: #ddd ;
+    // @include margin_bottom_4 ;
+  // }
+  
+  @include margin_top_0 ;
+  @include margin_bottom_32 ;
+  @extend %padding0 ;
+}

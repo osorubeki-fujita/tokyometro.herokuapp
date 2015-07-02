@@ -1,0 +1,61 @@
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title.new( request , ::DocumentHelper.common_title_ja , ::DocumentHelper.common_title_en , domain_id_name: :document_title ).render
+
+:ruby
+  ary_of_documents = [
+    [ "鉄道事業者" , "Operators" , "operators" , "Operator" ] ,
+    [ "車両所有事業者" , "Train owners" , "train_owners" , "TrainOwner" ] ,
+    [ "路線" , "Railway lines" , "railway_lines" , "RailwayLine" ] ,
+    [ "路線の行先（方面）" , "Railway directions" , "railway_directions" , "RailwayDirection" ] ,
+    [ "列車種別" , "Train types" , "train_types" , "TrainType" ]
+  ]
+
+%ul{ id: :links_to_document_pages , class: [ :links , :clearfix ] }
+  - ary_of_documents.each do | text_ja , text_en , url_action , model_name |
+    = ::TokyoMetro::App::Renderer::Document::Link.new( request , text_ja , text_en , url_action , model_name ).render
+
+%div{ id: :infos_in_db }
+  %h3{ class: [ :title , :text_en ] }<
+    = "Models"
+  %table{ class: :text_en }
+    %thead
+      %tr
+        %td<
+          = "Number"
+        %td<
+          = "Category"
+        %td<
+          = "Model"
+        %td<
+          = "Length"
+    %tbody
+      - @models.each.with_index(1) do | ary , i |
+        - category , model , number = ary.values
+        - raise "Error: #{i}" if model.nil?
+        %tr{ class: cycle( :odd_row , :even_row , name: :row_color ) }<
+          %td{ class: :index }<
+            = i
+          %td{ class: :category_name }<
+            - if category.present?
+              = category
+            - else
+              = " "
+          %td{ class: :model_name }<
+            - if number > 0
+              - url = url_for( controller: :document , action: :table , model_namespace_in_url: model.underscore.gsub( "/" , "_" ) )
+              = link_to( model , url )
+            - else
+              = model
+          %td{ class: :length_of_model }<
+            = number_separated_by_comma( number )
+
+- [ :to_do , :completed , :to_consider , :report_log ].each do | group_of_tasks |
+  %div{ id: group_of_tasks , class: :group_of_tasks }<
+    %h3{ class: [ :title , :text_en ] }<
+      = group_of_tasks.to_s.gsub( "_" , " " ).capitalize
+    - RailsTokyoMetro.const_get( group_of_tasks.upcase ).each do | category , contents |
+      %h4{ class: [ :each_category , :text_en ] }<
+        = category.capitalize
+      %ol{ class: [ :each_category , category.gsub( " " , "_" ).downcase ] }
+        = render_to_do( contents )

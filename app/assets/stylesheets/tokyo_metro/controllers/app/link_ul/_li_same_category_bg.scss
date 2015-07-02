@@ -1,0 +1,65 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%liSameCategoryBgInLinkUl {
+  $color_base: $link_hover_domain_color ;
+  //
+  // 変数の定義
+  //
+  $color_left: $color_base ;
+  $color_60: $color_base ;
+  $color_65: rgba( $color_base , 0.957 );
+  $color_70: rgba( $color_base , 0.844 );
+  $color_75: rgba( $color_base , 0.684 );
+  $color_80: rgba( $color_base , 0.5 );
+  $color_85: rgba( $color_base , 0.316 );
+  $color_90: rgba( $color_base , 0.156 );
+  $color_95: rgba( $color_base , 0.043 );
+  $color_right: rgba( $color_base , 0 );
+  //
+  $color_stop_point_60_moz : 60% ;
+  $color_stop_point_60_webkit : 0.6 ;
+  $color_stop_point_65_moz : 65% ;
+  $color_stop_point_65_webkit : 0.65 ;
+  $color_stop_point_70_moz : 70% ;
+  $color_stop_point_70_webkit : 0.7 ;
+  $color_stop_point_75_moz : 75% ;
+  $color_stop_point_75_webkit : 0.75 ;
+  $color_stop_point_80_moz : 80% ;
+  $color_stop_point_80_webkit : 0.8 ;
+  $color_stop_point_85_moz : 85% ;
+  $color_stop_point_85_webkit : 0.85 ;
+  $color_stop_point_90_moz : 90% ;
+  $color_stop_point_90_webkit : 0.9 ;
+  $color_stop_point_95_moz : 95% ;
+  $color_stop_point_95_webkit : 0.95 ;
+  //
+  background: #{ $color_65 } ;
+  // Firefox
+  background: -moz-linear-gradient(left,
+    #{$color_left},
+    #{$color_60} #{$color_stop_point_60_moz},
+    #{$color_65} #{$color_stop_point_65_moz},
+    #{$color_70} #{$color_stop_point_70_moz},
+    #{$color_75} #{$color_stop_point_75_moz},
+    #{$color_80} #{$color_stop_point_80_moz},
+    #{$color_85} #{$color_stop_point_85_moz},
+    #{$color_90} #{$color_stop_point_90_moz},
+    #{$color_95} #{$color_stop_point_95_moz},
+    #{$color_right}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, right top,
+    from( #{$color_left} ),
+    color-stop( #{$color_stop_point_60_webkit} , #{$color_60} ) ,
+    color-stop( #{$color_stop_point_65_webkit} , #{$color_65} ) ,
+    color-stop( #{$color_stop_point_70_webkit} , #{$color_70} ) ,
+    color-stop( #{$color_stop_point_75_webkit} , #{$color_75} ) ,
+    color-stop( #{$color_stop_point_80_webkit} , #{$color_80} ) ,
+    color-stop( #{$color_stop_point_85_webkit} , #{$color_85} ) ,
+    color-stop( #{$color_stop_point_90_webkit} , #{$color_90} ) ,
+    color-stop( #{$color_stop_point_95_webkit} , #{$color_95} ) ,
+    to( #{$color_right} )
+  );
+}

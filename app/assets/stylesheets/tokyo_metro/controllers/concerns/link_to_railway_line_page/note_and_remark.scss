@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+@import '../../../fundamental_settings.scss' ;
+
+%infoAndRemarkSettingsInLinkToRailwayLine {
+  .info , .remark {
+    @include float_left ;
+    @include margin_left_4 ;
+    width: 18px ;
+    height: 18px ;
+  }
+  .info {
+    color: #999 ;
+  }
+  .remark {
+    color: $jp_traditional_kogane ;
+  }
+}

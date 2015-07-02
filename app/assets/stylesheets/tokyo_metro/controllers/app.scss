@@ -1,0 +1,86 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'app/sub_content_settings.scss' ;
+
+body {
+  border-collapse: collapse ;
+  background-color: rgba( $operator_color , 0.1 ) ;
+  @include margin_left_right_16 ;
+  @include margin_top_bottom_0 ;
+}
+
+//-------- text
+
+.text_ja {
+  @include text_ja ;
+}
+
+.text_en {
+  @include text_en ;
+}
+
+//-------- link
+
+@include common_link_settings( $link_normal_base_color ,
+  $link_visited_color ,
+  $link_hover_color ,
+  $link_active_color
+) ;
+
+
+//-------- contents
+
+%mainContentSettings {
+  @include float_left ;
+  height: auto ;
+}
+
+%subContentSettings {
+  $padding: $side_menu_padding ;
+  #left_contents {
+    width: $width_of_left_contents - $padding ;
+    @include float_left ;
+    padding: {
+      right: $padding ;
+    }
+  }
+  #right_contents {
+    @include float_left ;
+    width: $width_of_right_contents - $padding ;
+    padding: {
+      left: $padding ;
+    }
+  }
+}
+
+#contents {
+  @extend %subContentSettings ;
+  //
+  #main_content_center {
+    width: $width_main_content_center ;
+    @extend %mainContentSettings ;
+  }
+  #main_content_wide {
+    width: $width_main_content_wide ;
+    @extend %mainContentSettings ;
+  }
+  @include padding_8 ;
+  background-color: #fff ;
+}
+
+
+//-------- index
+
+#search_station {
+  .content_header {
+    @extend %iconHeight32 ;
+    .text {
+      @include font_ja_and_en(10) ;
+    }
+  }
+  .search_box {
+    @include padding_8 ;
+  }
+  @include margin_bottom_32 ;
+}

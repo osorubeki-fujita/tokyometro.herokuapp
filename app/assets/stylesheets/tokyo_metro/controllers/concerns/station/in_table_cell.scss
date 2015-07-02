@@ -1,0 +1,71 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+%stationInfoTextInTableFontSizeSettings {
+  .text {
+    @include float_left ;
+    @include font_ja_and_en(12) ;
+    .text_ja {
+      font: {
+        // weight: bold ;
+      }
+      .small {
+        font: {
+          size: 9pt ;
+          weight: normal ;
+        }
+      }
+      text-align: left ;
+    }
+    .text_en {
+      text-align: left ;
+    }
+  }
+}
+
+%stationInfoCellLinkHover {
+  td.with_link:hover {
+    background: {
+      color: $link_hover_domain_color ;
+    }
+  }
+}
+
+
+%stationInfoInTableCommonSettings {
+  border: solid 1px #999 ;
+  @extend %stationInfoCellLinkHover ;
+  td.station_info {
+    @extend %stationInfoTextInTableFontSizeSettings ;
+    @extend %linkInDiv ;
+    @include padding_0 ;
+    $station_code_img_length: 24px ;
+    text-align: left ;
+    .station_info_domain {
+      @include margin_8 ;
+    }
+    .station_codes {
+      @include float_left ;
+      @include margin_right_8 ;
+      img.station_code {
+        @include float_left ;
+        width: $station_code_img_length ;
+        height: $station_code_img_length ;
+      }
+    }
+    .station_code_outer {
+      @include float_left ;
+      @include margin_right_8 ;
+      background-color: #fff ;
+      $margin_of_inner_domain: 2px ;
+      $length_base: $station_code_img_length + $margin_of_inner_domain * 2 ;
+      width: $length_base ;
+      height: $length_base ;
+      @include border_radius( $length_base * 0.5 ) ;
+      .station_codes {
+        margin: $margin_of_inner_domain ;
+      }
+    }
+  }
+}

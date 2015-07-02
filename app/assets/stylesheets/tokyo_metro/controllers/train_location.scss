@@ -1,0 +1,295 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+
+%trainLocationContentFontSizeSmall {
+  @include font_ja_and_en( 10 ) ;
+  .text_ja {
+    .small {
+      font: {
+        size: 7.5pt ;
+      }
+    }
+  }
+}
+
+%trainLocationContentTitleSmall {
+  @extend %trainLocationContentFontSizeSmall ;
+}
+
+%trainLocationContentFontSizeLarge {
+  @include font_ja_and_en(12) ;
+  .text_ja {
+    .small {
+      font: {
+        size: 8.4pt ;
+      }
+    }
+  }
+  .text_en {
+    .small {
+      font: {
+        size: 7.2pt ;
+      }
+    }
+  }
+}
+
+%trainLocationContentTitleLarge {
+  @extend %trainLocationContentFontSizeLarge ;
+}
+
+%trainLocationContentTitleLargeInARow {
+  font: {
+    size: 12pt ;
+  }
+  .small {
+    font: {
+      size: 8.4pt ;
+    }
+  }
+  .text_en {
+    font: {
+      size: 9pt ;
+    }
+    @include margin_left_4 ;
+  }
+}
+
+%trainLocationStartingStation {
+  @extend %trainLocationContentFontSizeSmall ;
+  @include margin_right_8 ;
+}
+
+// --------
+
+%railwayLineMatrixInTrainLocation {
+  .railway_line_matrix_small {
+    @include float_left ;
+    height: 120px ;
+  }
+}
+
+// --------
+
+%terminalStationInTrainLocation {
+  .terminal_station {
+    @include margin_left_right_8 ;
+    @include margin_bottom_8 ;
+    @extend %trainLocationContentFontSizeLarge ;
+    clear: both ;
+    .station_codes {
+      @include float_left ;
+      @include margin_right_6 ;
+      font: {
+        size: 8pt ;
+      }
+      img {
+        $length: 30px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+    .text {
+      @include float_left ;
+    }
+    &.long {
+      .text {
+        @include font_ja_and_en(10) ;
+      }
+    }
+  }
+}
+
+// --------
+
+ul.train_locations_of_each_direction {
+  @extend %clearUlDefaultSettings ;
+  @include margin_bottom_16 ;
+  li.train_location {
+    list-style: none ;
+    border: solid 1px #999 ;
+    margin: {
+      bottom: -1px ;
+    }
+    @extend %railwayLineMatrixInTrainLocation ;
+    //
+    .train_fundamental_infos {
+      @include float_left ;
+      background-color: #f9f9f9 ;
+      .railway_line_matrix_very_small {
+        @include margin_bottom_8 ;
+      }
+    }
+    @extend %terminalStationInTrainLocation ;
+    ul.sub_infos {
+      @include float_left ;
+      list-style: none ;
+      @extend %clearUlDefaultSettings ;
+      li.sub_info {
+        @include margin_bottom_8 ;
+        @include padding_left_right_8 ;
+        p {
+          line: {
+            height: 1.2em ;
+          }
+        }
+      }
+    }
+  }
+}
+
+// --------
+
+ul.train_locations_of_each_direction { li.train_location { .train_type {
+  @include float_left ;
+  @include margin_bottom_8 ;
+  @include margin_left_right_8 ;
+  @include padding_top_bottom_4 ;
+  @include padding_left_right_8 ;
+  @include border_radius( 4px ) ;
+  @include font_ja_and_en( 10 ) ;
+  clear: both ;
+  p {
+    line: {
+      height: 1.2em ;
+    }
+    text: {
+      align: center ;
+    }
+  }
+}}}
+
+ul.train_locations_of_each_direction { li.train_location { .current_position {
+  @include float_left ;
+  border: {
+    left: solid 4px #fff ;
+    right: solid 4px #fff ;
+  }
+  .title_of_current_position {
+    @include font_ja_and_en( 10 ) ;
+    span.text_en {
+      @include margin_left_4 ;
+    }
+    @include padding_8 ;
+    background-color: #666 ;
+    color: #fff ;
+  }
+  .station_infos {
+    @include padding_16 ;
+    .arrow {
+      @include margin_top_4 ;
+      @include margin_bottom_4 ;
+      @include margin_left_32 ;
+    }
+    .station_info {
+      .station_codes {
+        @include float_left ;
+        @include margin_right_4 ;
+      }
+      .text {
+        @include float_left ;
+        @extend %trainLocationContentFontSizeLarge ;
+      }
+      img {
+        $length: 30px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+  }
+}}}
+
+// --------
+
+ul.train_locations_of_each_direction { li.train_location { ul.sub_infos { li.time_info {
+  @include margin_bottom_16 ;
+  @include padding_top_bottom_8 ;
+  @include padding_left_right_8 ;
+  .title_of_delay {
+    @include float_left ;
+    @include margin_right_8 ;
+    @extend %trainLocationContentTitleSmall ;
+  }
+  .time {
+    @include float_left ;
+    font: {
+      size: 12pt ;
+      weight: bold ;
+    }
+  }
+}}}}
+
+// --------
+
+ul.train_locations_of_each_direction { li.train_location { ul.sub_infos { li.starting_station {
+  .starting_station_title {
+    @include float_left ;
+    @include margin_right_8 ;
+    @extend %trainLocationContentTitleSmall ;
+  }
+  .station_info {
+    @include float_left ;
+    .station_codes {
+      @include float_left ;
+      font: {
+        size: 8pt ;
+      }
+      @include margin_right_4 ;
+    }
+    .text {
+      @include float_left ;
+      @extend %trainLocationContentFontSizeSmall ;
+    }
+    img {
+      $length: 24px ;
+      width: $length ;
+      height: $length ;
+    }
+  }
+}}}}
+
+// --------
+
+ul.train_locations_of_each_direction { li.train_location { ul.sub_infos { li.train_number {
+  .title_of_train_number {
+    @include float_left ;
+    @include margin_right_8 ;
+    @extend %trainLocationContentTitleSmall ;
+  }
+  .train_number_text {
+    @include float_left ;
+    font: {
+      size: 12pt ;
+    }
+  }
+}}}}
+
+ul.train_locations_of_each_direction { li.train_location { ul.sub_infos { li.train_owner {
+    @include font_ja_and_en(10) ;
+}}}}
+
+// --------
+
+%titleOfRailwayLineAndRailwayDirectionInTrainLoations {
+  h3 , h4 , h5 {
+    font: {
+      weight: normal ;
+    }
+  }
+  @include margin_bottom_16 ;
+  @include padding_8 ;
+}
+
+// --------
+
+#train_location_infos {
+  .title_of_a_railway_line {
+    background-color: #ddd ;
+    @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
+  }
+  .title_of_a_railway_direction {
+    @extend %titleOfRailwayLineAndRailwayDirectionInTrainLoations ;
+    @include font_ja_and_en(12) ;
+  }
+}

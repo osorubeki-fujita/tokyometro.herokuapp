@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+@import 'common_mixins/domain.scss' ;
+@import 'common_mixins/libraries.scss' ;
+@import 'common_mixins/text_stroke.scss' ;
+@import 'common_mixins/table.scss' ;
+@import 'common_mixins/color.scss' ;
+@import 'common_mixins/font.scss' ;
+
+@import 'common_mixins/float.scss' ;
+@import 'common_mixins/link.scss' ;
+@import 'common_mixins/list.scss' ;
+@import 'common_mixins/margin_and_padding.scss' ;
+@import 'common_mixins/div_vertical_align.scss' ;
+@import 'common_mixins/icon_size.scss' ;
+
+//-------- リストの基本設定 (list-style)
+
+%liBaseSettingsInLinkUl {
+  @include float_left ;
+  @extend %linkInDiv ;
+  list-style: none ;
+}

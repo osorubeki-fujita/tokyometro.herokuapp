@@ -1,0 +1,67 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+@import 'link_to_railway_line_color_setting.scss' ;
+
+//---- リアルタイム情報（路線別）
+
+@mixin linkToRailwayLineColorSettingInLinksToThisRealTimeInfoPage( $color , $rate ) {
+  background: {
+    color: rgba( $color , 0.2 * $rate ) ;
+  }
+  .text {
+    .text_en {
+      color: desaturate( $color , 60% ) ;
+    }
+  }
+}
+
+@mixin linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $color , $rate: 1 ) {
+  &.railway_line {
+    @include linkToRailwayLineColorSetting( $color , $rate ) ;
+  }
+  &.each_controller {
+    @include linkToRailwayLineColorSetting( $color , $rate * 0.6 ) ;
+  }
+
+  &.railway_line.this_page {
+    @include linkToRailwayLineColorSettingInLinksToThisRealTimeInfoPage( $color , $rate * 0.8 ) ;
+  }
+  &.railway_line._hover {
+    @include linkToRailwayLineColorSettingInLinksToThisRealTimeInfoPage( $color , $rate * 0.6 ) ;
+  }
+  &.each_controller.this_page {
+    @include linkToRailwayLineColorSettingInLinksToThisRealTimeInfoPage( $color , $rate * 0.8 ) ;
+  }
+}
+
+
+#links_to_real_time_info_pages_of_railway_lines {
+  ul.each_railway_line.ginza li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_ginza_bgcolor ) ;
+  }
+  ul.each_railway_line.marunouchi li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_marunouchi_bgcolor , 0.75 ) ;
+  }
+  ul.each_railway_line.hibiya li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_hibiya_bgcolor , 1.6 ) ;
+  }
+  ul.each_railway_line.tozai li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_tozai_bgcolor ) ;
+  }
+  ul.each_railway_line.chiyoda li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_chiyoda_bgcolor ) ;
+  }
+  ul.each_railway_line.yurakucho li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_yurakucho_bgcolor , 1.3 ) ;
+  }
+  ul.each_railway_line.hanzomon li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_hanzomon_bgcolor , 1.2 ) ;
+  }
+  ul.each_railway_line.namboku li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_namboku_bgcolor , 0.8 ) ;
+  }
+  ul.each_railway_line.fukutoshin li {
+    @include linkToRailwayLineColorSettingInLinksToRealTimeInfoPages( $line_fukutoshin_bgcolor ) ;
+  }
+}

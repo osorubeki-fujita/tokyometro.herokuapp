@@ -1,0 +1,155 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'station_timetable/color_settings.scss' ;
+@import 'station_timetable/header.scss' ;
+
+%trainTimeAdditionalInfoCommonSettings {
+  float: left ;
+  clear: both ;
+  margin: {
+    top: 2px ;
+  }
+  padding: {
+    left: 4px ;
+    right: 4px ;
+    top: 2px ;
+    bottom: 2px ;
+  }
+  border: {
+    style: solid ;
+    width: 1px ;
+  }
+  @include border_radius( 2px ) ;
+  font: {
+    size: 8pt ;
+    weight: normal ;
+  }
+}
+
+%trainTimeAdditionalInfos {
+  margin: {
+    top: 2px ;
+  }
+  .last {
+    @extend %trainTimeAdditionalInfoCommonSettings ;
+    color: $text_black_base_color ;
+    $border_color: $jp_traditional_kompeki ;
+    background-color: rgba( $border_color , 0.2 ) ;
+    border: {
+      color: $border_color ;
+    }
+  }
+  .origin {
+    @extend %trainTimeAdditionalInfoCommonSettings ;
+    color: $text_black_base_color ;
+    $border_color: $jp_traditional_nijiiro ;
+    background-color: rgba( $border_color , 0.5 ) ;
+    border: {
+      color: $border_color ;
+    }
+  }
+  .starting_station {
+    @extend %trainTimeAdditionalInfoCommonSettings ;
+    $border_color: #ddd ;
+    color: $text_black_base_color ;
+    background-color: mix( $border_color , #fff ) ;
+    border: {
+      color: $border_color ;
+    }
+  }
+}
+
+%stationTrainTimePreciseInfos {
+  @include float_left ;
+  color: $jp_traditional_sumi_iro ;
+  font: {
+    size: 8pt ;
+  }
+  .destination {
+    color: #000 ;
+    .small {
+      font: {
+        size: 6pt ;
+        color: $jp_traditional_sumi_iro ;
+      }
+    }
+  }
+  .additional_infos {
+    @extend %trainTimeAdditionalInfos ;
+  }
+}
+
+%stationTimetableBorderSetting {
+  border: solid 1px #999 ;
+}
+
+table.station_timetable {
+  clear:both ;
+  background-color: #fff ;
+  border-collapse: collapse ;
+  width: auto ;
+  @include margin_bottom_32 ;
+  @extend %commonSettingsOfStationTimetableHeader ;
+  @extend %colorSettingsOfStationTimetableHeader ;
+  @extend %stationTimetableBorderSetting ;
+  thead {
+    td {
+      .main {
+        .operation_day {
+          @include border_radius( 4px ) ;
+        }
+      }
+    }
+  }
+  tr.hour_row {
+    td.hour {
+      @extend %textEn ;
+      @extend %stationTimetableBorderSetting ;
+      height: auto ;
+      text-align: right ;
+      font: {
+        size: 24pt ;
+        weight: bold ;
+      }
+      @include padding_8 ;
+      color: $jp_traditional_sumi_iro ;
+      background-color: mix( $jp_traditional_urumi_iro , #fff , 30% ) ;
+    }
+    td.station_train_times {
+      background-color: #f9f9f9 ;
+      @extend %stationTimetableBorderSetting ;
+      .station_train_time {
+        clear: right ;
+        @include float_left ;
+        @include margin_4 ;
+        @include padding_8 ;
+        border: solid 1px #ddd ;
+        background-color: #fff ;
+        .min {
+          @extend %textEn ;
+          @include float_left ;
+          @include margin_right_4 ;
+          text-align: right ;
+          color: #333 ;
+          font: {
+            size: 18pt ;
+            weight: bold ;
+          }
+          p.is_arrival {
+            font: {
+              size: 8pt ;
+              weight: normal ;
+            }
+            // color: 
+            background-color: #eee ;
+            padding: 2px ;
+          }
+        }
+        .precise {
+          @extend %stationTrainTimePreciseInfos ;
+        }
+      }
+    }
+  }
+}

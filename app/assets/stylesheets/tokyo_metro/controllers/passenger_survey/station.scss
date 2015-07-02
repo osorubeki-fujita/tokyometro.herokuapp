@@ -1,0 +1,72 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%bgcolorOfPassengerSurveyOfStation {
+  $color_top: rgba( $operator_color , 0.2 ) ;
+  $color_bottom: #f6f6f6 ;
+  //
+  background: $color_top ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{ $color_top },
+    #{ $color_bottom }
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{ $color_top } ),
+    to( #{ $color_bottom } )
+  );
+}
+
+%fontSizeNormalInPassengerSurveyOfStation {
+  font: {
+    size: 12px ;
+  }
+}
+
+%fontSizeSmallInPassengerSurveyOfStation {
+  font: {
+    size: 9px ;
+  }
+}
+
+#passenger_survey_of_station {
+  @extend %bgcolorOfPassengerSurveyOfStation ;
+  text-align: right ;
+  @include padding_top_bottom_2 ;
+  @include padding_right_8 ;
+  @include margin_bottom_8 ;
+  .data {
+    @include float_right ;
+  }
+  .icon {
+    @extend %linkInDiv ;
+    @include float_left ;
+    @include margin_right_4 ;
+    i {
+      @include float_left ;
+    }
+  }
+  .text_ja {
+    @include float_left ;
+  }
+  //
+  $font_size_base: 12px ;
+  @extend %fontSizeNormalInPassengerSurveyOfStation ;
+  .title {
+    @extend %fontSizeNormalInPassengerSurveyOfStation ;
+  }
+  .passenger_survey {
+    @extend %fontSizeNormalInPassengerSurveyOfStation ;
+    .text_en {
+      @extend %fontSizeNormalInPassengerSurveyOfStation ;
+    }
+  }
+  .year {
+    @extend %fontSizeSmallInPassengerSurveyOfStation ;
+    .text_en {
+      @extend %fontSizeSmallInPassengerSurveyOfStation ;
+    }
+  }
+}

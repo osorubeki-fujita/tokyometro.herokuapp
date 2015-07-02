@@ -1,0 +1,158 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+//-------------------------------- 現在不使用
+
+@mixin backgroundColorOfTopContent {
+    // 変数の定義
+    //
+    $color_top: $background_base_color_of_top_content;
+    $color_center: #fff;
+    $color_bottom_base: $operator_tokyo_metro_bgcolor;
+    //
+    $color_bottom: rgba( $operator_tokyo_metro_bgcolor , 0.2 );
+    //
+    $color_stop_point_1_moz : 5% ;
+    $color_stop_point_1_webkit : 0.05 ;
+    $color_stop_point_2_moz : 60% ;
+    $color_stop_point_2_webkit : 0.6 ;
+    $color_stop_point_3_moz : 80% ;
+    $color_stop_point_3_webkit : 0.8 ;
+    //
+    background: #{ $color_top } ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+        #{$color_top},
+        #{$color_top} #{$color_stop_point_1_moz},
+        #{$color_center} #{$color_stop_point_2_moz} ,
+        #{$color_center} #{$color_stop_point_3_moz} ,
+        #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+        from( #{$color_top} ),
+        color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+        color-stop( #{$color_stop_point_2_webkit} , #{$color_center} ) ,
+        color-stop( #{$color_stop_point_3_webkit} , #{$color_center} ) ,
+        to( #{$color_bottom} )
+    );
+}
+
+@mixin bgcolorOfTopContent {
+    // 変数の定義
+    //
+    $color_top: $background_base_color_of_top_content;
+    $color_center: #fff;
+    $color_bottom_base: $operator_color;
+    //
+    $color_bottom: rgba( $operator_color , 0.2 );
+    //
+    $color_stop_point_1_moz : 5% ;
+    $color_stop_point_1_webkit : 0.05 ;
+    $color_stop_point_2_moz : 60% ;
+    $color_stop_point_2_webkit : 0.6 ;
+    $color_stop_point_3_moz : 80% ;
+    $color_stop_point_3_webkit : 0.8 ;
+    //
+    background: #{ $color_top } ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+        #{$color_top},
+        #{$color_top} #{$color_stop_point_1_moz},
+        #{$color_center} #{$color_stop_point_2_moz} ,
+        #{$color_center} #{$color_stop_point_3_moz} ,
+        #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+        from( #{$color_top} ),
+        color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+        color-stop( #{$color_stop_point_2_webkit} , #{$color_center} ) ,
+        color-stop( #{$color_stop_point_3_webkit} , #{$color_center} ) ,
+        to( #{$color_bottom} )
+    );
+}
+
+@mixin bgcolorOfListOfMainContents( $base_color ) {
+    $color_top: $base_color ;
+    $color_bottom: #fff;
+    //
+    $color_stop_point_1_moz : 5% ;
+    $color_stop_point_1_webkit : 0.05 ;
+    $color_stop_point_2_moz : 80% ;
+    $color_stop_point_2_webkit : 0.8 ;
+    //
+    background: #{ $color_top } ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+        #{$color_top},
+        #{$color_top} #{$color_stop_point_1_moz},
+        #{$color_bottom} #{$color_stop_point_2_moz} ,
+        #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+        from( #{$color_top} ),
+        color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+        color-stop( #{$color_stop_point_2_webkit} , #{$color_bottom} ) ,
+        to( #{$color_bottom} )
+    );
+}
+
+%floatLeftAndVerticalAlignMiddleInTopContent {
+  @include float_left ;
+  vertical-align: middle ;
+}
+
+@mixin topContent {
+  // 変数の定義
+  $length_of_logo: 64px ;
+  $margin_top_and_bottom_of_logo: 8px;
+  $border_of_logo: 2px ;
+  $height_of_content: 96px ; // $length_of_logo + $border_of_logo * 2 + $margin_top_and_bottom_of_logo * 2 ;
+  //
+  height: $height_of_content ;
+  @include margin_bottom_16 ;
+  %floatLeftAndVerticalAlignMiddleInTopContent {
+    @include float_left ;
+    vertical-align: middle ;
+  }
+  .logo {
+    @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
+    height: $height_of_content ;
+    img {
+      margin:{
+        left: $margin_top_and_bottom_of_logo ;
+        right: $margin_top_and_bottom_of_logo * 2 ;
+        top: $margin_top_and_bottom_of_logo;
+        bottom: $margin_top_and_bottom_of_logo;
+      }
+      width: $length_of_logo ;
+      height: $length_of_logo ;
+      border: solid $border_of_logo #fff;
+      // @include rounded_square_border_radius(8px) ;
+    }
+  }
+  .text {
+    @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
+    .title {
+      @extend %floatLeftAndVerticalAlignMiddleInTopContent ;
+      @extend %textEn ;
+      .tokyo_metro {
+        display: block;
+        color: #fff ;
+        font: {
+          size: 18pt;
+        }
+      }
+      .open_data_contest{
+        color: lighten( $background_base_color_of_top_content , 20% );
+        font: {
+          size: 24pt;
+          weight: bold;
+        }
+      }
+    }
+  }
+}

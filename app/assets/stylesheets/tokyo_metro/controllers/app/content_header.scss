@@ -1,0 +1,155 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%contentHeaderCommonSettings {
+  padding: 8px ;
+  .icon {
+    width: 64px ;
+  }
+  .icon , .icons {
+    @include float_left ;
+    @include margin_right_8 ;
+    text-align: center ;
+  }
+  .icons {
+    .icon {
+      margin: 0px ;
+    }
+  }
+  .text {
+    @include float_left ;
+    // @include margin_right_16 ;
+  }
+}
+
+%contentHeaderNormalTextSettings {
+  .text_ja {
+    font: {
+      weight: bold ;
+    }
+  }
+  @extend %iconHeight48 ;
+  @include margin_bottom_16 ;
+}
+
+.content_header , .selection_header {
+  @extend %contentHeaderCommonSettings ;
+  $font_size_ja: 12pt ;
+  $font_size_en: $font_size_ja * 0.75 ;
+  .text_ja {
+    font: {
+      size: $font_size_ja ;
+      weight: normal ;
+    }
+    .small {
+      font: {
+        size: $font_size_ja * 0.7 ;
+      }
+    }
+  }
+  .text_en {
+    font: {
+      size: $font_size_en ;
+      weight: normal ;
+    }
+  }
+}
+
+//--------
+
+%contentHeaderBlackBackgroundAndWhiteText {
+  color: #fff ;
+  background-color: desaturate( $operator_color , 80% ) ;
+}
+
+//--------
+
+#select_railway_line {
+  @extend %contentHeaderBlackBackgroundAndWhiteText ;
+}
+
+#select_station_from_railway_line {
+  @extend %contentHeaderBlackBackgroundAndWhiteText ;
+}
+
+#select_station_from_list {
+  @extend %contentHeaderBlackBackgroundAndWhiteText ;
+}
+
+//--------
+
+#fare_contents {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+
+#train_operation_infos {
+  .title_of_train_operation_infos {
+    @extend %contentHeaderCommonSettings ;
+    @extend %contentHeaderBlackBackgroundAndWhiteText ;
+  }
+  .title_of_train_location_infos {
+    @extend %contentHeaderCommonSettings ;
+    @extend %contentHeaderBlackBackgroundAndWhiteText ;
+  }
+}
+
+.twitter_header {
+  @extend %contentHeaderBlackBackgroundAndWhiteText ;
+}
+
+.real_time_infos  {
+  @extend %contentHeaderBlackBackgroundAndWhiteText ;
+}
+
+#links_to_station_info_pages {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+
+//--------
+
+#tokyo_metro_railway_lines {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+
+#other_railway_lines {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+
+#station_facility_platform_infos {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+
+#station_facility_infos {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+
+//--------
+
+#links_to_railway_line_info_pages {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+#travel_time {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}
+#women_only_car {
+  .content_header {
+    @extend %contentHeaderNormalTextSettings ;
+  }
+}

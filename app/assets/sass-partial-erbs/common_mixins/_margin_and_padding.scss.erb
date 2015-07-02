@@ -1,0 +1,74 @@
+@charset "utf-8" ;
+
+<% attr_types = [ "margin" , "padding" ] %>
+<% pxs = [ 0 , 2 , 4 , 6 , 8 , 12 , 16 , 24 , 32 , 64 ] %>
+<% directions = [ "left" , "right" , "top" , "bottom" ] %>
+<% direction_groups = [ [ "left" , "right" ] , [ "top" , "bottom" ] ] %>
+
+//-------- All directions
+
+<% attr_types.each do | attr_type | %>
+
+  <% pxs.each do | n | %>
+    <% heads = [ "%#{ attr_type }#{ n }" , "@mixin #{ attr_type }_#{ n }" ] %>
+    <% heads.each do | head | %>
+
+<% # [begin] Sass %>
+
+<%= head %> {
+  <%= attr_type %>: <%= n %>px ;
+}
+
+<% # [end] Sass %>
+
+    <% end %>
+  <% end %>
+
+
+
+//-------- Each direction
+
+  <% directions.each do | direction | %>
+    <% pxs.each do | n | %>
+      <% heads = [ "%#{ attr_type }#{ direction.capitalize }#{ n }" , "@mixin #{ attr_type }_#{ direction }_#{ n }" ] %>
+      <% heads.each do | head | %>
+
+<% # [begin] Sass %>
+
+<%= head %> {
+  <%= attr_type %>: {
+    <%= direction %>: <%= n %>px ;
+  }
+}
+
+<% # [end] Sass %>
+
+      <% end %>
+    <% end %>
+  <% end %>
+
+//-------- Each direction group
+
+  <% direction_groups.each do | direction_group | %>
+    <% pxs.each do | n | %>
+      <% head_extension = [ "%#{ attr_type }" , direction_group.map( &:to_s ).map( &:capitalize ).join , n ].map( &:to_s ).join %>
+      <% head_mixin = [ "@mixin #{ attr_type }" , direction_group.map( &:to_s ).join( "_" ) , n ].map( &:to_s ).join( "_" ) %>
+      <% [ head_extension , head_mixin ].each do | head | %>
+
+<% # [begin] Sass %>
+
+<%= head %> {
+  <%= attr_type %>: {
+    <% direction_group.each do | direction | %>
+    <%= direction %>: <%= n %>px ;
+    <% end %>
+  }
+}
+
+<% # [end] Sass %>
+
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

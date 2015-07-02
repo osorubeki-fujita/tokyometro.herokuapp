@@ -1,0 +1,360 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+@import 'concerns/connecting_railway_line_info.scss' ;
+
+%stationFacilityRailwayLineInfo {
+  ul {
+    @extend %clearUlDefaultSettings ;
+    @extend %connectingRailwayLineInfo ;
+    @include margin_bottom_16 ;
+    height: auto ;
+  }
+  clear: both ;
+  @include padding_bottom_4 ;
+}
+
+#tokyo_metro_railway_lines {
+  @extend %stationFacilityRailwayLineInfo ;
+  ul.railway_lines {
+    li.railway_line {
+      border: {
+        color: #ddd ;
+      }
+      a {
+        background-color: transparent ;
+      }
+    }
+    .railway_lines_in_another_station {
+      clear: both ;
+      height: auto ;
+    }
+  }
+}
+
+#other_railway_lines {
+  @extend %stationFacilityRailwayLineInfo ;
+  ul.railway_lines {
+    li.railway_line {
+      list-style: none ;
+      border: {
+          color: #ddd ;
+      }
+    }
+  }
+}
+
+
+%stationFacilityInsideAndOutside {
+  @include padding_left_0 ;
+  @include margin_top_0 ;
+  @include margin_left_32 ;
+  @include margin_bottom_8 ;
+  @include float_left ;
+  clear: both ;
+  // width: 360px ;
+  li {
+    list-style: none ;
+  }
+  .title_of_each_area {
+    @include margin_bottom_8 ;
+    border: {
+      bottom: dotted 1px $operator_color ;
+    }
+    $font_size_ja: 12pt ;
+    $font_size_en: $font_size_ja * 0.75 ;
+    font: {
+      size: $font_size_ja ;
+    }
+    .text_en {
+      font: {
+        size: $font_size_en ;
+      }
+      @include margin_left_6 ;
+    }
+  }
+}
+
+%commonSettingsOfServiceDetail {
+  @include float_left ;
+  @include padding_left_right_8 ;
+  @include padding_top_bottom_4 ;
+  border: {
+    left: {
+      style: solid ;
+      width: 4px ;
+    }
+  }
+}
+
+@mixin colorSettingsOfServiceDetail( $border_color ) {
+  border: {
+    left: {
+      color: $border_color ;
+    }
+  }
+  background-color: mix( $border_color , #fff , 20% ) ;
+}
+
+%serviceDetailPreciseInfo {
+  @include float_left ;
+  @include margin_right_8 ;
+  @include padding_top_bottom_2 ;
+  @include padding_left_right_4 ;
+  text-align: center;
+  @include border_radius( 2px ) ;
+}
+
+//--------
+
+%stationFacilityInfoNumber {
+  .number {
+    @include float_left ;
+    color: #aaa ;
+    width: 32px ;
+    font: {
+      size: 6pt ;
+    }
+  }
+}
+
+%stationFacilityInfoImage {
+  img.barrier_free_facility {
+    @include float_left ;
+    height: 48px ;
+    width: auto ;
+  }
+}
+
+//--------
+
+%stationFacilityInfoCommonSettings {
+  clear: none ;
+  @include float_left ;
+  font: {
+    size: 9pt ;
+  }
+}
+
+%stationFacilityInfoPlace {
+  .place {
+    font: {
+      size: 10pt ;
+    }
+    @include margin_bottom_4 ;
+    display: block ;
+  }
+}
+
+%stationFacilityInfoUlServiceDetails {
+  ul.service_details {
+    @include padding_left_0 ;
+    ul.service_detail {
+      @include padding_left_0 ;
+      @include margin_bottom_2 ;
+      list-style: none ;
+      li {
+        list-style: none ;
+      }
+    }
+  }
+}
+
+%stationFacilityInfoServiceDetailOperationDay {
+  .operation_day {
+    @include float_left ;
+    @extend %serviceDetailPreciseInfo ;
+    @include font_ja_and_en(9) ;
+    border: solid 1px #eee ;
+    background-color: #fafafa ;
+  }
+}
+
+%stationFacilityInfoServiceDetailEscalatorDirection {
+  .service_detail {
+    .escalator_direction {
+      @include float_left ;
+      @extend %serviceDetailPreciseInfo ;
+      border: solid 1px $jp_traditional_aomidori ;
+      background-color: rgba( $jp_traditional_aomidori , 0.12 ) ;
+      font: {
+        size: 8pt ;
+      }
+      .direction_icons {
+        @include float_left ;
+        @include margin_right_4 ;
+        .direction_icon {
+          @include float_left ;
+          $icon_size: 16px ;
+          width: $icon_size ;
+          height: $icon_size ;
+          text-align: center ;
+        }
+        .down {
+          margin-left: -6px ;
+        }
+      }
+      .text {
+        @include float_left ;
+        text-align: center ;
+      }
+    }
+  }
+}
+
+%stationFacilityInfoServiceDetailServiceTime {
+  .service_time {
+    display: block ;
+    $base_color: $jp_traditional_moegi ;
+    @extend %commonSettingsOfServiceDetail ;
+    @include colorSettingsOfServiceDetail( $base_color ) ;
+    i {
+      @include margin_right_4 ;
+    }
+    span.service_time_title {
+      @include margin_right_4 ;
+    }
+    span.joint {
+      @include margin_left_right_8 ;
+    }
+  }
+}
+
+%stationFacilityInfoServiceDetailToiletAssistants {
+  ul.toilet_assistants {
+    @include margin_bottom_4 ;
+    @include padding_left_0 ;
+    li.toilet_assistant {
+      @extend %serviceDetailPreciseInfo ;
+      font: {
+        size: 8pt ;
+      }
+      border: solid 1px $jp_traditional_kamenozoki ;
+      background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
+      list-style: none ;
+    }
+  }
+}
+
+%stationFacilityInfoImageOfToiletAssistants {
+  img.toilet_assistant {
+    $length: 24px ;
+    width: $length ;
+    height: $length ;
+  }
+}
+
+%stationFacilityInfoServiceDetailWheelChair {
+  .wheel_chair {
+    display: block ;
+    @extend %serviceDetailPreciseInfo ;
+    font: {
+      size: 8pt ;
+    }
+    border: solid 1px $jp_traditional_kamenozoki ;
+    background-color: rgba( $jp_traditional_kamenozoki , 0.12 ) ;
+  }
+}
+
+%stationFacilityInfoServiceDetailRemark {
+  .remark {
+    @extend %commonSettingsOfServiceDetail ;
+    @include colorSettingsOfServiceDetail( $jp_traditional_jinzamomi ) ;
+  }
+}
+
+//--------
+
+#station_facility_infos {
+  ul#station_facility_info {
+    @include padding_left_0 ;
+    @include margin_top_0 ;
+    @include margin_bottom_0 ;
+    li {
+      &.elevator , &.escalator , &.toilet , &.link_for_mobility_scooter , &.stairlift {
+        list-style: none ;
+      }
+    }
+  }
+  #station_facility_info {
+    .title {
+      clear: both ;
+      @include float_left ;
+      @include margin_bottom_16 ;
+      border: {
+        bottom: solid 1px $operator_color ;
+      }
+      $font_size_ja: 14pt ;
+      $font_size_en: $font_size_ja * 0.75 ;
+      font: {
+        size: $font_size_ja ;
+      }
+      span.text_en {
+        font: {
+          size: $font_size_en ;
+        }
+        @include margin_left_6 ;
+      }
+    }
+  }
+  ul.inside , ul.outside {
+    @extend %stationFacilityInsideAndOutside ;
+  }
+  .facility {
+    clear: both ;
+    @include margin_left_16 ;
+    @include margin_bottom_8 ;
+    .image_and_number {
+      @include float_left ;
+      @extend %stationFacilityInfoNumber ;
+      @extend %stationFacilityInfoImage ;
+    }
+    .info {
+      @extend %stationFacilityInfoCommonSettings ;
+      //
+      @extend %stationFacilityInfoPlace ;
+      @extend %stationFacilityInfoUlServiceDetails ;
+      @extend %stationFacilityInfoServiceDetailOperationDay ;
+      @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
+      @extend %stationFacilityInfoServiceDetailServiceTime ;
+      @extend %stationFacilityInfoServiceDetailToiletAssistants ;
+      @extend %stationFacilityInfoServiceDetailWheelChair ;
+      @extend %stationFacilityInfoServiceDetailRemark ;
+      //
+      @extend %stationFacilityInfoImageOfToiletAssistants ;
+      .service_time {
+        span.with_tooltip {
+          border: {
+            bottom: dotted 1px desaturate( $jp_traditional_moegi, 5% ) ;
+          }
+        }
+      }
+    }
+  }
+}
+
+div.ui-tooltip {
+  &.tooltip_of_barrier_free_facility , &.map_link {
+    max-width: 480px !important ;
+  }
+
+  .in_tooltip.barrier_free_facility {
+    @extend %stationFacilityInfoCommonSettings ;
+    //
+    @extend %stationFacilityInfoPlace ;
+    @extend %stationFacilityInfoUlServiceDetails ;
+    @extend %stationFacilityInfoServiceDetailOperationDay ;
+    @extend %stationFacilityInfoServiceDetailEscalatorDirection ;
+    @extend %stationFacilityInfoServiceDetailServiceTime ;
+    @extend %stationFacilityInfoServiceDetailToiletAssistants ;
+    @extend %stationFacilityInfoServiceDetailWheelChair ;
+    @extend %stationFacilityInfoServiceDetailRemark ;
+  }
+
+  .service_time_in_tooltip {
+    font: {
+      size: 9pt ;
+    }
+  }
+}
+

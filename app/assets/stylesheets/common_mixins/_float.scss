@@ -1,0 +1,13 @@
+@charset "utf-8" ;
+%floatLeft {
+  float: left ;
+}
+@mixin float_left {
+  float: left ;
+}
+%floatRight {
+  float: right ;
+}
+@mixin float_right {
+  float: right ;
+}

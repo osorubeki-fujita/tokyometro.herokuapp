@@ -1,0 +1,32 @@
+- content_for :header do
+
+  %div{ id: :header , class: [ "col-md-12" , :clearfix ] }<
+    %div{ class: [ :top_title , :clearfix ] }<>
+      %div{ class: :main }<
+        = link_to_unless_current( "" , url_for( controller: :application , action: :index ) )
+        != ::ApplicationHelper.common_title_ja
+        %span{ class: :version }<
+          = "Beta Version"
+      %div{ class: :sub }<
+        = ::ApplicationHelper.common_title_en
+    %div{ class: :developer }
+      %div{ class: :name }<
+        = "By Shu Fujita"
+      %ul{ id: :sns_accounts }
+        %li{ class: [ :sns_account , :facebook , :text_en ] }
+          = link_to( "" , "http://ja-jp.facebook.com/shu.fujita.u" , target: :_blank )
+          = ::TokyoMetro::App::Renderer::Icon.facebook_official( request , 1 ).render
+          = "Facebook"
+        %li{ class: [ :sns_account , :github , :text_en ] }
+          = link_to( "" , "https://github.com/osorubeki-fujita/tokyometro.herokuapp" , target: :_blank )
+          = ::TokyoMetro::App::Renderer::Icon.github( request , 1 ).render
+          = "GitHub"
+
+  %div{ id: :header_sub , class: "col-md-12" }<
+
+- content_for :side_menu do
+
+  %div{ id: :left_contents , class: "col-md-3"}
+    = ::TokyoMetro::App::Renderer::SideMenu::NowDeveloping.new( request ).render
+    = ::TokyoMetro::App::Renderer::SideMenu::Problems.new( request ).render
+    = ::TokyoMetro::App::Renderer::SideMenu.render_all( request )

@@ -1,0 +1,31 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+#infos_in_db {
+  .page_links.top {
+    @include margin_bottom_8 ;
+  }
+  .to_csv {
+    @include margin_bottom_32 ;
+    .link_to_csv {
+      @extend %linkInDiv ;
+      @include border_radius( 4px ) ;
+      @include padding_left_right_8 ;
+      @include padding_top_bottom_4 ;
+      @include float_right ;
+      border: solid 1px #999 ;
+      .icon {
+        @extend %floatLeft ;
+        @include margin_right_8 ;
+        color: $jp_traditional_moegi ;
+      }
+      .text {
+        @extend %floatLeft ;
+      }
+      &.hover {
+        background-color: #eee ;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
+%div{ id: :train_types }
+  - # 鉄道事業者ごとに分類
+  - # railway_line_id をもとに鉄道事業者を取得
+  - train_types_grouped_by_operator = @train_types.where.not( same_as: "custom.TrainTypeUndefined" ).group_by { | train_type | train_type.railway_line.operator_id }
+  - train_types_grouped_by_operator.keys.sort.each do | operator_id |
+    - operator_instance = ::Operator.find_by( id: operator_id )
+    - train_types_in_an_operator = train_types_grouped_by_operator[ operator_id ]
+    %div{ class: [ :document , :operator , operator_instance.css_class_name ] }
+      = operator_instance.decorate.in_document.render_title
+      - train_types_grouped_by_railway_line = train_types_in_an_operator.group_by( &:railway_line_id )
+      - train_types_grouped_by_railway_line.keys.sort.each do | railway_line_id |
+        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
+        - train_types_in_a_railway_line = train_types_grouped_by_railway_line[ railway_line_id ]
+        %div{ class: [ :document , :railway_line , railway_line_instance.css_class_name ] }
+          = railway_line_instance.decorate.in_document.render_title
+          %ul{ class: [ :train_types_of_each_railway_line , :in_document ] }
+            - train_types_in_a_railway_line.each do | train_type |
+              = train_type.decorate.in_document.render

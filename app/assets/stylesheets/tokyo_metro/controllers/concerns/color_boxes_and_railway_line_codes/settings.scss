@@ -1,0 +1,214 @@
+@charset "utf-8" ;
+
+@import '../railway_line_codes.scss' ;
+
+//---------------- 各事業者の記号の設定（color_box と路線記号）
+
+//-------- color_box の設定
+
+@mixin colorBoxColorSettings( $color ) {
+  .color_box_48 , .color_box_32 {
+    @include gradationSettingsOfColorBox( $color ) ;
+  }
+  // %colorBoxBackgroundColorSettings {
+  //   @include gradationSettingsOfColorBox( $color ) ;
+  // }
+  // .color_box_48 {
+  //   @extend %colorBoxBackgroundColorSettings ;
+  // }
+  // .color_box_32 {
+  //   @extend %colorBoxBackgroundColorSettings ;
+  // }
+}
+
+%colorBoxCommonSettings {
+  .color_box_48 {
+    @extend %colorBoxBase_48_48 ;
+  }
+  .color_box_32 {
+    @extend %colorBoxBase_32_32 ;
+  }
+}
+
+//-------- railway_line_code の色設定
+
+@mixin borderColorOfLineCodeFilledRoundedSquare( $color ) {
+  .railway_line_code_48 , .railway_line_code_32 {
+    @include gradationSettingsOfColorBox( $color ) ;
+  }
+  // %borderColorOfLineCodeFilledRoundedSquareCommon {
+  //   @include gradationSettingsOfColorBox( $color ) ;
+  // }
+  // .railway_line_code_48 {
+  //   @extend %borderColorOfLineCodeFilledRoundedSquareCommon ;
+  // }
+  // .railway_line_code_32 {
+  //   @extend %borderColorOfLineCodeFilledRoundedSquareCommon ;
+  // }
+}
+
+@mixin borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) {
+  .railway_line_code_48 , .railway_line_code_32 {
+    border-color: $color ;
+  }
+  // %borderColorOfLineCodeStrokedRoundedSquareAndCircleCommon {
+  //   border-color: $color ;
+  // }
+  // .railway_line_code_48 {
+  // // //   @extend %borderColorOfLineCodeStrokedRoundedSquareAndCircleCommon ;
+  // // }
+  // .railway_line_code_32 {
+  //   @extend %borderColorOfLineCodeStrokedRoundedSquareAndCircleCommon ;
+  // }
+}
+
+//-------- 路線記号なしの場合の共通設定
+%colorBoxAndLineCodeSettingsWithNoLineCode {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfNoLineCode ;
+}
+
+//---------------- 個々の事業者の color_box + railway_line_code の設定
+
+//-------- 東京メトロ
+
+%colorBoxAndLineCodeSettingsOfTokyoMetro {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfTokyoMetro ;
+}
+
+//-------- 都営地下鉄
+
+%colorBoxAndLineCodeSettingsOfToeiSubway {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfToeiSubway ;
+}
+
+//-------- 日暮里・舎人ライナー
+
+%colorBoxAndLineCodeSettingsOfNipporiToneriLiner {
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}
+
+//-------- 都電荒川線
+
+%colorBoxAndLineCodeSettingsOfTodenArakawa {
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}
+
+//-------- JR東日本
+
+%colorBoxAndLineCodeSettingsOfJrEast {
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}
+
+//-------- JR東海
+
+%colorBoxAndLineCodeSettingsOfJrCentral {
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}
+
+//-------- 東急
+
+%colorBoxAndLineCodeSettingsOfTokyu {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfTokyu ;
+}
+
+//-------- 横浜高速鉄道
+
+%colorBoxAndLineCodeSettingsOfYokohamaMinatomirai {
+  $color: $line_minatomirai_bgcolor ;
+  @extend %colorBoxAndLineCodeSettingsOfTokyu ;
+  @include colorBoxColorSettings( $color ) ;
+  @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
+}
+
+//-------- 小田急
+
+%colorBoxSettingsOfOdakyu {
+  $color: $operator_odakyu_bgcolor ;
+  @extend %colorBoxCommonSettings ;
+  @include colorBoxColorSettings( $color ) ;
+}
+
+%colorBoxAndLineCodeSettingsOfOdakyu {
+  @extend %colorBoxSettingsOfOdakyu ;
+  @extend %railwayLineCodesOfOdakyu ;
+}
+
+//-------- 箱根登山
+
+%colorBoxAndLineCodeSettingsOfHakoneTozan {
+  @extend %colorBoxAndLineCodeSettingsOfOdakyu ;
+}
+
+//-------- 西武
+
+%colorBoxAndLineCodeSettingsOfSeibu {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfSeibu ;
+}
+
+//-------- 東武
+
+%colorBoxAndLineCodeSettingsOfTobu {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfTobu ;
+}
+
+//-------- 埼玉高速
+
+%colorBoxAndLineCodeSettingsOfSaitama {
+  $color: $operator_saitama_bgcolor ;
+  @include colorBoxColorSettings( $color ) ;
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}
+
+//-------- 東葉高速
+
+%colorBoxAndLineCodeSettingsOfToyoRapid {
+  $color: $operator_toyo_rapid_bgcolor ;
+  @include colorBoxColorSettings( $color ) ;
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfToyoRapid ;
+}
+
+//-------- 京王
+
+%colorBoxAndLineCodeSettingsOfKeio {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfKeio ;
+}
+
+//-------- 京成
+
+%colorBoxAndLineCodeSettingsOfKeisei {
+  $color: $operator_keisei_bgcolor ;
+  @include colorBoxColorSettings( $color ) ;
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfKeisei ;
+}
+
+//-------- TX
+
+%colorBoxAndLineCodeSettingsOfTsukubaExp {
+  $color: $operator_tsukuba_exp_bgcolor ;
+  @include colorBoxColorSettings( $color ) ;
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}
+
+//-------- ゆりかもめ
+
+%colorBoxAndLineCodeSettingsOfYurikamome {
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfYurikamome ;
+}
+
+//-------- りんかい線
+
+%colorBoxAndLineCodeSettingsOfRinkai {
+  $color: $operator_rinkai_bgcolor ;
+  @include colorBoxColorSettings( $color ) ;
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}

@@ -1,0 +1,342 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+$title_common_h1_height: 30px;
+$title_common_h2_height: 20px;
+$title_main_text_h2_height: 40px;
+$title_main_text_h3_height: 20px;
+
+$title_extension_rate: 1.2 ;
+
+$title_common_height: ( $title_common_h1_height + $title_common_h2_height ) * $title_extension_rate ;
+$title_main_text_height: ( $title_main_text_h2_height + $title_main_text_h3_height ) * $title_extension_rate ;
+
+$title_height: $title_common_height + $title_main_text_height ;
+
+//-------- 1路線の場合の設定
+
+%titleMainTextBorderCommonSettings {
+  @extend %titlePadding ;
+  height: $title_main_text_height ;
+  border: {
+    left: {
+      style: solid ;
+      width : 16px ;
+    }
+  }
+}
+
+@mixin title_main_text_border_coloring_settings( $color ) {
+  border: {
+    left: {
+      color: $color ;
+    }
+  }
+}
+
+//-------- 2路線の場合の設定
+
+%title_main_text_border_by_two_colors_common_settings {
+  padding: 0px ;
+  h2 , h3 {
+    @extend %titleMainTextBorderCommonSettings ;
+  }
+  h2 {
+    height: $title_main_text_h2_height ;
+  }
+  h3 {
+    height: $title_main_text_height - $title_main_text_h2_height ;
+  }
+}
+
+@mixin title_main_text_border_by_two_colors_coloring_settings( $color_1 , $color_2 ) {
+  h2 {
+    @include title_main_text_border_coloring_settings( $color_1 ) ;
+  }
+  h3 {
+    @include title_main_text_border_coloring_settings( $color_2 ) ;
+  }
+}
+
+//-------- 領域の背景色
+
+%titleDomainBackgroundColor {
+  $color_top: #fff;
+  $color_bottom_base: $jp_traditional_amairo;
+  //
+  $color_bottom: rgba( $color_bottom_base , 0.2 );
+  //
+  $color_stop_point_1_moz : 70% ;
+  $color_stop_point_1_webkit : 0.7 ;
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_top} #{$color_stop_point_1_moz},
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+    to( #{$color_bottom} )
+  );
+}
+
+//--------
+
+%titleDomainBase {
+  @extend %titleDomainBackgroundColor ;
+  height: $title_height ;
+  clear: both ;
+}
+
+%titlePadding {
+  padding: {
+    left: 8px ;
+  }
+}
+
+%titleDomainLineHeight {
+  line: {
+    height: 1.2em ;
+  }
+}
+
+%titleDomainCommonBase {
+  .common {
+    @extend %titlePadding ;
+    height: $title_common_height ;
+    vertical-align: middle;
+    border:{
+      left: solid 16px $jp_traditional_amairo ;
+    }
+    h1 {
+      font: {
+        size: 18pt;
+      }
+      height: $title_common_h1_height ;
+      @extend %titleDomainLineHeight ;
+    }
+    h2 {
+      font: {
+        size: 12pt;
+        weight: normal ;
+      }
+      height: $title_common_h2_height ;
+      @extend %titleDomainLineHeight ;
+    }
+  }
+}
+
+%titleDomainMainTextBase {
+  .main_text {
+    height: $title_main_text_height ;
+    vertical-align: middle;
+    h2 {
+      font: {
+        size: 24pt;
+      }
+      height: $title_main_text_h2_height ;
+      @extend %titleDomainLineHeight ;
+    }
+    h2.text_ja {
+      .small {
+        font: {
+          size: 18pt ;
+        }
+      }
+    }
+    h3 {
+      font: {
+        size: 12pt;
+        weight: normal ;
+      }
+      height: $title_main_text_h3_height ;
+      @extend %titleDomainLineHeight ;
+      %smallFont {
+        font: {
+          size: 9pt ;
+        }
+      }
+      .text_hira {
+        .small {
+          @extend %smallFont ;
+        }
+        margin: {
+          right: 8px ;
+        }
+      }
+      .text_en {
+        .small {
+          @extend %smallFont ;
+        }
+      }
+    }
+    .station_name {
+      @include float_left ;
+    }
+    .station_codes {
+      @include float_right ;
+      @include margin_right_8 ;
+      img.station_code {
+        $img_length: 48px ;
+        @include float_left ;
+        @include margin_left_8 ;
+        width: $img_length ;
+        height: $img_length ;
+      }
+    }
+  }
+}
+
+%titleDomainMainTextColorBase {
+  .main_text {
+    .tokyo_metro {
+      $color: desaturate( $operator_color , 20% ) ;
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $color ) ;
+    }
+    .normal {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $jp_traditional_amairo ) ;
+    }
+    .default {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( #999 ) ;
+    }
+    .year {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $jp_traditional_kuchiba ) ;
+    }
+    .ginza {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_ginza_bgcolor ) ;
+    }
+    .marunouchi {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_marunouchi_bgcolor ) ;
+    }
+    .hibiya {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_hibiya_bgcolor ) ;
+    }
+    .tozai {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_tozai_bgcolor ) ;
+    }
+    .chiyoda {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_chiyoda_bgcolor ) ;
+    }
+    .yurakucho {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_yurakucho_bgcolor ) ;
+    }
+    .hanzomon {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_hanzomon_bgcolor ) ;
+    }
+    .namboku {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_namboku_bgcolor ) ;
+    }
+    .fukutoshin {
+      @extend %titleMainTextBorderCommonSettings ;
+      @include title_main_text_border_coloring_settings( $line_fukutoshin_bgcolor ) ;
+    }
+    .yurakucho_fukutoshin {
+      @extend %title_main_text_border_by_two_colors_common_settings ;
+      @include title_main_text_border_by_two_colors_coloring_settings( $line_yurakucho_bgcolor , $line_fukutoshin_bgcolor ) ;
+    }
+    .namboku_mita {
+      @extend %title_main_text_border_by_two_colors_common_settings ;
+      @include title_main_text_border_by_two_colors_coloring_settings( $line_namboku_bgcolor , $line_toei_mita_bgcolor ) ;
+    }
+  }
+}
+
+#top_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#document_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+  margin: {
+    bottom: 16px ;
+  }
+}
+
+#fare_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#passenger_survey_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#railway_line_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#railway_timetable_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#station_facility_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#station_timetable_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#train_operation_info_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}
+
+#train_location_title {
+  // @include title_domain ;
+  @extend %titleDomainBase ;
+  @extend %titleDomainCommonBase ;
+  @extend %titleDomainMainTextBase ;
+  @extend %titleDomainMainTextColorBase ;
+}

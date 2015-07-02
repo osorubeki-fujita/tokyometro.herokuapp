@@ -1,0 +1,9 @@
+%body
+  = yield( :header )
+  - # %div{ id: :contents , class: "container-fluid" }
+  %div{ id: :contents , class: [ :container , :clearfix ] }
+    = yield( :side_menu )
+    %div{ id: :main_content_center , class: "col-md-6"}
+      = yield
+    %div{ id: :right_contents , class: "col-md-3" }
+      = yield( :right_contents )

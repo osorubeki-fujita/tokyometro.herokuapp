@@ -1,0 +1,131 @@
+@charset "utf-8" ;
+
+%commonSettingsOfTitleOfRailwayInPlatFormInfo {
+  border: {
+    left: {
+      style: solid;
+    }
+  }
+  margin: {
+    top: 0px ;
+  }
+}
+
+%sizeSettingsOfTitleOfRailway {
+  h3 {
+    font: {
+      size: 14pt ;
+    }
+  }
+  h4 {
+    font: {
+      size: 10.5pt ;
+      weight: normal ;
+    }
+  }
+}
+
+// 全体のタイトル（路線名）の領域の設定
+// 路線が複数の場合は、h3, h4 それぞれに include するため、.title_of_railway_line で括らない。
+@mixin marginAndPaddingSettingsOfTitleOfRailwayInPlatformInfo( $border_width ) {
+  border: {
+    left: {
+      width: $border_width;
+    }
+  }
+  margin: {
+    bottom: $border_width ;
+  }
+  padding: {
+    left: $border_width * 0.5 ;
+  }
+}
+
+// 全体のタイトル（路線名）の領域の色の設定（路線が1つの場合）
+@mixin colorSettingsOfTitleOfRailwayInPlatformInfo( $color ) {
+  .title_of_railway_line {
+    border: {
+      left: {
+        color: $color ;
+      }
+    }
+  }
+}
+
+// 全体のタイトル（路線名）の領域の色の設定（路線が2つの場合）
+@mixin colorSettingsOfTitleOfTwoRailwaysInPlatformInfo( $color_1 , $color_2 ) {
+  .title_of_railway_line {
+    h3 {
+      border: {
+        left: {
+          color: $color_1 ;
+        }
+      }
+    }
+    h4 {
+      border: {
+        left: {
+          color: $color_2 ;
+        }
+      }
+    }
+  }
+}
+
+@mixin commonSettingsOfTitleOfRailwayInPlatformInfo( $border_width ) {
+  .title_of_railway_line {
+    @extend %commonSettingsOfTitleOfRailwayInPlatFormInfo ;
+    @extend %sizeSettingsOfTitleOfRailway ;
+    @include marginAndPaddingSettingsOfTitleOfRailwayInPlatformInfo( $border_width ) ;
+  }
+}
+
+@mixin commonSettingsOfTitleOfTwoRailwaysInPlatformInfo( $border_width ) {
+  .title_of_railway_line {
+    border: none ;
+    padding: {
+      left: $border_width ;
+    }
+    @extend %sizeSettingsOfTitleOfRailway ;
+    h3, h4 {
+      @extend %commonSettingsOfTitleOfRailwayInPlatFormInfo ;
+      @include marginAndPaddingSettingsOfTitleOfRailwayInPlatformInfo( $border_width ) ;
+    }
+    h3 {
+      margin: {
+        bottom: 0px ;
+      }
+    }
+  }
+}
+
+@mixin titleOfDirectionInPlatformInfo {
+  .title_of_direction {
+    $border_width: 4px ;
+    @include marginAndPaddingSettingsOfTitleOfRailwayInPlatformInfo( $border_width ) ;
+    border: {
+      left: solid $border_width #ccc ;
+    }
+    padding: {
+      left: $border_width ;
+    }
+    h4 {
+      font: {
+        size: 10pt ;
+        weight: normal ;
+      }
+      .railway_line_name {
+        font: {
+          size: 8pt ;
+          weight: normal ;
+        }
+      }
+    }
+    h5 {
+      font: {
+        size: 7.5pt ;
+        weight: normal ;
+      }
+    }
+  }
+}

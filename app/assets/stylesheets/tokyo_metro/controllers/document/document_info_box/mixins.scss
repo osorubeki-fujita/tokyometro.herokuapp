@@ -1,0 +1,103 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+$border_radius_of_document_info_box: 8px ;
+$height_base: 96px ;
+
+$padding_width: $border_radius_of_document_info_box ;
+
+$width_of_each_color_area: 160px ;
+
+%nameInDocument {
+  // @include float_left ;
+  // @include margin_right_8 ;
+  @include font_ja_and_en( 18 , 10.0 / 18 ) ;
+  .text_ja {
+    .text_ja_sub {
+      font: {
+        size: 8pt ;
+      }
+      line-height: 1.2em ;
+      margin: {
+        top: -2px ;
+        bottom: 6px ;
+      }
+    }
+    margin: {
+      bottom: -2px ;
+    }
+  }
+  .text_en {
+    .text_en_sub {
+      font: {
+        size: 8pt ;
+      }
+      line-height: 1.3em ;
+    }
+  }
+  .same_as {
+    @include margin_top_4 ;
+    @include margin_bottom_8 ;
+    color: #999 ;
+  }
+}
+
+%colorInfoInDocumentInfoBox {
+  .color_box_48 , .color_box_32 , .railway_line_code_48 , .railway_line_code_32 {
+    @include margin_left_0 ;
+    @include margin_right_8 ;
+  }
+  .color_info {
+    @include float_right ;
+    width : 96px ;
+    .web_color {
+      font: {
+        size : 10pt ;
+      }
+    }
+    .rgb_color {
+      font: {
+        size : 7.5pt ;
+      }
+    }
+  }
+}
+
+
+%ulSubInfosInDocumentInfoBox {
+  @include margin_left_64 ;
+  @include padding_left_0 ;
+  @include padding_top_16 ;
+  border: {
+    top: solid 1px #999 ;
+  }
+  li.title {
+    list-style: none ;
+    @include margin_bottom_8 ;
+    font: {
+      size: 10pt ;
+    }
+    border: {
+      bottom: dotted 1px #ccc ;
+    }
+  }
+  dl {
+    @include margin_top_0 ;
+    @include margin_bottom_16 ;
+    @include margin_left_16 ;
+    font: {
+      size: 9pt ;
+    }
+    dt , dd {
+      @include float_left ;
+    }
+    dt {
+      @include margin_right_16 ;
+      clear: both ;
+    }
+    dd {
+      @include margin_left_0 ;
+    }
+  }
+}

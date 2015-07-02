@@ -1,0 +1,41 @@
+- passenger_survey_years = ::PassengerSurvey.all.pluck( :survey_year ).uniq.sort
+- duration = [ passenger_survey_years.min , passenger_survey_years.max ].map { | year | year.to_s + "年" }.join( " - " )
+
+= render "common_content"
+
+- content_for :right_contents do
+  = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::Index.new( request ).render
+
+= ::PassengerSurveyDecorator.render_top_title( request , domain_id_name: :passenger_survey_title )
+%div{ class: :links_to_passenger_survey }
+  %h3{ class: :title }<
+    != "全路線 全駅の乗降客数"
+    %span{ class: :small }<
+      = "（年度別）"
+  %ul{ id: :links_to_year_pages_on_index_page , class: :clearfix }
+    - passenger_survey_years.reverse.each do | survey_year |
+      = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::MetaClass::EachYear.new( request , survey_year , nil , :all , only_year: false , with_operator_icon: true ).render
+
+
+- # %div{ class: :links_to_passenger_survey }
+- #   %h3{ class: :title }<
+- #     = "乗降客数ランキング"
+- #   - [ "乗降客数が多い駅" , "乗降客数が少ない駅" , "乗降客数の増加率が高い駅" ].each do | title |
+- #     %div<
+- #       = title
+
+
+%div{ class: :links_to_passenger_survey }
+  %h3{ class: :title }<
+    != "各路線 各駅の乗降客数"
+    %span{ class: :small }<
+      = "（年度別）"
+
+  %div{ class: :infos }
+    %p{ class: [ :text_ja , :info ] }<
+      = "路線名をクリックすると、各路線のすべての駅の乗降客数（" + passenger_survey_years.max.to_s + "年）をご覧いただけます。"
+    %p{ class: [ :text_ja , :info ] }<
+      = "駅名をクリックすると、各駅の乗降客数の推移（" + duration + "）をご覧いただけます。"
+
+  = ::TokyoMetro::App::Renderer::StationMatrix.new( request , @railway_lines , make_link_to_railway_line: true ).render
+  = ::TokyoMetro::App::Renderer::StationLinkList.new( request , @tokyo_metro_station_dictionary_including_main_info ).render

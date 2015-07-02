@@ -1,0 +1,269 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+@import 'platform_info/title_of_railway_line.scss' ;
+@import 'platform_info/car_number.scss' ;
+@import 'platform_info/title_cell.scss' ;
+@import 'platform_info/tab_content.scss' ;
+
+@import 'platform_info/in_tooltip.scss' ;
+
+#station_facility_platform_infos {
+  @include margin_bottom_32 ;
+}
+
+%normalCellSettingsInPlatformInfo {
+  font: {
+    size: 9pt ;
+  }
+  vertical-align: bottom ;
+}
+
+%smallTextInPlatformInfo {
+  font: {
+    size: 7pt ;
+  }
+}
+
+%titleOfEachContentsInPlatformInfo {
+  min-width: 128px ;
+}
+
+%cellSettingsWhenInfoIsEmpty {
+  td.empty {
+    border-bottom: solid 2px #f6f6f6 ;
+  }
+}
+
+%cellSettingsWhenInfoIsPresent {
+  td.present {
+    border-bottom: solid 2px #999 ;
+    ul {
+      li {
+        display: block ;
+        list-style:none ;
+        @include float_left ;
+        a {
+          img {
+            $length: 32px ;
+            height: $length ;
+          }
+        }
+        .transfer_info {
+          @include margin_top_bottom_4 ;
+          @include margin_left_right_8 ;
+          // border: solid 1px #ccc ;
+          .string {
+            @include float_left ;
+            @include margin_left_4 ;
+            .additional_info {
+              .railway_direction {
+                @include float_left ;
+              }
+              .time {
+                @include float_left ;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+%tableSettingsOfPlatformInfo {
+  $margin_and_padding: 8px ;
+  margin: {
+    left: $margin_and_padding ;
+  }
+  @include margin_top_bottom_16 ;
+  border-collapse: separate ;
+  border-spacing: 8px 2px ;
+  padding: $margin_and_padding ;
+  border: solid 1px #eee ;
+  tr.car_numbers {
+    td.empty {
+      border-style: none ;
+    }
+    td.car_number {
+      @extend %titleOfEachContentsInPlatformInfo ;
+      border: solid 1px #999 ;
+      font: {
+        size: 24pt ;
+        weight: bold ;
+      }
+      text: {
+        align: center;
+      }
+      color: #333 ;
+    }
+  }
+  tr.transfer_infos {
+    @extend %normalCellSettingsInPlatformInfo ;
+    @extend %cellSettingsWhenInfoIsEmpty ;
+    @extend %cellSettingsWhenInfoIsPresent ;
+    td.title {
+        $base_color: rgba( $operator_color , 0.4 ) ;
+        @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
+        @extend %titleOfEachContentsInPlatformInfo ;
+    }
+    ul.transfer_infos_for_this_position {
+      @include padding_left_0 ;
+      @include margin_top_bottom_4 ;
+      height: auto ;
+    }
+    li.transfer_info {
+      .railway_line {
+        @include float_left ;
+        @include margin_left_4 ;
+        .text_en {
+          @extend %smallTextInPlatformInfo ;
+        }
+        .railway_direction {
+          @extend %smallTextInPlatformInfo ;
+        }
+        .time {
+          @extend %smallTextInPlatformInfo ;
+          @include margin_top_4 ;
+        }
+      }
+    }
+  }
+  tr.barrier_free_infos_inside {
+    @extend %normalCellSettingsInPlatformInfo ;
+    @extend %cellSettingsWhenInfoIsEmpty ;
+    @extend %cellSettingsWhenInfoIsPresent ;
+    td.title {
+      $base_color: rgba( $operator_color , 0.3 ) ;
+      @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
+      @extend %titleOfEachContentsInPlatformInfo ;
+    }
+    ul {
+      @include padding_left_0 ;
+      @include margin_top_bottom_4 ;
+    }
+  }
+  tr.barrier_free_infos_outside {
+    @extend tr.barrier_free_infos_inside ;
+  }
+  tr.surrounding_areas {
+    @extend %normalCellSettingsInPlatformInfo ;
+    @extend %cellSettingsWhenInfoIsEmpty ;
+    @extend %cellSettingsWhenInfoIsPresent ;
+    td.title {
+      $base_color: rgba( $operator_color , 0.2 ) ;
+      @include backgroundColorOfTitleCellInPlatformInfo( $base_color ) ;
+      @extend %titleOfEachContentsInPlatformInfo ;
+    }
+    ul.surrounding_areas_for_this_position {
+      @include padding_left_0 ;
+    }
+    li {
+      clear: both ;
+    }
+  }
+}
+
+@mixin settingsOfPlatformInfoOfEachRailway( $border_width ) {
+  %oneRailway {
+    @include commonSettingsOfTitleOfRailwayInPlatformInfo( $border_width ) ;
+  }
+  %twoRailways {
+    @include commonSettingsOfTitleOfTwoRailwaysInPlatformInfo( $border_width ) ;
+  }
+  .ginza {
+    $bgcolor_base: saturate( $line_ginza_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_ginza_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .marunouchi {
+    $bgcolor_base: saturate( $line_marunouchi_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_marunouchi_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .marunouchi_branch {
+    $bgcolor_base: saturate( $line_tokyo_metro_marunouchi_b_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_tokyo_metro_marunouchi_b_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .hibiya {
+    $bgcolor_base: saturate( $line_hibiya_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_hibiya_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .tozai {
+    $bgcolor_base: saturate( $line_tozai_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_tozai_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .chiyoda , .chiyoda_branch {
+    $bgcolor_base: saturate( $line_chiyoda_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_chiyoda_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .yurakucho {
+    $bgcolor_base: saturate( $line_yurakucho_bgcolor , 20% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_yurakucho_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .hanzomon {
+    $bgcolor_base: saturate( $line_hanzomon_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_hanzomon_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .namboku {
+    $bgcolor_base: saturate( $line_namboku_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_namboku_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .fukutoshin {
+    $bgcolor_base: saturate( $line_fukutoshin_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfRailwayInPlatformInfo( $line_fukutoshin_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfo( $bgcolor_base ) ;
+    @extend %oneRailway ;
+  }
+  .yurakucho_and_fukutoshin {
+    $bgcolor_base_1: saturate( $line_yurakucho_bgcolor , 20% ) ;
+    $bgcolor_base_2: saturate( $line_fukutoshin_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfTwoRailwaysInPlatformInfo( $line_yurakucho_bgcolor , $line_fukutoshin_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfoOfTwoRailways( $bgcolor_base_1 , $bgcolor_base_2 ) ;
+    @extend %twoRailways ;
+  }
+  .namboku_and_toei_mita {
+    $bgcolor_base_1: saturate( $line_namboku_bgcolor , 2% ) ;
+    $bgcolor_base_2: saturate( $line_toei_mita_bgcolor , 2% ) ;
+    @include colorSettingsOfTitleOfTwoRailwaysInPlatformInfo( $line_namboku_bgcolor , $line_toei_mita_bgcolor ) ;
+    @include cellOfCarNumberInPlatformInfoOfTwoRailways( $bgcolor_base_1 , $bgcolor_base_2 ) ;
+    @extend %twoRailways ;
+  }
+}
+
+
+#station_facility_platform_infos {
+  @extend %platformInfoTabContent ;
+  $border_width_of_title_of_railway_line: 8px ;
+  .title_of_railway_line {
+    border: {
+      left: solid $border_width_of_title_of_railway_line #999 ;
+    }
+  }
+  @include settingsOfPlatformInfoOfEachRailway( $border_width_of_title_of_railway_line ) ;
+  .info_of_railway_direction {
+    @include margin_left_8 ;
+    @include padding_8 ;
+    @include titleOfDirectionInPlatformInfo ;
+  }
+  table.platform_info {
+    @extend %tableSettingsOfPlatformInfo ;
+  }
+}

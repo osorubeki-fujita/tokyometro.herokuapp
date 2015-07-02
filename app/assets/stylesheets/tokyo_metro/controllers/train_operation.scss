@@ -1,0 +1,201 @@
+@charset "utf-8" ;
+
+@import '../fundamental_settings.scss' ;
+
+@mixin train_operation_info_status_bgcolor_base( $color_1 ) {
+  $color_top: rgba( $color_1 , 0.25 );
+  $color_middle: rgba( $color_top , 0.1 );
+  $color_bottom: $color_middle;
+  //
+  $color_stop_point_1_moz : 30% ;
+  $color_stop_point_1_webkit : 0.3 ;
+  $color_stop_point_2_moz : 80% ;
+  $color_stop_point_2_webkit : 0.8 ;
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_top} #{$color_stop_point_1_moz},
+    #{$color_middle} #{$color_stop_point_2_moz} ,
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+    color-stop( #{$color_stop_point_2_webkit} , #{$color_middle} ) ,
+    to( #{$color_bottom} )
+  );
+}
+
+@mixin train_operation_info_status_icon_color_base( $color , $desaturation_rate: 5% ) {
+  .icon {
+    color: desaturate( $color , $desaturation_rate ) ;
+  }
+}
+
+@mixin train_operation_info_status_bgcolor {
+  .on_schedule {
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_byakugun ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_byakugun , 10% )
+  }
+  .nearly_on_schedule {
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_moegi ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_moegi )
+  }
+  .delayed {
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_kincha ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_kincha )
+  }
+  .suspended , .network_error {
+    @include train_operation_info_status_bgcolor_base( $jp_traditional_jinzamomi ) ;
+    @include train_operation_info_status_icon_color_base( $jp_traditional_jinzamomi )
+  }
+  .other_status {
+    @include train_operation_info_status_bgcolor_base( #bbb ) ;
+    @include train_operation_info_status_icon_color_base( #999 , 0% ) ;
+  }
+  .no_train , .after_last_train_finished , .before_first_train_begin{
+    @include train_operation_info_status_bgcolor_base( #bbb ) ;
+    @include train_operation_info_status_icon_color_base( #999 , 0% ) ;
+  }
+}
+
+%iconAndTextSettingsOfTrainOperationStatus {
+  .icon {
+    @include float_left ;
+    @include margin_left_right_8 ;
+    text: {
+      align: center ;
+    }
+  }
+  .text {
+    color: #333 ;
+    @include float_left ;
+    @include margin_right_8 ;
+    .text_ja {
+      font: {
+        weight: bold ;
+      }
+    }
+  }
+}
+
+#train_operation_infos {
+  .train_operation_info {
+    @include train_operation_info_status_bgcolor ;
+    @extend %iconAndTextSettingsOfTrainOperationStatus ;
+    .icon {
+      width: 48px ;
+    }
+    //
+    clear: both ;
+    .status {
+      @include float_left ;
+      .infos {
+        @include margin_8 ;
+        .text {
+          @include font_ja_and_en( 20 , 0.5 ) ;
+        }
+      }
+      border: solid 1px #333 ;
+      margin-bottom: -1px;
+      .additional_infos {
+        @include float_left ;
+        .text_en {
+          @include margin_top_16 ;
+        }
+        .text_ja , .text_en {
+          .abstruct {
+            font: {
+              size: 12pt ;
+            }
+          }
+          .max_delay {
+            @include margin_top_4 ;
+            font: {
+              size: 9pt ;
+            }
+          }
+          .precise {
+            @include margin_top_8 ;
+            color: #333 ;
+            font: {
+              size: 9pt ;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+li.train_location .sub_infos {
+  @include train_operation_info_status_bgcolor ;
+  .time_info {
+    @extend %iconAndTextSettingsOfTrainOperationStatus ;
+    .icon {
+      width: 32px ;
+    }
+    .text {
+      @include font_ja_and_en(12) ;
+      p {
+        line: {
+          height: 1.2em ;
+        }
+      }
+    }
+  }
+}
+
+.train_operation_info , .train_operation_info_precise_version , .train_operation_info_test {
+  .no_train , .after_last_train_finished , .before_first_train_begin{
+    .text {
+      .text_ja {
+        font: {
+          size: 16pt ;
+        }
+      }
+    }
+  }
+}
+
+li.train_operation_info.railway_line {
+  list-style: none ;
+}
+
+#train_operation_infos {
+  .precise_version_title , .test_title {
+    padding: 4px ;
+    @include margin_top_16 ;
+    background-color: #eee ;
+  }
+  .title_of_train_location_infos {
+    @include margin_top_16 ;
+  }
+  .link_info_to_train_location_of_each_railway_line {
+    @include float_left ;
+    @include padding_8 ;
+    @include margin_left_8 ;
+    @include border_radius( 4px ) ;
+    border: solid 1px #fff ;
+    .icon {
+      @include float_left ;
+      width: 32px ;
+    }
+    .text {
+      @include float_left ;
+      @include margin_0 ;
+    }
+    @include font_ja_and_en(10) ;
+  }
+}
+
+.train_operation_info_precise_version {
+  .infos {
+    font: {
+      size: 8pt ;
+    }
+  }
+}

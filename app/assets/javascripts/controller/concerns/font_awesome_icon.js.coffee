@@ -1,0 +1,1 @@
+class FontAwesomeIconProcessor  constructor: ( @name , @size = 1 ) ->  to_html: ->    return "<i class='fa fa-#{ @name } fa-#{ @size }x'></i>"window.FontAwesomeIconProcessor = FontAwesomeIconProcessor

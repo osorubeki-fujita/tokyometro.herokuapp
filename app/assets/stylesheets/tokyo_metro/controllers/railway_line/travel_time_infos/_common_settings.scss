@@ -1,0 +1,112 @@
+@charset "utf-8" ;
+
+// @import '../../concerns/connecting_railway_line_info.scss' ;
+@import 'color_settings_of_travel_time_info_through_operation.scss' ;
+
+%fontSettingsOfTravelTimeInfo {
+  $font_size_text_ja: 12pt ;
+  $font_size_text_small: $font_size_text_ja * 0.75 ;
+  .text_ja {
+    font: {
+      size: $font_size_text_ja ;
+      weight: bold ;
+    }
+    .small {
+      font: {
+        size: $font_size_text_small ;
+        weight: normal ;
+      }
+    }
+    line-height: 1.3em ;
+  }
+  .text_en {
+    font: {
+      size: $font_size_text_small ;
+    }
+    line-height: 1.2em ;
+  }
+}
+
+%settingsOfTravelTimeInfoRailwayColumn {
+  $line_width: 48px ;
+  $travel_time_square_margin: 8px ;
+  $travel_time_square_length: $line_width - $travel_time_square_margin * 2 ;
+  td.railway_line_column {
+    width: $line_width ;
+    @include padding_0 ;
+    text-align: center ;
+    .travel_time_info_square {
+      @extend %textEn ;
+      background-color: #fff ;
+      color: $text_black_base_color ;
+      width: $travel_time_square_length ;
+      height: $travel_time_square_length ;
+      margin: {
+        top: $travel_time_square_margin ;
+        bottom: $travel_time_square_margin ;
+        left: $travel_time_square_margin ;
+        right: $travel_time_square_margin ;
+      }
+    }
+  }
+}
+
+%settingsOfTravelTimeInfoStationName {
+  td.station_info {
+    width: 256px ;
+    .station_info_domain {
+      @include margin_left_8 ;
+      @include margin_right_16 ;
+      @include margin_top_bottom_8 ;
+    }
+    @extend %linkInDiv ;
+    &:hover {
+      background-color: $link_hover_domain_color ;
+    }
+    .station_codes {
+      @include float_left ;
+      @include margin_right_4 ;
+      img {
+        $length: 24px ;
+        width: $length ;
+        height: $length ;
+      }
+    }
+    .text {
+      @include float_left ;
+      @extend %fontSettingsOfTravelTimeInfo ;
+    }
+  }
+}
+
+%commonSettingsOfTravelTimeInfo {
+  @include margin_bottom_16 ;
+  @extend %colorSettingsOfTravelTimeInfoThroughOperation ;
+  @extend %settingsOfTravelTimeInfoRailwayColumn ;
+  @extend %settingsOfTravelTimeInfoStationName ;
+  border: solid 1px #999 ;
+  border-collapse: separate ;
+  border-spacing: 0px ;
+  td {
+    vertical-align: top ;
+  }
+  .travel_time {
+    @extend %textEn ;
+    text-align: center ;
+    height: 24px ;
+    vertical-align: middle ;
+    font: {
+      size: 8pt ;
+    }
+  }
+  tr.empty_row {
+    height: 4px ;
+  }
+  tr.through_operation {
+    td {
+      font: {
+        size: 10pt ;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@mixin text_ja {
+  font: {
+    family: "HiraKakuProN-W3" , "ヒラギノ" , "メイリオ" , "MS Gothic" ;
+  }
+}
+
+@mixin text_en {
+  font: {
+    family: 'helvetica', 'verdana', 'arial' , 'sans-serif' , "HiraKakuProN-W3" , "ヒラギノ" , "メイリオ" ;
+  }
+}
+
+%textJa {
+  @include text_ja ;
+}
+
+%textEn {
+  @include text_en ;
+}
+
+@mixin font_ja_and_en( $i , $rate: 0.75 ) {
+  $font_size_ja: #{ $i }pt ;
+  $font_size_en: #{ $i * $rate }pt ;
+  .text_ja {
+    font: {
+      size: $font_size_ja ;
+    }
+  }
+  .text_en {
+    font: {
+      size: $font_size_en ;
+    }
+  }
+}

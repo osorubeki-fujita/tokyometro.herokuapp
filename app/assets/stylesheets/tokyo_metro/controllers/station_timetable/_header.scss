@@ -1,0 +1,143 @@
+@charset "utf-8" ;
+
+@import 'color_settings.scss' ;
+// '../../fundamental_settings.scss' は、
+// 'color_settings.scss' の内部で import している。
+
+%stationTimeTableHeaderRailwayLinePadding {
+  padding: {
+      left: 8px ;
+      right: 8px ;
+      top: 4px ;
+      bottom: 4px ;
+  }
+}
+
+%stationTimeTableHeaderNormalPadding {
+  padding: {
+      left: 8px ;
+      right: 8px ;
+      top: 8px ;
+      bottom: 8px ;
+  }
+}
+
+%stationTimeTableHeaderRailwayLine {
+  .railway_line {
+    @extend %stationTimeTableHeaderRailwayLinePadding ;
+    $font_size_ja: 12pt ;
+    $font_size_en: $font_size_ja * 0.75 ;
+    .text_ja {
+      font: {
+        size: $font_size_ja ;
+        weight: bold ;
+      }
+    }
+    .text_en {
+      font: {
+        size: $font_size_en ;
+      }
+    }
+  }
+}
+
+//-------- 曜日 共通設定
+
+%stationTimetableHeaderMainOperationDay {
+  @include float_left ;
+  @include margin_right_8 ;
+  @include padding_8 ;
+  text-align: center ;
+  color: #fff ;
+  @include font_ja_and_en( 16 , 5.0 / 8 ) ;
+  .text_ja {
+    font: {
+      weight: bold ;
+    }
+  }
+  border: {
+    style: solid ;
+    width: 1px ;
+  }
+}
+
+%stationTimetableHeaderMainDirection {
+  @include float_left ;
+  @include margin_left_4 ;
+  // background-color: #f6f6f6 ;
+  @include font_ja_and_en( 18 , 5.0 / 8 ) ;
+  .text_ja {
+    font: {
+      weight: bold ;
+    }
+  }
+  .text_en {
+    font: {
+      weight: normal ;
+    }
+  }
+}
+
+%stationTimetableHeaderAdditionalInfosStationCodes {
+  @include float_left ;
+  @include margin_right_4 ;
+  img {
+    width: 24px ;
+    height: 24px ;
+  }
+}
+
+%stationTimetableHeaderAdditionalInfosStationName {
+  @include float_left ;
+  @include margin_right_4 ;
+  @include font_ja_and_en(10) ;
+}
+
+%stationTimetableHeaderTrainTypeAndTerminalStationInfos {
+  @extend %stationTimeTableHeaderNormalPadding ;
+  @include font_ja_and_en(12) ;
+}
+
+%commonSettingsOfStationTimetableHeader {
+  thead {
+    td.top_header {
+      background-color: #f6f6f6 ;
+      @extend %stationTimeTableHeaderRailwayLine ;
+      .main {
+        @extend %stationTimeTableHeaderNormalPadding ;
+        .operation_day {
+          @extend %stationTimetableHeaderMainOperationDay ;
+        }
+        .direction {
+          @extend %stationTimetableHeaderMainDirection ;
+        }
+      }
+      .additional_infos {
+        @include float_right ;
+        .station_codes {
+          @extend %stationTimetableHeaderAdditionalInfosStationCodes ;
+        }
+        .station_name {
+          @extend %stationTimetableHeaderAdditionalInfosStationName ;
+        }
+      }
+    }
+    td.train_type_and_terminal_station_infos {
+      @extend %stationTimetableHeaderTrainTypeAndTerminalStationInfos ;
+    }
+  }
+}
+
+//-------- 曜日
+
+table.station_timetable.weekday {
+  .operation_day {
+    @include stationTimetableHeaderMainOperationDayBackgroundColor( $background_color_of_weekday ) ;
+  }
+}
+
+table.station_timetable.saturday_and_holiday {
+  .operation_day {
+    @include stationTimetableHeaderMainOperationDayBackgroundColor( $background_color_of_holiday ) ;
+  }
+}

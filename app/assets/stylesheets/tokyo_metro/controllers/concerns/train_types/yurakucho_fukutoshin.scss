@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+@import 'box.scss' ;
+
+.yurakucho , .fukutoshin {
+// .tokyu_toyoko {
+  .limited_express_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_limited_express_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_limited_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .commuter_limited_express_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_commuter_limited_express_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_commuter_limited_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .express_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_express_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_express_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .local_to_tokyu {
+    $color: $train_type_yurakucho_fukutoshin_local_to_tokyu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_local_to_tokyu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+// }
+// .seibu_ikebukuro {
+  .local_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_local_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_local_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_rapid_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_rapid_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .semi_express_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_semi_express_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_semi_express_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+  .rapid_express_to_seibu {
+    $color: $train_type_yurakucho_fukutoshin_rapid_express_to_seibu_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_rapid_express_to_seibu_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+// }
+// .tobu_tojo {
+  .local_to_tobu_tojo {
+    $color: $train_type_yurakucho_fukutoshin_local_to_tobu_tojo_color;
+    $bgcolor: $train_type_yurakucho_fukutoshin_local_to_tobu_tojo_bgcolor;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+// }
+}

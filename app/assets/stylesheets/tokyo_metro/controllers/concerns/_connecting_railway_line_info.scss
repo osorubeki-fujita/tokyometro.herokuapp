@@ -1,0 +1,113 @@
+@charset "utf-8" ;
+@import '../../fundamental_settings.scss' ;
+
+%commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
+  @include float_left ;
+}
+
+%settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 {
+  margin: {
+    right: 9px ;
+  }
+}
+%settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 {
+  margin: {
+    right: 6px ;
+  }
+}
+
+%textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo {
+  @include font_ja_and_en(10) ;
+}
+
+%railwayLineConnectingToAnotherStation {
+  .another_station {
+    @include float_left ;
+    @include margin_left_4 ;
+    @include padding_4 ;
+    // @include border_radius( 2px ) ;
+    background-color: #eee ;
+    border: solid 1px #999 ;
+    @include font_ja_and_en(8) ;
+  }
+}
+
+%connectingRailwayLineCleared {
+  .cleared {
+    clear: both ;
+  }
+}
+
+%connectingRailwayLineNotRecommended {
+  .not_recommended {
+    border: {
+      style: dotted ;
+    }
+  }
+}
+
+%connectingRailwayLineOfTokyoMetro {
+  li.tokyo_metro {
+    @extend %linkInDiv ;
+    // border: {
+      // color: #ccc ;
+    // }
+    a {
+      background-color: transparent ;
+    }
+    // @extend %connectingRailwayLineCleared ;
+    // @extend %connectingRailwayLineNotRecommended ;
+  }
+}
+
+%connectingRailwayLineOfOtherOperator {
+  li.other_operators {
+    border: {
+      // color: #ccc ;
+      // color: #ddd ;
+    }
+    // @extend %connectingRailwayLineCleared ;
+    // @extend %connectingRailwayLineNotRecommended ;
+  }
+}
+
+%connectingRailwayLineInfo {
+  @extend %textSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+  @extend %connectingRailwayLineOfTokyoMetro ;
+  // @extend %connectingRailwayLineOfOtherOperator ;
+  @extend %railwayLineConnectingToAnotherStation ;
+  li.railway_line {
+    @include float_left ;
+    @include padding_6 ;
+    @extend %linkInDiv ;
+    margin: {
+      right: -1px ;
+      bottom: -1px ;
+    }
+    border: {
+      style: solid ;
+      width: 1px ;
+    }
+    list-style: none ;
+    //
+    .railway_line_code_48 {
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
+    }
+    .color_box_48 {
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_48 ;
+    }
+    .railway_line_code_32 {
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
+    }
+    .color_box_32 {
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+      @extend %settingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo_32 ;
+    }
+    .text {
+      @extend %commonSettingsOfLineCodeAndColorBoxInConnectingRailwayLineInfo ;
+    }
+  }
+}

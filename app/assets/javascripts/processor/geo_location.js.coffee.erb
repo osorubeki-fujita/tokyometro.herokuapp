@@ -1,0 +1,298 @@
+class GeoLocationProcessor
+
+  constructor: ( @domain = $( "#map_handler" ) ) ->
+
+  has_map_handler = (v) ->
+    return v.domain.length > 0
+
+  # Geolocation APIを利用できる環境か否かを判定
+  geolocation_api_is_available = (v) ->
+    return navigator.geolocation
+
+  # 現在の位置情報を表示
+  set_info: ->
+    if has_map_handler(@)
+      if geolocation_api_is_available(@)
+        success = ( position ) =>
+          callback_when_succeed_to_get_current_position( @ , position )
+          return
+        error = ( err ) =>
+          callback_when_failed_to_get_current_position( @ , err )
+          return
+        option = option_for_getting_current_position(@)
+        navigator.geolocation.getCurrentPosition( success , error , option )
+
+      else
+        set_info_without_geolocation(@)
+    return
+
+  # ユーザーの現在の位置情報が取得できた場合
+  callback_when_succeed_to_get_current_position = ( v , position ) ->
+    # console.log "GoogleMapProcessor\#callback_when_succeed_to_get_current_position"
+    c = new CurrentPosition( position )
+    obj = c.debug_obj()
+    set_additional_class_and_debug_infos( v , obj )
+
+    v.domain
+      .children( '.links_and_current_position' )
+      .children( 'ul#links_to_maps' )
+      .append( c.link_to_current_position() )
+    return
+
+  # ユーザーの現在の位置情報が取得できなかった場合
+  callback_when_failed_to_get_current_position = ( v , err ) ->
+    e = new GeoLocationError( err )
+    obj = e.debug_obj()
+    set_additional_class_and_debug_infos( v , obj )
+    return
+
+  option_for_getting_current_position = (v) ->
+    option =
+      enableHighAccuracy: true
+      timeout: 5 * 1000
+      maximumAge: 2 * 60 * 1000
+    return option
+
+  set_info_without_geolocation = (v) ->
+    w = new WithoutGeoLocation()
+    obj = w.debug_obj()
+    set_additional_class_and_debug_infos( v , obj )
+    return
+
+  set_additional_class_and_debug_infos = ( v , obj ) ->
+    p = new GeoLocationDebugInfosProcessor( v.domain , obj )
+    p.process()
+    return
+
+window.GeoLocationProcessor = GeoLocationProcessor
+
+
+class CurrentPosition
+
+  constructor: ( @position ) ->
+    # console.log "CurrentPosition\#constructor"
+    # console.log @position
+    # return
+
+  message = (v) ->
+    html_text_ary = []
+    html_text_ary.push( "<div class\=\'text_ja\'>現在位置の情報を利用しています。</div>" )
+    html_text_ary.push( "<div class\=\'text_en\'>Using information of current position.</div>" )
+    return html_text_ary.join( '' )
+
+  precise = (v) ->
+    # console.log "CurrentPosition\#to_html"
+
+    base_infos = current_position_base_infos(v)
+
+    html_text_ary = []
+    html_text_ary.push( "<div class\=\'title_of_current_position\'>現在位置</div>" )
+    html_text_ary.push( "<div class\=\'precise_infos_of_current_position\'>" )
+
+    $.each base_infos , ->
+      html_text_ary.push( "<p class\=\'content\'>#{ @ }</p>" )
+      return
+
+    html_text_ary.push( "</div>" )
+    # str = html_text_ary.join( '' )
+    # console.log str
+    # console.log "CurrentPosition\#to_html"
+    # return str
+
+    return html_text_ary.join( '' )
+
+  debug_obj: ->
+    obj =
+      additional_class: 'geolocation_available'
+      message: message(@)
+      precise: precise(@)
+    return obj
+
+  # ユーザーの現在の位置情報が取得できた場合に表示する基本情報（div タグなし）
+  current_position_base_infos = (v) ->
+    # console.log "CurrentPosition\#current_position_base_infos 1"
+    ary = []
+    d = datum(v)
+    # console.log d
+
+    #---- 繰り返し ここから
+    for key , val of d
+      # console.log '----'
+      # console.log key
+      # console.log val
+
+      #---- データが存在する場合
+      if v.position.coords[ key ]?
+        # console.log v.position.coords[ key ]
+        str = ""
+        # Title
+        if val.title_ja?
+          # console.log 'title_ja'
+          str += val.title_ja
+          if val.title_en?
+            # console.log 'title_en'
+            str += " (#{ val.title_en })"
+          str += "："
+        # 数値
+        if val.converted_by?
+          # console.log 'converted_by'
+          str += ( v.position.coords[ key ] * val.converted_by )
+        else
+          str += v.position.coords[ key ]
+        # 単位
+        if val.unit?
+          # console.log 'unit'
+          str += " #{ val.unit }"
+        ary.push( str )
+
+      # console.log key
+
+    #---- 繰り返し ここまで
+    # console.log "CurrentPosition\#current_position_base_infos 2"
+    return ary
+
+  datum = (v) ->
+    obj =
+      latitude:
+        title_ja: "緯度"
+        title_en: "latitude"
+      longitude:
+        title_ja: "経度"
+        title_en: "longitude"
+      altitude:
+        title_ja: "高度"
+        title_en: "altitude"
+        unit: "m"
+      accuracy:
+        title_ja: "平面上の誤差"
+        title_en: "accuracy on the ground"
+        unit: "m"
+      altitudeAccuracy:
+        title_ja: "高度の誤差"
+        title_en: "accuracy the altitude"
+        unit: "m"
+      heading:
+        title_ja: "方角"
+        title_en: "heading"
+        unit: "°"
+      speed:
+        title_ja: "速度"
+        title_en: "speed"
+        default_unit: "m/sec"
+        converted_by: 0.001 * Math.pow(60,2)
+        unit: "km/h"
+    return obj
+
+  link_to_current_position: ->
+    str = ""
+    if position_on_the_ground_is_available(@)
+      ary = []
+
+      ary.push( "<li id='link_to_map_of_current_position' class\='link_to_map' data-geo_lat\=\'#{ @position.coords.latitude }\' data-geo_lng=\'#{ @position.coords.longitude }\'>" )
+      ary.push( "<div class\=\'content clearfix\'>" )
+
+      ary.push( "<div class\=\'icon\'>" )
+      ary.push( "<i class\=\'fa fa-<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ "current_position" ] %> fa-1x\'></i>" )
+      ary.push( "</div>" )
+
+      ary.push( "<div class\=\'text\'>" )
+      ary.push( "<div class\=\'text_ja\'>現在位置を</div>" )
+      ary.push( "<div class\=\'text_ja\'>地図の中心にする</div>" )
+      ary.push( "<div class\=\'text_en\'>Move the map to the current position</div>" )
+      ary.push( "</div>" )
+
+      ary.push( "</div>" )
+      ary.push( "</div>" )
+
+      str += ary.join('')
+    return str
+
+  position_on_the_ground_is_available = (v) ->
+    return v.position.coords.latitude? and v.position.coords.longitude?
+
+
+class GeoLocationError
+
+  constructor: ( @err ) ->
+
+  message = (v) ->
+    return v.err.message
+
+  precise = (v) ->
+    html_text_ary = []
+    err_msg_ja = ""
+    err_msg_en = ""
+
+    switch v.err.code
+      when 1
+        err_msg_ja = "位置情報の利用が許可されていません。"
+        err_msg_en = "Using geolocation information is not permitted."
+      when 2
+        err_msg_ja = "デバイスの位置が判定できません。"
+        err_msg_en = "Failed to specify the geolocation of device"
+      when 3
+        err_msg_ja = "タイムアウトしました。"
+        err_msg_en = "Time out expired"
+
+    html_text_ary.push( "<div class\=\'text_ja\'>#{ err_msg_ja }</div>" )
+    html_text_ary.push( "<div class\=\'text_en\'>#{ err_msg_en }</div>" )
+    return html_text_ary.join( '' )
+
+  debug_obj: ->
+    obj =
+      additional_class: 'geolocation_error'
+      message: message(@)
+      precise: precise(@)
+    return obj
+
+
+class WithoutGeoLocation
+
+  constructor: ->
+
+  message = (v) ->
+    return "このデバイスでは位置情報を利用することができません。"
+
+  precise = (v) ->
+    return ""
+
+  debug_obj: ->
+    obj =
+      additional_class: 'without_geolocation'
+      message: message(@)
+      precise: precise(@)
+    return obj
+
+
+class GeoLocationDebugInfosProcessor
+
+  constructor: ( @domain , @obj ) ->
+
+  process: ->
+    reset(@)
+    set(@)
+    return
+
+  debug_domain = (v) ->
+    return v.domain
+      .children( '.links_and_current_position' )
+      .children( '.debug' )
+
+  reset = (v) ->
+    # console.log v.domain
+    v.domain.removeClass( 'geolocation_available' )
+    v.domain.removeClass( 'geolocation_error' )
+    v.domain.removeClass( 'without_geolocation' )
+
+    d = debug_domain(v)
+    d.children( '.message' ).empty()
+    d.children( '.precise' ).empty()
+    return
+
+  set = (v) ->
+    v.domain.addClass( v.obj.additional_class )
+
+    d = debug_domain(v)
+    d.children( '.message' ).append( v.obj.message )
+    d.children( '.precise' ).append( v.obj.precise )
+    return

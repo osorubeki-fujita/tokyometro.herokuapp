@@ -1,0 +1,128 @@
+@charset "utf-8" ;
+@import '../../fundamental_settings.scss' ;
+
+@mixin borderColorOfEachRailwaLineHeaderInDocument( $color ) {
+  .railway_line_name {
+    border: {
+      left: {
+        color: $color ;
+      }
+    }
+  }
+}
+
+%railwayNameInDocument {
+  .railway_line_name {
+    @include margin_bottom_12 ;
+    border: {
+      left: {
+        style: solid ;
+        width: 8px ;
+      }
+    }
+    @include padding_left_8 ;
+    @include font_ja_and_en( 12 , 0.6 ) ;
+    .text_ja {
+      line-height: 1.1em ;
+      @include margin_bottom_4 ;
+    }
+    .text_en {
+      font: {
+        weight: normal ;
+      }
+      line-height: 1.1em ;
+      @include margin_top_bottom_0 ;
+    }
+    .same_as {
+      @include margin_top_4 ;
+      color: #999 ;
+    }
+  }
+}
+
+%borderColorOfRailwayLineHeaderInDocument {
+  &.ginza {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_ginza_bgcolor )
+  }
+  &.marunouchi {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_marunouchi_bgcolor )
+  }
+  &.marunouchi_branch {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tokyo_metro_marunouchi_b_bgcolor )
+  }
+  &.hibiya {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_hibiya_bgcolor )
+  }
+  &.tozai {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tozai_bgcolor )
+  }
+  &.chiyoda , &.chiyoda_branch {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_chiyoda_bgcolor )
+  }
+  &.yurakucho {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_yurakucho_bgcolor )
+  }
+  &.hanzomon {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_hanzomon_bgcolor )
+  }
+  &.namboku {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_namboku_bgcolor )
+  }
+  &.fukutoshin {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_fukutoshin_bgcolor )
+  }
+  //-------- 都営地下鉄
+  &.toei_asakusa {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_asakusa_bgcolor )
+  }
+  &.toei_mita {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_mita_bgcolor )
+  }
+  &.toei_shinjuku {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_shinjuku_bgcolor )
+  }
+  &.toei_oedo {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_toei_oedo_bgcolor )
+  }
+  //-------- 東急東横線
+  &.tokyu_toyoko {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tokyu_toyoko_bgcolor )
+  }
+  //-------- 西武池袋線
+  &.seibu_ikebukuro {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_seibu_ikebukuro_bgcolor )
+  }
+  //-------- 東武東上線
+  &.tobu_tojo {
+    @include borderColorOfEachRailwaLineHeaderInDocument( $line_tobu_tojo_bgcolor )
+  }
+}
+
+
+#railway_lines {
+  .document.operator {
+    @include margin_bottom_32 ;
+    ul.railway_lines_of_each_operator  {
+      @extend %marginLeft16 ;
+    }
+  }
+}
+
+#railway_directions {
+  .document.operator {
+    @include margin_bottom_64 ;
+    .document.railway_line {
+      clear: both ;
+      @extend %marginLeft16 ;
+      @include margin_bottom_32 ;
+      ul.railway_directions_of_each_railway_line {
+        @extend %marginLeft16 ;
+      }
+    }
+  }
+}
+
+.document.railway_line {
+  @extend %borderColorOfRailwayLineHeaderInDocument ;
+  @extend %railwayNameInDocument ;
+}

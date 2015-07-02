@@ -1,0 +1,21 @@
+API:
+  -
+    title: 地図・出入口情報
+    contents:
+      -
+        title: 銀座駅に神田駅の情報が含まれている
+        contents:
+          - 問題の出入口は、urn:ucode:_00001C000000000000010000030C40CF
+  -
+    title: 駅施設情報
+    contents:
+      -
+        title: バリアフリー
+        contents:
+          - 赤坂見附
+          - 霞ケ関
+      -
+        title: 周辺施設
+        contents:
+          - 虎ノ門
+          - 地下鉄赤塚

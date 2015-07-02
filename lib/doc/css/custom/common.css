@@ -1,0 +1,203 @@
+/* Override this file with custom rules */
+
+/* -------- body -------- */
+
+body {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+  height: 100%;
+  font-size: 12px;
+  color: #333;
+}
+
+body.frames {
+  padding: 0 10px;
+}
+
+/* -------- Title -------- */
+
+/* ボーダー - コーポレートカラー */
+h1 {
+  font-size: 24px;
+  border-bottom: solid 3px #14aad8;
+  color: #333;
+}
+
+/* タイトル行 Documentation by YARD */
+h1.noborder {
+  border-bottom: 0px;
+  border-left: solid 12px #14aad8;
+  padding-left: 6px;
+}
+
+/* 目次 Alphabetic Index */
+/* ボーダー - 南北線 */
+h1.alphaindex {
+  font-size: 18px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-left: solid 8px #00ada9;
+  padding-left: 4px;
+}
+
+/* ボーダー - 副都心線 */
+h2 {
+  border-bottom: solid 2px #bb641d;
+  color: #333;
+}
+
+.summary_desc .object_link, .docstring .object_link {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+.rdoc-term { padding-right: 24px; }
+
+/* -------- style for <table> -------- */
+
+#filecontents table th, #filecontents table td,
+.docstring table th, .docstring table td {
+  padding-right: 8px;
+}
+
+/* ---------------- */
+
+.note {
+  color: #333;
+  background: #e9e9f3;
+}
+.note.todo {
+  background: #fcf;
+  border-color: #ddd;
+}
+
+.note.title {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+/* 背景色 銀座線 */
+.note.title.constructor { background: #f39700; border-color: #f39700; font-weight:bold; }
+.note.title.writeonly { background: #00a8a8; border-color: #00a8a8; font-weight:bold; }
+/* 背景色 - 南北線 */
+.note.title.readonly { background: #53c9c5; border-color: #53c9c5; font-weight:bold; }
+
+.note.title.private { background: #d5d5d5; border-color: #d5d5d5; font-weight:bold; }
+/* 背景色 - 丸ノ内線 */
+.discussion .note { background:#f5d7da; }
+
+h3.inherited {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+#filecontents dl.box, dl.box {
+  width: 780px;
+}
+#filecontents dl.box dd, dl.box dd {
+  width: 640px;
+}
+dl.constants dd {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+.summary_desc {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+dl.constants .note { padding-right: 10px; }
+
+/* メソッド名 */
+/* 背景色 - 日比谷線 */
+p.signature, h3.signature {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+  background: #d9e5eb;
+  border: 1px solid #aaa;
+}
+
+p.signature tt,
+h3.signature tt {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+p.signature .not_defined_here,
+h3.signature .not_defined_here,
+p.signature .aliases,
+h3.signature .aliases {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+p.signature .aliases .names,
+h3.signature .aliases .names {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+  font-size: 1.1em;
+}
+
+.tags ul .name {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+.tags .overload .overload_item { list-style: none; margin-bottom: 24px; }
+
+.tags .overload .signature {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+.tags .overload .docstring { margin-top: 16px; }
+
+div.docstring, p.docstring { margin-left: 2em; }
+/* div.docstring, p.docstring { margin-right: 0; } */
+
+ul.summary {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+/* 背景色 - 千代田線*/
+.summary .summary_signature {
+  padding: 3px 10px;
+  background: #d9ebe1;
+  border: solid 1px #999;
+}
+
+p.inherited a {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+
+/* -------- syntax highlighting -------- */
+
+.source_code {
+  padding: 0.3em 0.8em;
+  margin-top: 2em;
+  margin-left: 4em;
+  margin-bottom: 4em;
+}
+#filecontents pre.code, .docstring pre.code, .source_code pre {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+.source_code .lines {
+  color: #666;
+}
+
+
+/* 背景色 半蔵門線 */
+#filecontents pre.code, .docstring pre.code,
+.tags pre.example {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+  margin-top: 2px;
+  margin-left: 24px;
+  border: dotted 1px #ccc;
+  background: #e8e4eb;
+}
+
+/* -------- full_list -------- */
+
+tt {
+  font-family: Arial, "メイリオ" , "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}
+.type tt {
+  font-weight:bold;
+  color:#096;
+}
+em tt {
+  font-weight:bold;
+  color:#600;
+}
+
+pre.example {
+  font-family: "メイリオ" , Arial, "Lucida Sans", "Lucida Grande", Verdana, sans-serif;
+}

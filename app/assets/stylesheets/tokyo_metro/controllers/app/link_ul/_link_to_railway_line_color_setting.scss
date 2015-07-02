@@ -1,0 +1,19 @@
+@charset "utf-8" ;
+
+//-------- マウスオーバー時の文字色・背景色の設定（路線ページ）
+//---- jQuery で hover クラスを追加・削除
+
+//---- 一般
+
+@mixin linkToRailwayLineColorSetting( $color , $rate: 1 ) {
+  &.hover {
+    background: {
+      color: rgba( $color , 0.15 * $rate ) ;
+    }
+    .text {
+      .text_en {
+        color: desaturate( $color , 60% ) ;
+      }
+    }
+  }
+}

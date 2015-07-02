@@ -1,0 +1,13 @@
+= render "common_content"
+
+= ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
+
+%div{ id: :railway_lines }
+  - # operator = railway_line.operator ; raise "Error: " + railway_line.same_as if operator.nil? ;
+  - @railway_lines.select { | railway_line | railway_line.operator.present? }.group_by( &:operator_id ).each do | operator_id , railway_lines |
+    - operator_instance = ::Operator.find_by( id: operator_id )
+    %div{ class: [ :document , :operator , operator_instance.css_class_name ] }
+      = operator_instance.decorate.in_document.render_title
+      - railway_lines.sort_by( &:index ).each do | railway_line |
+        %ul{ class: [ :railway_lines_of_each_operator , :in_document ] }
+          = railway_line.decorate.in_document.render

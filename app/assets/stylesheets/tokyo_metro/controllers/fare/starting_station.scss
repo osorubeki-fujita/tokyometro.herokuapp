@@ -1,0 +1,21 @@
+@charset "utf-8" ;
+
+%tdStartingStation {
+  td.station_info.starting_station {
+    background-color: #f66 ;
+    color: #fff ;
+  }
+  td.starting_station {
+    background-color: #fcc ;
+    .text_ja {
+      font: {
+        size: 10.5pt ;
+      }
+    }
+    .text_en {
+      font: {
+        size: 7.35pt ;
+      }
+    }
+  }
+}

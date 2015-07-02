@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+@import '../../fundamental_settings.scss' ;
+
+div.ui-tooltip {
+  &.dictionary , &.connecting_railway_line {
+    max-width: 480px !important ;
+  }
+  // span {
+    // &.text , &.text_ja , &.text_en {
+      font: {
+        size: 9pt ;
+      }
+    // }
+  // }
+  &.station_name_in_tooltip {
+    min-width: 160px !important ;
+    .station_codes {
+      img.station_code {
+        $img_length: 32px ;
+        width: $img_length ;
+        height: $img_length ;
+        @include margin_right_4 ;
+      }
+      @include margin_bottom_8 ;
+    }
+    .text {
+      @include font_ja_and_en(12) ;
+      .text_ja {
+        span.small {
+          font: {
+            size: 9pt ;
+          }
+        }
+      }
+      .text_hiragana {
+        font: {
+          size: 9pt ;
+        }
+      }
+      .text_hiragana , .text_en {
+        span.small {
+          font: {
+            size: 6.75pt ;
+          }
+        }
+      }
+    }
+  }
+}

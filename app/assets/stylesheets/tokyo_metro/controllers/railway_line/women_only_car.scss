@@ -1,0 +1,240 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%backgroundOfWomenOnlyCar {
+  $base_color: $jp_traditional_sango ;
+  //
+  // 変数の定義
+  //
+  $color_top: rgba( $base_color , 0.7 ) ;
+  $color_bottom: rgba( $base_color , 0.2 );
+  //
+  background: #{ $color_top } ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$color_top},
+    #{$color_bottom}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient(linear, left top, left bottom,
+    from( #{$color_top} ),
+    to( #{$color_bottom} )
+  );
+}
+
+@mixin womenOnlyCarColorSettingsBase( $railway_line_color ) {
+  $base_color: $railway_line_color ;
+  .title_of_a_railway_line {
+    border: {
+      left: {
+        color: $base_color ;
+      }
+    }
+    background-color: rgba( $base_color , 0.05 );
+  }
+  .section_infos .infos .info .cars .normal {
+    //
+    // 変数の定義
+    //
+    $color_top: #fff ;
+    $color_center: rgba( $base_color , 0.2 );
+    $color_bottom: $base_color ;
+    //
+    $color_stop_point_1_moz: 79% ;
+    $color_stop_point_1_webkit: 0.79 ;
+    $color_stop_point_2_moz: 80% ;
+    $color_stop_point_2_webkit: 0.8 ;
+    $color_stop_point_3_moz: 90% ;
+    $color_stop_point_3_webkit: 0.9 ;
+    //
+    background: #{ $color_center } ;
+    // Firefox
+    background: -moz-linear-gradient(top,
+      #{$color_top},
+      #{$color_top} #{$color_stop_point_1_moz},
+      #{$color_center} #{$color_stop_point_2_moz},
+      #{$color_bottom} #{$color_stop_point_3_moz},
+      #{$color_bottom}
+    );
+    // Safari, Google Chrome
+    background: -webkit-gradient(linear, left top, left bottom,
+      from( #{$color_top} ),
+      color-stop( #{$color_stop_point_1_webkit} , #{$color_top} ) ,
+      color-stop( #{$color_stop_point_2_webkit} , #{$color_center} ) ,
+      color-stop( #{$color_stop_point_3_webkit} , #{$color_bottom} ) ,
+      to( #{$color_bottom} )
+    );
+  }
+}
+
+%womenOnlyCarTitleCommonSettings {
+  border: {
+    left: {
+      style :solid ;
+      width: 4px ;
+    }
+  }
+}
+
+%womenOnlyCarOperationDayTitle {
+  .title {
+    @include padding_left_4 ;
+    @include margin_bottom_16 ;
+    @extend %womenOnlyCarTitleCommonSettings ;
+    border: {
+      left: {
+        color: #999 ;
+      }
+    }
+    background: {
+      color: #fafafa ;
+    }
+    h4 {
+      font: {
+        size: 16px ;
+        weight: bold ;
+      }
+    }
+    h5 {
+      font: {
+        size: 12px ;
+        weight: normal ;
+      }
+    }
+  }
+}
+
+%womenOnlyCarSectionTitle {
+  .title {
+    @include padding_left_4 ;
+    @include margin_bottom_8 ;
+    @extend %womenOnlyCarTitleCommonSettings ;
+    background: {
+      color: #fcfcfc ;
+    }
+    h5 {
+      font: {
+        size: 12px ;
+        weight: bold ;
+      }
+    }
+    h6 {
+      font: {
+        size: 9px ;
+        weight: normal ;
+      }
+    }
+  }
+}
+
+%womenOnlyCarAvailableTime {
+  .available_time {
+    @include float_left ;
+    @include padding_4 ;
+    @include border_radius( 4px ) ;
+    font: {
+      size: 12pt ;
+    }
+    border: solid 1px #eee ;
+  }
+}
+
+%womenOnlyCarSectionInfos {
+  .section_infos {
+    @include margin_left_16 ;
+    @extend %womenOnlyCarAvailableTime ;
+    .infos {
+      @include margin_left_16 ;
+      @include float_left ;
+      .info {
+        @include padding_top_bottom_2 ;
+        .place {
+          @include float_left ;
+          @include margin_right_16 ;
+          text-align: right ;
+        }
+        .cars {
+          @include float_left ;
+          .car {
+            @include float_left ;
+            @include margin_right_4 ;
+            @include padding_top_bottom_4 ;
+            border: solid 1px #999 ;
+            text-align: center;
+            width: 24px ;
+          }
+          .women_only {
+            @extend %backgroundOfWomenOnlyCar ;
+            font: {
+              weight: bold ;
+              size: 10pt ;
+            }
+          }
+          .normal {
+            font: {
+              weight: normal ;
+              size: 7.5pt ;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#women_only_car {
+  .content_header {
+    @extend %backgroundOfWomenOnlyCar ;
+  }
+  .title_of_a_railway_line {
+    border: {
+      left: {
+        style: solid ;
+        width: 8px ;
+      }
+    }
+    @include margin_bottom_16 ;
+    @include padding_left_8 ;
+  }
+  .operation_day {
+    @extend %womenOnlyCarOperationDayTitle ;
+    .section {
+      clear: both ;
+      @include margin_left_16 ;
+      @include margin_bottom_16 ;
+      @extend %womenOnlyCarSectionTitle ;
+      @extend %womenOnlyCarSectionInfos ;
+    }
+  }
+  .in_railway_line_group .operation_day {
+    @include margin_left_16 ;
+  }
+  .ginza {
+    @include womenOnlyCarColorSettingsBase( $line_ginza_bgcolor ) ;
+  }
+  .marunouchi {
+    @include womenOnlyCarColorSettingsBase( $line_marunouchi_bgcolor ) ;
+  }
+  .hibiya {
+    @include womenOnlyCarColorSettingsBase( $line_hibiya_bgcolor ) ;
+  }
+  .tozai {
+    @include womenOnlyCarColorSettingsBase( $line_tozai_bgcolor ) ;
+  }
+  .chiyoda {
+    @include womenOnlyCarColorSettingsBase( $line_chiyoda_bgcolor ) ;
+  }
+  .yurakucho {
+    @include womenOnlyCarColorSettingsBase( $line_yurakucho_bgcolor ) ;
+  }
+  .hanzomon {
+    @include womenOnlyCarColorSettingsBase( $line_hanzomon_bgcolor ) ;
+  }
+  .namboku {
+    @include womenOnlyCarColorSettingsBase( $line_namboku_bgcolor ) ;
+  }
+  .fukutoshin {
+    @include womenOnlyCarColorSettingsBase( $line_fukutoshin_bgcolor ) ;
+  }
+}

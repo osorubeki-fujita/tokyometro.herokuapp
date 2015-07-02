@@ -1,0 +1,59 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+
+// 外枠の共通設定
+%commonSettingsOfRailwayLineCodeInRailwayLineMatrix {
+  background-color: #fff ;
+  text-align: center ;
+}
+
+@mixin sizeSettingsOfOuterDomainOfRailwayLineCodeInRailwayLineMatrix( $inner_length , $outer_border ) {
+  $length: $inner_length + $outer_border * 2 ;
+  width: $length ;
+  height: $length ;
+  @include border_radius( $length * 0.5 ) ;
+}
+
+@mixin settingsOfRailwayLineCodeInRailwayLineMatrix( $outer_border ) {
+  background-color: #fff ;
+  margin: {
+    left: $outer_border ;
+    right: $outer_border ;
+    top: $outer_border ;
+    bottom: $outer_border ;
+  }
+}
+
+%settingsOfRailwayLineCodeInRailwayLineMatrix_48 {
+  $inner_length: 48px ;
+  $outer_border: 3px ;
+  .railway_line_code_outer {
+    @extend %commonSettingsOfRailwayLineCodeInRailwayLineMatrix ;
+    @include sizeSettingsOfOuterDomainOfRailwayLineCodeInRailwayLineMatrix( $inner_length , $outer_border ) ;
+    .railway_line_code_48 {
+      @include settingsOfRailwayLineCodeInRailwayLineMatrix( $outer_border ) ;
+    }
+  }
+}
+
+%settingsOfRailwayLineCodeInRailwayLineMatrix_32 {
+  $inner_length: 32px ;
+  $outer_border: 2px ;
+  .railway_line_code_outer_small {
+    @extend %commonSettingsOfRailwayLineCodeInRailwayLineMatrix ;
+    @include sizeSettingsOfOuterDomainOfRailwayLineCodeInRailwayLineMatrix( $inner_length , $outer_border ) ;
+    .railway_line_code_32 {
+      @include settingsOfRailwayLineCodeInRailwayLineMatrix( $outer_border ) ;
+    }
+  }
+}
+
+%railwayLineCodesInRailwayLineMatrixesYurakuchoFukutoshin {
+  .railway_line_codes {
+    .railway_line_code_outer {
+      @include float_left ;
+    }
+  }
+}

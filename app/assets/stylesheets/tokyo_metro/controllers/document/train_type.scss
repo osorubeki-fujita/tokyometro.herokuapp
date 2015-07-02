@@ -1,0 +1,18 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+@import 'document_info_box/mixins.scss' ;
+
+#train_types {
+  .document.operator {
+    @include margin_bottom_64 ;
+    .document.railway_line {
+      clear: both ;
+      @include margin_left_16 ;
+      @include margin_bottom_32 ;
+      ul.train_types_of_each_railway_line {
+        @extend %marginLeft16 ;
+      }
+    }
+  }
+}

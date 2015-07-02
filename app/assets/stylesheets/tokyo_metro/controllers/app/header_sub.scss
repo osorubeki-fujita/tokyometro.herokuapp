@@ -1,0 +1,53 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%headerSubBackgroundGradColor {
+  $base_color: $operator_color ;
+  $darkened_2: desaturate( $operator_color , 22% ) ;
+  $darkened_1: desaturate( $operator_color , 10% ) ;
+  $lightened_1: saturate( $base_color , 5% ) ;
+  $lightened_2: saturate( $base_color , 11% ) ;
+  $lightened_3: saturate( $base_color , 18% ) ;
+  //
+  //
+  $color_stop_point_1_moz : 10% ;
+  $color_stop_point_1_webkit : 0.1 ;
+  $color_stop_point_2_moz : 30% ;
+  $color_stop_point_2_webkit : 0.3 ;
+  $color_stop_point_3_moz : 50% ;
+  $color_stop_point_3_webkit : 0.5 ;
+  $color_stop_point_4_moz : 80% ;
+  $color_stop_point_4_webkit : 0.8 ;
+  //
+  background: mix( $darkened_1 , $lightened_1 ) ;
+  // Firefox
+  background: -moz-linear-gradient(top,
+    #{$darkened_2},
+    #{$darkened_1} #{$color_stop_point_1_moz},
+    #{$base_color} #{$color_stop_point_2_moz},
+    #{$lightened_1} #{$color_stop_point_3_moz},
+    #{$lightened_2} #{$color_stop_point_4_moz},
+    #{$lightened_3}
+  );
+  // Safari, Google Chrome
+  background: -webkit-gradient( linear , left top , right top,
+    from( #{$darkened_2} ),
+    color-stop( #{$color_stop_point_1_moz} , #{$darkened_1} ) ,
+    color-stop( #{$color_stop_point_2_moz } , #{$base_color} ) ,
+    color-stop( #{ $color_stop_point_3_moz } , #{$lightened_1} ) ,
+    color-stop( #{ $color_stop_point_4_moz } , #{$lightened_2} ) ,
+    to( #{$lightened_3} )
+  );
+}
+
+#header_sub {
+  @extend %headerSubBackgroundGradColor ;
+  height: 12px ;
+  // @include font_ja_and_en( 12 , 2 ) ;
+  // .text_en {
+    // font: {
+      // weight: normal ;
+    // }
+  // }
+}

@@ -1,0 +1,123 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+%buttonCommonSettings {
+  border: {
+    style: solid ;
+    width: 1px ;
+  }
+  @include border_radius( 4px ) ;
+  @include float_right ;
+  @include margin_left_8 ;
+  @extend %linkInDiv ;
+  &:hover {
+    border: {
+      style: solid ;
+      width: 1px ;
+    }
+  }
+  list-style: none ;
+  a {
+    cursor: pointer ;
+  }
+  form {
+    @include padding_0 ;
+  }
+  button {
+    @include padding_0 ;
+    @include margin_0 ;
+    border: none ;
+    background-color: transparent ;
+    cursor: pointer ;
+    text-align: center ;
+    vertical-align: middle ;
+    display: block ;
+  }
+}
+
+%buttonWhite {
+  $base_color: #fff ;
+  border: {
+    color: $base_color ;
+  }
+  &:hover {
+    border: {
+      color: $base_color ;
+    }
+    background-color: #999 ;
+  }
+  button {
+    color: $base_color ;
+  }
+}
+
+%buttonBlack {
+  $base_color: #333 ;
+  border: {
+    color: $base_color ;
+  }
+  &:hover {
+    border: {
+      color: $base_color ;
+    }
+    background-color: rgba( #fff , 0.3 ) ;
+  }
+  button {
+    color: $base_color ;
+  }
+}
+
+%buttonSmall {
+  $length: 20px ;
+  width: $length ;
+  height: $length ;
+  form {
+    width: $length ;
+    height: $length ;
+  }
+  button {
+    width: $length ;
+    height: $length ;
+  }
+}
+
+%buttonLarge {
+  $length: 32px ;
+  width: $length ;
+  height: $length ;
+  form {
+    width: $length ;
+    height: $length ;
+  }
+  button {
+    width: $length ;
+    height: $length ;
+  }
+}
+
+// .button {
+  // @extend %buttonCommonSettings ;
+  // @extend %buttonSmall ;
+  // @extend %buttonWhite ;
+// }
+
+.update_button {
+  @extend %buttonCommonSettings ;
+  @extend %buttonWhite ;
+  @extend %buttonLarge ;
+}
+
+.size_changing_button {
+  @extend %buttonCommonSettings ;
+  @extend %buttonWhite ;
+  @extend %buttonLarge ;
+}
+
+#current_position_info {
+  .to_current_position {
+    @extend %buttonCommonSettings ;
+    @extend %buttonBlack ;
+    @extend %buttonLarge ;
+  }
+}

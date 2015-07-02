@@ -1,0 +1,42 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+@import 'link_to_railway_line_color_setting.scss' ;
+
+//--------
+
+ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station , ul#railway_lines_in_this_station , ul#railway_lines_in_another_station , ul.transfer_infos_for_this_position , #travel_time td.transfer ul.railway_lines , ul#platform_info_tabs {
+  li.ginza {
+    @include linkToRailwayLineColorSetting( $line_ginza_bgcolor ) ;
+  }
+  li.marunouchi {
+    @include linkToRailwayLineColorSetting( $line_marunouchi_bgcolor , 0.75 ) ;
+  }
+  li.marunouchi_branch {
+    @include linkToRailwayLineColorSetting( $line_tokyo_metro_marunouchi_b_bgcolor , 0.75 ) ;
+  }
+  li.hibiya {
+    @include linkToRailwayLineColorSetting( $line_hibiya_bgcolor , 1.7 ) ;
+  }
+  li.tozai {
+    @include linkToRailwayLineColorSetting( $line_tozai_bgcolor ) ;
+  }
+  li.chiyoda {
+    @include linkToRailwayLineColorSetting( $line_chiyoda_bgcolor ) ;
+  }
+  li.chiyoda_branch {
+    @include linkToRailwayLineColorSetting( $line_chiyoda_bgcolor ) ;
+  }
+  li.yurakucho {
+    @include linkToRailwayLineColorSetting( $line_yurakucho_bgcolor , 1.5 ) ;
+  }
+  li.hanzomon {
+    @include linkToRailwayLineColorSetting( $line_hanzomon_bgcolor , 1.2 ) ;
+  }
+  li.namboku {
+    @include linkToRailwayLineColorSetting( $line_namboku_bgcolor ) ;
+  }
+  li.fukutoshin {
+    @include linkToRailwayLineColorSetting( $line_fukutoshin_bgcolor ) ;
+  }
+}

@@ -1,0 +1,42 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+#real_time_info_and_update_button , #twitters {
+  border: solid 1px #333 ;
+  @include margin_bottom_8 ;
+  .content_header {
+    .icon {
+      width: 32px ;
+      @include margin_right_8 ;
+      text-align: center ;
+    }
+    .update_button {
+      @include float_right ;
+    }
+  }
+}
+
+#twitters.visible {
+  #twitter_accounts {
+    display: block ;
+  }
+}
+
+#real_time_info_and_update_button.visible {
+  ul.time_infos {
+    display: block ;
+  }
+}
+
+#twitters.hidden {
+  #twitter_accounts {
+    display: none ;
+  }
+}
+
+#real_time_info_and_update_button.hidden {
+  ul.time_infos {
+    display: none ;
+  }
+}

@@ -1,0 +1,21 @@
+# 【必須】fundamental_static は変更しないこと
+fundamental_static: true
+
+#--------
+
+railway_lines: true
+train_types: true
+
+station_facilities: true
+stations: true
+static_railway_directions: true
+points: true
+
+sub_info_of_railway_lines: true
+passenger_surveys: true
+
+barrier_free_infos_of_station_facilities: true
+platform_infos_of_station_facilities: true
+
+fares: true
+timetables: true

@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+@import 'link_to_railway_line_page/note_and_remark.scss' ;
+
+%domainBaseSettingsOfLinkToRailwayLine {
+  @extend %linkInDiv ;
+  @include float_left ;
+  @include padding_4 ;
+  margin: {
+    right: -1px ;
+    bottom: -1px ;
+  }
+  border: solid 1px #fff ;
+}
+
+%hoverSettingsOfLinkToRailwayLine {
+  &:hover {
+    background-color: $link_hover_domain_color ;
+  }
+}
+
+%colorBoxSettingsOfLinkToRailwayLine {
+  .color_box_32 {
+    @include float_left ;
+  }
+}
+
+//--------------------------------
+
+#station_facility_platform_infos {
+  table.platform_info {
+    tr.transfer_infos {
+      // li.transfer_info.tokyo_metro {
+        // @extend %hoverSettingsOfLinkToRailwayLine ;
+      // }
+      li.transfer_info {
+        @extend %domainBaseSettingsOfLinkToRailwayLine ;
+        @extend %colorBoxSettingsOfLinkToRailwayLine ;
+        //
+        @extend %infoAndRemarkSettingsInLinkToRailwayLine ;
+      }
+    }
+  }
+}

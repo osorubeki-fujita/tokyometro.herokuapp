@@ -1,0 +1,79 @@
+@charset "utf-8" ;
+
+@import '../../fundamental_settings.scss' ;
+
+ul#links_to_document_pages {
+  .link_to_document {
+    .text {
+      @include margin_right_16 ;
+    }
+  }
+}
+
+#infos_in_db , .group_of_tasks {
+  h3.title {
+    font: {
+      size: 16pt ;
+      weight: normal ;
+    }
+    @include padding_4 ;
+    @include margin_bottom_16 ;
+  }
+}
+
+#infos_in_db {
+  @include margin_bottom_32 ;
+  table {
+    border: solid 1px #333;
+    border-collapse: collapse ;
+    @extend %cycleOfRowColor ;
+    thead {
+      background-color: rgba( $jp_traditional_ameiro , 0.6 ) ;
+      td {
+        @include padding_top_bottom_4 ;
+      }
+    }
+    td {
+      @include padding_left_right_8 ;
+    }
+    tr {
+      td.index {
+        @include float_right ;
+      }
+      td.model_name {
+        @include float_left ;
+      }
+      td.length_of_model {
+        @include float_right ;
+      }
+    }
+  }
+  font: {
+    size: 9pt ;
+  }
+  .page_links {
+    &.top , &.bottom {
+      @include margin_top_16 ;
+    }
+  }
+}
+
+.group_of_tasks {
+  h4.each_category {
+    border: {
+      left: solid 8px #ccc ;
+    }
+    @include padding_top_bottom_4 ;
+    @include padding_left_8 ;
+    @include margin_bottom_8 ;
+  }
+  ol.each_category {
+    @include padding_left_0 ;
+    @include margin_top_0 ;
+    @include margin_left_32 ;
+    @include margin_bottom_16 ;
+    font: {
+      size: 9pt ;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@charset "utf-8" ;
+
+@import '../../../fundamental_settings.scss' ;
+
+@mixin colorSettingsOfTravelTimeInfo( $background_color , $text_color_on_background: #fff , $text_color_on_travel_time_square: $text_black_base_color ) {
+  .railway_line_column {
+    background-color: $background_color ;
+    color: $text_color_on_travel_time_square ;
+  }
+  .travel_time {
+    background-color: $background_color ;
+    color: $text_color_on_background ;
+  }
+}
+
+
+#ginza_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_ginza_bgcolor ) ;
+}
+#marunouchi_travel_time , #marunouchi_branch_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_marunouchi_bgcolor ) ;
+}
+#hibiya_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_hibiya_bgcolor ) ;
+}
+#tozai_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_tozai_bgcolor ) ;
+}
+#chiyoda_travel_time , #chiyoda_branch_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_chiyoda_bgcolor ) ;
+}
+#yurakucho_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_yurakucho_bgcolor ) ;
+}
+#hanzomon_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_hanzomon_bgcolor ) ;
+}
+#namboku_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_namboku_bgcolor ) ;
+}
+#fukutoshin_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_fukutoshin_bgcolor ) ;
+}
+#toei_mita_travel_time {
+  @include colorSettingsOfTravelTimeInfo( $line_toei_mita_bgcolor ) ;
+}

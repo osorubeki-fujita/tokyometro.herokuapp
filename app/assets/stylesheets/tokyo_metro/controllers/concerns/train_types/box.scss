@@ -1,0 +1,8 @@
+@charset "utf-8" ;
+@import '../../../fundamental_settings.scss' ;
+@import '../color_boxes.scss' ;
+
+@mixin gradationSettingsOfTrainTypeBox( $color , $background_color ) {
+  color: $color ;
+  @include gradationSettingsOfColorBox( $background_color ) ;
+}

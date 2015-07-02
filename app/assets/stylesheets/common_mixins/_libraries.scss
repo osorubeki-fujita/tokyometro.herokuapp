@@ -1,0 +1,27 @@
+@charset "utf-8" ;
+
+@mixin border_radius( $radius ) {
+  border-radius : $radius ;
+  // Firefox
+  -mozila-border-radius: $radius ;
+    // Safari, Google Chrome
+  -webkit-border-radius: $radius ;
+}
+
+@mixin css3($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+
+@mixin box_shadow( $width , $height , $bokeh , $widen , $color ) {
+  box-shadow: $width $height $bokeh $widen $color ;
+  -moz-box-shadow: $width $height $bokeh $widen $color ;
+  -webkit-box-shadow: $width $height $bokeh $widen $color ;
+}
