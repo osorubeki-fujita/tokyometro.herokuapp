@@ -14,7 +14,7 @@
   - #   - #   = h.form_for( @station_infos ) do |f|
   - #   - #     = f.collection_select( :name_ja , @station_infos , :name_in_system , :name_ja )
   - #   - #
-      
+
   = @twitter_processor.render
 
 = ::TokyoMetro::App::Renderer::Concerns::Header::Title.new( request , ::ApplicationHelper.common_title_ja , ::ApplicationHelper.common_title_en , domain_id_name: :top_title ).render

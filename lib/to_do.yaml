@@ -144,6 +144,7 @@ Report:
     contents:
       - Station::Info , RailwayLine または別の名前空間に自然なメソッドを定義
       - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
+  - 浅草駅 ホーム情報
   - その他、必要な Refactoring
 
 
