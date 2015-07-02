@@ -1,0 +1,6 @@
+development.log
+production.log
+test.log
+development.log.*
+production.log.*
+test.log.*
