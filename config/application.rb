@@ -34,6 +34,7 @@ module RailsTokyoMetro
     config.i18n.available_locales = [ :ja ]
 
     config.assets.initialize_on_precompile = false
+    config.serve_static_assets = true
 
     #----------------
 
