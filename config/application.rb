@@ -50,7 +50,7 @@ module RailsTokyoMetro
       ::TokyoMetro.set_rails_consts
 
       ::TokyoMetro.set_access_token
-      ::TokyoMetro.set_google_map_api_key
+      ::TokyoMetro.set_google_maps_api_key
 
       ::TokyoMetro::Factory::Decorate::MetaClass.initialize_in_rails_app
 

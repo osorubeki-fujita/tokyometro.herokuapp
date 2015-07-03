@@ -38,7 +38,7 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
   # @see http://qiita.com/jacoyutorius/items/a107ff6c93529b6b393e
   def src_in_iframe
     str = ::String.new
-    str << "https://www.google.com/maps/embed/v1/search?key=#{ ::TokyoMetro::GOOGLE_MAP_API_KEY }&q=#{ name_ja_url_encoded }"
+    str << "https://www.google.com/maps/embed/v1/search?key=#{ ::TokyoMetro::GOOGLE_MAPS_API_KEY }&q=#{ name_ja_url_encoded }"
     str << "&center=#{ latitude },#{ longitude }"
     str << "&zoom=16"
     str << "&maptype=roadmap"

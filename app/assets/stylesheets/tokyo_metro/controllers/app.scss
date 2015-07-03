@@ -40,6 +40,7 @@ body {
   $padding: $side_menu_padding ;
   #left_contents {
     width: $width_of_left_contents - $padding ;
+    max_width: 240px ;
     @include float_left ;
     padding: {
       right: $padding ;
@@ -48,6 +49,7 @@ body {
   #right_contents {
     @include float_left ;
     width: $width_of_right_contents - $padding ;
+    max_width: 360px ;
     padding: {
       left: $padding ;
     }
@@ -58,11 +60,13 @@ body {
   @extend %subContentSettings ;
   //
   #main_content_center {
-    width: $width_main_content_center ;
+    // width: $width_main_content_center ;
+    min-width: 640px ;
     @extend %mainContentSettings ;
   }
   #main_content_wide {
-    width: $width_main_content_wide ;
+    // width: $width_main_content_wide ;
+    min-width: 960px ;
     @extend %mainContentSettings ;
   }
   @include padding_8 ;

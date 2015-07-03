@@ -4,6 +4,12 @@ class OnPageLoadHandler
 
     ary = []
 
+    #---- main_content_center
+    main_content_center = new MainContentCenter()
+    main_content_wide = new MainContentWide()
+    ary.push( main_content_center )
+    ary.push( main_content_wide )
+
     #---- header
 
     header = new Header()
@@ -68,9 +74,9 @@ class OnPageLoadHandler
     ary.push( links_to_station_info_pages )
     ary.push( connecting_railway_line )
     ary.push( on_click )
-    
+
     link_domains_to_set_hover_event = new LinkDomainsToSetHoverEvent()
-    
+
     ary.push( link_domains_to_set_hover_event )
 
     return ary
@@ -78,9 +84,9 @@ class OnPageLoadHandler
   process_on_page_load: ->
     process_normal_list(@)
     set_geo_location_info(@)
-    initialize_google_map_in_station_facility(@)
+    initialize_google_maps_in_station_facility(@)
     return
-  
+
   process_on_resize: ->
     process_normal_list(@)
     return
@@ -96,7 +102,7 @@ class OnPageLoadHandler
     p.set_info()
     return
 
-  initialize_google_map_in_station_facility = (v) ->
+  initialize_google_maps_in_station_facility = (v) ->
     map = new GoogleMapsInStationFacility()
     map.initialize_map()
     return
@@ -143,7 +149,7 @@ $( document ).on 'ready page:load' , ->
 #-------- [page:restore]
 
 # $( document ).on 'page:change page:restore' , ->
-  
+
   # console.log 'page:change'
   # #----
 

@@ -6,7 +6,7 @@ class LengthToEven
   width_new = (v) ->
     w = Math.ceil( v.domain.width() * 1.0 / 2 ) * 2
     if v.text
-      w += 2
+      w += 4
     return w
 
   height_new = (v) ->
