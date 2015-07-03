@@ -19,7 +19,7 @@
 /config/database.yml
 
 /AccessToken
-/GoogleMapApiKey
+/GoogleMapsApiKey
 
 # /db/data.yml
 /db/csv/
