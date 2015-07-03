@@ -82,7 +82,7 @@ namespace :temp do
 
   task :surrounding_area_20150603_1 => :environment do
 
-    dictionary = ::TokyoMetro::Modules::Api::ToFactory::Convert::Patches::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
+    dictionary = ::TokyoMetro::Modules::Api::ToFactory::Convert::Patch::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
     dictionary.values.each do | name_ja |
       unless ::SurroundingArea.find_by( name_ja: name_ja ).present?
         id_new = ::SurroundingArea.all.pluck( :id ).max + 1
@@ -95,7 +95,7 @@ namespace :temp do
   desc "Replace invalid surrounding area info"
   task :surrounding_area_20150603_2 => :environment do
 
-    dictionary = ::TokyoMetro::Modules::Api::ToFactory::Convert::Patches::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
+    dictionary = ::TokyoMetro::Modules::Api::ToFactory::Convert::Patch::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
     ::SurroundingArea.all.each do | item |
       if dictionary.keys.include?( item.name )
 
