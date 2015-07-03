@@ -21,7 +21,7 @@
 /AccessToken
 /GoogleMapsApiKey
 
-# /db/data.yml
+/db/data.yml
 /db/csv/
 /db/json/
 /dev/
