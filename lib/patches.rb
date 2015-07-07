@@ -1,2 +1,2 @@
-module TokyoMetro::App::Renderer::RailwayLine
-end
+
+__END__
