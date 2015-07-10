@@ -1,7 +1,7 @@
 class TwittersProcessor
 
   constructor: ( @domain = $( '#twitters' ) ) ->
-  
+
   has_twitter_info = (v) ->
     return v.domain.length > 0
 
@@ -64,6 +64,7 @@ class TwittersProcessor
     return
 
   change_display_settings: ->
+    console.log 'change_display_settings'
     d = new DisplaySettingsOnClick( @domain , button(@) , i_in_button(@) )
     d.process()
     return

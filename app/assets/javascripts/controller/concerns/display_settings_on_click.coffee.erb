@@ -1,3 +1,5 @@
+<% icon_dictionary = ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON %>
+
 class DisplaySettingsOnClick
 
   constructor: ( @domain , @button , @i_in_button ) ->
@@ -12,12 +14,16 @@ class DisplaySettingsOnClick
     if visible(@)
       @domain.removeClass( 'visible' ).addClass( 'hidden' )
       @button.removeClass( 'minimize' ).addClass( 'display' )
-      @i_in_button.removeClass( 'fa-chevron-up' ).addClass( 'fa-chevron-down' )
+      @i_in_button
+        .removeClass( 'fa-<%= icon_dictionary[ 'minimize' ] %>' )
+        .addClass( 'fa-<%= icon_dictionary[ 'display' ] %>' )
 
     else if hidden(@)
       @domain.removeClass( 'hidden' ).addClass( 'visible' )
       @button.removeClass( 'display' ).addClass( 'minimize' )
-      @i_in_button.removeClass( 'fa-chevron-down' ).addClass( 'fa-chevron-up' )
+      @i_in_button
+        .removeClass( 'fa-<%= icon_dictionary[ 'display' ] %> ' )
+        .addClass( 'fa-<%= icon_dictionary[ 'minimize' ] %>' )
     return
 
 window.DisplaySettingsOnClick = DisplaySettingsOnClick

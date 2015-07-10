@@ -69,8 +69,13 @@ $width_of_each_color_area: 160px ;
   @include margin_left_64 ;
   @include padding_left_0 ;
   @include padding_top_16 ;
-  border: {
-    top: solid 1px #999 ;
+  &.display {
+    border: {
+      top: solid 1px #999 ;
+    }
+  }
+  &.hidden {
+    display: none ;
   }
   li.title {
     list-style: none ;

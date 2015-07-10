@@ -74,7 +74,7 @@ class LinkDomainsToSetHoverEvent
     return $( 'ul#links_to_passenger_survey_pages' )
       .children( 'ul#links_to_railway_line_pages , ul#links_to_railway_line_pages_of_this_station' )
       .children( 'ul.each_railway_line' )
-  
+
   railway_line_domains_in_links_for_railway_line_each_controller_pages = (v) ->
     return $( '#links_to_railway_line_pages' )
       .children( 'ul.each_railway_line' )
@@ -89,9 +89,29 @@ class LinkDomainsToSetHoverEvent
       .children( '.to_csv' )
       .children( '.link_to_csv' )
 
+  twitter_size_changing_button = (v) ->
+    return $( '#twitters' )
+      .children( '.content_header' )
+      .children( '.size_changing_button' )
+
+  real_time_info_and_update_buttons = (v) ->
+    return $( '#real_time_info_and_update_button' )
+      .children( '.content_header' )
+      .children( '.size_changing_button , .update_button' )
+
+  size_changing_buttons_in_document_info_box = (v) ->
+    return $( 'li.document_info_box' )
+      .children( '.header' )
+      .children( 'ul.size_changing_buttons' )
+      .children( 'li.size_changing_button_in_document' )
+
+  #--------
+
   li_domains_of_platform_info_tabs = (v) ->
     return $( 'ul#platform_info_tabs' )
       .children( 'li' )
+
+  #--------
 
   list = (v) ->
     ary = []
@@ -115,6 +135,10 @@ class LinkDomainsToSetHoverEvent
 
     ary.push( li_domains_to_operator_each_year_page_of_passenger_survey_on_index_page(v) )
     ary.push( link_to_csv_of_table(v) )
+
+    ary.push( twitter_size_changing_button(v) )
+    ary.push( real_time_info_and_update_buttons(v) )
+    ary.push( size_changing_buttons_in_document_info_box(v) )
 
     return ary
 

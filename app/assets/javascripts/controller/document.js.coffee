@@ -6,10 +6,12 @@ class Document
     link_to_document_contents = new LinkToDocumentContents()
     color_infos_in_document = new ColorInfosInDocument()
     train_types_in_document = new TrainTypesInDocument()
+    size_changing_buttons_in_document = new SizeChangingButtonsInDocument()
 
     link_to_document_contents.process()
     color_infos_in_document.process()
     train_types_in_document.process()
+    size_changing_buttons_in_document.process()
     return
 
 window.Document = Document
@@ -206,4 +208,134 @@ class TrainTypeInDocument
   update_width_of_train_type_name: ->
     p = new LengthToEven( @.train_type_name() , true )
     p.set()
+    return
+
+#--------------------------------
+
+class SizeChangingButtonsInDocument
+
+  constructor: ( @domains = $( 'li.document_info_box' ) ) ->
+
+  size_changing_buttons = (v) ->
+    return v.domains
+      .children( '.header' )
+      .children( 'ul.size_changing_buttons' )
+
+  li_size_changing_button_in_document = (v) ->
+    return size_changing_buttons(v)
+      .children( 'li.size_changing_button_in_document' )
+
+  has_size_changing_buttons = (v) ->
+    return size_changing_buttons(v).length > 0
+
+  sub_infos = (v) ->
+    return v.domains
+      .children( 'ul.sub_infos' )
+
+  process: ->
+    if has_size_changing_buttons(@)
+      # console.log 'SizeChangingButtonsInDocument¥#process'
+      add_event_to_minimize_all(@)
+      add_event_to_minimize(@)
+      add_event_to_display(@)
+      add_event_to_display_all(@)
+    return
+
+  button_for_displaying_all = (v) ->
+    return li_size_changing_button_in_document(v)
+      .filter( '.display_all' )
+      .children( 'button' )
+
+  button_for_minimizing_all = (v) ->
+    return li_size_changing_button_in_document(v)
+      .filter( '.minimize_all' )
+      .children( 'button' )
+
+  add_event_to_display_all = (v) ->
+    # b = button_for_displaying_all(v)
+    # console.log b
+    # console.log b.length
+    p = new SizeChangingButtonInEachDocumentInfoBox( button_for_displaying_all(v) , sub_infos(v) )
+    p.add_event_to_display()
+    return
+
+  add_event_to_display = (v) ->
+    v.domains.each ->
+      document_info_box = new DocumentInfoBox( $(@) )
+      document_info_box.add_event_to_display()
+      return
+    return
+
+  add_event_to_minimize = (v) ->
+    v.domains.each ->
+      document_info_box = new DocumentInfoBox( $(@) )
+      document_info_box.add_event_to_minimize()
+      return
+    return
+
+  add_event_to_minimize_all = (v) ->
+    # b = button_for_minimizing_all(v)
+    # console.log b
+    # console.log b.length
+    p = new SizeChangingButtonInEachDocumentInfoBox( button_for_minimizing_all(v) , sub_infos(v) )
+    p.add_event_to_minimize()
+    return
+
+class DocumentInfoBox
+
+  constructor: ( @domain ) ->
+
+  size_changing_buttons = (v) ->
+    return v.domain
+      .children( '.header' )
+      .children( 'ul.size_changing_buttons' )
+
+  li_size_changing_button_in_document = (v) ->
+    return size_changing_buttons(v)
+      .children( 'li.size_changing_button_in_document' )
+
+  has_size_changing_buttons = (v) ->
+    return size_changing_buttons(v).length > 0
+
+  sub_infos = (v) ->
+    return v.domain
+      .children( 'ul.sub_infos' )
+
+  button_for_displaying = (v) ->
+    return li_size_changing_button_in_document(v)
+      .filter( '.display' )
+      .children( 'button' )
+
+  button_for_minimizing = (v) ->
+    return li_size_changing_button_in_document(v)
+      .filter( '.minimize' )
+      .children( 'button' )
+
+  add_event_to_display: ->
+    p = new SizeChangingButtonInEachDocumentInfoBox( button_for_displaying(@) , sub_infos(@) )
+    p.add_event_to_display()
+    return
+
+  add_event_to_minimize: ->
+    p = new SizeChangingButtonInEachDocumentInfoBox( button_for_minimizing(@) , sub_infos(@) )
+    p.add_event_to_minimize()
+    return
+
+
+class SizeChangingButtonInEachDocumentInfoBox
+
+  constructor: ( @buttons , @sub_infos ) ->
+
+  add_event_to_display: ->
+    _sub_infos = @sub_infos
+    @buttons.on 'click' , ->
+      _sub_infos.removeClass( 'hidden' ).addClass( 'display' )
+      return
+    return
+
+  add_event_to_minimize: ->
+    _sub_infos = @sub_infos
+    @buttons.on 'click' , ->
+      _sub_infos.removeClass( 'display' ).addClass( 'hidden' )
+      return
     return

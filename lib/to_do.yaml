@@ -122,11 +122,7 @@ Report:
       - cf. lib/tokyo_metro/factory/scss
   - 停車駅クラスの完成
   - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
-  -
-    title: Document
-    contents:
-      - 駅リスト
-      - 各リストのボタン
+  - Document 駅リスト
   - データの再流し込み
   - 駅時刻表の公開を再開
   - ページの拡大・縮小時の崩れを解消

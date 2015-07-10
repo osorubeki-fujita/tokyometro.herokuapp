@@ -10,14 +10,21 @@ ul.in_document {
   li.document_info_box {
     border : solid 1px #999 ;
     @include margin_bottom_16 ;
-    @include padding_8 ;
+    @include padding_16 ;
     list-style: none ;
     @include border_radius( $border_radius_of_document_info_box ) ;
-    .number {
-      font: {
-        size: 9pt ;
+    .header {
+      @include margin_bottom_8 ;
+      .number {
+        @include float_left ;
+        font: {
+          size: 9pt ;
+        }
       }
-      @include margin_bottom_4 ;
+      ul.size_changing_buttons {
+        @include float_right ;
+        @include padding_0 ;
+      }
     }
     .texts {
       @include float_left ;

@@ -11,7 +11,7 @@
   @include float_right ;
   @include margin_left_8 ;
   @extend %linkInDiv ;
-  &:hover {
+  &.hover {
     border: {
       style: solid ;
       width: 1px ;
@@ -36,32 +36,32 @@
   }
 }
 
-%buttonWhite {
-  $base_color: #fff ;
+%buttonWhiteBackground {
+  $base_color: #666 ;
   border: {
     color: $base_color ;
   }
-  &:hover {
+  &.hover {
     border: {
       color: $base_color ;
     }
-    background-color: #999 ;
+    background-color: #eee ;
   }
   button {
     color: $base_color ;
   }
 }
 
-%buttonBlack {
-  $base_color: #333 ;
+%buttonBlackBackground {
+  $base_color: #fff ;
   border: {
     color: $base_color ;
   }
-  &:hover {
+  &.hover {
     border: {
       color: $base_color ;
     }
-    background-color: rgba( #fff , 0.3 ) ;
+    background-color: rgba( $base_color , 0.3 ) ;
   }
   button {
     color: $base_color ;
@@ -104,20 +104,26 @@
 
 .update_button {
   @extend %buttonCommonSettings ;
-  @extend %buttonWhite ;
+  @extend %buttonBlackBackground ;
   @extend %buttonLarge ;
 }
 
 .size_changing_button {
   @extend %buttonCommonSettings ;
-  @extend %buttonWhite ;
+  @extend %buttonBlackBackground ;
   @extend %buttonLarge ;
 }
 
-#current_position_info {
-  .to_current_position {
-    @extend %buttonCommonSettings ;
-    @extend %buttonBlack ;
-    @extend %buttonLarge ;
-  }
+li.size_changing_button_in_document {
+  @extend %buttonCommonSettings ;
+  @extend %buttonWhiteBackground ;
+  @extend %buttonSmall ;
 }
+
+// #current_position_info {
+//   .to_current_position {
+//     @extend %buttonCommonSettings ;
+//     @extend %buttonBlackBackground ;
+//     @extend %buttonLarge ;
+//   }
+// }

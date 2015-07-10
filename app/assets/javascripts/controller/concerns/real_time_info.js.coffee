@@ -4,7 +4,7 @@ class RealTimeInfoProcessor
 
   has_real_time_info_and_update_button = (v) ->
     return ( v.domain.length > 0 )
-  
+
   has_links_to_railway_line_pages_in_right_side_menu = (v) ->
     return links_to_railway_line_pages_in_right_side_menu(v).length > 0
 
@@ -35,7 +35,7 @@ class RealTimeInfoProcessor
   time_infos = (v) ->
     return domain_of_time_infos(v)
       .children( 'li' )
-    
+
   links_to_railway_line_pages_in_right_side_menu = (v) ->
     return $('#links_to_real_time_info_pages_of_railway_lines' )
       .children( 'ul#links_to_railway_line_pages' )
@@ -59,7 +59,7 @@ class RealTimeInfoProcessor
       t.process()
       return
     return
-    
+
   process_links_to_railway_line_pages_in_right_side_menu = (v) ->
     p = new LinksToRealTimeInfoPages( $( '#links_to_real_time_info_pages_of_railway_lines' ) )
     p.process()
@@ -94,26 +94,8 @@ class EachRealTimeInfo
     return domain_of_titles(v)
       .children( 'li.title' )
 
-  # domain_of_time_infos_of_category = (v) ->
-    # return v.domain.children( 'ul.time_infos_of_category' ).first()
-
-  # time_infos_of_category = (v) ->
-    # return domain_of_time_infos_of_category(v).children( 'li' )
-
-  # dc_date_and_validity = (v) ->
-    # return domain_of_time_infos_of_category(v).children( 'li.dc_date , li.validity' )
-
-  # en = (v) ->
-    # return domain_of_time_infos_of_category(v).children( 'ul.en' ).first()
-
-  # title_of_time_infos = (v) ->
-    # return v.domain.find( '.title_of_time_info' )
-
   process: ->
     process_titles(@)
-    # set_height_of_li_domains(@)
-    # set_height_of_li_domains_of_en(@)
-    # set_width_of_li_domains_of_en(@)
     return
 
   process_titles = (v) ->
@@ -122,25 +104,3 @@ class EachRealTimeInfo
       t.process()
       return
     return
-
-  # set_height_of_li_domains = (v) ->
-    # dc_date_and_validity(v).each ->
-      # time_info = $(@)
-      # p = new DomainsCommonProcessor( time_info.children() )
-      # time_info.css( 'height' , p.sum_outer_height( true ) )
-      # return
-    # return
-
-  # set_height_of_li_domains_of_en = (v) ->
-    # en(v).children( 'li.dc_date , li.validity' ).each ->
-      # li = $(@)
-      # p = new DomainsCommonProcessor( li.children() )
-      # li.css( 'height' , p.max_outer_height( true ) )
-      # li.css( 'width' , p.sum_outer_width( true ) )
-      # return
-    # return
-
-  # set_width_of_li_domains_of_en = (v) ->
-    # lis = new DomainsCommonProcessor( en(v).children( 'li' ) )
-    # en(v).css( 'width' , lis.max_outer_width( true ) )
-    # return

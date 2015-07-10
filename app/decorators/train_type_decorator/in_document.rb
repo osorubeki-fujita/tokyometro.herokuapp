@@ -7,9 +7,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
 %li{ class: [ :document_info_box , :clearfix ] }
-  %div{ class: [ :number , :text_en ] }<
-    = number
-  - # = ::TokyoMetro::App::Renderer::Document::SizeChangingButton.new( nil ).render
+  = this.render_id_and_size_changing_buttons
   %div{ class: [ :main , :clearfix ] }<
     = this.render_name_box
     = this.render_name
