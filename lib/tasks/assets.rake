@@ -6,8 +6,7 @@ namespace :assets do
       #--------
 
       desc "Make partial sass files from .scss.erb files"
-      task :partial do
-        ::TokyoMetro.set_rails_consts
+      task :partial => :environment do
         ::TokyoMetro::Rake::Assets::Sass::Make.partial
       end
 
@@ -16,7 +15,7 @@ namespace :assets do
     end
 
   end
-  
+
   namespace :image do
     namespace :copy do
 

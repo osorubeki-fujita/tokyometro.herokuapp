@@ -9,7 +9,7 @@ class Station::InfoDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::A
     h.render inline: <<-HAML , type: :haml , locals: { this: decorator , div_classes: div_classes }
 %div{ class: div_classes }
   - if this.object.station_code.present?
-    = this.render_station_code_image
+    = this.decorate.code.render_image
   %div{ class: :text }
     %p{ class: :text_ja }<
       = this.render_name_ja( with_subname: true , suffix: " 行き" )
@@ -34,7 +34,7 @@ class Station::InfoDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::A
     h.render inline: <<-HAML , type: :haml , locals: { this: decorator }
 %div{ class: [ :station_info , :clearfix ] }
   - if this.object.station_code.present?
-    = this.render_station_code_image
+    = this.decorate.code.render_image
   %div{ class: :text }
     %p{ class: :text_ja }<
       = this.render_name_ja( with_subname: true )

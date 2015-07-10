@@ -146,7 +146,7 @@ class Station::InfoDecorator < Draper::Decorator
       %span{ class: :text_en }<
         = this.render_name_en( with_subname: true )
   - if station_code
-    = this.render_station_code_image( all: all_station_codes )
+    = this.code.render_image( all: all_station_codes )
     HAML
   end
 
@@ -213,7 +213,7 @@ class Station::InfoDecorator < Draper::Decorator
   def render_in_station_timetable_header
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :additional_infos }
-  = this.render_station_code_image( all: false )
+  = this.code.render_image( all: false )
   %div{ class: :station_name }<
     %div{ class: :text_ja }<
       = this.render_name_ja
@@ -244,34 +244,10 @@ class Station::InfoDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :station_info_domain }
   %div{ class: :station_code_outer }
-    = this.render_station_code_image( all: false )
+    = this.code.render_image( all: false )
   %div{ class: [ :text , :clearfix ] }
     = this.render_name_ja_and_en
     HAML
-  end
-
-  def render_station_code_image( all: false )
-    if at_ayase? or at_nakano_sakaue?
-      ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , self ).render
-    elsif tokyo_metro?
-      if all
-        ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , station_infos_including_other_railway_lines ).render
-      else
-        ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , self ).render
-      end
-
-    else
-
-      h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :station_codes }<
-  = "\[" + this.station_code + "\]"
-      HAML
-
-    end
-  end
-
-  def render_each_station_code_image_tag
-    h.image_tag( code_image_filename , class: :station_code )
   end
 
   def render_title_of_passenger_survey
@@ -385,7 +361,7 @@ class Station::InfoDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 = this.render_link_to_station_facility_page_ja
 %div{ class: [ :station_info_domain , :clearfix ] }
-  = this.render_station_code_image( all: false )
+  = this.code.render_image( all: false )
   %div{ class: :text }<
     = this.render_name_ja_and_en
     HAML
@@ -447,15 +423,6 @@ class Station::InfoDecorator < Draper::Decorator
     end
   end
 
-  def station_codes
-    ary = object.station_infos_including_other_railway_lines.select_tokyo_metro.map( &:station_code )
-    if at_ayase?
-      ary.uniq
-    else
-      ary
-    end
-  end
-
 =begin
   def title
     ::Station::InfoDecorator::Title.new( self )
@@ -474,20 +441,11 @@ class Station::InfoDecorator < Draper::Decorator
     ::Station::InfoDecorator::OnStationFacilityPage.new( self )
   end
 
-  private
-
-  def code_image_filename
-    dirname = "provided_by_tokyo_metro/station_number"
-    if /\Am(\d{2})\Z/ =~ station_code
-      file_basename = "mm#{$1}"
-    else
-      if station_code.nil?
-        raise "Error: " + same_as
-      end
-      file_basename = station_code.downcase
-    end
-    "#{dirname}/#{file_basename}.png"
+  def code
+    ::Station::InfoDecorator::Code.new( self )
   end
+
+  private
 
   def link_to_station_page_for_each_railway_line?
     case @type_of_link_to_station
@@ -561,7 +519,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def datum_for_tooltip
-    { 'data-station_code_images' => station_codes.join( '/' ) , 'data-text_ja' => object.name_ja , 'data-text_hira' => object.name_hira , 'data-text_en' => object.name_en }
+    { 'data-station_code_images' => code.all.join( '/' ) , 'data-text_ja' => object.name_ja , 'data-text_hira' => object.name_hira , 'data-text_en' => object.name_en }
   end
 
 end

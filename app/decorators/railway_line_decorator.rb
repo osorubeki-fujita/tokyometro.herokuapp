@@ -265,6 +265,7 @@ class RailwayLineDecorator < Draper::Decorator
   %p<
     = letter
       HAML
+
     elsif must_display_line_color
       if small
         size = :small

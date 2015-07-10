@@ -24,14 +24,9 @@ Report:
       - ログの生成 (TokyoMetro::Factory::Convert::Customize::Api::TrainTimetable::RomanceCar::Info)
       - ログの確認後，疑問がある場合は【Forum】
   -
-    title: App - TrainType
+    title: App - css_class_name
     contents:
-      -
-        title: メソッド名の混在の解消
-        contents:
-          - css_class_name
-          - css_class_in_document
-          - css_class_name_in_document
+      - DBの列を削除し、メソッドへ
   -
     title: 地図・出入口情報
     contents:
@@ -117,7 +112,7 @@ Report:
     contents:
       - yaml の構造をシンプルに
   -
-    title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線の色、列車種別）
+    title: .scss.erb により、StyleSheetをテンプレート化、構造化（路線の色、列車種別）
     contents:
       - cf. lib/tokyo_metro/factory/scss
   - 停車駅クラスの完成

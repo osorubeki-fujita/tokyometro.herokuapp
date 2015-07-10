@@ -12,7 +12,7 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
       "data-station_name_ja" => object.name_ja ,
       "data-station_name_hira" => object.name_hira ,
       "data-station_name_en" => object.name_en ,
-      "data-station_codes" => decorator.station_codes.join(" / ")
+      "data-station_codes" => decorator.code.all.join(" / ")
     ) do
     end
   end
