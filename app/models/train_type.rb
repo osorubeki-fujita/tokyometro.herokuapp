@@ -17,6 +17,10 @@ class TrainType < ActiveRecord::Base
     end
   }
 
+  scope :defined , -> {
+    where.not( same_as: "custom.TrainType:Undefined" )
+  }
+
   def in_api
     train_type_in_api
   end
@@ -27,6 +31,10 @@ class TrainType < ActiveRecord::Base
 
   def colored?
     /Colored\Z/ === same_as
+  end
+
+  def operator_id
+    railway_line.operator_id
   end
 
 end

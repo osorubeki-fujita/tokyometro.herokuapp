@@ -5,7 +5,7 @@
 %div{ id: :train_types }
   - # 鉄道事業者ごとに分類
   - # railway_line_id をもとに鉄道事業者を取得
-  - train_types_grouped_by_operator = @train_types.where.not( same_as: "custom.TrainTypeUndefined" ).group_by { | train_type | train_type.railway_line.operator_id }
+  - train_types_grouped_by_operator = @train_types.defined.group_by( &:operator_id )
   - train_types_grouped_by_operator.keys.sort.each do | operator_id |
     - operator_instance = ::Operator.find_by( id: operator_id )
     - train_types_in_an_operator = train_types_grouped_by_operator[ operator_id ]
