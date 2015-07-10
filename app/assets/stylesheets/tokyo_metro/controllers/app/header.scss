@@ -53,12 +53,13 @@
       @include padding_0 ;
       @include margin_top_0 ;
       @include margin_bottom_4 ;
-      li.sns_account {
+      li.sns_account , li.ruby_gems {
         @extend %linkInDiv ;
         list-style: none ;
         font-size: 7.5pt;
         i {
           @include margin_left_right_4 ;
+          width: 12px ;
         }
         &.hover {
           background-color: #666 ;

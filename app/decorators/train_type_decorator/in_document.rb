@@ -9,6 +9,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
 %li{ class: [ :document_info_box , :clearfix ] }
   %div{ class: [ :number , :text_en ] }<
     = number
+  - # = ::TokyoMetro::App::Renderer::Document::SizeChangingButton.new( nil ).render
   %div{ class: [ :main , :clearfix ] }<
     = this.render_name_box
     = this.render_name
@@ -22,7 +23,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
   def render_name_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self , css_class_names: [ :train_type , @decorator.css_class_name ].flatten }
 %div{ class: css_class_names }
-  = this.train_type_in_api.decorate.render_name_in_box
+  = this.train_type_in_api.decorate.render_name_in_box( icon: true )
     HAML
   end
 

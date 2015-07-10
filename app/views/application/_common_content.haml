@@ -16,11 +16,15 @@
         %li{ class: [ :sns_account , :facebook , :text_en ] }
           = link_to( "" , "http://ja-jp.facebook.com/shu.fujita.u" , target: :_blank )
           = ::TokyoMetro::App::Renderer::Icon.facebook_official( request , 1 ).render
-          = "Facebook"
+          != "Facebook"
         %li{ class: [ :sns_account , :github , :text_en ] }
           = link_to( "" , "https://github.com/osorubeki-fujita/tokyometro.herokuapp" , target: :_blank )
           = ::TokyoMetro::App::Renderer::Icon.github( request , 1 ).render
-          = "GitHub"
+          != "GitHub"
+        %li{ class: [ :gem_version , :ruby_gems , :text_en ] }
+          = link_to( "" , "https://rubygems.org/gems/tokyo_metro" , target: :_blank )
+          = ::TokyoMetro::App::Renderer::Icon.ruby_gems( request , 1 ).render
+          != "Gem version: " + ::TokyoMetro::VERSION
 
   %div{ id: :header_sub , class: "col-md-12" }<
 

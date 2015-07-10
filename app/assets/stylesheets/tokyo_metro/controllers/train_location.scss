@@ -150,6 +150,7 @@ ul.train_locations_of_each_direction { li.train_location { .train_type {
   @include border_radius( 4px ) ;
   @include font_ja_and_en( 10 ) ;
   clear: both ;
+  min-width: 80px ;
   p {
     line: {
       height: 1.2em ;

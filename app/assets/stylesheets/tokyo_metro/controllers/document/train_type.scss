@@ -12,6 +12,13 @@
       @include margin_bottom_32 ;
       ul.train_types_of_each_railway_line {
         @extend %marginLeft16 ;
+        li.document_info_box {
+          .train_type.airport_limited_express_normal {
+            i.fa-plane {
+              @include margin_right_8 ;
+            }
+          }
+        }
       }
     }
   }

@@ -82,12 +82,6 @@ Report:
           - RailwayCompany::AsOperator / RailwayCompany::AsTrainOwner
           - Operator::Info / Operator::AsTrainOwner
   -
-    title: Gem - Error 処理、カスタマイズの機能を Factory へ移行（現状は、Modules::Api::ToFactory::Convert 以下に Factory に移行すべき機能が含まれている）
-    contents:
-      - Convert
-      - Patch
-      - Customize
-  -
     title: Gem - seed関連
     contents:
       - "[module] reference"
@@ -132,7 +126,6 @@ Report:
     title: Document
     contents:
       - 駅リスト
-      - 列車種別リスト（種別の幅）
       - 各リストのボタン
   - データの再流し込み
   - 駅時刻表の公開を再開

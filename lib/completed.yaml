@@ -11,6 +11,15 @@
     contents:
       - 固有識別子 (@id) を指定した検索・取得方法
       - データ取得、データ検索
+  -
+    title: Gem - Error 処理、カスタマイズの機能を Factory へ移行
+    contents:
+      -
+        title: Modules::Api::ToFactory::Convert 以下に含まれている、 Factory に移行すべき機能
+        contents:
+          - Convert/Common
+          - Convert/Patch
+          - Convert/Customize
 
 
 "Real time":
