@@ -6,6 +6,10 @@ namespace :temp do
 
     train_type_holiday_express_on_den_en_toshi_line = ::TrainType.find_by( same_as: "custom.TrainType:TokyoMetro.Hanzomon.HolidayExpress.ToTokyu" )
     raise unless train_type_holiday_express_on_den_en_toshi_line.present?
-    train_type_holiday_express_on_den_en_toshi_line.update( bgcolor: "#ff3399" )
+    train_type_holiday_express_on_den_en_toshi_line.update( bgcolor: "#ff99cc" )
+
+    train_type_holiday_express_on_fukutoshin_line = ::TrainType.find_by( same_as: "custom.TrainType:TokyoMetro.Fukutoshin.HolidayExpress.Normal" )
+    raise unless train_type_holiday_express_on_fukutoshin_line.present?
+    train_type_holiday_express_on_fukutoshin_line.update( bgcolor: "#ff99cc" )
   end
 end
