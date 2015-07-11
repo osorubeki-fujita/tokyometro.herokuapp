@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 ruby '2.1.6'
 
 gem 'rack' , '1.6.2'
+gem 'arel' , '6.0.0'
 
 # -------- Ruby on Rails
 
@@ -23,7 +24,7 @@ gem 'positive_string_support' , '>= 0.1.3'
 
 gem 'required_files' , '>= 0.2.6' , group: [:development, :test]
 
-gem 'tokyo_metro' , ">= 0.8.20"
+gem 'tokyo_metro' , ">= 0.10.2"
 
 #-------- development 環境
 

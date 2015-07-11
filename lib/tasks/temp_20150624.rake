@@ -13,6 +13,6 @@ namespace :temp do
     raise unless train_type_in_api.present?
     raise unless romance_car_normal.present?
     raise if ::TrainType.find_by( same_as: same_as_new ).present?
-    ::TrainType.create( id: id_new , railway_line_id: railway_line.id , train_type_in_api_id: train_type_in_api.id , same_as: same_as_new , note: romance_car_normal.note , css_class_name: "train_type_chiyoda_romance_car_standard" , bgcolor: "\#ff0000" , color: "\#ffffff" )
+    ::TrainType.create( id: id_new , railway_line_id: railway_line.id , train_type_in_api_id: train_type_in_api.id , same_as: same_as_new , note: romance_car_normal.note , css_class: "train_type_chiyoda_romance_car_standard" , bgcolor: "\#ff0000" , color: "\#ffffff" )
   end
 end

@@ -30,7 +30,6 @@ class TrainTypeInApiDecorator < Draper::Decorator
   end
 
   def render_name_of_airport_limited_express_in_box
-    # raise object.name_ja_normal
     name_ja_in_box = object.name_ja_normal.to_s.gsub( /^エアポート/ , "" )
     h.render inline: <<-HAML , type: :haml , locals: { name_ja: name_ja_in_box , name_en: object.name_en_normal }
 %p{ class: :text_ja }<

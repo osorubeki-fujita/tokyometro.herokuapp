@@ -6,7 +6,7 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
-%li{ class: [ :document_info_box , this.css_class_name , :clearfix ] }
+%li{ class: [ :document_info_box , this.css_class , :clearfix ] }
   = this.render_id_and_size_changing_buttons
   = this.render_main_domain
   = this.render_button_domain

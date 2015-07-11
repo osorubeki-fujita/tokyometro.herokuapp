@@ -31,9 +31,9 @@
   <% unless railway_line.present? %>
     <% raise "Error: The railway line with id ¥##{ railway_line_id } is not defined." %>
   <% end %>
-.<%= railway_line.css_class_name %> {
+.<%= railway_line.css_class %> {
   <% train_types.each do | train_type | %>
-  .<%= train_type.css_class_name %> {
+  .<%= train_type.css_class %> {
     $color: $<%= train_type.color_basename %>_color ;
     $bgcolor: $<%= train_type.color_basename %>_bgcolor ;
     @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;

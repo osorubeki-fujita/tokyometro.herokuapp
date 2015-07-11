@@ -31,8 +31,7 @@ class RailwayLine < ActiveRecord::Base
   has_many :twitter_accounts , as: :operator_or_railway_line
 
   include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
-
-  include ::TokyoMetro::Modules::Common::Info::RailwayLine
+  include ::TokyoMetro::Modules::Common::Info::RailwayLine::Info
   include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine
   include ::TokyoMetro::Modules::Db::Decision::Operator
   include ::TokyoMetro::Modules::Db::Decision::RailwayLine
@@ -163,22 +162,6 @@ class RailwayLine < ActiveRecord::Base
 
   def tokyo_metro?
     operator.tokyo_metro?
-  end
-
-  def jr_lines?
-    same_as == "odpt.Railway:JR-East"
-  end
-
-  def toden_arakawa_line?
-    same_as == "odpt.Railway:Toei.TodenArakawa"
-  end
-
-  def tobu_sky_tree_isesaki_line?
-    same_as == "odpt.Railway:Tobu.SkyTreeIsesaki"
-  end
-
-  def seibu_yurakucho_line?
-    same_as == "odpt.Railway:Seibu.SeibuYurakucho"
   end
 
   # @!endgroup

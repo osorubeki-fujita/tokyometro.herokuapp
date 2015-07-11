@@ -12,7 +12,7 @@ class Operator < ActiveRecord::Base
 
   has_many :twitter_accounts , as: :operator_or_railway_line
 
-  include ::TokyoMetro::Modules::Common::Info::Operator
+  include ::TokyoMetro::Modules::Common::Info::Operator::Info
 
   # 指定された鉄道事業者の id を取得する
   scope :id_of , ->( operator_same_as ) {
@@ -21,13 +21,23 @@ class Operator < ActiveRecord::Base
   scope :id_of_tokyo_metro , -> {
     id_of( "odpt.Operator:TokyoMetro" )
   }
-  
-  def name_ja_normal
-    name_ja.split( "/" ).first
+
+  private
+
+  def name_ja_to_a
+    name_ja.split( /\// )
   end
-  
-  def name_en_normal
-    name_en.split( "/" ).first
+
+  def name_en_to_a
+    name_en.split( /\// )
+  end
+
+  def has_many_name_ja?
+    /\// === name_ja
+  end
+
+  def has_many_name_en?
+    /\// === name_en
   end
 
 end

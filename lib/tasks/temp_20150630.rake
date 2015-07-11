@@ -98,11 +98,11 @@ namespace :temp do
     puts station_facility_at_akasaka_mitsuke[ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == "odpt.StationFacility:TokyoMetro.Ginza.AkasakaMitsuke.Outside.Escalator.1" }.to_s
     puts station_facility_at_akasaka_mitsuke[ "odpt:barrierfreeFacility" ].find { | item | item[ "owl:sameAs" ] == "odpt.StationFacility:TokyoMetro.Marunouchi.AkasakaMitsuke.Outside.Escalator.1" }.to_s
   end
-  
+
   task :update_train_type_20150630 => :environment do
     [
-      { name_ja: "各停" , name_ja_normal: "各停" , name_en: "Local" , name_en_normal: "Local" , same_as: "odpt.TrainType:Toei.Local" } ,
-      { name_ja: "急行" , name_ja_normal: "急行" , name_en: "Express" , name_en_normal: "Express" , same_as: "odpt.TrainType:Toei.Express" }
+      { name_ja: "各停" , name_en: "Local" ,  same_as: "odpt.TrainType:Toei.Local" } ,
+      { name_ja: "急行" ,  name_en: "Express" , same_as: "odpt.TrainType:Toei.Express" }
     ].each do |h|
       id_new = ::TrainTypeInApi.all.pluck( :id ).max + 1
       ::TrainTypeInApi.create( h.merge( id: id_new ) )
@@ -111,7 +111,7 @@ namespace :temp do
     ::TrainType.find_by( same_as: "custom.TrainType:Toei.Mita.Local.ToTokyu" ).update( train_type_in_api_id: ::TrainTypeInApi.find_by( same_as: "odpt.TrainType:Toei.Local" ).id )
     ::TrainType.find_by( same_as: "custom.TrainType:Toei.Mita.Express.ToTokyu" ).update( train_type_in_api_id: ::TrainTypeInApi.find_by( same_as: "odpt.TrainType:Toei.Express" ).id )
   end
-  
+
 end
 
 __END__
@@ -315,4 +315,3 @@ TokyoMetro::Api::TrainLocation.get( HTTPClient.new , "odpt.Railway:TokyoMetro.Na
   "odpt:toStation"=>nil,
   "odpt:railDirection"=>"odpt.RailDirection:TokyoMetro.Meguro",
   "odpt:trainOwner"=>"odpt.TrainOwner:Tokyu"}]
-  

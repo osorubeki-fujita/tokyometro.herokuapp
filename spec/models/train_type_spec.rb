@@ -73,12 +73,12 @@ RSpec.describe TrainType, :type => :model do
     ["custom.TrainType:Undefined", "train_type_undefined"]
   ]
 
-  train_types_and_class_classes.each do | same_as , color_basename |
+  train_types_and_color_basenames.each do | same_as , color_basename |
     t = ::TrainType.find_by( same_as: same_as )
     it "(#{ same_as }) is present" do
       expect(t).to be_present
     end
-    it "(#{ same_as }) has method 'css_class_name'" do
+    it "(#{ same_as }) has method 'css_class'" do
       expect( t.color_basename ).to eq( color_basename )
     end
 

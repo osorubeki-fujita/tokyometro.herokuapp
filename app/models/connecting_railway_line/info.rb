@@ -61,7 +61,7 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
     !( not_operated_yet? or ended_already? )
   end
 
-  def css_class_name
+  def css_class
     railway_line.send( __method__ )
   end
 

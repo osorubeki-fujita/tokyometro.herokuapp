@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710144000) do
+ActiveRecord::Schema.define(version: 20150711132601) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -175,27 +175,18 @@ ActiveRecord::Schema.define(version: 20150710144000) do
   end
 
   create_table "operators", force: :cascade do |t|
-    t.string   "name_ja",                   limit: 255
-    t.string   "name_hira",                 limit: 255
-    t.string   "name_en",                   limit: 255
+    t.string   "name_ja",                 limit: 255
+    t.string   "name_hira",               limit: 255
+    t.string   "name_en",                 limit: 255
     t.float    "index"
-    t.string   "railway_line_code_shape",   limit: 255
-    t.string   "same_as",                   limit: 255
-    t.string   "name_ja_display",           limit: 255
-    t.string   "name_en_display",           limit: 255
+    t.string   "railway_line_code_shape", limit: 255
+    t.string   "same_as",                 limit: 255
+    t.string   "name_ja_short",           limit: 255
+    t.string   "name_en_short",           limit: 255
     t.boolean  "numbering"
-    t.string   "station_code_shape",        limit: 255
-    t.string   "operator_code",             limit: 255
-    t.string   "color",                     limit: 255
-    t.string   "name_ja_normal_precise",    limit: 255
-    t.string   "name_ja_normal",            limit: 255
-    t.string   "name_ja_for_transfer_info", limit: 255
-    t.string   "name_ja_to_haml",           limit: 255
-    t.string   "name_en_normal_precise",    limit: 255
-    t.string   "name_en_normal",            limit: 255
-    t.string   "name_en_for_transfer_info", limit: 255
-    t.string   "name_en_to_haml",           limit: 255
-    t.string   "css_class_name",            limit: 255
+    t.string   "station_code_shape",      limit: 255
+    t.string   "operator_code",           limit: 255
+    t.string   "color",                   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -271,7 +262,6 @@ ActiveRecord::Schema.define(version: 20150710144000) do
     t.string   "same_as",                            limit: 255
     t.float    "index"
     t.string   "color",                              limit: 255
-    t.string   "css_class_name",                     limit: 255
     t.string   "name_code",                          limit: 255
     t.string   "id_urn",                             limit: 255
     t.time     "dc_date"
@@ -614,13 +604,11 @@ ActiveRecord::Schema.define(version: 20150710144000) do
   end
 
   create_table "train_type_in_apis", force: :cascade do |t|
-    t.string   "same_as",         limit: 255
-    t.string   "name_ja",         limit: 255
-    t.string   "name_ja_display", limit: 255
-    t.string   "name_ja_normal",  limit: 255
-    t.string   "name_en",         limit: 255
-    t.string   "name_en_display", limit: 255
-    t.string   "name_en_normal",  limit: 255
+    t.string   "same_as",       limit: 255
+    t.string   "name_ja",       limit: 255
+    t.string   "name_ja_short", limit: 255
+    t.string   "name_en",       limit: 255
+    t.string   "name_en_short", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

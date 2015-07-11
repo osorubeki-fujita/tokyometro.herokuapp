@@ -24,10 +24,6 @@ Report:
       - ログの生成 (TokyoMetro::Factory::Convert::Customize::Api::TrainTimetable::RomanceCar::Info)
       - ログの確認後，疑問がある場合は【Forum】
   -
-    title: App - css_class_name
-    contents:
-      - DBの列を削除し、メソッドへ
-  -
     title: 地図・出入口情報
     contents:
       - geojson を利用したあれこれ
@@ -89,12 +85,10 @@ Report:
   -
     title: App - Db - column の整理
     contents:
-      - Operator
       -
         title: RailwayLine
         contents:
           - 一部を削除（特に「事業者名 + 路線名」）
-          - css_class_name もメソッドになるように定義し直す
           -
             title: module を作成
             contents:

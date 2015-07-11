@@ -31,7 +31,7 @@ class OperationDayDecorator < Draper::Decorator
     HAML
   end
 
-  def css_class_name
+  def css_class
     name_en.downcase.gsub( / / , "_" )
   end
 

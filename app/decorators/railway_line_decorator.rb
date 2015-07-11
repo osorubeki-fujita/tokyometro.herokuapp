@@ -127,7 +127,7 @@ class RailwayLineDecorator < Draper::Decorator
     %div{ class: :railway_line_codes }<
       %div{ class: :railway_line_code_block }
         - [ ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.Yurakucho" ) , ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.Fukutoshin" ) ].each do | railway_line |
-          %div{ class: railway_line.css_class_name }<
+          %div{ class: railway_line.css_class }<
             %div{ class: :railway_line_code_outer }<
               = railway_line.decorate.render_railway_line_code
     %div{ class: :text_ja }<
@@ -179,16 +179,16 @@ class RailwayLineDecorator < Draper::Decorator
 
   def railway_line_page_name
     if object.branch_line?
-      "#{ css_class_name }_line".gsub( /_branch/ , "" )
+      "#{ css_class }_line".gsub( /_branch/ , "" )
     else
-      "#{ css_class_name }_line"
+      "#{ css_class }_line"
     end
   end
 
   alias :page_name :railway_line_page_name
 
   def travel_time_table_id
-    "#{ css_class_name }_travel_time"
+    "#{ css_class }_travel_time"
   end
 
   def render_name( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil , clearfix: false )
@@ -262,7 +262,7 @@ class RailwayLineDecorator < Draper::Decorator
     if railway_line_code_letter.present?
       h_locals = {
         letter: railway_line_code_letter ,
-        class_name: css_class_name_of_railway_line_code( small , clearfix )
+        class_name: css_class_of_railway_line_code( small , clearfix )
       }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_name }<
@@ -279,7 +279,7 @@ class RailwayLineDecorator < Draper::Decorator
       ::TokyoMetro::App::Renderer::ColorBox.new( h.request , size: size ).render
     else
       puts object.same_as
-      h.render inline: <<-HAML , type: :haml , locals: { class_name: css_class_name_of_railway_line_code( small , clearfix ) }
+      h.render inline: <<-HAML , type: :haml , locals: { class_name: css_class_of_railway_line_code( small , clearfix ) }
 %div{ class: class_name }<
       HAML
     end
@@ -310,11 +310,11 @@ class RailwayLineDecorator < Draper::Decorator
     raise "Error" if !( make_link_to_railway_line ) and link_controller_name.present?
     case size
     when :normal
-      class_names = [ :railway_line_matrix , :each_line , css_class_name ]
+      class_names = [ :railway_line_matrix , :each_line , css_class ]
     when :small
-      class_names = [ :railway_line_matrix_small , :each_line , css_class_name ]
+      class_names = [ :railway_line_matrix_small , :each_line , css_class ]
     when :very_small
-      class_names = [ :railway_line_matrix_very_small , :each_line , css_class_name ]
+      class_names = [ :railway_line_matrix_very_small , :each_line , css_class ]
     else
       raise "Error: size settings \' :#{ size } \' is not valid."
     end
@@ -419,7 +419,7 @@ class RailwayLineDecorator < Draper::Decorator
     end
   end
 
-  def css_class_name_of_railway_line_code( small , clearfix )
+  def css_class_of_railway_line_code( small , clearfix )
     ary = ::Array.new
     if small
       ary << :railway_line_code_32

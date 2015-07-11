@@ -19,8 +19,8 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
   # @!group Sub public methods
 
   def render_name_box
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , css_class_names: [ :train_type , @decorator.css_class_name ].flatten }
-%div{ class: css_class_names }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , css_classs: [ :train_type , @decorator.css_class ].flatten }
+%div{ class: css_classs }
   = this.train_type_in_api.decorate.render_name_in_box( icon: true )
     HAML
   end
@@ -69,17 +69,22 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
 
   def infos_to_render
     super().merge({
+      "Infos from methods of object" => infos_from_methods_of_object ,
       "Infos from Db columns of train_type_in_api object" => infos_from_db_columns_of_train_type_in_api_object ,
-      "Infos from methods of object" => infos_from_methods_of_object
+      "Infos from methods of train_type_in_api object" => infos_from_methods_of_train_type_in_api_object
     })
+  end
+
+  def infos_from_methods_of_object
+    super( :normal? , :colored? , :css_class , :color_basename , :operator_id )
   end
 
   def infos_from_db_columns_of_train_type_in_api_object
     infors_from_db_columns_of( object.train_type_in_api )
   end
 
-  def infos_from_methods_of_object
-    super( :normal? , :colored? , :css_class_name )
+  def infos_from_methods_of_train_type_in_api_object
+    infos_from_methods_of( object.train_type_in_api , :name_ja_normal , :name_en_normal )
   end
 
 end
