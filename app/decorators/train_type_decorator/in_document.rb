@@ -70,8 +70,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
   def infos_to_render
     super().merge({
       "Infos from Db columns of train_type_in_api object" => infos_from_db_columns_of_train_type_in_api_object ,
-      "Infos from methods of object" => infos_from_methods_of_object ,
-      "Infos from methods of decorator" => infos_from_methods_of_decorator
+      "Infos from methods of object" => infos_from_methods_of_object
     })
   end
 
@@ -80,11 +79,7 @@ class TrainTypeDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDeco
   end
 
   def infos_from_methods_of_object
-    super( :normal? , :colored? )
-  end
-
-  def infos_from_methods_of_decorator
-    super( :css_class_name )
+    super( :normal? , :colored? , :css_class_name )
   end
 
 end

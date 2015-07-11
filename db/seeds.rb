@@ -7,14 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ::TokyoMetro::Factory::Seed.process
-::TokyoMetro::Factory::Scss::TrainType.make
 
 __END__
 
 # すべての駅の駅施設情報
  f = TokyoMetro::Api.station_facilities
  f.class # => TokyoMetro::Api::StationFacility::Array
- 
+
  # 各駅の駅施設情報のクラス
 f_class = f.map { |i| i.class }.uniq # => [TokyoMetro::Api::StationFacility::Info]
 

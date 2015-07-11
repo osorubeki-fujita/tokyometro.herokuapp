@@ -1,11 +1,6 @@
 class TrainTypeDecorator < Draper::Decorator
   delegate_all
 
-  def css_class_name
-    regexp = /\Acustom\.TrainType\:(?:[a-zA-Z]+)\.(?:[a-zA-Z]+)\./
-    object.same_as.gsub( regexp , "" ).gsub( /\./ , "_" ).underscore
-  end
-
   def render_in_station_timetable
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :train_type }<>

@@ -1,5 +1,7 @@
 class TrainType < ActiveRecord::Base
 
+  include ::TokyoMetro::Modules::Common::Info::TrainType::CssClass
+
   has_many :train_times
   has_many :travel_time_infos
   has_many :train_type_stopping_patterns
@@ -35,6 +37,10 @@ class TrainType < ActiveRecord::Base
 
   def operator_id
     railway_line.operator_id
+  end
+
+  def has_color_infos?
+    color.present? and bgcolor.present?
   end
 
 end

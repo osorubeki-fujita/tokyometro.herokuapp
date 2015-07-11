@@ -147,10 +147,12 @@ class RailwayLineDecorator < Draper::Decorator
     if prefix.present?
       str = prefix + str
     end
+
     if suffix.present?
       str += suffix
     end
-    str
+
+    return str
   end
 
   def name_en_with_operator_name( process_special_railway_line: false , prefix: nil , suffix: nil )
@@ -163,10 +165,12 @@ class RailwayLineDecorator < Draper::Decorator
     if prefix.present?
       str = "#{ prefix } #{ str }"
     end
+
     if suffix.present?
       str = "#{ str } #{ suffix }"
     end
-    str
+
+    return str
   end
 
   def twitter_title

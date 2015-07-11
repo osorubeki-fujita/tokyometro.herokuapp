@@ -61,6 +61,10 @@ class RailwayLine < ActiveRecord::Base
     where( is_branch_railway_line: [ false , nil ] )
   }
 
+  scope :defined , -> {
+    where.not( same_as: "odpt.Railway:Undefined" )
+  }
+
   # 東京メトロの路線を取得する
   scope :tokyo_metro , ->( including_branch_line: true ) {
     # 東京メトロの路線（支線を含む）を取得する
@@ -134,7 +138,7 @@ class RailwayLine < ActiveRecord::Base
   end
 
   # @!endgroup
-  
+
   def name_ja_with_operator_name_precise_and_without_parentheses
     name_ja_with_operator_name_precise.try( :gsub , /（.+）\Z/ , "" )
   end
@@ -152,7 +156,7 @@ class RailwayLine < ActiveRecord::Base
 
   # @!group Decision
 
-  # @param railway_line [RailwayLine] 
+  # @param railway_line [RailwayLine]
   def branch_railway_line_of?( railway_line )
     branch_railway_line? and railway_line.id == main_railway_line_id
   end

@@ -112,7 +112,7 @@ Report:
     contents:
       - yaml の構造をシンプルに
   -
-    title: .scss.erb により、StyleSheetをテンプレート化、構造化（路線の色、列車種別）
+    title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線、列車種別の色など）
     contents:
       - cf. lib/tokyo_metro/factory/scss
   - 停車駅クラスの完成
