@@ -3,7 +3,7 @@ class TrainOperationController < ApplicationController
   include ActionBaseForStationPage
   include ActionBaseForRailwayLinePage
   include RailwayLineByParams
-  
+
   include TwitterProcessor
   include RealTimeInfoProcessor
 
@@ -22,7 +22,7 @@ class TrainOperationController < ApplicationController
 
   def action_for_station_page
     action_base_for_station_page( :train_operation ) do
-      # station_ids = @station_info.station_infos_including_other_railway_lines.pluck( :id )
+      # station_info_ids = @station_info.station_infos_including_other_railway_lines.pluck( :id )
       @railway_lines = @station_info.railway_lines_of_tokyo_metro
       set_twitter_processor
       set_real_time_info_processor

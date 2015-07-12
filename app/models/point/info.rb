@@ -1,7 +1,7 @@
 class Point::Info < ActiveRecord::Base
   belongs_to :station_facility_info , class: ::StationFacility::Info
 
-  has_many :station_points
+  has_many :station_points , class: ::Station::Point
   has_many :station_infos , through: :station_points
 
   belongs_to :category , class: ::Point::Category

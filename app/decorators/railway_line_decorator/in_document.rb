@@ -98,19 +98,16 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
 
   def infos_to_render
     super().merge({
-      "Infos from Db columns of railway line object" => infos_from_db_columns_of_railway_line_object ,
+      "Infos from methods of railway line object" => infos_from_methods_of_railway_line_object ,
       "Infos from Db columns of operator object (partial)" => infos_from_db_columns_of_operator_object ,
       "Infos from Db columns of railway line decorator (partial)" => infos_from_methods_of_railway_line_decorator ,
       "Infos from Db columns of railway line decorator in platform transfer info (partial)" => infos_from_methods_of_railway_line_decorator_in_platform_transfer_info ,
     })
   end
 
-  def infos_from_db_columns_of_operator_object
-    infos_from_methods_of( object.operator , :same_as )
-  end
-
-  def infos_from_db_columns_of_railway_line_object
+  def infos_from_methods_of_railway_line_object
     infos_from_methods_of_object(
+      :css_class ,
       :station_attribute_ja ,
       :station_attribute_hira ,
       :station_attribute_en ,
@@ -122,6 +119,10 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
       :tobu_sky_tree_isesaki_line? ,
       :seibu_yurakucho_line?
     )
+  end
+
+  def infos_from_db_columns_of_operator_object
+    infos_from_methods_of( object.operator , :same_as )
   end
 
   def infos_from_methods_of_railway_line_decorator

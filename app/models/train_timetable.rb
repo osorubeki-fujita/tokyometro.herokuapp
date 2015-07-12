@@ -13,7 +13,7 @@ class TrainTimetable < ActiveRecord::Base
   belongs_to :train_timetable_train_type_in_other_operator
   belongs_to :train_type
   belongs_to :train_name , class: TrainType
-  has_many :station_train_times
+  has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :train_timetable_id
 
   include ::TokyoMetro::Modules::Db::Decision::RailwayLine
   include ::TokyoMetro::Modules::Db::Decision::TrainType

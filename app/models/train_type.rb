@@ -10,6 +10,8 @@ class TrainType < ActiveRecord::Base
   belongs_to :train_type_in_api
   belongs_to :railway_line
 
+  has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :train_type_in_this_station_id
+
   scope :select_colored_if_exist , -> {
     colored = select( &:colored? )
     if colored.present?

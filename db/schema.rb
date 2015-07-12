@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711132601) do
+ActiveRecord::Schema.define(version: 20150712050715) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -387,18 +387,18 @@ ActiveRecord::Schema.define(version: 20150711132601) do
     t.datetime "updated_at"
   end
 
-  create_table "station_stopping_pattern_notes", force: :cascade do |t|
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "station_stopping_patterns", force: :cascade do |t|
+  create_table "station_stopping_pattern_infos", force: :cascade do |t|
     t.integer  "station_info_id"
     t.integer  "stopping_pattern_id"
     t.boolean  "partial"
     t.boolean  "for_driver"
-    t.integer  "station_stopping_pattern_note_id"
+    t.integer  "note_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_stopping_pattern_notes", force: :cascade do |t|
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -472,7 +472,7 @@ ActiveRecord::Schema.define(version: 20150711132601) do
     t.string   "id_urn",               limit: 255
     t.string   "same_as",              limit: 255
     t.datetime "dc_date"
-    t.datetime "valid"
+    t.datetime "valid_until"
     t.integer  "frequency"
     t.string   "train_number",         limit: 255
     t.integer  "train_time_in_api_id"
@@ -487,33 +487,13 @@ ActiveRecord::Schema.define(version: 20150711132601) do
     t.integer  "now_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "train_location_old_infos", force: :cascade do |t|
-    t.string   "id_urn",               limit: 255
-    t.string   "same_as",              limit: 255
-    t.datetime "dc_date"
-    t.datetime "valid"
-    t.integer  "frequency"
-    t.string   "train_number",         limit: 255
-    t.integer  "train_time_in_api_id"
-    t.integer  "railway_line_id"
-    t.integer  "train_owner_id"
-    t.integer  "from_station_info_id"
-    t.integer  "to_station_info_id"
-    t.integer  "railway_direction_id"
-    t.integer  "delay"
-    t.integer  "now_from"
-    t.integer  "now_to"
-    t.integer  "now_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "valid"
   end
 
   create_table "train_operation_infos", force: :cascade do |t|
     t.string   "id_urn",          limit: 255
     t.datetime "dc_date"
-    t.datetime "valid"
+    t.datetime "valid_until"
     t.integer  "operator_id"
     t.datetime "time_of_origin"
     t.integer  "railway_line_id"
@@ -521,19 +501,7 @@ ActiveRecord::Schema.define(version: 20150711132601) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "text_id"
-  end
-
-  create_table "train_operation_old_infos", force: :cascade do |t|
-    t.string   "id_urn",          limit: 255
-    t.datetime "dc_date"
-    t.datetime "valid"
-    t.integer  "operator_id"
-    t.datetime "time_of_origin"
-    t.integer  "railway_line_id"
-    t.integer  "status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "text_id"
+    t.boolean  "valid"
   end
 
   create_table "train_operation_statuses", force: :cascade do |t|

@@ -38,7 +38,7 @@ station_name_aliases
 station_passenger_surveys
 station_points
 station_stopping_pattern_notes
-station_stopping_patterns
+station_stopping_pattern_infos
 station_timetable_connection_infos
 station_timetable_fundamental_infos
 station_timetable_starting_station_infos
@@ -47,9 +47,7 @@ station_train_times
 stopping_patterns
 surrounding_areas
 train_location_infos
-train_location_old_infos
 train_operation_infos
-train_operation_old_infos
 train_operation_statuses
 train_operation_texts
 train_owners

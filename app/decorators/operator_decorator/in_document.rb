@@ -75,7 +75,7 @@ class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecor
       :name_en_normal ,
       :name_en_for_transfer_info ,
       :name_en_very_precise ,
-      :css_class
+      :css_class ,
       #
       :name_ja_to_a ,
       :name_en_to_a ,

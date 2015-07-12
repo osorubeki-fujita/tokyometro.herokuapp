@@ -1,4 +1,4 @@
-class StationTrainTimeDecorator < Draper::Decorator
+class Station::TrainTimeDecorator < Draper::Decorator
   delegate_all
 
   def departing_platform_info

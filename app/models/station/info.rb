@@ -1,6 +1,6 @@
 class Station::Info < ActiveRecord::Base
-  has_many :station_passenger_surveys , foreign_key: :station_info_id
-  has_many :passenger_surveys , through: :station_passenger_surveys
+  has_many :station_passenger_surveys , class: ::Station::PassengerSurvey, foreign_key: :station_info_id
+  has_many :passenger_surveys , through: :station_passenger_surveys , class: ::PassengerSurvey
 
   belongs_to :station_facility_info , class: ::StationFacility::Info
   belongs_to :railway_line
@@ -9,11 +9,11 @@ class Station::Info < ActiveRecord::Base
   has_many :connecting_railway_line_infos , class: ::ConnectingRailwayLine::Info , foreign_key: :station_info_id
   has_many :railway_lines , through: :connecting_railway_line_infos
 
-  has_many :station_points , class: ::StationPoint , foreign_key: :station_info_id
+  has_many :station_points , class: ::Station::Point , foreign_key: :station_info_id
   has_many :point_infos , through: :station_points
 
-  has_many :station_stopping_patterns
-  has_many :stopping_patterns , through: :station_stopping_patterns
+  has_many :station_stopping_pattern_infos , class: ::Station::StoppingPattern::Info , foreign_key: :station_info_id
+  has_many :stopping_patterns , through: :station_stopping_pattern_infos
 
   has_many :station_name_aliases
 

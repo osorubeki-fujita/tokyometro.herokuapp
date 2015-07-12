@@ -1,6 +1,6 @@
 class StationTimetable < ActiveRecord::Base
   belongs_to :operation_day
-  has_many :station_train_times
+  has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :station_timetable_id
 
   has_many :station_timetable_fundamental_infos
 
