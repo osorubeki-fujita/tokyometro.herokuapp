@@ -4,7 +4,7 @@ fundamental_static: true
 #--------
 
 railway_lines: true
-train_types: true
+train_type_infos: true
 
 station_facilities: true
 stations: true

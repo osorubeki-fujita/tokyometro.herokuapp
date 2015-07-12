@@ -1,7 +1,7 @@
 module TrainLocationInfoCommonSettings
   extend ActiveSupport::Concern
   included do
-    belongs_to :train_type_in_api , class: ::TrainTypeInApi
+    belongs_to :train_type_in_api , class: ::TrainType::InApi
     belongs_to :railway_line , class: ::RailwayLine
     belongs_to :train_owner , class: ::TrainOwner
     belongs_to :railway_direction , class: ::RailwayDirection

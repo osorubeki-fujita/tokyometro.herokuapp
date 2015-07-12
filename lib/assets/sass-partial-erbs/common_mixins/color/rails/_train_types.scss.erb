@@ -1,9 +1,0 @@
-@charset "utf-8";
-<% train_types = ::TrainType.all.defined %>
-<% attrs = [ :bgcolor , :color ] %>
-
-<% train_types.each do | train_type | %>
-	<% attrs.each do | attr | %>
-$<%= train_type.color_basename %>_<%= attr.to_s %>: <%= train_type.send( attr ) %> ;
-  <% end %>
-<% end %>

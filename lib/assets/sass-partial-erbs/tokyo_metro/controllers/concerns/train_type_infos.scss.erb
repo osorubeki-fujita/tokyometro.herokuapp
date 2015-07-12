@@ -1,13 +1,14 @@
-<% train_types_grouped_by_railway_line = ::TrainType.all.to_a.keep_if( &:has_color_infos?).group_by( &:railway_line_id ) %>
+<% train_type_infos_grouped_by_railway_line = ::TrainType::Info
+.all.to_a.keep_if( &:has_color_infos?).group_by( &:railway_line_id ) %>
 
 <% # 路線の id %>
-<% railway_line_ids = train_types_grouped_by_railway_line.keys.sort %>
+<% railway_line_ids = train_type_infos_grouped_by_railway_line.keys.sort %>
 
 @charset "utf-8";
 
-@import 'train_types/box.scss' ;
+@import 'train_type_infos/box.scss' ;
 
-#train_types {
+#train_type_infos {
   .train_type_displayed {
     @extend %colorBoxBase_48_144 ;
   }
@@ -26,13 +27,13 @@
 }
 
 <% railway_line_ids.each do | railway_line_id | %>
-  <% train_types = train_types_grouped_by_railway_line[ railway_line_id ] %>
+  <% train_type_infos = train_type_infos_grouped_by_railway_line[ railway_line_id ] %>
   <% railway_line = ::RailwayLine.find( railway_line_id ) %>
   <% unless railway_line.present? %>
     <% raise "Error: The railway line with id ¥##{ railway_line_id } is not defined." %>
   <% end %>
 .<%= railway_line.css_class %> {
-  <% train_types.each do | train_type | %>
+  <% train_type_infos.each do | train_type | %>
   .<%= train_type.css_class %> {
     $color: $<%= train_type.color_basename %>_color ;
     $bgcolor: $<%= train_type.color_basename %>_bgcolor ;

@@ -8,7 +8,6 @@ class Operator < ActiveRecord::Base
   has_many :train_timetables
 
   has_many :train_operation_infos
-  has_many :train_operation_old_infos
 
   has_many :twitter_accounts , as: :operator_or_railway_line
 

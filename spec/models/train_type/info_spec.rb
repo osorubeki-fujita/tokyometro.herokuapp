@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TrainType, :type => :model do
+RSpec.describe TrainType::Info , :type => :model do
 
   train_types_and_color_basenames = [["custom.TrainType:TokyoMetro.Ginza.Local.Normal", "train_type_ginza_local_normal"],
     ["custom.TrainType:TokyoMetro.Marunouchi.Local.Normal", "train_type_marunouchi_local_normal"],
@@ -74,7 +74,7 @@ RSpec.describe TrainType, :type => :model do
   ]
 
   train_types_and_color_basenames.each do | same_as , color_basename |
-    t = ::TrainType.find_by( same_as: same_as )
+    t = ::TrainType::Info.find_by( same_as: same_as )
     it "(#{ same_as }) is present" do
       expect(t).to be_present
     end

@@ -43,8 +43,8 @@ class DocumentController < ApplicationController
     render 'document/railway_directions' , layout: 'application'
   end
 
-  def train_types
-    infos = TrainType.all.includes( :railway_line , :train_type_in_api , # :train_type_stopping_patterns ,
+  def train_type_infos
+    infos = ::TrainType::Info.all.includes( :railway_line , :train_type_in_api , # :train_type_stopping_patterns ,
       # train_type_stopping_patterns: :stopping_patterns ,
       railway_line: :operator
     )
@@ -52,8 +52,8 @@ class DocumentController < ApplicationController
     @title_en = "Train types"
     @title_ja = @title
 
-    @train_types = infos
-    render 'document/train_types' , layout: 'application_wide'
+    @train_type_infos = infos
+    render 'document/train_type_infos' , layout: 'application_wide'
   end
 
   def how_to_use
@@ -147,7 +147,7 @@ class DocumentController < ApplicationController
         ( @count * 1.0 / @rows_in_a_page ).ceil
       end
     end
-    
+
     def model_namespace_in_url
       @params[ :model_namespace_in_url ]
     end

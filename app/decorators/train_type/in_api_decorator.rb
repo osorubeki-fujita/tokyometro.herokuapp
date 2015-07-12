@@ -1,4 +1,4 @@
-class TrainTypeInApiDecorator < Draper::Decorator
+class TrainType::InApiDecorator < Draper::Decorator
   delegate_all
 
   def render_name_in_box( icon: false )

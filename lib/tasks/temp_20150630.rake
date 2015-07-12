@@ -104,12 +104,12 @@ namespace :temp do
       { name_ja: "各停" , name_en: "Local" ,  same_as: "odpt.TrainType:Toei.Local" } ,
       { name_ja: "急行" ,  name_en: "Express" , same_as: "odpt.TrainType:Toei.Express" }
     ].each do |h|
-      id_new = ::TrainTypeInApi.all.pluck( :id ).max + 1
-      ::TrainTypeInApi.create( h.merge( id: id_new ) )
+      id_new = ::TrainType::InApi.all.pluck( :id ).max + 1
+      ::TrainType::InApi.create( h.merge( id: id_new ) )
     end
-    ::TrainType.find_by( same_as: "custom.TrainType:Toei.Mita.Local.Normal" ).update( train_type_in_api_id: ::TrainTypeInApi.find_by( same_as: "odpt.TrainType:Toei.Local" ).id )
-    ::TrainType.find_by( same_as: "custom.TrainType:Toei.Mita.Local.ToTokyu" ).update( train_type_in_api_id: ::TrainTypeInApi.find_by( same_as: "odpt.TrainType:Toei.Local" ).id )
-    ::TrainType.find_by( same_as: "custom.TrainType:Toei.Mita.Express.ToTokyu" ).update( train_type_in_api_id: ::TrainTypeInApi.find_by( same_as: "odpt.TrainType:Toei.Express" ).id )
+    ::TrainType::Info.find_by( same_as: "custom.TrainType:Toei.Mita.Local.Normal" ).update( in_api_id: ::TrainType::InApi.find_by( same_as: "odpt.TrainType:Toei.Local" ).id )
+    ::TrainType::Info.find_by( same_as: "custom.TrainType:Toei.Mita.Local.ToTokyu" ).update( in_api_id: ::TrainType::InApi.find_by( same_as: "odpt.TrainType:Toei.Local" ).id )
+    ::TrainType::Info.find_by( same_as: "custom.TrainType:Toei.Mita.Express.ToTokyu" ).update( in_api_id: ::TrainType::InApi.find_by( same_as: "odpt.TrainType:Toei.Express" ).id )
   end
 
 end

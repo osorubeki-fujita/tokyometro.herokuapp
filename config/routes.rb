@@ -142,7 +142,7 @@ Rails.application.routes.draw do
 
   get 'document/:action' ,
     controller: :document ,
-    constraints: { action: /(?:operators|train_owners|railway_lines|railway_directions|train_types)/ }
+    constraints: { action: /(?:operators|train_owners|railway_lines|railway_directions|train_type_infos)/ }
 
   get 'document/table/:model_namespace_in_url.csv' ,
     to: 'document#csv_table'

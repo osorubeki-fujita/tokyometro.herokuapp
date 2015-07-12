@@ -20,6 +20,8 @@ class Station::Info < ActiveRecord::Base
   has_many :station_timetable_fundamental_infos
   has_many :station_timetables , through: :station_timetable_fundamental_infos
 
+  has_many :train_timetable_train_type_info_in_other_operator_id , class: ::TrainTimetableTrainTypeInfoInOtherOperator , foreign_key: :from_station_id
+
   # geocoded_by :name_ja
   # after_validation :geocode
 

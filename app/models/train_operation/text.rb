@@ -1,7 +1,6 @@
 class TrainOperation::Text < ActiveRecord::Base
 
   has_many :train_operation_infos , class: ::TrainOperation::Info
-  has_many :train_operation_old_infos , class: ::TrainOperation::OldInfo
 
   def on_schedule?
     in_api == "現在、平常どおり運転しています。"

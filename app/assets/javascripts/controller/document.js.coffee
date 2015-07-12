@@ -5,12 +5,12 @@ class Document
   process: ->
     link_to_document_contents = new LinkToDocumentContents()
     color_infos_in_document = new ColorInfosInDocument()
-    train_types_in_document = new TrainTypesInDocument()
+    train_type_infos_in_document = new TrainTypeInfosInDocument()
     size_changing_buttons_in_document = new SizeChangingButtonsInDocument()
 
     link_to_document_contents.process()
     color_infos_in_document.process()
-    train_types_in_document.process()
+    train_type_infos_in_document.process()
     size_changing_buttons_in_document.process()
     return
 
@@ -137,40 +137,40 @@ class ColorInfoInDocumentEachTop
 #--------------------------------
 
 
-class TrainTypesInDocument
+class TrainTypeInfosInDocument
 
-  constructor: ( @domain = $( '#train_types' ) ) ->
+  constructor: ( @domain = $( '#train_type_infos' ) ) ->
 
-  has_train_types = (v) ->
+  has_train_type_infos = (v) ->
     return v.domain.length > 0
 
   document_info_boxes = (v) ->
     return v.domain
-      .find( 'ul.train_types_of_each_railway_line.in_document' )
+      .find( 'ul.train_type_infos_of_each_railway_line.in_document' )
       .children( 'li.document_info_box' )
 
   max_width_of_train_type_name_box = (v) ->
-    # console.log 'TrainTypesInDocument\#max_width_of_train_type_name_box'
+    # console.log 'TrainTypeInfosInDocument\#max_width_of_train_type_name_box'
     len = 0
     document_info_boxes(v).each ->
-      train_type = new TrainTypeInDocument( $( this ) )
-      train_type.update_width_of_train_type_name_box()
-      len = Math.max( train_type.train_type_name_box().width() , len )
+      train_type_info = new TrainTypeInDocument( $(@) )
+      train_type_info.update_width_of_train_type_name_box()
+      len = Math.max( train_type_info.train_type_name_box().width() , len )
       return
     return len
 
   max_width_of_train_type_name = (v) ->
-    # console.log 'TrainTypesInDocument\#max_width_of_train_type_name'
+    # console.log 'TrainTypeInfosInDocument\#max_width_of_train_type_name'
     len = 0
     document_info_boxes(v).each ->
-      train_type = new TrainTypeInDocument( $( this ) )
-      train_type.update_width_of_train_type_name()
-      len = Math.max( train_type.train_type_name().outerWidth() , len )
+      train_type_info = new TrainTypeInDocument( $(@) )
+      train_type_info.update_width_of_train_type_name()
+      len = Math.max( train_type_info.train_type_name().outerWidth() , len )
       return
     return len
 
   process: ->
-    if has_train_types(@)
+    if has_train_type_infos(@)
       process_train_type_domains(@)
     return
 
@@ -178,9 +178,9 @@ class TrainTypesInDocument
     _max_width_of_train_type_name_box = max_width_of_train_type_name_box(v)
     _max_width_of_train_type_name = max_width_of_train_type_name(v)
     document_info_boxes(v).each ->
-      train_type = new TrainTypeInDocument( $( this ) )
-      train_type.train_type_name_box().css( 'width' , _max_width_of_train_type_name_box )
-      train_type.train_type_name().css( 'width' , _max_width_of_train_type_name )
+      train_type_info = new TrainTypeInDocument( $(@) )
+      train_type_info.train_type_name_box().css( 'width' , _max_width_of_train_type_name_box )
+      train_type_info.train_type_name().css( 'width' , _max_width_of_train_type_name )
       return
     return
 

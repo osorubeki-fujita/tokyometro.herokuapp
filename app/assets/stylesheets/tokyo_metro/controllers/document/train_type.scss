@@ -3,14 +3,14 @@
 @import '../../fundamental_settings.scss' ;
 @import 'document_info_box/mixins.scss' ;
 
-#train_types {
+#train_type_infos {
   .document.operator {
     @include margin_bottom_64 ;
     .document.railway_line {
       clear: both ;
       @include margin_left_16 ;
       @include margin_bottom_32 ;
-      ul.train_types_of_each_railway_line {
+      ul.train_type_infos_of_each_railway_line {
         @extend %marginLeft16 ;
         li.document_info_box {
           .train_type.airport_limited_express_normal {

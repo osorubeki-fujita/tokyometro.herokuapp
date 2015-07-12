@@ -16,7 +16,7 @@ class Station::TrainTimeDecorator < Draper::Decorator
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - terminal_station_info = terminal_station_infos.find_by( id: this.terminal_station_info_id )
-- train_type_info = train_type_infos.find_by( id: this.train_type_id )
+- train_type_info = train_type_infos.find_by( id: this.train_type_info_id )
 
 - starting_station_info_id = this.station_timetable_starting_station_info_id
 - train_timetable_arrival_info_id = this.train_timetable_arrival_info_id

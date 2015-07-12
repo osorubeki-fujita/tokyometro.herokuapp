@@ -57,7 +57,7 @@ train_timetable_train_type_in_other_operators
 train_timetables
 train_type_in_apis
 train_type_stopping_patterns
-train_types
+train_type_infos
 travel_time_infos
 twitter_accounts
 women_only_car_infos

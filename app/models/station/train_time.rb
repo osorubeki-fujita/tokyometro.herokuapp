@@ -1,7 +1,7 @@
 class Station::TrainTime < ActiveRecord::Base
   belongs_to :station_timetable
   belongs_to :train_timetable
-  belongs_to :train_type_in_this_station , class: ::TrainType
+  belongs_to :train_type_info_in_this_station , class: ::TrainType::Info
   belongs_to :station_timetable_starting_station_info
 
   belongs_to :station_timetable_connection_info

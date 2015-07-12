@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TrainTypeInApi, :type => :model do
+RSpec.describe TrainType::InApi, :type => :model do
 
   train_types_in_api_and_their_infos = [
     ["odpt.TrainType:TokyoMetro.Local", "各停", nil, "各停", "Local", nil, "Local"],
@@ -38,7 +38,7 @@ RSpec.describe TrainTypeInApi, :type => :model do
       name_en_short: name_en_short ,
       name_en_normal: name_en_normal
     }
-    t = ::TrainTypeInApi.find_by( same_as: same_as )
+    t = ::TrainType::InApi.find_by( same_as: same_as )
     it "(#{ same_as }) is present" do
       expect(t).to be_present
     end

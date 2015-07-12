@@ -1,6 +1,6 @@
 namespace :temp do
   task :update_train_type_in_apis_20150711 => :environment do
-    train_type_in_api_holiday_express = ::TrainTypeInApi.find_by( same_as: "odpt.TrainType:TokyoMetro.RomanceCar" )
+    train_type_in_api_holiday_express = ::TrainType::InApi.find_by( same_as: "odpt.TrainType:TokyoMetro.RomanceCar" )
     raise unless train_type_in_api_holiday_express.present?
     train_type_in_api_holiday_express.update( name_en: "Limited Express \"Romance Car\"" , name_en_short: nil )
   end
