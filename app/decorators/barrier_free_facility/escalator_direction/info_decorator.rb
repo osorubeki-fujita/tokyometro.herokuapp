@@ -1,4 +1,4 @@
-class BarrierFreeFacilityEscalatorDirectionDecorator < Draper::Decorator
+class BarrierFreeFacility::EscalatorDirection::InfoDecorator < Draper::Decorator
   delegate_all
 
   ICON_UP = :arrow_up

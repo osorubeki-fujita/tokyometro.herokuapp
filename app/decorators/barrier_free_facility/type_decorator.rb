@@ -1,8 +1,8 @@
 class BarrierFreeFacility::TypeDecorator < Draper::Decorator
   delegate_all
 
-  include SubTitleRenderer
-  include BarrierFreeFacilityTypeAndLocatedAreaDecorator
+  include ::SubTitleRenderer
+  include ::BarrierFreeFacilityTypeAndLocatedAreaDecorator
 
   def image_basename
     case name_en

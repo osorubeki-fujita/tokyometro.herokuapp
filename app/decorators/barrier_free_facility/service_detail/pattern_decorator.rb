@@ -1,4 +1,4 @@
-class BarrierFreeFacilityServiceDetailPatternDecorator < Draper::Decorator
+class BarrierFreeFacility::ServiceDetail::PatternDecorator < Draper::Decorator
 
   delegate_all
 
@@ -8,7 +8,7 @@ class BarrierFreeFacilityServiceDetailPatternDecorator < Draper::Decorator
   BEFORE_FIRST_TRAIN_ICON = :sun
   AFTER_LAST_TRAIN_TEXT = "終電"
   AFTER_LAST_TRAIN_ICON = :moon
-  
+
   def service_time_info_in_tooltip
     service_time_info( skip_validity_check: true )
   end

@@ -1,4 +1,4 @@
-class BarrierFreeFacilityServiceDetailDecorator < Draper::Decorator
+class BarrierFreeFacility::ServiceDetail::InfoDecorator < Draper::Decorator
 
   delegate_all
 
@@ -31,7 +31,7 @@ class BarrierFreeFacilityServiceDetailDecorator < Draper::Decorator
       ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_OPERATION_DAY_TITLE }：#{ pattern.operation_day.name_ja } (#{ pattern.operation_day.name_en })"
     end
     if has_escalator_direction_info?
-      ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE }：#{ escalator_direction.to_s }"
+      ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE }：#{ escalator_direction_info.to_s }"
     end
     if pattern.has_service_time_info?
       ary << "#{ IN_DATA_CLASS_FOR_TOOLTIP_SERVICE_TIME_TITLE }：#{ pattern.decorate.service_time_info_in_tooltip }"

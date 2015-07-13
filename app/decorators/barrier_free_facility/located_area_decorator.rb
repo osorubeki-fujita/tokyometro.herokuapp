@@ -1,8 +1,8 @@
 class BarrierFreeFacility::LocatedAreaDecorator < Draper::Decorator
   delegate_all
 
-  include SubTitleRenderer
-  include BarrierFreeFacilityTypeAndLocatedAreaDecorator
+  include ::SubTitleRenderer
+  include ::BarrierFreeFacilityTypeAndLocatedAreaDecorator
 
   private
 

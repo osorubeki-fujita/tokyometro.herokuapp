@@ -2,16 +2,6 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   delegate_all
 
-  decorates_association :barrier_free_facility_type
-  decorates_association :barrier_free_facility_located_area
-  decorates_association :barrier_free_facility_root_infos
-  decorates_association :barrier_free_facility_place_names
-  decorates_association :barrier_free_facility_service_details
-  decorates_association :barrier_free_facility_service_detail_patterns
-  decorates_association :barrier_free_facility_escalator_directions
-  decorates_association :barrier_free_facility_toilet_assistants
-  decorates_association :barrier_free_facility_toilet_assistant_patterns
-
   def self.inspect_image_filenames
     ary = ::Array.new
     ::BarrierFreeFacility::Info.all.each do | item |
@@ -57,9 +47,9 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   end
 
   def root_infos_to_s
-    _root_infos = barrier_free_facility_root_infos
+    _root_infos = root_infos.includes( :place_name )
     if _root_infos.present?
-      _root_infos.sort_by( &:index_in_root ).map( &:barrier_free_facility_place_name ).map( &:decorate ).map( &:name_ja_for_display ).join( " ～ " )
+      _root_infos.sort_by( &:index_in_root ).map( &:place_name ).map( &:decorate ).map( &:name_ja_for_display ).join( " ～ " )
     else
       nil
     end
@@ -76,10 +66,10 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   def image_filename
     ary = ::Array.new
     ary << type.decorate.image_basename
-    unless service_details.present? and service_details.length > 1
+    unless service_detail_infos.present? and service_detail_infos.length > 1
       if escalator?
         set_wheel_chair_info_to( ary )
-        directions = object.escalator_directions
+        directions = object.escalator_direction_infos
         raise "Error" if directions.length > 1
         if directions.present?
           ary << directions.first.pattern.attribute
@@ -209,8 +199,8 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   def tooltip_options_in_platform_info
     h = ::Hash.new
     h[ "data-place" ] = root_infos_to_s
-    if service_details.present?
-      h[ "data-service_details" ] = service_details.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
+    if service_detail_infos.present?
+      h[ "data-service_details" ] = service_detail_infos.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
     end
     if escalator_available_to_wheel_chair?
       h[ "data-wheelchair" ] = "車いす対応"

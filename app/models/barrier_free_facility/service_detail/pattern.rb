@@ -1,8 +1,9 @@
-class BarrierFreeFacilityServiceDetailPattern < ActiveRecord::Base
+class BarrierFreeFacility::ServiceDetail::Pattern < ActiveRecord::Base
 
-  has_many :barrier_free_facility_service_details
-  has_many :barrier_free_facility_infos , class: ::BarrierFreeFacility::Info , through: :barrier_free_facility_service_details
-  belongs_to :operation_day
+  has_many :service_detail_infos , class: ::BarrierFreeFacility::ServiceDetail::Info , foreign_key: :pattern_id
+  has_many :infos , class: ::BarrierFreeFacility::Info , through: :service_detail_infos
+
+  belongs_to :operation_day , class: ::OperationDay
 
   [ :start_before_first_train , :end_after_last_train ].each do | method_base_name |
     [ method_base_name , "service_#{ method_base_name }?" , "#{ method_base_name }?" ].each do | method_name |

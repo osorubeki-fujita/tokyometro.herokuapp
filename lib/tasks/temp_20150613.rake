@@ -37,10 +37,10 @@ namespace :temp do
   end
 
   task :update_service_detail_pattern_of_akasaka_mitsuke_20150613_2 => :environment do
-    BarrierFreeFacilityServiceDetail.where( barrier_free_facility_service_detail_pattern_id: 99 ).to_a.each do | item |
-      item.update( barrier_free_facility_service_detail_pattern_id: 98 )
+    BarrierFreeFacility::ServiceDetail::Info.where( pattern_id: 99 ).to_a.each do | item |
+      item.update( pattern_id: 98 )
     end
-    BarrierFreeFacilityServiceDetailPattern.find(99).destroy
+    BarrierFreeFacility::ServiceDetail::Pattern.find(99).destroy
   end
 
 end

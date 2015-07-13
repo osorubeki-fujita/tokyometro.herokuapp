@@ -214,11 +214,11 @@ class BarrierFreeFacilityImage
 class ServiceDetailInTooltipForBarrierFreeFacilityImage
 
   constructor: ( content ) ->
-    regexp_for_operation_day = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_OPERATION_DAY_TITLE %>：/
-    regexp_for_escalator_direction = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE %>：/
-    regexp_for_service_time = /^<%= ::BarrierFreeFacilityServiceDetailDecorator::IN_DATA_CLASS_FOR_TOOLTIP_SERVICE_TIME_TITLE %>：/
+    regexp_for_operation_day = /^<%= ::BarrierFreeFacility::ServiceDetail::InfoDecorator::IN_DATA_CLASS_FOR_TOOLTIP_OPERATION_DAY_TITLE %>：/
+    regexp_for_escalator_direction = /^<%= ::BarrierFreeFacility::ServiceDetail::InfoDecorator::IN_DATA_CLASS_FOR_TOOLTIP_ESCALATOR_DIRECTION_TITLE %>：/
+    regexp_for_service_time = /^<%= ::BarrierFreeFacility::ServiceDetail::InfoDecorator::IN_DATA_CLASS_FOR_TOOLTIP_SERVICE_TIME_TITLE %>：/
 
-    for item in content.split( "<%= BarrierFreeFacilityServiceDetailDecorator::IN_DATA_FOR_TOOLTIP_JOINED_BY %>" )
+    for item in content.split( "<%= BarrierFreeFacility::ServiceDetail::InfoDecorator::IN_DATA_FOR_TOOLTIP_JOINED_BY %>" )
       if regexp_for_operation_day.test( item )
         @operation_day = item.replace( regexp_for_operation_day , "" )
       else if regexp_for_escalator_direction.test( item )
@@ -253,13 +253,13 @@ class ServiceDetailInTooltipForBarrierFreeFacilityImage
 
       str += "<div class='direction_icon up'>"
       if v.escalator_direction.match( /上り/ )
-        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_UP.to_s ] %>" )
+        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacility::EscalatorDirection::InfoDecorator::ICON_UP.to_s ] %>" )
         str += i.to_html()
       str += "</div>"
 
       str += "<div class='direction_icon down'>"
       if v.escalator_direction.match( /下り/ )
-        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityEscalatorDirectionDecorator::ICON_DOWN.to_s ] %>" )
+        i = new FontAwesomeIconProcessor( "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacility::EscalatorDirection::InfoDecorator::ICON_DOWN.to_s ] %>" )
         str += i.to_html()
       str += "</div>"
 
@@ -279,17 +279,17 @@ class ServiceDetailTimeInfoInTooltipForBarrierFreeFacilityImage
 
   constructor: ( service_time ) ->
 
-    @join_by = "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::JOIN_BY %>"
+    @join_by = "<%= ::BarrierFreeFacility::ServiceDetail::PatternDecorator::JOIN_BY %>"
 
     @specific_infos =
       time_title:
         icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ :time.to_s ] %>"
       time_from:
-        text: "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::BEFORE_FIRST_TRAIN_TEXT %>"
-        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityServiceDetailPatternDecorator::BEFORE_FIRST_TRAIN_ICON.to_s ] %>"
+        text: "<%= ::BarrierFreeFacility::ServiceDetail::PatternDecorator::BEFORE_FIRST_TRAIN_TEXT %>"
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacility::ServiceDetail::PatternDecorator::BEFORE_FIRST_TRAIN_ICON.to_s ] %>"
       time_until:
-        text: "<%= ::BarrierFreeFacilityServiceDetailPatternDecorator::AFTER_LAST_TRAIN_TEXT %>"
-        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacilityServiceDetailPatternDecorator::AFTER_LAST_TRAIN_ICON.to_s ] %>"
+        text: "<%= ::BarrierFreeFacility::ServiceDetail::PatternDecorator::AFTER_LAST_TRAIN_TEXT %>"
+        icon: "<%= ::TokyoMetro::App::Renderer::Icon::FONT_AWESOME_ICON[ ::BarrierFreeFacility::ServiceDetail::PatternDecorator::AFTER_LAST_TRAIN_ICON.to_s ] %>"
     [ @time_from , @time_until ] = service_time.split( @join_by )
 
   to_html: ->

@@ -1,4 +1,4 @@
-class BarrierFreeFacilityToiletAssistantPatternDecorator < Draper::Decorator
+class BarrierFreeFacility::ToiletAssistant::PatternDecorator < Draper::Decorator
   delegate_all
 
   def render

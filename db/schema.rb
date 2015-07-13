@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713093815) do
+ActiveRecord::Schema.define(version: 20150713114322) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -30,18 +30,18 @@ ActiveRecord::Schema.define(version: 20150713093815) do
     t.integer  "train_location_info_id"
   end
 
+  create_table "barrier_free_facility_escalator_direction_infos", force: :cascade do |t|
+    t.integer  "service_detail_info_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pattern_id"
+  end
+
   create_table "barrier_free_facility_escalator_direction_patterns", force: :cascade do |t|
     t.boolean  "up"
     t.boolean  "down"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "barrier_free_facility_escalator_directions", force: :cascade do |t|
-    t.integer  "barrier_free_facility_service_detail_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "barrier_free_facility_escalator_direction_pattern_id"
   end
 
   create_table "barrier_free_facility_infos", force: :cascade do |t|
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 20150713093815) do
     t.datetime "updated_at"
   end
 
+  create_table "barrier_free_facility_service_detail_infos", force: :cascade do |t|
+    t.integer  "info_id"
+    t.integer  "pattern_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "barrier_free_facility_service_detail_patterns", force: :cascade do |t|
     t.integer  "operation_day_id"
     t.boolean  "service_start_before_first_train"
@@ -89,9 +96,9 @@ ActiveRecord::Schema.define(version: 20150713093815) do
     t.datetime "updated_at"
   end
 
-  create_table "barrier_free_facility_service_details", force: :cascade do |t|
-    t.integer  "barrier_free_facility_info_id"
-    t.integer  "barrier_free_facility_service_detail_pattern_id"
+  create_table "barrier_free_facility_toilet_assistant_infos", force: :cascade do |t|
+    t.integer  "info_id"
+    t.integer  "pattern_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,13 +108,6 @@ ActiveRecord::Schema.define(version: 20150713093815) do
     t.boolean  "baby_chair"
     t.boolean  "baby_changing_table"
     t.boolean  "ostomate"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "barrier_free_facility_toilet_assistants", force: :cascade do |t|
-    t.integer  "barrier_free_facility_info_id"
-    t.integer  "barrier_free_facility_toilet_assistant_pattern_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

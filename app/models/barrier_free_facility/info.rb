@@ -7,13 +7,13 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
   has_many :root_infos , class: ::BarrierFreeFacility::RootInfo , foreign_key: :info_id
   has_many :place_names , class: ::BarrierFreeFacility::PlaceName , through: :root_infos
 
-  has_many :barrier_free_facility_service_details , class: ::BarrierFreeFacilityServiceDetail , foreign_key: :info_id
-  has_many :barrier_free_facility_service_detail_patterns , class: ::BarrierFreeFacilityServiceDetailPattern , through: :barrier_free_facility_service_details
+  has_many :service_detail_infos , class: ::BarrierFreeFacility::ServiceDetail::Info , foreign_key: :info_id
+  has_many :service_detail_patterns , class: ::BarrierFreeFacility::ServiceDetail::Pattern , through: :service_detail_infos
 
-  has_many :barrier_free_facility_escalator_directions , class: ::BarrierFreeFacilityEscalatorDirection , through: :barrier_free_facility_service_details
+  has_many :escalator_direction_infos , class: ::BarrierFreeFacility::EscalatorDirection::Info , through: :service_detail_infos
 
-  has_many :barrier_free_facility_toilet_assistants , class: ::BarrierFreeFacilityToiletAssistant , foreign_key: :info_id # 実際の個数は0または1
-  has_many :barrier_free_facility_toilet_assistant_patterns , class: ::BarrierFreeFacilityToiletAssistantPattern , through: :barrier_free_facility_toilet_assistants
+  has_many :toilet_assistant_infos , class: ::BarrierFreeFacility::ToiletAssistant::Info , foreign_key: :info_id # 実際の個数は0または1
+  has_many :toilet_assistant_patterns , class: ::BarrierFreeFacility::ToiletAssistant::Pattern , through: :toilet_assistant_infos
 
   has_many :station_facility_platform_info_barrier_free_facility_infos , class: ::StationFacilityPlatformInfoBarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id
   has_many :station_facility_platform_infos , class: ::StationFacilityPlatformInfo
@@ -32,23 +32,7 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
   ::TokyoMetro::Modules::Common::Dictionary::BarrierFree.facility_types.each do | method_base_name |
     eval <<-DEF
       def #{ method_base_name }?
-        barrier_free_facility_type.send( __method__ )
-      end
-    DEF
-  end
-
-  def root_infos
-    barrier_free_facility_root_infos.includes( :barrier_free_facility_place_name )
-  end
-
-  [
-    :type , :located_area , :place_names ,
-    :service_details , :service_detail_patterns , :escalator_directions , :escalator_direction_patterns ,
-    :toilet_assistants , :toilet_assistant_patterns
-  ].each do | method_name |
-    eval <<-DEF
-      def #{method_name}
-        barrier_free_facility_#{method_name}
+        type.send( __method__ )
       end
     DEF
   end
@@ -56,9 +40,8 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
   def toilet_assistant_info_pattern
     _toilet_assistant_patterns = toilet_assistant_patterns
     if _toilet_assistant_patterns.present?
-      unless _toilet_assistant_patterns.length == 1
-        raise "Error"
-      end
+      raise unless _toilet_assistant_patterns.length == 1
+
       _toilet_assistant_patterns.first
     else
       nil
