@@ -14,12 +14,14 @@ class RailwayLine < ActiveRecord::Base
   has_many :station_timetable_fundamental_infos
   has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
 
-  has_many :train_timetables
-  has_many :train_type_infos
-  has_many :train_timetable_train_type_info_in_other_operators , class: ::TrainTimetableTrainTypeInfoInOtherOperator , foreign_key: :railway_line_id
+  has_many :train_timetable_infos , class: ::Train::Timetable::Info , foreign_key: :railway_line_id
+  has_many :train_type_infos , class: ::Train::Type::Info , foreign_key: :railway_line_id
+
+  has_many :train_timetable_train_type_in_other_operator_infos , class: ::Train::Timetable::TrainTypeInOtherOperatorInfo , foreign_key: :railway_line_id
+
   has_many :train_type_stopping_patterns , class: ::Train::Type::StoppingPattern , foreign_key: :railway_line_id
 
-  has_many :train_operation_infos
+  has_many :train_operation_infos , class: ::Train::Operation::Info , foreign_key: :railway_line_id
   has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :railway_line_id
 
   has_many :air_conditioner_infos

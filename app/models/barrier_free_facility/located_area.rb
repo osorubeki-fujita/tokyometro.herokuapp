@@ -1,6 +1,6 @@
-class BarrierFreeFacilityLocatedArea < ActiveRecord::Base
+class BarrierFreeFacility::LocatedArea < ActiveRecord::Base
 
-  has_many :barrier_free_facility_infos
+  has_many :infos , class: ::BarrierFreeFacility::Info , foreign_key: :located_area_id
 
   include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::LocatedArea
 

@@ -11,7 +11,7 @@ class Train::Type::Info < ActiveRecord::Base
   has_many :train_type_stopping_patterns , class: ::Train::Type::StoppingPattern , foreign_key: :train_type_info_id
   has_many :stopping_patterns , through: :train_type_stopping_patterns
 
-  has_many :train_timetable_train_type_info_in_other_operators , class: ::TrainTimetableTrainTypeInfoInOtherOperator , foreign_key: :train_type_info_id
+  has_many :train_timetable_train_type_in_other_operator_infos , class: ::Train::Timetable::TrainTypeInOtherOperatorInfo , foreign_key: :train_type_info_id
   has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :train_type_info_id
 
 

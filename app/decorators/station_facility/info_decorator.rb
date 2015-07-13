@@ -18,13 +18,13 @@ class StationFacility::InfoDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { facility_infos: self.barrier_free_facility_infos }
 %ul{ id: :station_facility_info }
   - # カテゴリで分類
-  - facility_infos.group_by( &:barrier_free_facility_type_id ).sort_keys.each do | type_id , facility_infos_in_a_type |
+  - facility_infos.group_by( &:type_id ).sort_keys.each do | type_id , facility_infos_in_a_type |
     - # 個別のカテゴリ
     - facility_type = ::BarrierFreeFacilityType.find( type_id ).decorate
     %li{ class: facility_type.ul_class_name }
       = facility_type.render_sub_title
       - # 場所で分類
-      - facility_infos_in_a_type.group_by( &:barrier_free_facility_located_area_id ).sort_keys.each do | area_id , facility_infos_in_a_group |
+      - facility_infos_in_a_type.group_by( &:located_area_id ).sort_keys.each do | area_id , facility_infos_in_a_group |
         - # 個別の場所
         - if facility_infos_in_a_group.present?
           - facility_located_area = BarrierFreeFacilityLocatedArea.find( area_id ).decorate

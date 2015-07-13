@@ -1,6 +1,6 @@
-class BarrierFreeFacilityType < ActiveRecord::Base
+class BarrierFreeFacility::Type < ActiveRecord::Base
 
-  has_many :barrier_free_facility_infos
+  has_many :infos , class: ::BarrierFreeFacility::Info , foreign_key: :type_id
 
   ::TokyoMetro::Modules::Common::Dictionary::BarrierFree.facility_types.each do | method_base_name |
     eval <<-DEF

@@ -1,4 +1,4 @@
-class FareDecorator < Draper::Decorator
+class Fare::InfoDecorator < Draper::Decorator
   delegate_all
 
   include CommonTitleRenderer

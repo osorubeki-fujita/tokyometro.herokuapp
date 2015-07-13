@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712163833) do
+ActiveRecord::Schema.define(version: 20150713093815) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 20150712163833) do
   end
 
   create_table "barrier_free_facility_infos", force: :cascade do |t|
-    t.string   "id_urn",                                limit: 255
-    t.string   "same_as",                               limit: 255
+    t.string   "id_urn",                      limit: 255
+    t.string   "same_as",                     limit: 255
     t.integer  "station_facility_info_id"
-    t.integer  "barrier_free_facility_type_id"
-    t.integer  "barrier_free_facility_located_area_id"
-    t.string   "remark",                                limit: 255
+    t.integer  "type_id"
+    t.integer  "located_area_id"
+    t.string   "remark",                      limit: 255
     t.boolean  "is_available_to_wheel_chair"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20150712163833) do
   end
 
   create_table "barrier_free_facility_root_infos", force: :cascade do |t|
-    t.integer  "barrier_free_facility_info_id"
-    t.integer  "barrier_free_facility_place_name_id"
+    t.integer  "info_id"
+    t.integer  "place_name_id"
     t.integer  "index_in_root"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -142,19 +142,19 @@ ActiveRecord::Schema.define(version: 20150712163833) do
     t.datetime "updated_at"
   end
 
-  create_table "fares", force: :cascade do |t|
+  create_table "fare_infos", force: :cascade do |t|
     t.string   "same_as",              limit: 255
     t.integer  "from_station_info_id"
     t.integer  "to_station_info_id"
     t.integer  "operator_id"
-    t.integer  "normal_fare_group_id"
+    t.integer  "normal_group_id"
     t.string   "id_urn",               limit: 255
     t.datetime "dc_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "normal_fare_groups", force: :cascade do |t|
+  create_table "fare_normal_groups", force: :cascade do |t|
     t.integer  "ticket_fare"
     t.integer  "child_ticket_fare"
     t.integer  "ic_card_fare"
@@ -436,7 +436,7 @@ ActiveRecord::Schema.define(version: 20150712163833) do
 
   create_table "station_train_times", force: :cascade do |t|
     t.integer  "station_timetable_info_id"
-    t.integer  "train_timetable_id"
+    t.integer  "train_timetable_info_id"
     t.integer  "departure_station_info_id"
     t.integer  "departure_time_hour"
     t.integer  "departure_time_min"
@@ -452,7 +452,7 @@ ActiveRecord::Schema.define(version: 20150712163833) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "station_timetable_connection_info_id"
-    t.integer  "index_in_train_timetable"
+    t.integer  "index_in_train_timetable_info"
   end
 
   create_table "stopping_patterns", force: :cascade do |t|
@@ -540,20 +540,11 @@ ActiveRecord::Schema.define(version: 20150712163833) do
     t.datetime "updated_at"
   end
 
-  create_table "train_timetable_train_type_info_in_other_operators", force: :cascade do |t|
-    t.integer  "from_station_info_id"
-    t.integer  "railway_line_id"
-    t.integer  "train_type_info_id"
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "train_timetables", force: :cascade do |t|
-    t.string   "id_urn",                                               limit: 255
-    t.string   "same_as",                                              limit: 255
+  create_table "train_timetable_infos", force: :cascade do |t|
+    t.string   "id_urn",                               limit: 255
+    t.string   "same_as",                              limit: 255
     t.datetime "dc_date"
-    t.string   "train_number",                                         limit: 255
+    t.string   "train_number",                         limit: 255
     t.integer  "railway_line_id"
     t.integer  "operator_id"
     t.integer  "train_type_info_id"
@@ -564,8 +555,17 @@ ActiveRecord::Schema.define(version: 20150712163833) do
     t.integer  "starting_station_info_id"
     t.integer  "terminal_station_info_id"
     t.integer  "car_composition"
-    t.integer  "train_timetable_arrival_info_id"
-    t.integer  "train_timetable_train_type_info_in_other_operator_id"
+    t.integer  "arrival_info_id"
+    t.integer  "train_type_in_other_operator_info_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "train_timetable_train_type_in_other_operator_infos", force: :cascade do |t|
+    t.integer  "from_station_info_id"
+    t.integer  "railway_line_id"
+    t.integer  "train_type_info_id"
+    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

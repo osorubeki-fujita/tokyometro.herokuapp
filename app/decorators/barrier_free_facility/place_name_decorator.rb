@@ -1,4 +1,4 @@
-class BarrierFreeFacilityPlaceNameDecorator < Draper::Decorator
+class BarrierFreeFacility::PlaceNameDecorator < Draper::Decorator
   delegate_all
 
   def name_ja_for_display

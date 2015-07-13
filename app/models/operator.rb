@@ -11,6 +11,8 @@ class Operator < ActiveRecord::Base
 
   has_many :twitter_accounts , as: :operator_or_railway_line
 
+  has_many :fare_normal_groups , class: ::Fare::NormalGroup , foreign_key: :operator_id
+
   include ::TokyoMetro::Modules::Common::Info::Operator::Info
 
   # 指定された鉄道事業者の id を取得する

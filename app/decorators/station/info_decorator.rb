@@ -258,7 +258,7 @@ class Station::InfoDecorator < Draper::Decorator
   def render_title_of_fare
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ id: :fare_title }
-  = ::FareDecorator.render_common_title( request )
+  = ::Fare::InfoDecorator.render_common_title( request )
   = info.render_header( station_code: true , all_station_codes: true )
     HAML
   end

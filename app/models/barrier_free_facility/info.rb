@@ -1,18 +1,18 @@
 class BarrierFreeFacility::Info < ActiveRecord::Base
 
   belongs_to :station_facility_info , class: ::StationFacility::Info
-  belongs_to :barrier_free_facility_type , class: ::BarrierFreeFacilityType
-  belongs_to :barrier_free_facility_located_area , class: ::BarrierFreeFacilityLocatedArea
+  belongs_to :type , class: ::BarrierFreeFacility::Type
+  belongs_to :located_area , class: ::BarrierFreeFacility::LocatedArea
 
-  has_many :barrier_free_facility_root_infos , class: ::BarrierFreeFacilityRootInfo , foreign_key: :barrier_free_facility_info_id
-  has_many :barrier_free_facility_place_names , class: ::BarrierFreeFacilityPlaceName , through: :barrier_free_facility_root_infos
+  has_many :root_infos , class: ::BarrierFreeFacility::RootInfo , foreign_key: :info_id
+  has_many :place_names , class: ::BarrierFreeFacility::PlaceName , through: :root_infos
 
-  has_many :barrier_free_facility_service_details , class: ::BarrierFreeFacilityServiceDetail , foreign_key: :barrier_free_facility_info_id
+  has_many :barrier_free_facility_service_details , class: ::BarrierFreeFacilityServiceDetail , foreign_key: :info_id
   has_many :barrier_free_facility_service_detail_patterns , class: ::BarrierFreeFacilityServiceDetailPattern , through: :barrier_free_facility_service_details
 
   has_many :barrier_free_facility_escalator_directions , class: ::BarrierFreeFacilityEscalatorDirection , through: :barrier_free_facility_service_details
 
-  has_many :barrier_free_facility_toilet_assistants , class: ::BarrierFreeFacilityToiletAssistant , foreign_key: :barrier_free_facility_info_id # 実際の個数は0または1
+  has_many :barrier_free_facility_toilet_assistants , class: ::BarrierFreeFacilityToiletAssistant , foreign_key: :info_id # 実際の個数は0または1
   has_many :barrier_free_facility_toilet_assistant_patterns , class: ::BarrierFreeFacilityToiletAssistantPattern , through: :barrier_free_facility_toilet_assistants
 
   has_many :station_facility_platform_info_barrier_free_facility_infos , class: ::StationFacilityPlatformInfoBarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id

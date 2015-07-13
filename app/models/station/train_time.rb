@@ -1,6 +1,6 @@
 class Station::TrainTime < ActiveRecord::Base
   belongs_to :station_timetable_info , class: ::Station::Timetable::Info
-  belongs_to :train_timetable , class: ::TrainTimetable
+  belongs_to :train_timetable_info , class: ::Train::Timetable::Info
   belongs_to :train_type_info_in_this_station , class: ::Train::Type::Info
 
   belongs_to :station_timetable_starting_station_info , class: ::Station::Timetable::StartingStationInfo
@@ -10,14 +10,14 @@ class Station::TrainTime < ActiveRecord::Base
     [ method_base_name , "#{ method_base_name}_id" ].each do | method_name |
       eval <<-DEF
         def #{ method_name }
-          train_timetable.#{ method_name }
+          train_timetable_info.#{ method_name }
         end
       DEF
     end
   end
 
   def car_composition
-    train_timetable.car_composition
+    train_timetable_info.car_composition
   end
 
   def is_last?
@@ -53,11 +53,11 @@ class Station::TrainTime < ActiveRecord::Base
   end
 
   def train_timetable_arrival_info_id
-    train_timetable.train_timetable_arrival_info_id
+    train_timetable_info.arrival_info_id
   end
 
   def train_timetable_arrival_info
-    train_timetable.train_timetable_arrival_info
+    train_timetable_info.arrival_info
   end
 
   def has_additional_infos?

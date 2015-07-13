@@ -1,4 +1,4 @@
-class NormalFareGroupDecorator < Draper::Decorator
+class Fare::NormalGroupDecorator < Draper::Decorator
   delegate_all
 
   def render_columns( number_of_stations_in_this_group )
