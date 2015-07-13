@@ -6,21 +6,17 @@ class Station::TrainTimeDecorator < Draper::Decorator
   end
 
   def render_in_station_timetable( terminal_station_infos , train_type_infos , one_train_type_info , one_terminal_station_info , major_terminal_station_info_id )
+    raise unless departure_time_min.present? or arrival_time_min.present?
+
+    settings = ::TokyoMetro::App::Renderer::StationTimetable::Group::EachRailwayLine::EachRailwayDirection::EachOperationDay::StationTrainTimes::RenderingSettings.new( object , terminal_station_infos , train_type_infos , one_train_type_info , one_terminal_station_info , major_terminal_station_info_id )
+
     h_locals = {
       this: self ,
-      terminal_station_infos: terminal_station_infos ,
-      train_type_infos: train_type_infos ,
-      one_train_type_info: one_train_type_info ,
-      one_terminal_station_info: one_terminal_station_info ,
-      major_terminal_station_info_id: major_terminal_station_info_id
+      to_render_precise_infos: settings.to_render_precise_infos? ,
+      terminal_station_info: settings.of_displayed_terminal_station_info ,
+      train_type_info: settings.of_displayed_train_type_info
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-- terminal_station_info = terminal_station_infos.find_by( id: this.terminal_station_info_id )
-- train_type_info = train_type_infos.find_by( id: this.train_type_info_id )
-
-- starting_station_info_id = this.station_timetable_starting_station_info_id
-- train_timetable_arrival_info_id = this.train_timetable_arrival_info_id
-- #
 %div{ class: :station_train_time }
   %div{ class: :min }<
     - if this.departure_time_min.present?
@@ -30,29 +26,27 @@ class Station::TrainTimeDecorator < Draper::Decorator
         = this.arrival_time_min
       %p{ class: :is_arrival }<
         = "到着"
-    - else
-      - raise "Error"
-  - unless one_train_type_info and one_terminal_station_info and !( this.has_additional_infos? )
+  - #
+  - if to_render_precise_infos
     %div{ class: :precise }
-      - unless one_train_type_info
+      - if train_type_info.present?
         = train_type_info.decorate.render_in_station_timetable
-      - unless one_terminal_station_info or ( terminal_station_info.id == major_terminal_station_info_id and !( this.last_train? ) )
+      - if terminal_station_info.present?
         = terminal_station_info.decorate.render_name_ja_in_station_timetable
-      = this.render_additional_infos_in_station_timetable
+      - if this.has_additional_infos?
+        = this.render_additional_infos_in_station_timetable
     HAML
   end
 
   def render_additional_infos_in_station_timetable
-    if has_additional_infos?
-      h.render inline: <<-HAML , type: :haml , locals: { this: self }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :additional_infos }<
   = this.render_last_in_station_timetable
   = this.render_starting_info_at_this_station_in_station_timetable
   = this.render_departing_platform_info_in_station_timetable
   = this.render_starting_station_info_in_station_timetable
   = this.render_arrival_info_in_station_timetable
-      HAML
-    end
+    HAML
   end
 
   def render_last_in_station_timetable

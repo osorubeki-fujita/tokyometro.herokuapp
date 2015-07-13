@@ -7,4 +7,4 @@
   = station_info_decorated.render_title_of_links_to_station_info_pages( request )
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , @station_info ).render
 
-= ::TokyoMetro::App::Renderer::StationTimetable::Group.new( request , @station_info , @station_timetables ).render
+= ::TokyoMetro::App::Renderer::StationTimetable::Group.new( request , @station_info , @station_timetable_infos ).render

@@ -1,12 +1,12 @@
 class Station::TrainTime < ActiveRecord::Base
-  belongs_to :station_timetable
-  belongs_to :train_timetable
-  belongs_to :train_type_info_in_this_station , class: ::TrainType::Info
-  belongs_to :station_timetable_starting_station_info
+  belongs_to :station_timetable_info , class: ::Station::Timetable::Info
+  belongs_to :train_timetable , class: ::TrainTimetable
+  belongs_to :train_type_info_in_this_station , class: ::Train::Type::Info
 
-  belongs_to :station_timetable_connection_info
+  belongs_to :station_timetable_starting_station_info , class: ::Station::Timetable::StartingStationInfo
+  belongs_to :station_timetable_connection_info , class: ::Station::Timetable::ConnectionInfo
 
-  [ :operation_day , :terminal_station_info , :train_type ].each do | method_base_name |
+  [ :operation_day , :terminal_station_info , :train_type_info ].each do | method_base_name |
     [ method_base_name , "#{ method_base_name}_id" ].each do | method_name |
       eval <<-DEF
         def #{ method_name }

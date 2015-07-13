@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712094355) do
+ActiveRecord::Schema.define(version: 20150712163833) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -27,8 +27,7 @@ ActiveRecord::Schema.define(version: 20150712094355) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "train_location_data_id"
-    t.string   "train_location_data_type"
+    t.integer  "train_location_info_id"
   end
 
   create_table "barrier_free_facility_escalator_direction_patterns", force: :cascade do |t|
@@ -412,11 +411,19 @@ ActiveRecord::Schema.define(version: 20150712094355) do
   end
 
   create_table "station_timetable_fundamental_infos", force: :cascade do |t|
-    t.integer  "station_timetable_id", null: false
+    t.integer  "info_id",              null: false
     t.integer  "station_info_id",      null: false
     t.integer  "operator_id",          null: false
     t.integer  "railway_line_id",      null: false
     t.integer  "railway_direction_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_timetable_infos", force: :cascade do |t|
+    t.string   "id_urn",     limit: 255, null: false
+    t.string   "same_as",    limit: 255, null: false
+    t.datetime "dc_date",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -427,16 +434,8 @@ ActiveRecord::Schema.define(version: 20150712094355) do
     t.datetime "updated_at"
   end
 
-  create_table "station_timetables", force: :cascade do |t|
-    t.string   "id_urn",     limit: 255, null: false
-    t.string   "same_as",    limit: 255, null: false
-    t.datetime "dc_date",                null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "station_train_times", force: :cascade do |t|
-    t.integer  "station_timetable_id"
+    t.integer  "station_timetable_info_id"
     t.integer  "train_timetable_id"
     t.integer  "departure_station_info_id"
     t.integer  "departure_time_hour"
@@ -475,7 +474,7 @@ ActiveRecord::Schema.define(version: 20150712094355) do
     t.datetime "valid_until"
     t.integer  "frequency"
     t.string   "train_number",         limit: 255
-    t.integer  "train_time_in_api_id"
+    t.integer  "train_time_info_id"
     t.integer  "railway_line_id"
     t.integer  "train_owner_id"
     t.integer  "from_station_info_id"
@@ -526,10 +525,10 @@ ActiveRecord::Schema.define(version: 20150712094355) do
   end
 
   create_table "train_relations", force: :cascade do |t|
-    t.integer  "previous_train_timetable_id"
+    t.integer  "previous_train_timetable_info_id"
     t.integer  "previous_station_train_time_id"
     t.integer  "following_station_train_time_id"
-    t.integer  "following_train_timetable_id"
+    t.integer  "following_train_timetable_info_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

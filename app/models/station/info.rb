@@ -18,7 +18,7 @@ class Station::Info < ActiveRecord::Base
   has_many :station_name_aliases
 
   has_many :station_timetable_fundamental_infos
-  has_many :station_timetables , through: :station_timetable_fundamental_infos
+  has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
 
   has_many :train_timetable_train_type_info_in_other_operator_id , class: ::TrainTimetableTrainTypeInfoInOtherOperator , foreign_key: :from_station_id
 
@@ -77,6 +77,10 @@ class Station::Info < ActiveRecord::Base
     end
 
     return railway_line_ids.include?( railway_line_instance.id )
+  end
+
+  def name_ja_actual
+    name_ja.revive_machine_dependent_character
   end
 
   # @!group 「駅」の属性（路面電車については「停留場」）

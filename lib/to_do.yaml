@@ -68,6 +68,7 @@ Report:
           - #{Xxxx.underscore}$
           - #{Xxxx.underscore.pluralize}\.
           - #{Xxxx.underscore.pluralize}$
+          - #{Xxxx.underscore}_id
       - 【注意】db の rename_table を忘れないこと
       -
         title: Operator 関連の名前空間（候補）

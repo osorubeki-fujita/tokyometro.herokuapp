@@ -3,7 +3,7 @@ class Operator < ActiveRecord::Base
   has_many :women_only_car_infos , through: :railway_lines
 
   has_many :station_timetable_fundamental_infos
-  has_many :station_timetables , through: :station_timetable_fundamental_infos
+  has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
 
   has_many :train_timetables
 

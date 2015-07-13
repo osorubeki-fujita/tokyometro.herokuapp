@@ -63,7 +63,7 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_train_operation_info( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { railway_lines: railway_lines }
 %div{ id: :train_operation_info_title }
-  = ::TrainOperation::InfoDecorator.render_common_title( request )
+  = ::Train::Operation::InfoDecorator.render_common_title( request )
   = ::RailwayLineDecorator.name_main( railway_lines )
     HAML
   end
@@ -72,7 +72,7 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_train_location( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :train_location_title }
-  = ::TrainLocationDecorator.render_common_title( request )
+  = ::Train::Location::InfoDecorator.render_common_title( request )
   = ::RailwayLineDecorator.name_main( infos )
     HAML
   end
@@ -80,7 +80,7 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_station_timetable( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :station_timetable_title }
-  = ::StationTimetableDecorator.render_common_title( request )
+  = ::Station::Timetable::InfoDecorator.render_common_title( request )
   = ::RailwayLineDecorator.name_main( infos )
     HAML
   end

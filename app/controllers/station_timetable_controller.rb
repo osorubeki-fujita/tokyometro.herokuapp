@@ -3,7 +3,7 @@ class StationTimetableController < ApplicationController
   include ActionBaseForStationPage
   include ActionBaseForRailwayLinePage
   include RailwayLineByParams
-  
+
   include TwitterProcessor
 
   def index
@@ -19,7 +19,7 @@ class StationTimetableController < ApplicationController
   def action_for_station_page
     action_base_for_station_page( :station_timetable , layout: :application_wide ) do
       set_railway_line_for_station_page
-      set_station_timetables
+      set_station_timetable_infos
       set_railway_lines_for_station_page
     end
   end
@@ -31,11 +31,11 @@ class StationTimetableController < ApplicationController
   end
 
   private
-  
+
   def set_railway_lines_of_railway_line_page_by_params
     @railway_lines = railway_line_by_params( branch_railway_line: :main_and_branch , yurakucho_and_fukutoshin: true )
   end
-  
+
   def base_of_railway_line_page_title
     " 各駅の時刻表"
   end
@@ -53,8 +53,8 @@ class StationTimetableController < ApplicationController
     @station_info.station_infos_including_other_railway_lines.pluck( :id )
   end
 
-  def station_timetable_ids
-    ::StationTimetableFundamentalInfo.where( station_info_id: station_info_ids , railway_line_id: @railway_line.id ).pluck( :station_timetable_id )
+  def station_timetable_info_ids
+    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_id: @railway_line.id ).pluck( :info_id )
   end
 
   def railway_line_ids_of_this_station
@@ -65,8 +65,8 @@ class StationTimetableController < ApplicationController
     @railway_lines = ::RailwayLine.where( id: railway_line_ids_of_this_station )
   end
 
-  def set_station_timetables
-    @station_timetables = ::StationTimetable.where( id: station_timetable_ids ).includes( :station_train_times , :station_timetable_fundamental_infos )
+  def set_station_timetable_infos
+    @station_timetable_infos = ::Station::Timetable::Info.where( id: station_timetable_info_ids ).includes( :station_train_times , :fundamental_infos )
   end
 
 end

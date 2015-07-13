@@ -9,19 +9,19 @@ def db_update_to_station_info_id_of_namboku_line_train_bound_for_musashi_kosugi
 end
 
 def reset_train_types_20141118_0608
-  ::TrainType::InApi.all.each do |d|
+  ::Train::Type::InApi.all.each do |d|
     d.destroy
   end
   TokyoMetro::StaticDatas.train_types_in_api.seed
-  ::TrainType::InApi.all.each.with_index(1) do | d , i |
+  ::Train::Type::InApi.all.each.with_index(1) do | d , i |
     d.update( id: i )
   end
 
-  ::TrainType::Info.all.each do |d|
+  ::Train::Type::Info.all.each do |d|
     d.destroy
   end
   TokyoMetro::StaticDatas.train_types.seed
-  ::TrainType::Info.all.each.with_index(1) do | d , i |
+  ::Train::Type::Info.all.each.with_index(1) do | d , i |
     d.update( id: i )
   end
 end

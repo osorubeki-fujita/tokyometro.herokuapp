@@ -1,7 +1,7 @@
 class TravelTimeInfo < ActiveRecord::Base
   include ::Association::To::FromStation::Info
   include ::Association::To::ToStation::Info
-  belongs_to :train_type_info , class: ::TrainType::Info
+  belongs_to :train_type_info , class: ::Train::Type::Info
 
   def to_s
     "#{ from_station_info.decorate.name_ja_actual } → #{ to_station_info.decorate.name_ja_actual } (#{necessary_time})"

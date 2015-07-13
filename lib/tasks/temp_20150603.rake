@@ -1,44 +1,44 @@
 namespace :temp do
 
-  #-------- TrainOperation::Text
+  #-------- Train::Operation::Text
 
   desc "Add train operation info"
   task :train_operation_info_20150603_1 => :environment do
     text_1 = "17時38分頃、綾瀬駅で車両点検のため、運転を見合わせていましたが、17時46分頃、運転を再開し、ダイヤが乱れています。 只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。 詳しくは駅係員にお尋ねください。"
     text_2 = "17時38分頃、綾瀬駅で車両点検のため、ダイヤが乱れています。\n只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。\n詳しくは駅係員にお尋ねください。"
 
-    text_2_in_db = ::TrainOperation::Text.find_by( in_api: text_2 )
+    text_2_in_db = ::Train::Operation::Text.find_by( in_api: text_2 )
 
     raise "Error" unless text_2_in_db.present?
     text_2_old_id = text_2_in_db.id
 
-    if text_2_old_id == ::TrainOperation::Text.pluck(:id).max
+    if text_2_old_id == ::Train::Operation::Text.pluck(:id).max
       text_2_new_id = text_2_old_id + 1
     else
-      text_2_new_id = ::TrainOperation::Text.pluck(:id).max + 1
+      text_2_new_id = ::Train::Operation::Text.pluck(:id).max + 1
     end
 
     text_2_in_db.update( id: text_2_new_id )
-    text_1_in_db = ::TrainOperation::Text.create( in_api: text_1 , id: text_2_old_id )
+    text_1_in_db = ::Train::Operation::Text.create( in_api: text_1 , id: text_2_old_id )
   end
 
   desc "Update train operation info"
   task :train_operation_info_20150603_2 => :environment do
     text_1_old = "17時38分頃、綾瀬駅で車両点検のため、運転を見合わせていましたが、17時46分頃、運転を再開し、ダイヤが乱れています。 只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。 詳しくは駅係員にお尋ねください。"
     text_1_new = "17時38分頃、綾瀬駅で車両点検のため、運転を見合わせていましたが、17時46分頃、運転を再開し、ダイヤが乱れています。\n只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。\n詳しくは駅係員にお尋ねください。"
-    text_1_in_db = ::TrainOperation::Text.find_by( in_api: [ text_1_old , text_1_new ] )
+    text_1_in_db = ::Train::Operation::Text.find_by( in_api: [ text_1_old , text_1_new ] )
     raise "Error" unless text_1_in_db.present?
     text_1_in_db.update( in_api: text_1_new )
   end
 
   task :train_operation_info_20150603_3 => :environment do
     text = "17時38分頃、綾瀬駅で車両点検のため、一部の列車に遅れが出ています。\n只今、東京メトロ線、都営地下鉄線、JR線、東急線、東武線、京成線、小田急線、京王線、つくばエクスプレスで振替輸送を実施しています。\n詳しくは駅係員にお尋ねください。"
-    unless ::TrainOperation::Text.find_by( in_api: text ).present?
-      text_id = ::TrainOperation::Text.pluck(:id).max + 1
-      ::TrainOperation::Text.create( in_api: text , id: text_id )
+    unless ::Train::Operation::Text.find_by( in_api: text ).present?
+      text_id = ::Train::Operation::Text.pluck(:id).max + 1
+      ::Train::Operation::Text.create( in_api: text , id: text_id )
     end
   end
-  
+
   #-------- SurroundingArea
 
   task :surrounding_area_20150603_bug_fix_on_development => :environment do
