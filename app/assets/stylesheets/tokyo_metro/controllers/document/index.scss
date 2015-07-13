@@ -23,6 +23,9 @@ ul#links_to_document_pages {
 
 #infos_in_db {
   @include margin_bottom_32 ;
+  .table_frame {
+    overflow: scroll ;
+  }
   table {
     border: solid 1px #333;
     border-collapse: collapse ;
@@ -35,16 +38,20 @@ ul#links_to_document_pages {
     }
     td {
       @include padding_left_right_8 ;
+      white-space: nowrap ;
     }
+    // td.model_name , td.model_name_title {
+      // width: 320px ;
+    // }
     tr {
       td.index {
-        @include float_right ;
+        text-align: right ;
       }
       td.model_name {
-        @include float_left ;
+        text-align: left ;
       }
       td.length_of_model {
-        @include float_right ;
+        text-align: right ;
       }
     }
   }

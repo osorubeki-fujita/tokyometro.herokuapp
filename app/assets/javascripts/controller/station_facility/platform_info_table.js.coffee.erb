@@ -32,7 +32,7 @@ class StationFacilityPlatformInfoTable
       content: ->
         b = new BarrierFreeFacilityImage( $(@) )
         return b.content_in_tooltip()
-      items: "[data-place] , [data-wheelchair] , [data-toilet_assistant] , [data-remark] , [data-service_details]"
+      items: "[data-place] , [data-wheelchair] , [data-toilet_assistant] , [data-remark] , [data-service_detail_infos]"
       tooltipClass: 'tooltip_of_barrier_free_facility'
       track: false
 
@@ -125,7 +125,7 @@ class BarrierFreeFacilityImage
       inner_tag: 'ul'
       class_of_inner_tag: 'service_detail clearfix'
       function_to_make_inner_content: f
-    return content_in_tooltip_normal( v , 'data-service_details' , 'service_details' , option )
+    return content_in_tooltip_normal( v , 'data-service_detail_infos' , 'service_detail_infos' , option )
 
   content_in_tooltip_as_for_wheel_chair = (v) ->
     return content_in_tooltip_normal( v , 'data-wheelchair' , 'wheel_chair' )

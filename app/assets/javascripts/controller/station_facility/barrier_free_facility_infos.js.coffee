@@ -164,9 +164,9 @@ class StationFacilityInfosOfEachSpecificFacility
   info = (v) ->
     return v.domain.children( '.info' ).first()
 
-  #---- service_details
-  service_details = (v) ->
-    return info(v).children( '.service_details' ).first()
+  #---- service_detail_infos
+  service_detail_infos = (v) ->
+    return info(v).children( '.service_detail_infos' ).first()
 
   #---- toilet_assistants
   toilet_assistants = (v) ->
@@ -188,11 +188,11 @@ class StationFacilityInfosOfEachSpecificFacility
     return
 
   process_info = (v) ->
-    process_service_details(v)
+    process_service_detail_infos(v)
     return
 
-  process_service_details = (v) ->
-    service_details(v).children().each ->
+  process_service_detail_infos = (v) ->
+    service_detail_infos(v).children().each ->
       service_detail = $(@)
       p = new DomainsVerticalAlignProcessor( service_detail.children() , 'auto' )
       p.process()

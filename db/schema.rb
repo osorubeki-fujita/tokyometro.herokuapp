@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713114322) do
+ActiveRecord::Schema.define(version: 20150713150544) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20150713114322) do
     t.integer  "station_facility_info_id"
     t.integer  "type_id"
     t.integer  "located_area_id"
-    t.string   "remark",                      limit: 255
     t.boolean  "is_available_to_wheel_chair"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "remark_id"
   end
 
   create_table "barrier_free_facility_located_areas", force: :cascade do |t|
@@ -67,6 +67,12 @@ ActiveRecord::Schema.define(version: 20150713114322) do
     t.string   "name_ja",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "barrier_free_facility_remarks", force: :cascade do |t|
+    t.string   "ja"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "barrier_free_facility_root_infos", force: :cascade do |t|
@@ -309,25 +315,9 @@ ActiveRecord::Schema.define(version: 20150713114322) do
     t.datetime "updated_at"
   end
 
-  create_table "station_facility_platform_info_barrier_free_facility_infos", force: :cascade do |t|
-    t.integer  "station_facility_platform_info_id"
+  create_table "station_facility_platform_barrier_free_facility_infos", force: :cascade do |t|
+    t.integer  "platform_info_id"
     t.integer  "barrier_free_facility_info_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "station_facility_platform_info_surrounding_areas", force: :cascade do |t|
-    t.integer  "station_facility_platform_info_id"
-    t.integer  "surrounding_area_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "station_facility_platform_info_transfer_infos", force: :cascade do |t|
-    t.integer  "station_facility_platform_info_id"
-    t.integer  "railway_line_id"
-    t.integer  "railway_direction_id"
-    t.integer  "necessary_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -338,6 +328,22 @@ ActiveRecord::Schema.define(version: 20150713114322) do
     t.integer  "car_number"
     t.integer  "railway_line_id"
     t.integer  "railway_direction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_facility_platform_surrounding_areas", force: :cascade do |t|
+    t.integer  "platform_info_id"
+    t.integer  "surrounding_area_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "station_facility_platform_transfer_infos", force: :cascade do |t|
+    t.integer  "platform_info_id"
+    t.integer  "railway_line_id"
+    t.integer  "railway_direction_id"
+    t.integer  "necessary_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

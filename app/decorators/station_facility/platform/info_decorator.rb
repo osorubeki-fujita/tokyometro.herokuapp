@@ -1,4 +1,4 @@
-class StationFacilityPlatformInfoDecorator < Draper::Decorator
+class StationFacility::Platform::InfoDecorator < Draper::Decorator
   delegate_all
 
   def self.render_transfer_info_title

@@ -1,6 +1,7 @@
 class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   delegate_all
+  IN_DATA_FOR_TOOLTIP_JOINED_BY = "／"
 
   def self.inspect_image_filenames
     ary = ::Array.new
@@ -55,14 +56,6 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     end
   end
 
-  def remark_to_a
-    str = remark
-    class << str
-      include ::TokyoMetro::Factory::Convert::Patch::ForString::BarrierFreeFacility::Info::Remark
-    end
-    str.process.split( /\n/ )
-  end
-
   def image_filename
     ary = ::Array.new
     ary << type.decorate.image_basename
@@ -77,7 +70,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
           puts "※ " + object.same_as
         end
       elsif toilet?
-        pattern = barrier_free_facility_toilet_assistant_pattern
+        pattern = object.toilet_assistant_info_pattern
         ary << pattern.decorate.image_basename
       end
     end
@@ -94,7 +87,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     = this.render_place_name_number
   %div{ class: :info }
     = this.render_place_name
-    = this.render_service_details
+    = this.render_service_detail_infos
     - # 車いす対応か否かの情報
     = this.render_wheel_chair_info
     - # トイレ設備
@@ -127,12 +120,12 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
   end
 
   # 駅施設の詳細（利用可能日、利用可能時間など）を記述するメソッド
-  def render_service_details
-    _service_details = service_details
-    if _service_details.present?
-      h.render inline: <<-HAML , type: :haml , locals: { service_details: _service_details }
-%ul{ class: :service_details }
-  - service_details.each do | item |
+  def render_service_detail_infos
+    _service_detail_infos = service_detail_infos
+    if _service_detail_infos.present?
+      h.render inline: <<-HAML , type: :haml , locals: { service_detail_infos: _service_detail_infos }
+%ul{ class: :service_detail_infos }
+  - service_detail_infos.each do | item |
     = item.decorate.render
       HAML
     end
@@ -156,12 +149,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   def render_remark
     if remark.present?
-      h.render inline: <<-HAML , type: :haml , locals: { remark_array: remark_to_a }
-%div{ class: :remark }
-  - remark_array.each do | str |
-    %p<
-      = str
-      HAML
+      remark.decorate.render
     end
   end
 
@@ -194,22 +182,20 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     object.available_to_wheel_chair?
   end
 
-  IN_DATA_FOR_TOOLTIP_JOINED_BY = "／"
-
   def tooltip_options_in_platform_info
     h = ::Hash.new
     h[ "data-place" ] = root_infos_to_s
     if service_detail_infos.present?
-      h[ "data-service_details" ] = service_detail_infos.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
+      h[ "data-service_detail_infos" ] = service_detail_infos.map( &:decorate ).map( &:in_data_class_for_tooltip ).join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
     end
     if escalator_available_to_wheel_chair?
       h[ "data-wheelchair" ] = "車いす対応"
     end
-    if toilet_assistant_info_pattern.present?
-      h[ "data-toilet_assistant" ] = toilet_assistant_info_pattern.to_s
+    if object.toilet_assistant_info_pattern.present?
+      h[ "data-toilet_assistant" ] = object.toilet_assistant_info_pattern.to_s
     end
     if remark.present?
-      h[ "data-remark" ] = remark_to_a.join( IN_DATA_FOR_TOOLTIP_JOINED_BY )
+      h[ "data-remark" ] = remark.decorate.in_tooltip
     end
 
     h

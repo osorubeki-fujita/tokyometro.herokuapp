@@ -1,6 +1,5 @@
-class StationFacilityPlatformInfoTransferInfoDecorator < Draper::Decorator
+class StationFacility::Platform::TransferInfoDecorator < Draper::Decorator
   delegate_all
-  decorates_association :railway_line
 
   def necessary_time_to_s
     "（#{ necessary_time.to_s }分）"

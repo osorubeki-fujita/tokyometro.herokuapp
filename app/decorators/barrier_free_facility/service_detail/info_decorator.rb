@@ -17,7 +17,7 @@ class BarrierFreeFacility::ServiceDetail::InfoDecorator < Draper::Decorator
     = pattern.render_operation_day
     - # エスカレーターの方向
     - if this.has_escalator_direction_info?
-      = this.escalator_direction.decorate.render
+      = this.escalator_direction_info.decorate.render
     - # 利用可能時間
     = pattern.render_service_time_info
 

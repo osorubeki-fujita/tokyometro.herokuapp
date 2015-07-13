@@ -76,13 +76,13 @@ end
         - method_names = [ :barrier_free_facility_infos , :surrounding_areas , :transfer_infos ]
         - # 車両編成が最長の場合と情報が一致した場合
         - if method_names.all? { | method | compared_info_in_current_composition.send( method ) == compared_info_in_the_longest_composition.send( method ) }
-          - 
+          -
         - else
 
-        - if compared_info_in_current_composition.barrier_free_facility_infos == compared_info_in_the_longest_composition.barrier_free_facility_infos and 
+        - if compared_info_in_current_composition.barrier_free_facility_infos == compared_info_in_the_longest_composition.barrier_free_facility_infos and
 
       - info_sorted_by_car_number.each do | info |
         - compared = info_of_car_composition_max.first
-        - if info.barrier_free_facility_infos == info_of_car_composition_max.first.barrier_free_facility_infos and 
-        station_facility_platform_info_surrounding_areas
-        station_facility_platform_info_transfer_infos
+        - if info.barrier_free_facility_infos == info_of_car_composition_max.first.barrier_free_facility_infos and
+        station_facility_platform_surrounding_areas
+        station_facility_platform_transfer_infos

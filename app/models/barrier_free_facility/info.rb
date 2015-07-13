@@ -3,6 +3,7 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
   belongs_to :station_facility_info , class: ::StationFacility::Info
   belongs_to :type , class: ::BarrierFreeFacility::Type
   belongs_to :located_area , class: ::BarrierFreeFacility::LocatedArea
+  belongs_to :remark , class: ::BarrierFreeFacility::Remark
 
   has_many :root_infos , class: ::BarrierFreeFacility::RootInfo , foreign_key: :info_id
   has_many :place_names , class: ::BarrierFreeFacility::PlaceName , through: :root_infos
@@ -13,10 +14,9 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
   has_many :escalator_direction_infos , class: ::BarrierFreeFacility::EscalatorDirection::Info , through: :service_detail_infos
 
   has_many :toilet_assistant_infos , class: ::BarrierFreeFacility::ToiletAssistant::Info , foreign_key: :info_id # 実際の個数は0または1
-  has_many :toilet_assistant_patterns , class: ::BarrierFreeFacility::ToiletAssistant::Pattern , through: :toilet_assistant_infos
 
-  has_many :station_facility_platform_info_barrier_free_facility_infos , class: ::StationFacilityPlatformInfoBarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id
-  has_many :station_facility_platform_infos , class: ::StationFacilityPlatformInfo
+  has_many :platform_info_barrier_free_facility_infos , class: ::StationFacility::Platform::BarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id
+  has_many :platform_infos , class: ::StationFacility::Platform::Info , through: :platform_info_barrier_free_facility_infos
 
   include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::LocatedArea
 
@@ -38,11 +38,11 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
   end
 
   def toilet_assistant_info_pattern
-    _toilet_assistant_patterns = toilet_assistant_patterns
-    if _toilet_assistant_patterns.present?
-      raise unless _toilet_assistant_patterns.length == 1
+    _toilet_assistant_infos = toilet_assistant_infos
+    if _toilet_assistant_infos.present?
+      raise unless _toilet_assistant_infos.length == 1
 
-      _toilet_assistant_patterns.first
+      _toilet_assistant_infos.first.pattern
     else
       nil
     end
@@ -54,18 +54,6 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
         located_area.#{ method_base_name }
       end
     DEF
-  end
-
-  def barrier_free_facility_toilet_assistant_pattern
-    _patterns = barrier_free_facility_toilet_assistant_patterns
-    if _patterns.present?
-      if _patterns.length > 2
-        raise "Error"
-      end
-      _patterns.first
-    else
-      nil
-    end
   end
 
 end

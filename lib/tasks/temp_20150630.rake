@@ -66,11 +66,11 @@ namespace :temp do
     # puts station_facility_names_and_barrier_free_facilities.to_s
 
     barrier_free_facilities = station_facility_names_and_barrier_free_facilities.values.flatten
-    service_details = barrier_free_facilities.map { | item | item[ "odpt:serviceDetail" ] }.select( &:present? ).flatten
-    operation_days = service_details.map { | item | item[ "odpt:operationDays" ] }.select( &:present? ).flatten.sort
+    service_detail_infos = barrier_free_facilities.map { | item | item[ "odpt:serviceDetail" ] }.select( &:present? ).flatten
+    operation_days = service_detail_infos.map { | item | item[ "odpt:operationDays" ] }.select( &:present? ).flatten.sort
 
     # puts barrier_free_facilities.to_s
-    # puts service_details.to_s
+    # puts service_detail_infos.to_s
     # puts operation_days.to_s
 
     count_of_operation_days = ::Hash.new

@@ -16,18 +16,19 @@
       %div{ class: [ :text , :text_en ] }<
         = "Csv"
 
-  %table{ class: :text_en }
-    %thead
-      %tr
-        - column_names.each do | column_name |
-          %td<
-            = column_name
-    %tbody
-      - @datum.each do | data |
+  %div{ class: :table_frame }
+    %table{ class: :text_en }
+      %thead
         %tr
           - column_names.each do | column_name |
             %td<
-              = data.send( column_name )
+              = column_name
+      %tbody
+        - @datum.each do | data |
+          %tr
+            - column_names.each do | column_name |
+              %td<
+                = data.send( column_name )
   %div{ class: [ :page_links , :bottom ] }
     = page_entries_info( @datum )
     = paginate( @datum )

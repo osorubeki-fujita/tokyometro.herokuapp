@@ -65,7 +65,7 @@ namespace :temp do
       }
     ].each do | set |
 
-      platform_info_surrounding_areas = ::StationFacility::Info.find_by( same_as: set[ :station_facility_same_as ] ).station_facility_platform_info_surrounding_areas
+      platform_info_surrounding_areas = ::StationFacility::Info.find_by( same_as: set[ :station_facility_same_as ] ).platform_surrounding_areas
 
       platform_info_surrounding_areas.each do | item |
         if item.surrounding_area.present? and item.surrounding_area.name == set[ :invalid_surrounding_area_name ]
@@ -111,7 +111,7 @@ namespace :temp do
         # puts valid_name
         # puts valid_in_db
 
-        item.station_facility_platform_info_surrounding_areas.each do | joint_item |
+        item.platform_surrounding_areas.each do | joint_item |
           joint_item.update( surrounding_area_id: valid_in_db.id )
         end
 
