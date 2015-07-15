@@ -1,6 +1,6 @@
 class BarrierFreeFacility::Info < ActiveRecord::Base
 
-  belongs_to :station_facility_info , class: ::StationFacility::Info
+  belongs_to :station_facility_info , class: ::Station::Facility::Info
   belongs_to :type , class: ::BarrierFreeFacility::Type
   belongs_to :located_area , class: ::BarrierFreeFacility::LocatedArea
   belongs_to :remark , class: ::BarrierFreeFacility::Remark
@@ -15,21 +15,23 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
 
   has_many :toilet_assistant_infos , class: ::BarrierFreeFacility::ToiletAssistant::Info , foreign_key: :info_id # 実際の個数は0または1
 
-  has_many :platform_info_barrier_free_facility_infos , class: ::StationFacility::Platform::BarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id
-  has_many :platform_infos , class: ::StationFacility::Platform::Info , through: :platform_info_barrier_free_facility_infos
+  has_many :platform_info_barrier_free_facility_infos , class: ::Station::Facility::Platform::BarrierFreeFacilityInfo , foreign_key: :barrier_free_facility_info_id
+  has_many :platform_infos , class: ::Station::Facility::Platform::Info , through: :platform_info_barrier_free_facility_infos
 
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::LocatedArea
+  include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::LocatedArea
 
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::Availability::AliasTowardsAccessibility
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::MethodMissing
+  include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::AliasTowardsAccessibility
+  include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::Escalator
+  include ::TokyoMetro::Modules::Alias::Common::StationFacility::BarrierFree::WheelChair
+  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::WheelChair
+  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::Escalator
 
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::WheelChair::Availability::Escalator
+  include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::MobilityScooter::Availability::None
+  include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::MobilityScooter::Availability::AliasTowardsAccessibility
+  include ::TokyoMetro::Modules::Alias::Common::StationFacility::BarrierFree::MobilityScooter
+  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::MobilityScooter
 
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::MobilityScooter::Availability::None
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::MobilityScooter::Availability::AliasTowardsAccessibility
-  include ::TokyoMetro::Modules::Common::Info::StationFacility::BarrierFree::MobilityScooter::MethodMissing
-
-  ::TokyoMetro::Modules::Common::Dictionary::BarrierFree.facility_types.each do | method_base_name |
+  ::TokyoMetro::Modules::Dictionary::Common::BarrierFree.facility_types.each do | method_base_name |
     eval <<-DEF
       def #{ method_base_name }?
         type.send( __method__ )

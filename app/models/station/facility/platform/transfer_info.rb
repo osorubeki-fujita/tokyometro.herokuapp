@@ -1,5 +1,5 @@
-class StationFacility::Platform::TransferInfo < ActiveRecord::Base
-  belongs_to :platform_info , class: ::StationFacility::Platform::Info
+class Station::Facility::Platform::TransferInfo < ActiveRecord::Base
+  belongs_to :platform_info , class: ::Station::Facility::Platform::Info
   belongs_to :railway_line , class: ::RailwayLine
   belongs_to :railway_direction , class: ::RailwayDirection
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713150544) do
+ActiveRecord::Schema.define(version: 20150713182402) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 20150713150544) do
     t.string   "same_as",                            limit: 255
     t.float    "index"
     t.string   "color",                              limit: 255
-    t.string   "name_code",                          limit: 255
+    t.string   "name_codes",                         limit: 255
     t.string   "id_urn",                             limit: 255
     t.time     "dc_date"
     t.string   "geo_json",                           limit: 255

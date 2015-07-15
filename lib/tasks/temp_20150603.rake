@@ -65,7 +65,7 @@ namespace :temp do
       }
     ].each do | set |
 
-      platform_info_surrounding_areas = ::StationFacility::Info.find_by( same_as: set[ :station_facility_same_as ] ).platform_surrounding_areas
+      platform_info_surrounding_areas = ::Station::Facility::Info.find_by( same_as: set[ :station_facility_same_as ] ).platform_surrounding_areas
 
       platform_info_surrounding_areas.each do | item |
         if item.surrounding_area.present? and item.surrounding_area.name == set[ :invalid_surrounding_area_name ]
@@ -82,7 +82,7 @@ namespace :temp do
 
   task :surrounding_area_20150603_1 => :environment do
 
-    dictionary = ::TokyoMetro::Modules::Api::ToFactory::Convert::Patch::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
+    dictionary = ::TokyoMetro::Modules::ToFactory::Api::Convert::Patch::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
     dictionary.values.each do | name_ja |
       unless ::SurroundingArea.find_by( name_ja: name_ja ).present?
         id_new = ::SurroundingArea.all.pluck( :id ).max + 1
@@ -95,7 +95,7 @@ namespace :temp do
   desc "Replace invalid surrounding area info"
   task :surrounding_area_20150603_2 => :environment do
 
-    dictionary = ::TokyoMetro::Modules::Api::ToFactory::Convert::Patch::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
+    dictionary = ::TokyoMetro::Modules::ToFactory::Api::Convert::Patch::StationFacility::SurroundingArea::Generate::Info::Platform::Info::SurroundingArea::DICTIONARY
     ::SurroundingArea.all.each do | item |
       if dictionary.keys.include?( item.name )
 

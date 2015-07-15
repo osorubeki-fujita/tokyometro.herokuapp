@@ -1,6 +1,6 @@
 class DocumentController::TableContainer
 
-  @@models = ::TokyoMetro::Modules::Db::Model.list
+  @@models = ::TokyoMetro::Factory::Db::Model.list
 
   def initialize( params )
     @rows_in_a_page = 100

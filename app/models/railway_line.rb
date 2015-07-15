@@ -3,13 +3,13 @@ class RailwayLine < ActiveRecord::Base
   include ::Association::To::Station::Infos
 
   belongs_to :operator
+
   has_many :station_facility_infos , through: :station_infos
   has_many :women_only_car_infos
   has_many :travel_time_infos
   has_many :railway_directions
 
   has_many :connecting_railway_lines
-  # has_many :station_facility_infos , through: :connecting_railway_lines
 
   has_many :station_timetable_fundamental_infos
   has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
@@ -31,11 +31,18 @@ class RailwayLine < ActiveRecord::Base
 
   has_many :twitter_accounts , as: :operator_or_railway_line
 
-  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
-  include ::TokyoMetro::Modules::Common::Info::RailwayLine::Info
-  include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine
-  include ::TokyoMetro::Modules::Db::Decision::Operator
-  include ::TokyoMetro::Modules::Db::Decision::RailwayLine
+  include ::TokyoMetro::Modules::Name::Common::Fundamental::CssClass
+  include ::TokyoMetro::Modules::Name::Common::Fundamental::GetMainName
+  include ::TokyoMetro::Modules::Name::Db::GetList
+
+  include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
+  include ::TokyoMetro::Modules::Decision::Common::RailwayLine
+  include ::TokyoMetro::Modules::Decision::Db::Operator
+
+  include ::TokyoMetro::Modules::Name::Common::RailwayLine
+  include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
+
+  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::RailwayLine::BranchLine
 
   default_scope {
     order( index: :desc )
@@ -111,10 +118,24 @@ class RailwayLine < ActiveRecord::Base
     yurakucho_and_fukutoshin
   }
 
+  # @!group 基礎情報の配列
+
+  def name_ja_to_a
+    get_list( name_ja )
+  end
+
+  def name_en_to_a
+    get_list( name_en )
+  end
+
+  def name_codes_to_a
+    get_list( name_codes )
+  end
+
   # @!group 「駅」の属性（路面電車については「停留場」）
 
   def station_attribute_ja
-    if toden_arakawa_line?
+    if on_toden_arakawa_line?
       "停留場"
     else
       "駅"
@@ -122,7 +143,7 @@ class RailwayLine < ActiveRecord::Base
   end
 
   def station_attribute_hira
-    if toden_arakawa_line?
+    if on_toden_arakawa_line?
       "ていりゅうじょう"
     else
       "えき"
@@ -143,26 +164,11 @@ class RailwayLine < ActiveRecord::Base
     name_ja_with_operator_name_precise.try( :gsub , /（.+）\Z/ , "" )
   end
 
-  # @!group Polymorphic method
-
-  def railway_line
-    self
-  end
-
-  # @todo Revision
-  def except_for_branch_lines
-    self
-  end
-
   # @!group Decision
 
   # @param railway_line [RailwayLine]
-  def branch_railway_line_of?( railway_line )
-    branch_railway_line? and railway_line.id == main_railway_line_id
-  end
-
-  def tokyo_metro?
-    operator.tokyo_metro?
+  def branch_railway_line_of?( _railway_line )
+    branch_railway_line? and _railway_line.id == main_railway_line_id
   end
 
   # @!endgroup

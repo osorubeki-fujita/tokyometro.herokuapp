@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Point::Info, type: :model do
-  ginza = ::StationFacility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Ginza" )
-  kanda = ::StationFacility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Kanda" )
+  ginza = ::Station::Facility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Ginza" )
+  kanda = ::Station::Facility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Kanda" )
 
   point_infos_in_ginza = ginza.point_infos
   point_infos_in_kanda = kanda.point_infos

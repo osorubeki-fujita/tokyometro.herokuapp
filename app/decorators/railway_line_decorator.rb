@@ -54,7 +54,7 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_station_facility( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :station_facility_title }
-  = ::StationFacility::InfoDecorator.render_common_title( request )
+  = ::Station::Facility::InfoDecorator.render_common_title( request )
   = ::RailwayLineDecorator.name_main( infos )
     HAML
   end
@@ -286,7 +286,7 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def render_railway_line_code_with_outer_domain( must_display_line_color: true , small: false , clearfix: false )
-    if must_display_line_color or name_code.present?
+    if must_display_line_color or name_code_normal.present?
       if small
         div_classes = [ :railway_line_code_outer_small ]
       else
@@ -412,8 +412,8 @@ class RailwayLineDecorator < Draper::Decorator
   private
 
   def railway_line_code_letter
-    if name_code.string?
-      name_code
+    if name_code_normal.string?
+      name_code_normal
     else
       nil
     end

@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-describe TrainType::InfoDecorator do
+describe Train::Type::InfoDecorator do
 end

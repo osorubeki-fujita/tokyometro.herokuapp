@@ -1,4 +1,5 @@
 class Operator < ActiveRecord::Base
+
   has_many :railway_lines
   has_many :women_only_car_infos , through: :railway_lines
 
@@ -13,7 +14,12 @@ class Operator < ActiveRecord::Base
 
   has_many :fare_normal_groups , class: ::Fare::NormalGroup , foreign_key: :operator_id
 
-  include ::TokyoMetro::Modules::Common::Info::Operator::Info
+  include ::TokyoMetro::Modules::Name::Common::Fundamental::CssClass
+  include ::TokyoMetro::Modules::Name::Db::GetList
+  include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
+
+  include ::TokyoMetro::Modules::Decision::Db::Operator
+  include ::TokyoMetro::Modules::Name::Common::Operator
 
   # 指定された鉄道事業者の id を取得する
   scope :id_of , ->( operator_same_as ) {
@@ -25,20 +31,16 @@ class Operator < ActiveRecord::Base
 
   private
 
+  def operator
+    self
+  end
+
   def name_ja_to_a
-    name_ja.split( /\// )
+    get_list( name_ja )
   end
 
   def name_en_to_a
-    name_en.split( /\// )
-  end
-
-  def has_many_name_ja?
-    /\// === name_ja
-  end
-
-  def has_many_name_en?
-    /\// === name_en
+    get_list( name_en )
   end
 
 end

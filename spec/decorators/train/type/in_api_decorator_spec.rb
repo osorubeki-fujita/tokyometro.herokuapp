@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-describe TrainType::InApiDecorator do
+describe Train::Type::InApiDecorator do
 end

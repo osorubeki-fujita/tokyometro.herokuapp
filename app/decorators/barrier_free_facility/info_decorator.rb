@@ -28,7 +28,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     regexp = /\Aodpt\.StationFacility\:TokyoMetro\.(\w+)\.(?:\w+)\.(Inside|Outside)\.(\w+)/
     if regexp =~ same_as.to_s
       railway_line_name = $1
-      railway_line_code_letter = ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.#{ railway_line_name }" ).name_code
+      railway_line_code_letter = ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.#{ railway_line_name }" ).name_code_normal
 
       place = $2
       category = $3
@@ -65,7 +65,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
         directions = object.escalator_direction_infos
         raise "Error" if directions.length > 1
         if directions.present?
-          ary << directions.first.pattern.attribute
+          ary << directions.first.pattern.attribute_info
         else
           puts "※ " + object.same_as
         end

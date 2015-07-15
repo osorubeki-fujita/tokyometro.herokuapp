@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe StationFacility::Info , :type => :model do
+RSpec.describe Station::Facility::Info , :type => :model do
 
   invalid_railway_direction_of_platform_transfer_info_at_kudanshita = "odpt.Railway:Toei.Shinjuku"
 
   describe "after converting invalid railway direction in platform transfer info at Kudanshita" do
     it "does not have invalid railway direction \'#{ invalid_railway_direction_of_platform_transfer_info_at_kudanshita }\'." do
 
-      kudanshita = ::StationFacility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Kudanshita" )
+      kudanshita = ::Station::Facility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Kudanshita" )
       toei_shinjuku_line = ::RailwayLine.find_by( same_as: "odpt.Railway:Toei.Shinjuku" )
 
       expect( kudanshita ).to be_present
@@ -23,7 +23,7 @@ RSpec.describe StationFacility::Info , :type => :model do
       expect( p_infos ).to be_present
 
       p_infos.each do | platform_info |
-        t_infos = platform_info.transfer_infos
+        t_infos = platform_info.platform_transfer_infos
         if t_infos.present?
 
           t_infos.each do | transfer_info |
@@ -43,7 +43,7 @@ RSpec.describe StationFacility::Info , :type => :model do
 
   describe "after converting railway line and railway direction in platform transfer info at Nakano-sakaue" do
     it "has platform transfer info from Marunouchi Line to Marunouchi Branch Line for Honancho." do
-      nakano_sakaue = ::StationFacility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.NakanoSakaue" )
+      nakano_sakaue = ::Station::Facility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.NakanoSakaue" )
 
       expect( nakano_sakaue ).to be_present
 
@@ -67,7 +67,7 @@ RSpec.describe StationFacility::Info , :type => :model do
 
       p_infos.each do | platform_info |
         if platform_info.railway_line_id == railway_lines[ :main ].id and platform_info.car_composition == 6
-          t_infos = platform_info.transfer_infos
+          t_infos = platform_info.platform_transfer_infos
           if t_infos.present?
 
             t_infos.each do | transfer_info |

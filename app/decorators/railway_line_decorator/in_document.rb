@@ -114,8 +114,8 @@ class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDe
       :station_attribute_en_short ,
       :name_ja_with_operator_name_precise_and_without_parentheses ,
       :tokyo_metro? ,
-      :jr_lines? ,
-      :toden_arakawa_line? ,
+      :on_jr_lines? ,
+      :on_toden_arakawa_line? ,
       :tobu_sky_tree_isesaki_line? ,
       :seibu_yurakucho_line?
     )

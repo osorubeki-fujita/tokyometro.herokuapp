@@ -1,6 +1,6 @@
 class Train::Type::Info < ActiveRecord::Base
 
-  include ::TokyoMetro::Modules::Common::Info::TrainType::CssClass
+  include ::TokyoMetro::Modules::Name::Common::TrainType::CssClass
 
   belongs_to :in_api , class: ::Train::Type::InApi
   belongs_to :railway_line

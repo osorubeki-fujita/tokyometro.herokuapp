@@ -14,7 +14,7 @@ class Train::Timetable::Info < ActiveRecord::Base
 
   has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :train_timetable_info_id
 
-  include ::TokyoMetro::Modules::Db::Decision::RailwayLine
-  include ::TokyoMetro::Modules::Db::Decision::TrainType
+  include ::TokyoMetro::Modules::Decision::Common::RailwayLine
+  include ::TokyoMetro::Modules::Decision::Db::TrainType
 
 end

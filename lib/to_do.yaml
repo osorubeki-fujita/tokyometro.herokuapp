@@ -40,7 +40,7 @@ Report:
           - 浦安
           - 中野新橋
       -
-        title: Point::Info / Station::Info / StationFacility::Info
+        title: Point::Info / Station::Info / Station::Facility::Info
         contents:
           - 構造に無駄がないかチェック
           - RSpec を使用

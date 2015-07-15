@@ -1,4 +1,4 @@
-class StationFacility::InfoDecorator < Draper::Decorator
+class Station::Facility::InfoDecorator < Draper::Decorator
   delegate_all
 
   decorates_association :station_infos

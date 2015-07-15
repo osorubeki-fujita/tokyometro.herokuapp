@@ -1,4 +1,4 @@
-class StationFacility::Platform::TransferInfoDecorator < Draper::Decorator
+class Station::Facility::Platform::TransferInfoDecorator < Draper::Decorator
   delegate_all
 
   def necessary_time_to_s

@@ -4,8 +4,8 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
   belongs_to :note , class: ::ConnectingRailwayLine::Note
   belongs_to :connecting_station_info , class_name: ::Station::Info
 
-  include ::TokyoMetro::Modules::Common::Info::Station::ConnectingRailwayLine
-  include ::TokyoMetro::Modules::Common::Info::NewAndOldRailwayLine
+  include ::TokyoMetro::Modules::Decision::Common::Station::ConnectingRailwayLine
+  include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
 
   def connecting_railway_line_note
     note

@@ -1,33 +1,34 @@
 class Station::Info < ActiveRecord::Base
-  has_many :station_passenger_surveys , class: ::Station::PassengerSurvey, foreign_key: :station_info_id
-  has_many :passenger_surveys , through: :station_passenger_surveys , class: ::PassengerSurvey
 
-  belongs_to :station_facility_info , class: ::StationFacility::Info
+  belongs_to :station_facility_info , class: ::Station::Facility::Info
   belongs_to :railway_line
   belongs_to :operator
+
+  has_many :station_passenger_surveys , class: ::Station::PassengerSurvey, foreign_key: :station_info_id
+  has_many :passenger_surveys , through: :station_passenger_surveys , class: ::PassengerSurvey
 
   has_many :connecting_railway_line_infos , class: ::ConnectingRailwayLine::Info , foreign_key: :station_info_id
   has_many :railway_lines , through: :connecting_railway_line_infos
 
   has_many :station_points , class: ::Station::Point , foreign_key: :station_info_id
-  has_many :point_infos , through: :station_points
+  has_many :point_infos , through: :station_points , class: ::Point::Info
 
   has_many :station_stopping_pattern_infos , class: ::Station::StoppingPattern::Info , foreign_key: :station_info_id
-  has_many :stopping_patterns , through: :station_stopping_pattern_infos
+  has_many :stopping_patterns , through: :station_stopping_pattern_infos , class: ::StoppingPattern
 
-  has_many :station_name_aliases
+  has_many :station_name_aliases , class: ::Station::NameAlias
 
-  has_many :station_timetable_fundamental_infos
-  has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
+  has_many :station_timetable_fundamental_infos , class: ::Station::Timetable::FundamentalInfo , foreign_key: :station_info_id
+  has_many :station_timetable_infos , through: :station_timetable_fundamental_infos , class: ::Station::Timetable::Info
 
   has_many :train_timetable_train_type_in_other_operator_infos , class: ::Train::Timetable::TrainTypeInOtherOperatorInfo , foreign_key: :from_station_id
 
   # geocoded_by :name_ja
   # after_validation :geocode
 
-  include ::TokyoMetro::Modules::Common::Info::Decision::CompareBase
-  include ::TokyoMetro::Modules::Db::Decision::Operator
-  include ::TokyoMetro::Modules::Db::Decision::CurrentStation
+  include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
+  include ::TokyoMetro::Modules::Decision::Db::Operator
+  include ::TokyoMetro::Modules::Decision::Db::Station::Current
 
   def station_infos_including_other_railway_lines
     station_facility_info.station_infos.order( :railway_line_id )
@@ -47,10 +48,6 @@ class Station::Info < ActiveRecord::Base
 
   def station_page_name
     name_in_system.underscore
-  end
-
-  def at_ayase?
-    [ "odpt.Station:TokyoMetro.Chiyoda.Ayase" , "odpt.Station:TokyoMetro.ChiyodaBranch.Ayase" ].include?( same_as )
   end
 
   def has_another_railway_lines_of_tokyo_metro?

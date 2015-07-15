@@ -2,7 +2,7 @@ System:
   -
     title: App  - MetaStation のレイヤーを定義？
     contents:
-      - Point::Info - Station::Info - StationFacility::Info
+      - Point::Info / Station::Info / Station::Facility::Info
   -
     title: App - Modules → Module に名称変更？
     contents:
