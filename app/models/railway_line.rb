@@ -171,6 +171,11 @@ class RailwayLine < ActiveRecord::Base
     branch_railway_line? and _railway_line.id == main_railway_line_id
   end
 
+  # @todo Revision - Container などを使用
+  def except_for_branch_lines
+    self
+  end
+
   # @!endgroup
 
   class ActiveRecord_Relation
