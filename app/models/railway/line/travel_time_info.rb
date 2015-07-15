@@ -1,4 +1,4 @@
-class TravelTimeInfo < ActiveRecord::Base
+class Railway::Line::TravelTimeInfo < ActiveRecord::Base
   include ::Association::To::FromStation::Info
   include ::Association::To::ToStation::Info
   belongs_to :train_type_info , class: ::Train::Type::Info

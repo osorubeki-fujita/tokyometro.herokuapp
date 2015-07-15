@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713182402) do
+ActiveRecord::Schema.define(version: 20150715073005) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -251,6 +251,31 @@ ActiveRecord::Schema.define(version: 20150713182402) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "railway_direction_code", limit: 255
+  end
+
+  create_table "railway_line_travel_time_infos", force: :cascade do |t|
+    t.integer  "railway_line_id"
+    t.integer  "from_station_info_id"
+    t.integer  "to_station_info_id"
+    t.integer  "train_type_info_id"
+    t.integer  "necessary_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "railway_line_women_only_car_infos", force: :cascade do |t|
+    t.integer  "railway_line_id",           null: false
+    t.integer  "from_station_info_id",      null: false
+    t.integer  "to_station_info_id",        null: false
+    t.integer  "operation_day_id",          null: false
+    t.integer  "available_time_from_hour",  null: false
+    t.integer  "available_time_from_min",   null: false
+    t.integer  "available_time_until_hour", null: false
+    t.integer  "available_time_until_min",  null: false
+    t.integer  "car_composition",           null: false
+    t.integer  "car_number",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "railway_lines", force: :cascade do |t|
@@ -605,16 +630,6 @@ ActiveRecord::Schema.define(version: 20150713182402) do
     t.datetime "updated_at"
   end
 
-  create_table "travel_time_infos", force: :cascade do |t|
-    t.integer  "railway_line_id"
-    t.integer  "from_station_info_id"
-    t.integer  "to_station_info_id"
-    t.integer  "train_type_info_id"
-    t.integer  "necessary_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "twitter_accounts", force: :cascade do |t|
     t.string   "name"
     t.string   "widget_id"
@@ -622,21 +637,6 @@ ActiveRecord::Schema.define(version: 20150713182402) do
     t.string   "operator_or_railway_line_type"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-  end
-
-  create_table "women_only_car_infos", force: :cascade do |t|
-    t.integer  "railway_line_id",           null: false
-    t.integer  "from_station_info_id",      null: false
-    t.integer  "to_station_info_id",        null: false
-    t.integer  "operation_day_id",          null: false
-    t.integer  "available_time_from_hour",  null: false
-    t.integer  "available_time_from_min",   null: false
-    t.integer  "available_time_until_hour", null: false
-    t.integer  "available_time_until_min",  null: false
-    t.integer  "car_composition",           null: false
-    t.integer  "car_number",                null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end

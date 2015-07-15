@@ -5,8 +5,8 @@ class RailwayLine < ActiveRecord::Base
   belongs_to :operator
 
   has_many :station_facility_infos , through: :station_infos
-  has_many :women_only_car_infos
-  has_many :travel_time_infos
+  has_many :women_only_car_infos , class: ::Railway::Line::WomenOnlyCarInfo , foreign_key: :railway_line_id
+  has_many :travel_time_infos , class: ::Railway::Line::TravelTimeInfo , foreign_key: :railway_line_id
   has_many :railway_directions
 
   has_many :connecting_railway_lines

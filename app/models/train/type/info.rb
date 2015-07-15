@@ -6,7 +6,7 @@ class Train::Type::Info < ActiveRecord::Base
   belongs_to :railway_line
 
   has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :train_type_info_in_this_station_id
-  has_many :travel_time_infos , class: ::TravelTimeInfo , foreign_key: :train_type_info_id
+  has_many :travel_time_infos , class: ::Railway::Line::TravelTimeInfo , foreign_key: :train_type_info_id
 
   has_many :train_type_stopping_patterns , class: ::Train::Type::StoppingPattern , foreign_key: :train_type_info_id
   has_many :stopping_patterns , through: :train_type_stopping_patterns

@@ -1,6 +1,6 @@
-class WomenOnlyCarInfo < ActiveRecord::Base
+class Railway::Line::WomenOnlyCarInfo < ActiveRecord::Base
   belongs_to :operation_day
-  belongs_to :railway_line
+  belongs_to :railway_line , class: ::RailwayLine
   include ::Association::To::FromStation::Info
   include ::Association::To::ToStation::Info
 

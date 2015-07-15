@@ -1,4 +1,4 @@
-class WomenOnlyCarInfoDecorator < Draper::Decorator
+class Railway::Line::WomenOnlyCarInfoDecorator < Draper::Decorator
   delegate_all
 
   def car_composition_ja_precise

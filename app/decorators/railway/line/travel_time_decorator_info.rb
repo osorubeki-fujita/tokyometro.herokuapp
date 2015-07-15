@@ -1,4 +1,4 @@
-class TravelTimeInfoDecorator < Draper::Decorator
+class Railway::Line::TravelTimeInfoDecorator < Draper::Decorator
   delegate_all
 
   def self.render_empty_row
