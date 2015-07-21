@@ -51,7 +51,7 @@ class StationFacilityController < ApplicationController
     @station_info_for_google_map = ::Gmaps4rails.build_markers( @station_facility_info.station_infos ) do | station_info , marker |
       marker.lat( station_info.latitude )
       marker.lng( station_info.longitude )
-      marker.infowindow( "#{ station_info.decorate.name_ja_actual }（#{ station_info.railway_line.name_ja }）" )
+      marker.infowindow( "#{ station_info.decorate.name_ja_actual }（#{ station_info.railway_line_info.name_ja }）" )
       marker.json( { title: station_info.decorate.name_ja_actual } )
     end
   end
@@ -63,7 +63,9 @@ class StationFacilityController < ApplicationController
     end
   end
 
-=begin
+end
+
+__END__
 
   def set_railway_line_infos_of_railway_line_page_by_params
     @railway_line_infos = railway_line_by_params( branch_railway_line_info: :main_and_branch , yurakucho_and_fukutoshin: true )
@@ -72,7 +74,3 @@ class StationFacilityController < ApplicationController
   def base_of_railway_line_page_title
     " 各駅のご案内"
   end
-
-=end
-
-end

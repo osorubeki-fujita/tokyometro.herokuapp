@@ -24,16 +24,12 @@ class Station::InfoDecorator < Draper::Decorator
     name_ja_with_station_code + " (#{name_en})"
   end
 
-  def connecting_railway_lines_of_the_same_operator_connected_to_another_station
-    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_info_id ).select { | item |
-      item.railway_line.tokyo_metro? and item.connecting_to_another_station?
-    }
+  def connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
+    connecting_railway_line_infos.includes( :railway_line_info ).order( :railway_line_info_id ).of_the_same_operator.connected_to_another_station
   end
 
-  def connecting_railway_lines_except_for_tokyo_metro
-    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_info_id ).select { | item |
-      item.railway_line.not_tokyo_metro?
-    }
+  def connecting_railway_line_infos_except_for_of_the_same_operator
+    connecting_railway_line_infos.includes( :railway_line_info ).order( :railway_line_info_id ).except_for_of_the_same_operator
   end
 
   def render_name_ja( with_subname: true , prefix: nil , suffix: nil )
@@ -147,7 +143,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def render_link_to_page_of_connecting_other_stations( controller )
-    _c_railway_lines = connecting_railway_lines_of_the_same_operator_connected_to_another_station
+    _c_railway_lines = connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
     if _c_railway_lines.present?
       station_facility_info_ids = _c_railway_lines.map( &:connecting_station_info ).uniq.map( &:station_facility_info_id ).uniq
       station_infos = station_facility_info_ids.map { | station_facility_info_id | ::Station::Facility::Info.find( station_facility_info_id ).station_infos.first }
@@ -191,9 +187,9 @@ class Station::InfoDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :another_station }
   %div{ class: :text_ja }<
-    = this.decorate.render_name_ja( with_subname: false , suffix: this.attribute_ja )
+    = this.render_name_ja( with_subname: false , suffix: this.attribute_ja )
   %div{ class: :text_en }<
-    = this.decorate.render_name_en( with_subname: false , suffix: this.attribute_en_short.capitalize )
+    = this.render_name_en( with_subname: false , suffix: this.attribute_en_short.capitalize )
     HAML
   end
 
@@ -229,7 +225,7 @@ class Station::InfoDecorator < Draper::Decorator
       h_locals = { this: self , linked_page_name: object.name_in_system.underscore }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %td{ class: [ :station_info , :with_link ] , "data-href" => linked_page_name }<
-  - linked_page = url_for( railway_line: this.railway_line.decorate.page_name , station: linked_page_name )
+  - linked_page = url_for( railway_line: this.railway_line_info.decorate.page_name , station: linked_page_name )
   = link_to( "" , linked_page )
   = this.render_in_fare_table_without_link
       HAML
@@ -365,7 +361,7 @@ class Station::InfoDecorator < Draper::Decorator
 
   def render_connecting_railway_lines_in_travel_time_infos
     h_locals = {
-      c_railway_line_infos: object.connecting_railway_line_infos.display_on_railway_line_page.includes( :railway_line , railway_line: :operator )
+      c_railway_line_infos: object.connecting_railway_line_infos.display_on_railway_line_page.includes( :railway_line_info , railway_line_info: :operator )
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ class: [ :railway_lines , :clearfix ] }
@@ -448,9 +444,9 @@ class Station::InfoDecorator < Draper::Decorator
     when :must_link_to_railway_line_page , :must_link_to_railway_line_page_and_merge_yf
       true
     when :link_to_railway_line_page_if_containing_multiple_railway_lines
-      has_another_railway_lines_of_tokyo_metro?
+      has_another_railway_line_infos_of_tokyo_metro?
     when :link_to_railway_line_page_if_containing_multiple_railway_lines_and_merge_yf
-      has_another_railway_lines_of_tokyo_metro? and !( between_wakoshi_and_kotake_mukaihara? )
+      has_another_railway_line_infos_of_tokyo_metro? and !( between_wakoshi_and_kotake_mukaihara? )
     when nil
       false
     end
@@ -464,10 +460,12 @@ class Station::InfoDecorator < Draper::Decorator
   def railway_line_in_station_page
     if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
-    elsif object.railway_line.is_branch_line?
-      object.railway_line.branch_railway_line_info.decorate.page_name
+    elsif object.railway_line_info.is_branch_line?
+      _branch = object.railway_line_info
+      _main = _branch.main_railway_line_info
+      _main.decorate.page_name
     else
-      object.railway_line.decorate.page_name
+      object.railway_line_info.decorate.page_name
     end
   end
 
@@ -475,7 +473,7 @@ class Station::InfoDecorator < Draper::Decorator
     if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
     else
-      object.railway_line.decorate.page_name
+      object.railway_line_info.decorate.page_name
     end
   end
 

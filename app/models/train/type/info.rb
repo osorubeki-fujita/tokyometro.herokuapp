@@ -38,7 +38,7 @@ class Train::Type::Info < ActiveRecord::Base
   end
 
   def operator_id
-    railway_line.operator_id
+    railway_line_info.operator_id
   end
 
   def has_color_infos?

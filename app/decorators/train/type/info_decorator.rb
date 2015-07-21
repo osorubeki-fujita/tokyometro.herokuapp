@@ -18,7 +18,7 @@ class Train::Type::InfoDecorator < Draper::Decorator
 
   def render_name_box_in_travel_time_info
     h.render inline: <<-HAML , type: :haml , locals: { this: self , class_name: css_class }
-%div{ class: [ this.railway_line.css_class , :train_type_outer ] }
+%div{ class: [ this.railway_line_info.css_class , :train_type_outer ] }
   %div{ class: class_name }
     = this.in_api.decorate.render_name_in_travel_time_info
     HAML

@@ -31,7 +31,7 @@ class LinkDomainsToSetHoverEvent
       .children( 'li' )
 
   li_domains_of_links_to_railway_line_pages_from_station_facility_page = (v) ->
-    return $( '#tokyo_metro_railway_lines' )
+    return $( '#tokyo_metro_railway_line_infos' )
       .children( 'ul#railway_lines_in_this_station , ul#railway_lines_in_another_station' )
       .children( 'li' )
 

@@ -14,7 +14,7 @@
   @include padding_bottom_4 ;
 }
 
-#tokyo_metro_railway_lines {
+#tokyo_metro_railway_line_infos {
   @extend %stationFacilityRailwayLineInfo ;
   ul.railway_lines {
     li.railway_line {
@@ -32,7 +32,7 @@
   }
 }
 
-#other_railway_lines {
+#other_railway_line_infos {
   @extend %stationFacilityRailwayLineInfo ;
   ul.railway_lines {
     li.railway_line {
@@ -357,4 +357,3 @@ div.ui-tooltip {
     }
   }
 }
-

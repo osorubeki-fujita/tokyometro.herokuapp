@@ -24,7 +24,7 @@ class TrainLocationController < ApplicationController
 
   private
 
-  def set_railway_lines_of_railway_line_page_by_params
+  def set_railway_line_infos_of_railway_line_page_by_params
     @railway_line_infos = railway_line_by_params( branch_railway_line_info: :main_and_branch , yurakucho_and_fukutoshin: true )
   end
 

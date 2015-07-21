@@ -20,7 +20,7 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
   private
 
   def railway_line_decorated
-    railway_line.decorate
+    object.railway_line_info.decorate
   end
 
   def railway_line_page_name
@@ -28,11 +28,11 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
   end
 
   def railway_line_page_exists?
-    object.railway_line.tokyo_metro?
+    object.railway_line_info.tokyo_metro?
   end
 
   def set_anchor_in_travel_time_info_table?
-    # object.railway_line.branch_line? or object.station_info.railway_line.branch_railway_line_info_of?( object.railway_line )
+    # object.railway_line_info.branch_line? or object.station_info.railway_line_info.branch_railway_line_info_of?( object.railway_line_info )
     false
   end
 

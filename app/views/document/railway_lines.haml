@@ -8,6 +8,6 @@
     - operator_instance = ::Operator.find_by( id: operator_id )
     %div{ class: [ :document , :operator , operator_instance.css_class ] }
       = operator_instance.decorate.in_document.render_title
-      - railway_line_infos.sort_by( &:index ).each do | railway_line |
+      - railway_line_infos.sort_by( &:index ).each do | railway_line_info |
         %ul{ class: [ :railway_lines_of_each_operator , :in_document ] }
-          = railway_line.decorate.in_document.render
+          = railway_line_info.decorate.in_document.render

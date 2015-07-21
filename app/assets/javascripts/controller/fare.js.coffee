@@ -4,7 +4,7 @@ class FareTables
 
   tables = (v) ->
     return v.domains.children( '.fare_table' )
-  
+
   content_headers = (v) ->
     return $( '#links_to_station_info_pages , #fare_contents' )
       .children( '.content_header' )
@@ -43,16 +43,46 @@ class FareTable
 
   constructor: ( @domain ) ->
 
+  thead = (v) ->
+    return v.domain.children( 'thead' ).first()
+
   tbody = (v) ->
     return v.domain.children( 'tbody' ).first()
+
+  tr_header_rows = (v) ->
+    return thead(v).children( 'tr' )
 
   tr_rows = (v) ->
     return tbody(v).children( 'tr' )
 
   process: ->
-    tr_rows(@).each ->
-      r = new FareTableRow( $( this ) )
+    tr_header_rows(@).each ->
+      r = new FareTableHeaderRow( $(@) )
       r.process()
+      return
+    tr_rows(@).each ->
+      r = new FareTableRow( $(@) )
+      r.process()
+      return
+    return
+
+class FareTableHeaderRow
+
+  constructor: ( @domain ) ->
+
+  station_name_top = (v) ->
+    return v.domain.children( 'td.station_name_top')
+
+  has_station_name_top = (v) ->
+    return station_name_top(v).length > 0
+
+  starting_station_info = (v) ->
+    return station_name_top(v).children( '.starting_station_info' ).first()
+
+  process: ->
+    if has_station_name_top(@)
+      s = new StationInfoProcessor( starting_station_info(@) )
+      s.process()
     return
 
 class FareTableRow

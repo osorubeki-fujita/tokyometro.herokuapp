@@ -7,5 +7,5 @@
 
 = ::Train::Operation::InfoDecorator.render_top_title( request , domain_id_name: :train_operation_info_title )
 = @real_time_info_processor.render
-= ::TokyoMetro::App::Renderer::StationMatrix.new( request , @railway_lines , make_link_to_railway_line: true ).render
+= ::TokyoMetro::App::Renderer::StationMatrix.new( request , @railway_line_infos , make_link_to_railway_line: true ).render
 = ::TokyoMetro::App::Renderer::StationLinkList.new( request , @tokyo_metro_station_dictionary_including_main_info ).render

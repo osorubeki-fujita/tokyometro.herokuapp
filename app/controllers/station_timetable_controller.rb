@@ -54,7 +54,7 @@ class StationTimetableController < ApplicationController
   end
 
   def station_timetable_info_ids
-    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_info_id: @railway_line.id ).pluck( :info_id )
+    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_info_id: @railway_line_infos.pluck( :id ) ).pluck( :info_id )
   end
 
   def railway_line_info_ids_of_this_station

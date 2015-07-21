@@ -22,7 +22,7 @@ class TrainOperationController < ApplicationController
 
   def action_for_station_page
     action_base_for_station_page( :train_operation ) do
-      # station_info_ids = @station_info.station_infos_including_other_railway_lines.pluck( :id )
+      # station_info_ids = @station_info.station_infos_including_other_railway_line_infos.pluck( :id )
       @railway_line_infos = @station_info.railway_lines_of_tokyo_metro
       set_twitter_processor
       set_real_time_info_processor
@@ -46,8 +46,8 @@ class TrainOperationController < ApplicationController
     " 列車運行情報"
   end
 
-  def set_railway_lines_of_railway_line_page_by_params
-    @railway_lines = railway_line_by_params( branch_railway_line_info: :exclude )
+  def set_railway_line_infos_of_railway_line_page_by_params
+    @railway_line_infos = railway_line_by_params( branch_railway_line_info: :exclude )
   end
 
 end

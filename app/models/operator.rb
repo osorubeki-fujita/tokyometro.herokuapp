@@ -30,6 +30,10 @@ class Operator < ActiveRecord::Base
     id_of( "odpt.Operator:TokyoMetro" )
   }
 
+  scope :defined , -> {
+    where.not( same_as: "odpt.Operator:Undefined" )
+  }
+
   private
 
   def operator

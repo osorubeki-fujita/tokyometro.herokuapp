@@ -36,7 +36,7 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
 
   # 他事業者の乗り換え情報を表示する method
   def render_railway_line_infos_except_for_of_the_same_operator
-    # @param c_railway_line_infos [Array <RailwayLine>] 他事業者の乗り入れ路線
+    # @param c_railway_line_infos [Array <Railway::Line::Info>] 他事業者の乗り入れ路線
     _connecting_railway_line_infos_except_for_of_the_same_operator = connecting_railway_line_infos_except_for_of_the_same_operator
 
     if _connecting_railway_line_infos_except_for_of_the_same_operator.present?
@@ -46,7 +46,7 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
       }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :other_railway_lines }
+%div{ id: :other_railway_line_infos }
   = ::TokyoMetro::App::Renderer::StationFacility::Header::RailwayLines::OtherOperators.new( request ).render
   %ul{ id: :railway_lines_except_for_tokyo_metro , class: [ :railway_lines , :clearfix ] }
     - c_railway_line_infos.each do | connecting_railway_line_info |
@@ -66,7 +66,7 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
   end
 
   def connecting_railway_line_infos_except_for_of_the_same_operator
-    decorator.connecting_railway_line_infos_except_for_tokyo_metro
+    object.connecting_railway_line_infos.except_for_of_the_same_operator
   end
 
 end

@@ -1,6 +1,6 @@
 @charset "utf-8" ;
 
-<% ::Operator.all.each do | operator | %>
+<% ::Operator.all.defined.each do | operator | %>
   <% if operator.css_class.present? %>
 $operator_<%= operator.css_class %>_bgcolor: <%= operator.color %> ;
   <% end %>

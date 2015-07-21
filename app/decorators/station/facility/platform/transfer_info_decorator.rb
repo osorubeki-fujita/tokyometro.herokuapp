@@ -12,10 +12,10 @@ class Station::Facility::Platform::TransferInfoDecorator < Draper::Decorator
 =begin
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
-= this.railway_line.render_railway_line_code( must_display_line_color: true , small: true )
+= this.railway_line_info.render_railway_line_info_code( must_display_line_color: true , small: true )
 %div{ class: :text }
   %div{ class: :railway_line }<
-    = this.railway_line.name_ja_in_station_facility_platform_info_transfer_info
+    = this.railway_line_info.name_ja_in_station_facility_platform_info_transfer_info
   = this.render_railway_direction
   = this.render_necessary_time
     HAML

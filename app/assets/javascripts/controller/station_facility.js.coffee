@@ -15,9 +15,9 @@ class StationFacility
   platform_info_tab_contents = (v) ->
     tab_ul_processor = new StationFacilityPlatformInfoTabUl()
     return tab_ul_processor.li_contents()
-  
+
   content_headers_in_station_facility_page = (v) ->
-    return $( '#tokyo_metro_railway_lines , #other_railway_lines , #links_to_station_info_pages , #station_facility_platform_infos , #station_facility_infos' )
+    return $( '#tokyo_metro_railway_line_infos , #other_railway_line_infos , #links_to_station_info_pages , #station_facility_platform_infos , #station_facility_infos' )
       .children( '.content_header' )
 
   process: ->

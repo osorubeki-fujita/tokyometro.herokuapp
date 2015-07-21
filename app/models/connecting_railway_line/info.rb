@@ -1,11 +1,28 @@
 class ConnectingRailwayLine::Info < ActiveRecord::Base
   include ::Association::To::Station::Info
+
   belongs_to :railway_line_info , class: ::Railway::Line::Info
   belongs_to :note , class: ::ConnectingRailwayLine::Note
   belongs_to :connecting_station_info , class_name: ::Station::Info
 
   include ::TokyoMetro::Modules::Decision::Common::Station::ConnectingRailwayLine
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
+
+  scope :of_the_same_operator , -> {
+    where( railway_line_info_id: ::ApplicationHelper.this_operator.railway_line_infos.pluck( :id ) )
+  }
+
+  scope :except_for_of_the_same_operator , -> {
+    where.not( railway_line_info_id: ::ApplicationHelper.this_operator.railway_line_infos.pluck( :id ) )
+  }
+
+  scope :connecting_to_another_station , -> {
+    where( connecting_to_another_station: true )
+  }
+
+  scope :connected_to_another_station , -> {
+    connecting_to_another_station
+  }
 
   def connecting_railway_line_note
     note
@@ -50,11 +67,11 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
   end
 
   def not_operated_yet?
-    super or railway_line.not_operated_yet?
+    super or railway_line_info.not_operated_yet?
   end
 
   def ended_already?
-    super or railway_line.ended_already?
+    super or railway_line_info.ended_already?
   end
 
   def operated_now?
@@ -62,7 +79,7 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
   end
 
   def css_class
-    railway_line.send( __method__ )
+    railway_line_info.send( __method__ )
   end
 
 end

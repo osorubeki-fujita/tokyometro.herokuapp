@@ -1,6 +1,6 @@
 class Railway::Line::Info < ActiveRecord::Base
 
-  include ::Association::To::Station::Infos
+  has_many :station_infos , class: ::Station::Info , foreign_key: :railway_line_info_id
 
   belongs_to :operator
 
@@ -31,6 +31,7 @@ class Railway::Line::Info < ActiveRecord::Base
 
   has_many :twitter_accounts , as: :operator_or_railway_line_info
 
+  include ::OdptCommon::Modules::Polymorphic::RailwayLine
   include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
 
   include ::OdptCommon::Modules::Name::Common::Fundamental::GetMainName
@@ -169,8 +170,8 @@ class Railway::Line::Info < ActiveRecord::Base
   # @!group Decision
 
   # @param railway_line [Railway::Line::Info]
-  def branch_railway_line_info_of?( _railway_line )
-    branch_railway_line_info? and _railway_line.id == main_railway_line_info_id
+  def branch_railway_line_info_of?( _railway_line_info )
+    branch_railway_line_info? and _railway_line_info.id == main_railway_line_info_id
   end
 
   # @todo Revision - Container などを使用

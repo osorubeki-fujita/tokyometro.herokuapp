@@ -3,7 +3,7 @@
 = ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
 
 %div{ id: @content_id }
-  - informations_grouped_by_operator = @informations.group_by { | info | info.railway_line.operator.id }
+  - informations_grouped_by_operator = @informations.group_by { | info | info.railway_line_info.operator.id }
   - raise "Error" if informations_grouped_by_operator.nil?
   - informations_grouped_by_operator.keys.sort.each do | operator_id |
     - informations_in_an_operator = informations_grouped_by_operator[ operator_id ]
@@ -16,9 +16,9 @@
           = operator_instance.name_ja
         %h4{ class: :text_en }<
           = operator_instance.name_en
-      - informations_grouped_by_railway_line = informations_in_an_operator.group_by { | info | info.railway_line.id }
-      - informations_grouped_by_railway_line.keys.sort.each do | railway_line_info_id |
-        - informations_in_a_railway_line = informations_grouped_by_railway_line[ railway_line_info_id ]
+      - informations_grouped_by_railway_line_info = informations_in_an_operator.group_by { | info | info.railway_line_info.id }
+      - informations_grouped_by_railway_line_info.keys.sort.each do | railway_line_info_id |
+        - informations_of_a_railway_line_info = informations_grouped_by_railway_line_info[ railway_line_info_id ]
         - railway_line_info_instance = ::Railway::Line::Info.find_by( id: railway_line_info_id )
         %div{ class: [ :railway_line , railway_line_info_instance.css_class ] }
           %div{ class: :railway_line_name }
@@ -26,7 +26,7 @@
               = railway_line_info_instance.name_ja
             %h5{ class: :text_en }<
               = railway_line_info_instance.name_en
-          - informations_in_a_railway_line.each do | info |
+          - informations_of_a_railway_line_info.each do | info |
             - # raise "Error: " + @proc.class.name
             - # raise "Error: " + info.class.name
             - variable_name = @variable_name.intern

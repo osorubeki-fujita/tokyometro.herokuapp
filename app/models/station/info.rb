@@ -55,7 +55,7 @@ class Station::Info < ActiveRecord::Base
   end
 
   def tokyo_metro?
-    railway_line.tokyo_metro?
+    railway_line_info.tokyo_metro?
   end
 
   def connected_to?( railway_line_info_instance , only_tokyo_metro: false , include_myself: false )
@@ -64,8 +64,9 @@ class Station::Info < ActiveRecord::Base
     end
 
     railway_line_info_ids = ::Array.new
-    if railway_line.branch_line?
-      railway_line_info_ids << railway_line.main_railway_line_info_id
+
+    if railway_line_info.branch_line?
+      railway_line_info_ids << railway_line_info.main_railway_line_info_id
     end
 
     if only_tokyo_metro
@@ -86,7 +87,7 @@ class Station::Info < ActiveRecord::Base
   [ :attribute_ja , :attribute_hira , :attribute_en , :attribute_en_short ].each do | method_name |
     eval <<-DEF
       def #{ method_name }
-        railway_line.station_#{ method_name }
+        railway_line_info.station_#{ method_name }
       end
     DEF
   end
