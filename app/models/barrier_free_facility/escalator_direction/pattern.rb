@@ -4,7 +4,7 @@ class BarrierFreeFacility::EscalatorDirection::Pattern < ActiveRecord::Base
   has_many :service_detail_infos , through: :escalator_direction_infos
 
   include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
-  include ::TokyoMetro::Modules::Attributes::Common::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
+  include ::OdptCommon::Modules::Attributes::Common::StationFacility::BarrierFree::Escalator::ServiceDetail::Direction
 
   private
 

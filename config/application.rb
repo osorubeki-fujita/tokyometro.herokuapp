@@ -49,13 +49,9 @@ module RailsTokyoMetro
     config.after_initialize do
 
       ::TokyoMetro.set_rails_consts
-
-      ::TokyoMetro.set_access_token
-      ::TokyoMetro.set_google_maps_api_key
+      ::TokyoMetro.set_api_keys
 
       ::TokyoMetro::Factory::Decorate::MetaClass.initialize_in_rails_app
-
-      ::TokyoMetro::Document::Gviz.set_dir
 
       #---------------- モジュールの組み込み
       ::TokyoMetro.set_modules

@@ -8,10 +8,10 @@ class StationTimetableController < ApplicationController
 
   def index
     @title = "駅の時刻表"
-    @railway_lines = ::RailwayLine.tokyo_metro
-    @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
+    @railway_line_infos = ::Railway::Line::Info.tokyo_metro
+    @station_infos_of_railway_line_infos = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
-    @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
+    @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_line_infos )
     set_twitter_processor( :tokyo_metro )
     render 'station_timetable/index'
   end
@@ -20,7 +20,7 @@ class StationTimetableController < ApplicationController
     action_base_for_station_page( :station_timetable , layout: :application_wide ) do
       set_railway_line_for_station_page
       set_station_timetable_infos
-      set_railway_lines_for_station_page
+      set_railway_line_infos_for_station_page
     end
   end
 
@@ -32,8 +32,8 @@ class StationTimetableController < ApplicationController
 
   private
 
-  def set_railway_lines_of_railway_line_page_by_params
-    @railway_lines = railway_line_by_params( branch_railway_line: :main_and_branch , yurakucho_and_fukutoshin: true )
+  def set_railway_line_infos_of_railway_line_page_by_params
+    @railway_line_infos = railway_line_by_params( branch_railway_line_info: :main_and_branch , yurakucho_and_fukutoshin: true )
   end
 
   def base_of_railway_line_page_title
@@ -46,23 +46,23 @@ class StationTimetableController < ApplicationController
   end
 
   def set_railway_line_for_station_page
-    @railway_line = railway_line_by_params( branch_railway_line: :no_process , use_station_info: true )
+    @railway_line = railway_line_by_params( branch_railway_line_info: :no_process , use_station_info: true )
   end
 
   def station_info_ids
-    @station_info.station_infos_including_other_railway_lines.pluck( :id )
+    @station_info.station_infos_including_other_railway_line_infos.pluck( :id )
   end
 
   def station_timetable_info_ids
-    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_id: @railway_line.id ).pluck( :info_id )
+    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_info_id: @railway_line.id ).pluck( :info_id )
   end
 
-  def railway_line_ids_of_this_station
-    ::Station::Info.where( id: :station_info_ids ).pluck( :railway_line_id ).uniq.sort
+  def railway_line_info_ids_of_this_station
+    ::Station::Info.where( id: :station_info_ids ).pluck( :railway_line_info_id ).uniq.sort
   end
 
-  def set_railway_lines_for_station_page
-    @railway_lines = ::RailwayLine.where( id: railway_line_ids_of_this_station )
+  def set_railway_line_infos_for_station_page
+    @railway_line_infos = ::Railway::Line::Info.where( id: railway_line_info_ids_of_this_station )
   end
 
   def set_station_timetable_infos

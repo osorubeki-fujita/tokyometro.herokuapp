@@ -5,7 +5,7 @@ class ConnectingRailwayLine::Note < ActiveRecord::Base
     infos
   end
 
-  def railway_lines
+  def railway_line_infos
     infos
   end
 

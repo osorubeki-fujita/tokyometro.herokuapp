@@ -6,7 +6,7 @@ namespace :temp do
   end
 
   task :update_railway_line_undefined_20150711 => :environment do
-    railway_line_undefined = ::RailwayLine.find_by( same_as: "odpt.Railway:Undefined" )
+    railway_line_undefined = ::Railway::Line::Info.find_by( same_as: "odpt.Railway:Undefined" )
     raise unless railway_line_undefined.present?
     railway_line_undefined.update(
       name_ja_normal: "未定義" , name_ja_with_operator_name_precise: "未定義" , name_ja_with_operator_name: "未定義" ,

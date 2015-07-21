@@ -1,7 +1,7 @@
 class Operator < ActiveRecord::Base
 
-  has_many :railway_lines
-  has_many :women_only_car_infos , through: :railway_lines
+  has_many :railway_line_infos , class: ::Railway::Line::Info
+  has_many :women_only_car_infos , through: :railway_line_infos, class: ::Railway::Line::WomenOnlyCarInfo
 
   has_many :station_timetable_fundamental_infos
   has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
@@ -10,16 +10,17 @@ class Operator < ActiveRecord::Base
 
   has_many :train_operation_infos
 
-  has_many :twitter_accounts , as: :operator_or_railway_line
+  has_many :twitter_accounts , as: :operator_or_railway_line_info
 
   has_many :fare_normal_groups , class: ::Fare::NormalGroup , foreign_key: :operator_id
 
-  include ::TokyoMetro::Modules::Name::Common::Fundamental::CssClass
-  include ::TokyoMetro::Modules::Name::Db::GetList
-  include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
+  include ::OdptCommon::Modules::Name::Db::GetList
 
+  include ::OdptCommon::Modules::Name::Common::Operator
+  include ::TokyoMetro::Modules::Name::Common::Operator::CssClass
+
+  include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
   include ::TokyoMetro::Modules::Decision::Db::Operator
-  include ::TokyoMetro::Modules::Name::Common::Operator
 
   # 指定された鉄道事業者の id を取得する
   scope :id_of , ->( operator_same_as ) {

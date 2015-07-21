@@ -17,8 +17,10 @@ Report:
 
 
 "App and Gem":
+  - "[check] TokyoMetro::Rake::Make::YamlStationList::File::EachStation"
+  - "[delete] TokyoMetro::Modules::Dictionary::Common::OperationDay"
   -
-    title: App - TrainType ロマンスカー
+    title: App - Train::Type::Info ロマンスカー
     contents:
       - APIで生成される値について (odpt.TrainType:TokyoMetro.LimitedExpress / odpt.TrainType:TokyoMetro.RomanceCar) の確認
       - ログの生成 (TokyoMetro::Factory::Convert::Customize::Api::TrainTimetable::RomanceCar::Info)
@@ -87,19 +89,19 @@ Report:
     title: App - Db - column の整理
     contents:
       -
-        title: RailwayLine
+        title: Railway::Line::Info
         contents:
           - 一部を削除（特に「事業者名 + 路線名」）
           -
             title: module を作成
             contents:
-              - RailwayLine と TokyoMetro::Static::RailwayLine::Info に include
+              - Railway::Line::Info と TokyoMetro::Static::RailwayLine::Info に include
               - それぞれのクラスに適合するよう調整
   -
     title: App - Decorator の整理
     contents:
       - Station::InfoDecorator
-      - RailwayLineDecorator
+      - Railway::Line::InfoDecorator
   - Decorate Factory への移行
   - App - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
   -
@@ -121,7 +123,7 @@ Report:
   -
     title: 支線の処理
     contents:
-      - Station::Info , RailwayLine または別の名前空間に自然なメソッドを定義
+      - Station::Info , Railway::Line::Info または別の名前空間に自然なメソッドを定義
       - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
   - 浅草駅 ホーム情報
   - その他、必要な Refactoring

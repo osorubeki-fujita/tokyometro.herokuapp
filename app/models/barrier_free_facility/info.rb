@@ -22,16 +22,16 @@ class BarrierFreeFacility::Info < ActiveRecord::Base
 
   include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::AliasTowardsAccessibility
   include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::Escalator
-  include ::TokyoMetro::Modules::Alias::Common::StationFacility::BarrierFree::WheelChair
-  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::WheelChair
-  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::Escalator
+  include ::OdptCommon::Modules::Alias::Common::StationFacility::BarrierFree::WheelChair
+  include ::OdptCommon::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::WheelChair
+  include ::OdptCommon::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::WheelChair::Availability::Escalator
 
   include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::MobilityScooter::Availability::None
   include ::TokyoMetro::Modules::Decision::Common::StationFacility::BarrierFree::MobilityScooter::Availability::AliasTowardsAccessibility
-  include ::TokyoMetro::Modules::Alias::Common::StationFacility::BarrierFree::MobilityScooter
-  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::MobilityScooter
+  include ::OdptCommon::Modules::Alias::Common::StationFacility::BarrierFree::MobilityScooter
+  include ::OdptCommon::Modules::MethodMissing::Decision::Common::StationFacility::BarrierFree::MobilityScooter
 
-  ::TokyoMetro::Modules::Dictionary::Common::BarrierFree.facility_types.each do | method_base_name |
+  ::OdptCommon::Modules::Dictionary::Common::BarrierFree.facility_types.each do | method_base_name |
     eval <<-DEF
       def #{ method_base_name }?
         type.send( __method__ )

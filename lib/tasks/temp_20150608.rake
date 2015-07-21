@@ -8,7 +8,7 @@
     }
     category = :barrier_free_facilities
 
-    ::TokyoMetro::Rake::Debug::StationFacility.process( title , facilities , category )
+    ::TokyoMetro::Rake::Rails::Debug::StationFacility.process( title , facilities , category )
   end
 
   task :update_station_facility_in_kasumigaseki_20150608 => :environment do
@@ -37,7 +37,7 @@
       h
     }
 
-    ::TokyoMetro::Rake::BugFix::BarrierFreeFacility::Pattern.process( title , facility_names , proc_for_deciding_invalidity , info_for_updating , h_for_updating , proc_for_creating_h_for_new_pattern_instance , to_test: false )
+    ::TokyoMetro::Rake::Rails::BugFix::BarrierFreeFacility::Pattern.process( title , facility_names , proc_for_deciding_invalidity , info_for_updating , h_for_updating , proc_for_creating_h_for_new_pattern_instance , to_test: false )
   end
 
 end

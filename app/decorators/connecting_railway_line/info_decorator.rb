@@ -32,7 +32,7 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
   end
 
   def set_anchor_in_travel_time_info_table?
-    # object.railway_line.branch_line? or object.station_info.railway_line.branch_railway_line_of?( object.railway_line )
+    # object.railway_line.branch_line? or object.station_info.railway_line.branch_railway_line_info_of?( object.railway_line )
     false
   end
 

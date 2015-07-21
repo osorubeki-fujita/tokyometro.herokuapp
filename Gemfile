@@ -7,8 +7,10 @@ source 'https://rubygems.org'
 # ruby '2.2.2'
 ruby '2.1.6'
 
-gem 'rack' , '1.6.2'
-gem 'arel' , '6.0.0'
+#-------- Escape Error
+
+gem 'rack' , '1.6.2' # <- 1.6.4
+gem 'arel' , '6.0.0' #<- 6.0.2
 
 # -------- Ruby on Rails
 
@@ -95,6 +97,7 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.2.5'
+#  gem 'jbuilder', '>= 2.3.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

@@ -22,7 +22,7 @@ end
 
 #--------20141201_2209 千代田線各駅の駅時刻表を削除
 def db_delete_train_times_of_chiyoda_line
-  timetable_ids = ::Timetable.where( railway_id: ::Railway.find_by( same_as: "odpt.Railway:TokyoMetro.Chiyoda" ).id ).pluck( :id )
+  timetable_ids = ::Timetable.where( railway_info_id: ::Railway.find_by( same_as: "odpt.Railway:TokyoMetro.Chiyoda" ).id ).pluck( :id )
   train_time_ids = ::TrainTime.where( timetable_id: timetable_ids ).pluck( :id )
 
   ::Timetable.destroy_all( id: timetable_ids )
@@ -82,7 +82,7 @@ end
 
 #--------20141114_0016 副都心線各駅の駅時刻表を削除
 def db_delete_train_times_of_fukutoshin_line
-  timetable_ids = ::Timetable.where( railway_id: ::Railway.find_by( same_as: "odpt.Railway:TokyoMetro.Fukutoshin" ).id ).pluck( :id )
+  timetable_ids = ::Timetable.where( railway_info_id: ::Railway.find_by( same_as: "odpt.Railway:TokyoMetro.Fukutoshin" ).id ).pluck( :id )
   train_time_ids = ::TrainTime.where( timetable_id: timetable_ids ).pluck( :id )
 
   ::Timetable.destroy_all( id: timetable_ids )

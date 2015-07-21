@@ -14,8 +14,8 @@ class RailwayTimetableController < ApplicationController
 
   private
 
-  def set_railway_lines_of_railway_line_page_by_params
-    @railway_lines = railway_line_by_params( branch_railway_line: :no_process , yurakucho_and_fukutoshin: true )
+  def set_railway_line_infos_of_railway_line_page_by_params
+    @railway_line_infos = railway_line_by_params( branch_railway_line_info: :no_process , yurakucho_and_fukutoshin: true )
   end
 
   def base_of_railway_line_page_title

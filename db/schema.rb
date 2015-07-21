@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715073005) do
+ActiveRecord::Schema.define(version: 20150715104701) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
   end
 
   create_table "air_conditioner_infos", force: :cascade do |t|
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "car_number"
     t.datetime "post_time"
     t.integer  "answer_id"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
   create_table "connecting_railway_line_infos", force: :cascade do |t|
     t.integer  "station_info_id"
     t.integer  "index_in_station"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "connecting_station_info_id"
     t.boolean  "connecting_to_another_station"
     t.boolean  "cleared"
@@ -246,39 +246,14 @@ ActiveRecord::Schema.define(version: 20150715073005) do
   create_table "railway_directions", force: :cascade do |t|
     t.string   "same_as",                limit: 255
     t.string   "in_api_same_as",         limit: 255
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "station_info_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "railway_direction_code", limit: 255
   end
 
-  create_table "railway_line_travel_time_infos", force: :cascade do |t|
-    t.integer  "railway_line_id"
-    t.integer  "from_station_info_id"
-    t.integer  "to_station_info_id"
-    t.integer  "train_type_info_id"
-    t.integer  "necessary_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "railway_line_women_only_car_infos", force: :cascade do |t|
-    t.integer  "railway_line_id",           null: false
-    t.integer  "from_station_info_id",      null: false
-    t.integer  "to_station_info_id",        null: false
-    t.integer  "operation_day_id",          null: false
-    t.integer  "available_time_from_hour",  null: false
-    t.integer  "available_time_from_min",   null: false
-    t.integer  "available_time_until_hour", null: false
-    t.integer  "available_time_until_min",  null: false
-    t.integer  "car_composition",           null: false
-    t.integer  "car_number",                null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "railway_lines", force: :cascade do |t|
+  create_table "railway_line_infos", force: :cascade do |t|
     t.string   "name_ja",                            limit: 255
     t.string   "name_ja_normal",                     limit: 255
     t.string   "name_ja_with_operator_name_precise", limit: 255
@@ -299,11 +274,37 @@ ActiveRecord::Schema.define(version: 20150715073005) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_on"
-    t.boolean  "is_branch_railway_line"
-    t.integer  "main_railway_line_id"
-    t.boolean  "has_branch_railway_line"
-    t.integer  "branch_railway_line_id"
+    t.boolean  "is_branch_railway_line_info"
+    t.integer  "main_railway_line_info_id"
+    t.boolean  "has_branch_railway_line_info"
+    t.integer  "branch_railway_line_info_id"
     t.datetime "end_on"
+  end
+
+  create_table "railway_line_travel_time_infos", force: :cascade do |t|
+    t.integer  "railway_line_info_id"
+    t.integer  "from_station_info_id"
+    t.integer  "to_station_info_id"
+    t.integer  "train_type_info_id"
+    t.integer  "necessary_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "railway_line_women_only_car_infos", force: :cascade do |t|
+    t.integer  "railway_line_info_id",      null: false
+    t.integer  "from_station_info_id",      null: false
+    t.integer  "to_station_info_id",        null: false
+    t.integer  "operation_day_id",          null: false
+    t.integer  "available_time_from_hour",  null: false
+    t.integer  "available_time_from_min",   null: false
+    t.integer  "available_time_until_hour", null: false
+    t.integer  "available_time_until_min",  null: false
+    t.integer  "car_composition",           null: false
+    t.integer  "car_number",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "train_type_info_id"
   end
 
   create_table "rss_categories", force: :cascade do |t|
@@ -351,7 +352,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
     t.integer  "station_facility_info_id"
     t.integer  "car_composition"
     t.integer  "car_number"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "railway_direction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -366,7 +367,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
 
   create_table "station_facility_platform_transfer_infos", force: :cascade do |t|
     t.integer  "platform_info_id"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "railway_direction_id"
     t.integer  "necessary_time"
     t.datetime "created_at"
@@ -376,7 +377,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
   create_table "station_infos", force: :cascade do |t|
     t.integer  "operator_id"
     t.string   "same_as",                       limit: 255
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "index_in_railway_line"
     t.string   "station_code",                  limit: 255
     t.integer  "station_facility_info_id"
@@ -445,7 +446,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
     t.integer  "info_id",              null: false
     t.integer  "station_info_id",      null: false
     t.integer  "operator_id",          null: false
-    t.integer  "railway_line_id",      null: false
+    t.integer  "railway_line_info_id", null: false
     t.integer  "railway_direction_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -506,7 +507,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
     t.integer  "frequency"
     t.string   "train_number",         limit: 255
     t.integer  "train_time_info_id"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "train_owner_id"
     t.integer  "from_station_info_id"
     t.integer  "to_station_info_id"
@@ -521,12 +522,12 @@ ActiveRecord::Schema.define(version: 20150715073005) do
   end
 
   create_table "train_operation_infos", force: :cascade do |t|
-    t.string   "id_urn",          limit: 255
+    t.string   "id_urn",               limit: 255
     t.datetime "dc_date"
     t.datetime "valid_until"
     t.integer  "operator_id"
     t.datetime "time_of_origin"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -576,7 +577,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
     t.string   "same_as",                              limit: 255
     t.datetime "dc_date"
     t.string   "train_number",                         limit: 255
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "operator_id"
     t.integer  "train_type_info_id"
     t.integer  "train_name_id"
@@ -594,7 +595,7 @@ ActiveRecord::Schema.define(version: 20150715073005) do
 
   create_table "train_timetable_train_type_in_other_operator_infos", force: :cascade do |t|
     t.integer  "from_station_info_id"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "train_type_info_id"
     t.text     "note"
     t.datetime "created_at"
@@ -613,18 +614,18 @@ ActiveRecord::Schema.define(version: 20150715073005) do
 
   create_table "train_type_infos", force: :cascade do |t|
     t.integer  "in_api_id"
-    t.string   "note",            limit: 255
-    t.string   "same_as",         limit: 255
-    t.string   "color",           limit: 255
-    t.string   "bgcolor",         limit: 255
-    t.integer  "railway_line_id"
+    t.string   "note",                 limit: 255
+    t.string   "same_as",              limit: 255
+    t.string   "color",                limit: 255
+    t.string   "bgcolor",              limit: 255
+    t.integer  "railway_line_info_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "train_type_stopping_patterns", force: :cascade do |t|
     t.integer  "train_type_info_id"
-    t.integer  "railway_line_id"
+    t.integer  "railway_line_info_id"
     t.integer  "stopping_pattern_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -633,10 +634,10 @@ ActiveRecord::Schema.define(version: 20150715073005) do
   create_table "twitter_accounts", force: :cascade do |t|
     t.string   "name"
     t.string   "widget_id"
-    t.integer  "operator_or_railway_line_id"
-    t.string   "operator_or_railway_line_type"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "operator_or_railway_line_info_id"
+    t.string   "operator_or_railway_line_info_type"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end

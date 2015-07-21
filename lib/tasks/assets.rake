@@ -7,7 +7,7 @@ namespace :assets do
 
       desc "Make partial sass files from .scss.erb files"
       task :partial => :environment do
-        ::TokyoMetro::Rake::Assets::Sass::Make.partial
+        ::TokyoMetro::Rake::Rails::Assets::Sass::Make.partial
       end
 
       #--------
@@ -21,7 +21,7 @@ namespace :assets do
 
       desc "Copy svg files"
       task :svg_files => :environment do
-        ::TokyoMetro::Rake::Assets::Image::SvgFiles.copy
+        ::TokyoMetro::Rake::Rails::Assets::Image::SvgFiles.copy
       end
 
     end

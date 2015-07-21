@@ -10,10 +10,10 @@ class StationFacilityController < ApplicationController
 
   def index
     @title = "駅のご案内"
-    @railway_lines = ::RailwayLine.tokyo_metro
-    @station_infos_of_railway_lines = ::Station::Info.tokyo_metro
+    @railway_line_infos = ::Railway::Line::Info.tokyo_metro
+    @station_infos_of_railway_line_infos = ::Station::Info.tokyo_metro
     @tokyo_metro_station_dictionary = ::TokyoMetro.station_dictionary
-    @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_lines )
+    @tokyo_metro_station_dictionary_including_main_info = ::TokyoMetro.station_dictionary_including_main_info( @stations_of_railway_line_infos )
 
     set_twitter_processor( :tokyo_metro )
 
@@ -23,12 +23,12 @@ class StationFacilityController < ApplicationController
   def action_for_station_page
     action_base_for_station_page( :station_facility , layout: :application_wide ) do
       @station_facility_info = @station_info.station_facility_info
-      @railway_lines = ::RailwayLine.where( id: @station_facility_info.station_infos.pluck( :railway_line_id ) ).tokyo_metro.to_main_lines
+      @railway_line_infos = ::Railway::Line::Info.where( id: @station_facility_info.station_infos.pluck( :railway_line_info_id ) ).tokyo_metro.to_main_lines
       # @display_google_map = true
 
       # @point_infos = @station_facility_info.point_infos.without_invalid.includes( :category )
       @point_infos = @station_facility_info.point_infos.includes( :category )
-      set_real_time_info_processor( railway_lines: @railway_lines.except_for_branch_lines )
+      set_real_time_info_processor( railway_line_infos: @railway_line_infos.except_for_branch_lines )
 
       # set_station_info_for_google_map
       set_exit_info_for_google_map
@@ -65,8 +65,8 @@ class StationFacilityController < ApplicationController
 
 =begin
 
-  def set_railway_lines_of_railway_line_page_by_params
-    @railway_lines = railway_line_by_params( branch_railway_line: :main_and_branch , yurakucho_and_fukutoshin: true )
+  def set_railway_line_infos_of_railway_line_page_by_params
+    @railway_line_infos = railway_line_by_params( branch_railway_line_info: :main_and_branch , yurakucho_and_fukutoshin: true )
   end
 
   def base_of_railway_line_page_title

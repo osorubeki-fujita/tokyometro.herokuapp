@@ -1,4 +1,4 @@
-class RailwayLineDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
   include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
 

@@ -6,7 +6,7 @@
     = @real_time_info_processor.render_meta_datum( include_train_location_infos: false )
   = ::TokyoMetro::App::Renderer::RealTimeInfos::SideMenu::LinksToRailwayLinePages.new( request ).render
 
-= ::RailwayLineDecorator.render_title_of_railway_lines( @railway_lines )
+= ::Railway::Line::InfoDecorator.render_title_of_railway_lines( @railway_lines )
 - if @real_time_info_processor.present?
   = @real_time_info_processor.render( include_train_location_infos: false )
 
@@ -20,5 +20,3 @@
     = ::TokyoMetro::App::Renderer::TravelTimeInfo::Header.new( request ).render
     = ::TokyoMetro::App::Renderer::TravelTimeInfo::RailwayLine.instance_of( request , @railway_lines ).render
   = ::TokyoMetro::App::Renderer::WomenOnlyCarInfo.new( request , @railway_lines ).render
-
-

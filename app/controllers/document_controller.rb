@@ -25,16 +25,16 @@ class DocumentController < ApplicationController
     render 'document/train_owners' , layout: 'application'
   end
 
-  def railway_lines
-    @railway_lines = RailwayLine.all.includes( :operator )
+  def railway_line_infos
+    @railway_line_infos = ::Railway::Line::Info.all.includes( :operator )
     @title = "路線"
     @title_en = "Railway lines"
     @title_ja = @title
-    render 'document/railway_lines' , layout: 'application_wide'
+    render 'document/railway_line_infos' , layout: 'application_wide'
   end
 
   def railway_directions
-    infos = RailwayDirection.all.includes( :railway_line , :station_info , railway_line: :operator )
+    infos = ::Railway::Direction.all.includes( :railway_line , :station_info , railway_line: :operator )
     @title = "路線の行先（方面）"
     @title_en = "Railway directions"
     @title_ja = @title

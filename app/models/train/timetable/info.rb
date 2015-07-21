@@ -1,7 +1,7 @@
 class Train::Timetable::Info < ActiveRecord::Base
-  belongs_to :railway_line , class: ::RailwayLine
+  belongs_to :railway_line_info , class: ::Railway::Line::Info
   belongs_to :operator , class: ::Operator
-  belongs_to :railway_direction , class: ::RailwayDirection
+  belongs_to :railway_direction , class: ::Railway::Direction
   belongs_to :train_owner , class: ::TrainOwner
   belongs_to :operation_day , class: ::OperationDay
 
@@ -14,7 +14,9 @@ class Train::Timetable::Info < ActiveRecord::Base
 
   has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :train_timetable_info_id
 
-  include ::TokyoMetro::Modules::Decision::Common::RailwayLine
+  include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
+  include ::TokyoMetro::Modules::Decision::Common::RailwayLine::Name
+
   include ::TokyoMetro::Modules::Decision::Db::TrainType
 
 end

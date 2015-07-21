@@ -8,13 +8,13 @@ RSpec.describe Station::Facility::Info , :type => :model do
     it "does not have invalid railway direction \'#{ invalid_railway_direction_of_platform_transfer_info_at_kudanshita }\'." do
 
       kudanshita = ::Station::Facility::Info.find_by( same_as: "odpt.StationFacility:TokyoMetro.Kudanshita" )
-      toei_shinjuku_line = ::RailwayLine.find_by( same_as: "odpt.Railway:Toei.Shinjuku" )
+      toei_shinjuku_line = ::Railway::Line::Info.find_by( same_as: "odpt.Railway:Toei.Shinjuku" )
 
       expect( kudanshita ).to be_present
       expect( toei_shinjuku_line ).to be_present
 
-      toei_shinjuku_line_for_motoyawata = ::RailwayDirection.find_by( same_as: "odpt.RailwayDirection:Toei.Shinjuku.Motoyawata" )
-      toei_shinjuku_line_for_shinjuku = ::RailwayDirection.find_by( same_as: "odpt.RailwayDirection:Toei.Shinjuku.Shinjuku" )
+      toei_shinjuku_line_for_motoyawata = ::Railway::Direction.find_by( same_as: "odpt.RailwayDirection:Toei.Shinjuku.Motoyawata" )
+      toei_shinjuku_line_for_shinjuku = ::Railway::Direction.find_by( same_as: "odpt.RailwayDirection:Toei.Shinjuku.Shinjuku" )
 
       expect( toei_shinjuku_line_for_motoyawata ).to be_present
       expect( toei_shinjuku_line_for_shinjuku ).to be_present
@@ -27,7 +27,7 @@ RSpec.describe Station::Facility::Info , :type => :model do
         if t_infos.present?
 
           t_infos.each do | transfer_info |
-            if transfer_info.railway_line_id == toei_shinjuku_line.id
+            if transfer_info.railway_line_info_id == toei_shinjuku_line.id
               if transfer_info.railway_direction_id == 0
                 # transfer_info.update( railway_direction_id: nil )
               end
@@ -48,10 +48,10 @@ RSpec.describe Station::Facility::Info , :type => :model do
       expect( nakano_sakaue ).to be_present
 
       railway_lines = {
-        main: ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.Marunouchi" ) ,
-        branch: ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" )
+        main: ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.Marunouchi" ) ,
+        branch: ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" )
       }
-      oedo_line = ::RailwayLine.find_by( same_as: "odpt.Railway:Toei.Oedo" )
+      oedo_line = ::Railway::Line::Info.find_by( same_as: "odpt.Railway:Toei.Oedo" )
 
       railway_lines.values.each do |v|
         expect( v ).to be_present
@@ -62,17 +62,17 @@ RSpec.describe Station::Facility::Info , :type => :model do
       expect( p_infos ).to be_present
 
       for_honancho_in_api_same_as = "odpt.RailDirection:TokyoMetro.Honancho"
-      for_honancho_on_branch_line = ::RailwayDirection.find_by( railway_line_id: railway_lines[ :branch ].id , in_api_same_as: for_honancho_in_api_same_as )
+      for_honancho_on_branch_line = ::Railway::Direction.find_by( railway_line_info_id: railway_lines[ :branch ].id , in_api_same_as: for_honancho_in_api_same_as )
       expect( for_honancho_on_branch_line ).to be_present
 
       p_infos.each do | platform_info |
-        if platform_info.railway_line_id == railway_lines[ :main ].id and platform_info.car_composition == 6
+        if platform_info.railway_line_info_id == railway_lines[ :main ].id and platform_info.car_composition == 6
           t_infos = platform_info.platform_transfer_infos
           if t_infos.present?
 
             t_infos.each do | transfer_info |
-              if transfer_info.railway_line_id != oedo_line.id and transfer_info.railway_direction.try( :in_api_same_as ) == for_honancho_in_api_same_as
-                expect( transfer_info.railway_line_id ).to eq( railway_lines[ :branch ].id )
+              if transfer_info.railway_line_info_id != oedo_line.id and transfer_info.railway_direction.try( :in_api_same_as ) == for_honancho_in_api_same_as
+                expect( transfer_info.railway_line_info_id ).to eq( railway_lines[ :branch ].id )
                 expect( transfer_info.railway_direction_id ).to eq( for_honancho_on_branch_line.id )
               end
             end

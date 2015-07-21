@@ -1,4 +1,4 @@
-class RailwayDirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::DirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
   # @!group Main methods
 

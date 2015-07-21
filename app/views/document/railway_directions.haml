@@ -12,12 +12,12 @@
     - raise "Error" if operator_instance.nil?
     %div{ class: [ :document , :operator , operator_instance.css_class ] }
       = operator_instance.decorate.in_document.render_title
-      - railway_directions_grouped_by_railway_line = railway_directions_in_an_operator.group_by( &:railway_line_id )
-      - railway_directions_grouped_by_railway_line.keys.sort.each do | railway_line_id |
-        - railway_directions_in_a_railway_line = railway_directions_grouped_by_railway_line[ railway_line_id ]
-        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
-        %div{ class: [ :document , :railway_line , railway_line_instance.css_class ] }
-          = railway_line_instance.decorate.in_document.render_title
+      - railway_directions_grouped_by_railway_line = railway_directions_in_an_operator.group_by( &:railway_line_info_id )
+      - railway_directions_grouped_by_railway_line.keys.sort.each do | railway_line_info_id |
+        - railway_directions_in_a_railway_line = railway_directions_grouped_by_railway_line[ railway_line_info_id ]
+        - railway_line_info_instance = ::Railway::Line::Info.find_by( id: railway_line_info_id )
+        %div{ class: [ :document , :railway_line , railway_line_info_instance.css_class ] }
+          = railway_line_info_instance.decorate.in_document.render_title
           %ul{ class: [ :railway_directions_of_each_railway_line , :in_document ] }
             - railway_directions_in_a_railway_line.each do | railway_direction |
               = railway_direction.decorate.in_document.render

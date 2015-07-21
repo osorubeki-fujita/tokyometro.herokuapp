@@ -7,7 +7,7 @@ namespace :temp do
     }
     category = :barrier_free_facilities
 
-    ::TokyoMetro::Rake::Debug::StationFacility.process( title , facilities , category )
+    ::TokyoMetro::Rake::Rails::Debug::StationFacility.process( title , facilities , category )
   end
 
   task :update_service_detail_pattern_of_akasaka_mitsuke_20150613_1 => :environment do
@@ -33,7 +33,7 @@ namespace :temp do
       h
     }
 
-    ::TokyoMetro::Rake::BugFix::BarrierFreeFacility::Pattern.process( title , facility_names , proc_for_deciding_invalidity , info_for_updating , h_for_updating , proc_for_creating_h_for_new_pattern_instance , to_test: false )
+    ::TokyoMetro::Rake::Rails::BugFix::BarrierFreeFacility::Pattern.process( title , facility_names , proc_for_deciding_invalidity , info_for_updating , h_for_updating , proc_for_creating_h_for_new_pattern_instance , to_test: false )
   end
 
   task :update_service_detail_pattern_of_akasaka_mitsuke_20150613_2 => :environment do

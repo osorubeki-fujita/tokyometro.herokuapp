@@ -3,7 +3,7 @@ fundamental_static: true
 
 #--------
 
-railway_lines: true
+railway_line_infos: true
 train_type_infos: true
 
 station_facilities: true
@@ -11,7 +11,7 @@ stations: true
 static_railway_directions: true
 points: true
 
-sub_info_of_railway_lines: true
+sub_info_of_railway_line_infos: true
 passenger_surveys: true
 
 barrier_free_infos_of_station_facilities: true

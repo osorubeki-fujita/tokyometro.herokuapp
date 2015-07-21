@@ -1,4 +1,4 @@
-class RailwayLineDecorator < Draper::Decorator
+class Railway::Line::InfoDecorator < Draper::Decorator
   delegate_all
 
   include CommonTitleRenderer
@@ -36,8 +36,8 @@ class RailwayLineDecorator < Draper::Decorator
   def self.render_title_of_railway_lines( railway_lines )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :railway_line_title }
-  = ::RailwayLineDecorator.render_common_title( request )
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::Railway::Line::InfoDecorator.render_common_title( request )
+  = ::Railway::Line::InfoDecorator.name_main( infos )
     HAML
   end
 
@@ -47,7 +47,7 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :passenger_survey_title }
   = ::PassengerSurveyDecorator.render_common_title( request , :railway_line )
-  = ::RailwayLineDecorator.name_main( infos , survey_year: survey_year )
+  = ::Railway::Line::InfoDecorator.name_main( infos , survey_year: survey_year )
     HAML
   end
 
@@ -55,7 +55,7 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :station_facility_title }
   = ::Station::Facility::InfoDecorator.render_common_title( request )
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::Railway::Line::InfoDecorator.name_main( infos )
     HAML
   end
 
@@ -64,7 +64,7 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { railway_lines: railway_lines }
 %div{ id: :train_operation_info_title }
   = ::Train::Operation::InfoDecorator.render_common_title( request )
-  = ::RailwayLineDecorator.name_main( railway_lines )
+  = ::Railway::Line::InfoDecorator.name_main( railway_lines )
     HAML
   end
 
@@ -73,7 +73,7 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :train_location_title }
   = ::Train::Location::InfoDecorator.render_common_title( request )
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::Railway::Line::InfoDecorator.name_main( infos )
     HAML
   end
 
@@ -81,7 +81,7 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :station_timetable_title }
   = ::Station::Timetable::InfoDecorator.render_common_title( request )
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::Railway::Line::InfoDecorator.name_main( infos )
     HAML
   end
 
@@ -89,7 +89,7 @@ class RailwayLineDecorator < Draper::Decorator
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_lines }
 %div{ id: :railway_timetable_title }
   = ::TokyoMetro::App::Renderer::Concerns::Header::Title::Base.new( request , ::RailwayTimetableHelper.common_title_ja , ::RailwayTimetableHelper.common_title_en ).render
-  = ::RailwayLineDecorator.name_main( infos )
+  = ::Railway::Line::InfoDecorator.name_main( infos )
     HAML
   end
 
@@ -109,10 +109,10 @@ class RailwayLineDecorator < Draper::Decorator
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :railway_line_matrixes , class: :clearfix }
-  - ::RailwayLine.tokyo_metro( including_branch_line: false ).each do | railway_line |
+  - ::Railway::Line::Info.tokyo_metro( including_branch_line: false ).each do | railway_line |
     = railway_line.decorate.render_matrix( make_link_to_railway_line: make_link_to_railway_line )
   - if including_yurakucho_and_fukutoshin
-    = ::RailwayLineDecorator.render_matrix_of_yurakucho_and_fukutoshin( make_link_to_railway_line )
+    = ::Railway::Line::InfoDecorator.render_matrix_of_yurakucho_and_fukutoshin( make_link_to_railway_line )
     HAML
   end
 
@@ -126,7 +126,7 @@ class RailwayLineDecorator < Draper::Decorator
   %div{ class: :info }
     %div{ class: :railway_line_codes }<
       %div{ class: :railway_line_code_block }
-        - [ ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.Yurakucho" ) , ::RailwayLine.find_by_same_as( "odpt.Railway:TokyoMetro.Fukutoshin" ) ].each do | railway_line |
+        - [ ::Railway::Line::Info.find_by_same_as( "odpt.Railway:TokyoMetro.Yurakucho" ) , ::Railway::Line::Info.find_by_same_as( "odpt.Railway:TokyoMetro.Fukutoshin" ) ].each do | railway_line |
           %div{ class: railway_line.css_class }<
             %div{ class: :railway_line_code_outer }<
               = railway_line.decorate.render_railway_line_code
@@ -363,9 +363,9 @@ class RailwayLineDecorator < Draper::Decorator
   = this.render_matrix( make_link_to_railway_line: make_link_to_railway_line , size: :small )
   - case this.same_as
   - when "odpt.Railway:TokyoMetro.Marunouchi"
-    = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" ) , set_anchor )
+    = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" ) , set_anchor )
   - when "odpt.Railway:TokyoMetro.Chiyoda"
-    = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ) , set_anchor )
+    = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ) , set_anchor )
   - else
     %ul{ class: [ :stations , :text_ja , :clearfix ] }
       = this.render_matrix_and_links_to_stations_of_normal_railway_line( set_anchor: set_anchor )
@@ -402,11 +402,11 @@ class RailwayLineDecorator < Draper::Decorator
   end
 
   def in_document
-    ::RailwayLineDecorator::InDocument.new( self )
+    ::Railway::Line::InfoDecorator::InDocument.new( self )
   end
 
   def in_platform_transfer_info
-    ::RailwayLineDecorator::InPlatformTransferInfo.new( self )
+    ::Railway::Line::InfoDecorator::InPlatformTransferInfo.new( self )
   end
 
   private

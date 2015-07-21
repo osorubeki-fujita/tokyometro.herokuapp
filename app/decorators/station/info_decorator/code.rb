@@ -9,7 +9,7 @@ class Station::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSubDecora
       ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , object ).render
     elsif object.tokyo_metro?
       if all
-        ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , object.station_infos_including_other_railway_lines ).render
+        ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , object.station_infos_including_other_railway_line_infos ).render
       else
         ::TokyoMetro::App::Renderer::StationCode::Normal.new( nil , object ).render
       end
@@ -25,7 +25,7 @@ class Station::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSubDecora
   end
 
   def all
-    ary = object.station_infos_including_other_railway_lines.select_tokyo_metro.map( &:station_code )
+    ary = object.station_infos_including_other_railway_line_infos.select_tokyo_metro.map( &:station_code )
     if object.at_ayase?
       ary.uniq
     else

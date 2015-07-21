@@ -1,9 +1,10 @@
 class Train::Type::Info < ActiveRecord::Base
 
   include ::TokyoMetro::Modules::Name::Common::TrainType::CssClass
+  include ::TokyoMetro::Modules::Name::Common::TrainType::ColorBasename
 
   belongs_to :in_api , class: ::Train::Type::InApi
-  belongs_to :railway_line
+  belongs_to :railway_line_info , class: ::Railway::Line::Info
 
   has_many :station_train_times , class: ::Station::TrainTime , foreign_key: :train_type_info_in_this_station_id
   has_many :travel_time_infos , class: ::Railway::Line::TravelTimeInfo , foreign_key: :train_type_info_id

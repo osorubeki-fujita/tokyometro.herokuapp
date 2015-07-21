@@ -1,48 +1,50 @@
-class RailwayLine < ActiveRecord::Base
+class Railway::Line::Info < ActiveRecord::Base
 
   include ::Association::To::Station::Infos
 
   belongs_to :operator
 
   has_many :station_facility_infos , through: :station_infos
-  has_many :women_only_car_infos , class: ::Railway::Line::WomenOnlyCarInfo , foreign_key: :railway_line_id
-  has_many :travel_time_infos , class: ::Railway::Line::TravelTimeInfo , foreign_key: :railway_line_id
+  has_many :women_only_car_infos , class: ::Railway::Line::WomenOnlyCarInfo , foreign_key: :railway_line_info_id
+  has_many :travel_time_infos , class: ::Railway::Line::TravelTimeInfo , foreign_key: :railway_line_info_id
   has_many :railway_directions
 
-  has_many :connecting_railway_lines
+  has_many :connecting_railway_line_infos , class: ::ConnectingRailwayLine::Info , foreign_key: :railway_line_info_id
 
   has_many :station_timetable_fundamental_infos
   has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
 
-  has_many :train_timetable_infos , class: ::Train::Timetable::Info , foreign_key: :railway_line_id
-  has_many :train_type_infos , class: ::Train::Type::Info , foreign_key: :railway_line_id
+  has_many :train_timetable_infos , class: ::Train::Timetable::Info , foreign_key: :railway_line_info_id
+  has_many :train_type_infos , class: ::Train::Type::Info , foreign_key: :railway_line_info_id
 
-  has_many :train_timetable_train_type_in_other_operator_infos , class: ::Train::Timetable::TrainTypeInOtherOperatorInfo , foreign_key: :railway_line_id
+  has_many :train_timetable_train_type_in_other_operator_infos , class: ::Train::Timetable::TrainTypeInOtherOperatorInfo , foreign_key: :railway_line_info_id
 
-  has_many :train_type_stopping_patterns , class: ::Train::Type::StoppingPattern , foreign_key: :railway_line_id
+  has_many :train_type_stopping_patterns , class: ::Train::Type::StoppingPattern , foreign_key: :railway_line_info_id
 
-  has_many :train_operation_infos , class: ::Train::Operation::Info , foreign_key: :railway_line_id
-  has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :railway_line_id
+  has_many :train_operation_infos , class: ::Train::Operation::Info , foreign_key: :railway_line_info_id
+  has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :railway_line_info_id
 
   has_many :air_conditioner_infos
 
-  belongs_to :main_railway_line , class: ::RailwayLine
-  belongs_to :branch_railway_line , class: ::RailwayLine
+  belongs_to :main_railway_line_info , class: ::Railway::Line::Info
+  belongs_to :branch_railway_line_info , class: ::Railway::Line::Info
 
-  has_many :twitter_accounts , as: :operator_or_railway_line
+  has_many :twitter_accounts , as: :operator_or_railway_line_info
 
-  include ::TokyoMetro::Modules::Name::Common::Fundamental::CssClass
-  include ::TokyoMetro::Modules::Name::Common::Fundamental::GetMainName
-  include ::TokyoMetro::Modules::Name::Db::GetList
+  include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
+
+  include ::OdptCommon::Modules::Name::Common::Fundamental::GetMainName
+  include ::OdptCommon::Modules::Name::Db::GetList
 
   include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
-  include ::TokyoMetro::Modules::Decision::Common::RailwayLine
+  include ::TokyoMetro::Modules::Decision::Common::RailwayLine::Name
   include ::TokyoMetro::Modules::Decision::Db::Operator
 
-  include ::TokyoMetro::Modules::Name::Common::RailwayLine
+  include ::OdptCommon::Modules::Name::Common::RailwayLine
+  include ::TokyoMetro::Modules::Name::Common::RailwayLine::CssClass
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
 
-  include ::TokyoMetro::Modules::MethodMissing::Decision::Common::RailwayLine::BranchLine
+  include ::OdptCommon::Modules::MethodMissing::Decision::Common::RailwayLine::BranchLine
 
   default_scope {
     order( index: :desc )
@@ -61,11 +63,11 @@ class RailwayLine < ActiveRecord::Base
   }
 
   scope :select_branch_lines , -> {
-    where( is_branch_railway_line: true )
+    where( is_branch_railway_line_info: true )
   }
 
   scope :except_for_branch_lines , -> {
-    where( is_branch_railway_line: [ false , nil ] )
+    where( is_branch_railway_line_info: [ false , nil ] )
   }
 
   scope :defined , -> {
@@ -166,9 +168,9 @@ class RailwayLine < ActiveRecord::Base
 
   # @!group Decision
 
-  # @param railway_line [RailwayLine]
-  def branch_railway_line_of?( _railway_line )
-    branch_railway_line? and _railway_line.id == main_railway_line_id
+  # @param railway_line [Railway::Line::Info]
+  def branch_railway_line_info_of?( _railway_line )
+    branch_railway_line_info? and _railway_line.id == main_railway_line_info_id
   end
 
   # @todo Revision - Container などを使用
@@ -181,10 +183,10 @@ class RailwayLine < ActiveRecord::Base
   class ActiveRecord_Relation
 
     def to_main_lines
-      main_ids_from_branch = select_branch_lines.map( &:main_railway_line_id ).uniq
+      main_ids_from_branch = select_branch_lines.map( &:main_railway_line_info_id ).uniq
       main_ids = except_for_branch_lines.map( &:id ).uniq
-      railway_line_ids = [ main_ids_from_branch , main_ids ].flatten.uniq.sort
-      return ::RailwayLine.where( id: railway_line_ids )
+      railway_line_info_ids = [ main_ids_from_branch , main_ids ].flatten.uniq.sort
+      return ::Railway::Line::Info.where( id: railway_line_info_ids )
     end
 
   end

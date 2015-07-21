@@ -1,9 +1,8 @@
-class RailwayDirectionDecorator < Draper::Decorator
+class Railway::DirectionDecorator < Draper::Decorator
   delegate_all
-  decorates_association :station_info
 
   def in_document
-    ::RailwayDirectionDecorator::InDocument.new( self )
+    ::Railway::DirectionDecorator::InDocument.new( self )
   end
 
   def render_in_station_timetable_header

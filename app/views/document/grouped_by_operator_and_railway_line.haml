@@ -17,15 +17,15 @@
         %h4{ class: :text_en }<
           = operator_instance.name_en
       - informations_grouped_by_railway_line = informations_in_an_operator.group_by { | info | info.railway_line.id }
-      - informations_grouped_by_railway_line.keys.sort.each do | railway_line_id |
-        - informations_in_a_railway_line = informations_grouped_by_railway_line[ railway_line_id ]
-        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
-        %div{ class: [ :railway_line , railway_line_instance.css_class ] }
+      - informations_grouped_by_railway_line.keys.sort.each do | railway_line_info_id |
+        - informations_in_a_railway_line = informations_grouped_by_railway_line[ railway_line_info_id ]
+        - railway_line_info_instance = ::Railway::Line::Info.find_by( id: railway_line_info_id )
+        %div{ class: [ :railway_line , railway_line_info_instance.css_class ] }
           %div{ class: :railway_line_name }
             %h4{ class: :text_ja }<
-              = railway_line_instance.name_ja
+              = railway_line_info_instance.name_ja
             %h5{ class: :text_en }<
-              = railway_line_instance.name_en
+              = railway_line_info_instance.name_en
           - informations_in_a_railway_line.each do | info |
             - # raise "Error: " + @proc.class.name
             - # raise "Error: " + info.class.name

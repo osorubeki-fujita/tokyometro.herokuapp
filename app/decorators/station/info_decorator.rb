@@ -25,13 +25,13 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def connecting_railway_lines_of_the_same_operator_connected_to_another_station
-    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_id ).select { | item |
+    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_info_id ).select { | item |
       item.railway_line.tokyo_metro? and item.connecting_to_another_station?
     }
   end
 
   def connecting_railway_lines_except_for_tokyo_metro
-    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_id ).select { | item |
+    connecting_railway_line_infos.includes( :railway_line ).order( :railway_line_info_id ).select { | item |
       item.railway_line.not_tokyo_metro?
     }
   end
@@ -465,7 +465,7 @@ class Station::InfoDecorator < Draper::Decorator
     if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
     elsif object.railway_line.is_branch_line?
-      object.railway_line.main_railway_line.decorate.page_name
+      object.railway_line.branch_railway_line_info.decorate.page_name
     else
       object.railway_line.decorate.page_name
     end

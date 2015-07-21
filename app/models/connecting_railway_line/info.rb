@@ -1,6 +1,6 @@
 class ConnectingRailwayLine::Info < ActiveRecord::Base
   include ::Association::To::Station::Info
-  belongs_to :railway_line , class: ::RailwayLine
+  belongs_to :railway_line_info , class: ::Railway::Line::Info
   belongs_to :note , class: ::ConnectingRailwayLine::Note
   belongs_to :connecting_station_info , class_name: ::Station::Info
 
@@ -23,7 +23,7 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
     if pluck( :index_in_station ).all?( &:present? )
       order( :index_in_station )
     elsif pluck( :index_in_station ).all?( &:blank? )
-      order( :railway_line_id )
+      order( :railway_line_info_id )
     # else
       # raise "Error"
     end

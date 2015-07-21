@@ -4,19 +4,19 @@
 
 %div{ id: :train_type_infos }
   - # 鉄道事業者ごとに分類
-  - # railway_line_id をもとに鉄道事業者を取得
+  - # railway_line_info_id をもとに鉄道事業者を取得
   - train_type_infos_grouped_by_operator = @train_type_infos.defined.group_by( &:operator_id )
   - train_type_infos_grouped_by_operator.keys.sort.each do | operator_id |
     - operator_instance = ::Operator.find_by( id: operator_id )
     - train_type_infos_in_an_operator = train_type_infos_grouped_by_operator[ operator_id ]
     %div{ class: [ :document , :operator , operator_instance.css_class ] }
       = operator_instance.decorate.in_document.render_title
-      - train_type_infos_grouped_by_railway_line = train_type_infos_in_an_operator.group_by( &:railway_line_id )
-      - train_type_infos_grouped_by_railway_line.keys.sort.each do | railway_line_id |
-        - railway_line_instance = ::RailwayLine.find_by( id: railway_line_id )
-        - train_type_infos_in_a_railway_line = train_type_infos_grouped_by_railway_line[ railway_line_id ]
-        %div{ class: [ :document , :railway_line , railway_line_instance.css_class ] }
-          = railway_line_instance.decorate.in_document.render_title
+      - train_type_infos_grouped_by_railway_line = train_type_infos_in_an_operator.group_by( &:railway_line_info_id )
+      - train_type_infos_grouped_by_railway_line.keys.sort.each do | railway_line_info_id |
+        - railway_line_info_instance = ::Railway::Line::Info.find_by( id: railway_line_info_id )
+        - train_type_infos_in_a_railway_line = train_type_infos_grouped_by_railway_line[ railway_line_info_id ]
+        %div{ class: [ :document , :railway_line , railway_line_info_instance.css_class ] }
+          = railway_line_info_instance.decorate.in_document.render_title
           %ul{ class: [ :train_type_infos_of_each_railway_line , :in_document ] }
             - train_type_infos_in_a_railway_line.each do | train_type_info |
               = train_type_info.decorate.in_document.render

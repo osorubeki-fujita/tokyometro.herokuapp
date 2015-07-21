@@ -18,8 +18,8 @@
 /config/application_memo.rb
 /config/database.yml
 
-/AccessToken
-/GoogleMapsApiKey
+/access_token
+/google_maps_api_key
 
 /db/data.yml
 /db/csv/
@@ -30,4 +30,3 @@
 /invalid_station_timetable_context.txt
 
 /public/dev-assets/*/**.*
-/tmp
