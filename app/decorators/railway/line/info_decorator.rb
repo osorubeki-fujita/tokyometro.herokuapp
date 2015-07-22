@@ -77,7 +77,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
   end
 
   def twitter_title
-    if object.operator.tokyo_metro?
+    if object.operator_info.tokyo_metro?
       "Twitter #{ object.name_ja } 運行情報"
     else
       nil
