@@ -122,7 +122,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
   end
 
   def infos_from_db_columns_of_operator_object
-    infos_from_methods_of( object.operator , :same_as )
+    infos_from_methods_of( object.operator_info , :same_as )
   end
 
   def infos_from_methods_of_railway_line_decorator

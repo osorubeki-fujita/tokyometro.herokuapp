@@ -37,8 +37,8 @@ class Train::Type::Info < ActiveRecord::Base
     /Colored\Z/ === same_as
   end
 
-  def operator_id
-    railway_line_info.operator_id
+  def operator_info_id
+    railway_line_info.operator_info_id
   end
 
   def has_color_infos?

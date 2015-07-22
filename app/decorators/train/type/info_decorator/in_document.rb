@@ -76,7 +76,7 @@ class Train::Type::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::Ap
   end
 
   def infos_from_methods_of_object
-    super( :normal? , :colored? , :css_class , :color_basename , :operator_id )
+    super( :normal? , :colored? , :css_class , :color_basename , :operator_info_id )
   end
 
   def infos_from_db_columns_of_in_api_object

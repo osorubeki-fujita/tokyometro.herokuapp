@@ -1,8 +1,8 @@
 # puts "train_operation_info"
 
 describe TokyoMetro::Api::TrainOperation::Info do
-  ginza_line = ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.Ginza" )
-  hanzomon_line = ::RailwayLine.find_by( same_as: "odpt.Railway:TokyoMetro.Hanzomon" )
+  ginza_line = ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.Ginza" )
+  hanzomon_line = ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.Hanzomon" )
 
   it "delays when the delay time is longer than 300 seconds." do
     train_operation_info_on_ginza_line_on_schedule = ::TokyoMetro::Factory::Generate::Api::TrainOperation::Info.process({

@@ -1,18 +1,18 @@
 class Operator::Info < ActiveRecord::Base
 
-  has_many :railway_line_infos , class: ::Railway::Line::Info
+  has_many :railway_line_infos , class: ::Railway::Line::Info , foreign_key: :operator_info_id
   has_many :women_only_car_infos , through: :railway_line_infos, class: ::Railway::Line::WomenOnlyCarInfo
 
-  has_many :station_timetable_fundamental_infos
-  has_many :station_timetable_infos , through: :station_timetable_fundamental_infos
+  has_many :station_timetable_fundamental_infos , class: ::Station::Timetable::FundamentalInfo , foreign_key: :operator_info_id
+  has_many :station_timetable_infos , class: ::Station::Timetable::Info , through: :station_timetable_fundamental_infos
 
-  has_many :train_timetables
+  has_many :train_timetable_infos , class: ::Train::Timetable::Info , foreign_key: :operator_info_id
 
-  has_many :train_operation_infos
+  has_many :train_operation_infos , class: ::Train::Operation::Info , foreign_key: :operator_info_id
 
   has_many :fare_normal_groups , class: ::Fare::NormalGroup , foreign_key: :operator_info_id
 
-  has_many :twitter_accounts , as: :operator_info_or_railway_line_info
+  has_many :twitter_accounts , class: ::TwitterAccount , as: :operator_info_or_railway_line_info , foreign_key: :operator_info_or_railway_line_info_id
 
   include ::OdptCommon::Modules::Polymorphic::Operator
 

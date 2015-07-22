@@ -1,10 +1,10 @@
 module ApplicationHelper
 
   def self.tokyo_metro
-    ::Operator.find_by_same_as( "odpt.Operator:TokyoMetro" )
+    ::Operator::Info.find_by_same_as( "odpt.Operator:TokyoMetro" )
   end
-  
-  def self.this_operator
+
+  def self.this_operator_info
     tokyo_metro
   end
 

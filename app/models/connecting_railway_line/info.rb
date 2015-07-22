@@ -9,11 +9,11 @@ class ConnectingRailwayLine::Info < ActiveRecord::Base
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
 
   scope :of_the_same_operator , -> {
-    where( railway_line_info_id: ::ApplicationHelper.this_operator.railway_line_infos.pluck( :id ) )
+    where( railway_line_info_id: ::ApplicationHelper.this_operator_info.railway_line_infos.pluck( :id ) )
   }
 
   scope :except_for_of_the_same_operator , -> {
-    where.not( railway_line_info_id: ::ApplicationHelper.this_operator.railway_line_infos.pluck( :id ) )
+    where.not( railway_line_info_id: ::ApplicationHelper.this_operator_info.railway_line_infos.pluck( :id ) )
   }
 
   scope :connecting_to_another_station , -> {

@@ -25,7 +25,9 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
-    connecting_railway_line_infos.includes( :railway_line_info ).order( :railway_line_info_id ).of_the_same_operator.connected_to_another_station
+    c1 = connecting_railway_line_infos.includes( :railway_line_info ).order( :railway_line_info_id )
+    c2 = c1.of_the_same_operator
+    c2.connected_to_another_station
   end
 
   def connecting_railway_line_infos_except_for_of_the_same_operator

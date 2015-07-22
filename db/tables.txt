@@ -17,14 +17,16 @@ connecting_railway_line_notes
 fare_infos
 fare_normal_groups
 operation_days
-operators
+operator_infos
 passenger_surveys
 point_additional_names
 point_categories
 point_codes
 point_infos
 railway_directions
-railway_lines
+railway_line_infos
+railway_line_travel_time_infos
+railway_line_women_only_car_infos
 rss_categories
 rss_infos
 schema_migrations
@@ -59,6 +61,4 @@ train_timetable_train_type_in_other_operator_infos
 train_type_in_apis
 train_type_infos
 train_type_stopping_patterns
-travel_time_infos
 twitter_accounts
-women_only_car_infos

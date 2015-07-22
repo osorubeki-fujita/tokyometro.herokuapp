@@ -6,7 +6,7 @@
   - # operator_info = railway_line.operator_info
   - # raise "Error: " + railway_line.same_as if operator_info.nil? ;
   - @railway_line_infos.select { | railway_line_info | railway_line_info.operator_info.present? }.group_by( &:operator_info_id ).each do | operator_info_id , railway_line_infos_of_an_operator |
-    - operator_info = ::Operator.find_by( id: operator_info_id )
+    - operator_info = ::Operator::Info.find_by( id: operator_info_id )
     %div{ class: [ :document , :operator , operator_info.css_class ] }
       = operator_info.decorate.in_document.render_title
       - railway_line_infos_of_an_operator.sort_by( &:index ).each do | railway_line_info |

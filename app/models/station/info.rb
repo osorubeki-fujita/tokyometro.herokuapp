@@ -106,7 +106,7 @@ class Station::Info < ActiveRecord::Base
 
   scope :select_tokyo_metro , ->( tokyo_metro_id = nil ) {
     if tokyo_metro_id.nil?
-      tokyo_metro_id = ::Operator.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
+      tokyo_metro_id = ::Operator::Info.find_by( same_as: "odpt.Operator:TokyoMetro" ).id
     else
       unless tokyo_metro_id.integer?
         raise "Error"

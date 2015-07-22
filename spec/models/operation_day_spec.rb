@@ -7,7 +7,7 @@ RSpec.describe OperationDay , :type => :model do
 
     it "\#current_operation_day" do
       # 2015-06-28 17:00 (Sat)
-      expect( ::TokyoMetro.current_operation_day ).to eq( ::Time.new( 2015, 7 , 13 , 12 , 0 , 0 ) )
+      expect( ::TokyoMetro.current_operation_day ).to eq( ::Time.new( 2015, 7 , 22 , 12 , 0 , 0 ) )
     end
 
     it "\#current_diagram" do

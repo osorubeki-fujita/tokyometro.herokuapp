@@ -10,7 +10,7 @@ module RailwayLineByParams
     end
 
     if params[ param_key ].blank? and use_station_info
-      r = @station_info.railway_line
+      r = @station_info.railway_line_info
     else
       railway_line_name_base_by_params = params[ param_key ].gsub( /_line\Z/ , "" )
       railway_line_name_same_as = "odpt.Railway:TokyoMetro.#{ railway_line_name_base_by_params.camelize }"

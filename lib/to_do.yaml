@@ -18,7 +18,7 @@ Report:
 
 "App and Gem":
   - "[check] TokyoMetro::Rake::Make::YamlStationList::File::EachStation"
-  - "[delete] TokyoMetro::Modules::Dictionary::Common::OperationDay"
+  - "[check] TokyoMetro::Static::OperationDay"
   -
     title: App - Train::Type::Info ロマンスカー
     contents:
@@ -343,6 +343,7 @@ Contents:
     contents:
       - 五十音順、アルファベット順
       - 運賃の数字の positioning
+      - Xxxx線の各駅まで ... 背景色
   -
     title: 駅名入力フォーム
     contents:
