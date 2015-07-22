@@ -1,7 +1,7 @@
 class Train::Location::Info < ActiveRecord::Base
   belongs_to :train_type_info , class: ::Train::Type::Info
   belongs_to :railway_line_info , class: ::Railway::Line::Info
-  belongs_to :train_owner , class: ::TrainOwner
+  belongs_to :operator_as_train_owner , class: ::Operator::AsTrainOwner
   belongs_to :railway_direction , class: ::Railway::Direction
 
   include ::Association::To::FromStation::Info

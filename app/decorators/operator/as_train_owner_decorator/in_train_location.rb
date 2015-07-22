@@ -1,4 +1,4 @@
-class TrainOwnerDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Operator::AsTrainOwnerDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { operator_info: object.operator_info }

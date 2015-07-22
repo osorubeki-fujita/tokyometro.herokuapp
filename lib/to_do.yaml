@@ -66,6 +66,7 @@ Report:
       -
         title: association に関連するもの
         contents:
+          - #{Xxxx.underscore}\s
           - #{Xxxx.underscore}\.
           - #{Xxxx.underscore}$
           - #{Xxxx.underscore.pluralize}\.
