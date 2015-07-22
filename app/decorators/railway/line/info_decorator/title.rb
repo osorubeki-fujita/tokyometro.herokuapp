@@ -82,4 +82,24 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
     HAML
   end
 
+  [ :render_in_train_location_info , :render_in_women_only_car_info ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        render_simply
+      end
+    DEF
+  end
+
+  private
+
+  def render_simply
+    h.render inline: <<-HAML , type: :haml , locals: { object: object }
+%div{ class: :title_of_a_railway_line }
+  %h3{ class: :text_ja }<
+    = object.name_ja
+  %h4{ class: :text_en }<
+    = object.name_en
+    HAML
+  end
+
 end

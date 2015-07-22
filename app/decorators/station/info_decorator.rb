@@ -5,7 +5,8 @@ class Station::InfoDecorator < Draper::Decorator
   decorates_association :station_facility
 
   [
-    :in_google_maps , :in_train_location , :in_fare_table , :in_station_timetable , :in_travel_time_info , :in_transfer_info ,
+    :in_google_maps , :in_train_location , :in_fare_table , :in_station_timetable ,
+    :in_travel_time_info , :in_transfer_info ,
     :on_station_facility_page , :code , :title , :as_direction_info
   ].each do | method_name |
     eval <<-DEF

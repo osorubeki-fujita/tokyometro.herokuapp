@@ -4,6 +4,14 @@ class Railway::Line::InfoDecorator < Draper::Decorator
   include CommonTitleRenderer
   include TwitterRenderer
 
+  [ :in_station_timetable , :in_platform_transfer_info , :in_document , :title , :matrix , :code ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        ::Railway::Line::InfoDecorator::#{ method_name.camelize }.new( self )
+      end
+    DEF
+  end
+
   def self.common_title_ja
     "路線のご案内"
   end
@@ -107,19 +115,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  def render_simple_title
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :title_of_a_railway_line }
-  %h3{ class: :text_ja }<
-    = this.name_ja
-  %h4{ class: :text_en }<
-    = this.name_en
-    HAML
-  end
-
-  alias :render_title_in_train_location :render_simple_title
-  alias :render_title_in_women_only_car_info :render_simple_title
-
   # @!endgroup
 
   def render_travel_time_simple_infos
@@ -127,14 +122,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
 - this.travel_time_infos.each do | travel_time_info |
   = travel_time_info.decorate.render_simple_info
     HAML
-  end
-
-  [ :in_station_timetable , :in_platform_transfer_info , :in_document , :title , :matrix , :code ].each do | method_name |
-    eval <<-DEF
-      def #{ method_name }
-        ::Railway::Line::InfoDecorator::#{ method_name.camelize }.new( self )
-      end
-    DEF
   end
 
   private
