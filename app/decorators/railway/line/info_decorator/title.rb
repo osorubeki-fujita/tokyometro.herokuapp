@@ -93,7 +93,7 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
   private
 
   def render_simply
-    h.render inline: <<-HAML , type: :haml , locals: { object: object }
+    h.render inline: <<-HAML , type: :haml , locals: h_object
 %div{ class: :title_of_a_railway_line }
   %h3{ class: :text_ja }<
     = object.name_ja
