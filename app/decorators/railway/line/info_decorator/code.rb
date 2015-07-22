@@ -1,4 +1,4 @@
-class Railway::Line::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::Line::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def render( must_display_line_color: true , small: false , clearfix: false )
     if railway_line_code_letter.present?

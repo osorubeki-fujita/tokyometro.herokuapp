@@ -1,7 +1,8 @@
-class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppSubDecorator
 
-  def self.render_all_railway_line_infos( including_yurakucho_and_fukutoshin: false , make_link_to_railway_line: true )
+  def self.render_all_railway_line_infos( request , including_yurakucho_and_fukutoshin: false , make_link_to_railway_line: true )
     h_locals = {
+      request: request ,
       including_yurakucho_and_fukutoshin: including_yurakucho_and_fukutoshin ,
       make_link_to_railway_line: make_link_to_railway_line
     }
@@ -9,7 +10,7 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :railway_line_matrixes , class: :clearfix }
   - ::Railway::Line::Info.tokyo_metro( including_branch_line: false ).each do | railway_line_info |
-    = railway_line_info.decorate.matrix.render_normally( make_link_to_railway_line: make_link_to_railway_line )
+    = railway_line_info.decorate.matrix.on( request ).render_normally( make_link_to_railway_line: make_link_to_railway_line )
   - if including_yurakucho_and_fukutoshin
     = ::Railway::Line::InfoDecorator::Matrix.render_yurakucho_and_fukutoshin( make_link_to_railway_line )
     HAML
@@ -42,6 +43,12 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     HAML
   end
 
+  def on( request )
+    @request = request
+
+    return self
+  end
+
   def render_normally( make_link_to_railway_line: true , link_controller_name: nil , size: :normal )
     raise "Error" if !( make_link_to_railway_line ) and link_controller_name.present?
 
@@ -52,7 +59,6 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
       this: self ,
       class_of_normal_matrix_domain: _class_of_normal_matrix_domain ,
       url: url ,
-      make_link_to_railway_line: make_link_to_railway_line ,
       small_railway_line_code: ( size == :very_small )
     }
 
@@ -60,8 +66,8 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     when :normal , :small , :very_small
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_of_normal_matrix_domain }
-  - if make_link_to_railway_line
-    = link_to_unless_current( "" , url )
+  - if url.present?
+    = link_to( "" , url )
   %div{ class: [ :info , :clearfix ] }
     = this.code.render_with_outer_domain( small: small_railway_line_code )
     = this.render_name( process_special_railway_line: true )
@@ -108,6 +114,7 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
   def render_with_links_to_stations_of_railway_line_including_branch( branch_line , set_anchor )
     h_locals = {
       this: self ,
+      request: @request ,
       branch_line: branch_line ,
       type_of_link_to_station: @type_of_link_to_station ,
       set_anchor: set_anchor
@@ -116,7 +123,7 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
 %ul{ class: [ :stations_on_main_line , :text_ja , :clearfix ] }
   = this.render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
 %ul{ class: [ :stations_on_branch_line , :text_ja , :clearfix ] }
-  = branch_line.decorate.matrix.render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
+  = branch_line.decorate.matrix.on( request ).render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
     HAML
   end
 
@@ -136,12 +143,17 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
   end
 
   def url_of_link_on_normal_matrix( make_link_to_railway_line , link_controller_name )
+    url_h = {}
     if make_link_to_railway_line
       if link_controller_name.present?
-        return h.url_for( controller: link_controller_name , action: :action_for_railway_line_page , railway_line: page_name )
+        url_h = { controller: link_controller_name , action: :action_for_railway_line_page , railway_line: page_name }
       else
-        return h.url_for( action: page_name )
+        url_h = { action: page_name }
       end
+    end
+
+    if current_page?( url_h )
+      return u.url_for( url_h , only_path: true )
     end
 
     return nil

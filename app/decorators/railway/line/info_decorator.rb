@@ -129,28 +129,12 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  def in_station_timetable
-    ::Railway::Line::InfoDecorator::InStationTimetable.new( self )
-  end
-
-  def in_platform_transfer_info
-    ::Railway::Line::InfoDecorator::InPlatformTransferInfo.new( self )
-  end
-
-  def in_document
-    ::Railway::Line::InfoDecorator::InDocument.new( self )
-  end
-
-  def title
-    ::Railway::Line::InfoDecorator::Title.new( self )
-  end
-
-  def matrix
-    ::Railway::Line::InfoDecorator::Matrix.new( self )
-  end
-
-  def code
-    ::Railway::Line::InfoDecorator::Code.new( self )
+  [ :in_station_timetable , :in_platform_transfer_info , :in_document , :title , :matrix , :code ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        ::Railway::Line::InfoDecorator::#{ method_name.camelize }.new( self )
+      end
+    DEF
   end
 
   private

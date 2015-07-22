@@ -1,4 +1,4 @@
-class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def self.render_in_railway_line_page( railway_line_infos )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
