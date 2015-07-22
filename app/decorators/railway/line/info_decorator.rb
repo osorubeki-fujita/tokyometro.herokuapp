@@ -20,14 +20,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     "Information of railway lines"
   end
 
-  def self.render_travel_time_simple_infos_of_multiple_railway_line_infos( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-- infos.each do | railway_line_info |
-  %div{ class: :railway_line }
-    = railway_line_info.decorate.render_travel_time_simple_infos
-    HAML
-  end
-
   def name_ja_with_operator_name( process_special_railway_line: false , prefix: nil , suffix: nil )
     if process_special_railway_line and seibu_yurakucho_line?
       str = "西武線"
@@ -62,26 +54,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     end
 
     return str
-  end
-
-  def page_name
-    if object.branch_line?
-      "#{ css_class }_line".gsub( /_branch/ , "" )
-    else
-      "#{ css_class }_line"
-    end
-  end
-
-  def travel_time_table_id
-    "#{ css_class }_travel_time"
-  end
-
-  def twitter_title
-    if object.operator_info.tokyo_metro?
-      "Twitter #{ object.name_ja } 運行情報"
-    else
-      nil
-    end
   end
 
   def render_name( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil , clearfix: false )
@@ -121,10 +93,38 @@ class Railway::Line::InfoDecorator < Draper::Decorator
 
   # @!endgroup
 
+  def page_name
+    if object.branch_line?
+      "#{ css_class }_line".gsub( /_branch/ , "" )
+    else
+      "#{ css_class }_line"
+    end
+  end
+
+  def travel_time_table_id
+    "#{ css_class }_travel_time"
+  end
+
+  def twitter_title
+    if object.operator_info.tokyo_metro?
+      "Twitter #{ object.name_ja } 運行情報"
+    else
+      nil
+    end
+  end
+
   def render_travel_time_simple_infos
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - this.travel_time_infos.each do | travel_time_info |
   = travel_time_info.decorate.render_simple_info
+    HAML
+
+
+  def self.render_travel_time_simple_infos_of_multiple_railway_line_infos( railway_line_infos )
+    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+- infos.each do | railway_line_info |
+  %div{ class: :railway_line }
+    = railway_line_info.decorate.render_travel_time_simple_infos
     HAML
   end
 
