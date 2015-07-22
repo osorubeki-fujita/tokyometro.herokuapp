@@ -4,9 +4,9 @@ class Operator::AsTrainOwnerDecorator::InTrainLocation < TokyoMetro::Factory::De
     h.render inline: <<-HAML , type: :haml , locals: { operator_info: object.operator_info }
 %li{ class: [ :train_owner , :sub_info ] }
   %p{ class: :text_ja }<
-    = operator_info.name_ja_normal + "の車両で運行"
+    = operator_info.name_ja_normal_precise + "の車両で運行"
   %p{ class: :text_en }<
-    = "Cars owned by " + operator_info.name_en_normal
+    = "Cars owned by " + operator_info.name_en_normal_precise
     HAML
   end
 
