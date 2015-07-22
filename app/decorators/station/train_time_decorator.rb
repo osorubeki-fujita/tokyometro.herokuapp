@@ -46,7 +46,7 @@ class Station::TrainTimeDecorator < Draper::Decorator
   - if train_type_info_to_display.present?
     = train_type_info_to_display.decorate.render_in_station_timetable
   - if terminal_station_info_to_display.present?
-    = terminal_station_info_to_display.decorate.render_name_ja_in_station_timetable
+    = terminal_station_info_to_display.decorate.in_station_timetable.render_name_ja
   - if this.has_additional_infos?
     = this.render_additional_infos_in_station_timetable
       HAML

@@ -4,7 +4,7 @@
   = @twitter_processor.render
 
 - station_info_decorated = @station_info.decorate
-= station_info_decorated.render_title_of_fare
+= station_info_decorated.title.render_in_fare_page
 
 %div{ id: :links_to_station_info_pages , class: :clearfix }
   = station_info_decorated.render_title_of_links_to_station_info_pages( request )

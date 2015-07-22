@@ -1,7 +1,7 @@
 - station_info_decorated = @station_info.decorate
 
 = render( "common_content" )
-= station_info_decorated.render_title_of_station_timetable
+= station_info_decorated.title.render_in_station_timetable_page
 
 %div{ id: :links_to_station_info_pages , class: :clearfix }
   = station_info_decorated.render_title_of_links_to_station_info_pages( request )

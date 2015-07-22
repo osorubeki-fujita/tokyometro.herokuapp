@@ -1,11 +1,11 @@
 - station_info_decorated = @station_info.decorate
-- station_info_decorated_for_google_map = station_info_decorated.google_map
+- station_info_decorated_for_google_map = station_info_decorated.in_google_maps
 
 - all_exit_infos = @point_infos.select( &:exit? ).sort_by( &:code_as_instance )
 
 = render "common_content"
 
-= station_info_decorated.render_title_of_station_facility
+= station_info_decorated.title.render_in_station_facility_page
 = station_info_decorated.render_latest_passenger_survey
 
 - if @real_time_info_processor.present?

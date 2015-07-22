@@ -6,10 +6,9 @@ class Railway::DirectionDecorator < Draper::Decorator
   end
 
   def render_in_station_timetable_header
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- station_info_deccorated = this.station_info.decorate
+    h.render inline: <<-HAML , type: :haml , locals: { station_info_deccorated: object.station_info.decorate }
 %div{ class: :direction }<
-  = station_info_deccorated.render_direction_in_station_timetable_header
+  = station_info_deccorated.in_station_timetable.render_as_direction_info
     HAML
   end
 

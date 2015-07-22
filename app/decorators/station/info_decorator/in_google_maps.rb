@@ -53,6 +53,10 @@ class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSu
 
 =end
 
+  def name_ja_url_encoded
+    ::ERB::Util.url_encode( object.name_ja_actual )
+  end
+
   def json_title
     "#{ name_ja_actual } #{ name_en }"
   end
