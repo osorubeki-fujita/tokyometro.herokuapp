@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Operator, :type => :model do
+RSpec.describe Operator::Info, :type => :model do
   columns = [
     :same_as ,
     :name_ja_short ,
@@ -41,7 +41,7 @@ RSpec.describe Operator, :type => :model do
 
   operator_infos_in_db.each do | operator_info_in_db |
     same_as = operator_info_in_db
-    o = ::Operator.find_by( same_as: same_as )
+    o = ::Operator::Info.find_by( same_as: same_as )
     it 'is present.' do
       expect(o).to be_present
     end

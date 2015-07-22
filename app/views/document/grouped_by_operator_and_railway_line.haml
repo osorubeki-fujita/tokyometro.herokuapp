@@ -3,12 +3,12 @@
 = ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
 
 %div{ id: @content_id }
-  - informations_grouped_by_operator = @informations.group_by { | info | info.railway_line_info.operator.id }
+  - informations_grouped_by_operator_info = @informations.group_by { | info | info.railway_line_info.operator_info.id }
   - raise "Error" if informations_grouped_by_operator.nil?
-  - informations_grouped_by_operator.keys.sort.each do | operator_id |
-    - informations_in_an_operator = informations_grouped_by_operator[ operator_id ]
+  - informations_grouped_by_operator_info.keys.sort.each do | operator_info_id |
+    - informations_in_an_operator = informations_grouped_by_operator[ operator_info_id ]
     - raise "Error" if informations_in_an_operator.nil?
-    - operator_instance = ::Operator.find_by( id: operator_id )
+    - operator_instance = ::Operator::Info.find_by( id: operator_info_id )
     - raise "Error" if operator_instance.nil?
     %div{ class: [ :operator , operator_instance.css_class ] }
       %div{ class: :operator_name }

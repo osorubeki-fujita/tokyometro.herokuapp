@@ -2,7 +2,7 @@ class Station::Info < ActiveRecord::Base
 
   belongs_to :station_facility_info , class: ::Station::Facility::Info
   belongs_to :railway_line_info , class: ::Railway::Line::Info
-  belongs_to :operator
+  belongs_to :operator_info , class: ::Operator::Info
 
   has_many :station_passenger_surveys , class: ::Station::PassengerSurvey, foreign_key: :station_info_id
   has_many :passenger_surveys , through: :station_passenger_surveys , class: ::PassengerSurvey
@@ -112,7 +112,7 @@ class Station::Info < ActiveRecord::Base
         raise "Error"
       end
     end
-    where( operator_id: tokyo_metro_id )
+    where( operator_info_id: tokyo_metro_id )
   }
 
   scope :tokyo_metro , ->( tokyo_metro_id = nil ) {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715104701) do
+ActiveRecord::Schema.define(version: 20150722074410) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
     t.string   "same_as",              limit: 255
     t.integer  "from_station_info_id"
     t.integer  "to_station_info_id"
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.integer  "normal_group_id"
     t.string   "id_urn",               limit: 255
     t.datetime "dc_date"
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
     t.integer  "child_ticket_fare"
     t.integer  "ic_card_fare"
     t.integer  "child_ic_card_fare"
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.date     "date_of_revision"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
     t.datetime "updated_at"
   end
 
-  create_table "operators", force: :cascade do |t|
+  create_table "operator_infos", force: :cascade do |t|
     t.string   "name_ja",                 limit: 255
     t.string   "name_hira",               limit: 255
     t.string   "name_en",                 limit: 255
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
   create_table "passenger_surveys", force: :cascade do |t|
     t.integer  "survey_year"
     t.integer  "station_info_id"
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.integer  "passenger_journeys"
     t.string   "same_as",            limit: 255
     t.string   "id_urn",             limit: 255
@@ -263,7 +263,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
     t.string   "name_en_normal",                     limit: 255
     t.string   "name_en_with_operator_name_precise", limit: 255
     t.string   "name_en_with_operator_name",         limit: 255
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.string   "same_as",                            limit: 255
     t.float    "index"
     t.string   "color",                              limit: 255
@@ -375,7 +375,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
   end
 
   create_table "station_infos", force: :cascade do |t|
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.string   "same_as",                       limit: 255
     t.integer  "railway_line_info_id"
     t.integer  "index_in_railway_line"
@@ -445,7 +445,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
   create_table "station_timetable_fundamental_infos", force: :cascade do |t|
     t.integer  "info_id",              null: false
     t.integer  "station_info_id",      null: false
-    t.integer  "operator_id",          null: false
+    t.integer  "operator_info_id",     null: false
     t.integer  "railway_line_info_id", null: false
     t.integer  "railway_direction_id", null: false
     t.datetime "created_at"
@@ -525,7 +525,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
     t.string   "id_urn",               limit: 255
     t.datetime "dc_date"
     t.datetime "valid_until"
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.datetime "time_of_origin"
     t.integer  "railway_line_info_id"
     t.integer  "status_id"
@@ -550,8 +550,8 @@ ActiveRecord::Schema.define(version: 20150715104701) do
   end
 
   create_table "train_owners", force: :cascade do |t|
-    t.integer  "operator_id"
-    t.string   "same_as",     limit: 255
+    t.integer  "operator_info_id"
+    t.string   "same_as",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -578,7 +578,7 @@ ActiveRecord::Schema.define(version: 20150715104701) do
     t.datetime "dc_date"
     t.string   "train_number",                         limit: 255
     t.integer  "railway_line_info_id"
-    t.integer  "operator_id"
+    t.integer  "operator_info_id"
     t.integer  "train_type_info_id"
     t.integer  "train_name_id"
     t.integer  "railway_direction_id"
@@ -634,10 +634,10 @@ ActiveRecord::Schema.define(version: 20150715104701) do
   create_table "twitter_accounts", force: :cascade do |t|
     t.string   "name"
     t.string   "widget_id"
-    t.integer  "operator_or_railway_line_info_id"
-    t.string   "operator_or_railway_line_info_type"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.integer  "operator_info_or_railway_line_info_id"
+    t.string   "operator_info_or_railway_line_info_type"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
 end

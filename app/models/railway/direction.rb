@@ -9,4 +9,13 @@ class Railway::Direction < ActiveRecord::Base
   has_many :platform_transfer_infos , class: ::Station::Facility::Platform::TransferInfo , foreign_key: :railway_direction_id
 
   has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :railway_direction_id
+
+  def operator_info
+    railway_line_info.operator_info
+  end
+
+  def operator_info_id
+    railway_line_info.operator_info_id
+  end
+
 end

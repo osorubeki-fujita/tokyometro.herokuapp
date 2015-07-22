@@ -2,7 +2,7 @@ class Railway::Line::Info < ActiveRecord::Base
 
   has_many :station_infos , class: ::Station::Info , foreign_key: :railway_line_info_id
 
-  belongs_to :operator
+  belongs_to :operator_info , class: ::Operator::Info
 
   has_many :station_facility_infos , through: :station_infos
   has_many :women_only_car_infos , class: ::Railway::Line::WomenOnlyCarInfo , foreign_key: :railway_line_info_id
@@ -29,7 +29,7 @@ class Railway::Line::Info < ActiveRecord::Base
   belongs_to :main_railway_line_info , class: ::Railway::Line::Info
   belongs_to :branch_railway_line_info , class: ::Railway::Line::Info
 
-  has_many :twitter_accounts , as: :operator_or_railway_line_info
+  has_many :twitter_accounts , as: :operator_info_or_railway_line_info
 
   include ::OdptCommon::Modules::Polymorphic::RailwayLine
   include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
@@ -60,7 +60,7 @@ class Railway::Line::Info < ActiveRecord::Base
       end
     end
 
-    where( operator_id: tokyo_metro_id ).includes( :station_infos )
+    where( operator_info_id: tokyo_metro_id ).includes( :station_infos )
   }
 
   scope :select_branch_lines , -> {

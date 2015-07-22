@@ -1,4 +1,4 @@
-class OperatorDecorator < Draper::Decorator
+class Operator::InfoDecorator < Draper::Decorator
   delegate_all
 
   include TwitterRenderer
@@ -8,7 +8,7 @@ class OperatorDecorator < Draper::Decorator
   end
 
   def in_document
-    ::OperatorDecorator::InDocument.new( self )
+    ::Operator::InfoDecorator::InDocument.new( self )
   end
 
 end

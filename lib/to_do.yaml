@@ -71,6 +71,7 @@ Report:
           - #{Xxxx.underscore.pluralize}\.
           - #{Xxxx.underscore.pluralize}$
           - #{Xxxx.underscore}_id
+          - #{Xxxx.underscore}_in_db
       - 【注意】db の rename_table を忘れないこと
       -
         title: Operator 関連の名前空間（候補）
@@ -124,7 +125,7 @@ Report:
     title: 支線の処理
     contents:
       - Station::Info , Railway::Line::Info または別の名前空間に自然なメソッドを定義
-      - あるいは TokyoMetro::Container < OdptCommon::Container などを定義
+      - あるいは TokyoMetro::App::Container < OdptCommon::App::Container などを定義
   - 浅草駅 ホーム情報
   - その他、必要な Refactoring
 

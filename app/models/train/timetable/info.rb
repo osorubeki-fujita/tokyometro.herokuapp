@@ -1,6 +1,6 @@
 class Train::Timetable::Info < ActiveRecord::Base
   belongs_to :railway_line_info , class: ::Railway::Line::Info
-  belongs_to :operator , class: ::Operator
+  belongs_to :operator_info , class: ::Operator::Info
   belongs_to :railway_direction , class: ::Railway::Direction
   belongs_to :train_owner , class: ::TrainOwner
   belongs_to :operation_day , class: ::OperationDay

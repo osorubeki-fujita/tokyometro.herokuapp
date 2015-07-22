@@ -361,7 +361,7 @@ class Station::InfoDecorator < Draper::Decorator
 
   def render_connecting_railway_lines_in_travel_time_infos
     h_locals = {
-      c_railway_line_infos: object.connecting_railway_line_infos.display_on_railway_line_page.includes( :railway_line_info , railway_line_info: :operator )
+      c_railway_line_infos: object.connecting_railway_line_infos.display_on_railway_line_page.includes( :railway_line_info , railway_line_info: :operator_info )
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ class: [ :railway_lines , :clearfix ] }

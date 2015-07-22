@@ -3,5 +3,5 @@
 = ::TokyoMetro::App::Renderer::Concerns::Header::Title::DocumentContent.new( request , @title_ja , @title_en ).render
 
 %ul{ id: :operators , class: :in_document }
-  - @operators.each do | operator |
-    = operator.decorate.in_document.render
+  - @operator_infos.each do | operator_info |
+    = operator_info.decorate.in_document.render

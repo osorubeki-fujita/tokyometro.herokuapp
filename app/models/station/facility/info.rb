@@ -11,7 +11,7 @@ class Station::Facility::Info < ActiveRecord::Base
   has_many :railway_line_infos , through: :connecting_railway_line_infos , class: ::Railway::Line
   # has_many :railway_line_infos , through: :station_infos <- In this case, railway lines of another operators will not be selected.
 
-  has_many :operators , through: :railway_line_infos
+  has_many :operator_infos , through: :railway_line_infos , class: ::Operator::Info
 
   has_many :station_facility_name_aliases , class: ::Station::Facility::NameAlias , foreign_key: :station_facility_info_id
   has_many :barrier_free_facility_infos , class: ::BarrierFreeFacility::Info , foreign_key: :station_facility_info_id

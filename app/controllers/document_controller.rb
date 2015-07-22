@@ -10,7 +10,7 @@ class DocumentController < ApplicationController
   end
 
   def operators
-    @operators = Operator.all
+    @operator_infos = ::Operator::Info.all
     @title = "鉄道事業者"
     @title_en = "Operators"
     @title_ja = @title
@@ -18,7 +18,7 @@ class DocumentController < ApplicationController
   end
 
   def train_owners
-    @train_owners = TrainOwner.all.includes( :operator )
+    @train_owners = TrainOwner.all.includes( :operator_info )
     @title = "車両所有事業者"
     @title_en = "Train owners"
     @title_ja = @title
@@ -26,7 +26,7 @@ class DocumentController < ApplicationController
   end
 
   def railway_line_infos
-    @railway_line_infos = ::Railway::Line::Info.all.includes( :operator )
+    @railway_line_infos = ::Railway::Line::Info.all.includes( :operator_info )
     @title = "路線"
     @title_en = "Railway lines"
     @title_ja = @title
@@ -34,7 +34,7 @@ class DocumentController < ApplicationController
   end
 
   def railway_directions
-    infos = ::Railway::Direction.all.includes( :railway_line , :station_info , railway_line: :operator )
+    infos = ::Railway::Direction.all.includes( :railway_line , :station_info , railway_line: :operator_info )
     @title = "路線の行先（方面）"
     @title_en = "Railway directions"
     @title_ja = @title
@@ -46,7 +46,7 @@ class DocumentController < ApplicationController
   def train_type_infos
     infos = ::Train::Type::Info.all.includes( :railway_line , :in_api , # :train_type_stopping_patterns ,
       # train_type_stopping_patterns: :stopping_patterns ,
-      railway_line: :operator
+      railway_line: :operator_info
     )
     @title = "列車種別"
     @title_en = "Train types"

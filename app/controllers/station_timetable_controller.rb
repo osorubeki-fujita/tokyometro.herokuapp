@@ -41,12 +41,12 @@ class StationTimetableController < ApplicationController
   end
 
   def base_of_station_page_title
-    railway_line_name = [ @railway_line ].flatten.map( &:name_ja).join( "・" )
+    railway_line_name = [ @railway_line_infos ].flatten.map( &:name_ja).join( "・" )
     "の時刻表（#{ railway_line_name }）"
   end
 
   def set_railway_line_for_station_page
-    @railway_line = railway_line_by_params( branch_railway_line_info: :no_process , use_station_info: true )
+    @railway_line_infos = [ railway_line_by_params( branch_railway_line_info: :no_process , use_station_info: true ) ].flatten
   end
 
   def station_info_ids
@@ -54,11 +54,11 @@ class StationTimetableController < ApplicationController
   end
 
   def station_timetable_info_ids
-    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_info_id: @railway_line_infos.pluck( :id ) ).pluck( :info_id )
+    ::Station::Timetable::FundamentalInfo.where( station_info_id: station_info_ids , railway_line_info_id: @railway_line_infos.map( &:id ) ).pluck( :info_id )
   end
 
   def railway_line_info_ids_of_this_station
-    ::Station::Info.where( id: :station_info_ids ).pluck( :railway_line_info_id ).uniq.sort
+    ::Station::Info.where( id: station_info_ids ).pluck( :railway_line_info_id ).uniq.sort
   end
 
   def set_railway_line_infos_for_station_page

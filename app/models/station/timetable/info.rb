@@ -4,8 +4,8 @@ class Station::Timetable::Info < ActiveRecord::Base
 
   has_many :station_infos , through: :fundamental_infos , class: ::Station::Info
   has_many :railway_line_infos , through: :fundamental_infos , class: ::Railway::Line::Info
-  has_many :operators , through: :fundamental_infos
-  has_many :railway_directions , through: :fundamental_infos
+  has_many :operator_infos , through: :fundamental_infos , class: ::Operator::Info
+  has_many :railway_directions , through: :fundamental_infos , class: ::Railway::Direction
 
   def has_only_one_fundamental_info?
     fundamental_infos.length == 1

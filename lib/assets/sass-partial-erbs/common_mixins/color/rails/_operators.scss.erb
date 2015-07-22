@@ -1,7 +1,7 @@
 @charset "utf-8" ;
 
-<% ::Operator.all.defined.each do | operator | %>
-  <% if operator.css_class.present? %>
-$operator_<%= operator.css_class %>_bgcolor: <%= operator.color %> ;
+<% ::Operator::Info.all.defined.each do | operator_info| %>
+  <% if operator_info.css_class.present? %>
+$operator_<%= operator_info.css_class %>_bgcolor: <%= operator_info.color %> ;
   <% end %>
 <% end %>

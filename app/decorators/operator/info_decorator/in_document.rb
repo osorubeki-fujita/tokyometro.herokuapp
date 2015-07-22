@@ -1,4 +1,4 @@
-class OperatorDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
 
   include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
 
