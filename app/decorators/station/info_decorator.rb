@@ -10,7 +10,7 @@ class Station::InfoDecorator < Draper::Decorator
   ].each do | method_name |
     eval <<-DEF
       def #{ method_name }
-        ::Station::InfoDecorator::#{ method_name.capitalize }.new( self )
+        ::Station::InfoDecorator::#{ method_name.camelize }.new( self )
       end
     DEF
   end

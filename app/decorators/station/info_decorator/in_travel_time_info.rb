@@ -21,6 +21,7 @@ class Station::InfoDecorator::InTravelTimeInfo < TokyoMetro::Factory::Decorate::
 
   def render_connecting_railway_lines
     h_locals = {
+      request: request ,
       c_railway_line_infos: object.connecting_railway_line_infos.display_on_railway_line_page.includes( :railway_line_info , railway_line_info: :operator_info )
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals

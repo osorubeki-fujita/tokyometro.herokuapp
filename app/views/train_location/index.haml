@@ -8,4 +8,4 @@
 = ::Train::Location::InfoDecorator.render_top_title( request , domain_id_name: :train_location_title )
 %div{ id: :railway_lines }
   = @real_time_info_processor.render( include_train_location_infos: false , controller: :train_location , options: :add_index_of_train_location )
-  - # = ::Railway::Line::InfoDecorator::Matrix.render_all_railway_line_infos( request , including_yurakucho_and_fukutoshin: true , make_link_to_railway_line: true , controller: :train_location )
+  - # = ::Railway::Line::InfoDecorator::Matrix.render_all_railway_line_infos( request , including_yurakucho_and_fukutoshin: true , make_link_to_railway_line: true , controller_of_linked_page: :train_location )

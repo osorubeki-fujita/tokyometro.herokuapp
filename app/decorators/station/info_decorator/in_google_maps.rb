@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InGoogleMap < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InGoogleMaps < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def render_map_canvas
     h.content_tag(

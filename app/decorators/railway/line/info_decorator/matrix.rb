@@ -1,16 +1,17 @@
 class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppSubDecorator
 
-  def self.render_all_railway_line_infos( request , including_yurakucho_and_fukutoshin: false , make_link_to_railway_line: true )
+  def self.render_all_railway_line_infos( request , including_yurakucho_and_fukutoshin: false , make_link_to_railway_line: true , controller_of_linked_page: nil )
     h_locals = {
       request: request ,
       including_yurakucho_and_fukutoshin: including_yurakucho_and_fukutoshin ,
-      make_link_to_railway_line: make_link_to_railway_line
+      make_link_to_railway_line: make_link_to_railway_line ,
+      controller_of_linked_page: controller_of_linked_page
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :railway_line_matrixes , class: :clearfix }
   - ::Railway::Line::Info.tokyo_metro( including_branch_line: false ).each do | railway_line_info |
-    = railway_line_info.decorate.matrix.on( request ).render_normally( make_link_to_railway_line: make_link_to_railway_line )
+    = railway_line_info.decorate.matrix.on( request ).render_normally( make_link_to_railway_line: make_link_to_railway_line , controller_of_linked_page: controller_of_linked_page )
   - if including_yurakucho_and_fukutoshin
     = ::Railway::Line::InfoDecorator::Matrix.render_yurakucho_and_fukutoshin( make_link_to_railway_line )
     HAML
@@ -43,17 +44,11 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     HAML
   end
 
-  def on( request )
-    @request = request
-
-    return self
-  end
-
-  def render_normally( make_link_to_railway_line: true , link_controller_name: nil , size: :normal )
-    raise "Error" if !( make_link_to_railway_line ) and link_controller_name.present?
+  def render_normally( make_link_to_railway_line: true , controller_of_linked_page: nil , size: :normal )
+    raise "Error" if !( make_link_to_railway_line ) and controller_of_linked_page.present?
 
     _class_of_normal_matrix_domain = class_of_normal_matrix_domain( size )
-    url = url_of_link_on_normal_matrix( make_link_to_railway_line , link_controller_name )
+    url = url_of_link_on_normal_matrix( make_link_to_railway_line , controller_of_linked_page )
 
     h_locals = {
       this: self ,
@@ -142,18 +137,18 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     end
   end
 
-  def url_of_link_on_normal_matrix( make_link_to_railway_line , link_controller_name )
+  def url_of_link_on_normal_matrix( make_link_to_railway_line , controller_of_linked_page )
     url_h = {}
     if make_link_to_railway_line
-      if link_controller_name.present?
-        url_h = { controller: link_controller_name , action: :action_for_railway_line_page , railway_line: page_name }
+      if controller_of_linked_page.present?
+        url_h = { controller: controller_of_linked_page , action: :action_for_railway_line_page , railway_line: decorator.page_name }
       else
         url_h = { action: page_name }
       end
     end
 
-    if current_page?( url_h )
-      return u.url_for( url_h , only_path: true )
+    unless current_page?( url_h )
+      return u.url_for( url_h.merge( { only_path: true } ) )
     end
 
     return nil
