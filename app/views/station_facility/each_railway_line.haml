@@ -1,4 +1,4 @@
 = render "common_content"
 
-= ::Railway::Line::InfoDecorator.render_title_of_station_facility( @railway_lines )
+= ::Railway::Line::InfoDecorator::Title.render_in_station_facility_page( @railway_line_infos )
 %div{ id: :station_facility_contents }

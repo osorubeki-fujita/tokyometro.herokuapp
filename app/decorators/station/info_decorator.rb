@@ -247,7 +247,7 @@ class Station::InfoDecorator < Draper::Decorator
   def render_title_of_passenger_survey
     h.render inline: <<-HAML , type: :haml , locals: { info: self }
 %div{ id: :passenger_survey_title }
-  = ::PassengerSurveyDecorator.render_common_title( request , :station )
+  = ::PassengerSurveyDecorator.render_common_title( :station )
   = info.render_header( station_code: true , all_station_codes: true )
     HAML
   end

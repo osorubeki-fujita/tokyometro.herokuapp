@@ -21,7 +21,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   end
 
   # タイトルを記述するメソッド（路線別・年度別 共通部分）
-  def self.render_common_title( request , type = nil , text_en: common_title_en )
+  def self.render_common_title( type = nil , request = nil , text_en: common_title_en )
     super( request , text_ja: common_title_ja( type ) , text_en: text_en )
   end
 
@@ -29,7 +29,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   def self.render_title_when_grouped_by_year( year )
     h.render inline: <<-HAML , type: :haml , locals: { year: year }
 %div{ id: :passenger_survey_title }
-  = ::PassengerSurveyDecorator.render_common_title( request , :year )
+  = ::PassengerSurveyDecorator.render_common_title( :year )
   = ::PassengerSurveyDecorator.render_year_in_title( year )
     HAML
   end
@@ -58,7 +58,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   end
 
   alias :journeys_separated_by_comma :passenger_journeys_separated_by_comma
-  
+
   def render_station_name_in_table( station_info = station_infos.first )
     h.render inline: <<-HAML , type: :haml , locals: { this: self , station_info: station_info }
 - url_of_station_page = url_for( controller: :passenger_survey , action: :action_for_station_page , station: station_info.name_in_system.underscore )
@@ -86,7 +86,7 @@ class PassengerSurveyDecorator < Draper::Decorator
   = this.survey_year
     HAML
   end
-  
+
   def render_passenger_journeys
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %td{ class: [ :passenger_journey , :text_en ] }<

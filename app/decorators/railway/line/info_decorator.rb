@@ -12,128 +12,11 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     "Information of railway lines"
   end
 
-  # タイトルのメイン部分（路線色・路線名）を記述するメソッド
-  def self.name_main( railway_line_infos , survey_year: nil )
-    railway_line_infos = [ railway_line_infos ].flatten
-    class << railway_line_infos
-      include ::TokyoMetro::TempLib::RailwayLineArrayModule
-    end
-
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos , survey_year: survey_year }
-%div{ class: :main_text }
-  - # タイトルの路線名を記述
-  %div{ class: [ infos.to_title_color_class , :railway_line ] }
-    %h2{ class: :text_ja }<
-      = infos.to_railway_line_name_text_ja
-    %h3{ class: :text_en }<
-      = infos.to_railway_line_name_text_en
-  - if survey_year.present?
-    %div{ class: [ :survey_year , :text_en ] }<
-      = survey_year
-    HAML
-  end
-
-  def self.render_title_of_railway_line_infos( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-%div{ id: :railway_line_title }
-  = ::Railway::Line::InfoDecorator.render_common_title( request )
-  = ::Railway::Line::InfoDecorator.name_main( infos )
-    HAML
-  end
-
-  # タイトルを記述するメソッド（路線別）
-  def self.render_title_of_passenger_survey( railway_line_infos , survey_year )
-    h_locals = { infos: railway_line_infos , survey_year: survey_year }
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :passenger_survey_title }
-  = ::PassengerSurveyDecorator.render_common_title( request , :railway_line )
-  = ::Railway::Line::InfoDecorator.name_main( infos , survey_year: survey_year )
-    HAML
-  end
-
-  def self.render_title_of_station_facility( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-%div{ id: :station_facility_title }
-  = ::Station::Facility::InfoDecorator.render_common_title( request )
-  = ::Railway::Line::InfoDecorator.name_main( infos )
-    HAML
-  end
-
-  # 列車運行情報のタイトルを記述するメソッド
-  def self.render_title_of_train_operation_info( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-%div{ id: :train_operation_info_title }
-  = ::Train::Operation::InfoDecorator.render_common_title( request )
-  = ::Railway::Line::InfoDecorator.name_main( infos )
-    HAML
-  end
-
-  # 列車位置情報のタイトルを記述するメソッド
-  def self.render_title_of_train_location( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-%div{ id: :train_location_title }
-  = ::Train::Location::InfoDecorator.render_common_title( request )
-  = ::Railway::Line::InfoDecorator.name_main( infos )
-    HAML
-  end
-
-  def self.render_title_of_station_timetable( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-%div{ id: :station_timetable_title }
-  = ::Station::Timetable::InfoDecorator.render_common_title( request )
-  = ::Railway::Line::InfoDecorator.name_main( infos )
-    HAML
-  end
-
-  def self.render_title_of_railway_timetable( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
-%div{ id: :railway_timetable_title }
-  = ::TokyoMetro::App::Renderer::Concerns::Header::Title::Base.new( request , ::RailwayTimetableHelper.common_title_ja , ::RailwayTimetableHelper.common_title_en ).render
-  = ::Railway::Line::InfoDecorator.name_main( infos )
-    HAML
-  end
-
   def self.render_travel_time_simple_infos_of_multiple_railway_line_infos( railway_line_infos )
     h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
 - infos.each do | railway_line_info |
   %div{ class: :railway_line }
     = railway_line_info.decorate.render_travel_time_simple_infos
-    HAML
-  end
-
-  def self.render_matrixes_of_all_railway_line_infos( including_yurakucho_and_fukutoshin: false , make_link_to_railway_line: true )
-    h_locals = {
-      including_yurakucho_and_fukutoshin: including_yurakucho_and_fukutoshin ,
-      make_link_to_railway_line: make_link_to_railway_line
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: :railway_line_matrixes , class: :clearfix }
-  - ::Railway::Line::Info.tokyo_metro( including_branch_line: false ).each do | railway_line_info |
-    = railway_line_info.decorate.render_matrix( make_link_to_railway_line: make_link_to_railway_line )
-  - if including_yurakucho_and_fukutoshin
-    = ::Railway::Line::InfoDecorator.render_matrix_of_yurakucho_and_fukutoshin( make_link_to_railway_line )
-    HAML
-  end
-
-  def self.render_matrix_of_yurakucho_and_fukutoshin( make_link_to_railway_line )
-    h_locals = { make_link_to_railway_line: make_link_to_railway_line }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: [ :railway_line_matrix , :multiple_lines , :yurakucho_fukutoshin ] }
-  - if make_link_to_railway_line
-    = link_to( "" , "yurakucho_and_fukutoshin_line" )
-  %div{ class: :info }
-    %div{ class: :railway_line_codes }<
-      %div{ class: :railway_line_code_block }
-        - [ ::Railway::Line::Info.find_by_same_as( "odpt.Railway:TokyoMetro.Yurakucho" ) , ::Railway::Line::Info.find_by_same_as( "odpt.Railway:TokyoMetro.Fukutoshin" ) ].each do | railway_line |
-          %div{ class: railway_line.css_class }<
-            %div{ class: :railway_line_code_outer }<
-              = railway_line.decorate.render_railway_line_code
-    %div{ class: :text_ja }<
-      = "有楽町線・副都心線"
-    %div{ class: :text_en }<
-      = "Yurakucho and Fukutoshin Line"
     HAML
   end
 
@@ -177,15 +60,13 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     "Twitter #{ object.name_ja } 運行情報"
   end
 
-  def railway_line_page_name
+  def page_name
     if object.branch_line?
       "#{ css_class }_line".gsub( /_branch/ , "" )
     else
       "#{ css_class }_line"
     end
   end
-
-  alias :page_name :railway_line_page_name
 
   def travel_time_table_id
     "#{ css_class }_travel_time"
@@ -241,16 +122,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
 
   # @!endgroup
 
-  def render_in_station_timetable_header
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :railway_line }<
-  %span{ class: :text_ja }<
-    = this.name_ja
-  %span{ class: :text_en }<
-    = this.name_en
-    HAML
-  end
-
   def render_travel_time_simple_infos
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 - this.travel_time_infos.each do | travel_time_info |
@@ -258,155 +129,28 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  def render_railway_line_code( must_display_line_color: true , small: false , clearfix: false )
-    if railway_line_code_letter.present?
-      h_locals = {
-        letter: railway_line_code_letter ,
-        class_name: css_class_of_railway_line_code( small , clearfix )
-      }
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: class_name }<
-  %p<
-    = letter
-      HAML
-
-    elsif must_display_line_color
-      if small
-        size = :small
-      else
-        size = :normal
-      end
-      ::TokyoMetro::App::Renderer::ColorBox.new( h.request , size: size ).render
-    else
-      puts object.same_as
-      h.render inline: <<-HAML , type: :haml , locals: { class_name: css_class_of_railway_line_code( small , clearfix ) }
-%div{ class: class_name }<
-      HAML
-    end
+  def in_station_timetable
+    ::Railway::Line::InfoDecorator::InStationTimetable.new( self )
   end
 
-  def render_railway_line_code_with_outer_domain( must_display_line_color: true , small: false , clearfix: false )
-    if must_display_line_color or name_code_normal.present?
-      if small
-        div_classes = [ :railway_line_code_outer_small ]
-      else
-        div_classes = [ :railway_line_code_outer ]
-      end
-      h_locals = {
-        this: self ,
-        must_display_line_color: must_display_line_color ,
-        small: small ,
-        clearfix: clearfix  ,
-        div_classes: div_classes
-      }
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: div_classes }
-  = this.render_railway_line_code( must_display_line_color: must_display_line_color , small: small , clearfix: clearfix )
-      HAML
-    end
-  end
-
-  def render_matrix( make_link_to_railway_line: true , link_controller_name: nil , size: :normal )
-    raise "Error" if !( make_link_to_railway_line ) and link_controller_name.present?
-    case size
-    when :normal
-      class_names = [ :railway_line_matrix , :each_line , css_class ]
-    when :small
-      class_names = [ :railway_line_matrix_small , :each_line , css_class ]
-    when :very_small
-      class_names = [ :railway_line_matrix_very_small , :each_line , css_class ]
-    else
-      raise "Error: size settings \' :#{ size } \' is not valid."
-    end
-
-    url = nil
-
-    if make_link_to_railway_line
-      if link_controller_name.present?
-        url = h.url_for( controller: link_controller_name , action: :action_for_railway_line_page , railway_line: railway_line_page_name )
-      else
-        url = h.url_for( action: railway_line_page_name )
-      end
-    end
-
-    h_locals = {
-      this: self ,
-      class_names: class_names ,
-      make_link_to_railway_line: make_link_to_railway_line ,
-      url: url ,
-      small_railway_line_code: ( size == :very_small )
-    }
-
-    case size
-    when :normal , :small , :very_small
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: class_names }
-  - if make_link_to_railway_line
-    = link_to_unless_current( "" , url )
-  %div{ class: [ :info , :clearfix ] }
-    = this.render_railway_line_code_with_outer_domain( small: small_railway_line_code )
-    = this.render_name( process_special_railway_line: true )
-      HAML
-    end
-  end
-
-  def render_matrix_and_links_to_stations( make_link_to_railway_line , type_of_link_to_station , set_anchor )
-    @type_of_link_to_station = type_of_link_to_station
-    h_locals = {
-      this: self ,
-      make_link_to_railway_line: make_link_to_railway_line ,
-      set_anchor: set_anchor
-    }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: [ :railway_line , :clearfix ] }
-  = this.render_matrix( make_link_to_railway_line: make_link_to_railway_line , size: :small )
-  - case this.same_as
-  - when "odpt.Railway:TokyoMetro.Marunouchi"
-    = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" ) , set_anchor )
-  - when "odpt.Railway:TokyoMetro.Chiyoda"
-    = this.render_matrix_and_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ) , set_anchor )
-  - else
-    %ul{ class: [ :stations , :text_ja , :clearfix ] }
-      = this.render_matrix_and_links_to_stations_of_normal_railway_line( set_anchor: set_anchor )
-    HAML
-  end
-
-  # 通常の路線の駅一覧を書き出す
-  def render_matrix_and_links_to_stations_of_normal_railway_line( type_of_link_to_station: @type_of_link_to_station , set_anchor: set_anchor )
-    h_locals = {
-      station_infos: station_infos ,
-      type_of_link_to_station: type_of_link_to_station ,
-      set_anchor: set_anchor
-    }
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-- station_infos.each do | station_info |
-  = station_info.decorate.render_link_to_station_in_matrix( type_of_link_to_station , set_anchor: set_anchor )
-    HAML
-  end
-
-  # 支線を含む路線の駅一覧を書き出す
-  def render_matrix_and_links_to_stations_of_railway_line_including_branch( branch_line , set_anchor )
-    h_locals = {
-      this: self ,
-      branch_line: branch_line ,
-      type_of_link_to_station: @type_of_link_to_station ,
-      set_anchor: set_anchor
-    }
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%ul{ class: [ :stations_on_main_line , :text_ja , :clearfix ] }
-  = this.render_matrix_and_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
-%ul{ class: [ :stations_on_branch_line , :text_ja , :clearfix ] }
-  = branch_line.decorate.render_matrix_and_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
-    HAML
+  def in_platform_transfer_info
+    ::Railway::Line::InfoDecorator::InPlatformTransferInfo.new( self )
   end
 
   def in_document
     ::Railway::Line::InfoDecorator::InDocument.new( self )
   end
 
-  def in_platform_transfer_info
-    ::Railway::Line::InfoDecorator::InPlatformTransferInfo.new( self )
+  def title
+    ::Railway::Line::InfoDecorator::Title.new( self )
+  end
+
+  def matrix
+    ::Railway::Line::InfoDecorator::Matrix.new( self )
+  end
+
+  def code
+    ::Railway::Line::InfoDecorator::Code.new( self )
   end
 
   private

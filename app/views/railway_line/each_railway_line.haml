@@ -6,7 +6,7 @@
     = @real_time_info_processor.render_meta_datum( include_train_location_infos: false )
   = ::TokyoMetro::App::Renderer::RealTimeInfos::SideMenu::LinksToRailwayLinePages.new( request ).render
 
-= ::Railway::Line::InfoDecorator.render_title_of_railway_line_infos( @railway_line_infos )
+= ::Railway::Line::InfoDecorator::Title.render_in_railway_line_page( @railway_line_infos )
 - if @real_time_info_processor.present?
   = @real_time_info_processor.render( include_train_location_infos: false )
 

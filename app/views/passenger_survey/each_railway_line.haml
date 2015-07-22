@@ -3,6 +3,6 @@
 - content_for :right_contents do
   = ::TokyoMetro::App::Renderer::PassengerSurvey::SideMenu::RailwayLine.new( request ).render
 
-= ::Railway::Line::InfoDecorator.render_title_of_passenger_survey( @railway_line_infos , @survey_year )
+= ::Railway::Line::InfoDecorator::Title.render_in_passenger_survey_page( @railway_line_infos , @survey_year )
 %div{ id: :passenger_survey_contents }
   = ::TokyoMetro::App::Renderer::PassengerSurvey::Table::RailwayLine.new( request , @passenger_survey_infos_of_the_same_railway_line , @make_graph , @railway_line_infos_including_branch , @passenger_survey_infos_of_the_same_operator ).render

@@ -53,10 +53,6 @@ Report:
       - "[module] reference"
       - SeedFactory
   -
-    title: App - Db - geojson
-    contents:
-      - 関連テーブルの列に URL を追加
-  -
     title: App - Db - column の整理
     contents:
       -
@@ -98,6 +94,10 @@ Report:
       - あるいは TokyoMetro::App::Container < OdptCommon::App::Container などを定義
   - 浅草駅 ホーム情報
   - その他、必要な Refactoring
+  -
+    title: App - Db - geojson
+    contents:
+      - 関連テーブルの列に URL を追加
 
 
 "Real time":
