@@ -1,26 +1,13 @@
 class Railway::DirectionDecorator < Draper::Decorator
+
   delegate_all
 
-  def in_document
-    ::Railway::DirectionDecorator::InDocument.new( self )
-  end
-
-  def render_in_station_timetable_header
-    h.render inline: <<-HAML , type: :haml , locals: { station_info_deccorated: object.station_info.decorate }
-%div{ class: :direction }<
-  = station_info_deccorated.in_station_timetable.render_as_direction_info
-    HAML
-  end
-
-  def render_in_station_facility_platform_info_transfer_info
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- station_info_deccorated = this.station_info.decorate
-%div{ class: :railway_direction }
-  %p{ class: :text_ja }<
-    = station_info_deccorated.render_name_ja( with_subname: false , suffix: "方面" )
-  %p{ class: :text_en }<
-    = station_info_deccorated.render_name_en( with_subname: false , prefix: "for " )
-    HAML
+  [ :in_document , :in_station_timetable , :in_platform_transfer_info ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        ::Railway::DirectionDecorator::#{ method_name.camelize }.new( self )
+      end
+    DEF
   end
 
   def render_simple_title
