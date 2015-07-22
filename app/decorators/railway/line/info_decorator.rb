@@ -64,10 +64,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     return str
   end
 
-  def twitter_title
-    "Twitter #{ object.name_ja } 運行情報"
-  end
-
   def page_name
     if object.branch_line?
       "#{ css_class }_line".gsub( /_branch/ , "" )
@@ -78,6 +74,14 @@ class Railway::Line::InfoDecorator < Draper::Decorator
 
   def travel_time_table_id
     "#{ css_class }_travel_time"
+  end
+
+  def twitter_title
+    if object.operator.tokyo_metro?
+      "Twitter #{ object.name_ja } 運行情報"
+    else
+      nil
+    end
   end
 
   def render_name( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil , clearfix: false )
