@@ -48,7 +48,7 @@ class Railway::Line::Info < ActiveRecord::Base
   include ::OdptCommon::Modules::MethodMissing::Decision::Common::RailwayLine::BranchLine
 
   default_scope {
-    order( index: :desc )
+    order( operator_info_id: :asc ).order( index_in_operator: :asc )
   }
 
   scope :select_tokyo_metro , ->( tokyo_metro_id = nil ) {

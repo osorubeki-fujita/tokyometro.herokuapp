@@ -11,10 +11,10 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
     _railway_line_decorated = railway_line_decorated
 
     # if set_anchor_in_travel_time_info_table?
-      # return h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name , anchor: _railway_line_decorated.travel_time_table_id )
+      # return h.url_for( controller: :railway_line , action: _railway_line_decorated.page_name , anchor: _railway_line_decorated.travel_time_table_id )
     # end
 
-    return h.url_for( controller: :railway_line , action: _railway_line_decorated.railway_line_page_name )
+    return h.url_for( controller: :railway_line , action: _railway_line_decorated.page_name )
   end
 
   private
@@ -23,7 +23,7 @@ class ConnectingRailwayLine::InfoDecorator < Draper::Decorator
     object.railway_line_info.decorate
   end
 
-  def railway_line_page_name
+  def page_name
     railway_line_decorated.send( __method__ )
   end
 

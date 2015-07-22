@@ -33,7 +33,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ class: :main }
   = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
-  = this.decorator.render_railway_line_code( must_display_line_color: false )
+  = this.decorator.code.render( must_display_line_color: false )
   %div{ class: :railway_line_name }
     = this.render_name_ja
     = this.render_name_en
@@ -136,7 +136,6 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
     }
     h3 = infos_from_methods_of_decorator(
       :twitter_title ,
-      :railway_line_page_name ,
       :page_name ,
       :travel_time_table_id
     )
