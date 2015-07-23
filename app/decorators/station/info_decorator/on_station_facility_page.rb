@@ -16,14 +16,16 @@ class Station::InfoDecorator::OnStationFacilityPage < TokyoMetro::Factory::Decor
       h_locals = {
         request: request ,
         station_infos: station_infos ,
-        controller: controller
+        controller: controller ,
+        u: u
       }
 
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ id: :list_of_links_to_station_facility_page_of_connecting_other_stations , class: :clearfix }
   - station_infos.each do | station_info |
     %li{ class: [ :normal , :clearfix ] }
-      = link_to( "" , url_for( controller: controller , action: :action_for_station_page , station: station_info.station_page_name ) , class: :link )
+      - url = u.url_for( controller: controller , action: :action_for_station_page , station: station_info.station_page_name , only_path: true )
+      = link_to( "" , url , class: :link )
       %div{ class: [ controller , :link_to_content , :clearfix ] }
         - unless controller.to_s == "station_facility"
           %div{ class: :icon }

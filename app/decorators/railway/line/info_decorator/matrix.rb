@@ -45,7 +45,6 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
   end
 
   def render_normally( make_link_to_railway_line: true , controller_of_linked_page: nil , size: :normal )
-    raise "Error" if !( make_link_to_railway_line ) and controller_of_linked_page.present?
 
     _class_of_normal_matrix_domain = class_of_normal_matrix_domain( size )
     url = url_of_link_on_normal_matrix( make_link_to_railway_line , controller_of_linked_page )
@@ -70,55 +69,58 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     end
   end
 
-  def render_with_links_to_stations( make_link_to_railway_line , type_of_link_to_station , set_anchor )
+  def render_with_links_to_stations( make_link_to_railway_line , type_of_link_to_station , set_anchor , controller_of_linked_page: nil )
     @type_of_link_to_station = type_of_link_to_station
     h_locals = {
       this: self ,
       make_link_to_railway_line: make_link_to_railway_line ,
-      set_anchor: set_anchor
+      set_anchor: set_anchor ,
+      type_of_link_to_station: @type_of_link_to_station ,
+      controller_of_linked_page: controller_of_linked_page
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: [ :railway_line , :clearfix ] }
-  = this.render_normally( make_link_to_railway_line: make_link_to_railway_line , size: :small )
+  = this.render_normally( make_link_to_railway_line: make_link_to_railway_line , controller_of_linked_page: controller_of_linked_page , size: :small )
   - case this.object.same_as
   - when "odpt.Railway:TokyoMetro.Marunouchi"
-    = this.render_with_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" ) , set_anchor )
+    = this.render_with_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.MarunouchiBranch" ) , controller_of_linked_page , set_anchor )
   - when "odpt.Railway:TokyoMetro.Chiyoda"
-    = this.render_with_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ) , set_anchor )
+    = this.render_with_links_to_stations_of_railway_line_including_branch( ::Railway::Line::Info.find_by( same_as: "odpt.Railway:TokyoMetro.ChiyodaBranch" ) , controller_of_linked_page , set_anchor )
   - else
     %ul{ class: [ :stations , :text_ja , :clearfix ] }
-      = this.render_with_links_to_stations_of_normal_railway_line( set_anchor: set_anchor )
+      = this.render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station , controller_of_linked_page , set_anchor )
     HAML
   end
 
   # 通常の路線の駅一覧を書き出す
-  def render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station: @type_of_link_to_station , set_anchor: set_anchor )
+  def render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station , controller_of_linked_page , set_anchor )
     h_locals = {
       station_infos: station_infos ,
       type_of_link_to_station: type_of_link_to_station ,
+      controller_of_linked_page: controller_of_linked_page ,
       set_anchor: set_anchor
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - station_infos.each do | station_info |
-  = station_info.decorate.in_matrix.render( type_of_link_to_station , set_anchor: set_anchor )
+  = station_info.decorate.in_matrix.render( type_of_link_to_station , controller_of_linked_page , set_anchor )
     HAML
   end
 
   # 支線を含む路線の駅一覧を書き出す
-  def render_with_links_to_stations_of_railway_line_including_branch( branch_line , set_anchor )
+  def render_with_links_to_stations_of_railway_line_including_branch( branch_line , controller_of_linked_page , set_anchor )
     h_locals = {
       this: self ,
-      request: @request ,
       branch_line: branch_line ,
       type_of_link_to_station: @type_of_link_to_station ,
+      controller_of_linked_page: controller_of_linked_page ,
       set_anchor: set_anchor
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %ul{ class: [ :stations_on_main_line , :text_ja , :clearfix ] }
-  = this.render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
+  = this.render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station , controller_of_linked_page , set_anchor )
 %ul{ class: [ :stations_on_branch_line , :text_ja , :clearfix ] }
-  = branch_line.decorate.matrix.on( request ).render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station: type_of_link_to_station , set_anchor: set_anchor )
+  = branch_line.decorate.matrix.on( request ).render_with_links_to_stations_of_normal_railway_line( type_of_link_to_station , controller_of_linked_page , set_anchor )
     HAML
   end
 
@@ -141,7 +143,12 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     url_h = {}
     if make_link_to_railway_line
       if controller_of_linked_page.present?
-        url_h = { controller: controller_of_linked_page , action: :action_for_railway_line_page , railway_line: decorator.page_name }
+        if controller_of_linked_page == :passenger_survey
+          action = :action_for_railway_line_or_year_page
+        else
+          action = :action_for_railway_line_page
+        end
+        url_h = { controller: controller_of_linked_page , action: action , railway_line: decorator.page_name }
       else
         url_h = { action: page_name }
       end

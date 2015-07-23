@@ -9,11 +9,12 @@ class Station::InfoDecorator::InFareTable < TokyoMetro::Factory::Decorate::AppSu
       HAML
 
     else
-      h_locals = { this: self , linked_page_name: object.name_in_system.underscore }
+      linked_page_name = object.station_page_name
+      url = u.url_for( controller: :fare , railway_line: object.railway_line_info.decorate.page_name , station: linked_page_name , only_path: true )
+      h_locals = { this: self , linked_page_name: linked_page_name , url: url }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %td{ class: [ :station_info , :with_link ] , "data-href" => linked_page_name }<
-  - linked_page = url_for( railway_line: this.railway_line_info.decorate.page_name , station: linked_page_name )
-  = link_to( "" , linked_page )
+  = link_to( "" , url )
   = this.render_name
       HAML
     end

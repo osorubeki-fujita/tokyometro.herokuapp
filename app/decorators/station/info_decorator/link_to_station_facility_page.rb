@@ -10,36 +10,40 @@ class Station::InfoDecorator::LinkToStationFacilityPage < TokyoMetro::Factory::D
     return self
   end
 
-  def render_ja( set_anchor: false )
+  def render_ja( controller_of_linked_page , set_anchor: false )
+    url = url_ja( controller_of_linked_page , set_anchor )
 
     h_locals = h_decorator.merge({
-      station_page_name: object.station_page_name ,
-      railway_line: @settings.railway_line_in_station_page ,
-      # title: title.link_to_station_page.ja ,
-      set_anchor: set_anchor ,
+      url: url ,
       datum_for_tooltip: datum_for_tooltip
     })
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-- if railway_line.present?
-  - if set_anchor
-    %a{ datum_for_tooltip , href: url_for( action: :action_for_station_page , station: station_page_name , anchor: railway_line , only_path: true ) }<
-      = d.render_name_ja
-  - else
-    - url = url_for( action: :action_for_station_page , station: station_page_name , railway_line: railway_line )
-    %a{ datum_for_tooltip , href: url }<
-      = d.render_name_ja
-- else
-  %a{ datum_for_tooltip , href: url_for( action: :action_for_station_page , station: station_page_name ) }<
-    = d.render_name_ja
+%a{ datum_for_tooltip , href: url }<
+  = d.render_name_ja
     HAML
   end
 
-  def render_en
+  def render_en( controller_of_linked_page = nil )
     h.link_to( object.name_en , object.station_page_name , datum_for_tooltip )
   end
 
   private
+
+  def url_ja( controller_of_linked_page , set_anchor )
+    station_page_name = object.station_page_name
+    railway_line = @settings.try( :railway_line_in_station_page )
+
+    if railway_line.present?
+      if set_anchor
+        u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: station_page_name , anchor: railway_line , only_path: true )
+      else
+        u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: station_page_name , railway_line: railway_line , only_path: true )
+      end
+    else
+      u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: station_page_name , only_path: true )
+    end
+  end
 
   def settings( type_of_link_to_station )
     ::Station::InfoDecorator::LinkToStationFacilityPage::Settings.new( decorator , type_of_link_to_station )
