@@ -101,11 +101,15 @@ class Station::InfoDecorator < Draper::Decorator
 %div{ id: :passenger_survey_of_station , class: :clearfix }
   %div{ class: :data }
     - icon_instance_of_passenger_survey = ::TokyoMetro::App::Renderer::Icon.passenger_survey( request , 1 )
-    - url = url_for( controller: :passenger_survey , action: :action_for_station_page , station: this.object.name_in_system.underscore , anchor: nil )
+    - url = url_for( controller: :passenger_survey , action: :action_for_station_page , station: this.page_name , anchor: nil )
     = link_to( icon_instance_of_passenger_survey.render , url , class: :icon )
     %div{ class: :text_ja }
       = this.latest_passenger_survey.decorate.render_journeys_of_each_station
     HAML
+  end
+
+  def page_name
+    object.name_in_system.underscore
   end
 
   private

@@ -25,23 +25,23 @@ class Station::InfoDecorator::LinkToStationFacilityPage < TokyoMetro::Factory::D
   end
 
   def render_en( controller_of_linked_page = nil )
-    h.link_to( object.name_en , object.station_page_name , datum_for_tooltip )
+    h.link_to( object.name_en , decorator.page_name , datum_for_tooltip )
   end
 
   private
 
   def url_ja( controller_of_linked_page , set_anchor )
-    station_page_name = object.station_page_name
+    _page_name = decorator.page_name
     railway_line = @settings.try( :railway_line_in_station_page )
 
     if railway_line.present?
       if set_anchor
-        u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: station_page_name , anchor: railway_line , only_path: true )
+        u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: _page_name , anchor: railway_line , only_path: true )
       else
-        u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: station_page_name , railway_line: railway_line , only_path: true )
+        u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: _page_name , railway_line: railway_line , only_path: true )
       end
     else
-      u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: station_page_name , only_path: true )
+      u.url_for( controller: controller_of_linked_page , action: :action_for_station_page , station: _page_name , only_path: true )
     end
   end
 

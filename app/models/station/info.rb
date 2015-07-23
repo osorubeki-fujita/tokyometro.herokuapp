@@ -46,10 +46,6 @@ class Station::Info < ActiveRecord::Base
     passenger_surveys.latest
   end
 
-  def station_page_name
-    name_in_system.underscore
-  end
-
   def has_another_railway_line_infos_of_tokyo_metro?
     railway_line_infos_of_tokyo_metro.length > 1
   end

@@ -2,11 +2,12 @@ class Station::InfoDecorator::LinkToStationFacilityPage::FromTravelTimeInfo < ::
 
   def render
     link_name = "#{ object.name_ja_actual }駅のご案内へジャンプします。"
+    page_name = decorator.page_name
 
     if anchor.present?
-      url = u.url_for( controller: :station_facility , action: :action_for_station_page , station: object.station_page_name , anchor: anchor , only_path: true )
+      url = u.url_for( controller: :station_facility , action: :action_for_station_page , station: page_name , anchor: anchor , only_path: true )
     else
-      url = u.url_for( controller: :station_facility , action: :action_for_station_page , station: object.station_page_name , only_path: true )
+      url = u.url_for( controller: :station_facility , action: :action_for_station_page , station: page_name , only_path: true )
     end
 
     h.link_to( "" , url , name: link_name )

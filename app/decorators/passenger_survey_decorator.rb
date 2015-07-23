@@ -61,7 +61,7 @@ class PassengerSurveyDecorator < Draper::Decorator
 
   def render_station_name_in_table( station_info = station_infos.first )
     h.render inline: <<-HAML , type: :haml , locals: { this: self , station_info: station_info }
-- url_of_station_page = url_for( controller: :passenger_survey , action: :action_for_station_page , station: station_info.name_in_system.underscore )
+- url_of_station_page = url_for( controller: :passenger_survey , action: :action_for_station_page , station: station_info.decorate.page_name )
 - class_name_of_cell = [ :station_info ]
 - unless current_page?( url_of_station_page )
   - class_name_of_cell << :with_link
@@ -108,6 +108,10 @@ class PassengerSurveyDecorator < Draper::Decorator
     = this.survey_year
   = "年度）"
     HAML
+  end
+
+  def station_page_name
+    object.prior_station_info.decorate.page_name
   end
 
 end

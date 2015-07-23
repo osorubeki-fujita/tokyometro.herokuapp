@@ -9,7 +9,7 @@ class Station::InfoDecorator::InFareTable < TokyoMetro::Factory::Decorate::AppSu
       HAML
 
     else
-      linked_page_name = object.station_page_name
+      linked_page_name = decorator.page_name
       url = u.url_for( controller: :fare , railway_line: object.railway_line_info.decorate.page_name , station: linked_page_name , only_path: true )
       h_locals = { this: self , linked_page_name: linked_page_name , url: url }
       h.render inline: <<-HAML , type: :haml , locals: h_locals

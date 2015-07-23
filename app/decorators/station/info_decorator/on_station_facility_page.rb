@@ -24,7 +24,7 @@ class Station::InfoDecorator::OnStationFacilityPage < TokyoMetro::Factory::Decor
 %ul{ id: :list_of_links_to_station_facility_page_of_connecting_other_stations , class: :clearfix }
   - station_infos.each do | station_info |
     %li{ class: [ :normal , :clearfix ] }
-      - url = u.url_for( controller: controller , action: :action_for_station_page , station: station_info.station_page_name , only_path: true )
+      - url = u.url_for( controller: controller , action: :action_for_station_page , station: station_info.decorate.page_name , only_path: true )
       = link_to( "" , url , class: :link )
       %div{ class: [ controller , :link_to_content , :clearfix ] }
         - unless controller.to_s == "station_facility"
