@@ -20,7 +20,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     "Information of railway lines"
   end
 
-  def name_ja_with_operator_name( process_special_railway_line: false , prefix: nil , suffix: nil )
+  def name_ja_to_display( process_special_railway_line: false , prefix: nil , suffix: nil )
     if process_special_railway_line and seibu_yurakucho_line?
       str = "西武線"
     else
@@ -38,7 +38,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     return str
   end
 
-  def name_en_with_operator_name( process_special_railway_line: false , prefix: nil , suffix: nil )
+  def name_en_to_display( process_special_railway_line: false , prefix: nil , suffix: nil )
     if process_special_railway_line and seibu_yurakucho_line?
       str = "Seibu Line"
     else
@@ -78,8 +78,8 @@ class Railway::Line::InfoDecorator < Draper::Decorator
 
   def render_name_base( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil )
     h_locals = {
-      text_ja_ary: name_ja_with_operator_name( process_special_railway_line: process_special_railway_line , prefix: prefix_ja , suffix: suffix_ja ).split( / \/ / ) ,
-      text_en_ary: name_en_with_operator_name( process_special_railway_line: process_special_railway_line , prefix: prefix_en , suffix: suffix_en ).split( / \/ / )
+      text_ja_ary: name_ja_to_display( process_special_railway_line: process_special_railway_line , prefix: prefix_ja , suffix: suffix_ja ).split( / \/ / ) ,
+      text_en_ary: name_en_to_display( process_special_railway_line: process_special_railway_line , prefix: prefix_en , suffix: suffix_en ).split( / \/ / )
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - text_ja_ary.each do | str |

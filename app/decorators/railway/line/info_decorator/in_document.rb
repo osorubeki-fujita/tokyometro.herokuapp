@@ -45,7 +45,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
 
   def render_name_ja
     regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja
-    name_ja = name_ja_with_operator_name_precise
+    name_ja = object.name_ja_with_operator_name_precise
 
     if name_ja.present? and regexp =~ name_ja
       h_locals = {
@@ -71,7 +71,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
 
   def render_name_en
     regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_en
-    name_en = name_en_with_operator_name_precise
+    name_en = object.name_en_with_operator_name_precise
 
     if regexp =~ name_en
       h_locals = {
@@ -133,12 +133,12 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
 
   def infos_from_methods_of_railway_line_decorator
     h1 = infos_from_methods_of_decorator(
-      :name_ja_with_operator_name ,
-      :name_en_with_operator_name
+      :name_ja_to_display ,
+      :name_en_to_display
     )
     h2 = {
-      "name_ja_with_operator_name( process_special_railway_line: true )" => name_ja_with_operator_name( process_special_railway_line: true ) ,
-      "name_en_with_operator_name( process_special_railway_line: true )" => name_en_with_operator_name( process_special_railway_line: true )
+      "name_ja_with_operator_name( process_special_railway_line: true )" => name_ja_to_display( process_special_railway_line: true ) ,
+      "name_en_with_operator_name( process_special_railway_line: true )" => name_en_to_display( process_special_railway_line: true )
     }
     h3 = infos_from_methods_of_decorator(
       :twitter_title ,
