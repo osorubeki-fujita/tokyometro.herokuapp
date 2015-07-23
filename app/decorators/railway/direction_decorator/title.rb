@@ -7,8 +7,7 @@ class Railway::DirectionDecorator::Title < TokyoMetro::Factory::Decorate::AppSub
   private
 
   def render_simply
-    h.render inline: <<-HAML , type: :haml , locals: h_object
-- station_info_decorated = object.station_info.decorate
+    h.render inline: <<-HAML , type: :haml , locals: { station_info_decorated: object.station_info.decorate }
 %div{ class: :title_of_a_railway_direction }
   %h4{ class: :text_ja }<
     = station_info_decorated.name_ja_actual + "方面"

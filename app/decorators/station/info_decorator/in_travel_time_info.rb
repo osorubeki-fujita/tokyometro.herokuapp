@@ -11,11 +11,11 @@ class Station::InfoDecorator::InTravelTimeInfo < TokyoMetro::Factory::Decorate::
 
   def render_name
     h.render inline: <<-HAML , type: :haml , locals: h_decorator
-= decorator.render_link_to_station_facility_page_ja
+= d.render_link_to_station_facility_page_ja
 %div{ class: [ :station_info_domain , :clearfix ] }
-  = decorator.code.render_image( all: false )
+  = d.code.render_image( all: false )
   %div{ class: :text }<
-    = decorator.render_name_ja_and_en
+    = d.render_name_ja_and_en
     HAML
   end
 

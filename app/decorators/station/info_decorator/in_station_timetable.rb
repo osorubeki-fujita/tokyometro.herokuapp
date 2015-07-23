@@ -12,12 +12,12 @@ class Station::InfoDecorator::InStationTimetable < TokyoMetro::Factory::Decorate
   def render_in_header
     h.render inline: <<-HAML , type: :haml , locals: h_decorator
 %div{ class: :additional_infos }
-  = decorator.code.render_image( all: false )
+  = d.code.render_image( all: false )
   %div{ class: :station_name }<
     %div{ class: :text_ja }<
-      = decorator.render_name_ja
+      = d.render_name_ja
     %div{ class: :text_en }<
-      = decorator.name_en
+      = d.name_en
     HAML
   end
 
@@ -27,7 +27,7 @@ class Station::InfoDecorator::InStationTimetable < TokyoMetro::Factory::Decorate
     else
       h.render inline: <<-HAML , type: :haml , locals: h_decorator
 %div{ class: :destination }<
-  = decorator.render_name_ja( with_subname: false )
+  = d.render_name_ja( with_subname: false )
       HAML
     end
   end

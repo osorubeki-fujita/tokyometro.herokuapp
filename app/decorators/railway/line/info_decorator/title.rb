@@ -96,9 +96,9 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
     h.render inline: <<-HAML , type: :haml , locals: h_object
 %div{ class: :title_of_a_railway_line }
   %h3{ class: :text_ja }<
-    = object.name_ja
+    = o.name_ja
   %h4{ class: :text_en }<
-    = object.name_en
+    = o.name_en
     HAML
   end
 

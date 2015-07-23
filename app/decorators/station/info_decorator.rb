@@ -95,29 +95,6 @@ class Station::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  # タイトルのメイン部分（駅名）を記述するメソッド
-  def render_header( station_code: false , all_station_codes: false )
-    if !( station_code ) and all_station_code
-      raise "Error"
-    end
-
-    h_locals = { this: self , station_code: station_code , all_station_codes: all_station_codes }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: :main_text }
-  %div{ class: [ :station_name , :tokyo_metro ] }
-    %h2{ class: :text_ja }<
-      = this.render_name_ja( with_subname: true )
-    %h3<
-      %span{ class: :text_hira }<>
-        = this.render_name_hira( with_subname: true )
-      %span{ class: :text_en }<
-        = this.render_name_en( with_subname: true )
-  - if station_code
-    = this.code.render_image( all: all_station_codes )
-    HAML
-  end
-
   def render_link_to_station_page_ja( set_anchor: false )
     if link_to_station_page_for_each_railway_line?
       r = railway_line_in_station_page

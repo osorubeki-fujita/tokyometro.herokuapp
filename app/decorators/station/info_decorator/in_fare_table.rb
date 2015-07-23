@@ -23,9 +23,9 @@ class Station::InfoDecorator::InFareTable < TokyoMetro::Factory::Decorate::AppSu
     h.render inline: <<-HAML , type: :haml , locals: h_decorator
 %div{ class: :station_info_domain }
   %div{ class: :station_code_outer }
-    = decorator.code.render_image( all: false )
+    = d.code.render_image( all: false )
   %div{ class: [ :text , :clearfix ] }
-    = decorator.render_name_ja_and_en
+    = d.render_name_ja_and_en
     HAML
   end
 
