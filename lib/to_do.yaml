@@ -67,10 +67,9 @@ Report:
   -
     title: App - Decorator の整理
     contents:
-      - Station::InfoDecorator
       - Railway::DirectionDecorator
   - Decorate Factory への移行
-  - App - 事業者名 tokyo_metro をなるべく消す（再利用可能性UPのため）
+  - App - 事業者名 tokyo_metro をなるべく消す（再利用しやすくするため）
   -
     title: Gem - TokyoMetro::Static::TrainType
     contents:

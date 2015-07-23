@@ -58,7 +58,7 @@ class Station::Info < ActiveRecord::Base
     railway_line_info.tokyo_metro?
   end
 
-  def connected_to?( railway_line_info_instance , only_tokyo_metro: false , include_myself: false )
+  def connected_to?( railway_line_info_instance , only_of_the_same_operator: false , include_myself: false )
     if include_myself and railway_line_info_id == railway_line_info_instance.id
       return true
     end
@@ -69,7 +69,7 @@ class Station::Info < ActiveRecord::Base
       railway_line_info_ids << railway_line_info.main_railway_line_info_id
     end
 
-    if only_tokyo_metro
+    if only_of_the_same_operator
       railway_line_info_ids += connecting_railway_line_infos.pluck( :railway_line_info_id )
     else
       railway_line_info_ids += station_infos_including_other_railway_line_infos.pluck( :railway_line_info_id )
