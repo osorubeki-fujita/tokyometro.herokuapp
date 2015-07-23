@@ -118,6 +118,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
 - this.travel_time_infos.each do | travel_time_info |
   = travel_time_info.decorate.render_simple_info
     HAML
+  end
 
 
   def self.render_travel_time_simple_infos_of_multiple_railway_line_infos( railway_line_infos )
