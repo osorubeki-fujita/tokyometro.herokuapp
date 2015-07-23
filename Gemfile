@@ -42,7 +42,7 @@ group :development do
   gem 'sqlite3'
   # gem 'pg'
 
-  gem 'sinatra' # Webアプリケーションフレームワーク
+  # gem 'sinatra' # Webアプリケーションフレームワーク
   gem 'sequel'
   gem 'bullet'
   gem "rails-erd"

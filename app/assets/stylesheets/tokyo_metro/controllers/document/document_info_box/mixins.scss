@@ -51,7 +51,7 @@ $width_of_each_color_area: 160px ;
   .color_info {
     @include float_right ;
     width : 96px ;
-    .web_color {
+    .hex_color {
       font: {
         size : 10pt ;
       }
