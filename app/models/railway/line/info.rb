@@ -161,12 +161,6 @@ class Railway::Line::Info < ActiveRecord::Base
     "sta."
   end
 
-  # @!endgroup
-
-  def name_ja_with_operator_name_precise_and_without_parentheses
-    name_ja_with_operator_name_precise.try( :gsub , /（.+）\Z/ , "" )
-  end
-
   # @!group Decision
 
   # @param railway_line [Railway::Line::Info]

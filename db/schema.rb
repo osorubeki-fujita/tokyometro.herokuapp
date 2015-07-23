@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722133225) do
+ActiveRecord::Schema.define(version: 20150723155051) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -261,23 +261,17 @@ ActiveRecord::Schema.define(version: 20150722133225) do
   end
 
   create_table "railway_line_infos", force: :cascade do |t|
-    t.string   "name_ja",                            limit: 255
-    t.string   "name_ja_normal",                     limit: 255
-    t.string   "name_ja_with_operator_name_precise", limit: 255
-    t.string   "name_ja_with_operator_name",         limit: 255
-    t.string   "name_hira",                          limit: 255
-    t.string   "name_en",                            limit: 255
-    t.string   "name_en_normal",                     limit: 255
-    t.string   "name_en_with_operator_name_precise", limit: 255
-    t.string   "name_en_with_operator_name",         limit: 255
+    t.string   "name_ja",                      limit: 255
+    t.string   "name_hira",                    limit: 255
+    t.string   "name_en",                      limit: 255
     t.integer  "operator_info_id"
-    t.string   "same_as",                            limit: 255
+    t.string   "same_as",                      limit: 255
     t.float    "index_in_operator"
-    t.string   "color",                              limit: 255
-    t.string   "name_codes",                         limit: 255
-    t.string   "id_urn",                             limit: 255
+    t.string   "color",                        limit: 255
+    t.string   "name_codes",                   limit: 255
+    t.string   "id_urn",                       limit: 255
     t.time     "dc_date"
-    t.string   "geo_json",                           limit: 255
+    t.string   "geo_json",                     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_on"

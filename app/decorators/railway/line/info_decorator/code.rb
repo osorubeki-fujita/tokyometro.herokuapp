@@ -1,15 +1,16 @@
 class Railway::Line::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def render( must_display_line_color: true , small: false , clearfix: false )
-    if railway_line_code_letter.present?
+    _code = decorator.code_info
+    if _code.present?
       h_locals = {
-        letter: railway_line_code_letter ,
+        code: _code ,
         class_name: css_class_of_railway_line_code( small , clearfix )
       }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: class_name }<
   %p<
-    = letter
+    = code
       HAML
 
     elsif must_display_line_color

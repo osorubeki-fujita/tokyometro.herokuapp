@@ -129,15 +129,15 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  private
-
-  def railway_line_code_letter
+  def code_info
     if name_code_normal.string?
       name_code_normal
     else
       nil
     end
   end
+
+  private
 
   def css_class_of_railway_line_code( small , clearfix )
     ary = ::Array.new

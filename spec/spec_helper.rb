@@ -94,3 +94,31 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+
+def check_infos_in_db(  infos_in_db , class_name , columns )
+
+  infos_in_db.each do | row |
+    same_as = row.first
+    actual_instance_in_db = class_name.find_by( same_as: same_as )
+    it 'is present.' do
+      expect( actual_instance_in_db ).to be_present
+    end
+
+    it 'has valid infos ' do
+      for i in 1..( columns.length - 1 )
+        # puts columns[i]
+        info_of_actual_instance_in_db = actual_instance_in_db.send( columns[i] )
+        valid_info = row[i]
+        if valid_info.blank?
+          expect( info_of_actual_instance_in_db ).to be_blank
+        else
+          expect( info_of_actual_instance_in_db ).to eq( valid_info )
+        end
+      end
+    end
+
+
+  end
+
+end

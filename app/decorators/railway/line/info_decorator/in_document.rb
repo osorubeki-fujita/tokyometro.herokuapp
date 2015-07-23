@@ -107,6 +107,12 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
 
   def infos_from_methods_of_railway_line_info_object
     infos_from_methods_of_object(
+      :name_ja_normal ,
+      :name_ja_with_operator_name ,
+      :name_ja_with_operator_name_precise ,
+      :name_en_normal ,
+      :name_en_with_operator_name ,
+      :name_en_with_operator_name_precise ,
       :css_class ,
       :station_attribute_ja ,
       :station_attribute_hira ,

@@ -39,24 +39,6 @@ RSpec.describe Operator::Info, :type => :model do
     ["odpt.Operator:Undefined", "" , "" , "未定義", "未定義", "未定義", "未定義", "Undefined", "Undefined", "Undefined", "Undefined", "undefined"]
   ]
 
-  operator_infos_in_db.each do | operator_info_in_db |
-    same_as = operator_info_in_db
-    o = ::Operator::Info.find_by( same_as: same_as )
-    it 'is present.' do
-      expect(o).to be_present
-    end
+  check_infos_in_db( operator_infos_in_db , ::Operator::Info , columns )
 
-    it 'has valid infos ' do
-      for i in 1..( columns.length - 1 )
-        info_of_o = o.send( columns[i] )
-        valid_info = operator_info_in_db[i]
-        if valid_info.blank?
-          expect( info_of_o ).to be_blank
-        else
-          expect( info_of_o ).to eq( valid_info )
-        end
-      end
-    end
-
-  end
 end

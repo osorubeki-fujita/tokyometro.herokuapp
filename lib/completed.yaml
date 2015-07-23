@@ -51,6 +51,12 @@
         title: Operator 関連の名前空間（候補）
         contents:
           - Operator::Info / Operator::AsTrainOwner
+  -
+    title: App - Decorator の整理
+    contents:
+      - Station::InfoDecorator
+      - Railway::Line::InfoDecorator
+      - Railway::DirectionDecorator
 
 
 "Real time":

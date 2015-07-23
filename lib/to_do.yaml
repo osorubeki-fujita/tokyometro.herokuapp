@@ -64,10 +64,6 @@ Report:
             contents:
               - Railway::Line::Info と TokyoMetro::Static::RailwayLine::Info に include
               - それぞれのクラスに適合するよう調整
-  -
-    title: App - Decorator の整理
-    contents:
-      - Railway::DirectionDecorator
   - Decorate Factory への移行
   - App - 事業者名 tokyo_metro をなるべく消す（再利用しやすくするため）
   -

@@ -28,7 +28,7 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
     regexp = /\Aodpt\.StationFacility\:TokyoMetro\.(\w+)\.(?:\w+)\.(Inside|Outside)\.(\w+)/
     if regexp =~ same_as.to_s
       railway_line_name = $1
-      railway_line_code_letter = ::Railway::Line::Info.find_by_same_as( "odpt.Railway:TokyoMetro.#{ railway_line_name }" ).name_code_normal
+      railway_line_code = ::Railway::Line::Info.find_by_same_as( "odpt.Railway:TokyoMetro.#{ railway_line_name }" ).name_code_normal
 
       place = $2
       category = $3
@@ -41,9 +41,9 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
       raise "Error: #{ same_as }"
     end
 
-    facility_id = [ railway_line_code_letter.downcase , place.downcase , category.downcase , number ].select( &:present? ).map( &:to_s ).join( "_" )
-    facility_code = [ railway_line_code_letter , number ].map( &:to_s ).join
-    platform = [ railway_line_code_letter , place , category , number ].select( &:present? ).map( &:to_s ).join( "." )
+    facility_id = [ railway_line_code.downcase , place.downcase , category.downcase , number ].select( &:present? ).map( &:to_s ).join( "_" )
+    facility_code = [ railway_line_code , number ].map( &:to_s ).join
+    platform = [ railway_line_code , place , category , number ].select( &:present? ).map( &:to_s ).join( "." )
     { id: facility_id , code: facility_code , platform: platform }
   end
 

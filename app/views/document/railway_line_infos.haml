@@ -9,6 +9,6 @@
     - operator_info = ::Operator::Info.find_by( id: operator_info_id )
     %div{ class: [ :document , :operator , operator_info.css_class ] }
       = operator_info.decorate.in_document.render_title
-      - railway_line_infos_of_an_operator.sort_by( &:index ).each do | railway_line_info |
+      - railway_line_infos_of_an_operator.sort_by( &:index_in_operator ).each do | railway_line_info |
         %ul{ class: [ :railway_lines_of_each_operator , :in_document ] }
           = railway_line_info.decorate.in_document.render
