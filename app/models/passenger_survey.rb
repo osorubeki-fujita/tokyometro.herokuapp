@@ -44,11 +44,18 @@ class PassengerSurvey < ActiveRecord::Base
   }
 
   def station_name_in_system
-    [ station_infos ].flatten.first.name_in_system
+    prior_station_info.name_in_system
   end
 
   def station_page_name
-    station_name_in_system.underscore
+    prior_station_info.station_page_name
+  end
+
+  private
+
+
+  def prior_station_info
+    [ station_infos ].flatten.first
   end
 
 end

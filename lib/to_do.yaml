@@ -75,6 +75,7 @@ Report:
     title: Gem - TokyoMetro::Static::TrainType
     contents:
       - yaml の構造をシンプルに
+  - データの再流し込み
   -
     title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線、列車種別の色など）
     contents:
@@ -82,7 +83,6 @@ Report:
   - 停車駅クラスの完成
   - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
   - Document 駅リスト
-  - データの再流し込み
   - 駅時刻表の公開を再開
   - ページの拡大・縮小時の崩れを解消
   - とにかく RSpec でテストを書きまくる
@@ -94,10 +94,6 @@ Report:
       - あるいは TokyoMetro::App::Container < OdptCommon::App::Container などを定義
   - 浅草駅 ホーム情報
   - その他、必要な Refactoring
-  -
-    title: App - Db - geojson
-    contents:
-      - 関連テーブルの列に URL を追加
 
 
 "Real time":

@@ -7,6 +7,7 @@ class Station::InfoDecorator < Draper::Decorator
   [
     :in_google_maps , :in_train_location , :in_fare_table , :in_station_timetable ,
     :in_travel_time_info , :in_transfer_info , :in_matrix ,
+    :link_to_station_facility_page ,
     :on_station_facility_page , :code , :title , :as_direction_info
   ].each do | method_name |
     eval <<-DEF
@@ -95,51 +96,6 @@ class Station::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  def render_link_to_station_page_ja( set_anchor: false )
-    if link_to_station_page_for_each_railway_line?
-      r = railway_line_in_station_page
-    else
-      r = nil
-    end
-
-    h_locals = {
-      this: self ,
-      station_page_name: station_page_name ,
-      railway_line: r ,
-      # title: title.link_to_station_page.ja ,
-      set_anchor: set_anchor ,
-      datum_for_tooltip: datum_for_tooltip
-    }
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-- if railway_line.present?
-  - if set_anchor
-    %a{ datum_for_tooltip , href: url_for( action: :action_for_station_page , station: station_page_name , anchor: railway_line , only_path: true ) }<
-      = this.render_name_ja
-  - else
-    - url = url_for( action: :action_for_station_page , station: station_page_name , railway_line: railway_line )
-    %a{ datum_for_tooltip , href: url }<
-      = this.render_name_ja
-- else
-  %a{ datum_for_tooltip , href: url_for( action: :action_for_station_page , station: station_page_name ) }<
-    = this.render_name_ja
-    HAML
-  end
-
-  def render_link_to_station_page_en
-    h.link_to( name_en , station_page_name , datum_for_tooltip )
-  end
-
-  def render_link_to_station_facility_page_ja
-    link_name = "#{ name_ja_actual }駅のご案内へジャンプします。"
-    if add_anchor_to_link_to_station_facility_page_ja?
-      url = h.url_for( controller: :station_facility , action: :action_for_station_page , station: station_page_name , anchor: anchor_added_to_link_of_station_faility_page )
-    else
-      url = h.url_for( controller: :station_facility , action: :action_for_station_page , station: station_page_name )
-    end
-
-    h.link_to( "" , url , name: link_name )
-  end
-
   def render_latest_passenger_survey
     h.render inline: <<-HAML , type: :haml , locals: { this: self }
 %div{ id: :passenger_survey_of_station , class: :clearfix }
@@ -189,48 +145,6 @@ class Station::InfoDecorator < Draper::Decorator
     end
     str << station_name
     str
-  end
-
-  def link_to_station_page_for_each_railway_line?
-    case @type_of_link_to_station
-    when :must_link_to_railway_line_page , :must_link_to_railway_line_page_and_merge_yf
-      true
-    when :link_to_railway_line_page_if_containing_multiple_railway_lines
-      has_another_railway_line_infos_of_tokyo_metro?
-    when :link_to_railway_line_page_if_containing_multiple_railway_lines_and_merge_yf
-      has_another_railway_line_infos_of_tokyo_metro? and !( between_wakoshi_and_kotake_mukaihara? )
-    when nil
-      false
-    end
-  end
-
-  def add_anchor_to_link_to_station_facility_page_ja?
-    @type_of_link_to_station = :link_to_railway_line_page_if_containing_multiple_railway_lines_and_merge_yf
-    link_to_station_page_for_each_railway_line?
-  end
-
-  def railway_line_in_station_page
-    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and object.between_wakoshi_and_kotake_mukaihara?
-      "yurakucho_and_fukutoshin_line"
-    elsif object.railway_line_info.is_branch_line?
-      _branch = object.railway_line_info
-      _main = _branch.main_railway_line_info
-      _main.decorate.page_name
-    else
-      object.railway_line_info.decorate.page_name
-    end
-  end
-
-  def anchor_added_to_link_of_station_faility_page
-    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and object.between_wakoshi_and_kotake_mukaihara?
-      "yurakucho_and_fukutoshin_line"
-    else
-      object.railway_line_info.decorate.page_name
-    end
-  end
-
-  def datum_for_tooltip
-    { 'data-station_code_images' => code.all.join( '/' ) , 'data-text_ja' => object.name_ja , 'data-text_hira' => object.name_hira , 'data-text_en' => object.name_en }
   end
 
 end
