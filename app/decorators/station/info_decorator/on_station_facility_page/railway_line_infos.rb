@@ -14,11 +14,13 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
 
   # 同一事業者の路線情報を表示する method
   def render_railway_line_infos_of_the_same_operator
+    c_railway_line_infos = decorator.connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
+
     h_locals = {
       this: self ,
       request: @request ,
       railway_line_infos_of_the_same_operator: railway_line_infos_of_the_same_operator ,
-      c_railway_line_infos: connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
+      c_railway_line_infos: c_railway_line_infos
     }
 
     h.render inline: <<-HAML , type: :haml , locals: h_locals
@@ -37,11 +39,11 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
   # 他事業者の乗り換え情報を表示する method
   def render_railway_line_infos_except_for_of_the_same_operator
     # @param c_railway_line_infos [Array <Railway::Line::Info>] 他事業者の乗り入れ路線
-    _connecting_railway_line_infos_except_for_of_the_same_operator = connecting_railway_line_infos_except_for_of_the_same_operator
+    c_railway_line_infos = decorator.connecting_railway_line_infos_except_for_of_the_same_operator
 
-    if _connecting_railway_line_infos_except_for_of_the_same_operator.present?
+    if c_railway_line_infos.present?
       h_locals = {
-        c_railway_line_infos: _connecting_railway_line_infos_except_for_of_the_same_operator ,
+        c_railway_line_infos: c_railway_line_infos ,
         request: @request
       }
 
@@ -59,14 +61,6 @@ class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoM
 
   def railway_line_infos_of_the_same_operator
     object.railway_line_infos_of_tokyo_metro
-  end
-
-  def connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
-    decorator.send( __method__ )
-  end
-
-  def connecting_railway_line_infos_except_for_of_the_same_operator
-    object.connecting_railway_line_infos.except_for_of_the_same_operator
   end
 
 end

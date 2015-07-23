@@ -14,7 +14,7 @@
 = station_info_decorated.on_station_facility_page.railway_line_infos( request ).render
 
 %div{ id: :links_to_station_info_pages , class: :clearfix }
-  = station_info_decorated.render_title_of_links_to_station_info_pages( request )
+  = station_info_decorated.title.of_links_to_station_info_pages( with: request ).render
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , @station_info ).render
 
 %div{ id: :exits_and_map , class: :clearfix }

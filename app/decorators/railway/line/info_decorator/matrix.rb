@@ -101,7 +101,7 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
     }
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 - station_infos.each do | station_info |
-  = station_info.decorate.render_link_to_station_in_matrix( type_of_link_to_station , set_anchor: set_anchor )
+  = station_info.decorate.in_matrix.render( type_of_link_to_station , set_anchor: set_anchor )
     HAML
   end
 

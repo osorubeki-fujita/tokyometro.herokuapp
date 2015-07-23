@@ -7,7 +7,7 @@
 = station_info_decorated.title.render_in_fare_page
 
 %div{ id: :links_to_station_info_pages , class: :clearfix }
-  = station_info_decorated.render_title_of_links_to_station_info_pages( request )
+  = station_info_decorated.title.of_links_to_station_info_pages( with: request ).render
   = ::TokyoMetro::App::Renderer::SideMenu::Link::List.to_station_info_pages( request , @station_info ).render
 
 %div{ id: :fare_contents }

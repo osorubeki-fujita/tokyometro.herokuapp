@@ -40,4 +40,17 @@ class Station::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSubDecor
     HAML
   end
 
+  def of_links_to_station_info_pages( with: nil )
+    request = with
+    raise unless request.present?
+    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new(
+      request ,
+      :title ,
+      :station ,
+      render_name_ja( with_subname: true , suffix: "駅に関するご案内" ) ,
+      render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: " Sta." ) ,
+      icon_size: 3
+    )
+  end
+
 end

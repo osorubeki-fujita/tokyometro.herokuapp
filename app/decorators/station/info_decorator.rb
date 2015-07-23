@@ -6,7 +6,7 @@ class Station::InfoDecorator < Draper::Decorator
 
   [
     :in_google_maps , :in_train_location , :in_fare_table , :in_station_timetable ,
-    :in_travel_time_info , :in_transfer_info ,
+    :in_travel_time_info , :in_transfer_info , :in_matrix ,
     :on_station_facility_page , :code , :title , :as_direction_info
   ].each do | method_name |
     eval <<-DEF
@@ -118,59 +118,13 @@ class Station::InfoDecorator < Draper::Decorator
     HAML
   end
 
-  def render_link_to_page_of_connecting_other_stations( controller )
-    _c_railway_lines = connecting_railway_line_infos_of_the_same_operator_connected_to_another_station
-    if _c_railway_lines.present?
-      station_facility_info_ids = _c_railway_lines.map( &:connecting_station_info ).uniq.map( &:station_facility_info_id ).uniq
-      station_infos = station_facility_info_ids.map { | station_facility_info_id | ::Station::Facility::Info.find( station_facility_info_id ).station_infos.first }
-      h_locals = {
-        request: h.request ,
-        station_infos: station_infos ,
-        controller: controller
-      }
-      h.render inline: <<-HAML , type: :haml , locals: h_locals
-%ul{ id: :list_of_links_to_station_facility_page_of_connecting_other_stations , class: :clearfix }
-  - station_infos.each do | station_info |
-    %li{ class: [ :normal , :clearfix ] }
-      = link_to( "" , url_for( controller: controller , action: :action_for_station_page , station: station_info.station_page_name ) , class: :link )
-      %div{ class: [ controller , :link_to_content , :clearfix ] }
-        - unless controller.to_s == "station_facility"
-          %div{ class: :icon }
-            = ::TokyoMetro::App::Renderer::Icon.send( controller , request , 1 ).render
-        - else
-          %div{ class: :icon }
-            %div{ class: :icon_img }<
-        %div{ class: :text }
-          = station_info.decorate.render_name_ja_and_en( suffix_ja: "駅" , prefix_en: "Information of " , suffix_en: " Sta." )
-      HAML
-    end
-  end
-
-  def render_title_of_links_to_station_info_pages( request )
-    ::TokyoMetro::App::Renderer::Concerns::Header::Content.new(
-      request ,
-      :title ,
-      :station ,
-      render_name_ja( with_subname: true , suffix: "駅に関するご案内" ) ,
-      render_name_en( with_subname: true , prefix: "Other pages related to " , suffix: " Sta." ) ,
-      icon_size: 3
-    ).render
-  end
-
-  def render_link_to_station_in_matrix( type_of_link_to_station , set_anchor: false )
-    @type_of_link_to_station = type_of_link_to_station
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , set_anchor: set_anchor }
-%li{ class: :station }<
-  = this.render_link_to_station_page_ja( set_anchor: set_anchor )
-    HAML
-  end
-
   def render_link_to_station_page_ja( set_anchor: false )
     if link_to_station_page_for_each_railway_line?
       r = railway_line_in_station_page
     else
       r = nil
     end
+
     h_locals = {
       this: self ,
       station_page_name: station_page_name ,
@@ -279,7 +233,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def railway_line_in_station_page
-    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
+    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and object.between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
     elsif object.railway_line_info.is_branch_line?
       _branch = object.railway_line_info
@@ -291,7 +245,7 @@ class Station::InfoDecorator < Draper::Decorator
   end
 
   def anchor_added_to_link_of_station_faility_page
-    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and between_wakoshi_and_kotake_mukaihara?
+    if @type_of_link_to_station == :must_link_to_railway_line_page_and_merge_yf and object.between_wakoshi_and_kotake_mukaihara?
       "yurakucho_and_fukutoshin_line"
     else
       object.railway_line_info.decorate.page_name
