@@ -1,19 +1,14 @@
 namespace :assets do
+
   namespace :sass do
-
     namespace :make do
-
-      #--------
 
       desc "Make partial sass files from .scss.erb files"
       task :partial => :environment do
-        ::TokyoMetro::Rake::Rails::Assets::Sass::Make.partial
+        ::TokyoMetro::Rake::Rails::Assets::Sass::Make.partial( on: ::TokyoMetro::RAILS_DIR )
       end
 
-      #--------
-
     end
-
   end
 
   namespace :image do
