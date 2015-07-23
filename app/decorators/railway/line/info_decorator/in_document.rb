@@ -137,8 +137,8 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
       :name_en_to_display
     )
     h2 = {
-      "name_ja_with_operator_name( process_special_railway_line: true )" => name_ja_to_display( process_special_railway_line: true ) ,
-      "name_en_with_operator_name( process_special_railway_line: true )" => name_en_to_display( process_special_railway_line: true )
+      "name_ja_to_display( process_special_railway_line: true )" => name_ja_to_display( process_special_railway_line: true ) ,
+      "name_en_to_display( process_special_railway_line: true )" => name_en_to_display( process_special_railway_line: true )
     }
     h3 = infos_from_methods_of_decorator(
       :twitter_title ,
