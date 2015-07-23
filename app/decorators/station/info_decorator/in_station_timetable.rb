@@ -1,12 +1,7 @@
 class Station::InfoDecorator::InStationTimetable < TokyoMetro::Factory::Decorate::AppSubDecorator
 
   def render_as_direction_info
-    h.render inline: <<-HAML , type: :haml , locals: { direction_info: decorator.as_direction_info }
-%div{ class: :text_ja }<
-  = direction_info.name_ja
-%div{ class: :text_en }<
-  = direction_info.name_en
-    HAML
+    decorator.as_direction_info.render_simply
   end
 
   def render_in_header
