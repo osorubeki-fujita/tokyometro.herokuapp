@@ -122,7 +122,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
       :tokyo_metro? ,
       :on_jr_lines? ,
       :on_toden_arakawa_line? ,
-      :tobu_sky_tree_isesaki_line? ,
+      :tobu_skytree_line? ,
       :seibu_yurakucho_line?
     )
   end

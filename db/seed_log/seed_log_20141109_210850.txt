@@ -111,12 +111,12 @@
                 ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
                        23.13 sec
 
-        ※ odpt.Railway:Tobu.SkyTreeOshiage
+        ※ odpt.Railway:Tobu.SkytreeOshiage
 
                 ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
                         1.45 sec
 
-        ※ odpt.Railway:Tobu.SkyTree
+        ※ odpt.Railway:Tobu.Skytree
 
                 ○ TokyoMetro::StaticDatas::Station::InEachRailway#seed
                         24.7 sec

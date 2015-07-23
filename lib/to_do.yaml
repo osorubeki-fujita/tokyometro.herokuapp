@@ -14,6 +14,8 @@ SEO:
 Report:
   - 駅時刻表 odpt:StationTimetable の "@type" の値について（東西線，千代田線，南北線）
   - 駅施設情報 odpt:StationFacility の利用可能日について
+  - SaturdayHoliday, SaturdayHoliday, Holiday の違いを確認【Forum】[To Do]
+  - TobuDobutsuKoen
 
 
 "App and Gem":
@@ -52,18 +54,6 @@ Report:
     contents:
       - "[module] reference"
       - SeedFactory
-  -
-    title: App - Db - column の整理
-    contents:
-      -
-        title: Railway::Line::Info
-        contents:
-          - 一部を削除（特に「事業者名 + 路線名」）
-          -
-            title: module を作成
-            contents:
-              - Railway::Line::Info と TokyoMetro::Static::RailwayLine::Info に include
-              - それぞれのクラスに適合するよう調整
   - Decorate Factory への移行
   - App - 事業者名 tokyo_metro をなるべく消す（再利用しやすくするため）
   -

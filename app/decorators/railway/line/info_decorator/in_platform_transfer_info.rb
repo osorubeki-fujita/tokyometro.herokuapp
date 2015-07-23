@@ -13,7 +13,7 @@ class Railway::Line::InfoDecorator::InPlatformTransferInfo < TokyoMetro::Factory
   private
 
   def name_ja
-    if object.tobu_sky_tree_isesaki_line?
+    if object.tobu_skytree_line?
       "東武線"
     elsif object.seibu_yurakucho_line?
       "西武線"
@@ -23,7 +23,7 @@ class Railway::Line::InfoDecorator::InPlatformTransferInfo < TokyoMetro::Factory
   end
 
   def name_en
-    if object.tobu_sky_tree_isesaki_line?
+    if object.tobu_skytree_line?
       "Tobu Skytree Line"
     elsif object.seibu_yurakucho_line?
       "Seibu Line"

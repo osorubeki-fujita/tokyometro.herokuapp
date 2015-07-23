@@ -2,6 +2,7 @@
 
 namespace :temp do
   task :bug_check_of_station_timetable_context_20150630 => :environment do
+
     require 'httpclient'
     require 'json'
     require 'active_support'
@@ -35,6 +36,7 @@ namespace :temp do
   end
 
   task :bug_check_of_operation_day_20150630_1 => :environment do
+
     require 'httpclient'
     require 'json'
     require 'active_support'
@@ -48,6 +50,7 @@ namespace :temp do
   end
 
   task :bug_check_of_operation_day_20150630_2 => :environment do
+
     require 'httpclient'
     require 'json'
     require 'active_support'

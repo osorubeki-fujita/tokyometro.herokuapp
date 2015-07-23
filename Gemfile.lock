@@ -154,7 +154,7 @@ GEM
       activesupport (>= 4.2.1)
       positive_support (>= 0.4.0)
       required_files
-    odpt_tokyo_metro_helper (0.2.1)
+    odpt_tokyo_metro_helper (0.2.2)
       activesupport (>= 4.2.1)
       odpt_common (>= 0.2.1)
     pg (0.18.2)
@@ -313,7 +313,7 @@ GEM
       holiday_japan (>= 1.2.0)
       log_finder (>= 0.1.0)
       odpt_common (>= 0.2.3)
-      odpt_tokyo_metro_helper (>= 0.2.1)
+      odpt_tokyo_metro_helper (>= 0.2.2)
       positive_basic_support (>= 0.2.0)
       positive_code_counter (>= 0.1.0)
       positive_support (>= 0.3.2)

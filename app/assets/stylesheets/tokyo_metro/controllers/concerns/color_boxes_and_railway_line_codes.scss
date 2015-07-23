@@ -435,22 +435,22 @@
 
     //--------
 
-    .tobu_sky_tree_and_isesaki {
-      $color: $line_tobu_sky_tree_and_isesaki_bgcolor ;
+    .tobu_skytree_and_isesaki {
+      $color: $line_tobu_skytree_and_isesaki_bgcolor ;
       @extend %colorBoxAndLineCodeSettingsOfTobu ;
       @include colorBoxColorSettings( $color ) ;
       @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
     }
 
-    .tobu_sky_tree_oshiage_hikifune {
-      $color: $line_tobu_sky_tree_oshiage_hikifune_bgcolor ;
+    .tobu_skytree_oshiage_hikifune {
+      $color: $line_tobu_skytree_oshiage_hikifune_bgcolor ;
       @extend %colorBoxAndLineCodeSettingsOfTobu ;
       @include colorBoxColorSettings( $color ) ;
       @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
     }
 
-    .tobu_sky_tree {
-      $color: $line_tobu_sky_tree_bgcolor ;
+    .tobu_skytree {
+      $color: $line_tobu_skytree_bgcolor ;
       @extend %colorBoxAndLineCodeSettingsOfTobu ;
       @include colorBoxColorSettings( $color ) ;
       @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;

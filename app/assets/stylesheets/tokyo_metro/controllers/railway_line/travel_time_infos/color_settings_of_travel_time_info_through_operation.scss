@@ -93,7 +93,7 @@
     }
   }
   td.hibiya_tobu {
-    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hibiya_bgcolor , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hibiya_bgcolor , $line_tobu_skytree_and_isesaki_bgcolor ) ;
   }
   td.tozai_chuo {
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_jr_chuo_and_sobu_local_bgcolor , $line_tozai_bgcolor ) ;
@@ -114,7 +114,7 @@
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tokyu_den_en_toshi_bgcolor , $line_hanzomon_bgcolor ) ;
   }
   td.hanzomon_tobu {
-    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hanzomon_bgcolor , $line_tobu_sky_tree_and_isesaki_bgcolor ) ;
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_hanzomon_bgcolor , $line_tobu_skytree_and_isesaki_bgcolor ) ;
   }
   td.namboku_tokyu {
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $line_tokyu_meguro_bgcolor , $line_namboku_bgcolor ) ;
