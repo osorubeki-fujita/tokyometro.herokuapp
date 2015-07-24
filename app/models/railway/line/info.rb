@@ -31,6 +31,13 @@ class Railway::Line::Info < ActiveRecord::Base
 
   has_many :twitter_accounts , as: :operator_info_or_railway_line_info
 
+  #-------- 補足情報
+  has_many :additional_infos , class: ::Railway::Line::AdditionalInfo , foreign_key: :info_id
+
+    #-------- 路線コード
+  has_many :info_codes , class: ::Railway::Line::InfoCode , foreign_key: :info_id
+  has_many :codes , class: ::Railway::Line::Code , through: :info_codes
+
   include ::OdptCommon::Modules::Polymorphic::RailwayLine
   include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
 

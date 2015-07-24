@@ -1,5 +1,3 @@
-# coding: utf-8
-
 namespace :temp do
   task :bug_check_of_station_timetable_context_20150630 => :environment do
 

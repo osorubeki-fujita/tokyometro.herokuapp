@@ -26,7 +26,9 @@ point_categories
 point_codes
 point_infos
 railway_directions
+railway_line_additional_infos
 railway_line_codes
+railway_line_info_codes
 railway_line_infos
 railway_line_relations
 railway_line_travel_time_infos

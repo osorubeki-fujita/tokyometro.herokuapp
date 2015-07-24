@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724122415) do
+ActiveRecord::Schema.define(version: 20150724183817) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -199,21 +199,18 @@ ActiveRecord::Schema.define(version: 20150724122415) do
     t.string   "station_code_text_size_setting"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.boolean  "numbering"
+    t.integer  "info_id"
   end
 
   create_table "operator_infos", force: :cascade do |t|
-    t.string   "name_ja",                 limit: 255
-    t.string   "name_hira",               limit: 255
-    t.string   "name_en",                 limit: 255
+    t.string   "name_ja",       limit: 255
+    t.string   "name_hira",     limit: 255
+    t.string   "name_en",       limit: 255
     t.float    "index"
-    t.string   "railway_line_code_shape", limit: 255
-    t.string   "same_as",                 limit: 255
-    t.string   "name_ja_short",           limit: 255
-    t.string   "name_en_short",           limit: 255
-    t.boolean  "numbering"
-    t.string   "station_code_shape",      limit: 255
-    t.string   "operator_code",           limit: 255
-    t.string   "color",                   limit: 255
+    t.string   "same_as",       limit: 255
+    t.string   "name_ja_short", limit: 255
+    t.string   "name_en_short", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -275,11 +272,31 @@ ActiveRecord::Schema.define(version: 20150724122415) do
     t.string   "railway_direction_code", limit: 255
   end
 
-  create_table "railway_line_codes", force: :cascade do |t|
-    t.string   "code"
-    t.string   "hex_color"
+  create_table "railway_line_additional_infos", force: :cascade do |t|
+    t.integer  "info_id"
+    t.string   "id_urn"
+    t.datetime "dc_date"
+    t.string   "geo_json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "api_info"
+  end
+
+  create_table "railway_line_codes", force: :cascade do |t|
+    t.string   "code"
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "numbering"
+  end
+
+  create_table "railway_line_info_codes", force: :cascade do |t|
+    t.integer  "info_id"
+    t.integer  "code_id"
+    t.integer  "from_station_id"
+    t.integer  "to_station_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "railway_line_infos", force: :cascade do |t|
@@ -291,9 +308,6 @@ ActiveRecord::Schema.define(version: 20150724122415) do
     t.float    "index_in_operator"
     t.string   "color",                        limit: 255
     t.string   "name_codes",                   limit: 255
-    t.string   "id_urn",                       limit: 255
-    t.time     "dc_date"
-    t.string   "geo_json",                     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_on"

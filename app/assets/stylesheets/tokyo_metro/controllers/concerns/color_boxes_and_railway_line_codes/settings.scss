@@ -212,3 +212,11 @@
   @include colorBoxColorSettings( $color ) ;
   @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
 }
+
+//-------- 未定義
+
+%colorBoxAndLineCodeSettingsOfUndefined {
+  $color: $operator_undefined_bgcolor ;
+  @include colorBoxColorSettings( $color ) ;
+  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+}

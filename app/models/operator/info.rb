@@ -16,6 +16,8 @@ class Operator::Info < ActiveRecord::Base
 
   has_many :operator_as_train_owners , class: ::Operator::AsTrainOwner , foreign_key: :operator_info_id
 
+  has_one :code , class: ::Operator::Code , foreign_key: :info_id
+
   include ::OdptCommon::Modules::Polymorphic::Operator
 
   include ::OdptCommon::Modules::Name::Db::GetList
@@ -37,6 +39,10 @@ class Operator::Info < ActiveRecord::Base
   scope :defined , -> {
     where.not( same_as: "odpt.Operator:Undefined" )
   }
+
+  def color
+    code.color
+  end
 
   private
 

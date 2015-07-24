@@ -572,6 +572,12 @@
     .rinkai {
       @extend %colorBoxAndLineCodeSettingsOfRinkai ;
     }
+
+    //-------- 未定義
+
+    .undefined {
+      @extend %colorBoxAndLineCodeSettingsOfUndefined ;
+    }
 // }
 
 // @include fundamentalSettingsOfColorBoxAndRailwayLineCode ;

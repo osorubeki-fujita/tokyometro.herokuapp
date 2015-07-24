@@ -70,7 +70,7 @@ class Train::Type::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::Ap
   def infos_to_render
     super().merge({
       "Infos from methods of object" => infos_from_methods_of_object ,
-      "Infos from Db columns of train_type_in_api object" => infos_from_db_columns_of_in_api_object ,
+      "Infos from db columns of train_type_in_api object" => infos_from_db_columns_of_in_api_object ,
       "Infos from methods of train_type_in_api object" => infos_from_methods_of_in_api_object
     })
   end

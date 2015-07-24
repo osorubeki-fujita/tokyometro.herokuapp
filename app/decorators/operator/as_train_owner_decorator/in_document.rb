@@ -19,7 +19,7 @@ class Operator::AsTrainOwnerDecorator::InDocument < TokyoMetro::Factory::Decorat
 
   def infos_to_render
     super().merge({
-      "Infos from Db columns of operator_info object" => infos_from_db_columns_of_operator_info_object ,
+      "Infos from db columns of operator_info object" => infos_from_db_columns_of_operator_info_object ,
       "Infos from methods of operator_info object" => infos_from_methods_of_operator_info_object ,
       "Infos from methods of operator_info decorator" => infos_from_methods_of_operator_info_decorator
     })

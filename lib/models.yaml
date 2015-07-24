@@ -1,13 +1,15 @@
 Operator:
   - "Operator::Info"
-  - "Operator::AsTrainOwner"
   - "Operator::Code"
+  - "Operator::AsTrainOwner"
 
 RailwayLine:
   - "Railway::Line::Info"
+  - "Railway::Line::Code"
+  - "Railway::Line::InfoCode"
+  - "Railway::Line::AdditionalInfo"
   - "Railway::Line::TravelTimeInfo"
   - "Railway::Line::WomenOnlyCarInfo"
-  - "Railway::Line::Code"
   - "Railway::Line::Relation"
   - "Railway::Direction"
 
@@ -30,6 +32,7 @@ StoppingPattern:
   - "Train::Type::InApi"
   - "Train::Type::StoppingPattern"
   - "Train::Name"
+  - "Train::Basename"
 
 StationFacility:
   - "Station::Facility::Info"
@@ -86,6 +89,7 @@ Point:
   - "Train::Timetable::Info"
   - "Train::Timetable::ArrivalInfo"
   - "Train::Timetable::TrainTypeInOtherOperatorInfo"
+  - "Train::Timetable::TrainName"
 
 "Train::Relation":
   - "Train::Relation"
