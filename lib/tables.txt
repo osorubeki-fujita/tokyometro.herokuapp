@@ -17,6 +17,8 @@ connecting_railway_line_notes
 fare_infos
 fare_normal_groups
 operation_days
+operator_as_train_owners
+operator_codes
 operator_infos
 passenger_surveys
 point_additional_names
@@ -24,7 +26,9 @@ point_categories
 point_codes
 point_infos
 railway_directions
+railway_line_codes
 railway_line_infos
+railway_line_relations
 railway_line_travel_time_infos
 railway_line_women_only_car_infos
 rss_categories
@@ -49,14 +53,16 @@ station_timetable_starting_station_infos
 station_train_times
 stopping_patterns
 surrounding_areas
+train_basenames
 train_location_infos
+train_names
 train_operation_infos
 train_operation_statuses
 train_operation_texts
-train_owners
 train_relations
 train_timetable_arrival_infos
 train_timetable_infos
+train_timetable_train_names
 train_timetable_train_type_in_other_operator_infos
 train_type_in_apis
 train_type_infos
