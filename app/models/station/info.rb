@@ -27,7 +27,7 @@ class Station::Info < ActiveRecord::Base
   # after_validation :geocode
 
   include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
-  include ::TokyoMetro::Modules::Decision::Db::Operator
+  include ::TokyoMetro::Modules::Decision::Db::Operator::Name
   include ::TokyoMetro::Modules::Decision::Db::Station::Current
 
   def station_infos_including_other_railway_line_infos

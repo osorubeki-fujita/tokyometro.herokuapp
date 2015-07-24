@@ -24,7 +24,7 @@ class Operator::Info < ActiveRecord::Base
   include ::TokyoMetro::Modules::Name::Common::Operator::CssClass
 
   include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
-  include ::TokyoMetro::Modules::Decision::Db::Operator
+  include ::TokyoMetro::Modules::Decision::Db::Operator::Name
 
   # 指定された鉄道事業者の id を取得する
   scope :id_of , ->( operator_same_as ) {

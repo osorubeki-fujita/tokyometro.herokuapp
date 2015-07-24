@@ -19,6 +19,20 @@ Report:
 
 
 "App and Gem":
+  - 支線のデータベース構造
+  -
+    title: Operator::Info
+    contents:
+      - 文字の大きさ・太さ
+  - Train::Name
+  - TokyoMetro::GEM_DB
+  - 停車駅クラスの完成
+  -
+    title: Gem - seed関連
+    contents:
+      - "[module] reference"
+      - SeedFactory
+  - データの再流し込み
   - "[check] TokyoMetro::Rake::Make::YamlStationList::File::EachStation"
   - "[check] TokyoMetro::Static::OperationDay"
   -
@@ -49,23 +63,16 @@ Report:
           - 構造に無駄がないかチェック
           - RSpec を使用
           - 必要ならば整理
-  -
-    title: Gem - seed関連
-    contents:
-      - "[module] reference"
-      - SeedFactory
-  - Decorate Factory への移行
+  - Factory::Decorate
   - App - 事業者名 tokyo_metro をなるべく消す（再利用しやすくするため）
   -
     title: Gem - TokyoMetro::Static::TrainType
     contents:
       - yaml の構造をシンプルに
-  - データの再流し込み
   -
     title: .scss.erb により、StyleSheetをテンプレート化、構造化（事業者、路線、列車種別の色など）
     contents:
       - cf. lib/tokyo_metro/factory/scss
-  - 停車駅クラスの完成
   - 駅番号の処理 ... 他社の駅について（Haml, Sass による処理）
   - Document 駅リスト
   - 駅時刻表の公開を再開

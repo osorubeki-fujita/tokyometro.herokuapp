@@ -39,7 +39,7 @@ class Railway::Line::Info < ActiveRecord::Base
 
   include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::Name
-  include ::TokyoMetro::Modules::Decision::Db::Operator
+  include ::TokyoMetro::Modules::Decision::Db::Operator::Name
 
   include ::OdptCommon::Modules::Name::Common::RailwayLine
   include ::TokyoMetro::Modules::Name::Common::RailwayLine::CssClass
