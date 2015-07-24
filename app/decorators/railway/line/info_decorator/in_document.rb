@@ -102,7 +102,9 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
       "Infos from db columns of operator object (partial)" => infos_from_db_columns_of_operator_object ,
       "Infos from db columns of railway line decorator (partial)" => infos_from_methods_of_railway_line_decorator ,
       "Infos from db columns of railway line decorator in platform transfer info (partial)" => infos_from_methods_of_railway_line_decorator_in_platform_transfer_info
-    }).merge( h_for_infos_from_db_columns_of_additional_infos_object )
+    }).merge(
+      h_for_infos_from_db_columns_of_additional_infos_object
+    )
   end
 
   def infos_from_methods_of_railway_line_info_object
@@ -157,19 +159,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
   end
 
   def h_for_infos_from_db_columns_of_additional_infos_object
-    h = ::Hash.new
-    additional_infos = @object.additional_infos
-    unless additional_infos.present?
-      return h
-    end
-
-    if additional_infos.length == 1
-      h[ "Infos from db columns of Railway::Line::AdditionalInfo object" ] = infors_from_db_columns_of( additional_infos.first )
-    else
-      additional_infos.to_a.each.with_index(1) do | item , i |
-        h[ "Infos from db columns of Railway::Line::AdditionalInfo object \##{i}" ] = infors_from_db_columns_of( item )
-      end
-    end
+    infos_from_db_columns_of_multiple( object.additional_infos , "Infos from db columns of Railway::Line::AdditionalInfo object" )
   end
 
 end

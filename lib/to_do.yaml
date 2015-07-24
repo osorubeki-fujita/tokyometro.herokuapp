@@ -19,7 +19,6 @@ Report:
 
 
 "App and Gem":
-  - Railway::Line::AdditionalInfo
   - Railway::Line::Code
   - Railway::Line::Relation
   - Train::Name

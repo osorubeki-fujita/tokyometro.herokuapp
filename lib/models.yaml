@@ -8,9 +8,9 @@ RailwayLine:
   - "Railway::Line::Code"
   - "Railway::Line::InfoCode"
   - "Railway::Line::AdditionalInfo"
+  - "Railway::Line::Relation"
   - "Railway::Line::TravelTimeInfo"
   - "Railway::Line::WomenOnlyCarInfo"
-  - "Railway::Line::Relation"
   - "Railway::Direction"
 
 Station:

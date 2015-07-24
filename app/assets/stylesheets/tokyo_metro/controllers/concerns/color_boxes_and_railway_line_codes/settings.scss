@@ -218,5 +218,6 @@
 %colorBoxAndLineCodeSettingsOfUndefined {
   $color: $operator_undefined_bgcolor ;
   @include colorBoxColorSettings( $color ) ;
-  @extend %colorBoxAndLineCodeSettingsWithNoLineCode ;
+  @extend %colorBoxCommonSettings ;
+  @extend %railwayLineCodesOfUndefined ;
 }

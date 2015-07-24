@@ -576,7 +576,10 @@
     //-------- 未定義
 
     .undefined {
-      @extend %colorBoxAndLineCodeSettingsOfUndefined ;
+        $color: $operator_undefined_bgcolor ;
+        @extend %colorBoxAndLineCodeSettingsOfUndefined ;
+        @include colorBoxColorSettings( $color ) ;
+        @include borderColorOfLineCodeFilledRoundedSquare( $color ) ;
     }
 // }
 
