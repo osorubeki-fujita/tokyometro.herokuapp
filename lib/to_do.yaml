@@ -19,12 +19,11 @@ Report:
 
 
 "App and Gem":
-  - 支線のデータベース構造
-  -
-    title: Operator::Info
-    contents:
-      - 文字の大きさ・太さ
+  - Operator::Code
+  - Railway::Line::Code
+  - Railway::Line::Relation
   - Train::Name
+  - Train::Timetable::TrainName
   - TokyoMetro::GEM_DB
   - 停車駅クラスの完成
   -

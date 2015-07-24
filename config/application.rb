@@ -59,6 +59,8 @@ module RailsTokyoMetro
       #---------------- 定数の設定
       ::TokyoMetro.set_fundamental_constants
 
+      ::TokyoMetro::App::Db::Dictionary::Models.init
+
       require ::File.join( ::Rails.root , 'lib' , 'patches' )
 
       ::RailsTokyoMetro.module_eval do

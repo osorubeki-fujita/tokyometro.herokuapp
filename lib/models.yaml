@@ -1,0 +1,110 @@
+Operator:
+  - "Operator::Info"
+  - "Operator::AsTrainOwner"
+  - "Operator::Code"
+
+RailwayLine:
+  - "Railway::Line::Info"
+  - "Railway::Line::TravelTimeInfo"
+  - "Railway::Line::WomenOnlyCarInfo"
+  - "Railway::Line::Code"
+  - "Railway::Line::Relation"
+  - "Railway::Direction"
+
+Station:
+  - "Station::Info"
+  - "Station::NameAlias"
+  - "Station::TrainTime"
+
+"(Relation from station)":
+  - "Station::PassengerSurvey"
+  - "Station::Point"
+
+StoppingPattern:
+  - StoppingPattern
+  - "Station::StoppingPattern::Info"
+  - "Station::StoppingPattern::Note"
+
+"Train::Type":
+  - "Train::Type::Info"
+  - "Train::Type::InApi"
+  - "Train::Type::StoppingPattern"
+  - "Train::Name"
+
+StationFacility:
+  - "Station::Facility::Info"
+  - "Station::Facility::NameAlias"
+  - "Station::Facility::Platform::Info"
+  - "Station::Facility::Platform::TransferInfo"
+  - "Station::Facility::Platform::BarrierFreeFacilityInfo"
+  - "Station::Facility::Platform::SurroundingArea"
+
+SurroundingArea:
+  - SurroundingArea
+
+BarrierFreeFacility:
+  - "BarrierFreeFacility::Info"
+  - "BarrierFreeFacility::Remark"
+  - "BarrierFreeFacility::Type"
+  - "BarrierFreeFacility::LocatedArea"
+  - "BarrierFreeFacility::PlaceName"
+  - "BarrierFreeFacility::RootInfo"
+  - "BarrierFreeFacility::ServiceDetail::Info"
+  - "BarrierFreeFacility::ServiceDetail::Pattern"
+  - "BarrierFreeFacility::EscalatorDirection::Info"
+  - "BarrierFreeFacility::EscalatorDirection::Pattern"
+  - "BarrierFreeFacility::ToiletAssistant::Info"
+  - "BarrierFreeFacility::ToiletAssistant::Pattern"
+
+ConnectingRailwayLine:
+  - "ConnectingRailwayLine::Info"
+  - "ConnectingRailwayLine::Note"
+
+PassengerSurvey:
+  - PassengerSurvey
+
+Fare:
+  - "Fare::Info"
+  - "Fare::NormalGroup"
+
+OperationDay:
+  - OperationDay
+
+Point:
+  - "Point::Info"
+  - "Point::Category"
+  - "Point::Code"
+  - "Point::AdditionalName"
+
+"Station::Timetable":
+  - "Station::Timetable::Info"
+  - "Station::Timetable::FundamentalInfo"
+  - "Station::Timetable::StartingStationInfo"
+  - "Station::Timetable::ConnectionInfo"
+
+"Train::Timetable":
+  - "Train::Timetable::Info"
+  - "Train::Timetable::ArrivalInfo"
+  - "Train::Timetable::TrainTypeInOtherOperatorInfo"
+
+"Train::Relation":
+  - "Train::Relation"
+
+"Train::Operation":
+  - "Train::Operation::Info"
+  - "Train::Operation::Status"
+  - "Train::Operation::Text"
+
+"Train::Location":
+  - "Train::Location::Info"
+
+Rss:
+  - "Rss::Info"
+  - "Rss::Category"
+
+AirConditioner:
+  - "AirConditioner::Info"
+  - "AirConditioner::Answer"
+
+Twitter:
+  - "TwitterAccount"

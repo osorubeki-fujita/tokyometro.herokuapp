@@ -3,7 +3,7 @@
     title: 曜日・日付の判定・取得を行うメソッド（AM 3時で切り替え）
     contents:
       - TokyoMetro.#current_operation_day など
-      - TokyoMetro::Factory::Db::OperationDay
+      - TokyoMetro::App::Db::OperationDay
       - 日本の祝日については Gem 'holiday_japan' を利用
   -
     title: Gem - TokyoMetro::Factory::Get::Api::MetaClass::Fundamental
