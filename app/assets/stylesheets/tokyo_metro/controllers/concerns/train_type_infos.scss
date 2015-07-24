@@ -132,66 +132,6 @@
     $bgcolor: $train_type_chiyoda_romance_car_normal_bgcolor ;
     @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
   }
-  .romance_car_metro_hakone_weekdays_21 {
-    $color: $train_type_chiyoda_romance_car_metro_hakone_weekdays_21_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_weekdays_21_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_home_way_weekdays_71 {
-    $color: $train_type_chiyoda_romance_car_metro_home_way_weekdays_71_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_weekdays_71_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_home_way_weekdays_41 {
-    $color: $train_type_chiyoda_romance_car_metro_home_way_weekdays_41_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_weekdays_41_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_home_way_weekdays_43 {
-    $color: $train_type_chiyoda_romance_car_metro_home_way_weekdays_43_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_weekdays_43_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_hakone_saturdays_holidays_21 {
-    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_21_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_21_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_hakone_saturdays_holidays_23 {
-    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_23_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_23_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_home_way_saturdays_holidays_43 {
-    $color: $train_type_chiyoda_romance_car_metro_home_way_saturdays_holidays_43_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_home_way_saturdays_holidays_43_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_sagami_weekdays_70 {
-    $color: $train_type_chiyoda_romance_car_metro_sagami_weekdays_70_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_sagami_weekdays_70_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_hakone_weekdays_22 {
-    $color: $train_type_chiyoda_romance_car_metro_hakone_weekdays_22_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_weekdays_22_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_sagami_saturdays_holidays_80 {
-    $color: $train_type_chiyoda_romance_car_metro_sagami_saturdays_holidays_80_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_sagami_saturdays_holidays_80_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_hakone_saturdays_holidays_22 {
-    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_22_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_22_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
-  .romance_car_metro_hakone_saturdays_holidays_24 {
-    $color: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_24_color ;
-    $bgcolor: $train_type_chiyoda_romance_car_metro_hakone_saturdays_holidays_24_bgcolor ;
-    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
-  }
 }
 .chiyoda_branch {
   .local_normal {
