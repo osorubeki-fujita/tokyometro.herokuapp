@@ -95,7 +95,7 @@ class Railway::Line::Info < ActiveRecord::Base
 
   # 路線記号から路線を取得する
   scope :select_by_railway_line_codes , ->( *ary ) {
-    where( name_code: ary )
+    where( code: ary )
   }
 
   {
@@ -138,8 +138,8 @@ class Railway::Line::Info < ActiveRecord::Base
     get_list( name_en )
   end
 
-  def name_codes_to_a
-    get_list( name_codes )
+  def codes_to_a
+    get_list( codes )
   end
 
   # @!group 「駅」の属性（路面電車については「停留場」）

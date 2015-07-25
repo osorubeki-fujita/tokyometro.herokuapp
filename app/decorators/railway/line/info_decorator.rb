@@ -130,8 +130,8 @@ class Railway::Line::InfoDecorator < Draper::Decorator
   end
 
   def code_info
-    if name_code_normal.string?
-      name_code_normal
+    if code_normal.string?
+      code_normal
     else
       nil
     end

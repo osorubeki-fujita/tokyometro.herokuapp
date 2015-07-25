@@ -29,7 +29,7 @@ class Railway::Line::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSub
   end
 
   def render_with_outer_domain( must_display_line_color: true , small: false , clearfix: false )
-    if must_display_line_color or name_code_normal.present?
+    if must_display_line_color or code_normal.present?
       if small
         div_classes = [ :railway_line_code_outer_small ]
       else
