@@ -5,7 +5,7 @@ namespace :temp do
     desc "Add id_urn, geo_json, dc_date to ::Railway::Line::Info (0722)"
     task :railway_line_infos_20150722 => :environment do
       ::TokyoMetro::set_api_constants( { railway_line: true } )
-      static_railway_line_infos = ::TokyoMetro::Static.railway_line_infos.values
+      static_railway_line_infos = ::TokyoMetro::Static.railway_lines.values
 
       static_railway_line_infos.each do | railway_line_info |
         railway_line_info_in_db = ::Railway::Line::Info.find_by( same_as: railway_line_info.same_as )

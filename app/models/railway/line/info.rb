@@ -1,5 +1,9 @@
 class Railway::Line::Info < ActiveRecord::Base
 
+  default_scope {
+    order( operator_info_id: :asc ).order( index_in_operator: :asc )
+  }
+
   has_many :station_infos , class: ::Station::Info , foreign_key: :railway_line_info_id
 
   belongs_to :operator_info , class: ::Operator::Info
@@ -26,9 +30,14 @@ class Railway::Line::Info < ActiveRecord::Base
 
   has_many :air_conditioner_infos
 
-  belongs_to :main_railway_line_info , class: ::Railway::Line::Info
-  belongs_to :branch_railway_line_info , class: ::Railway::Line::Info
+  #-------- 支線
+  has_many :relation_infos_as_main_railway_line , class: ::Railway::Line::Relation , foreign_key: :main_railway_line_info_id
+  has_many :relation_infos_as_branch_railway_line , class: ::Railway::Line::Relation , foreign_key: :branch_railway_line_info_id
 
+  has_many :main_railway_line_infos , class: ::Railway::Line::Info , through: :relation_infos_as_branch_railway_line
+  has_many :branch_railway_line_infos , class: ::Railway::Line::Info , through: :relation_infos_as_main_railway_line
+
+  #-------- Twitter
   has_many :twitter_accounts , as: :operator_info_or_railway_line_info
 
   #-------- 補足情報
@@ -37,6 +46,7 @@ class Railway::Line::Info < ActiveRecord::Base
     #-------- 路線コード
   has_many :info_code_infos , class: ::Railway::Line::InfoCodeInfo , foreign_key: :info_id
   has_many :code_infos , class: ::Railway::Line::CodeInfo , through: :info_code_infos
+
 
   include ::OdptCommon::Modules::Polymorphic::RailwayLine
   include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
@@ -49,15 +59,13 @@ class Railway::Line::Info < ActiveRecord::Base
   include ::TokyoMetro::Modules::Decision::Db::Operator::Name
 
   include ::OdptCommon::Modules::Name::Common::RailwayLine::Info
-  include ::OdptCommon::Modules::Name::Common::RailwayLine::StationAttribute
+  include ::OdptCommon::Modules::Attributes::Common::RailwayLine::Station
+  include ::OdptCommon::Modules::Attributes::Common::RailwayLine::Branch
   include ::TokyoMetro::Modules::Name::Common::RailwayLine::CssClass
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
 
   include ::OdptCommon::Modules::MethodMissing::Decision::Common::RailwayLine::BranchLine
 
-  default_scope {
-    order( operator_info_id: :asc ).order( index_in_operator: :asc )
-  }
 
   scope :select_tokyo_metro , ->( tokyo_metro_id = nil ) {
     if tokyo_metro_id.nil?
@@ -72,11 +80,13 @@ class Railway::Line::Info < ActiveRecord::Base
   }
 
   scope :select_branch_lines , -> {
-    where( is_branch_railway_line_info: true )
+    branch_ids = ::Railway::Line::Relation.all.pluck( :branch_railway_line_info_id )
+    where( id: branch_ids )
   }
 
   scope :except_for_branch_lines , -> {
-    where( is_branch_railway_line_info: [ false , nil ] )
+    branch_ids = ::Railway::Line::Relation.all.pluck( :branch_railway_line_info_id )
+    where.not( id: branch_ids )
   }
 
   scope :defined , -> {
@@ -153,25 +163,37 @@ class Railway::Line::Info < ActiveRecord::Base
 
   # @!group Decision
 
-  # @param railway_line [Railway::Line::Info]
-  def branch_railway_line_info_of?( _railway_line_info )
-    branch_railway_line_info? and _railway_line_info.id == main_railway_line_info_id
-  end
-
   # @todo Revision - Container などを使用
   def except_for_branch_lines
     self
+  end
+
+  # @!group Branch railway line infos
+
+  # @param railway_line [Railway::Line::Info]
+  def branch_railway_line_info_of?( _railway_line_info )
+    is_branch_railway_line_info? and ids_of_upper_railway_line_infos.include?( _railway_line_info.id )
+  end
+
+  [
+    :is_branch_railway_line_info? , :has_branch_railway_line_infos? ,
+    :ids_of_top_main_railway_line_infos , :ids_of_upper_railway_line_infos , :ids_of_branch_railway_line_infos
+  ].each do | method_name |
+    eval <<-DEF
+      def #{ method_name }
+        ::OdptCommon::App::Container::Railway::Line::Info.new( self ).send( __method__ )
+      end
+    DEF
   end
 
   # @!endgroup
 
   class ActiveRecord_Relation
 
-    def to_main_lines
-      main_ids_from_branch = select_branch_lines.map( &:main_railway_line_info_id ).uniq
-      main_ids = except_for_branch_lines.map( &:id ).uniq
-      railway_line_info_ids = [ main_ids_from_branch , main_ids ].flatten.uniq.sort
-      return ::Railway::Line::Info.where( id: railway_line_info_ids )
+    def to_main_railway_lines
+      ary = to_a
+      ids_of_main_railway_lines = ary.map( &:ids_of_top_main_railway_line_infos ).flatten.sort.uniq
+      return ::Railway::Line::Info.where( id: ids_of_main_railway_lines )
     end
 
   end

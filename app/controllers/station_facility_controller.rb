@@ -23,7 +23,7 @@ class StationFacilityController < ApplicationController
   def action_for_station_page
     action_base_for_station_page( :station_facility , layout: :application_wide ) do
       @station_facility_info = @station_info.station_facility_info
-      @railway_line_infos = ::Railway::Line::Info.where( id: @station_facility_info.station_infos.pluck( :railway_line_info_id ) ).tokyo_metro.to_main_lines
+      @railway_line_infos = ::Railway::Line::Info.where( id: @station_facility_info.station_infos.pluck( :railway_line_info_id ) ).tokyo_metro.to_main_railway_lines
       # @display_google_map = true
 
       # @point_infos = @station_facility_info.point_infos.without_invalid.includes( :category )

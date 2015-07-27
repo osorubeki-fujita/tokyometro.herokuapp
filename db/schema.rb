@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726133804) do
+ActiveRecord::Schema.define(version: 20150727112935) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -301,27 +301,23 @@ ActiveRecord::Schema.define(version: 20150726133804) do
   end
 
   create_table "railway_line_infos", force: :cascade do |t|
-    t.string   "name_ja",                      limit: 255
-    t.string   "name_hira",                    limit: 255
-    t.string   "name_en",                      limit: 255
+    t.string   "name_ja",           limit: 255
+    t.string   "name_hira",         limit: 255
+    t.string   "name_en",           limit: 255
     t.integer  "operator_info_id"
-    t.string   "same_as",                      limit: 255
+    t.string   "same_as",           limit: 255
     t.float    "index_in_operator"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_on"
-    t.boolean  "is_branch_railway_line_info"
-    t.integer  "main_railway_line_info_id"
-    t.boolean  "has_branch_railway_line_info"
-    t.integer  "branch_railway_line_info_id"
     t.datetime "end_on"
   end
 
   create_table "railway_line_relations", force: :cascade do |t|
-    t.integer  "main_id"
-    t.integer  "branch_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "main_railway_line_info_id"
+    t.integer  "branch_railway_line_info_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "railway_line_travel_time_infos", force: :cascade do |t|

@@ -20,7 +20,7 @@ module RailwayLineByParams
       end
     end
 
-    unless r.is_branch_railway_line_info? or r.has_branch_railway_line_info?
+    unless r.is_branch_railway_line_info? or r.has_branch_railway_line_infos?
       return r
     end
 
@@ -29,19 +29,19 @@ module RailwayLineByParams
       when :exclude
         nil
       when :main_and_branch
-        ::Railway::Line::Info.where( id: [ r.id , r.main_railway_line_info_id ].sort )
+        ::Railway::Line::Info.where( id: [ r.id , r.ids_of_top_main_railway_line_infos ].flatten.uniq.sort )
       when :convert_to_main
         r.main_railway_line_info
       when :no_process
         r
       end
 
-    elsif r.has_branch_railway_line_info?
+    elsif r.has_branch_railway_line_infos?
       case branch_railway_line_info
       when :exclude , :no_process , :convert_to_main
         r
       when :main_and_branch
-        ::Railway::Line::Info.where( id: [ r.id , r.branch_railway_line_info_id ].sort )
+        ::Railway::Line::Info.where( id: [ r.id , r.ids_of_branch_railway_line_infos ].flatten.uniq.sort )
       end
     end
   end

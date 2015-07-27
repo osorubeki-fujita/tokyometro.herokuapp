@@ -117,8 +117,8 @@ RSpec.describe Railway::Line::Info, :type => :model do
       expect( tokyo_metro_lines_on_kita_ayase.map( &:id ) ).to eq( [ chiyoda_branch.id ] )
     end
 
-    it "has scope \'\#to_main_lines\'" do
-      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.to_main_lines.to_a.length ).to eq(1)
+    it "has scope \'\#to_main_railway_lines\'" do
+      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.to_main_railway_lines.to_a.length ).to eq(1)
     end
 
     it "has scope \'\#select_branch_lines\'" do

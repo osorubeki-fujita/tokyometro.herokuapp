@@ -21,7 +21,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
   end
 
   def name_ja_to_display( process_special_railway_line: true , prefix: nil , suffix: nil )
-    str = super( process_special_railway_line: process_special_railway_line )
+    str = object.send( __method__ , process_special_railway_line: process_special_railway_line )
 
     if prefix.present?
       str = prefix + str
@@ -35,7 +35,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
   end
 
   def name_en_to_display( process_special_railway_line: true , prefix: nil , suffix: nil )
-    str = super( process_special_railway_line: process_special_railway_line )
+    str = object.send( __method__ , process_special_railway_line: process_special_railway_line )
 
     if prefix.present?
       str = "#{ prefix } #{ str }"
@@ -109,21 +109,6 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     = railway_line_info.decorate.render_travel_time_simple_infos
     HAML
   end
-
-=begin
-  def code
-    raise
-  end
-
-  def code_info
-    raise
-    if code_normal.string?
-      code_normal
-    else
-      nil
-    end
-  end
-=end
 
   private
 
