@@ -2,7 +2,7 @@ namespace :temp do
 
   namespace :completed do
 
-    desc "Add id_urn, geo_json, dc_date to ::Railway::Line::Info (0722)"
+    desc "Add id_urn, geojson, dc_date to ::Railway::Line::Info (0722)"
     task :railway_line_infos_20150722 => :environment do
       ::TokyoMetro::set_api_constants( { railway_line: true } )
       static_railway_line_infos = ::TokyoMetro::Static.railway_lines.values
@@ -23,17 +23,17 @@ namespace :temp do
         if dc_date.present?
           dc_date = ::Time.new( dc_date.year , dc_date.month , dc_date.day , dc_date.hour , dc_date.min , dc_date.sec , dc_date.zone )
         end
-        railway_line_info_in_db.update( id_urn: railway_line_info.id_urn , geo_json: railway_line_info.geo_json , dc_date: dc_date )
+        railway_line_info_in_db.update( id_urn: railway_line_info.id_urn , geojson: railway_line_info.geojson , dc_date: dc_date )
       end
 
     end
 
-    desc "Add id_urn, geo_json, dc_date to ::Railway::Line::Info (0725)"
+    desc "Add id_urn, geojson, dc_date to ::Railway::Line::Info (0725)"
     task :railway_line_infos_20150725 => :environment do
       railway_line_infos_in_db = ::Railway::Line::Info.all.to_a
       for i in 0..( railway_line_infos_in_db.length - 1 )
         info = railway_line_infos_in_db[i]
-        columns = [ :id_urn , :dc_date , :geo_json ]
+        columns = [ :id_urn , :dc_date , :geojson ]
 
         if columns.map { | column_name | info.send( column_name ) }.any?( &:present? )
           additional_info = ::Railway::Line::AdditionalInfo.find_or_create_by( info_id: info.id )
@@ -41,7 +41,7 @@ namespace :temp do
           h = ::Hash.new
           h[ :api_info ] = true
           h[ :id_urn ] = info.id_urn
-          h[ :geo_json ] = info.geo_json
+          h[ :geojson ] = info.geojson
           if info.dc_date.present?
             h[ :dc_date ] = ::DateTime.parse( "2014-11-07 12:19:19.000000" )
           else

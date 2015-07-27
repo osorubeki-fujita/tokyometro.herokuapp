@@ -21,7 +21,6 @@ Report:
 "App and Gem":
   - Train::Name
   - Train::Timetable::TrainName
-  - TokyoMetro::GEM_DB
   - 停車駅クラスの完成
   -
     title: Gem - seed関連

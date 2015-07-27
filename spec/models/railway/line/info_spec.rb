@@ -118,14 +118,22 @@ RSpec.describe Railway::Line::Info, :type => :model do
     end
 
     it "has scope \'\#to_main_railway_lines\'" do
-      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.to_main_railway_lines.to_a.length ).to eq(1)
+      r = ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.to_main_railway_lines
+      expect( r.to_a.length ).to eq(1)
+      expect( r.first.id ).to eq( chiyoda.id )
     end
 
     it "has scope \'\#select_branch_lines\'" do
-      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.select_branch_lines.to_a.length ).to eq(1)
-      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.select_branch_lines.pluck( :id ).uniq.length ).to eq(1)
-      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.select_branch_lines.pluck( :main_railway_line_info_id ).uniq.length ).to eq(1)
-      expect( ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.select_branch_lines.pluck( :main_railway_line_info_id ).uniq ).to eq( [ chiyoda.id ] )
+      r = ::Railway::Line::Info.where( id: railway_line_info_ids_on_kita_ayase ).tokyo_metro.select_branch_lines
+      expect( r.to_a.length ).to eq(1)
+      expect( r.pluck( :id ).uniq.length ).to eq(1)
+
+      c_branch = r.first
+
+      expect(c_branch.id ).to eq( chiyoda_branch.id )
+
+      expect( c_branch.main_railway_line_infos.to_a.length ).to eq(1)
+      expect( c_branch.main_railway_line_infos.first.id ).to eq( chiyoda.id )
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727112935) do
+ActiveRecord::Schema.define(version: 20150727161935) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20150727112935) do
     t.integer  "category_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "geo_json",                 limit: 255
+    t.string   "geojson",                  limit: 255
     t.integer  "floor"
     t.boolean  "elevator"
     t.boolean  "closed"
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 20150727112935) do
     t.integer  "info_id"
     t.string   "id_urn"
     t.datetime "dc_date"
-    t.string   "geo_json"
+    t.string   "geojson"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean  "api_info"
@@ -431,7 +431,7 @@ ActiveRecord::Schema.define(version: 20150727112935) do
     t.string   "station_facility_custom",       limit: 255
     t.string   "station_facility_custom_alias", limit: 255
     t.datetime "dc_date"
-    t.string   "geo_json",                      limit: 255
+    t.string   "geojson",                       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
