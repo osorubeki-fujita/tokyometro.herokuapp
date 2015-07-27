@@ -135,25 +135,36 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
   end
 
   def infos_from_methods_of_railway_line_info_object
-    infos_from_methods_of_object(
+    h1 = infos_from_methods_of_object(
       :name_ja_normal ,
       :name_ja_with_operator_name ,
       :name_ja_with_operator_name_precise ,
       :name_en_normal ,
       :name_en_with_operator_name ,
-      :name_en_with_operator_name_precise ,
+      :name_en_with_operator_name_precise
+    )
+
+    h2 = { "name_ja_with_operator_name_precise( without_parentheses: true )" => object.name_ja_with_operator_name_precise( without_parentheses: true ) }
+
+    h3 = infos_from_methods_of_object(
+      :name_ja_to_display ,
+      :name_en_to_display
+    )
+
+    h4 = infos_from_methods_of_object(
       :css_class ,
       :station_attribute_ja ,
       :station_attribute_hira ,
       :station_attribute_en ,
       :station_attribute_en_short ,
-      :name_ja_with_operator_name_precise_and_without_parentheses ,
       :tokyo_metro? ,
       :on_jr_lines? ,
       :on_toden_arakawa_line? ,
       :tobu_skytree_line? ,
       :seibu_yurakucho_line?
     )
+
+    h1.merge(h2).merge(h3).merge(h4)
   end
 
   def infos_from_db_columns_of_operator_object
@@ -161,20 +172,11 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
   end
 
   def infos_from_methods_of_railway_line_decorator
-    h1 = infos_from_methods_of_decorator(
-      :name_ja_to_display ,
-      :name_en_to_display
-    )
-    h2 = {
-      "name_ja_to_display( process_special_railway_line: true )" => name_ja_to_display( process_special_railway_line: true ) ,
-      "name_en_to_display( process_special_railway_line: true )" => name_en_to_display( process_special_railway_line: true )
-    }
-    h3 = infos_from_methods_of_decorator(
+    infos_from_methods_of_decorator(
       :twitter_title ,
       :page_name ,
       :travel_time_table_id
     )
-    h1.merge(h2).merge(h3)
   end
 
   def infos_from_methods_of_railway_line_decorator_in_platform_transfer_info

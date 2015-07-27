@@ -20,12 +20,8 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     "Information of railway lines"
   end
 
-  def name_ja_to_display( process_special_railway_line: false , prefix: nil , suffix: nil )
-    if process_special_railway_line and seibu_yurakucho_line?
-      str = "西武線"
-    else
-      str = object.name_ja_with_operator_name
-    end
+  def name_ja_to_display( process_special_railway_line: true , prefix: nil , suffix: nil )
+    str = super( process_special_railway_line: process_special_railway_line )
 
     if prefix.present?
       str = prefix + str
@@ -38,12 +34,8 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     return str
   end
 
-  def name_en_to_display( process_special_railway_line: false , prefix: nil , suffix: nil )
-    if process_special_railway_line and seibu_yurakucho_line?
-      str = "Seibu Line"
-    else
-      str = object.name_en_with_operator_name
-    end
+  def name_en_to_display( process_special_railway_line: true , prefix: nil , suffix: nil )
+    str = super( process_special_railway_line: process_special_railway_line )
 
     if prefix.present?
       str = "#{ prefix } #{ str }"
