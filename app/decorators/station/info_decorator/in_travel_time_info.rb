@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InTravelTimeInfo < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InTravelTimeInfo < TokyoMetro::Factory::Decorate::SubDecorator
 
 =begin
 

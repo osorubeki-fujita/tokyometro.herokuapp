@@ -35,8 +35,8 @@ class Railway::Line::Info < ActiveRecord::Base
   has_many :additional_infos , class: ::Railway::Line::AdditionalInfo , foreign_key: :info_id
 
     #-------- 路線コード
-  has_many :info_codes , class: ::Railway::Line::InfoCode , foreign_key: :info_id
-  has_many :codes , class: ::Railway::Line::Code , through: :info_codes
+  has_many :info_code_infos , class: ::Railway::Line::InfoCodeInfo , foreign_key: :info_id
+  has_many :code_infos , class: ::Railway::Line::CodeInfo , through: :info_code_infos
 
   include ::OdptCommon::Modules::Polymorphic::RailwayLine
   include ::OdptCommon::Modules::Decision::Common::RailwayLine::Name
@@ -48,7 +48,8 @@ class Railway::Line::Info < ActiveRecord::Base
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::Name
   include ::TokyoMetro::Modules::Decision::Db::Operator::Name
 
-  include ::OdptCommon::Modules::Name::Common::RailwayLine
+  include ::OdptCommon::Modules::Name::Common::RailwayLine::Info
+  include ::OdptCommon::Modules::Name::Common::RailwayLine::StationAttribute
   include ::TokyoMetro::Modules::Name::Common::RailwayLine::CssClass
   include ::TokyoMetro::Modules::Decision::Common::RailwayLine::NewAndOld
 
@@ -139,33 +140,15 @@ class Railway::Line::Info < ActiveRecord::Base
   end
 
   def codes_to_a
-    get_list( codes )
+    code_infos.pluck( :code ).delete_if( &:blank? )
   end
 
-  # @!group 「駅」の属性（路面電車については「停留場」）
-
-  def station_attribute_ja
-    if on_toden_arakawa_line?
-      "停留場"
-    else
-      "駅"
-    end
+  def colors_to_a
+    code_infos.pluck( :color ).delete_if( &:blank? )
   end
 
-  def station_attribute_hira
-    if on_toden_arakawa_line?
-      "ていりゅうじょう"
-    else
-      "えき"
-    end
-  end
-
-  def station_attribute_en
-    "station"
-  end
-
-  def station_attribute_en_short
-    "sta."
+  def color_normal
+    colors_to_a.first
   end
 
   # @!group Decision

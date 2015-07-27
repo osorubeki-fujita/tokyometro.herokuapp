@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InTrainLocation < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render_as_terminal_station
     div_classes = [ :terminal_station , :clearfix ]

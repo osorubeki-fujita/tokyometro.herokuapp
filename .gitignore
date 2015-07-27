@@ -30,3 +30,5 @@
 /invalid_station_timetable_context.txt
 
 /public/dev-assets/*/**.*
+
+/**/.DS_Strore

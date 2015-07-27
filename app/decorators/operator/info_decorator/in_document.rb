@@ -1,13 +1,12 @@
-class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDecorator::InDocument
 
-  include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
+  include ::TokyoMetro::Factory::Decorate::SubDecorator::InDocument::ColorInfo
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
 %li{ class: [ :document_info_box , :operator , this.css_class , :clearfix ] }
   = this.render_id_and_size_changing_buttons
   = this.render_main_domain
-  = this.render_button_domain
   = this.render_infos
     HAML
   end
@@ -62,7 +61,7 @@ class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSu
     super().merge({
       "Infos from methods of object" => infos_from_methods_of_object ,
       "Infos from methods of decorator" => infos_from_methods_of_decorator ,
-      "infos from db columns of Operator::Code" => infos_from_db_columns_of_operator_code
+      "infos from db columns of Operator::CodeInfo" => infos_from_db_columns_of_operator_code_info
     })
   end
 
@@ -90,8 +89,8 @@ class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSu
     super( :twitter_title )
   end
 
-  def infos_from_db_columns_of_operator_code
-    infos_from_methods_of( object.code , ::Operator::Code.attribute_names - [ "info_id" ] )
+  def infos_from_db_columns_of_operator_code_info
+    infos_from_methods_of( object.code_info , ::Operator::CodeInfo.attribute_names - [ "info_id" ] )
   end
 
 end

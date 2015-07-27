@@ -10,10 +10,7 @@ class Railway::Line::TravelTimeInfoDecorator < Draper::Decorator
   end
 
   def render_simple_info
-    h.render inline: <<-HAML , type: :haml , locals: { travel_time_info: self }
-%div{ class: :info }
-  = travel_time_info.to_s
-    HAML
+    h.content_tag( :div , object.to_s , class: :info )
   end
 
 end

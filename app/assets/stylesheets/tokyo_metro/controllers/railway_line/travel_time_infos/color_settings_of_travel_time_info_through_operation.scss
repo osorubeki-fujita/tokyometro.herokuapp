@@ -92,7 +92,7 @@
     }
   }
   td.hibiya_tobu {
-    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_hibiya_bgcolor , $railway_line_tobu_skytree_and_isesaki_bgcolor ) ;
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_hibiya_bgcolor , $railway_line_tobu_skytree_and_isesaki_1_bgcolor ) ;
   }
   td.tozai_chuo {
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_jr_chuo_and_sobu_local_bgcolor , $railway_line_tozai_bgcolor ) ;
@@ -113,7 +113,7 @@
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_tokyu_den_en_toshi_bgcolor , $railway_line_hanzomon_bgcolor ) ;
   }
   td.hanzomon_tobu {
-    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_hanzomon_bgcolor , $railway_line_tobu_skytree_and_isesaki_bgcolor ) ;
+    @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_hanzomon_bgcolor , $railway_line_tobu_skytree_and_isesaki_1_bgcolor ) ;
   }
   td.namboku_tokyu {
     @include gradationColorSettingsOfTravelTimeInfoThroughOperation( $railway_line_tokyu_meguro_bgcolor , $railway_line_namboku_bgcolor ) ;

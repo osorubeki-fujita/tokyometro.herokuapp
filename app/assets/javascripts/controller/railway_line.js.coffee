@@ -23,7 +23,7 @@ class RailwayLine
   in_railway_line_title = (v) ->
     return railway_line_title(v).length > 0
 
-  has_multiple_travel_time_info_tables = (v) ->
+  has_many_travel_time_info_tables = (v) ->
     return travel_time_info(v).length > 1
   
   #---- 数値
@@ -50,8 +50,8 @@ class RailwayLine
 
   process_travel_time_info_tables = (v) ->
     # console.log( 'RailwayLine\#process_travel_time_info_tables' )
-    if has_multiple_travel_time_info_tables(v)
-      # console.log( 'RailwayLine\#has_multiple_travel_time_info_tables' )
+    if has_many_travel_time_info_tables(v)
+      # console.log( 'RailwayLine\#has_many_travel_time_info_tables' )
       _width_new = max_width_of_travel_time_info_tables(v)
       # console.log( 'width_new: ' + _width_new )
       travel_time_info(v).each ->

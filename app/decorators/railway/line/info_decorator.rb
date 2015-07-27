@@ -4,7 +4,7 @@ class Railway::Line::InfoDecorator < Draper::Decorator
   include CommonTitleRenderer
   include TwitterRenderer
 
-  [ :in_station_timetable , :in_platform_transfer_info , :in_document , :title , :matrix , :code ].each do | method_name |
+  [ :in_station_timetable , :in_platform_transfer_info , :in_document , :title , :matrix , :code_domain ].each do | method_name |
     eval <<-DEF
       def #{ method_name }
         ::Railway::Line::InfoDecorator::#{ method_name.camelize }.new( self )
@@ -61,33 +61,22 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     if clearfix
       div_classes << :clearfix
     end
+
     h_locals = {
       this: self ,
-      process_special_railway_line: process_special_railway_line ,
-      prefix_ja: prefix_ja ,
-      suffix_ja: suffix_ja ,
-      prefix_en: prefix_en ,
-      suffix_en: suffix_en ,
-      div_classes: div_classes
-    }
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ class: div_classes }<
-  = this.render_name_base( process_special_railway_line: true , prefix_ja: prefix_ja , suffix_ja: suffix_ja , prefix_en: prefix_en , suffix_en: suffix_en )
-    HAML
-  end
-
-  def render_name_base( process_special_railway_line: true , prefix_ja: nil , suffix_ja: nil , prefix_en: nil , suffix_en: nil )
-    h_locals = {
+      div_classes: div_classes ,
       text_ja_ary: name_ja_to_display( process_special_railway_line: process_special_railway_line , prefix: prefix_ja , suffix: suffix_ja ).split( / \/ / ) ,
       text_en_ary: name_en_to_display( process_special_railway_line: process_special_railway_line , prefix: prefix_en , suffix: suffix_en ).split( / \/ / )
     }
+
     h.render inline: <<-HAML , type: :haml , locals: h_locals
-- text_ja_ary.each do | str |
-  %p{ class: :text_ja }<
-    = str
-- text_en_ary.each do | str |
-  %p{ class: :text_en }<
-    = str
+%div{ class: div_classes }<
+  - text_ja_ary.each do | str |
+    %p{ class: :text_ja }<
+      = str
+  - text_en_ary.each do | str |
+    %p{ class: :text_en }<
+      = str
     HAML
   end
 
@@ -129,28 +118,22 @@ class Railway::Line::InfoDecorator < Draper::Decorator
     HAML
   end
 
+=begin
+  def code
+    raise
+  end
+
   def code_info
+    raise
     if code_normal.string?
       code_normal
     else
       nil
     end
   end
+=end
 
   private
-
-  def css_class_of_railway_line_code( small , clearfix )
-    ary = ::Array.new
-    if small
-      ary << :railway_line_code_32
-    else
-      ary << :railway_line_code_48
-    end
-    if clearfix
-      ary << :clearfix
-    end
-    ary
-  end
 
   def railway_line_decorated
     self

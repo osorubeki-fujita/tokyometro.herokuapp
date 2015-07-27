@@ -1,6 +1,6 @@
-class Train::Type::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Train::Type::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDecorator::InDocument
 
-  include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
+  include ::TokyoMetro::Factory::Decorate::SubDecorator::InDocument::ColorInfo
 
   # @!group Main methods
 
@@ -8,20 +8,26 @@ class Train::Type::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::Ap
     h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
 %li{ class: [ :document_info_box , :clearfix ] }
   = this.render_id_and_size_changing_buttons
-  %div{ class: [ :main , :clearfix ] }<
-    = this.render_name_box
-    = this.render_name
-    = this.render_color_infos
+  = this.render_main_domain
   = this.render_infos
     HAML
   end
 
   # @!group Sub public methods
 
+  def render_main_domain
+    h.render inline: <<-HAML , type: :haml , locals: h_this
+%div{ class: [ :main , :clearfix ] }<
+  = this.render_name_box
+  = this.render_name
+  = this.render_color_infos
+    HAML
+  end
+
   def render_name_box
     h.render inline: <<-HAML , type: :haml , locals: { this: self , css_classs: [ :train_type , @decorator.css_class ].flatten }
 %div{ class: css_classs }
-  = this.in_api.decorate.render_name_in_box( icon: true )
+  = this.object.in_api.decorate.render_name_in_box( icon: true )
     HAML
   end
 

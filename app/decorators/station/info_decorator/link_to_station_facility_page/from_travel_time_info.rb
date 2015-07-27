@@ -1,4 +1,4 @@
-class Station::InfoDecorator::LinkToStationFacilityPage::FromTravelTimeInfo < ::TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::LinkToStationFacilityPage::FromTravelTimeInfo < ::TokyoMetro::Factory::Decorate::SubDecorator
 
   def render
     link_name = "#{ object.name_ja_actual }駅のご案内へジャンプします。"

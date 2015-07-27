@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InStationTimetable < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InStationTimetable < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render_as_direction_info
     decorator.as_direction_info.render_simply

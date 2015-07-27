@@ -1,39 +1,36 @@
-class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDecorator::InDocument
 
-  include ::TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument::ColorInfo
+  include ::TokyoMetro::Factory::Decorate::SubDecorator::InDocument::ColorInfo
 
   # @!group Main methods
 
   def render
-    h.render inline: <<-HAML , type: :haml , locals: { this: self , number: object.id }
-%li{ class: [ :document_info_box , this.css_class , :clearfix ] }
+    h.render inline: <<-HAML , type: :haml , locals: { this: self , li_classes: li_classes }
+%li{ class: li_classes }
   = this.render_id_and_size_changing_buttons
   = this.render_main_domain
-  = this.render_button_domain
   = this.render_infos
     HAML
   end
 
   def render_title
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-- obj = this.object
+    h.render inline: <<-HAML , type: :haml , locals: h_object
 %div{ class: :railway_line_name }
   %h4{ class: :text_ja }<
-    = obj.name_ja
+    = o.name_ja
   %h5{ class: :text_en }<
-    = obj.name_en
+    = o.name_en
   %h5{ class: [ :text_en , :same_as ] }<
-    = "same_as: "+ obj.same_as
+    = "same_as: "+ o.same_as
     HAML
   end
 
   # @!group Sub public methods
 
   def render_main_domain
-    h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :main }
-  = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
-  = this.decorator.code.render( must_display_line_color: false )
+    h.render inline: <<-HAML , type: :haml , locals: h_this
+%div{ class: [ :main , :clearfix ] }
+  = this.render_color_box_and_code
   %div{ class: :railway_line_name }
     = this.render_name_ja
     = this.render_name_en
@@ -41,6 +38,27 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
       = this.object.same_as
   = this.render_color_info
     HAML
+  end
+
+  def render_color_box_and_code
+    h_locals_i = h_this.merge( { request: request } )
+
+    if has_many_code_infos?
+      h.render inline: <<-HAML , type: :haml , locals: h_locals_i
+%div{ class: [ :multiple_codes , :clearfix ] }
+  - 1.upto( this.object.code_infos.length ) do |i|
+    %div{ class: [ this.object.css_class(i) , :clearfix ] }
+      = ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
+      = this.decorator.code_domain.render( i , must_display_line_color: false )
+      HAML
+
+    else
+      h.render inline: <<-HAML , type: :haml , locals: h_locals_i
+= ::TokyoMetro::App::Renderer::ColorBox.new( request ).render
+= this.decorator.code_domain.render( must_display_line_color: false )
+      HAML
+
+    end
   end
 
   def render_name_ja
@@ -62,20 +80,17 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
       HAML
 
     else
-      h.render inline: <<-HAML , type: :haml , locals: { name_ja: name_ja }
-%p{ class: :text_ja }<
-  = name_ja
-      HAML
+      h.content_tag( :p , name_ja , class: :text_ja )
     end
   end
 
   def render_name_en
     regexp = ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_en
-    name_en = object.name_en_with_operator_name_precise
+    _name_en = object.name_en_with_operator_name_precise
 
-    if regexp =~ name_en
+    if regexp =~ _name_en
       h_locals = {
-        out_of_parentheses: name_en.gsub( regexp , "" ) ,
+        out_of_parentheses: _name_en.gsub( regexp , "" ) ,
         in_parentheses: $1
       }
       h.render inline: <<-HAML , type: :haml , locals: h_locals
@@ -87,14 +102,26 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
       HAML
 
     else
-      h.render inline: <<-HAML , type: :haml , locals: { name_en: name_en }
-%p{ class: :text_en }<
-  = name_en
-      HAML
+      h.content_tag( :p , _name_en , class: :text_en )
     end
   end
 
   private
+
+  def has_many_code_infos?
+    object.send( __method__ )
+  end
+
+  def li_classes
+    ary = ::Array.new
+    ary << :document_info_box
+    unless has_many_code_infos?
+      ary << object.css_class
+    end
+    ary << :clearfix
+
+    return ary
+  end
 
   def infos_to_render
     super().merge({
@@ -151,7 +178,7 @@ class Railway::Line::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::
   end
 
   def infos_from_methods_of_railway_line_decorator_in_platform_transfer_info
-    d = @decorator.in_platform_transfer_info
+    d = decorator.in_platform_transfer_info
     {
       "name_ja (private)" => d.send( :name_ja ) ,
       "name_en (private)" => d.send( :name_en )

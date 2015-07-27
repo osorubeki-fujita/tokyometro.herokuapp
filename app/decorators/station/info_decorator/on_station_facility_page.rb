@@ -1,4 +1,4 @@
-class Station::InfoDecorator::OnStationFacilityPage < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::OnStationFacilityPage < TokyoMetro::Factory::Decorate::SubDecorator
 
   def railway_line_infos( request )
     ::Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos.new( @decorator , request )

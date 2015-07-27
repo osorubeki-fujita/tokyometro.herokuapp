@@ -2,10 +2,7 @@ class Station::Facility::Platform::InfoDecorator < Draper::Decorator
   delegate_all
 
   def self.render_transfer_info_title
-    h.render inline: <<-HAML , type: :haml
-%td{ class: :title }<
-  = "のりかえ"
-    HAML
+    h.content_tag( :td , "のりかえ" , class: :title )
   end
 
   def self.render_inside_barrier_free_facility_title
@@ -45,10 +42,7 @@ class Station::Facility::Platform::InfoDecorator < Draper::Decorator
 
   # 中身のないセルを作成するメソッド
   def self.render_an_empty_cell
-    h.render inline: <<-HAML , type: :haml
-%td{ class: :empty }<
-  = " "
-    HAML
+    h.content_tag( :td , " " , class: :empty )
   end
 
 end

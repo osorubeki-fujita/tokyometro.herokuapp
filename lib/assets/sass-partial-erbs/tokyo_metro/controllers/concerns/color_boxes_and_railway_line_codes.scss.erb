@@ -437,8 +437,15 @@
 
     //--------
 
-    .tobu_skytree_and_isesaki {
-      $color: $railway_line_tobu_skytree_and_isesaki_bgcolor ;
+    .tobu_skytree_and_isesaki_1 {
+      $color: $railway_line_tobu_skytree_and_isesaki_1_bgcolor ;
+      @extend %colorBoxAndLineCodeSettingsOfTobu ;
+      @include colorBoxColorSettings( $color ) ;
+      @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;
+    }
+
+    .tobu_skytree_and_isesaki_2 {
+      $color: $railway_line_tobu_skytree_and_isesaki_2_bgcolor ;
       @extend %colorBoxAndLineCodeSettingsOfTobu ;
       @include colorBoxColorSettings( $color ) ;
       @include borderColorOfLineCodeStrokedRoundedSquareAndCircle( $color ) ;

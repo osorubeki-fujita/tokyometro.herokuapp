@@ -1,4 +1,4 @@
-class Railway::DirectionDecorator::InStationTimetable < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Railway::DirectionDecorator::InStationTimetable < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render_in_header
     h.render inline: <<-HAML , type: :haml , locals: { station_info_decorated: object.station_info.decorate }

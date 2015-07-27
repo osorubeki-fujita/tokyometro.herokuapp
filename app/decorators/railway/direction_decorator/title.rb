@@ -1,4 +1,4 @@
-class Railway::DirectionDecorator::Title < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Railway::DirectionDecorator::Title < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render_in_train_location
     render_simply

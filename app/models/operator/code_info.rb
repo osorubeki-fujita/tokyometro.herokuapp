@@ -1,3 +1,3 @@
-class Operator::Code < ActiveRecord::Base
+class Operator::CodeInfo < ActiveRecord::Base
   belongs_to :info , class: ::Operator::Info
 end

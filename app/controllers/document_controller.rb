@@ -18,7 +18,7 @@ class DocumentController < ApplicationController
   end
 
   def train_owners
-    @train_owners = ::Operator::AsTrainOwner.all.includes( :operator_info )
+    @train_owners = ::Operator::AsTrainOwner.all.includes( :info )
     @title = "車両所有事業者"
     @title_en = "Train owners"
     @title_ja = @title

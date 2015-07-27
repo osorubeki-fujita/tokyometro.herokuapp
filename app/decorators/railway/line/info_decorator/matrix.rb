@@ -1,4 +1,4 @@
-class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::SubDecorator
 
   def self.render_all_railway_line_infos( request , including_yurakucho_and_fukutoshin: false , make_link_to_railway_line: true , controller_of_linked_page: nil )
     h_locals = {
@@ -36,7 +36,7 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
         - railway_line_infos.each do | railway_line_info |
           %div{ class: railway_line_info.css_class }<
             %div{ class: :railway_line_code_outer }<
-              = railway_line_info.decorate.code.render
+              = railway_line_info.decorate.code_domain.render
     %div{ class: :text_ja }<
       = "有楽町線・副都心線"
     %div{ class: :text_en }<
@@ -63,7 +63,7 @@ class Railway::Line::InfoDecorator::Matrix < TokyoMetro::Factory::Decorate::AppS
   - if url.present?
     = link_to( "" , url )
   %div{ class: [ :info , :clearfix ] }
-    = this.code.render_with_outer_domain( small: small_railway_line_code )
+    = this.code_domain.render_with_outer_domain( small: small_railway_line_code )
     = this.render_name( process_special_railway_line: true )
       HAML
     end

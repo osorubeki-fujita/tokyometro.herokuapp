@@ -1,4 +1,4 @@
-class Railway::DirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::AppSubDecorator::InDocument
+class Railway::DirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDecorator::InDocument
 
   # @!group Main methods
 
@@ -7,7 +7,6 @@ class Railway::DirectionDecorator::InDocument < TokyoMetro::Factory::Decorate::A
 %li{ class: [ :document_info_box , :railway_direction , :clearfix ] }
   = this.render_id_and_size_changing_buttons
   = this.render_main_domain
-  = this.render_button_domain
   = this.render_infos
     HAML
   end

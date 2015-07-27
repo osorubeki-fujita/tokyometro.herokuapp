@@ -1,4 +1,4 @@
-class Station::InfoDecorator::LinkToStationFacilityPage < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::LinkToStationFacilityPage < TokyoMetro::Factory::Decorate::SubDecorator
 
   def from_travel_time_info
     ::Station::InfoDecorator::LinkToStationFacilityPage::FromTravelTimeInfo.new( decorator )

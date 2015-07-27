@@ -1,12 +1,12 @@
 Operator:
   - "Operator::Info"
-  - "Operator::Code"
+  - "Operator::CodeInfo"
   - "Operator::AsTrainOwner"
 
 RailwayLine:
   - "Railway::Line::Info"
-  - "Railway::Line::Code"
-  - "Railway::Line::InfoCode"
+  - "Railway::Line::CodeInfo"
+  - "Railway::Line::InfoCodeInfo"
   - "Railway::Line::AdditionalInfo"
   - "Railway::Line::Relation"
   - "Railway::Line::TravelTimeInfo"

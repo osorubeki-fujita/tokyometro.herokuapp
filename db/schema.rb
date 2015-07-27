@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725133102) do
+ActiveRecord::Schema.define(version: 20150726133804) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -180,13 +180,13 @@ ActiveRecord::Schema.define(version: 20150725133102) do
   end
 
   create_table "operator_as_train_owners", force: :cascade do |t|
-    t.integer  "operator_info_id"
-    t.string   "same_as",          limit: 255
+    t.integer  "info_id"
+    t.string   "same_as",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "operator_codes", force: :cascade do |t|
+  create_table "operator_code_infos", force: :cascade do |t|
     t.string   "code"
     t.string   "color"
     t.string   "railway_line_code_shape"
@@ -282,7 +282,7 @@ ActiveRecord::Schema.define(version: 20150725133102) do
     t.boolean  "api_info"
   end
 
-  create_table "railway_line_codes", force: :cascade do |t|
+  create_table "railway_line_code_infos", force: :cascade do |t|
     t.string   "code"
     t.string   "color"
     t.datetime "created_at", null: false
@@ -290,9 +290,9 @@ ActiveRecord::Schema.define(version: 20150725133102) do
     t.boolean  "numbering"
   end
 
-  create_table "railway_line_info_codes", force: :cascade do |t|
+  create_table "railway_line_info_code_infos", force: :cascade do |t|
     t.integer  "info_id"
-    t.integer  "code_id"
+    t.integer  "code_info_id"
     t.integer  "from_station_id"
     t.integer  "to_station_id"
     t.datetime "created_at",      null: false

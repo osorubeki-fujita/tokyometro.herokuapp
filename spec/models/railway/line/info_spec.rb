@@ -72,7 +72,7 @@ RSpec.describe Railway::Line::Info, :type => :model do
     ["odpt.Railway:Seibu.Sayama", "狭山線", "Sayama Line", "西武狭山線", "Seibu Sayama Line", "西武狭山線", "Seibu Sayama Line", "seibu_sayama"],
     ["odpt.Railway:Seibu.SeibuYurakucho", "西武有楽町線", "Seibu Yurakucho Line", "西武有楽町線", "Seibu Yurakucho Line", "西武有楽町線", "Seibu Yurakucho Line", "seibu_yurakucho"],
     ["odpt.Railway:Seibu.Shinjuku", "新宿線", "Shinjuku Line", "西武新宿線", "Seibu Shinjuku Line", "西武新宿線", "Seibu Shinjuku Line", "seibu_shinjuku"],
-    ["odpt.Railway:Tobu.SkytreeIsesaki", "スカイツリーライン（伊勢崎線）", "Skytree and Isesaki Line", "東武スカイツリーライン（伊勢崎線）", "Tobu Skytree and Isesaki Line", "東武スカイツリーライン（伊勢崎線）", "Tobu Skytree and Isesaki Line", "tobu_skytree_and_isesaki"],
+    ["odpt.Railway:Tobu.SkytreeIsesaki", "スカイツリーライン（伊勢崎線）", "Skytree and Isesaki Line", "東武スカイツリーライン（伊勢崎線）", "Tobu Skytree and Isesaki Line", "東武スカイツリーライン（伊勢崎線）", "Tobu Skytree and Isesaki Line", "tobu_skytree_and_isesaki_1"],
     ["odpt.Railway:Tobu.SkytreeOshiage", "スカイツリーライン（押上 - 曳舟）", "Skytree Line (Oshiage - Hikifune)", "東武スカイツリーライン（押上 - 曳舟）", "Tobu Skytree Line (Oshiage - Hikifune)", "東武スカイツリーライン（押上 - 曳舟）", "Tobu Skytree Line (Oshiage - Hikifune)", "tobu_skytree_oshiage_hikifune"],
     ["odpt.Railway:Tobu.Skytree", "スカイツリーライン", "Skytree Line", "東武スカイツリーライン", "Tobu Skytree Line", "東武スカイツリーライン", "Tobu Skytree Line", "tobu_skytree"],
     ["odpt.Railway:Tobu.Isesaki", "伊勢崎線", "Isesaki Line", "東武伊勢崎線", "Tobu Isesaki Line", "東武伊勢崎線", "Tobu Isesaki Line", "tobu_isesaki"],

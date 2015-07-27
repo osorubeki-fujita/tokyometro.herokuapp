@@ -1,6 +1,6 @@
 namespace :temp do
   namespace :completed do
-    task :move_infos_to_operator_codes_20150725 => :environment do
+    task :move_infos_to_operator_code_infos_20150725 => :environment do
       operator_infos = ::Operator::Info.all.to_a
 
       for i in 0..( operator_infos.length - 1 )
@@ -33,7 +33,7 @@ namespace :temp do
 
         h[ :numbering ] = !!( info.numbering )
 
-        ::Operator::Code.find_or_create_by( info_id: info.id ).update(h)
+        ::Operator::CodeInfo.find_or_create_by( info_id: info.id ).update(h)
       end
 
     end

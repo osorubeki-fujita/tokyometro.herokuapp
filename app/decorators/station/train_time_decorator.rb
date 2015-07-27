@@ -1,10 +1,6 @@
 class Station::TrainTimeDecorator < Draper::Decorator
   delegate_all
 
-  def departing_platform_info
-    "#{ depart_from }番線発"
-  end
-
   # def render_in_station_timetable( terminal_station_infos , train_type_infos , one_train_type_info , one_terminal_station_info , major_terminal_station_info_id )
   def render_in_station_timetable( rendering_settings )
     @rendering_settings = rendering_settings.with( object )
@@ -67,29 +63,20 @@ class Station::TrainTimeDecorator < Draper::Decorator
   end
 
   def render_last_in_station_timetable
-    if last_train?
-      h.render inline: <<-HAML , type: :haml
-%div{ class: :last }<>
-  = "最終"
-      HAML
+    if object.last_train?
+      h.content_tag( :div , "最終" , class: :last )
     end
   end
 
   def render_starting_info_at_this_station_in_station_timetable
-    if start_at_this_station?
-      h.render inline: <<-HAML , type: :haml
-%div{ class: :origin }<>
-  = "当駅始発"
-      HAML
+    if object.start_at_this_station?
+      h.content_tag( :div , "当駅始発" , class: :origin )
     end
   end
 
   def render_departing_platform_info_in_station_timetable
     if has_departing_platform_info?
-      h.render inline: <<-HAML , type: :haml , locals: { this: self }
-%div{ class: :depart_from }<>
-  = this.departing_platform_info
-      HAML
+      h.content_tag( :div , departing_platform_info , class: :depart_from )
     end
   end
 
@@ -116,6 +103,12 @@ class Station::TrainTimeDecorator < Draper::Decorator
       private :#{ method_name }
     DEF
 
+  end
+
+  private
+
+  def departing_platform_info
+    "#{ object.platform_number }番線発"
   end
 
 end

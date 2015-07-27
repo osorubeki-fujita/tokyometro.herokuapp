@@ -14,15 +14,15 @@ class Operator::Info < ActiveRecord::Base
 
   has_many :twitter_accounts , class: ::TwitterAccount , as: :operator_info_or_railway_line_info , foreign_key: :operator_info_or_railway_line_info_id
 
-  has_many :operator_as_train_owners , class: ::Operator::AsTrainOwner , foreign_key: :operator_info_id
+  has_many :operator_as_train_owners , class: ::Operator::AsTrainOwner , foreign_key: :info_id
 
-  has_one :code , class: ::Operator::Code , foreign_key: :info_id
+  has_one :code_info , class: ::Operator::CodeInfo , foreign_key: :info_id
 
   include ::OdptCommon::Modules::Polymorphic::Operator
 
   include ::OdptCommon::Modules::Name::Db::GetList
 
-  include ::OdptCommon::Modules::Name::Common::Operator
+  include ::OdptCommon::Modules::Name::Common::Operator::Info
   include ::TokyoMetro::Modules::Name::Common::Operator::CssClass
 
   include ::TokyoMetro::Modules::Decision::Common::Fundamental::CompareBase
@@ -41,8 +41,10 @@ class Operator::Info < ActiveRecord::Base
   }
 
   def color
-    code.color
+    code_info.color
   end
+
+  alias :color_normal :color
 
   private
 

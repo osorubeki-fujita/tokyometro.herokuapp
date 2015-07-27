@@ -100,6 +100,9 @@
     @include margin_bottom_32 ;
     ul.railway_lines_of_each_operator  {
       @extend %marginLeft16 ;
+      .multiple_codes {
+        @include float_left ;
+      }
     }
   }
 }

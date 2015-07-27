@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InFareTable < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InFareTable < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render( starting_station_info: false )
     if starting_station_info

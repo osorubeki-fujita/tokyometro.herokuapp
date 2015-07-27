@@ -1,4 +1,4 @@
-class Station::InfoDecorator::AsDirectionInfo < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::AsDirectionInfo < TokyoMetro::Factory::Decorate::SubDecorator
 
   def name_ja
     "#{ object.name_ja_actual }方面"

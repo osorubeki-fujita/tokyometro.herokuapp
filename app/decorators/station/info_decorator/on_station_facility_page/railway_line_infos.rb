@@ -1,4 +1,4 @@
-class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::OnStationFacilityPage::RailwayLineInfos < ::TokyoMetro::Factory::Decorate::SubDecorator
 
   def initialize( decorator , request )
     super( decorator )

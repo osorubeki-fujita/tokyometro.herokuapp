@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InTransferInfo < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InTransferInfo < TokyoMetro::Factory::Decorate::SubDecorator
 
   # @note {ConnectingRailwayLineDecorator#render} から呼び出される。
   def render_connection_info_from_another_station

@@ -1,4 +1,4 @@
-class Railway::Line::InfoDecorator::InPlatformTransferInfo < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Railway::Line::InfoDecorator::InPlatformTransferInfo < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render
     h.render inline: <<-HAML , type: :haml , locals: { name_ja: name_ja , name_en: name_en }

@@ -1,7 +1,7 @@
-class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::SubDecorator
 
   def self.render_in_railway_line_page( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+    h.render inline: <<-HAML , type: :haml , locals: h_railway_line_infos
 %div{ id: :railway_line_title }
   = ::Railway::Line::InfoDecorator.render_common_title
   = ::Railway::Line::InfoDecorator::Title.render_name_main( infos )
@@ -10,7 +10,9 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
 
   # タイトルを記述するメソッド（路線別）
   def self.render_in_passenger_survey_page( railway_line_infos , survey_year )
-    h_locals = { infos: railway_line_infos , survey_year: survey_year }
+
+    h_locals = h_railway_line_infos.merge( { survey_year: survey_year } )
+
     h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ id: :passenger_survey_title }
   = ::PassengerSurveyDecorator.render_common_title( :railway_line )
@@ -19,7 +21,7 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
   end
 
   def self.render_in_station_facility_page( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+    h.render inline: <<-HAML , type: :haml , locals: h_railway_line_infos
 %div{ id: :station_facility_title }
   = ::Station::Facility::InfoDecorator.render_common_title
   = ::Railway::Line::InfoDecorator::Title.render_name_main( infos )
@@ -28,7 +30,7 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
 
   # 列車運行情報のタイトルを記述するメソッド
   def self.render_in_train_operation_page( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+    h.render inline: <<-HAML , type: :haml , locals: h_railway_line_infos
 %div{ id: :train_operation_info_title }
   = ::Train::Operation::InfoDecorator.render_common_title( request )
   = ::Railway::Line::InfoDecorator::Title.render_name_main( infos )
@@ -37,7 +39,7 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
 
   # 列車位置情報のタイトルを記述するメソッド
   def self.render_in_train_location_page( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+    h.render inline: <<-HAML , type: :haml , locals: h_railway_line_infos
 %div{ id: :train_location_title }
   = ::Train::Location::InfoDecorator.render_common_title( request )
   = ::Railway::Line::InfoDecorator::Title.render_name_main( infos )
@@ -45,7 +47,7 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
   end
 
   def self.render_in_station_timetable_page( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+    h.render inline: <<-HAML , type: :haml , locals: h_railway_line_infos
 %div{ id: :station_timetable_title }
   = ::Station::Timetable::InfoDecorator.render_common_title( request )
   = ::Railway::Line::InfoDecorator::Title.render_name_main( infos )
@@ -54,7 +56,7 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
 
   # @todo Revision
   def self.render_in_railway_timetable_page( railway_line_infos )
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos }
+    h.render inline: <<-HAML , type: :haml , locals: h_railway_line_infos
 %div{ id: :railway_timetable_title }
   = ::TokyoMetro::App::Renderer::Concerns::Header::Title::Base.new( request , ::RailwayTimetableHelper.common_title_ja , ::RailwayTimetableHelper.common_title_en ).render
   = ::Railway::Line::InfoDecorator::Title.render_name_main( infos )
@@ -68,7 +70,9 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
       include ::TokyoMetro::TempLib::RailwayLineArrayModule
     end
 
-    h.render inline: <<-HAML , type: :haml , locals: { infos: railway_line_infos , survey_year: survey_year }
+    h_locals = h_railway_line_infos.merge( { survey_year: survey_year } )
+
+    h.render inline: <<-HAML , type: :haml , locals: h_locals
 %div{ class: :main_text }
   - # タイトルの路線名を記述
   %div{ class: [ infos.to_title_color_class , :railway_line ] }
@@ -100,6 +104,16 @@ class Railway::Line::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSu
   %h4{ class: :text_en }<
     = o.name_en
     HAML
+  end
+
+  class << self
+
+    private
+
+    def h_railway_line_infos
+      { infos: railway_line_infos }
+    end
+
   end
 
 end

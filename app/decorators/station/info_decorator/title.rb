@@ -1,4 +1,4 @@
-class Station::InfoDecorator::Title < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::Title < TokyoMetro::Factory::Decorate::SubDecorator
 
   # タイトルのメイン部分（駅名）を記述するメソッド
   def render_header( station_code: false , all_station_codes: false )

@@ -1,4 +1,4 @@
-class Station::InfoDecorator::Code < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::Code < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render_image_tag
     h.image_tag( filename , class: :station_code )

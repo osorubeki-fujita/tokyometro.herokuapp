@@ -1,4 +1,4 @@
-class Station::InfoDecorator::InMatrix < TokyoMetro::Factory::Decorate::AppSubDecorator
+class Station::InfoDecorator::InMatrix < TokyoMetro::Factory::Decorate::SubDecorator
 
   def render( type_of_link_to_station , controller_of_linked_page , set_anchor )
     d_instance = decorator.link_to_station_facility_page.with( type_of_link_to_station )

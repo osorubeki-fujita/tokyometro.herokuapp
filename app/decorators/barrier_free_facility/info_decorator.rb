@@ -99,22 +99,22 @@ class BarrierFreeFacility::InfoDecorator < Draper::Decorator
 
   # 駅施設の番号を記述するメソッド
   def render_place_name_number
-    id_and_code = id_and_code_hash
-    h_locals = { id: id_and_code[ :id ] , code: id_and_code[ :code ] }
-
-    h.render inline: <<-HAML , type: :haml , locals: h_locals
-%div{ id: id , class: [ :number , :text_en ] }<
-  = code
-    HAML
+    _hash = id_and_code_hash
+    h.content_tag(
+      :div ,
+      _hash[ :code ] ,
+      id: _hash[ :id ] ,
+      class: [ :number , :text_en ]
+    )
   end
 
   # 駅施設の位置を記述するメソッド
   def render_place_name
-    _root_infos_to_s = root_infos_to_s
-    if _root_infos_to_s.present?
-      h.render inline: <<-HAML , type: :haml , locals: { root_infos_to_s: _root_infos_to_s }
+    str = root_infos_to_s
+    if str.present?
+      h.render inline: <<-HAML , type: :haml , locals: { str: str }
 %p{ class: :place }<
-  = root_infos_to_s
+  = str
       HAML
     end
   end
