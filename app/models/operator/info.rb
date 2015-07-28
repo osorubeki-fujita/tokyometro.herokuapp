@@ -41,7 +41,7 @@ class Operator::Info < ActiveRecord::Base
   }
 
   def color
-    code_info.color
+    color_info.hex_color
   end
 
   alias :color_normal :color
@@ -54,6 +54,10 @@ class Operator::Info < ActiveRecord::Base
 
   def name_en_to_a
     get_list( name_en )
+  end
+
+  def color_info
+    code_info.color_info
   end
 
 end

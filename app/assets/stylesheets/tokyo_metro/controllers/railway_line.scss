@@ -4,9 +4,54 @@
 @import 'concerns/connecting_railway_line_info.scss' ;
 @import 'concerns/link_to_railway_line_page/note_and_remark.scss' ;
 @import 'railway_line/travel_time_infos/common_settings.scss' ;
+@import 'railway_line/travel_time_infos/sub_infos/asakusa_station.scss' ;
+@import 'railway_line/travel_time_infos/sub_infos/chiyoda_line_fare.scss' ;
 
-table.travel_time_info , table.travel_time_info_main , table.travel_time_info_branch {
-  @extend %commonSettingsOfTravelTimeInfo ;
+
+#travel_time {
+  // table.travel_time_info , table.travel_time_info_main , table.travel_time_info_branch {
+  table.travel_time_info {
+    @extend %commonSettingsOfTravelTimeInfo ;
+    tr.additional_info_bottom {
+      td.asakusa_station {
+        .title {
+          @extend %backgroundOfAsakusaStationInfo ;
+        }
+      }
+      td.chiyoda_line_fare {
+        .title {
+          @extend %backgroundOfChiyodaLineFareInfo ;
+        }
+      }
+      td {
+        @include padding_top_16 ;
+        @include padding_left_right_8 ;
+        .contents {
+          @include margin_left_16 ;
+        }
+        .content {
+          h5 {
+            font: {
+              weight: normal ;
+              size: 10pt ;
+            }
+            @include padding_top_bottom_4 ;
+            @include padding_left_8 ;
+            border: {
+              left: solid 4px #999 ;
+            }
+            @include margin_bottom_8 ;
+          }
+          p {
+            font: {
+              size: 9pt ;
+            }
+          }
+          @include margin_bottom_16 ;
+        }
+      }
+    }
+  }
 }
 
 td.transfer {

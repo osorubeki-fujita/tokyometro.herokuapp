@@ -79,7 +79,6 @@ Report:
     contents:
       - Station::Info , Railway::Line::Info または別の名前空間に自然なメソッドを定義
       - あるいは TokyoMetro::App::Container < OdptCommon::App::Container などを定義
-  - 浅草駅 ホーム情報
   - その他、必要な Refactoring
 
 

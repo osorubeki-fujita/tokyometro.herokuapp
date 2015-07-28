@@ -15,6 +15,8 @@ class Train::Type::Info < ActiveRecord::Base
   has_many :train_timetable_train_type_in_other_operator_infos , class: ::Train::Timetable::TrainTypeInOtherOperatorInfo , foreign_key: :train_type_info_id
   has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :train_type_info_id
 
+  belongs_to :color_info , class: ::Train::Type::ColorInfo
+
 
   scope :select_colored_if_exist , -> {
     colored = select( &:colored? )
@@ -43,6 +45,14 @@ class Train::Type::Info < ActiveRecord::Base
 
   def has_color_infos?
     color.present? and bgcolor.present?
+  end
+
+  def color
+    color_info.color
+  end
+
+  def bgcolor
+    color_info.bgcolor
   end
 
 end

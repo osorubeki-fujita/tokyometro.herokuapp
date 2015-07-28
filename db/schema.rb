@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727161935) do
+ActiveRecord::Schema.define(version: 20150728000724) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -148,6 +148,13 @@ ActiveRecord::Schema.define(version: 20150727161935) do
     t.datetime "updated_at"
   end
 
+  create_table "design_color_infos", force: :cascade do |t|
+    t.string   "hex_color"
+    t.string   "name_ja"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "fare_infos", force: :cascade do |t|
     t.string   "same_as",              limit: 255
     t.integer  "from_station_info_id"
@@ -188,7 +195,6 @@ ActiveRecord::Schema.define(version: 20150727161935) do
 
   create_table "operator_code_infos", force: :cascade do |t|
     t.string   "code"
-    t.string   "color"
     t.string   "railway_line_code_shape"
     t.string   "railway_line_code_stroke_width_setting"
     t.string   "railway_line_code_text_weight"
@@ -201,6 +207,7 @@ ActiveRecord::Schema.define(version: 20150727161935) do
     t.datetime "updated_at",                             null: false
     t.boolean  "numbering"
     t.integer  "info_id"
+    t.integer  "color_info_id"
   end
 
   create_table "operator_infos", force: :cascade do |t|
@@ -657,6 +664,13 @@ ActiveRecord::Schema.define(version: 20150727161935) do
     t.datetime "updated_at"
   end
 
+  create_table "train_type_color_infos", force: :cascade do |t|
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "color_info_id"
+    t.integer  "bgcolor_info_id"
+  end
+
   create_table "train_type_in_apis", force: :cascade do |t|
     t.string   "same_as",       limit: 255
     t.string   "name_ja",       limit: 255
@@ -671,11 +685,10 @@ ActiveRecord::Schema.define(version: 20150727161935) do
     t.integer  "in_api_id"
     t.string   "note",                 limit: 255
     t.string   "same_as",              limit: 255
-    t.string   "color",                limit: 255
-    t.string   "bgcolor",              limit: 255
     t.integer  "railway_line_info_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "color_info_id"
   end
 
   create_table "train_type_stopping_patterns", force: :cascade do |t|

@@ -5,6 +5,6 @@
 <% # ::Operator::Info.all.defined.each do | operator_info | %>
 <% ::Operator::Info.all.each do | operator_info | %>
   <% if operator_info.css_class.present? %>
-$operator_<%= operator_info.css_class %>_bgcolor: <%= operator_info.code_info.color %> ;
+$operator_<%= operator_info.css_class %>_bgcolor: <%= operator_info.color %> ;
   <% end %>
 <% end %>

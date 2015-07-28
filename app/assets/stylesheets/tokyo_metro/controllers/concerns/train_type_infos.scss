@@ -333,3 +333,10 @@
     @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
   }
 }
+.undefined {
+  .custom_train_type:undefined {
+    $color: $train_type_undefined_color ;
+    $bgcolor: $train_type_undefined_bgcolor ;
+    @include gradationSettingsOfTrainTypeBox( $color , $bgcolor ) ;
+  }
+}
