@@ -1,6 +1,6 @@
 namespace :temp do
 
-  # namespace :completed do
+  namespace :completed do
 
     #---- begin task
     task :train_type_infos_20150728 => :environment do
@@ -30,6 +30,7 @@ namespace :temp do
         if notes_in_parentheses.present?
           #---- begin each
           notes_in_parentheses.each.with_index(1) do | str , i |
+
             if /直通/ =~ str
               additional_text = nil
             elsif /運行/ =~ str
@@ -41,7 +42,7 @@ namespace :temp do
             end
 
             if additional_text.present?
-              ::Train::Type::Note::Additional::Info.find_or_create_by( note_info_id: note_info.id , additional_text_id: additional_text.id , index: i )
+              ::Train::Type::Note::Additional::Info.find_or_create_by( info_id: train_type_info.id , additional_text_id: additional_text.id , index: i )
             end
 
           end
@@ -54,6 +55,6 @@ namespace :temp do
     end
     #---- end task
 
-  # end
+  end
 
 end

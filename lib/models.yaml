@@ -36,11 +36,14 @@ StoppingPattern:
 
 "Train::Type (additional infos)":
   - "Train::Type::StoppingPattern"
-  - "Train::Type::OperationDay"
-  - "Train::Type::RemarkableStop"
   - "Train::Type::Note::Info"
-  - "Train::Type::Note::AdditionalInfo"
   - "Train::Type::Note::Text"
+  - "Train::Type::Note::Additional::Info"
+  - "Train::Type::Note::Additional::Text"
+  - "Train::Type::SpecificOperationDay"
+  - "Train::Type::RemarkableStopInfo"
+  - "Train::Type::ThroughOperationInfo"
+
 
 "Design":
   - "Design::Color::Info"

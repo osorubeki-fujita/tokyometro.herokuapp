@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728142944) do
+ActiveRecord::Schema.define(version: 20150728163906) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -692,7 +692,7 @@ ActiveRecord::Schema.define(version: 20150728142944) do
   end
 
   create_table "train_type_note_additional_infos", force: :cascade do |t|
-    t.integer  "note_info_id"
+    t.integer  "info_id"
     t.integer  "additional_text_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -738,6 +738,14 @@ ActiveRecord::Schema.define(version: 20150728142944) do
     t.integer  "stopping_pattern_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "train_type_through_operation_infos", force: :cascade do |t|
+    t.integer  "info_id"
+    t.integer  "railway_line_info_id"
+    t.integer  "to_station_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "twitter_accounts", force: :cascade do |t|
