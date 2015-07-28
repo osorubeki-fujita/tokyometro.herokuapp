@@ -16,6 +16,13 @@ class Train::Type::Info < ActiveRecord::Base
   has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :train_type_info_id
 
   belongs_to :color_info , class: ::Train::Type::ColorInfo
+  has_one :note_info , class: ::Train::Type::Note::Info , foreign_key: :info_id
+
+  has_many :train_type_specific_operation_days , class: ::Train::Type::SpecificOperationDay , foreign_key: :train_type_info_id
+  has_many :specific_operation_days , class: ::OperationDay , through: :train_type_specific_operation_days
+
+  has_many :train_type_remarkable_stop_infos , class: ::Train::Type::RemarkableStopInfo , foreign_key: :train_type_info_id
+  has_many :remarkable_stop_infos , class: ::Station::Info , through: :train_type_remarkable_stop_infos
 
 
   scope :select_colored_if_exist , -> {

@@ -14,11 +14,12 @@ barrier_free_facility_toilet_assistant_patterns
 barrier_free_facility_types
 connecting_railway_line_infos
 connecting_railway_line_notes
+design_color_infos
 fare_infos
 fare_normal_groups
 operation_days
 operator_as_train_owners
-operator_codes
+operator_code_infos
 operator_infos
 passenger_surveys
 point_additional_names
@@ -27,8 +28,8 @@ point_codes
 point_infos
 railway_directions
 railway_line_additional_infos
-railway_line_codes
-railway_line_info_codes
+railway_line_code_infos
+railway_line_info_code_infos
 railway_line_infos
 railway_line_relations
 railway_line_travel_time_infos
@@ -66,6 +67,7 @@ train_timetable_arrival_infos
 train_timetable_infos
 train_timetable_train_names
 train_timetable_train_type_in_other_operator_infos
+train_type_color_infos
 train_type_in_apis
 train_type_infos
 train_type_stopping_patterns

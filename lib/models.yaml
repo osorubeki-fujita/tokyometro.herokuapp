@@ -30,9 +30,20 @@ StoppingPattern:
 "Train::Type":
   - "Train::Type::Info"
   - "Train::Type::InApi"
-  - "Train::Type::StoppingPattern"
+  - "Train::Type::ColorInfo"
   - "Train::Name"
   - "Train::Basename"
+
+"Train::Type (additional infos)":
+  - "Train::Type::StoppingPattern"
+  - "Train::Type::OperationDay"
+  - "Train::Type::RemarkableStop"
+  - "Train::Type::Note::Info"
+  - "Train::Type::Note::AdditionalInfo"
+  - "Train::Type::Note::Text"
+
+"Design":
+  - "Design::Color::Info"
 
 StationFacility:
   - "Station::Facility::Info"

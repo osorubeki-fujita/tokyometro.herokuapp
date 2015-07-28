@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728010231) do
+ActiveRecord::Schema.define(version: 20150728142944) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -689,6 +689,47 @@ ActiveRecord::Schema.define(version: 20150728010231) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "color_info_id"
+  end
+
+  create_table "train_type_note_additional_infos", force: :cascade do |t|
+    t.integer  "note_info_id"
+    t.integer  "additional_text_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "index"
+  end
+
+  create_table "train_type_note_additional_texts", force: :cascade do |t|
+    t.string   "text_ja"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "train_type_note_infos", force: :cascade do |t|
+    t.integer  "text_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "info_id"
+  end
+
+  create_table "train_type_note_texts", force: :cascade do |t|
+    t.string   "text_ja"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "train_type_remarkable_stop_infos", force: :cascade do |t|
+    t.integer  "train_type_info_id"
+    t.integer  "remarkable_stop_info_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "train_type_specific_operation_days", force: :cascade do |t|
+    t.integer  "train_type_info_id"
+    t.integer  "specific_operation_day_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "train_type_stopping_patterns", force: :cascade do |t|

@@ -25,9 +25,11 @@ class Railway::Line::Info < ActiveRecord::Base
 
   has_many :train_type_stopping_patterns , class: ::Train::Type::StoppingPattern , foreign_key: :railway_line_info_id
 
+  #-------- 運行情報・列車位置情報
   has_many :train_operation_infos , class: ::Train::Operation::Info , foreign_key: :railway_line_info_id
   has_many :train_location_infos , class: ::Train::Location::Info , foreign_key: :railway_line_info_id
 
+  #-------- エアコン
   has_many :air_conditioner_infos
 
   #-------- 支線

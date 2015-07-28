@@ -1,3 +1,6 @@
+# 都市と田園は結婚しなければならない
+
+
 Design:
   - ブラウザによって表示が崩れる問題を修正
   - SNSボタンの設置
@@ -22,6 +25,10 @@ Report:
   - Train::Name
   - Train::Timetable::TrainName
   - 停車駅クラスの完成
+  -
+    title: MVC分離の徹底
+    contents:
+      - View 内部のインスタンス生成は原則禁止とする。
   -
     title: Gem - seed関連
     contents:
@@ -305,4 +312,8 @@ Contents:
       - 入力された情報から駅のインスタンスを取得するメソッド
       - 間違った情報が入力されても正しい駅名を返すメソッド
   - 福祉・バリアフリー系
-  - 災害対策系
+  -
+    title: 災害対策系
+    contents:
+      - ハザードマップ
+      - 避難所
