@@ -35,6 +35,15 @@ namespace :temp do
 
     end
 
+    task :railway_line_code_infos_20150728 => :environment do
+      railway_line_code_infos = ::Railway::Line::CodeInfo.all.to_a
+      for i in 0..( railway_line_code_infos.length - 1 )
+        railway_line_code_info = railway_line_code_infos[i]
+        color_info_id = ::Design::Color::Info.find_or_create_by( hex_color: railway_line_code_info.color ).id
+        railway_line_code_info.update( color_info_id: color_info_id )
+      end
+    end
+
   end
 
 end

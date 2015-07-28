@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728000724) do
+ActiveRecord::Schema.define(version: 20150728010231) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -290,11 +290,11 @@ ActiveRecord::Schema.define(version: 20150728000724) do
   end
 
   create_table "railway_line_code_infos", force: :cascade do |t|
-    t.string   "code"
-    t.string   "color"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.boolean  "numbering"
+    t.integer  "color_info_id"
+    t.string   "code"
   end
 
   create_table "railway_line_info_code_infos", force: :cascade do |t|

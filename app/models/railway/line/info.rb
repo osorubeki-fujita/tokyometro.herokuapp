@@ -46,6 +46,7 @@ class Railway::Line::Info < ActiveRecord::Base
     #-------- 路線コード
   has_many :info_code_infos , class: ::Railway::Line::InfoCodeInfo , foreign_key: :info_id
   has_many :code_infos , class: ::Railway::Line::CodeInfo , through: :info_code_infos
+  has_many :color_infos , class: ::Design::Color::Info , through: :code_infos
 
 
   include ::OdptCommon::Modules::Polymorphic::RailwayLine
@@ -154,7 +155,7 @@ class Railway::Line::Info < ActiveRecord::Base
   end
 
   def colors_to_a
-    code_infos.pluck( :color ).delete_if( &:blank? )
+    color_infos.pluck( :hex_color ).delete_if( &:blank? )
   end
 
   def color_normal
