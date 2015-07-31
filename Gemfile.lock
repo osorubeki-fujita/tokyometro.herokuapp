@@ -189,7 +189,7 @@ GEM
       positive_web_support (>= 0.3.2)
     positive_symbol_support (0.1.2)
       activesupport (>= 4.2.1)
-    positive_time_support (0.1.2)
+    positive_time_support (0.1.3)
       activesupport (>= 4.2.1)
     positive_web_support (0.3.2)
       activesupport (>= 4.2.1)
@@ -319,6 +319,7 @@ GEM
       positive_basic_support (>= 0.2.0)
       positive_code_counter (>= 0.1.0)
       positive_support (>= 0.3.2)
+      rails_decorate_factory (>= 0.2.0)
       required_files (>= 0.2.6)
       with_default_value (>= 0.1.0)
     turbolinks (2.5.3)
@@ -397,4 +398,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.10.5
+   1.10.6

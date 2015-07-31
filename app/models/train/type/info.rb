@@ -77,12 +77,12 @@ class Train::Type::Info < ActiveRecord::Base
   has_many :train_type_remarkable_stop_infos , class: ::Train::Type::RemarkableStopInfo , foreign_key: :train_type_info_id
   has_many :remarkable_stop_infos , class: ::Station::Info , through: :train_type_remarkable_stop_infos
 
-  #---- train_type_through_operation_infos
+  # @!group Train type through operation infos
+
   has_many :train_type_through_operation_infos , class: ::Train::Type::ThroughOperationInfo , foreign_key: :info_id
   has_many :to_station_infos , class: ::Station::Info , through: :train_type_through_operation_infos
 
   # @!endgroup
-
 
   scope :select_colored_if_exist , -> {
     colored = select( &:colored? )
