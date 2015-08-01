@@ -4,13 +4,16 @@ source 'https://rubygems.org'
 # source "http://rubygems.org/"
 # source "http://production.cf.rubygems.org"
 
-# ruby '2.2.2'
-ruby '2.1.6'
+ruby '2.2.2'
+# ruby '2.1.6'
 
 #-------- Escape Error
 
-gem 'rack' , '1.6.2' # <- 1.6.4
-gem 'arel' , '6.0.0' #<- 6.0.2
+# gem 'rack' , '1.6.2' # <- 1.6.4
+# gem 'arel' , '6.0.0' #<- 6.0.2
+
+gem 'rack' , '1.6.4'
+gem 'arel' , '6.0.2'
 
 # -------- Ruby on Rails
 

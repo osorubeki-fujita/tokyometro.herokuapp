@@ -38,7 +38,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    arel (6.0.0)
+    arel (6.0.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -205,7 +205,7 @@ GEM
       pry (>= 0.9.10)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
-    rack (1.6.2)
+    rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -246,7 +246,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-      json (~> 1.4)
     request_store (1.2.0)
     required_files (0.2.6)
       activesupport (>= 4.2.1)
@@ -313,6 +312,7 @@ GEM
     tokyo_metro (0.12.0)
       haml
       holiday_japan (>= 1.2.0)
+      httpclient
       log_finder (>= 0.1.0)
       odpt_common (>= 0.2.3)
       odpt_tokyo_metro_helper (>= 0.2.2)
@@ -348,7 +348,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgresql-adapter
-  arel (= 6.0.0)
+  arel (= 6.0.2)
   better_errors
   binding_of_caller
   bullet
@@ -376,7 +376,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   quiet_assets (~> 1.0.3)
-  rack (= 1.6.2)
+  rack (= 1.6.4)
   rails (= 4.2.1)
   rails-erd
   rails_12factor
