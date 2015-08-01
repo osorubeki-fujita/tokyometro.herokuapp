@@ -48,16 +48,12 @@ class Operator::Info < ActiveRecord::Base
 
   private
 
-  def name_ja_to_a
-    get_list( name_ja )
-  end
-
-  def name_hira_to_a
-    get_list( name_hira )
-  end
-
-  def name_en_to_a
-    get_list( name_en )
+  [ :ja , :hira , :en ].each do | name_attr |
+    eval <<-DEF
+      def name_#{ name_attr }_to_a
+        get_list( name_#{ name_attr } )
+      end
+    DEF
   end
 
   def color_info
