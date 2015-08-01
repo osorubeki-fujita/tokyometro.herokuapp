@@ -52,6 +52,10 @@ class Operator::Info < ActiveRecord::Base
     get_list( name_ja )
   end
 
+  def name_hira_to_a
+    get_list( name_hira )
+  end
+
   def name_en_to_a
     get_list( name_en )
   end
