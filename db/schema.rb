@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728163906) do
+ActiveRecord::Schema.define(version: 20150801205823) do
 
   create_table "air_conditioner_answers", force: :cascade do |t|
     t.string   "name_ja",    limit: 255
@@ -211,15 +211,16 @@ ActiveRecord::Schema.define(version: 20150728163906) do
   end
 
   create_table "operator_infos", force: :cascade do |t|
-    t.string   "name_ja",       limit: 255
-    t.string   "name_hira",     limit: 255
-    t.string   "name_en",       limit: 255
+    t.string   "name_ja",         limit: 255
+    t.string   "name_en",         limit: 255
     t.float    "index"
-    t.string   "same_as",       limit: 255
-    t.string   "name_ja_short", limit: 255
-    t.string   "name_en_short", limit: 255
+    t.string   "same_as",         limit: 255
+    t.string   "name_ja_short",   limit: 255
+    t.string   "name_en_short",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_hira"
+    t.string   "name_hira_short"
   end
 
   create_table "passenger_surveys", force: :cascade do |t|
