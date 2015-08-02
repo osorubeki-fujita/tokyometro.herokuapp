@@ -41,6 +41,7 @@ Report:
     contents:
       - "[module] reference"
       - SeedFactory
+  - Train::Operation::Text の Csv を保存
   - データの再流し込み
   - "[check] TokyoMetro::Rake::Make::YamlStationList::File::EachStation"
   - "[check] TokyoMetro::Static::OperationDay"

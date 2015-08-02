@@ -61,7 +61,7 @@ class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDe
     super().merge({
       "Infos from methods of object" => infos_from_methods_of_object ,
       "Infos from methods of decorator" => infos_from_methods_of_decorator ,
-      "infos from db columns of Operator::CodeInfo" => infos_from_db_columns_of_operator_code_info
+      "infos from db columns of Operator::AdditionalInfo" => infos_from_db_columns_of_operator_additional_info
     })
   end
 
@@ -89,8 +89,9 @@ class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDe
     super( :twitter_title )
   end
 
-  def infos_from_db_columns_of_operator_code_info
-    infos_from_methods_of( object.code_info , ::Operator::CodeInfo.attribute_names - [ "info_id" ] )
+  def infos_from_db_columns_of_operator_additional_info
+    attr_names = ::Operator::AdditionalInfo.attribute_names - [ "info_id" ]
+    infos_from_methods_of( object.additional_info , attr_names )
   end
 
 end

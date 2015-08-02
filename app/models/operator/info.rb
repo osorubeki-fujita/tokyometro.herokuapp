@@ -16,7 +16,7 @@ class Operator::Info < ActiveRecord::Base
 
   has_many :operator_as_train_owners , class: ::Operator::AsTrainOwner , foreign_key: :info_id
 
-  has_one :code_info , class: ::Operator::CodeInfo , foreign_key: :info_id
+  has_one :additional_info , class: ::Operator::AdditionalInfo , foreign_key: :info_id
 
   include ::OdptCommon::Modules::Polymorphic::Operator
 
@@ -57,7 +57,7 @@ class Operator::Info < ActiveRecord::Base
   end
 
   def color_info
-    code_info.color_info
+    additional_info.color_info
   end
 
 end
