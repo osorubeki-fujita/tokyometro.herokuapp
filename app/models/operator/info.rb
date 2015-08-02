@@ -17,6 +17,8 @@ class Operator::Info < ActiveRecord::Base
   has_many :operator_as_train_owners , class: ::Operator::AsTrainOwner , foreign_key: :info_id
 
   has_one :additional_info , class: ::Operator::AdditionalInfo , foreign_key: :info_id
+  has_one :railway_line_code_info , class: ::Operator::CodeInfo , through: :additional_info
+  has_one :station_code_info , class: ::Operator::CodeInfo , through: :additional_info
 
   include ::OdptCommon::Modules::Polymorphic::Operator
 

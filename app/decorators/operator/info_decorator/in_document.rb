@@ -40,7 +40,7 @@ class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDe
   def render_name_ja
     render_name(
       ::PositiveStringSupport::RegexpLibrary.regexp_for_parentheses_ja ,
-      name_ja_very_precise ,
+      object.name_ja_very_precise ,
       :text_ja
     )
   end
@@ -48,7 +48,7 @@ class Operator::InfoDecorator::InDocument < TokyoMetro::Factory::Decorate::SubDe
   def render_name_en
     render_name(
       ::PositiveStringSupport::RegexpLibrary.regexp_for_quotation ,
-      name_en_very_precise ,
+      object.name_en_very_precise ,
       :text_en
     )
   end
