@@ -23,7 +23,7 @@ Report:
 
 "App and Gem":
   -
-    title: "::Railway::Line::Info"
+    title: "Railway::Line::Info"
     contents:
       - odpt.Railway:Odakyu
       - odpt.Railway:Tobu.Isesaki.Hanzomon

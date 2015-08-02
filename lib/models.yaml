@@ -1,6 +1,7 @@
 Operator:
   - "Operator::Info"
   - "Operator::AdditionalInfo"
+  - "Operator::CodeInfo"
   - "Operator::AsTrainOwner"
 
 RailwayLine:
