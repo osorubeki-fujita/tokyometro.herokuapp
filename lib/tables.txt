@@ -18,8 +18,8 @@ design_color_infos
 fare_infos
 fare_normal_groups
 operation_days
+operator_additional_infos
 operator_as_train_owners
-operator_code_infos
 operator_infos
 passenger_surveys
 point_additional_names
