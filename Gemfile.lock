@@ -192,7 +192,7 @@ GEM
     positive_time_support (0.1.4)
       activesupport (>= 4.2.1)
       holiday_japan (>= 1.2.0)
-    positive_web_support (0.3.2)
+    positive_web_support (0.4.0)
       activesupport (>= 4.2.1)
       positive_basic_support (>= 0.1.2)
     pry (0.10.1)

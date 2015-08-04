@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 # source "http://production.cf.rubygems.org"
 
 ruby '2.2.2'
-# ruby '2.1.6'
 
 #-------- Escape Error
 
