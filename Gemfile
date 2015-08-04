@@ -18,7 +18,7 @@ gem 'arel' , '6.0.2'
 # -------- Ruby on Rails
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
 
 #-------- original gems
 
@@ -49,7 +49,7 @@ group :development do
   gem 'sequel'
   gem 'bullet'
   gem "rails-erd"
-  gem 'quiet_assets' , '~> 1.0.3'
+  gem 'quiet_assets' # , '~> 1.0.3'
 
   gem 'yard', '0.8.7.6'
 
@@ -99,7 +99,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.2.5'
+gem 'jbuilder'# , '~> 2.2.5'
 #  gem 'jbuilder', '>= 2.3.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
